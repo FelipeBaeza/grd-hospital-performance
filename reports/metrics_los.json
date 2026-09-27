@@ -1,0 +1,21 @@
+{
+  "modelo": "LightGBM Tweedie Regressor (Estancia Hospitalaria / LOS)",
+  "train_anios": "2019-2022",
+  "val_anio": 2023,
+  "test_anio": 2024,
+  "n_train": 2272317,
+  "n_val": 632846,
+  "n_test": 656353,
+  "mejor_iteracion": 488,
+  "tiempo_entrenamiento_seg": 23.28,
+  "metricas_test_2024": {
+    "mae_dias": 4.468,
+    "rmse_dias": 9.525,
+    "medae_dias": 2.384,
+    "pearson_r": 0.4735,
+    "spearman_rho": 0.603,
+    "estancia_media_observada": 6.7,
+    "estancia_media_esperada": 7.1,
+    "ratio_O_E_global": 0.9442
+  }
+}
