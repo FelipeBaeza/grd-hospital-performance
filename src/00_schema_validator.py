@@ -9,15 +9,14 @@ las 129 columnas esperadas y aplica la regla de alias conocida
 """
 
 import sys
-import glob
 from pathlib import Path
 import argparse
 import yaml
 
-# Alias conocidos entre extracciones
-ALIAS_COLUMNAS = {
-    "ID_BENEFICIARIO": "CIP_ENCRIPTADO"
-}
+try:
+    from src.constants import ALIAS_COLUMNAS
+except ImportError:
+    ALIAS_COLUMNAS = {"ID_BENEFICIARIO": "CIP_ENCRIPTADO"}
 
 
 def cargar_columnas_esperadas(ruta_contrato: Path) -> list[str]:
@@ -50,7 +49,6 @@ def validar_archivo_txt(
 
     columnas_observadas = [col.strip() for col in primera_linea.split(separador)]
     
-    # Aplicar reglas de alias (ej. ID_BENEFICIARIO -> CIP_ENCRIPTADO)
     alias_aplicados = []
     columnas_normalizadas = []
     for c in columnas_observadas:
@@ -105,10 +103,8 @@ def main():
     dir_datos = Path(args.data_dir)
     ruta_contrato = Path(args.config_path)
 
-    # Si data/raw está vacío, sugerir o revisar ubicación de respaldo
     archivos = sorted(dir_datos.glob("*.txt"))
     if not archivos:
-        # Fallback de conveniencia para entorno local
         dir_alternativo = Path("../Seminario/data seminario")
         if dir_alternativo.exists():
             print(f"[AVISO] No hay archivos en '{dir_datos}'. Usando directorio de muestra: '{dir_alternativo}'")
