@@ -1,0 +1,56 @@
+# Artefacto: config/normalizacion_etnia.csv
+# Tarea: 4.8 (spec fase1-cohorte-grd) | Requisitos: R4.6, R4.7 | Decision: D04 (estado CERRADA)
+# Version del artefacto: 1
+# Origen: ETNIA (capa bronce, texto crudo) -> Destino: categoria normalizada de ETNIA.
+# Consumidor: src/fase1/calidad/etnia.py::cargar_normalizacion_etnia. La derivacion de
+#   PUEBLO_ORIGINARIO (tarea 24.1, R18.2) esta BLOQUEADA mientras este archivo no exista o no
+#   declare regla para alguna etiqueta observada (R4.7); la binarizacion en si no se declara
+#   aqui, porque es materia de R18.2 y no de D04.
+#
+# Llave: representacion_hex, los bytes crudos del campo en hexadecimal minuscula. La llave es
+#   la representacion en BYTES y no la etiqueta legible porque el caso que D04 resuelve solo
+#   es distinguible en bytes: 'OTRO' (4f54524f) y 'OTRO ' (4f54524f20, con un espacio ASCII
+#   0x20 final) producen la misma etiqueta tras strip + mayusculas (R4.7).
+# Etiqueta: resultado de decodificar la representacion como UTF-8 y aplicar strip + mayusculas,
+#   la misma normalizacion declarada en R6.7. El validador exige que la etiqueta coincida con
+#   ese calculo, de modo que el artefacto no pueda declarar una etiqueta que los bytes no dan.
+# tipo_regla: CANONICA cuando los bytes decodificados ya son la categoria; COLAPSO cuando
+#   difieren de la categoria y colapsan en ella al normalizar; RESIDUAL la unica fila catch-all.
+# Categoria residual: NO_DECLARADA. No la usa ninguna fila CANONICA ni COLAPSO: una
+#   representacion nueva, no observada en 2019-2024, cae en ella y eso es un BLOQUEO declarado
+#   sobre PUEBLO_ORIGINARIO, no una categoria de analisis.
+#
+# Evidencia (barrido unico en bytes de los 6 archivos-ano, 2026-08-20): 15 representaciones
+#   distintas, 14 etiquetas distintas, 5.808.536 episodios con valor y ninguno nulo ni vacio.
+#   La unica colision tras strip + mayusculas es la de la categoria OTRO, y la causa es un
+#   espacio ASCII final en 2019-2021, no un espacio no separable ni mojibake latin-1: los seis
+#   archivos decodifican como UTF-8 sin reemplazos.
+# Desvio declarado frente a la evidencia previa (R28.9): los conteos citados por el enunciado y
+#   por el Anexo A (1.929.129 y 409.537) corresponden a la extraccion de 4.991.626 registros,
+#   que no incluye el archivo-ano 2021. Sobre la extraccion vigente de 5.808.536 registros los
+#   valores efectivos son 1.929.130 y 438.029; la diferencia de 28.492 en 'OTRO ' es
+#   exactamente el conteo de 2021, y la de 1 en 'OTRO' es del mismo orden que el registro que
+#   la reconciliacion de linaje deja sin explicar (D13, R3.4).
+#
+# Decision no tomada, declarada para que no se tome por descuido: NINGUNA (11.422 episodios,
+#   solo 2019) NO se colapsa en NINGUNO. Son etiquetas distintas, no dos representaciones de
+#   una misma etiqueta, y fusionarlas es una decision de semantica de categorias que D04 no
+#   cubre. Igual criterio para DESCONOCIDO y NO RESPONDE, que se conservan como categorias
+#   propias.
+representacion_hex,etiqueta,categoria_normalizada,tipo_regla,conteo_observado,anios_observados,fuente,fecha_obtencion,decision,nota
+"4e494e47554e4f","NINGUNO","NINGUNO","CANONICA","3302411","2019;2020;2021;2024","Barrido unico en bytes de ETNIA sobre data seminario/*.txt (6 archivos, 2019-2024)","2026-08-20","D04","Ausente de 2022 y 2023, anos en que toda la poblacion sin pueblo declarado aparece como OTRO"
+"4f54524f","OTRO","OTRO","CANONICA","1929130","2022;2023","Barrido unico en bytes de ETNIA sobre data seminario/*.txt (6 archivos, 2019-2024)","2026-08-20","D04","Representacion sin espacio final; es la forma canonica de la categoria que D04 normaliza. Evidencia previa: 1.929.129 sobre la extraccion de 4.991.626 registros"
+"4f54524f20","OTRO","OTRO","COLAPSO","438029","2019;2020;2021","Barrido unico en bytes de ETNIA sobre data seminario/*.txt (6 archivos, 2019-2024)","2026-08-20","D04","Espacio ASCII 0x20 final; colapsa en OTRO al aplicar strip + mayusculas. Es la segunda representacion de la colision de R4.7. Evidencia previa: 409.537, sin el archivo-ano 2021 (28.492 episodios)"
+"4d415055434845","MAPUCHE","MAPUCHE","CANONICA","102231","2019;2020;2021;2022;2023;2024","Barrido unico en bytes de ETNIA sobre data seminario/*.txt (6 archivos, 2019-2024)","2026-08-20","D04",""
+"4e494e47554e41","NINGUNA","NINGUNA","CANONICA","11422","2019","Barrido unico en bytes de ETNIA sobre data seminario/*.txt (6 archivos, 2019-2024)","2026-08-20","D04","Categoria propia y no un colapso en NINGUNO: la fusion de dos etiquetas distintas excede el alcance de D04"
+"41594d415241","AYMARA","AYMARA","CANONICA","11115","2019;2020;2021;2022;2023;2024","Barrido unico en bytes de ETNIA sobre data seminario/*.txt (6 archivos, 2019-2024)","2026-08-20","D04",""
+"52415041204e554920285041534355454e534529","RAPA NUI (PASCUENSE)","RAPA NUI (PASCUENSE)","CANONICA","4079","2019;2020;2021;2022;2023;2024","Barrido unico en bytes de ETNIA sobre data seminario/*.txt (6 archivos, 2019-2024)","2026-08-20","D04",""
+"4449414755495441","DIAGUITA","DIAGUITA","CANONICA","3209","2019;2020;2021;2022;2023;2024","Barrido unico en bytes de ETNIA sobre data seminario/*.txt (6 archivos, 2019-2024)","2026-08-20","D04",""
+"4b4157c38953514152","KAWÉSQAR","KAWÉSQAR","CANONICA","2872","2019;2020;2021;2022;2023;2024","Barrido unico en bytes de ETNIA sobre data seminario/*.txt (6 archivos, 2019-2024)","2026-08-20","D04","La E acentuada viene en UTF-8 (c389); no hay mojibake latin-1 en la columna"
+"51554543485541","QUECHUA","QUECHUA","CANONICA","1895","2019;2020;2021;2022;2023;2024","Barrido unico en bytes de ETNIA sobre data seminario/*.txt (6 archivos, 2019-2024)","2026-08-20","D04",""
+"594147c3814e202859c3814d414e4129","YAGÁN (YÁMANA)","YAGÁN (YÁMANA)","CANONICA","1088","2019;2020;2021;2022;2023;2024","Barrido unico en bytes de ETNIA sobre data seminario/*.txt (6 archivos, 2019-2024)","2026-08-20","D04",""
+"434f4c4c41","COLLA","COLLA","CANONICA","518","2019;2020;2021;2022;2023;2024","Barrido unico en bytes de ETNIA sobre data seminario/*.txt (6 archivos, 2019-2024)","2026-08-20","D04",""
+"4c4943414e20414e544149202841544143414d45c3914f29","LICAN ANTAI (ATACAMEÑO)","LICAN ANTAI (ATACAMEÑO)","CANONICA","517","2019;2020;2021;2022;2023;2024","Barrido unico en bytes de ETNIA sobre data seminario/*.txt (6 archivos, 2019-2024)","2026-08-20","D04","Etiqueta mas larga observada, 23 caracteres; fija el margen de la guarda de no transcripcion"
+"444553434f4e4f4349444f","DESCONOCIDO","DESCONOCIDO","CANONICA","19","2019","Barrido unico en bytes de ETNIA sobre data seminario/*.txt (6 archivos, 2019-2024)","2026-08-20","D04","Categoria propia: ausencia de dato declarada por el registro, distinta de NINGUNO"
+"4e4f20524553504f4e4445","NO RESPONDE","NO RESPONDE","CANONICA","1","2019","Barrido unico en bytes de ETNIA sobre data seminario/*.txt (6 archivos, 2019-2024)","2026-08-20","D04","Un solo episodio en 2019; se declara para que la cobertura sea total y no caiga en la residual"
+"","","NO_DECLARADA","RESIDUAL","","","Barrido unico en bytes de ETNIA sobre data seminario/*.txt (6 archivos, 2019-2024)","2026-08-20","D04","Categoria residual explicita: toda representacion no observada en 2019-2024 cae aqui y emite BLOQUEO sobre la derivacion de PUEBLO_ORIGINARIO (R4.7). Ninguna fila CANONICA ni COLAPSO la usa"

@@ -1,0 +1,31 @@
+grupo_id,categorias_elix,peso,regla_colapso,fuente,nota
+VW_ICC,ELIX_01,7,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_ARRITMIA,ELIX_02,5,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_VALVULOPATIA,ELIX_03,-1,DIRECTA,vanWalraven2009-Tabla1-Puntos,Peso negativo publicado
+VW_CIRC_PULMONAR,ELIX_04,4,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_VASC_PERIFERICA,ELIX_05,2,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_HIPERTENSION,ELIX_06+ELIX_07,0,MAX_UNA_VEZ,vanWalraven2009-Tabla1-Puntos,Colapso 31 -> 30: el sistema de puntos usa hipertension unificada (D28)
+VW_PARALISIS,ELIX_08,7,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_NEURO_OTROS,ELIX_09,6,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_PULMONAR_CRONICA,ELIX_10,3,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_DIABETES_SIMPLE,ELIX_11,0,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_DIABETES_COMPLICADA,ELIX_12,0,DIRECTA,vanWalraven2009-Tabla1-Puntos,Domina a VW_DIABETES_SIMPLE por jerarquia_elixhauser.csv
+VW_HIPOTIROIDISMO,ELIX_13,0,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_RENAL,ELIX_14,5,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_HEPATICA,ELIX_15,11,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_ULCERA_PEPTICA,ELIX_16,0,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_VIH_SIDA,ELIX_17,0,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_LINFOMA,ELIX_18,9,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_METASTASIS,ELIX_19,12,DIRECTA,vanWalraven2009-Tabla1-Puntos,Peso maximo publicado; domina a VW_TUMOR_SOLIDO
+VW_TUMOR_SOLIDO,ELIX_20,4,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_REUMATO_COLAGENO,ELIX_21,0,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_COAGULOPATIA,ELIX_22,3,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_OBESIDAD,ELIX_23,-4,DIRECTA,vanWalraven2009-Tabla1-Puntos,Peso negativo publicado
+VW_PERDIDA_PESO,ELIX_24,6,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_FLUIDOS_ELECTROLITOS,ELIX_25,5,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_ANEMIA_HEMORRAGICA,ELIX_26,-2,DIRECTA,vanWalraven2009-Tabla1-Puntos,Peso negativo publicado
+VW_ANEMIA_DEFICIENCIA,ELIX_27,-2,DIRECTA,vanWalraven2009-Tabla1-Puntos,Peso negativo publicado
+VW_ALCOHOL,ELIX_28,0,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_DROGAS,ELIX_29,-7,DIRECTA,vanWalraven2009-Tabla1-Puntos,Peso minimo publicado
+VW_PSICOSIS,ELIX_30,0,DIRECTA,vanWalraven2009-Tabla1-Puntos,
+VW_DEPRESION,ELIX_31,-3,DIRECTA,vanWalraven2009-Tabla1-Puntos,Peso negativo publicado
