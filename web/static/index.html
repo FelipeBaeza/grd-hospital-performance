@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Desempeño Hospitalario GRD | Ajuste de Riesgo ML</title>
+  <meta name="description" content="Plataforma de evaluación y ajuste de riesgo hospitalario basada en 5.8 millones de egresos GRD FONASA Chile">
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <!-- Encabezado Principal -->
+  <header>
+    <div class="brand">
+      <div class="logo-badge">GRD-ML</div>
+      <div class="brand-text">
+        <h1>Sistema de Desempeño Hospitalario GRD</h1>
+        <p>Ajuste de Riesgo Clínico y Comparativa vs. FONASA (2019–2024)</p>
+      </div>
+    </div>
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-dashboard">📊 Tablero de Control</button>
+      <button class="tab-btn" data-tab="tab-comparison">⚖️ Comparativa ML vs. FONASA</button>
+      <button class="tab-btn" data-tab="tab-models">📈 Modelos y Calibración</button>
+      <button class="tab-btn" data-tab="tab-calc">🩺 Calculadora al Ingreso</button>
+    </nav>
+  </header>
+
+  <!-- Contenido Central -->
+  <main>
+
+    <!-- KPI Banner Global -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Población Total Ingerida</div>
+        <div class="kpi-value" id="kpi-total-egresos">5,808,536</div>
+        <div class="kpi-sub">Egresos Fonasa (2019-2024)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Cohorte Dura (Mortalidad)</div>
+        <div class="kpi-value" id="kpi-cohorte-mortalidad">5,222,340</div>
+        <div class="kpi-sub">89.91% de la población (CONSORT)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Cohorte Estancia Inpatient</div>
+        <div class="kpi-value" id="kpi-cohorte-estancia">3,561,516</div>
+        <div class="kpi-sub">Sobrevivientes estancias ≥ 1 día</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">ROC-AUC Mortalidad (2024)</div>
+        <div class="kpi-value" id="kpi-auc" style="color: var(--accent-cyan);">0.9506</div>
+        <div class="kpi-sub">Discriminación en Test Out-of-Time</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">MAE Estancia (2024)</div>
+        <div class="kpi-value" id="kpi-mae" style="color: var(--accent-emerald);">4.47d</div>
+        <div class="kpi-sub">Mediana de error: 2.38 días</div>
+      </div>
+    </section>
+
+    <!-- PESTAÑA 1: TABLERO DE CONTROL -->
+    <div id="tab-dashboard" class="tab-content active">
+      
+      <div class="grid-2">
+        <!-- Gráfico del Cuadrante -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">🎯 Cuadrante de Rendimiento Hospitalario</div>
+              <div class="card-desc">Eje X: IEMC ML (Estancia) | Eje Y: HSMR (Mortalidad Estandarizada)</div>
+            </div>
+          </div>
+          <div class="quadrant-container">
+            <canvas id="quadrantChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Guía de Cuadrantes -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">🧭 Interpretación de Desempeño Clínico</div>
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 0.8rem;">
+            <p><strong style="color: var(--badge-green-txt);">🟢 Sobresaliente (HSMR &lt; 90 & IEMC &lt; 0.95):</strong> Menor mortalidad y menor estancia de la esperada dado el perfil clínico de los pacientes atendidos.</p>
+            <p><strong style="color: var(--badge-blue-txt);">🔵 Alta Eficiencia (IEMC &lt; 0.95):</strong> Gestión ágil de camas con mortalidad dentro de los límites esperados por riesgo basal.</p>
+            <p><strong style="color: var(--accent-cyan);">🔷 Alta Supervivencia (HSMR &lt; 90):</strong> Mayor tasa de sobrevida que el estándar nacional para casos de igual gravedad.</p>
+            <p><strong style="color: var(--badge-amber-txt);">🟠 Alerta Estancia (IEMC &gt; 1.05):</strong> Estancia prolongada sistemática frente a casos equivalentes en la red asistencial.</p>
+            <p><strong style="color: var(--accent-rose);">🔴 Alerta Crítica (HSMR &gt; 110 & IEMC &gt; 1.05):</strong> Exceso de mortalidad y estancias prolongadas simultáneas, señalando cuellos de botella clínicos.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabla de Hospitales con Filtros -->
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">🏥 Ranking de Hospitales de la Red Pública (2024)</div>
+            <div class="card-desc">72 hospitales evaluados con ajuste por edad, comorbilidades Elixhauser y casuística de admisión</div>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <input type="text" id="filter-search" class="filter-input" placeholder="Buscar por código u hospital..." style="min-width: 250px;">
+          <select id="filter-service" class="filter-input">
+            <option value="">Todos los Servicios de Salud</option>
+          </select>
+          <select id="filter-category" class="filter-input">
+            <option value="">Todas las Categorías</option>
+            <option value="SOBRESALIENTE">Sobresaliente</option>
+            <option value="ALTA_EFICIENCIA">Alta Eficiencia</option>
+            <option value="ALTA_SUPERVIVENCIA">Alta Supervivencia</option>
+            <option value="PROMEDIO_ESPERADO">Promedio Esperado</option>
+            <option value="ALERTA_ESTANCIA">Alerta Estancia</option>
+            <option value="ALERTA_MORTALIDAD">Alerta Mortalidad</option>
+            <option value="ALERTA_CRITICA">Alerta Crítica</option>
+          </select>
+        </div>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Servicio de Salud</th>
+                <th>Egresos</th>
+                <th>HSMR (IC 95%)</th>
+                <th>IEMC (ML)</th>
+                <th>IEMC (FONASA)</th>
+                <th>Desempeño</th>
+              </tr>
+            </thead>
+            <tbody id="hospitals-tbody">
+              <!-- Renderizado dinámico vía app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PESTAÑA 2: COMPARATIVA ML VS FONASA -->
+    <div id="tab-comparison" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">⚖️ Comparativa Metodológica: Ajuste Individual ML vs. Norma Estática FONASA</div>
+            <div class="card-desc">Evidencia empírica sobre cómo la casuística comórbida individual corrige sesgos de la norma de estancia tradicional</div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Código Hospital</th>
+                <th>Servicio de Salud</th>
+                <th>Egresos Evaluados</th>
+                <th>IEMC (ML)</th>
+                <th>IEMC (FONASA)</th>
+                <th>Diferencia (Sesgo Corregido)</th>
+                <th>Estado de Evaluación</th>
+              </tr>
+            </thead>
+            <tbody id="comparison-tbody">
+              <!-- Renderizado dinámico vía app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PESTAÑA 3: MODELOS Y CALIBRACIÓN -->
+    <div id="tab-models" class="tab-content">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">🎯 Rendimiento Modelo Mortalidad (LightGBM)</div>
+          </div>
+          <div style="font-size: 0.9rem; display: flex; flex-direction: column; gap: 0.5rem;">
+            <p><strong>ROC-AUC (Test 2024):</strong> <span id="model-auc-val" style="color:var(--accent-cyan); font-weight:700;">0.9506</span></p>
+            <p><strong>PR-AUC:</strong> <span id="model-pr-val">0.3676</span> (Línea base natural: 0.0282)</p>
+            <p><strong>Brier Score:</strong> <span id="model-brier-val">0.02133</span></p>
+            <p><strong>Ratio Calibración Global O/E:</strong> <span id="model-oe-val" style="color:var(--accent-emerald); font-weight:700;">0.8752</span></p>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">
+              Entrenado sobre la prevalencia epidemiológica real (3.8% en Train 2019-2022). Sin técnicas de sub/sobremuestreo sintético (no SMOTE) para garantizar la validez bayesiana de las probabilidades.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">⏱️ Rendimiento Modelo Estancia (LightGBM Tweedie)</div>
+          </div>
+          <div style="font-size: 0.9rem; display: flex; flex-direction: column; gap: 0.5rem;">
+            <p><strong>Error Absoluto Medio (MAE):</strong> <span id="los-mae-val" style="color:var(--accent-cyan); font-weight:700;">4.47 días</span></p>
+            <p><strong>Mediana del Error Absoluto:</strong> <span id="los-medae-val">2.38 días</span></p>
+            <p><strong>Correlación Spearman (ρ):</strong> <span id="los-rho-val">0.6030</span></p>
+            <p><strong>Ratio Calibración Global O/E:</strong> <span id="los-oe-val" style="color:var(--accent-emerald); font-weight:700;">0.9442</span></p>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">
+              Regresión con distribución Tweedie de parámetro 1.5, especialmente adaptada a la asimetría positiva y colas pesadas de la estancia hospitalaria.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">🔍 Top 10 Características Clínicas de Mayor Peso (Gain)</div>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Variable Predictora</th>
+                <th>Ganancia de Información (Gain)</th>
+              </tr>
+            </thead>
+            <tbody id="importance-tbody">
+              <!-- Renderizado dinámico -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PESTAÑA 4: CALCULADORA DE RIESGO AL INGRESO -->
+    <div id="tab-calc" class="tab-content">
+      <div class="calc-grid">
+        
+        <!-- Formulario -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">🩺 Simulador de Admisión del Paciente</div>
+              <div class="card-desc">Ingrese las variables conocidas al momento del ingreso para estimar riesgo basal y estancia esperada</div>
+            </div>
+          </div>
+
+          <form id="patient-calc-form">
+            <div class="grid-2" style="margin-bottom:0.5rem;">
+              <div class="form-group">
+                <label class="form-label">Edad (años)</label>
+                <input type="number" id="calc-edad" class="form-control" value="68" min="0" max="110" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Sexo</label>
+                <select id="calc-sexo" class="form-control">
+                  <option value="HOMBRE">Hombre</option>
+                  <option value="MUJER">Mujer</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid-2" style="margin-bottom:0.5rem;">
+              <div class="form-group">
+                <label class="form-label">Tipo de Ingreso</label>
+                <select id="calc-tipo-ingreso" class="form-control">
+                  <option value="URGENCIA">Urgencia</option>
+                  <option value="PROGRAMADA">Programada</option>
+                  <option value="OBSTETRICA">Obstétrica</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Procedencia</label>
+                <select id="calc-procedencia" class="form-control">
+                  <option value="URGENCIA">Urgencia (SAPU / SAMU / Hospital)</option>
+                  <option value="AMBULATORIO_ESPECIALIDAD">Ambulatorio / Especialidad</option>
+                  <option value="GESTION_LISTA_ESPERA">Gestión de Lista de Espera</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid-2" style="margin-bottom:0.5rem;">
+              <div class="form-group">
+                <label class="form-label">Diagnóstico Principal (CIE-10)</label>
+                <input type="text" id="calc-cie10" class="form-control" value="I21.9" placeholder="Ej. I21.9, J18.9, K35.8" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Previsión</label>
+                <select id="calc-prevision" class="form-control">
+                  <option value="FONASA INSTITUCIONAL - (MAI) B">FONASA B</option>
+                  <option value="FONASA INSTITUCIONAL - (MAI) A">FONASA A</option>
+                  <option value="FONASA INSTITUCIONAL - (MAI) C">FONASA C</option>
+                  <option value="FONASA INSTITUCIONAL - (MAI) D">FONASA D</option>
+                  <option value="ISAPRE">ISAPRE</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid-2" style="margin-bottom:1rem;">
+              <div class="form-group">
+                <label class="form-label">Hospitalizaciones Previas (12 meses)</label>
+                <input type="number" id="calc-egresos12m" class="form-control" value="1" min="0" max="20">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Días desde Última Alta (aprox)</label>
+                <input type="number" id="calc-dias-previo" class="form-control" value="60" min="1" max="1000">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Comorbilidades Secundarias Preexistentes (Elixhauser):</label>
+              <div class="elix-chips">
+                <input type="checkbox" id="elix-01" class="chip-checkbox" value="ELIX_01">
+                <label for="elix-01" class="chip-label">Insuficiencia Cardíaca</label>
+
+                <input type="checkbox" id="elix-02" class="chip-checkbox" value="ELIX_02">
+                <label for="elix-02" class="chip-label">Arritmias Cardíacas</label>
+
+                <input type="checkbox" id="elix-06" class="chip-checkbox" value="ELIX_06">
+                <label for="elix-06" class="chip-label">Hipertensión</label>
+
+                <input type="checkbox" id="elix-10" class="chip-checkbox" value="ELIX_10">
+                <label for="elix-10" class="chip-label">EPOC / Pulmonar Crónica</label>
+
+                <input type="checkbox" id="elix-11" class="chip-checkbox" value="ELIX_11">
+                <label for="elix-11" class="chip-label">Diabetes Simple</label>
+
+                <input type="checkbox" id="elix-12" class="chip-checkbox" value="ELIX_12">
+                <label for="elix-12" class="chip-label">Diabetes Complicada</label>
+
+                <input type="checkbox" id="elix-14" class="chip-checkbox" value="ELIX_14">
+                <label for="elix-14" class="chip-label">Insuficiencia Renal</label>
+
+                <input type="checkbox" id="elix-15" class="chip-checkbox" value="ELIX_15">
+                <label for="elix-15" class="chip-label">Enfermedad Hepática</label>
+
+                <input type="checkbox" id="elix-19" class="chip-checkbox" value="ELIX_19">
+                <label for="elix-19" class="chip-label">Cáncer Metastásico</label>
+
+                <input type="checkbox" id="elix-20" class="chip-checkbox" value="ELIX_20">
+                <label for="elix-20" class="chip-label">Tumor Sólido</label>
+
+                <input type="checkbox" id="elix-22" class="chip-checkbox" value="ELIX_22">
+                <label for="elix-22" class="chip-label">Coagulopatía</label>
+
+                <input type="checkbox" id="elix-25" class="chip-checkbox" value="ELIX_25">
+                <label for="elix-25" class="chip-label">Trastornos Electrolíticos</label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary">⚡ Calcular Riesgo y Estancia Esperada</button>
+          </form>
+        </div>
+
+        <!-- Resultados -->
+        <div class="result-box">
+          <div class="card-title" style="margin-bottom: 1.5rem;">Pronóstico Ajustado por Riesgo</div>
+          
+          <div id="risk-gauge" class="gauge-circle risk-moderado">
+            <div class="gauge-val" id="result-mort-pct">--%</div>
+            <div class="gauge-sub">Mortalidad</div>
+          </div>
+
+          <div id="result-risk-level" style="font-weight:700; font-size:1.1rem; margin-bottom:1rem; color:var(--accent-amber);">
+            Haga clic en calcular
+          </div>
+
+          <div style="width: 100%; border-top: 1px solid var(--border-subtle); padding-top: 1rem; font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.5rem; text-align: left;">
+            <p><strong>Estancia Esperada:</strong> <span id="result-los-days" style="color:var(--accent-cyan); font-weight:700;">-- días</span></p>
+            <p><strong>Score Van Walraven:</strong> <span id="result-vanwalraven">--</span></p>
+            <p><strong>Capítulo CIE-10:</strong> <span id="result-grupo-clinico" style="font-size:0.75rem;">--</span></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
