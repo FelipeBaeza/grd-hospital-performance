@@ -1,0 +1,21 @@
+{
+  "modelo": "LightGBM Binary Classifier (Mortalidad Intrahospitalaria)",
+  "train_anios": "2019-2022",
+  "val_anio": 2023,
+  "test_anio": 2024,
+  "n_train": 3065662,
+  "n_val": 885441,
+  "n_test": 930739,
+  "mejor_iteracion": 267,
+  "tiempo_entrenamiento_seg": 27.68,
+  "metricas_test_2024": {
+    "roc_auc": 0.9506,
+    "pr_auc": 0.3676,
+    "brier_score": 0.02133,
+    "log_loss": 0.07484,
+    "ece": 0.00402,
+    "muertes_observadas": 26255,
+    "muertes_esperadas": 30000.0,
+    "ratio_O_E_global": 0.8752
+  }
+}
