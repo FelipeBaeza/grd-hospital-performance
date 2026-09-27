@@ -1,0 +1,52 @@
+# Artefacto: config/agrupacion_grupo_clinico.csv
+# Tarea: 24.2 (spec fase1-cohorte-grd) | Requisitos: R14.2, R14.3 | Decision: D09 (requiere firma)
+# Version del artefacto: 1
+# Origen: DIAGNOSTICO1 -> Destino: GRUPO_CLINICO (pl.Enum, R14.2)
+# Llave: CIE10_3C, los tres primeros caracteres alfanumericos de DIAGNOSTICO1 en mayusculas.
+#   El truncamiento se ejecuta despues del mapeo Elixhauser (R14.4, R14.5); el orden lo
+#   garantiza la guardia de orden del orquestador (tarea 24.4).
+# FUENTE ELEGIDA (R14.3): el capitulo de la CIE-10 del diagnostico principal, no el MDC.
+#   Motivo: config/mapeo_grd_mdc.csv esta integramente en estado PENDIENTE mientras D30 no
+#   se resuelva, de modo que la via del MDC no esta disponible (design.md, hallazgo 4 y
+#   riesgo R-06). El criterio de capitulo CIE-10 es el mismo que ya usa
+#   artefactos/tabla_fallback_clinico.md para los anclajes recien_nacidos (capitulo P) y
+#   obstetrico_sin_complicacion (capitulo O), de modo que el proyecto no introduce una
+#   segunda taxonomia diagnostica. El bloque CIE-10, que daria una granularidad mas cercana
+#   a los ~140 grupos del SHMI, queda como alternativa registrada de D09 y exigiria
+#   reemplazar las 22 filas de RANGO de esta tabla sin cambiar el codigo que la consume.
+# Categoria residual: NO_CLASIFICADO, declarada en la fila con tipo_regla = RESIDUAL.
+# Precedencia de reglas: VALOR antes que RANGO, y RESIDUAL solo si ninguna aplica.
+# Validador: src/fase1/plata/agrupacion.py::validar_totalidad. Los 22 rangos cubren A00-Z99
+#   sin solapamiento; el unico hueco es D49, que la CIE-10 de la OMS no usa. Sobre las 1.645
+#   llaves CIE10_3C observadas en 2019-2024 no queda ninguna sin asignar, y la validacion
+#   sobre los 5.808.536 episodios de los 6 archivos da 9.712 valores distintos de
+#   DIAGNOSTICO1, 0 sin asignar y 80 episodios con el origen ausente.
+# Origen ausente frente a origen sin llave: solo el valor nulo o vacio produce GRUPO_CLINICO
+#   nulo; los 80 episodios en esa condicion no son falta de cobertura. Un valor presente del
+#   que no se deriva llave alfanumerica (por ejemplo '??') cae en NO_CLASIFICADO y el
+#   validador lo reporta como valor sin asignar, para que no desaparezca en un nulo.
+valor_origen,tipo_regla,valor_origen_hasta,categoria_destino,glosa_categoria,fuente,fecha_obtencion,decision,conteo_observado,anios_observados,nota
+"A00","RANGO","B99","CAP01_INFECCIOSAS_PARASITARIAS","Capitulo I: ciertas enfermedades infecciosas y parasitarias","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","109151","2019;2020;2021;2022;2023;2024","145 llaves CIE10_3C observadas en el rango"
+"C00","RANGO","D48","CAP02_NEOPLASIAS","Capitulo II: neoplasias","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","421998","2019;2020;2021;2022;2023;2024","137 llaves CIE10_3C observadas en el rango"
+"D50","RANGO","D99","CAP03_SANGRE_INMUNIDAD","Capitulo III: enfermedades de la sangre y de los organos hematopoyeticos y ciertos trastornos de la inmunidad","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","36343","2019;2020;2021;2022;2023;2024","34 llaves CIE10_3C observadas en el rango"
+"E00","RANGO","E99","CAP04_ENDOCRINAS_NUTRICIONALES_METABOLICAS","Capitulo IV: enfermedades endocrinas, nutricionales y metabolicas","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","128109","2019;2020;2021;2022;2023;2024","70 llaves CIE10_3C observadas en el rango"
+"F00","RANGO","F99","CAP05_TRASTORNOS_MENTALES","Capitulo V: trastornos mentales y del comportamiento","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","92919","2019;2020;2021;2022;2023;2024","78 llaves CIE10_3C observadas en el rango"
+"G00","RANGO","G99","CAP06_SISTEMA_NERVIOSO","Capitulo VI: enfermedades del sistema nervioso","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","99752","2019;2020;2021;2022;2023;2024","66 llaves CIE10_3C observadas en el rango"
+"H00","RANGO","H59","CAP07_OJO_ANEXOS","Capitulo VII: enfermedades del ojo y sus anexos","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","314493","2019;2020;2021;2022;2023;2024","47 llaves CIE10_3C observadas en el rango"
+"H60","RANGO","H99","CAP08_OIDO_MASTOIDES","Capitulo VIII: enfermedades del oido y de la apofisis mastoides","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","16843","2019;2020;2021;2022;2023;2024","22 llaves CIE10_3C observadas en el rango"
+"I00","RANGO","I99","CAP09_SISTEMA_CIRCULATORIO","Capitulo IX: enfermedades del sistema circulatorio","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","517730","2019;2020;2021;2022;2023;2024","76 llaves CIE10_3C observadas en el rango"
+"J00","RANGO","J99","CAP10_SISTEMA_RESPIRATORIO","Capitulo X: enfermedades del sistema respiratorio","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","410202","2019;2020;2021;2022;2023;2024","63 llaves CIE10_3C observadas en el rango"
+"K00","RANGO","K99","CAP11_SISTEMA_DIGESTIVO","Capitulo XI: enfermedades del sistema digestivo","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","799070","2019;2020;2021;2022;2023;2024","72 llaves CIE10_3C observadas en el rango"
+"L00","RANGO","L99","CAP12_PIEL_SUBCUTANEO","Capitulo XII: enfermedades de la piel y del tejido subcutaneo","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","61884","2019;2020;2021;2022;2023;2024","67 llaves CIE10_3C observadas en el rango"
+"M00","RANGO","M99","CAP13_OSTEOMUSCULAR_CONJUNTIVO","Capitulo XIII: enfermedades del sistema osteomuscular y del tejido conjuntivo","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","165313","2019;2020;2021;2022;2023;2024","78 llaves CIE10_3C observadas en el rango"
+"N00","RANGO","N99","CAP14_GENITOURINARIO","Capitulo XIV: enfermedades del sistema genitourinario","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","459735","2019;2020;2021;2022;2023;2024","82 llaves CIE10_3C observadas en el rango"
+"O00","RANGO","O99","CAP15_EMBARAZO_PARTO_PUERPERIO","Capitulo XV: embarazo, parto y puerperio","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","916957","2019;2020;2021;2022;2023;2024","74 llaves CIE10_3C observadas en el rango"
+"P00","RANGO","P99","CAP16_PERINATALES","Capitulo XVI: afecciones originadas en el periodo perinatal","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","142999","2019;2020;2021;2022;2023;2024","59 llaves CIE10_3C observadas en el rango"
+"Q00","RANGO","Q99","CAP17_CONGENITAS_CROMOSOMICAS","Capitulo XVII: malformaciones congenitas, deformidades y anomalias cromosomicas","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","68536","2019;2020;2021;2022;2023;2024","85 llaves CIE10_3C observadas en el rango"
+"R00","RANGO","R99","CAP18_SINTOMAS_SIGNOS_HALLAZGOS","Capitulo XVIII: sintomas, signos y hallazgos anormales no clasificados en otra parte","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","46212","2019;2020;2021;2022;2023;2024","86 llaves CIE10_3C observadas en el rango"
+"S00","RANGO","T99","CAP19_TRAUMATISMOS_ENVENENAMIENTOS","Capitulo XIX: traumatismos, envenenamientos y otras consecuencias de causas externas","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","627431","2019;2020;2021;2022;2023;2024","192 llaves CIE10_3C observadas en el rango"
+"V00","RANGO","Y99","CAP20_CAUSAS_EXTERNAS","Capitulo XX: causas externas de morbilidad y de mortalidad","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","65","2019;2020;2022","23 llaves CIE10_3C observadas en el rango"
+"Z00","RANGO","Z99","CAP21_FACTORES_CONTACTO_SERVICIOS","Capitulo XXI: factores que influyen en el estado de salud y contacto con los servicios de salud","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","249408","2019;2020;2021;2022;2023;2024","80 llaves CIE10_3C observadas en el rango"
+"U00","RANGO","U99","CAP22_PROPOSITOS_ESPECIALES","Capitulo XXII: codigos para propositos especiales","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","111990","2019;2020;2021;2022;2023;2024","8 llaves CIE10_3C observadas en el rango"
+"DES","VALOR","","DESCONOCIDO","Diagnostico principal registrado como desconocido","Enumeracion exhaustiva sobre data seminario/*.txt (6 archivos, 2019-2024)","2026-08-13","D09","11316","2019;2020;2021;2022","Llave que resulta de truncar el marcador textual DESCONOCIDO de DIAGNOSTICO1; no es un codigo CIE-10. La regla VALOR tiene precedencia sobre las de RANGO."
+"","RESIDUAL","","NO_CLASIFICADO","Categoria residual: llave CIE10_3C sin regla explicita en la tabla","CIE-10 OMS, lista tabular de los 22 capitulos y sus rangos de codigos","2026-08-13","D09","","","Categoria residual explicita: hace total la agrupacion ante una llave que no cae en ningun rango de capitulo. Toda llave observada en 2019-2024 tiene regla."

@@ -1,0 +1,241 @@
+# Contrato de esquema de la cohorte GRD — Fase 1
+#
+# Spec: fase1-cohorte-grd · Componente: Contrato_Esquema (design.md §1)
+# Requisitos: R1.1, R1.2, R1.5, R1.8
+#
+# Este archivo es el esquema de referencia de la cohorte. El código lo lee, no lo
+# duplica: `ESQUEMA_REFERENCIA` y `leer_contrato` (tarea 1.2) se construyen desde aquí.
+#
+# Campos por columna (design.md, dataclass ColumnaContrato):
+#   nombre            nombre canónico de la columna en el esquema de referencia
+#   orden             posición 1..129 en el archivo de origen (Anexo A.1)
+#   formato_origen    TEXTO | FECHA_ISO | FECHA_DMY | DECIMAL_COMA | ENTERO_TEXTO
+#                     | CODIGO_CIE10 | CODIGO_CIE9MC
+#   dominio_declarado ruta de la tabla de valores que gobierna la columna, o null
+#   permite_nulo      si el esquema de referencia admite ausencia de valor
+#
+# Nota sobre `permite_nulo` (R2, R3): las declaraciones provienen de los conteos de
+# no nulos del Anexo A.1, obtenidos con `ignore_errors=True` y por tanto provisorios.
+# El Requisito 2 obliga a regenerarlos con ingesta sin supresión de errores y el
+# Requisito 3 a reconciliar el denominador antes de citarlos. Toda corrección de este
+# campo se hace sobre este archivo, no en el pipeline.
+
+version: 1
+esquema_referencia_version: "A.1-129"
+
+columnas:
+  # --- Identificación del establecimiento y del paciente (1–10) ---
+  - {nombre: COD_HOSPITAL,             orden: 1,   formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: false}
+  - {nombre: CIP_ENCRIPTADO,           orden: 2,   formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: SEXO,                     orden: 3,   formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: false}
+  # R1.8: FECHA_NACIMIENTO es el único campo de fecha en formato ISO yyyy-mm-dd.
+  - {nombre: FECHA_NACIMIENTO,         orden: 4,   formato_origen: FECHA_ISO,     dominio_declarado: null,                                  permite_nulo: false}
+  # ETNIA: dos representaciones de la categoría OTRO colapsan tras strip/mayúsculas (D04).
+  - {nombre: ETNIA,                    orden: 5,   formato_origen: TEXTO,         dominio_declarado: "config/normalizacion_etnia.csv",      permite_nulo: true}
+  - {nombre: PROVINCIA,                orden: 6,   formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: COMUNA,                   orden: 7,   formato_origen: TEXTO,         dominio_declarado: "config/privacion_comunal.csv",        permite_nulo: true}
+  - {nombre: NACIONALIDAD,             orden: 8,   formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: false}
+  - {nombre: PREVISION,                orden: 9,   formato_origen: TEXTO,         dominio_declarado: "config/mapeo_tramo_fonasa.csv",       permite_nulo: false}
+  - {nombre: SERVICIO_SALUD,           orden: 10,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: false}
+
+  # --- Ingreso (11–16) ---
+  - {nombre: TIPO_PROCEDENCIA,         orden: 11,  formato_origen: TEXTO,         dominio_declarado: "config/agrupacion_procedencia.csv",   permite_nulo: false}
+  - {nombre: TIPO_INGRESO,             orden: 12,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: false}
+  - {nombre: ESPECIALIDAD_MEDICA,      orden: 13,  formato_origen: TEXTO,         dominio_declarado: "config/agrupacion_especialidad_macro.csv", permite_nulo: true}
+  - {nombre: TIPO_ACTIVIDAD,           orden: 14,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  # R1.8: FECHA_INGRESO en formato dd-mm-yyyy.
+  - {nombre: FECHA_INGRESO,            orden: 15,  formato_origen: FECHA_DMY,     dominio_declarado: null,                                  permite_nulo: false}
+  - {nombre: SERVICIOINGRESO,          orden: 16,  formato_origen: TEXTO,         dominio_declarado: "config/agrupacion_nivel_cuidado.csv", permite_nulo: true}
+
+  # --- Traslados internos, 9 slots pareados fecha ↔ servicio (17–34) ---
+  - {nombre: FECHATRASLADO1,           orden: 17,  formato_origen: FECHA_DMY,     dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: SERVICIOTRASLADO1,        orden: 18,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: FECHATRASLADO2,           orden: 19,  formato_origen: FECHA_DMY,     dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: SERVICIOTRASLADO2,        orden: 20,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: FECHATRASLADO3,           orden: 21,  formato_origen: FECHA_DMY,     dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: SERVICIOTRASLADO3,        orden: 22,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: FECHATRASLADO4,           orden: 23,  formato_origen: FECHA_DMY,     dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: SERVICIOTRASLADO4,        orden: 24,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: FECHATRASLADO5,           orden: 25,  formato_origen: FECHA_DMY,     dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: SERVICIOTRASLADO5,        orden: 26,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: FECHATRASLADO6,           orden: 27,  formato_origen: FECHA_DMY,     dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: SERVICIOTRASLADO6,        orden: 28,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: FECHATRASLADO7,           orden: 29,  formato_origen: FECHA_DMY,     dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: SERVICIOTRASLADO7,        orden: 30,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: FECHATRASLADO8,           orden: 31,  formato_origen: FECHA_DMY,     dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: SERVICIOTRASLADO8,        orden: 32,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: FECHATRASLADO9,           orden: 33,  formato_origen: FECHA_DMY,     dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: SERVICIOTRASLADO9,        orden: 34,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+
+  # --- Alta (35–37) ---
+  # R1.8: FECHAALTA en formato dd-mm-yyyy. Anexo A.1 registra 18 nulos.
+  - {nombre: FECHAALTA,                orden: 35,  formato_origen: FECHA_DMY,     dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: SERVICIOALTA,             orden: 36,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: false}
+  # TIPOALTA: única fuente de MORTALIDAD_BINARIA y ESTADO_CENSURA; 18 categorías (D16).
+  - {nombre: TIPOALTA,                 orden: 37,  formato_origen: TEXTO,         dominio_declarado: "artefactos/mapeo_tipoalta.csv",       permite_nulo: false}
+
+  # --- Familia de recién nacido, 4 slots (38–53) ---
+  # Familia con desalineación observada entre años: los conteos de RNnESTADO no son
+  # coherentes con CONDICIONDEALTANEONATOn (R4.15 a R4.19). Todas se declaran TEXTO,
+  # incluidas PESORNn, para no perder la deriva de tipo entre años.
+  - {nombre: CONDICIONDEALTANEONATO1,  orden: 38,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PESORN1,                  orden: 39,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: SEXORN1,                  orden: 40,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: RN1ESTADO,                orden: 41,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: CONDICIONDEALTANEONATO2,  orden: 42,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PESORN2,                  orden: 43,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: SEXORN2,                  orden: 44,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: RN2ESTADO,                orden: 45,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: CONDICIONDEALTANEONATO3,  orden: 46,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PESORN3,                  orden: 47,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: SEXORN3,                  orden: 48,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: RN3ESTADO,                orden: 49,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: CONDICIONDEALTANEONATO4,  orden: 50,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PESORN4,                  orden: 51,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: SEXORN4,                  orden: 52,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: RN4ESTADO,                orden: 53,  formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+
+  # --- Diagnósticos CIE-10, 35 slots (54–88) ---
+  # DIAGNOSTICO1 es el diagnóstico principal y queda excluido del mapeo Elixhauser
+  # (R12.6). El código conserva el punto y su longitud original de 3 a 5 caracteres.
+  - {nombre: DIAGNOSTICO1,             orden: 54,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO2,             orden: 55,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO3,             orden: 56,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO4,             orden: 57,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO5,             orden: 58,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO6,             orden: 59,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO7,             orden: 60,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO8,             orden: 61,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO9,             orden: 62,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO10,            orden: 63,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO11,            orden: 64,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO12,            orden: 65,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO13,            orden: 66,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO14,            orden: 67,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO15,            orden: 68,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO16,            orden: 69,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO17,            orden: 70,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO18,            orden: 71,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO19,            orden: 72,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO20,            orden: 73,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO21,            orden: 74,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO22,            orden: 75,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO23,            orden: 76,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO24,            orden: 77,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO25,            orden: 78,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO26,            orden: 79,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO27,            orden: 80,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO28,            orden: 81,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO29,            orden: 82,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO30,            orden: 83,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO31,            orden: 84,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO32,            orden: 85,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO33,            orden: 86,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: DIAGNOSTICO34,            orden: 87,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+  # DIAGNOSTICO35: su presencia en los 6 años condiciona la validez del IEMC (D17, R4.4).
+  - {nombre: DIAGNOSTICO35,            orden: 88,  formato_origen: CODIGO_CIE10,  dominio_declarado: null,                                  permite_nulo: true}
+
+  # --- Procedimientos CIE-9-MC, 30 slots (89–118) ---
+  # CODIGO_CIE9MC se conserva como texto: la inferencia decimal pierde los ceros a la
+  # izquierda (00.17 → 0.17), regresión documentada en R2.8 y verificada por P15.
+  - {nombre: PROCEDIMIENTO1,           orden: 89,  formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO2,           orden: 90,  formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO3,           orden: 91,  formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO4,           orden: 92,  formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO5,           orden: 93,  formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO6,           orden: 94,  formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO7,           orden: 95,  formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO8,           orden: 96,  formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO9,           orden: 97,  formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO10,          orden: 98,  formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO11,          orden: 99,  formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO12,          orden: 100, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO13,          orden: 101, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO14,          orden: 102, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO15,          orden: 103, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO16,          orden: 104, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO17,          orden: 105, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO18,          orden: 106, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO19,          orden: 107, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO20,          orden: 108, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO21,          orden: 109, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO22,          orden: 110, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO23,          orden: 111, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO24,          orden: 112, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO25,          orden: 113, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO26,          orden: 114, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO27,          orden: 115, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO28,          orden: 116, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO29,          orden: 117, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: PROCEDIMIENTO30,          orden: 118, formato_origen: CODIGO_CIE9MC, dominio_declarado: null,                                  permite_nulo: true}
+
+  # --- Intervención y pabellón (119–124) ---
+  - {nombre: MEDICOINTERV1_ENCRIPTADO, orden: 119, formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  # FECHAPROCEDIMIENTO1 se declara TEXTO y NO FECHA_DMY de forma deliberada: sus 9
+  # valores no nulos tienen estructura de identificador nacional y no de fecha. Su rol
+  # es DESCARTAR + ALERTA_CALIDAD y el screening de identificación personal la reporta
+  # de forma explícita (R5.4 a R5.6). Tiparla como fecha ocultaría el hallazgo.
+  - {nombre: FECHAPROCEDIMIENTO1,      orden: 120, formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: FECHAINTERV1,             orden: 121, formato_origen: FECHA_DMY,     dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: ESPECIALIDADINTERVENCION, orden: 122, formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: MEDICOALTA_ENCRIPTADO,    orden: 123, formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: USOSPABELLON,             orden: 124, formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+
+  # --- Salida del agrupador IR-GRD (125–128) ---
+  # R1.8: IR_29301_COD_GRD es ENTERO_TEXTO (se conserva el cero inicial de los códigos
+  # de 5 y 6 caracteres) e IR_29301_PESO es DECIMAL_COMA (ejemplo observado: 0,7094).
+  - {nombre: IR_29301_COD_GRD,         orden: 125, formato_origen: ENTERO_TEXTO,  dominio_declarado: "config/mapeo_grd_mdc.csv",            permite_nulo: true}
+  - {nombre: IR_29301_PESO,            orden: 126, formato_origen: DECIMAL_COMA,  dominio_declarado: null,                                  permite_nulo: false}
+  - {nombre: IR_29301_SEVERIDAD,       orden: 127, formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+  - {nombre: IR_29301_MORTALIDAD,      orden: 128, formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+
+  # --- Procedencia interhospitalaria (129) ---
+  - {nombre: HOSPPROCEDENCIA,          orden: 129, formato_origen: TEXTO,         dominio_declarado: null,                                  permite_nulo: true}
+
+# Los 6 archivos-año de la extracción (R1.1).
+#
+# `ruta` es paramétrica en `${DATA_DIR}`, que apunta al directorio de la capa cruda.
+# La capa cruda es inmutable (R6.10): el contrato sólo lee cabecera y metadatos.
+#
+# `encoding` refleja la codificación observada archivo por archivo: 2021, 2022 y 2023
+# traen marca de orden de bytes al inicio de la cabecera y se leen como `utf-8-sig`;
+# 2019, 2020 y 2024 no la traen. Sin esta distinción el primer nombre de columna se
+# lee como "\ufeffCOD_HOSPITAL" y el contrato reportaría una deriva de esquema falsa.
+#
+# `alias` declara la regla ID_BENEFICIARIO → CIP_ENCRIPTADO en los 6 archivos-año
+# (R1.5). La regla es declarativa y su aplicación es condicional: sólo se aplica donde
+# el archivo trae ID_BENEFICIARIO y no trae CIP_ENCRIPTADO, y toda aplicación deja
+# rastro en el informe de deriva de esquema. En la extracción vigente sólo 2024 la
+# activa; declararla en los seis evita que un cambio de nomenclatura en una extracción
+# futura bloquee la ingesta de otro archivo-año.
+archivos:
+  - archivo_id: GRD_2019
+    ruta: "${DATA_DIR}/GRD_PUBLICO_2019 /GRD_PUBLICO_2019.txt"
+    separador: "|"
+    encoding: "utf-8"
+    alias: {ID_BENEFICIARIO: CIP_ENCRIPTADO}
+  - archivo_id: GRD_2020
+    ruta: "${DATA_DIR}/GRD_PUBLICO_2020.txt"
+    separador: "|"
+    encoding: "utf-8"
+    alias: {ID_BENEFICIARIO: CIP_ENCRIPTADO}
+  - archivo_id: GRD_2021
+    ruta: "${DATA_DIR}/GRD_PUBLICO_2021.txt"
+    separador: "|"
+    encoding: "utf-8-sig"
+    alias: {ID_BENEFICIARIO: CIP_ENCRIPTADO}
+  - archivo_id: GRD_2022
+    ruta: "${DATA_DIR}/GRD_PUBLICO_2022/GRD_PUBLICO_EXTERNO_2022.txt"
+    separador: "|"
+    encoding: "utf-8-sig"
+    alias: {ID_BENEFICIARIO: CIP_ENCRIPTADO}
+  - archivo_id: GRD_2023
+    ruta: "${DATA_DIR}/GRD_PUBLICO_2023.txt"
+    separador: "|"
+    encoding: "utf-8-sig"
+    alias: {ID_BENEFICIARIO: CIP_ENCRIPTADO}
+  - archivo_id: GRD_2024
+    ruta: "${DATA_DIR}/GRD_PUBLICO_2024.txt"
+    separador: "|"
+    encoding: "utf-8"
+    alias: {ID_BENEFICIARIO: CIP_ENCRIPTADO}
