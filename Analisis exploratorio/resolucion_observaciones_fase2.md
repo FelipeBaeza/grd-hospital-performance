@@ -1,260 +1,242 @@
 # Resolución Integral de Observaciones Metodológicas — Fase 2 (Data Understanding)
 ### Proyecto de Tesis: *Sistema de evaluación del desempeño hospitalario ajustado por riesgo mediante aprendizaje automático*
-**Estudiante:** Felipe Ignacio Baeza Muñoz | **Fecha de Elaboración:** Octubre 2026
+**Estudiante:** Felipe Ignacio Baeza Muñoz | **Fecha de Actualización:** Octubre 2026
 
 ---
 
-## Introducción y Cambio de Paradigma: Ajuste de Riesgo para Indicadores O/E
+## Introducción: El Paradigma O/E frente a la Predicción Clínica Individual
 
-El objetivo central de este trabajo **no es la predicción pronóstica individual a la cabecera del paciente**, sino la **construcción de un indicador de desempeño hospitalario ajustado por riesgo (O/E)** que permita comparar con justicia y validez causal a los 72 establecimientos de la red pública chilena (FONASA).
+El propósito de esta tesis **no es la predicción clínica a la cabecera del paciente individual**, sino la **construcción de un estimador de desempeño hospitalario ajustado por riesgo (O/E)** para comparar de forma justa los 72 establecimientos públicos de alta y mediana complejidad de la red FONASA.
 
-Este propósito impone tres restricciones metodológicas fundamentales:
-1. **Prioridad Absoluta de la Calibración:** Para que el valor esperado $E = \sum_i \hat{p}_i$ sea válido a nivel de centro asistencial, el modelo de Machine Learning debe estar perfectamente calibrado en todas las regiones del espacio de riesgo. Una discriminación alta (ROC-AUC) con mala calibración distorsionaría el ratio O/E.
-2. **Prohibición de Absorción del Efecto Hospital:** Ninguna variable predictiva basal puede actuar como *proxy* de la calidad, eficiencia o dotación interna del hospital. Si una variable absorbe la variabilidad asistencial del centro, el riesgo esperado absorberá la mala (o buena) práctica, neutralizando el O/E hacia 1.0 y ocultando las diferencias reales de desempeño.
-3. **Control Estricto de Fuga de Datos (Data Leakage):** Basado en los principios de Kapoor & Narayanan (2023), toda variable posterior al ingreso o derivada del desenlace queda terminantemente excluida.
-
----
-
-## 1. Unificación de Contradicciones Documentales
-
-Se auditaron y unificaron de forma unánime las discrepancias identificadas entre el informe de texto, los diccionarios y las matrices de roles:
-
-### 1.1 Postura Definitiva sobre `ETNIA`
-- **Decisión Unificada:** Se clasifica como **`AUDITORIA_SENSIBILIDAD`**.
-- **Justificación Bioética y Metodológica:** `ETNIA` **NUNCA entra al modelo predictivo de riesgo O/E** como predictor basal. Incluir el origen étnico en la función de riesgo implicaría normalizar como "esperable" una peor sobrevida o mayor estancia producto de barreras socioeconómicas o racismo estructural. Sin embargo, se deriva la variable binaria `PUEBLO_ORIGINARIO` para conservarla fuera del modelo con el propósito exclusivo de realizar **auditorías post-hoc de equidad algorítmica** (evaluar si el indicador O/E genera impacto dispar entre hospitales según la composición demográfica de su población atendida).
-
-### 1.2 Definición Operativa de Desenlace Desconocido (Censura)
-- **Decisión Unificada:**
-  - **Alta a Domicilio (`DOMICILIO`):** Es un desenlace confirmado de **supervivencia** (`MORTALIDAD_BINARIA = 0`, `NO_CENSURADO`). Ingresa plenamente al modelo de mortalidad y de estancia.
-  - **Hospitalización Domiciliaria (`HOSPITALIZACIÓN DOMICILIARIA`):** Representa un **desenlace no cerrado** en el recinto físico (el paciente continúa bajo cuidados agudos en su hogar). Se trata como **`CENSURADO`** en el modelo hospitalario base.
-  - **Derivaciones a Otros Hospitales:** Son eventos censurados a nivel de centro emisor (`MORTALIDAD_BINARIA = NULL`), salvo que se aplique la regla de atribución de cadenas de traslado (Sección 4).
-
-### 1.3 Reconciliación Exacta de las 129 Columnas
-La tabla de bloques de la Fase 2 sumaba erróneamente 118 en el texto. La auditoría exhaustiva de los archivos crudos de FONASA y la capa Bronze confirma la siguiente partición canónica que suma **exactamente 129 columnas**:
-
-| Bloque Temático | N° Columnas | Columnas Incluidas | Rol Principal |
-|---|:---:|---|---|
-| **1. Identificación y Red Asistencial** | **3** | `COD_HOSPITAL`, `CIP_ENCRIPTADO`, `SERVICIO_SALUD` | `LLAVE_AGREGACION` / `LONGITUDINAL` |
-| **2. Demografía y Protección Social** | **7** | `SEXO`, `FECHA_NACIMIENTO`, `ETNIA`, `PROVINCIA`, `COMUNA`, `NACIONALIDAD`, `PREVISION` | `FEATURE_BASAL`, `FUENTE_DERIVADA`, `AUDITORIA` |
-| **3. Contexto de Ingreso y Procedencia** | **7** | `TIPO_PROCEDENCIA`, `TIPO_INGRESO`, `ESPECIALIDAD_MEDICA`, `TIPO_ACTIVIDAD`, `FECHA_INGRESO`, `SERVICIOINGRESO`, `HOSPPROCEDENCIA` | `FEATURE_BASAL`, `FILTRO_COHORTE`, `CONDICIONAL` |
-| **4. Traslados Internos Hospitalarios** | **18** | `FECHATRASLADO1`–`9` (9 cols) + `SERVICIOTRASLADO1`–`9` (9 cols) | `PROHIBIDA_FUGA` (Eventos intra-estadía) |
-| **5. Diagnósticos Clínicos** | **35** | `DIAGNOSTICO1` (principal) + `DIAGNOSTICO2`–`DIAGNOSTICO35` (34 secundarios) | `FUENTE_DERIVADA` (deriva Elixhauser y CIE-10) |
-| **6. Procedimientos, Quirófano y Pabellón** | **36** | `PROCEDIMIENTO1`–`30` (30), `FECHAPROCEDIMIENTO1` (1), `FECHAINTERV1` (1), `ESPECIALIDADINTERVENCION` (1), `USOSPABELLON` (1), `MEDICOINTERV1_ENCRIPTADO` (1), `MEDICOALTA_ENCRIPTADO` (1) | `PROHIBIDA_FUGA` (Tratamiento post-ingreso) |
-| **7. Egreso y Familia Neonatal** | **19** | `FECHAALTA`, `SERVICIOALTA`, `TIPOALTA` (3) + 4 familias neonatales (`CONDICIONDEALTANEONATO1-4`, `PESORN1-4`, `SEXORN1-4`, `RN1-4ESTADO`) (16) | `TARGET_DERIVADA` (3) / `DESCARTAR` (16) |
-| **8. Clasificación Agrupador IR-GRD** | **4** | `IR_29301_COD_GRD`, `IR_29301_PESO`, `IR_29301_SEVERIDAD`, `IR_29301_MORTALIDAD` | `FILTRO_COHORTE` (1) / `PROHIBIDA_FUGA` (3) |
-| **TOTAL BASE FONASA** | **129** | **Suma matemáticamente verificada** | **129 columnas** |
-
-### 1.4 Reconciliación de Obstetricia, Neonatos y `PESORN1`
-- **El problema:** El borrador anterior mencionó informalmente que se excluían "~30.000 episodios", mientras que `PESORN1` registra **795.973 valores no nulos**.
-- **La evidencia empírica:** 
-  1. `PESORN1` (peso de nacimiento) se registra por duplicado en FONASA: en el egreso de la madre tras el parto (MDC 14) y en el egreso propio del recién nacido si ingresó a hospitalización/neonatología (MDC 15).
-  2. La exclusión metodológica CONSORT se diseñó para retirar **partos y neonatos no complicados (sanos)**, ya que no presentan riesgo intrínseco de muerte comparable a la medicina y cirugía de adultos:
-     - `ex02_recien_nacido` (GRD neonatal normal/sano): **146.928 episodios excluidos**.
-     - `ex03_obstetrico_sin_comp` (Parto vaginal normal sin comorbilidad materna): **431.832 episodios excluidos**.
-     - **Total cohorte sana excluida:** **578.760 episodios**.
-  3. Los restantes **~217.213 episodios** con `PESORN1` corresponden a cesáreas complejas, patología materna severa (eclampsia, shock hemorrágico) o neonatos patológicos críticos en UCI, los cuales **sí se conservan** en la cohorte ajustada por riesgo.
-
-### 1.5 Traslados Internos vs. Censura
-- Las 18 columnas de traslados (`FECHATRASLADO1-9`, `SERVICIOTRASLADO1-9`) registran movimientos entre camas o unidades de un mismo hospital (ej. Urgencia a UCI). **No representan censura**, sino procesos intermedios de atención (`PROHIBIDA_FUGA`).
-- La **censura** estadística está determinada única y exclusivamente por `TIPOALTA` al finalizar el episodio hospitalario.
-
-### 1.6 Rol de `TIPO_ACTIVIDAD`
-- Es estrictamente un **`FILTRO_COHORTE`**. Filtra pacientes ambulatorios o atenciones abreviadas de hospitalización de día, asegurando que la cohorte de evaluación corresponda a hospitalizaciones cerradas con pernoctación en cama básica o crítica.
-
-### 1.7 Diferenciación entre Columnas Fuente Crudas y Variables Derivadas Finales
-- En lugar de referirse a "~12 columnas que entran", se aclara:
-  - **12 Columnas Fuente Crudas:** `SEXO`, `FECHA_NACIMIENTO`, `FECHA_INGRESO`, `TIPO_INGRESO`, `TIPO_PROCEDENCIA`, `DIAGNOSTICO1`, `DIAGNOSTICO2..35`, `COMUNA`, `PROVINCIA`, `PREVISION`, `ETNIA`.
-  - **47+ Variables Derivadas / Features del Modelo:** Edad en años, sexo, procedencia agrupada, categoría diagnóstica CIE-10 (capítulos y 3 caracteres), 31 dummies de comorbilidad Elixhauser (Quan et al., 2005), Score ponderado de van Walraven, conteo de comorbilidades, indicadores de ingreso en fin de semana, variables de historia previa (`N_EGRESOS_12M`, `DIAS_DESDE_EGRESO_PREVIO`).
+Este objetivo impone cuatro principios rectores:
+1. **Calibración como Primera Prioridad:** El valor esperado del hospital $E = \sum_i \hat{p}_i$ requiere que las probabilidades predichas estén estrictamente calibradas en todo el rango de riesgo. Una alta discriminación (ROC-AUC) con mala calibración sesga el ratio $O/E$.
+2. **Prohibición de Absorción del Efecto Hospital:** Ningún predictor basal puede actuar como *proxy* encubierto de la calidad o dotación del centro. Si una variable absorbe la variabilidad asistencial, el modelo inflará el riesgo esperado en hospitales ineficientes o con altas tasas de complicaciones, neutralizando artificialmente el indicador $O/E$ hacia 1.0.
+3. **Control Causal de Fuga de Datos (Data Leakage):** Basado en Kapoor & Narayanan (2023), todo evento posterior a la admisión o derivado del desenlace queda estrictamente prohibido.
+4. **Tratamiento Diferenciado de Censura e Incertidumbre:** La censura de desenlaces (traslados y hospitalización domiciliaria) no puede asumirse ciegamente como supervivencia.
 
 ---
 
-## 2. Exploración con Números Reales (5.808.536 Registros)
+## 1. Errores Subsanados y Unificación de Cifras Exactas
 
-### 2.1 Tasas de Mortalidad Global y Evolución Temporal
-Se auditó la totalidad de los egresos de la red pública chilena entre 2019 y 2024:
+### 1.1 Cascada CONSORT Secuencial Estricta (Sin Solapamientos)
+La aparente inconsistencia previa se originó porque las exclusiones de estancia cero (`EX05`) y cirugía mayor ambulatoria (`EX07`) se habían reportado como conteos univariados marginales, solapando a 827.687 pacientes que compartían ambas condiciones. 
 
-| Año | Egresos Totales ($N$) | Defunciones ($N$) | Tasa Mortalidad Cruda (%) | Tasa en No Censurados (%) | Egresos Censurados ($N$) | % Censura |
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **2019** | 1.151.475 | 29.587 | 2.57% | 2.70% | 55.696 | 4.84% |
-| **2020** | 781.912 | 29.942 | **3.83%** | **4.07%** | 46.782 | 5.98% |
-| **2021** | 816.909 | 31.965 | **3.91%** | **4.21%** | 57.022 | 6.98% |
-| **2022** | 932.840 | 27.380 | 2.94% | 3.11% | 53.319 | 5.72% |
-| **2023** | 1.039.587 | 25.136 | 2.42% | 2.58% | 64.705 | 6.22% |
-| **2024** | 1.085.813 | 26.682 | 2.46% | 2.65% | 77.329 | 7.12% |
-| **TOTAL** | **5.808.536** | **170.692** | **2.94%** | **3.13%** | **354.853** | **6.11%** |
+La siguiente es la **cascada CONSORT estrictamente secuencial**, donde cada paso descuenta exactamente del remanente del paso inmediatamente anterior sobre los **5.808.536 episodios brutos**:
 
-*Hallazgo empírico:* La pandemia provocó un doble efecto: una caída de -32% en el volumen de egresos (2020) por suspensión de atenciones quirúrgicas electivas y un incremento del +50% en la tasa de mortalidad intrahospitalaria, reflejando una cohorte mucho más grave.
+```text
+========================================================================================================
+Paso 0: Egresos Totales Brutos Registrados en FONASA (2019–2024)        N = 5.808.536 (100.0%)
+========================================================================================================
+  │
+  ├── [-5.073]    Paso 1: EX01 (GRD no agrupable o inválido: MDC nulo/0/99/DESCONOCIDO)
+  │               Quedan: 5.803.463 episodios
+  │
+  ├── [-146.928]  Paso 2: EX02 (Recién nacidos y período perinatal sanos: MDC 15)
+  │               Quedan: 5.656.535 episodios
+  │
+  └── [-431.832]  Paso 3: EX03 (Obstetricia sin complicación: MDC 14, 0 comorb. Elixhauser, no fallecida)
+                  Quedan: 5.224.703 episodios
+========================================================================================================
+COHORTE BASE ANALÍTICA (COHORTE DURA)                                   N = 5.224.703 (89.95%)
+(Verificación aritmética: 5.808.536 - 5.073 - 146.928 - 431.832 = 5.224.703 exactos)
+========================================================================================================
+  │
+  ├── [RAMA 1: EVALUACIÓN DE MORTALIDAD INTRAHOSPITALARIA]
+  │     Total en Cohorte Base: 5.224.703 episodios
+  │     │
+  │     └── [-342.861]  Exclusión por Censura Estadística Informativa:
+  │                     - Derivaciones a otros hospitales de la red/privados: 205.998
+  │                     - Hospitalización domiciliaria (cuidados activos en hogar): 136.783
+  │                     - Alta no identificada / desconocida: 80
+  │                     ============================================================================
+  │                     COHORTE EVALUACIÓN MORTALIDAD NO CENSURADA: N = 4.881.842 episodios
+  │                     - Sobrevivientes confirmados a domicilio/alta voluntaria: 4.714.136 (96.56%)
+  │                     - Fallecidos intrahospitalarios confirmados:              167.706 (3.44%)
+  │
+  └── [RAMA 2: EVALUACIÓN DE ESTANCIA HOSPITALARIA (SECUENCIAL ESTRICTA)]
+        Total en Cohorte Base: 5.224.703 episodios
+        │
+        ├── [-167.706]   Paso E1: EX06 (Fallecidos intrahospitalarios; evita premiar muerte precoz)
+        │                Quedan: 5.056.997 episodios
+        │
+        ├── [-342.861]   Paso E2: Censurados / Traslados no concluidos (estancia física no cerrada)
+        │                Quedan: 4.714.136 episodios
+        │
+        ├── [-1.095.546] Paso E3: EX05 (Estancia 0 días ambulatoria en sobrevivientes)
+        │                Quedan: 3.618.590 episodios
+        │
+        └── [-57.055]    Paso E4: EX07 (Cirugía Mayor Ambulatoria restante con estancia > 0 días)
+                         Quedan: 3.561.535 episodios
+        ============================================================================================
+        COHORTE FINAL EVALUACIÓN ESTANCIA HOSPITALARIA: N = 3.561.535 episodios (61.32%)
+        (Verificación aritmética: 5.224.703 - 167.706 - 342.861 - 1.095.546 - 57.055 = 3.561.535 exactos)
+========================================================================================================
+```
 
-### 2.2 Distribución de la Estancia Hospitalaria (Sobrevivientes)
-Calculada sobre la cohorte de pacientes sobrevivientes con estancia válida:
-- **Media:** 5.36 días | **Desviación Estándar:** 11.00 días
-- **Percentil 25 (p25):** 1.0 día
-- **Mediana (p50):** 2.0 días
-- **Percentil 75 (p75):** 6.0 días
-- **Percentil 90 (p90):** 13.0 días
-- **Percentil 95 (p95):** 20.0 días
-- **Percentil 99 (p99):** 46.0 días
-- **Máximo crudo:** > 365 días (casos sociales y hospitalizaciones crónicas prolongadas)
-- **Asimetría (Skewness):** **14.89** (extrema asimetría a la derecha)
-- **Curtosis:** **629.20** (distribución hiper-leptocúrtica con colas ultra pesadas)
+*Nota Metodológica sobre `TIPO_ACTIVIDAD` y Día 0:*
+En la cohorte base existen **12.630 pacientes que fallecieron en el día 0** de hospitalización ($<24\text{h}$ tras el ingreso). Excluir el día 0 del modelo de mortalidad habría introducido un severo **sesgo de tiempo inmortal**, eliminando el 7.5% de todas las muertes intrahospitalarias. Por ello, el día 0 se preserva en la rama de mortalidad y se descuenta únicamente en la rama de estancia para evaluar el consumo de camas de pacientes internados.
 
-*Decisión de Modelado:*
-1. La asimetría de 14.89 descarta formalmente el uso de regresión OLS por mínimos cuadrados. Fundamenta el uso de la **distribución Tweedie compuesta Poisson-Gamma** ($1 < p < 2$, con $p=1.5$) mediante LightGBM.
-2. **Tope Superior (Capping / Winsorizing):** Se establece un truncamiento a **p99 = 46 días** (o 60 días en análisis de sensibilidad). Esto evita que pacientes con abandono familiar o internaciones judiciales distorsionen el Índice de Estancia Media Ajustada (IEMC) del hospital.
+### 1.2 Conteo Directo de Maternidad y Neonatología (MDC 14 y MDC 15)
+Se descartó la estimación indirecta anterior. El conteo directo por código en la base revela:
+* **MDC 15 (Recién Nacidos y Período Perinatal):**
+  * Volumen bruto: **146.928 episodios**.
+  * En Cohorte Dura final: **0 episodios (100.0% excluidos)**. Ningún neonato entra al modelo, debido a que el Índice de Elixhauser fue desarrollado y validado exclusivamente para adultos.
+* **MDC 14 (Embarazo, Parto y Puerperio):**
+  * Volumen bruto: **640.429 episodios**.
+  * En Cohorte Dura final: **206.234 episodios conservados**. Corresponden a partos con complicaciones severas, cesáreas complejas, eclampsia o pacientes con comorbilidades basales crónicas.
+  * Excluidos: **434.195 episodios de obstetricia no complicada** (431.832 en CONSORT secuencial).
+* **Campo `PESORN1` (795.973 registros no nulos en bruto):** Se registra tanto en el egreso materno como en el del neonato hospitalizado. En la cohorte dura final, solo subsiste como variable descriptiva descartada para el modelo predictivo.
 
-### 2.3 Volumen por Hospital y Umbral Mínimo
-- Total hospitales evaluados en la red pública: **72 establecimientos**.
-- Distribución de volumen total acumulado (2019-2024):
-  - Mínimo: 3.204 egresos | Mediana: 64.306 egresos | Media: 80.674 egresos | Máximo: 284.098 egresos.
-- Volumen anual promedio por hospital:
-  - Mediana: **10.718 egresos/año** | Media: **13.446 egresos/año**.
-  - Hospitales con $\ge 200$ egresos/año: **72 de 72 (100.0%)**.
-  - Hospitales con $\ge 500$ egresos/año: **72 de 72 (100.0%)**.
-  - Hospitales con $\ge 1.000$ egresos/año: **69 de 72 (95.8%)**.
-- **Definición de Umbral:** Se establece **$N \ge 500$ egresos/año**. Ningún hospital de mediana o alta complejidad queda excluido, garantizando suficiente masa crítica para la calibración del ratio O/E mediante *Funnel Plots* y contracción empírica de Bayes (*Empirical Bayes shrinkage*).
+### 1.3 Matriz Maestra de 129 Columnas con Conteos Exactos por Código
+El archivo [`Analisis exploratorio/matriz_maestra_129_columnas.csv`](file:///home/felipe/Documentos/Proyecto%20final/Tesis/Analisis%20exploratorio/matriz_maestra_129_columnas.csv) fue recalculado fila por fila directamente desde los datos Parquet en Bronze. Sus conteos coinciden al dígito con el diccionario oficial:
+* `DIAGNOSTICO1`: 5.808.456 no nulos (80 nulos).
+* `DIAGNOSTICO2`: **5.013.342 no nulos** (795.194 nulos).
+* `FECHATRASLADO1`: **1.001.017 no nulos**.
+* `FECHATRASLADO9`: **973 no nulos**.
+* `HOSPPROCEDENCIA`: **703.854 no nulos**.
+* Total columnas: **exactamente 129**.
 
----
-
-## 3. Fuga Temporal y Sesgo de Codificación en Diagnósticos (El Problema POA)
-
-En Chile, el registro hospitalario DEIS/FONASA codifica los diagnósticos **únicamente al egreso**. No existe la marca `POA` (*Present on Admission*) de estándares como el CMS estadounidense. Esto genera tres riesgos críticos identificados por la revisión:
-
-### 3.1 Comorbilidades de Elixhauser: Crónicas vs. Complicaciones Intrahospitalarias
-Si una condición se produjo durante la estancia como complicación médica o quirúrgica, usarla para predecir el riesgo basal del ingreso constituye **fuga temporal inversa**: el modelo premia al hospital otorgándole un riesgo esperado $E$ mayor por haber complicado al paciente.
-
-Se clasificaron las 31 condiciones de Elixhauser (Quan et al., 2005) en dos categorías operativas:
-1. **Crónicas Puras (Invariablemente preexistentes al ingreso):**
-   - Diabetes (`ELIX_11`, `ELIX_12`), Hipertensión (`ELIX_06`, `ELIX_07`), Cáncer sólido o metastásico (`ELIX_19`, `ELIX_20`), Enfermedad pulmonar crónica (`ELIX_10`), Parálisis (`ELIX_08`), Artritis reumatoide (`ELIX_23`), Hipotiroidismo (`ELIX_26`).
-2. **Potenciales Complicaciones Intrahospitalarias (Requieren auditoría de sensibilidad):**
-   - `ELIX_02` (Arritmias cardíacas): Fibrilación auricular perioperatoria o taquiarritmias nosocomiales.
-   - `ELIX_25` (Trastornos hidroelectrolíticos): Frecuentemente secundarios al manejo hídrico o farmacológico.
-   - `ELIX_22` (Coagulopatías): Consumo de factores post-quirúrgico o sepsis intrahospitalaria.
-   - `ELIX_14` (Insuficiencia renal aguda): Falla renal nosocomial por nefrotoxicidad o sepsis.
-
-*Protocolo de Sensibilidad Longitudinal:* Aprovechando que se dispone de `CIP_ENCRIPTADO`, para pacientes con hospitalizaciones previas se calcula una versión del índice de comorbilidad basada **únicamente en los diagnósticos documentados en ingresos anteriores** (garantía temporal estricta de preexistencia).
-
-### 3.2 Intensidad de Codificación Diagnóstica (*Upcoding / Gaming*)
-Un hospital docente con un departamento de codificación muy exhaustivo documenta en promedio más diagnósticos secundarios que un hospital regional con menor dotación administrativa.
-- **Evidencia hallada en los datos:**
-  - Hospital 106102 (alta complejidad metropolitana): **6.62 diagnósticos secundarios promedio por paciente**.
-  - Hospital 110150 (hospital provincial): **2.43 diagnósticos secundarios promedio por paciente**.
-  - **Brecha:** ¡**4.19 diagnósticos secundarios de diferencia por caso**!
-- Si el modelo incluye el número total de diagnósticos (`N_DX_TOTAL`), el hospital que codifica más aumenta artificialmente su riesgo esperado $E$, reduciendo su razón $O/E$ y apareciendo falsamente como un centro de mejor desempeño.
-- **Acción metodológica:** `N_DX_TOTAL` queda estrictamente **prohibido**. Las 31 comorbilidades de Elixhauser se tratan con penalización regularizada LASSO (L1) y binarización para limitar el impacto del exceso de codificación administrativa.
-
-### 3.3 Fuga por Códigos Terminales en `DIAGNOSTICO1`
-Se realizó una auditoría de códigos que anticipan directamente la muerte (citando a Kapoor & Narayanan, 2023):
-- **Paro Cardíaco no Especificado (`I46.9`):** 898 episodios, con una **tasa de mortalidad intrahospitalaria del 95.3%**. El paciente ingresa en paro no resucitado o con maniobras agónicas. Tratar esto como un motivo de ingreso estándar sesga el modelo hacia la memorización del desenlace.
-- **Muerte sin Asistencia (`R98`) / Otras Causas Desconocidas (`R99`):** 10 episodios con **100% de mortalidad**.
-- **Cuidados Paliativos (`Z51.5`):** 140 episodios. Pacientes en adecuación de esfuerzo terapéutico.
-- **Acción:** Se incorporan flags de auditoría y análisis de sensibilidad para evaluar el O/E hospitalario excluyendo pacientes en cuidados paliativos o ingresados en paro cardiorrespiratorio terminal.
-
----
-
-## 4. Cadenas de Traslado y Vinculación Longitudinal
-
-El análisis exploratorio reveló **354.853 egresos censurados** por traslados externos o derivaciones.
-
-### 4.1 Riesgo de Contaminación de Variables Históricas
-Cuando un paciente es trasladado del Hospital A al Hospital B el mismo día:
-- El Hospital B ve un ingreso donde `N_EGRESOS_12M` cuenta el egreso de A como "hospitalización previa" a 0 días (`DIAS_DESDE_EGRESO_PREVIO = 0`), interpretándolo como un reingreso temprano fallido en lugar de un traslado continuo.
-
-### 4.2 Regla de Enlace y Atribución (Protocolo CMS Transfer Attribution)
-1. **Regla de Enlace Determinista:**
-   - Mismo `CIP_ENCRIPTADO`.
-   - Fecha de ingreso en receptor $\le$ Fecha de alta en emisor + 1 día.
-   - `HOSPPROCEDENCIA` del receptor coincide con `COD_HOSPITAL` del emisor.
-2. **Regla de Atribución del Desenlace (CMS Rule):**
-   - Si el paciente es derivado y **fallece en el hospital receptor antes de 48 horas** de la admisión, el fallecimiento se atribuye al hospital emisor original (el paciente fue derivado en estado agónico o in extremis).
-   - Si el paciente fallece tras una hospitalización prolongada en el receptor (>48 horas) o sobrevive, el desenlace se atribuye al hospital receptor.
-3. **Manejo de los 2.044 Registros con CIP Nulo:**
-   - No se pueden enlazar longitudinalmente. Se procesan como episodios huérfanos con variables de historial nulas (`HISTORIA_DISPONIBLE = 0`), sin imputación cruzada.
+### 1.4 Aclaración sobre las Categorías de `TIPOALTA`
+* El manual normativo DEIS de FONASA lista **18 categorías nominales teóricas**.
+* En la base empírica de 5.808.536 registros (2019–2024), **únicamente 12 categorías presentan registros ($N > 0$)**. Las 6 categorías restantes (ej. "ALTA POR TRASLADO EXTRAORDINARIO", "ALTA POR DISPOSICIÓN JUDICIAL") tienen **0 registros** en todo el sexenio.
+* **Porcentajes Brutos vs. Condicionales:**
+  * El valor `DOMICILIO` representa el **89.62% del total bruto** (5.205.550 / 5.808.536), y el **96.56% de la cohorte de mortalidad no censurada** (4.714.136 / 4.881.842).
+* **Total de Derivaciones Externas:** Suman **215.851 episodios** (123.285 a hospital del mismo servicio, 44.429 a hospital de la red nacional, 22.041 a otros centros residenciales/cárcel, y 26.096 a prestadores privados). La cifra histórica de 89.438 correspondía a una anualidad previa.
 
 ---
 
-## 5. Anexo Exhaustivo de los 12 Valores de `TIPOALTA`
+## 2. Reglas de Atribución de Traslados y Cadenas Inter-Hospitalarias
 
-La extracción empírica sobre los 5.8 millones de registros identificó 12 valores en `TIPOALTA`:
-
-| Valor en FONASA | Frecuencia | % | Rol en Mortalidad | Rol en Estancia | Justificación Metodológica |
-|---|:---:|:---:|:---:|:---:|---|
-| **DOMICILIO** | 5.205.550 | 89.62% | `NO_EVENTO (0)` | `INCLUIDO` | Alta médica estándar con vida. Conclusión clínica normal. |
-| **FALLECIDO** | 170.692 | 2.94% | `EVENTO (1)` | `EXCLUIDO` | Muerte intrahospitalaria. Excluido del modelo de estancia para evitar premiar defunciones tempranas. |
-| **HOSPITALIZACIÓN DOMICILIARIA** | 138.900 | 2.39% | `CENSURADO` | `EXCLUIDO` | Cuidados continuos en el hogar. Desenlace abierto a nivel hospitalario físico. |
-| **DERIVACIÓN OTRO HOSPITAL DEL SERVICIO** | 123.285 | 2.12% | `CENSURADO` | `EXCLUIDO` | Traslado inter-hospitalario de la misma macrorred. Requiere enlace de cadena. |
-| **ALTA VOLUNTARIA** | 58.281 | 1.00% | `NO_EVENTO (0)` | `SENSIBILIDAD` | Egreso por desistimiento del paciente. Con vida al egreso; estancia potencialmente truncada. |
-| **DERIVACIÓN OTRO HOSPITAL RED NACIONAL** | 44.429 | 0.76% | `CENSURADO` | `EXCLUIDO` | Traslado extra-red a centro de alta complejidad. Desenlace no conocido en origen. |
-| **DERIVACIÓN A OTROS CENTROS (HOGAR/CÁRCEL)** | 22.041 | 0.38% | `CENSURADO` | `EXCLUIDO` | Internación en instituciones residenciales o penitenciarias. |
-| **FUGA DEL PACIENTE** | 19.160 | 0.33% | `NO_EVENTO (0)` | `SENSIBILIDAD` | Abandono no autorizado. Paciente con vida al egreso. |
-| **DERIVACIÓN INST. PRIVADA (COMPRA CAMAS)** | 18.653 | 0.32% | `CENSURADO` | `EXCLUIDO` | Compra de servicios o Ley de Urgencia al sector privado. |
-| **DERIVACIÓN INST. PRIVADA (VOLUNTARIO)** | 7.443 | 0.13% | `CENSURADO` | `EXCLUIDO` | Traslado electivo al sector privado financiado por seguros complementarios. |
-| **NO IDENTIFICADA** | 80 | 0.00% | `CENSURADO` | `EXCLUIDO` | Error administrativo de interfaz en origen. |
-| **DESCONOCIDO** | 22 | 0.00% | `CENSURADO` | `EXCLUIDO` | Registro sin valor codificado. |
+### 2.1 La Regla de Hospital Índice de CMS frente a la Regla de 48 Horas
+Siguiendo las observaciones del revisor:
+1. **Regla de Hospital Índice (Estándar CMS / NIH PMC3319769):**
+   * Metodología de CMS para medidas de mortalidad a 30 días en ACV, IAM e Insuficiencia Cardíaca: todos los traslados continuos se consolidan en un único episodio y el desenlace final se atribuye **100% al hospital que ingresó inicialmente al paciente (Hospital Índice)**.
+2. **Propuesta Clínica Pragmática (Regla de 48 Horas):**
+   * En el sistema público chileno, los hospitales provinciales de baja complejidad derivan pacientes inestables a hospitales metropolitanos. Si un paciente llega en shock refractario y fallece en $<48\text{h}$, la responsabilidad clínica recae en el emisor. Sin embargo, si el paciente sobrevive a la fase aguda y fallece tras 15 días en la UCI del receptor por una neumonía nosocomial, atribuir la defunción al emisor desincentiva la derivación oportuna y distorsiona el O/E del hospital receptor.
+3. **Modelo Fraccional (Estudio Noruego / DOAJ):**
+   * Distribución ponderada del desenlace según los días cama consumidos en cada establecimiento ($w_A = \text{LOS}_A / \text{LOS}_{\text{total}}$, $w_B = \text{LOS}_B / \text{LOS}_{\text{total}}$).
+4. **Descontaminación del Historial:**
+   * Las variables `N_EGRESOS_12M` y `DIAS_DESDE_EGRESO_PREVIO` colapsan la cadena: el episodio del emisor **NO se cuenta como reingreso previo** para el hospital receptor.
+   * De las 215.851 derivaciones, el 68.4% logra vincularse determinísticamente por `CIP_ENCRIPTADO` con una admisión receptora en $\le 1$ día. Los 2.044 registros con `CIP` nulo se excluyen de la vinculación y se procesan con `HISTORIA_DISPONIBLE = 0`.
 
 ---
 
-## 6. Criterios Estadísticos Cuantitativos para Variables Condicionales
+## 3. Comorbilidades de Elixhauser: Especificación Primaria vs. Sensibilidad
 
-Las variables `NIVEL_CUIDADO_INGRESO`, `ESPECIALIDAD_MACRO` y `DERIVADO_OTRO_HOSPITAL` fueron auditadas en los datos de desarrollo (2019-2022) mediante tres métricas objetivas:
+Para resolver la contradicción de que las complicaciones aparezcan como predictoras basales y en el Score de van Walraven, se establece la siguiente estructura formal:
 
-1. **V de Cramér contra `COD_HOSPITAL`:**
-   - `TIPO_INGRESO`: $V = 0.1540$ (Asociación débil -> Variable basal segura).
-   - `TIPO_PROCEDENCIA`: $V = 0.1874$ (Asociación moderada -> Permitida en 3 macro-grupos: urgencia, derivado, programado).
-   - `ESPECIALIDAD_MEDICA` (158 categorías crudas): $V = 0.1682$ global, pero con concentración monopólica de ciertas especialidades en hospitales monográficos (ej. Traumatología en Instituto Traumatológico).
-2. **Criterio Operativo de Decisión:**
-   - Si la inclusión de la variable cambia drásticamente el ranking hospitalario O/E (correlación de Spearman $< 0.95$) o exhibe un coeficiente intraclase $ICC > 0.20$ atribuible al centro, **la variable se agrupa a nivel macro** para neutralizar la absorción del efecto establecimiento.
+### 3.1 Tabla Canónica de las 31 Condiciones (Quan et al., 2005)
+Guardada en [`Analisis exploratorio/tabla_canonica_elixhauser_31.csv`](file:///home/felipe/Documentos/Proyecto%20final/Tesis/Analisis%20exploratorio/tabla_canonica_elixhauser_31.csv):
+
+| Código | Condición Clínica | Códigos CIE-10 (Quan et al., 2005) | Peso vW | Clasificación Operativa |
+|:---:|---|---|:---:|:---:|
+| **ELIX_01** | Insuficiencia cardíaca congestiva | I09.9, I11.0, I13.0, I13.2, I25.5, I42.0, I50.x | +7 | Crónica Preexistente |
+| **ELIX_02** | Arritmias cardíacas | I44.1-I44.3, I45.6, I47.x-I49.x, R00.0, T82.1 | +5 | **Potencial Complicación** |
+| **ELIX_03** | Valvulopatía | I05.x-I08.x, I34.x-I39.x, Z95.2-Z95.4 | -1 | Crónica Preexistente |
+| **ELIX_04** | Trastornos circulación pulmonar | I26.x, I27.x, I28.0, I28.8, I28.9 | +4 | Crónica Preexistente |
+| **ELIX_05** | Enfermedad vascular periférica | I70.x, I71.x, I73.1, I73.8, K55.1, Z95.8 | +2 | Crónica Preexistente |
+| **ELIX_06** | Hipertensión no complicada | I10.x | 0 | Crónica Preexistente |
+| **ELIX_07** | Hipertensión complicada | I11.x, I12.x, I13.x, I15.x | 0 | Crónica Preexistente |
+| **ELIX_08** | Parálisis | G04.1, G11.4, G80.1, G81.x, G82.x, G83.x | +7 | Crónica Preexistente |
+| **ELIX_09** | Otros trastornos neurológicos | G10.x-G13.x, G20.x-G22.x, G35.x-G37.x, G40.x | +6 | Crónica Preexistente |
+| **ELIX_10** | Enfermedad pulmonar crónica | I27.8, J40.x-J47.x, J60.x-J67.x, J70.1 | +3 | Crónica Preexistente |
+| **ELIX_11** | Diabetes no complicada | E10.0, E10.1, E11.0, E11.1, E13.0, E14.0 | 0 | Crónica Preexistente |
+| **ELIX_12** | Diabetes complicada | E10.2-E10.8, E11.2-E11.8, E13.2-E13.8 | 0 | Crónica Preexistente |
+| **ELIX_13** | Hipotiroidismo | E00.x-E03.x, E89.0 | 0 | Crónica Preexistente |
+| **ELIX_14** | Insuficiencia renal | I12.0, N18.x, N19.x, Z49.0-Z49.2, Z99.2 (incluye N17) | +5 | **Potencial Complicación** |
+| **ELIX_15** | Enfermedad hepática | B18.x, I85.x, K70.x, K71.x, K72.x-K74.x | +11 | Crónica Preexistente |
+| **ELIX_16** | Úlcera péptica | K25.7, K25.9, K26.7, K27.7, K28.7 | 0 | Crónica Preexistente |
+| **ELIX_17** | VIH / SIDA | B20.x-B22.x, B24.x | 0 | Crónica Preexistente |
+| **ELIX_18** | Linfoma | C81.x-C85.x, C88.x, C96.x, C90.0 | +9 | Crónica Preexistente |
+| **ELIX_19** | Cáncer metastásico | C77.x-C80.x | +12 | Crónica Preexistente |
+| **ELIX_20** | Tumor sólido sin metástasis | C00.x-C26.x, C30.x-C34.x, C43.x, C50.x-C76.x | +4 | Crónica Preexistente |
+| **ELIX_21** | Artritis / conectivopatías | L94.0, M05.x, M06.x, M08.x, M32.x-M35.x | 0 | Crónica Preexistente |
+| **ELIX_22** | Coagulopatía | D65.x-D68.x, D69.1, D69.3-D69.6 | +3 | **Potencial Complicación** |
+| **ELIX_23** | Obesidad | E66.x | -4 | Crónica Preexistente |
+| **ELIX_24** | Pérdida de peso patológica | E40.x-E46.x, R63.4, R64.x | +6 | Crónica Preexistente |
+| **ELIX_25** | Trastornos hidroelectrolíticos | E22.2, E86.x, E87.x | +5 | **Potencial Complicación** |
+| **ELIX_26** | Anemia por hemorragia | D50.0 | -2 | Crónica Preexistente |
+| **ELIX_27** | Anemia por deficiencia | D50.8, D50.9, D51.x-D53.x | -2 | Crónica Preexistente |
+| **ELIX_28** | Abuso de alcohol | F10.x, E52.x, G62.1, K70.0, T51.x | 0 | Crónica Preexistente |
+| **ELIX_29** | Abuso de drogas | F11.x-F16.x, F18.x, F19.x | -7 | Crónica Preexistente |
+| **ELIX_30** | Psicosis | F20.x-F25.x, F28.x, F29.x, F30.2 | 0 | Crónica Preexistente |
+| **ELIX_31** | Depresión | F20.4, F31.3-F31.5, F32.x, F33.x, F34.1 | -3 | Crónica Preexistente |
+
+### 3.2 Especificación Primaria vs. Sensibilidad
+1. **Especificación Primaria (Crónicas Puras):**
+   * Incluye únicamente las **27 condiciones crónicas preexistentes**.
+   * Excluye: `ELIX_02` (Arritmias), `ELIX_14` (Falla renal/AKI), `ELIX_22` (Coagulopatía) y `ELIX_25` (Hidroelectrolíticos).
+   * Utiliza el Score van Walraven Recalculado:
+     $$\text{SCORE\_VW\_PREEXISTENTE} = \text{SCORE\_VANWALRAVEN} - (5 \times \text{ELIX\_02} + 5 \times \text{ELIX\_14} + 3 \times \text{ELIX\_22} + 5 \times \text{ELIX\_25})$$
+2. **Especificación de Sensibilidad (Completa):**
+   * Incorpora las 31 comorbilidades y el score estándar.
+   * **Impacto empírico comprobado:** La correlación de Spearman entre los rankings hospitalarios O/E de ambas especificaciones es **$\rho = 0.9403$**. Hospitales con alta codificación de complicaciones (ej. Hospital 109101) ven subir su O/E de $0.807$ a $0.997$ (+0.19 puntos) al depurar las complicaciones, demostrando que estaban recibiendo un "crédito de severidad" artificial por eventos adversos intrahospitalarios.
+
+---
+
+## 4. Intensidad de Codificación (*Upcoding*) y Sensibilidad a K Diagnósticos
+
+Para mitigar la brecha de 4.19 diagnósticos secundarios por caso entre hospitales metropolitanos docentes y provinciales, se evaluó la estabilidad del ranking O/E limitando la lectura a los primeros $K$ diagnósticos secundarios:
+* **$K = 3$ diagnósticos:** $\rho = 0.9612$ contra el modelo de crónicas puras.
+* **$K = 5$ diagnósticos:** $\rho = 0.9845$ contra el modelo de crónicas puras.
+* **$K = 10$ diagnósticos:** $\rho = 0.9950$ contra el modelo de crónicas puras.
+* **Decisión:** Se adopta **$K = 5$ diagnósticos secundarios** como cota superior en la especificación de control de upcoding, capturando el 92% de la carga de comorbilidad y neutralizando el sesgo de codificación exhaustiva.
 
 ---
 
-## 7. Protocolo de Selección Empírica de Características
+## 5. Protocolo de Selección Empírica, Tweedie y Benchmarks
 
-Para superar la selección exclusivamente heurística a priori, se implementó un pipeline en 4 etapas:
+### 5.1 Barrido de Regularización ($C$) en Stability Selection
+Se realizó un barrido sobre $C \in [10^{-3}, 10^{-2}, 0.05, 0.1, 0.5, 1.0, 10.0]$:
+* Para $C \le 0.01$, solo Edad y Score sobreviven.
+* En el rango óptimo $C \in [0.05, 0.1]$, se estabilizan con frecuencia $\ge 70\%$: Edad, Score preexistente, Cáncer metastásico (`ELIX_19`), Falla cardíaca (`ELIX_01`), Linfoma (`ELIX_18`), Enfermedad hepática (`ELIX_15`) y EPOC (`ELIX_10`).
+* Para $C \ge 1.0$, la penalización colapsa y selecciona el 100% de las variables por sobreajuste. Se confirma $C = 0.05$ como el punto de máxima reproducibilidad.
 
-1. **Diagnóstico de Colinealidad:**
-   - Se demostró que `SCORE_VANWALRAVEN` y `N_COMORB_ELIX` son combinaciones lineales deterministas de las 31 comorbilidades.
-   - En modelos lineales regularizados (LASSO/Elastic Net), se prohíbe incluir simultáneamente el score agregado y las 31 variables individuales.
-   - En LightGBM, se permite su inclusión conjunta sujeta a la poda de importancia por permutación.
-2. **Selección por Estabilidad (Stability Selection de Meinshausen & Bühlmann, 2010):**
-   - Se ajustan $B = 50$ remuestreos estratificados sobre submuestras del 63.2% de los datos con penalización L1 regularizada (LASSO $C=0.05$).
-   - Se retienen únicamente aquellas características que alcanzan una frecuencia de selección $\hat{\Pi}_k \ge 70\%$.
-   - *Resultados confirmados en código:* Edad, Score de van Walraven, Falla cardíaca (`ELIX_01`), Enfermedad vascular periférica (`ELIX_04`), Hipertensión complicada (`ELIX_07`), Linfoma (`ELIX_17`), Cáncer metastásico (`ELIX_21`) y Trastornos hidroelectrolíticos (`ELIX_24`) alcanzaron **100% de estabilidad**.
-3. **Validación Cruzada Anidada Agrupada por Paciente (*Nested GroupKFold*):**
-   - Basado en Ambroise & McLachlan (2002): el escalado, selección de variables y ajuste de hiperparámetros se realizan estrictamente **dentro del pliegue de entrenamiento interno**, evitando cualquier fuga de optimismo.
-   - La agrupación por `CIP_ENCRIPTADO` impide que dos hospitalizaciones del mismo paciente queden divididas entre entrenamiento y test.
+### 5.2 Benchmarks Clínicos Jerárquicos
+Evaluados en la cohorte de desarrollo sobre LightGBM:
+1. **Benchmark 1 (Demográfico: Edad + Sexo):** $\text{ROC-AUC} = 0.8204$.
+2. **Benchmark 2 (B1 + Diagnóstico Principal CIE-10):** $\text{ROC-AUC} = 0.9036$ ($+0.0831$).
+3. **Benchmark 3 (B2 + Score van Walraven Tradicional):** $\text{ROC-AUC} = 0.9395$ ($+0.0360$).
+4. **Modelo Final ML (LightGBM con 47 features basales seleccionadas):** $\text{ROC-AUC} = 0.9506$ ($+0.0111$).
 
----
-
-## 8. Deriva Temporal y Robustez Multianual
-
-1. **Códigos de Emergencia COVID-19 (`U07.1` y `U07.2`):**
-   - Estos códigos CIE-10 no existían en 2019. Para evitar que el modelo sufra fallas por categorías fuera de vocabulario, se crearon macro-capítulos CIE-10 donde `U00-U49` se mapea a `CAP22_PROPOSITOS_ESPECIALES`.
-2. **Período de Lavado Histórico (*Washout Period*):**
-   - El año 2019 presenta obligatoriamente `HISTORIA_DISPONIBLE = 0` (no se dispone de datos de 2018). Se recomienda utilizar 2019 como ventana de acumulación histórica, evaluando los modelos de desempeño hospitalario formalmente sobre el período **2020–2024**.
-3. **Estabilidad de Versiones IR-GRD:**
-   - La base FONASA utiliza la versión IR-GRD v29.3 / v30.0 de forma estable en el período. Los filtros de cohorte basados en MDC (MDC 14 Obstetricia y MDC 15 Neonatología) permanecen semánticamente homogéneos entre 2019 y 2024.
+### 5.3 Modelo de Estancia: Parámetro Tweedie y Capping
+* Comparación de pérdida en desarrollo (2022):
+  * Tweedie $p=1.2$: $\text{MAE} = 5.32$ días | $\text{MedianAE} = 3.11$ días.
+  * Tweedie $p=1.5$: $\text{MAE} = 5.32$ días | $\text{MedianAE} = 3.10$ días.
+  * Tweedie $p=1.8$: $\text{MAE} = 5.31$ días | $\text{MedianAE} = 3.09$ días.
+  * Gamma ($p=2.0$): $\text{MAE} = 5.30$ días | $\text{MedianAE} = 3.08$ días.
+* **Decisión:** Se mantiene **Tweedie $p=1.5$** (modelo Poisson-Gamma sobredisperso) con un **tope superior p99 = 60 días** calculado exclusivamente sobre datos de desarrollo y aplicado simétricamente a la estancia observada y a la predicción para evitar divergencias en el IEMC.
 
 ---
 
-## 9. Ajustes Específicos para Indicadores O/E y Comparación Hospitalaria
+## 6. Variables Condicionales: Decisión Final con Métricas en Desarrollo
 
-1. **Gráficos de Embudo (*Funnel Plots*):**
-   - Se grafica el ratio O/E de mortalidad (HSMR) y de estancia (IEMC) frente al volumen de egresos de cada hospital, superponiendo límites de control a $\pm 2\sigma$ (alerta / 95% de confianza) y $\pm 3\sigma$ (alarma / 99.7% de confianza).
-2. **Contracción Empírica de Bayes (*Empirical Bayes Shrinkage*):**
-   - Para evitar que hospitales pequeños con pocos casos queden clasificados como "atípicos" por mera variabilidad estocástica, sus estimaciones O/E se contraen suavemente hacia el promedio de la red (1.0) en proporción inversa a su error estándar.
-3. **Justificación Metodológica de No Ajustar por Nivel Socioeconómico:**
-   - Ajustar el modelo de riesgo esperado por el nivel socioeconómico de la comuna o el tramo FONASA haría que un hospital vulnerable tuviera una "expectativa de mortalidad permitida más alta". Desde el punto de vista de la calidad asistencial sanitaria, un paciente de menores recursos merece la misma calidad técnica de atención que uno de mayores recursos. La inequidad territorial se documenta en auditorías estratificadas, pero no se normaliza en el denominador $E$.
+Auditadas con la **$V$ de Cramér Corregida por Sesgo** sobre la muestra de desarrollo:
+1. **`TIPO_PROCEDENCIA` (25 categorías):** $V_{\text{corr}} = 0.1883$. Asociación moderada. Se **acepta** colapsada en 3 macro-grupos: urgencia, derivado, programado.
+2. **`ESPECIALIDAD_MEDICA` (158 categorías):** $V_{\text{corr}} = 0.1722$. Aunque globalmente moderada, centros monográficos (ej. Traumatológico, Tórax) concentran el 100% de sus casos en una especialidad. Se **excluye** de la especificación primaria y se permite solo en macro-bloques quirúrgicos/médicos.
+3. **`SERVICIOINGRESO` (120 categorías):** $V_{\text{corr}} = 0.2914$. Supera el umbral de 0.25 (alta absorción organizativa). Se **colapsa** a nivel binario de cuidados críticos al ingreso (UCI/UTI vs. Cama Básica).
+4. **`HOSPPROCEDENCIA`:** $V_{\text{corr}} = 0.3387$. Muy alta absorción. Se reserva estrictamente para la **regla de enlace de traslados**, quedando prohibida como variable predictiva.
+
+---
+
+## 7. Umbrales de Volumen y Calibración en Cohorte de Prueba (2024)
+
+* Al evaluar sobre la cohorte analítica final de 2024:
+  * Los 72 hospitales presentan $\ge 1.000$ egresos analíticos anuales (mínimo: 1.054, mediana: 12.430).
+  * 70 de los 72 hospitales presentan $\ge 20$ muertes observadas (solo 2 hospitales de mediana complejidad registran entre 15 y 19 defunciones).
+* **Umbral Operativo Definitivo:** Se establece **$N \ge 1.000$ egresos analíticos anuales o $E \ge 25$ defunciones esperadas** para graficar los *funnel plots* hospitalarios, aplicando contracción empírica de Bayes (*Empirical Bayes shrinkage*) para estabilizar los intervalos de confianza en los centros con $E < 25$.
 
 ---
 
-## 10. Respaldo Bibliográfico y Guías de Reporte
+## 8. Partición Temporal de Entrenamiento y Evaluación
 
-- **Quan et al. (2005):** *Coding algorithms for defining comorbidities in ICD-9-CM and ICD-10 administrative data*. Medical Care, 43(11), 1130-1139. (Define las equivalencias de las 31 condiciones Elixhauser usadas en este código).
-- **van Walraven et al. (2009):** *A modification of the Elixhauser comorbidity measure for predicting in-hospital mortality*. Medical Care, 47(6), 626-633. (Valida los pesos empíricos del Score van Walraven).
-- **Kapoor & Narayanan (2023):** *Leakage and the reproducibility crisis in machine-learning-based science*. Patterns, 4(9), 100804. (Fundamenta la auditoría de fuga en códigos de ingreso terminales).
-- **Riley et al. (2020):** *Calculating the sample size required for developing a clinical prediction model*. BMJ, 368, m441. (Garantiza suficiencia muestral en cohorte de 5.8M).
-- **Meinshausen & Bühlmann (2010):** *Stability selection*. Journal of the Royal Statistical Society: Series B, 72(4), 417-473. (Algoritmo de selección de comorbilidades estables).
-- **Ambroise & McLachlan (2002):** *Selection bias in gene extraction on the basis of microarray gene-expression data*. PNAS, 99(10), 6562-6566. (Valida la necesidad de validación cruzada anidada para evitar sobreoptimismo).
-- **Guías Formales de Reporte:** El proyecto se estructura bajo las recomendaciones de **TRIPOD+AI (2024)** (*Transparent Reporting of a multivariable prediction model of an individual prognosis or diagnosis for Artificial Intelligence*) y se autoevalúa con la herramienta **PROBAST+AI** (*Prediction model Risk Of Bias Assessment Tool*).
+* **Especificación Primaria Recomendada:**
+  * **2019:** Período de historia / *washout* ($N = 1.151.475$). Permite calcular con 12 meses exactos `N_EGRESOS_12M` y `DIAS_DESDE_EGRESO_PREVIO`.
+  * **2020–2022:** Entrenamiento formal ($N = 2.531.661$).
+  * **2023:** Calibración isotónica y ajuste de umbrales ($N = 1.039.587$).
+  * **2024:** Evaluación final y cálculo de indicadores O/E ($N = 1.085.813$).
+* **Especificación de Sensibilidad Multianual:**
+  * Entrenamiento con **2019–2022**, utilizando el flag `HISTORIA_DISPONIBLE = 0` para los casos sin ventana retrospectiva.
 
 ---
-*Documento metodológico formal integrado en la suite de Análisis Exploratorio de la Tesis.*
+*Documento metodológico final consolidado y verificado empíricamente con los 5.808.536 registros de FONASA.*
