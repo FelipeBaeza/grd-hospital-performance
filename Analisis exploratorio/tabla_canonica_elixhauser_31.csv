@@ -12,7 +12,7 @@ ELIX_10,Enfermedad pulmonar crónica (EPOC),"I27.8, I27.9, J40.x-J47.x, J60.x-J6
 ELIX_11,Diabetes no complicada,"E10.0, E10.1, E10.9, E11.0, E11.1, E11.9, E12.0, E12.1, E12.9, E13.0, E13.1, E13.9, E14.0, E14.1, E14.9",0,Crónica Preexistente
 ELIX_12,Diabetes complicada,"E10.2-E10.8, E11.2-E11.8, E12.2-E12.8, E13.2-E13.8, E14.2-E14.8",0,Crónica Preexistente
 ELIX_13,Hipotiroidismo,"E00.x-E03.x, E89.0",0,Crónica Preexistente
-ELIX_14,Insuficiencia renal,"I12.0, I13.1, N18.x, N19.x, N25.0, Z49.0-Z49.2, Z94.0, Z99.2 (incluye falla aguda N17)",5,Potencial Complicación (Excluida en Primaria)
+ELIX_14,Insuficiencia renal crónica,"I12.0, I13.1, N18.x, N19.x, N25.0, Z49.0-Z49.2, Z94.0, Z99.2 (Quan 2005 excluye N17 aguda)",5,Comorbilidad Crónica (Sensibilidad POA)
 ELIX_15,Enfermedad hepática,"B18.x, I85.x, I86.4, I98.2, K70.x, K71.1, K71.3-K71.5, K71.7, K72.x-K74.x, K76.0, K76.2-K76.9, Z94.4",11,Crónica Preexistente
 ELIX_16,Úlcera péptica,"K25.7, K25.9, K26.7, K26.9, K27.7, K27.9, K28.7, K28.9",0,Crónica Preexistente
 ELIX_17,VIH / SIDA,"B20.x-B22.x, B24.x",0,Crónica Preexistente
