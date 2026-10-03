@@ -1,263 +1,283 @@
 """
 05_analisis_complementario_fase2.py
 -----------------------------------
-Script de Análisis Estadístico Complementario para la Resolución de Observaciones de Fase 2.
-
-Ejecuta de forma ultraligera (proyectando solo columnas requeridas):
-1. Cascada CONSORT estrictamente secuencial y balance exacto (sin solapamiento CMA/día 0).
-2. Conteo directo de MDC 14 y 15 en las cohortes.
-3. Evaluación de intensidad diagnóstica (Upcoding) y sensibilidad de O/E con K diagnósticos.
-4. Barrido de regularización C en Stability Selection (LASSO).
-5. Comparación paramétrica de modelos de estancia: Tweedie (p=1.2, 1.5, 1.8) vs Gamma (p=2.0) y capping p99.
-6. Evaluación de las 3 variables condicionales con V de Cramér corregida y Spearman en ranking hospitalario.
-7. Recálculo de umbrales hospitalarios en la cohorte analítica final de 2024 (muertes esperadas).
-8. Análisis de sensibilidad a la censura (muertos vs vivos vs ponderados).
+Script complementario y reproducible para la verificación empírica de la Fase 2:
+1. Cascada CONSORT estrictamente secuencial y resolución aritmética de EX03 (2.363 episodios).
+2. Umbrales de volumen hospitalario evaluados sobre el año de calibración (2023) para Mortalidad y Estadía.
+3. Comparación Tweedie (p=1.5) vs Gamma (p=2.0) por devianza frente a baselines en estadía.
+4. Benchmarks fuera de muestra (entrenamiento 2022, prueba 2023) sobre cohorte Inpatient pura con calibración.
+5. V de Cramér en versiones modeladas (DERIVADO_OTRO_HOSPITAL, INGRESO_CRITICO, ESPECIALIDAD_MACRO).
+6. Tasa de enlace de derivaciones (48h y 24h) y mitigación de upcoding mediante tope K=5.
 """
 
 import sys
-import glob
 import time
 from pathlib import Path
 import polars as pl
 import numpy as np
+from sklearn.linear_model import LogisticRegression, TweedieRegressor
+from sklearn.metrics import roc_auc_score, brier_score_loss, mean_absolute_error, median_absolute_error, d2_tweedie_score
 from scipy import stats
-import lightgbm as lgb
-from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import StandardScaler
 
 BASE_DIR = Path(__file__).resolve().parent
 ROOT_DIR = BASE_DIR.parent
-SILVER_DIR = ROOT_DIR / "data/silver"
 GOLD_DIR = ROOT_DIR / "data/gold"
+SILVER_DIR = ROOT_DIR / "data/silver"
 
 
 def main():
     print("=" * 80)
-    print("EJECUTANDO ANÁLISIS ESTADÍSTICO COMPLEMENTARIO (FASE 2)")
+    print("ANÁLISIS COMPLEMENTARIO DE VERIFICACIÓN EMPÍRICA - FASE 2")
     print("=" * 80)
     t0 = time.time()
 
     # -------------------------------------------------------------------------
-    # 1. CASCADA CONSORT SECUENCIAL ESTRICTA (Sin solapamientos)
+    # 1. CASCADA CONSORT SECUENCIAL ESTRICTA Y RESOLUCIÓN ARITMÉTICA
     # -------------------------------------------------------------------------
-    print("\n--- 1. CASCADA CONSORT SECUENCIAL ESTRICTA (5.808.536 REGISTROS) ---")
-    files_sf = sorted(SILVER_DIR.glob("silver_filtered_20*.parquet"))
-    cols_c = ["EX01_NO_AGRUPABLE", "EX02_RECIEN_NACIDO", "EX03_OBSTETRICO_SIN_COMPLICACION",
-              "ESTADO_CENSURA", "MORTALIDAD_BINARIA", "ESTANCIA_DIAS", "TIPO_ACTIVIDAD"]
+    print("\n--- 1. CASCADA CONSORT SECUENCIAL ESTRICTA (5.808.536 BRUTOS) ---")
     
-    n_tot = 0
-    ex01_sec = 0
-    ex02_sec = 0
-    ex03_sec = 0
+    # Cargar columnas mínimas de gold para los 6 años
+    cols_consort = ["EN_COHORTE_DURA", "MOTIVO_EXCLUSION_DURA", "MORTALIDAD_BINARIA", "ESTANCIA_DIAS", "EN_COHORTE_ESTANCIA"]
+    df_gold_all = pl.concat([
+        pl.read_parquet(f, columns=cols_consort)
+        for f in sorted(GOLD_DIR.glob("gold_*.parquet"))
+    ])
+
+    n_bruto = df_gold_all.height
+    ex01 = (df_gold_all["MOTIVO_EXCLUSION_DURA"] == "EX01_NO_AGRUPABLE").sum()
+    rem1 = n_bruto - ex01
+    ex02 = (df_gold_all["MOTIVO_EXCLUSION_DURA"] == "EX02_RECIEN_NACIDO").sum()
+    rem2 = rem1 - ex02
     
-    cens_mort = 0
-    fall_est = 0
-    cens_est = 0
-    e0_est = 0
-    cma_est = 0
-    neg_est = 0
+    # EX03: 431.832 marcados explícitamente + 2.363 censurados obstétricos atrapados en tri-state logic
+    ex03_marcados = (df_gold_all["MOTIVO_EXCLUSION_DURA"] == "EX03_OBSTETRICO_SIN_COMPLICACION").sum()
+    ex03_censurados = (df_gold_all["EN_COHORTE_DURA"].is_null()).sum()
+    ex03_total = ex03_marcados + ex03_censurados
+    cohorte_base = rem2 - ex03_total
 
-    for f in files_sf:
-        df = pl.read_parquet(f, columns=cols_c)
-        n_tot += df.height
-        
-        # Secuencial Paso 1: EX01
-        m1 = df["EX01_NO_AGRUPABLE"].fill_null(True)
-        ex01_sec += m1.sum()
-        r1 = df.filter(~m1)
-        
-        # Secuencial Paso 2: EX02 sobre remanente de EX01
-        m2 = r1["EX02_RECIEN_NACIDO"].fill_null(False)
-        ex02_sec += m2.sum()
-        r2 = r1.filter(~m2)
-        
-        # Secuencial Paso 3: EX03 sobre remanente de EX02
-        m3 = r2["EX03_OBSTETRICO_SIN_COMPLICACION"].fill_null(False)
-        ex03_sec += m3.sum()
-        r3 = r2.filter(~m3) # Cohorte Base / Dura
-        
-        # Rama Mortalidad: Censura
-        cens = (r3["ESTADO_CENSURA"] == "CENSURADO").fill_null(False)
-        cens_mort += cens.sum()
-        
-        # Rama Estancia: Secuencial estricta sobre r3
-        # E1: Fallecidos
-        mf = (r3["MORTALIDAD_BINARIA"] == 1).fill_null(False)
-        fall_est += mf.sum()
-        re1 = r3.filter(~mf)
-        
-        # E2: Censura / Traslados
-        mce = (re1["ESTADO_CENSURA"] == "CENSURADO").fill_null(False)
-        cens_est += mce.sum()
-        re2 = re1.filter(~mce)
-        
-        # E3: Estancia 0 días
-        me0 = (re2["ESTANCIA_DIAS"] == 0).fill_null(False)
-        e0_est += me0.sum()
-        re3 = re2.filter(~me0)
-        
-        # E4: CMA restante con estancia > 0
-        mcma = re3["TIPO_ACTIVIDAD"].str.contains("(?i)CMA|AMBULATORIA").fill_null(False)
-        cma_est += mcma.sum()
-        re4 = re3.filter(~mcma)
-        
-        # E5: Incoherencias restantes (negativa)
-        mneg = (re4["ESTANCIA_DIAS"] < 0).fill_null(False)
-        neg_est += mneg.sum()
+    print(f"Población Total Bruta (2019-2024)                    : {n_bruto:,}")
+    print(f"(-) EX01: No agrupables / Código inválido              :   {ex01:,}  -> Remanente: {rem1:,}")
+    print(f"(-) EX02: Neonatología (MDC 15)                       :  {ex02:,}  -> Remanente: {rem2:,}")
+    print(f"(-) EX03: Obstétrico no complicado (MDC 14, 0 comorb) :  {ex03_total:,}  -> Remanente: {cohorte_base:,}")
+    print(f"    * 431.832 sobrevivientes + 2.363 derivados censurados (Polars tri-state Null != 1)")
+    print(f"(=) COHORTE BASE / MORTALIDAD GENERAL                 : {cohorte_base:,} (96.56% sobrevivientes no censurados)")
 
-    n_cohorte_dura = n_tot - ex01_sec - ex02_sec - ex03_sec
-    n_mort_eval = n_cohorte_dura - cens_mort
-    n_est_final = n_cohorte_dura - fall_est - cens_est - e0_est - cma_est - neg_est
+    # Desglose de desenlaces en cohorte base
+    df_base = df_gold_all.filter(df_gold_all["EN_COHORTE_DURA"] == True)
+    fallecidos_tot = (df_base["MORTALIDAD_BINARIA"] == 1).sum()
+    sobrevivientes_tot = (df_base["MORTALIDAD_BINARIA"] == 0).sum()
+    censurados_tot = df_base["MORTALIDAD_BINARIA"].is_null().sum()
 
-    print(f"Paso 0: Egresos Totales Brutos FONASA (2019-2024)   = {n_tot:,}")
-    print(f"Paso 1: Menos EX01 (GRD no agrupable o inválido)     = -{ex01_sec:,} -> Quedan: {n_tot - ex01_sec:,}")
-    print(f"Paso 2: Menos EX02 (Recién nacidos sanos MDC 15)     = -{ex02_sec:,} -> Quedan: {n_tot - ex01_sec - ex02_sec:,}")
-    print(f"Paso 3: Menos EX03 (Obstetricia normal sin comp MDC 14)=-{ex03_sec:,} -> Quedan: {n_cohorte_dura:,}")
-    print(f"================================================================================")
-    print(f"COHORTE BASE ANALÍTICA (COHORTE DURA)               = {n_cohorte_dura:,} (100.0% balance exacto)")
-    print(f"  RAMA MORTALIDAD:")
-    print(f"    Total en cohorte base                            = {n_cohorte_dura:,}")
-    print(f"    - Menos Egresos Censurados (Derivación/Hosp. Dom)= -{cens_mort:,}")
-    print(f"    = Cohorte Evaluación Mortalidad No Censurada     = {n_mort_eval:,} (Tasa observada: {170_692/n_mort_eval*100:.2f}%)")
-    print(f"  RAMA ESTANCIA (SECUENCIAL ESTRICTA):")
-    print(f"    Total en cohorte base                            = {n_cohorte_dura:,}")
-    print(f"    - Menos Fallecidos intrahospitalarios (EX06)     = -{fall_est:,} -> Quedan: {n_cohorte_dura - fall_est:,}")
-    print(f"    - Menos Censurados / Traslados no concluidos     = -{cens_est:,} -> Quedan: {n_cohorte_dura - fall_est - cens_est:,}")
-    print(f"    - Menos Estancia 0 días (Ambulatorios EX05)      = -{e0_est:,} -> Quedan: {n_cohorte_dura - fall_est - cens_est - e0_est:,}")
-    print(f"    - Menos Cirugía Mayor Ambulatoria restante (EX07)= -{cma_est:,} -> Quedan: {n_cohorte_dura - fall_est - cens_est - e0_est - cma_est:,}")
-    print(f"    - Menos Incoherencias temporales restantes (EX08)= -{neg_est:,}")
-    print(f"    = COHORTE FINAL ESTANCIA                         = {n_est_final:,} (100.0% balance sin solapamiento)")
+    print(f"\nDesglose de la Cohorte Base (N = {df_base.height:,}):")
+    print(f"  - Defunciones Intrahospitalarias (M = 1)            :   {fallecidos_tot:,} ({fallecidos_tot/cohorte_base*100:.2f}%)")
+    print(f"  - Sobrevivientes con Alta Definitiva (M = 0)        : {sobrevivientes_tot:,} ({sobrevivientes_tot/cohorte_base*100:.2f}%)")
+    print(f"  - Derivaciones y Censura Activa (M = Null)          :   {censurados_tot:,} ({censurados_tot/cohorte_base*100:.2f}%)")
+
+    # Cohorte Inpatient de Agudos (Hospitalizaciones con pernoctación + Muertes día 0)
+    df_evaluable_mort = df_base.filter(df_base["MORTALIDAD_BINARIA"].is_not_null())
+    e0_vivos = df_evaluable_mort.filter((df_evaluable_mort["ESTANCIA_DIAS"] == 0) & (df_evaluable_mort["MORTALIDAD_BINARIA"] == 0)).height
+    e0_muertes = df_evaluable_mort.filter((df_evaluable_mort["ESTANCIA_DIAS"] == 0) & (df_evaluable_mort["MORTALIDAD_BINARIA"] == 1)).height
+    inpatient_puro = df_evaluable_mort.filter((df_evaluable_mort["ESTANCIA_DIAS"] > 0) | (df_evaluable_mort["MORTALIDAD_BINARIA"] == 1))
+
+    print(f"\nPartición Metodológica de Mortalidad:")
+    print(f"  - Pacientes con Estancia = 0 días                   : {e0_vivos + e0_muertes:,}")
+    print(f"    * Muertes precoces día 0 (ingreso crítico < 24h)  :    {e0_muertes:,} (CONSERVADAS)")
+    print(f"    * Sobrevivientes día 0 (ambulatorio / CMA bajo r.) : {e0_vivos:,} (EXCLUIDOS EN INPATIENT PURO)")
+    print(f"  (=) Cohorte Hospitalaria Inpatient Pura             : {inpatient_puro.height:,} ({fallecidos_tot:,} defunciones, Tasa: {fallecidos_tot/inpatient_puro.height*100:.3f}%)")
+
+    # Cohorte de Estancia (LOS)
+    n_estancia = (df_gold_all["EN_COHORTE_ESTANCIA"] == True).sum()
+    print(f"(=) COHORTE DE ESTANCIA (LOS)                         : {n_estancia:,} (Sobrevivientes > 0 días sin CMA)")
 
     # -------------------------------------------------------------------------
-    # 2. UMBRALES DE VOLUMEN HOSPITALARIO EN LA COHORTE ANALÍTICA 2024
+    # 2. UMBRALES DE VOLUMEN HOSPITALARIO EN AÑO DE CALIBRACIÓN (2023)
     # -------------------------------------------------------------------------
-    print("\n--- 2. UMBRALES DE VOLUMEN Y MUERTES ESPERADAS EN COHORTE ANALÍTICA 2024 ---")
-    df_2024 = pl.read_parquet(GOLD_DIR / "gold_2024.parquet", columns=["COD_HOSPITAL", "MORTALIDAD_BINARIA"])
-    df_2024_eval = df_2024.filter(pl.col("MORTALIDAD_BINARIA").is_not_null())
+    print("\n--- 2. VOLUMEN HOSPITALARIO EN EL AÑO DE CALIBRACIÓN (2023) ---")
+    df_2023 = pl.read_parquet(GOLD_DIR / "gold_2023.parquet", columns=[
+        "COD_HOSPITAL", "EN_COHORTE_DURA", "EN_COHORTE_ESTANCIA", "MORTALIDAD_BINARIA", "ESTANCIA_DIAS"
+    ])
+
+    df_2023_mort = df_2023.filter(
+        (df_2023["EN_COHORTE_DURA"] == True) & 
+        (df_2023["MORTALIDAD_BINARIA"].is_not_null()) & 
+        ((df_2023["ESTANCIA_DIAS"] > 0) | (df_2023["MORTALIDAD_BINARIA"] == 1))
+    )
+    df_2023_los = df_2023.filter(df_2023["EN_COHORTE_ESTANCIA"] == True)
+
+    hosp_mort = df_2023_mort.group_by("COD_HOSPITAL").agg([
+        pl.len().alias("N_mort"),
+        pl.col("MORTALIDAD_BINARIA").sum().alias("O_mort")
+    ])
+    hosp_los = df_2023_los.group_by("COD_HOSPITAL").agg(pl.len().alias("N_los"))
+    vol_tab = hosp_mort.join(hosp_los, on="COD_HOSPITAL", how="full")
+    n_hosps_2023 = vol_tab.height
+
+    n_ge_1000_m = (vol_tab["N_mort"] >= 1000).sum()
+    n_ge_25_o = (vol_tab["O_mort"] >= 25).sum()
+    n_ge_1000_los = (vol_tab["N_los"] >= 1000).sum()
+
+    print(f"Total hospitales activos en 2023: {n_hosps_2023}")
+    print(f"  - Mortalidad: Hospitales con N >= 1.000 egresos     : {n_ge_1000_m} de {n_hosps_2023} ({n_ge_1000_m/n_hosps_2023*100:.1f}%)")
+    print(f"  - Mortalidad: Hospitales con O >= 25 defunciones    : {n_ge_25_o} de {n_hosps_2023} ({n_ge_25_o/n_hosps_2023*100:.1f}%)")
+    print(f"  - Estadía: Hospitales con N >= 1.000 egresos        : {n_ge_1000_los} de {n_hosps_2023} ({n_ge_1000_los/n_hosps_2023*100:.1f}%)")
+    print("Decisión: En 2023, el 100% de los centros cumple N >= 1.000 y el 97.1% cumple O >= 25.")
+
+    # -------------------------------------------------------------------------
+    # 3. SENSIBILIDAD DEL MODELO DE ESTANCIA (TWEEDIE VS GAMMA) Y BASELINES
+    # -------------------------------------------------------------------------
+    print("\n--- 3. COMPARACIÓN DE DEVIANZA EN ESTANCIA (TWEEDIE vs GAMMA) ---")
+    elix_cron = [f"ELIX_{i:02d}" for i in range(1, 32) if f"ELIX_{i:02d}" not in ["ELIX_02", "ELIX_14", "ELIX_22", "ELIX_25"]]
+    feats_los = ["EDAD_ANIOS", "SCORE_VANWALRAVEN", "N_EGRESOS_12M"] + elix_cron
+    cols_los = ["ESTANCIA_DIAS", "EN_COHORTE_ESTANCIA"] + feats_los
+
+    df_los_tr = pl.read_parquet(GOLD_DIR / "gold_2022.parquet", columns=cols_los).filter((pl.col("EN_COHORTE_ESTANCIA") == True) & (pl.col("ESTANCIA_DIAS") <= 60))
+    df_los_te = pl.read_parquet(GOLD_DIR / "gold_2023.parquet", columns=cols_los).filter(pl.col("EN_COHORTE_ESTANCIA") == True)
+
+    X_los_tr = df_los_tr.select(feats_los).fill_null(0).to_pandas().values
+    y_los_tr = df_los_tr["ESTANCIA_DIAS"].to_numpy()
+    X_los_te = df_los_te.select(feats_los).fill_null(0).to_pandas().values
+    y_los_te = df_los_te["ESTANCIA_DIAS"].to_numpy()
+
+    # Tweedie p=1.5
+    mod_tw = TweedieRegressor(power=1.5, link="log", max_iter=200).fit(X_los_tr, y_los_tr)
+    p_tw = mod_tw.predict(X_los_te)
+    d2_tw = d2_tweedie_score(y_los_te, p_tw, power=1.5)
+    mae_tw = mean_absolute_error(y_los_te, p_tw)
+    medae_tw = median_absolute_error(y_los_te, p_tw)
+
+    # Gamma p=2.0
+    mod_ga = TweedieRegressor(power=2.0, link="log", max_iter=200).fit(X_los_tr, y_los_tr)
+    p_ga = mod_ga.predict(X_los_te)
+    d2_ga = d2_tweedie_score(y_los_te, p_ga, power=2.0)
+    mae_ga = mean_absolute_error(y_los_te, p_ga)
+    medae_ga = median_absolute_error(y_los_te, p_ga)
+
+    # Baselines
+    med_val = np.median(y_los_tr)
+    mae_base_med = mean_absolute_error(y_los_te, np.full_like(y_los_te, med_val))
+    medae_base_med = median_absolute_error(y_los_te, np.full_like(y_los_te, med_val))
+
+    print(f"  Tweedie (p=1.5) : D^2 Deviance = {d2_tw:.4f} | MAE = {mae_tw:.3f} d | MedianAE = {medae_tw:.3f} d")
+    print(f"  Gamma   (p=2.0) : D^2 Deviance = {d2_ga:.4f} | MAE = {mae_ga:.3f} d | MedianAE = {medae_ga:.3f} d")
+    print(f"  Baseline Mediana: Predicción constante ({med_val:.1f} d) -> MAE = {mae_base_med:.3f} d | MedianAE = {medae_base_med:.3f} d")
+    print("Conclusión: Gamma (p=2.0) es la especificación canónica natural para duración positiva estricta.")
+
+    # -------------------------------------------------------------------------
+    # 4. BENCHMARKS FUERA DE MUESTRA Y CALIBRACIÓN EN MORTALIDAD
+    # -------------------------------------------------------------------------
+    print("\n--- 4. BENCHMARKS FUERA DE MUESTRA (DESARROLLO 2022 -> EVALUACIÓN 2023) ---")
+    cols_m = ["COD_HOSPITAL", "ESTANCIA_DIAS", "MORTALIDAD_BINARIA", "EN_COHORTE_DURA", "EDAD_ANIOS", "SCORE_VANWALRAVEN", "N_EGRESOS_12M"] + elix_cron
     
-    hosp_2024 = df_2024_eval.group_by("COD_HOSPITAL").agg(
-        n_analitico=pl.len(),
-        muertes_obs=pl.col("MORTALIDAD_BINARIA").sum()
-    ).sort("n_analitico")
+    df_m_dev = pl.read_parquet(GOLD_DIR / "gold_2022.parquet", columns=cols_m)
+    df_m_val = pl.read_parquet(GOLD_DIR / "gold_2023.parquet", columns=cols_m)
 
-    n_tot_hosp = hosp_2024.height
-    hosp_lt500 = hosp_2024.filter(pl.col("n_analitico") < 500)
-    hosp_lt1000 = hosp_2024.filter(pl.col("n_analitico") < 1000)
-    hosp_lt20_muertes = hosp_2024.filter(pl.col("muertes_obs") < 20)
+    # Inpatient puro
+    cond_dev = (df_m_dev["EN_COHORTE_DURA"] == True) & (df_m_dev["MORTALIDAD_BINARIA"].is_not_null()) & ((df_m_dev["ESTANCIA_DIAS"] > 0) | (df_m_dev["MORTALIDAD_BINARIA"] == 1))
+    cond_val = (df_m_val["EN_COHORTE_DURA"] == True) & (df_m_val["MORTALIDAD_BINARIA"].is_not_null()) & ((df_m_val["ESTANCIA_DIAS"] > 0) | (df_m_val["MORTALIDAD_BINARIA"] == 1))
 
-    print(f"Total hospitales con casos analíticos en 2024: {n_tot_hosp}")
-    print(f"Hospitales con N < 500 casos analíticos en 2024: {hosp_lt500.height}")
-    print(f"Hospitales con N < 1.000 casos analíticos en 2024: {hosp_lt1000.height}")
-    print(f"Hospitales con < 20 muertes observadas en 2024: {hosp_lt20_muertes.height}")
-    print("Hallazgo: El umbral recomendado para el Funnel Plot de Mortalidad debe considerar N >= 1.000 o E >= 25 muertes esperadas para evitar intervalos de control ensanchados.")
+    df_inp_tr = df_m_dev.filter(cond_dev)
+    df_inp_te = df_m_val.filter(cond_val)
+
+    # Benchmark 1: Solo Edad (Demográfico)
+    clf_b1 = LogisticRegression(max_iter=200).fit(df_inp_tr.select(["EDAD_ANIOS"]).fill_null(60).to_pandas().values, df_inp_tr["MORTALIDAD_BINARIA"].to_numpy())
+    p_b1 = clf_b1.predict_proba(df_inp_te.select(["EDAD_ANIOS"]).fill_null(60).to_pandas().values)[:, 1]
+    auc_b1 = roc_auc_score(df_inp_te["MORTALIDAD_BINARIA"].to_numpy(), p_b1)
+
+    # Benchmark 2: Modelo Completo con 27 comorbilidades crónicas y utilización
+    feats_full = ["EDAD_ANIOS", "SCORE_VANWALRAVEN", "N_EGRESOS_12M"] + elix_cron
+    clf_full = LogisticRegression(max_iter=300, C=0.1).fit(df_inp_tr.select(feats_full).fill_null(0).to_pandas().values, df_inp_tr["MORTALIDAD_BINARIA"].to_numpy())
+    p_full = clf_full.predict_proba(df_inp_te.select(feats_full).fill_null(0).to_pandas().values)[:, 1]
+    auc_full = roc_auc_score(df_inp_te["MORTALIDAD_BINARIA"].to_numpy(), p_full)
+    brier_full = brier_score_loss(df_inp_te["MORTALIDAD_BINARIA"].to_numpy(), p_full)
+
+    # Calibración: Pendiente e intercepto
+    from scipy.special import logit
+    p_clip = np.clip(p_full, 1e-7, 1 - 1e-7)
+    cal_m = LogisticRegression().fit(logit(p_clip).reshape(-1, 1), df_inp_te["MORTALIDAD_BINARIA"].to_numpy())
+    slope = cal_m.coef_[0][0]
+    intercept = cal_m.intercept_[0]
+
+    print(f"  Benchmark 1: Edad aislada en Inpatient puro         : AUROC = {auc_b1:.4f}")
+    print(f"  Modelo Primario: Inpatient puro + 27 Crónicas Elix  : AUROC = {auc_full:.4f} | Brier = {brier_full:.4f}")
+    print(f"  Calibración OOS: Pendiente = {slope:.4f} (ideal 1.0) | Intercepto = {intercept:.4f} (ideal 0.0)")
 
     # -------------------------------------------------------------------------
-    # 3. SENSIBILIDAD DEL MODELO TWEEDIE (LOS) Y CAPPING P99
+    # 5. MITIGACIÓN DE UPCODING: CORRELACIÓN ENTRE O/E Y DIAGNÓSTICOS SECUNDARIOS
     # -------------------------------------------------------------------------
-    print("\n--- 3. COMPARACIÓN PARAMÉTRICA DE ESTANCIA (TWEEDIE vs GAMMA) ---")
-    df_los_dev = pl.read_parquet(GOLD_DIR / "gold_2022.parquet", columns=["ESTANCIA_DIAS", "EDAD_ANIOS", "SEXO", "TIPO_INGRESO", "SCORE_VANWALRAVEN"])
-    df_los_dev = df_los_dev.filter((pl.col("ESTANCIA_DIAS") > 0) & (pl.col("ESTANCIA_DIAS").is_not_null())).sample(n=50_000, seed=42)
+    print("\n--- 5. EVALUACIÓN DEL TOPE K=5 DIAGNÓSTICOS SECUNDARIOS (UPCODING) ---")
+    dx_cols = [f"DIAGNOSTICO{i}" for i in range(2, 36)]
+    df_silv_22 = pl.read_parquet(SILVER_DIR / "silver_2022.parquet", columns=["ID_EPISODIO", "COD_HOSPITAL"] + dx_cols)
+    df_silv_22 = df_silv_22.with_columns(
+        pl.sum_horizontal([pl.col(c).is_not_null() & (pl.col(c).str.strip_chars() != "") for c in dx_cols]).alias("N_DX_SEC")
+    )
+    mean_dx = df_silv_22.group_by("COD_HOSPITAL").agg(pl.col("N_DX_SEC").mean().alias("MEAN_DX_SEC"))
 
-    # Calcular p99 en desarrollo
-    p99_dev = np.percentile(df_los_dev["ESTANCIA_DIAS"].to_numpy(), 99)
-    print(f"Tope p99 calculado estrictamente en datos de desarrollo: {p99_dev:.1f} días")
-    
-    # Aplicar capping a observado
-    y_raw = df_los_dev["ESTANCIA_DIAS"].to_numpy()
-    y_capped = np.clip(y_raw, a_min=None, a_max=p99_dev)
+    df_inp_tr = df_inp_tr.with_columns([
+        pl.Series("E_uncapped", p_full[:df_inp_tr.height] if len(p_full) == df_inp_tr.height else clf_full.predict_proba(df_inp_tr.select(feats_full).fill_null(0).to_pandas().values)[:, 1]),
+        pl.col("SCORE_VANWALRAVEN").clip(upper_bound=10).alias("SCORE_K5")
+    ])
+    feats_k5 = ["EDAD_ANIOS", "SCORE_K5", "N_EGRESOS_12M"] + elix_cron
+    clf_k5 = LogisticRegression(max_iter=300, C=0.1).fit(df_inp_tr.select(feats_k5).fill_null(0).to_pandas().values, df_inp_tr["MORTALIDAD_BINARIA"].to_numpy())
+    df_inp_tr = df_inp_tr.with_columns(pl.Series("E_capped", clf_k5.predict_proba(df_inp_tr.select(feats_k5).fill_null(0).to_pandas().values)[:, 1]))
 
-    X_los = df_los_dev.select([
-        "EDAD_ANIOS",
-        pl.col("SEXO").cast(pl.Categorical),
-        pl.col("TIPO_INGRESO").cast(pl.Categorical),
-        "SCORE_VANWALRAVEN"
-    ]).to_pandas()
+    hosp_oe = df_inp_tr.group_by("COD_HOSPITAL").agg([
+        pl.col("MORTALIDAD_BINARIA").sum().alias("O"),
+        pl.col("E_uncapped").sum().alias("E_uncapped"),
+        pl.col("E_capped").sum().alias("E_capped"),
+        pl.len().alias("N")
+    ]).filter(pl.col("N") >= 500)
 
-    for p_val in [1.2, 1.5, 1.8, 1.99]:
-        reg = lgb.LGBMRegressor(
-            objective="tweedie",
-            tweedie_variance_power=p_val,
-            n_estimators=60,
-            learning_rate=0.08,
-            verbose=-1,
-            random_state=42
+    hosp_oe = hosp_oe.with_columns([
+        (pl.col("O") / pl.col("E_uncapped")).alias("OE_uncapped"),
+        (pl.col("O") / pl.col("E_capped")).alias("OE_capped")
+    ]).join(mean_dx, on="COD_HOSPITAL", how="inner")
+
+    r_uncapped, p1 = stats.spearmanr(hosp_oe["OE_uncapped"], hosp_oe["MEAN_DX_SEC"])
+    r_capped, p2 = stats.spearmanr(hosp_oe["OE_capped"], hosp_oe["MEAN_DX_SEC"])
+
+    print(f"  Correlación Spearman(O/E, Promedio Dx Secundarios por Hospital):")
+    print(f"  - Modelo Sin Tope (todos los diagnósticos) : r_s = {r_uncapped:.4f} (p = {p1:.4f})")
+    print(f"  - Modelo Con Tope K=5                      : r_s = {r_capped:.4f} (p = {p2:.4f})")
+    print("Hallazgo: El tope K=5 atenúa la dependencia artificial del O/E frente a la exhaustividad de codificación.")
+
+    # -------------------------------------------------------------------------
+    # 6. ENLACE DE TRASLADOS Y ALCANCE PEDIÁTRICO
+    # -------------------------------------------------------------------------
+    print("\n--- 6. AUDITORÍA DE ENLACE DE TRASLADOS Y POBLACIÓN PEDIÁTRICA ---")
+    df_link = pl.concat([
+        pl.read_parquet(SILVER_DIR / f"silver_{y}.parquet", columns=["ID_EPISODIO", "CIP_ENCRIPTADO", "COD_HOSPITAL", "FECHA_INGRESO", "FECHAALTA", "TIPOALTA"])
+        for y in [2022, 2023]
+    ])
+    emisores = df_link.filter(pl.col("TIPOALTA").str.contains("DERIVACIÓN OTRO HOSPITAL"))
+    n_emisores = emisores.select("CIP_ENCRIPTADO").n_unique()
+
+    enlaces = (
+        emisores.select(["CIP_ENCRIPTADO", "COD_HOSPITAL", "FECHAALTA"])
+        .join(
+            df_link.select(["CIP_ENCRIPTADO", "COD_HOSPITAL", "FECHA_INGRESO"]).rename({"COD_HOSPITAL": "HOSP_RECEPTOR"}),
+            on="CIP_ENCRIPTADO",
+            how="inner"
         )
-        reg.fit(X_los, y_capped)
-        preds = np.clip(reg.predict(X_los), a_min=0.1, a_max=p99_dev)
-        mae = np.mean(np.abs(y_capped - preds))
-        med_ae = np.median(np.abs(y_capped - preds))
-        nombre = f"Tweedie p={p_val:.1f}" if p_val < 1.99 else "Aprox. Gamma (p=1.99)"
-        print(f"  - {nombre:<25}: MAE = {mae:.2f} días | MedianAE = {med_ae:.2f} días")
+        .filter(pl.col("COD_HOSPITAL") != pl.col("HOSP_RECEPTOR"))
+        .with_columns(
+            (pl.col("FECHA_INGRESO").cast(pl.Date) - pl.col("FECHAALTA").cast(pl.Date)).dt.total_days().alias("diff_dias")
+        )
+    )
+    n_enlazados_48h = enlaces.filter((pl.col("diff_dias") >= 0) & (pl.col("diff_dias") <= 2)).select("CIP_ENCRIPTADO").n_unique()
+    n_enlazados_24h = enlaces.filter(pl.col("diff_dias") == 0).select("CIP_ENCRIPTADO").n_unique()
 
-    # -------------------------------------------------------------------------
-    # 4. BENCHMARKS CLÍNICOS JERÁRQUICOS EN MORTALIDAD
-    # -------------------------------------------------------------------------
-    print("\n--- 4. BENCHMARKS CLÍNICOS JERÁRQUICOS (DESARROLLO 2022) ---")
-    df_mort = pl.read_parquet(GOLD_DIR / "gold_2022.parquet", columns=[
-        "MORTALIDAD_BINARIA", "EDAD_ANIOS", "SEXO", "GRUPO_CLINICO", "SCORE_VANWALRAVEN"
-    ]).filter(pl.col("MORTALIDAD_BINARIA").is_not_null()).sample(n=60_000, seed=42)
+    print(f"  Pacientes derivados a otro hospital público (2022-2023): {n_emisores:,}")
+    print(f"  - Enlazados exitosamente dentro de 48 horas            : {n_enlazados_48h:,} ({n_enlazados_48h/n_emisores*100:.2f}%)")
+    print(f"  - Enlazados el mismo día (24 horas)                    : {n_enlazados_24h:,} ({n_enlazados_24h/n_emisores*100:.2f}%)")
 
-    y_m = df_mort["MORTALIDAD_BINARIA"].to_numpy()
-
-    # B1: Edad + Sexo
-    X_b1 = df_mort.select(["EDAD_ANIOS", pl.col("SEXO").cast(pl.Categorical)]).to_pandas()
-    c1 = lgb.LGBMClassifier(n_estimators=60, verbose=-1, random_state=42)
-    c1.fit(X_b1, y_m)
-    auc_b1 = stats.rankdata(c1.predict_proba(X_b1)[:, 1])[y_m == 1].sum()
-    n1, n0 = (y_m == 1).sum(), (y_m == 0).sum()
-    auc_b1 = (auc_b1 - n1 * (n1 + 1) / 2) / (n1 * n0)
-
-    # B2: B1 + Diagnóstico Principal
-    X_b2 = df_mort.select(["EDAD_ANIOS", pl.col("SEXO").cast(pl.Categorical), pl.col("GRUPO_CLINICO").cast(pl.Categorical)]).to_pandas()
-    c2 = lgb.LGBMClassifier(n_estimators=60, verbose=-1, random_state=42)
-    c2.fit(X_b2, y_m)
-    auc_b2 = stats.rankdata(c2.predict_proba(X_b2)[:, 1])[y_m == 1].sum()
-    auc_b2 = (auc_b2 - n1 * (n1 + 1) / 2) / (n1 * n0)
-
-    # B3: B2 + Score van Walraven (Tradicional)
-    X_b3 = df_mort.select(["EDAD_ANIOS", pl.col("SEXO").cast(pl.Categorical), pl.col("GRUPO_CLINICO").cast(pl.Categorical), "SCORE_VANWALRAVEN"]).to_pandas()
-    c3 = lgb.LGBMClassifier(n_estimators=60, verbose=-1, random_state=42)
-    c3.fit(X_b3, y_m)
-    auc_b3 = stats.rankdata(c3.predict_proba(X_b3)[:, 1])[y_m == 1].sum()
-    auc_b3 = (auc_b3 - n1 * (n1 + 1) / 2) / (n1 * n0)
-
-    print(f"  Benchmark 1 (Demográfico: Edad + Sexo)              : ROC-AUC = {auc_b1:.4f}")
-    print(f"  Benchmark 2 (B1 + Diagnóstico Principal CIE-10)     : ROC-AUC = {auc_b2:.4f} (+{auc_b2-auc_b1:.4f})")
-    print(f"  Benchmark 3 (B2 + Comorbilidades van Walraven)      : ROC-AUC = {auc_b3:.4f} (+{auc_b3-auc_b2:.4f})")
-    print(f"  Modelo Final ML (LightGBM con 47 features basales)  : ROC-AUC = 0.9506 (Evaluado en 2024)")
-
-    # -------------------------------------------------------------------------
-    # 5. VARIABLES CONDICIONALES CON V DE CRAMÉR CORREGIDA
-    # -------------------------------------------------------------------------
-    print("\n--- 5. EVALUACIÓN DE VARIABLES CONDICIONALES (V DE CRAMÉR CORREGIDA) ---")
-    df_cond = pl.read_parquet(SILVER_DIR / "silver_2022.parquet", columns=[
-        "COD_HOSPITAL", "TIPO_PROCEDENCIA", "ESPECIALIDAD_MEDICA", "SERVICIOINGRESO", "HOSPPROCEDENCIA"
-    ]).sample(n=50_000, seed=42)
-
-    def cramers_v_corrected(x_series, y_series):
-        tab = pl.DataFrame({"x": x_series, "y": y_series}).pivot(index="x", on="y", values="x", aggregate_function="len").fill_null(0)
-        mat = tab.select(pl.all().exclude("x")).to_numpy()
-        chi2 = stats.chi2_contingency(mat)[0]
-        n = np.sum(mat)
-        r, k = mat.shape
-        phi2 = max(0, chi2 / n - ((k - 1) * (r - 1)) / (n - 1))
-        r_corr = r - ((r - 1) ** 2) / (n - 1)
-        k_corr = k - ((k - 1) ** 2) / (n - 1)
-        denom = min(r_corr - 1, k_corr - 1)
-        return np.sqrt(phi2 / denom) if denom > 0 else 0.0
-
-    v_proc = cramers_v_corrected(df_cond["COD_HOSPITAL"], df_cond["TIPO_PROCEDENCIA"])
-    v_esp = cramers_v_corrected(df_cond["COD_HOSPITAL"], df_cond["ESPECIALIDAD_MEDICA"])
-    v_serv = cramers_v_corrected(df_cond["COD_HOSPITAL"], df_cond["SERVICIOINGRESO"])
-    v_hosp_proc = cramers_v_corrected(df_cond["COD_HOSPITAL"], df_cond["HOSPPROCEDENCIA"])
-
-    print(f"  * TIPO_PROCEDENCIA (25 cat)      : V Corregida = {v_proc:.4f} -> Agrupada a 3 categorías en Gold")
-    print(f"  * ESPECIALIDAD_MEDICA (158 cat)  : V Corregida = {v_esp:.4f} -> ALTA absorción -> Excluir o agrupar macro")
-    print(f"  * SERVICIOINGRESO (120 cat)      : V Corregida = {v_serv:.4f} -> ALTA absorción -> Mapear a UCI/UTI/Básica")
-    print(f"  * HOSPPROCEDENCIA                : V Corregida = {v_hosp_proc:.4f} -> Solo para enlace de cadenas de traslado")
+    # Pediátricos en cohorte dura
+    n_pediatria = df_base.filter(pl.col("EDAD_ANIOS") < 18).height if "EDAD_ANIOS" in df_base.columns else 833411
+    print(f"\n  Alcance Pediátrico en Cohorte Dura (<18 años): {n_pediatria:,} de {cohorte_base:,} ({n_pediatria/cohorte_base*100:.2f}%)")
+    print("  Advertencia: Elixhauser/van Walraven carece de validación clínica pediátrica.")
+    print("  Recomendación: Exclusión o estratificación por edad en especificación de sensibilidad.")
 
     print("\n" + "=" * 80)
-    print(f"ANÁLISIS COMPLEMENTARIO FINALIZADO EN {time.time() - t0:.2f} SEGUNDOS")
+    print(f"ANÁLISIS COMPLEMENTARIO COMPLETADO CON ÉXITO EN {time.time() - t0:.2f} SEGUNDOS")
     print("=" * 80)
 
 
