@@ -5,142 +5,129 @@
 
 ---
 
-## 1. Cifras, Datos y Catálogo Oficial DEIS
+## 1. Calibración Rigurosa sobre la Cohorte Inpatient Adulta
 
-### 1.1 Conciliación de Nombres Institucionales desde el Catálogo Oficial
-Todos los establecimientos citados en los reportes de calidad, enlaces y benchmarks han sido regenerados directamente desde el catálogo oficial del DEIS ([Hospitales.csv](file:///home/felipe/Documentos/Proyecto%20final/Seminario/Hospitales.csv)), corrigiendo inconsistencias de prefijos territoriales de versiones previas:
-* **`109100`:** Complejo Hospitalario San José (Santiago, Independencia) — *SS Metropolitano Norte*.
-* **`109101`:** Hospital Clínico de Niños Dr. Roberto del Río (Santiago, Independencia) — *SS Metropolitano Norte*.
-* **`110100`:** Hospital San Juan de Dios (Santiago, Santiago) — *SS Metropolitano Occidente*.
-* **`110110`:** Instituto Traumatológico Dr. Teodoro Gebauer Weisser (Santiago) — *SS Metropolitano Occidente*.
-* **`112102`:** Hospital de Niños Dr. Luis Calvo Mackenna (Santiago, Providencia) — *SS Metropolitano Oriente*.
-* **`113100`:** Hospital Barros Luco Trudeau (Santiago, San Miguel) — *SS Metropolitano Sur*.
-* **`113130`:** Hospital Dr. Exequiel González Cortés (Santiago, San Miguel) — *SS Metropolitano Sur*.
-* **`115100`:** Hospital Regional de Rancagua — *SS del Libertador B. O'Higgins*.
-* **`116100`:** Hospital San Juan de Dios de Curicó — *SS del Maule*.
-* **`116105`:** Hospital Dr. César Garavagno Burotto (Talca) — *SS del Maule*.
-* **`116107`:** Hospital de Constitución — *SS del Maule*.
-* **`116108`:** Hospital Presidente Carlos Ibáñez del Campo (Linares) — *SS del Maule*.
-* **`116111`:** Hospital San Juan de Dios de Cauquenes — *SS del Maule*.
-* **`118100`:** Hospital Clínico Regional Dr. Guillermo Grant Benavente (Concepción) — *SS Concepción*.
-* **`118106`:** Hospital de Lota — *SS Concepción*.
-* **`119100`:** Hospital Las Higueras (Talcahuano) — *SS Talcahuano*.
-* **`119101`:** Hospital de Tomé — *SS Talcahuano*.
-* **`119102`:** Hospital Penco - Lirquén — *SS Talcahuano*.
-* **`107101`:** Hospital San Martín de Quillota — *SS Viña del Mar - Quillota*.
-* **`200717`:** Hospital Biprovincial Quillota Petorca — *SS Viña del Mar - Quillota*.
+### 1.1 Corrección de Cohorte y Definición Canónica de Diagnósticos Secundarios ($N_{\text{dx}}$)
+Se rectifica formalmente la cohorte analítica de calibración:
+* **Población Inpatient Adulta Evaluable (2023):** $N = \mathbf{557.402}$ episodios y $O = \mathbf{24.225}$ defunciones intrahospitalarias observadas (tasa bruta $4,346\%$).
+* **Definición de $N_{\text{dx}}$:** Corresponde estrictamente al recuento de diagnósticos secundarios codificados (`DIAGNOSTICO2` a `DIAGNOSTICO35`), con un rango observado de $0$ a $34$ diagnósticos por episodio.
+* **Métricas Globales de Predicción (Desarrollo 2020–2022 $\longrightarrow$ Calibración 2023):**
+  - Muertes Observadas ($O$): **$24.225$**
+  - Muertes Esperadas del Modelo ($\sum E$): **$34.618,09$**
+  - **$O/E$ Global Real Crudo:** **$0,6998$** (factor de recalibración $k = 0,6998$; multiplicador de intercepto $1/k = 1,4289$).
 
 ---
 
-### 1.2 Auditoría Empírica del Impacto del Día 0 en el Gráfico de Embudo (Funnel Plot)
-Al contrastar la evaluación base frente a la exclusión simétrica del día 0 (eliminando los episodios de estancia 0 tanto de $O$ como de $E$) en los 65 hospitales de agudos de adultos (2023):
-* **Desplazamiento de Ranking:**
-  - Desplazamiento máximo: **19,0 puestos** en el ranking nacional.
-  - Desplazamiento cuadrático medio (RMS): **7,43 puestos**.
-* **Impacto en Clasificación por Límites de Control ($\pm 3\sigma$):**
-  - **18 de los 65 hospitales ($27,7\%$) cambian de categoría de desempeño:**
-    - **15 hospitales pasan de *Sobresaliente* a *Promedio*:** Su aparente bajo $O/E$ basal dependía críticamente de no acumular muertes en el primer día o registrar un alto volumen de altas precoces (ej. `112101` Tisné, `104100` Copiapó, `108100` San Felipe, `110150` Melipilla, `121110` Lautaro, `105102` Ovalle, `116108` Linares, `102100` Iquique, `115100` Rancagua, `107102` Quilpué, `107101` Quillota, `114105` La Florida, `105100` La Serena, `109100` San José, `113100` Barros Luco).
-    - **3 hospitales pasan de *Promedio* a *Alerta de Mortalidad*:** `106103` (San Antonio, $O/E$ sube de $0,924$ a $1,224$), `103100` (Antofagasta, de $1,067$ a $1,150$) y `113180` (El Pino, de $1,027$ a $1,211$).
-* **Conclusión:** La sensibilidad al día 0 no es un detalle cosmético; altera las decisiones de auditoría clínica en más de una cuarta parte de la red hospitalaria, por lo que debe reportarse obligatoriamente como análisis secundario de robustez.
+### 1.2 Tabla Canónica de Calibración por Estratos de $N_{\text{dx}}$ (Año 2023)
+
+| Estrato $N_{\text{dx}}$ | N Episodios | Muertes Observadas ($O$) | Muertes Esperadas ($E$) | $O/E$ Crudo | $O/E$ Post-Recalibrado | Estado Contrato $[0,80, \ 1,25]$ |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **0 diagnósticos** | 40.495 | 39 | 794,9 | 0,0491 | **0,0701** | FUERA (Sobrepredicho) |
+| **1 diagnóstico** | 56.530 | 125 | 1.410,6 | 0,0886 | **0,1266** | FUERA (Sobrepredicho) |
+| **2 diagnósticos** | 62.840 | 296 | 1.965,9 | 0,1506 | **0,2152** | FUERA (Sobrepredicho) |
+| **3 diagnósticos** | 63.670 | 615 | 2.500,2 | 0,2460 | **0,3515** | FUERA (Sobrepredicho) |
+| **4 diagnósticos** | 58.992 | 954 | 2.799,1 | 0,3408 | **0,4870** | FUERA (Sobrepredicho) |
+| **5 diagnósticos** | 51.883 | 1.367 | 2.925,1 | 0,4673 | **0,6678** | FUERA (Sobrepredicho) |
+| **6–10 diagnósticos** | 150.094 | 8.831 | 12.132,6 | 0,7279 | **1,0401** | **DENTRO (Óptimo)** |
+| **$\ge 11$ diagnósticos** | 72.898 | 11.998 | 10.089,7 | 1,1891 | **1,6993** | FUERA (Subpredicho) |
+| **Total Red Inpatient** | **557.402** | **24.225** | **34.618,1** | **0,6998** | **1,0000** | **GLOBAL CALIBRADO** |
+
+*Diagnóstico de Descalibración Estructural:*  
+El estrato de $6–10$ diagnósticos secundarios ($N = 150.094$) queda perfectamente calibrado en **$1,0401$**. Sin embargo, la especificación puramente lineal de comorbilidades sobrepredice masivamente el riesgo de muerte en pacientes con $0$ a $4$ diagnósticos ($O/E \le 0,49$), mientras que subpredice el riesgo en pacientes hipercomplejos con $\ge 11$ diagnósticos ($O/E = 1,6993$), estrato que concentra casi la mitad de las muertes del país ($11.998$ de $24.225$).  
+*Criterio Congelado para Fase 3:* Se adopta como requisito contractual el reemplazo de la escala lineal por la **razón intrahospitalaria de diagnósticos** ($R_{\text{dx}, ij} = N_{\text{dx}, ij} / \bar{N}_{\text{dx}, j}$) modelada mediante **splines cúbicos restringidos**, exigiendo que tras recalibrar, todo estrato con $E \ge 100$ se ubique dentro de $[0,80, \ 1,25]$.
 
 ---
 
-### 1.3 Atenuación de Upcoding: Bootstrap Pareado Intrahospitalario
-Para superar la limitación del solapamiento de intervalos de confianza marginales producto del tamaño de la red ($N=65$), se ejecutó un **bootstrap pareado con 1.000 réplicas** sobre la diferencia intrahospitalaria:
-$$\Delta r_s = r_s(\text{Modelo Centrado}) - r_s(\text{Modelo Crudo})$$
-* **Correlación cruda:** $r_s = -0,0888$
-* **Correlación centrada:** $r_s = +0,0659$
-* **Diferencia pareada media:** $\Delta r_s = \mathbf{+0,1509}$
-* **Intervalo de Confianza Bootstrap al 95%:** $[\mathbf{+0,0684}, \ \mathbf{+0,2526}]$
-* **Significancia estadística:** $P(\Delta r_s \le 0) = \mathbf{0,0000} \ (p < 0,0001)$
+## 2. Gráfico de Embudo y Sobredispersión (Spiegelhalter 2005)
 
-El intervalo de la diferencia pareada no contiene al cero, demostrando de manera concluyente y con significancia estadística que el centrado hospitalario atenúa la correlación espuria inducida por la intensidad de codificación.
+### 2.1 Diagnóstico de Sobredispersión en la Red Hospitalaria
+En modelos institucionales con gran volumen de egresos, la varianza entre hospitales supera ampliamente la varianza binomial/Poisson pura.
+* **Factor de Sobredispersión Crudo ($\phi$):** $\phi_{\text{crudo}} = \mathbf{64,13}$
+* **Factor de Sobredispersión Winsorizado al 10% (Spiegelhalter 2005):** $\phi_{\text{wins}} = \mathbf{58,66}$
+* **Error Estándar Ajustado:** $\text{SE}_{\text{adj}, j} = \sqrt{\frac{\phi_{\text{wins}}}{E_j}} = \frac{7,66}{\sqrt{E_j}}$
 
----
-
-## 2. Calibración Empírica 2023 y Criterios del Contrato
-
-### 2.1 Tabla Completa de Calibración por Estratos de Complejidad (Año 2023)
-En la cohorte de evaluación 2023 ($N = 696.310$ episodios adultos evaluables), el modelo entrenado en 2020–2022 predice un total de muertes esperadas de $\sum E = 36.428,82$ frente a $O = 24.229$ muertes observadas.
-* **$O/E$ Global Real Crudo:** **$0,6651$** (reflejo de la menor mortalidad post-COVID respecto al trienio 2020–2022).
-* **Factor de Recalibración del Intercepto:** $k = 0,6651$.
-
-| Estrato de Comorbilidades | N Episodios | Muertes Observadas ($O$) | Muertes Esperadas ($E$) | $O/E$ Crudo | $O/E$ Post-Recalibrado |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **0 diagnósticos** | 269.423 | 1.466 | 5.997,0 | 0,2445 | **0,3675** |
-| **1 diagnóstico** | 201.570 | 4.144 | 7.854,0 | 0,5276 | **0,7933** |
-| **2 diagnósticos** | 121.836 | 5.901 | 7.890,6 | 0,7479 | **1,1244** |
-| **3 diagnósticos** | 59.144 | 5.403 | 6.129,7 | 0,8814 | **1,3253** |
-| **4 diagnósticos** | 26.545 | 3.736 | 4.077,8 | 0,9162 | **1,3775** |
-| **5 diagnósticos** | 11.271 | 2.053 | 2.416,5 | 0,8496 | **1,2773** |
-| **6–10 diagnósticos** | 6.516 | 1.525 | 2.059,8 | 0,7404 | **1,1132** |
-| **$\ge 11$ diagnósticos** | 5 | 1 | 3,5 | 0,2837 | **0,4266** |
-| **Total Red Nacional** | **696.310** | **24.229** | **36.428,8** | **0,6651** | **1,0000** |
-
-### 2.2 Criterio de Aceptación Congelado en el Contrato (Fase 3)
-1. **Calibración Global:** El modelo debe satisfacer $O/E_{\text{global}} = 1,000$ tras la recalibración anual del intercepto.
-2. **Tolerancia por Estratos:** Todo estrato con $E \ge 100$ muertes esperadas debe situarse en el intervalo $[0,80, \ 1,25]$.
-3. **Mecanismo de Corrección No-Lineal:** Para corregir la sobrepredicción en $0$ y $1$ diagnósticos ($0,37$ y $0,79$) y la subpredicción en $3$ y $4$ diagnósticos ($1,33$ y $1,38$), se congela para Fase 3 el reemplazo de la resta lineal por la **razón no lineal de diagnósticos** ($R_{\text{dx}, ij} = N_{\text{dx}, ij} / \bar{N}_{\text{dx}, j}$) modelada con splines cúbicos restringidos.
+### 2.2 Impacto en la Clasificación del Gráfico de Embudo ($\pm 3\sigma$)
+* **Bajo Límites Poisson Naive (Sin Ajuste):** 16 hospitales clasificaban como *Sobresaliente*, 34 como *Promedio* y 15 como *Alerta de Mortalidad* (un $47,7\%$ de prestadores fuera de control, patrón típico de falso sobre-aislamiento).
+* **Bajo Límites Ajustados por Sobredispersión (Spiegelhalter):** Los **65 hospitales de agudos de adultos clasifican dentro de la banda de variación institucional admisible (*Promedio*)**.
+* **Sensibilidad del Día 0 bajo Límites Ajustados:**
+  - Desplazamiento máximo de ranking: **9,0 puestos**.
+  - Desplazamiento cuadrático medio (RMS): **2,51 puestos**.
+  - **Spearman $\rho$ real (Base vs No-Día-0):** **$\mathbf{0,9911}$** (actualizado respecto al 0,945 previo que mezclaba escalas).
+  - **Cambios de Categoría de Desempeño bajo Límites Ajustados:** **0 hospitales cambian de categoría** (los 65 permanecen en el rango esperado).
 
 ---
 
-## 3. Selección Rigurosa de Variables
+## 3. Upcoding: Evidencia Empírica de Atenuación
 
-### 3.1 Mortalidad: Regla de 1 Error Estándar y Análisis de Sensibilidad
-* **Criterio de Regularización Congelado:** Se congela el método de optimización por **validación cruzada temporal anidada aplicando la regla del un error estándar (1-SE rule)**, en lugar de un hiperparámetro $C$ fijo, garantizando invariancia ante variaciones muestrales.
-* **Estabilidad del Ranking entre Especificaciones de Comorbilidad:**
-  - **28 crónicas completas vs 13 crónicas estables (100% bootstrap):**
-    $$\rho_{\text{Spearman}} = \mathbf{0,9976}$$
-    El ordenamiento hospitalario es prácticamente idéntico. Retener las 28 crónicas protege la cobertura clínica sin distorsionar el ranking.
-  - **28 crónicas vs 31 categorías (incluyendo complicaciones agudas `ELIX_02, 22, 25`):**
-    $$\rho_{\text{Spearman}} = \mathbf{0,9777}$$
-    Aparecen reordenamientos tangibles, demostrando que incluir arritmias, coagulopatía o desequilibrio hidroelectrolítico premia o castiga diferencialmente a ciertos hospitales según su codificación de complicaciones agudas.
+Conforme a la pauta de rigor metodológico, se consigna la formulación exacta:
+> *"El centrado intrahospitalario desplaza la asociación con la intensidad de codificación en $\Delta r_s = +0,151$ [IC 95%: $+0,068$ a $+0,253$; $p < 0,001$ por bootstrap pareado con 1.000 réplicas]; la asociación basal era débil ($r_s = -0,089$ en modelo crudo y $r_s = +0,066$ en modelo centrado)."*
 
 ---
 
-### 3.2 Estadía: Devianza con $p99 = 54$ días, Estandarización y Target Encoding LOHO
-* **Devianza Explicada Recalculada:**
-  Con el truncamiento estricto a $p99 = 54$ días en adultos sobrevivientes, el modelo Gamma ($p=2,0$) obtiene:
-  $$D^2 = \mathbf{10,00\%}$$
-  (el $12,7\%$ previo correspondía al límite de 60 días con casos extremos no filtrados).
-* **Estandarización Consistente:** Tanto las variables continuas como las variables binarias y dummies ingresan estandarizadas con `StandardScaler`, asegurando que la penalización ElasticNet/L1 afecte a todos los coeficientes en proporción idéntica a su varianza.
-* **Target Encoding con Leave-One-Hospital-Out (LOHO):**
-  Para la codificación de los diagnósticos principales (`CIE10_3C`), se descarta el target encoding estándar por riesgo de fuga del efecto hospital en centros monográficos (como el Instituto Traumatológico). Se implementa **LOHO con contracción bayesiana empírica** (*empirical Bayes shrinkage*): el target encoding de un episodio en el hospital $j$ se calcula excluyendo a todos los pacientes del hospital $j$, forzando a que la codificación refleje la duración nacional esperada del diagnóstico y no la eficiencia particular del hospital evaluado.
+## 4. Censura, Ponderación IPW y Análisis de Punto de Inflexión (*Tipping Point*)
+
+### 4.1 Análisis Sistemático de Punto de Inflexión en la Red
+Para cada establecimiento $j$, se modeló la tasa crítica de mortalidad en sus transferencias derivadas ($p_{\text{cens}}^*$) requerida para que el hospital cruce el umbral de alerta institucional ($\text{HSMR} > 110$):
+* **Hospitales con Alta Tasa de Derivación y su $p^*$ Crítico:**
+  - `128109` (Hospital de Curanilahue, censura $17,79\%$): $p^* = \mathbf{0,99\%}$
+  - `113180` (Hospital El Pino, censura $17,77\%$): Ya en alerta basal ($O/E = 1,058$)
+  - `121110` (Hospital Dr. Abraham Godoy de Lautaro, censura $15,14\%$): $p^* = \mathbf{0,89\%}$
+  - `121117` (Hospital de Pitrufquén, censura $14,39\%$): $p^* = \mathbf{9,09\%}$
+  - `121121` (Hospital de Villarrica, censura $12,33\%$): $p^* = \mathbf{16,64\%}$
+  - `116110` (Hospital San José de Parral, censura $10,83\%$): $p^* = \mathbf{16,93\%}$
+  - `121114` (Hospital Intercultural de Nueva Imperial, censura $10,34\%$): $p^* = \mathbf{21,06\%}$
+* **Comparación con Benchmark Clínico:**
+  En la literatura internacional sobre traslados interhospitalarios de urgencia médica y quirúrgica compleja hacia centros terciarios (ej. Duke et al., *Crit Care Resusc* 2004; Rosenberg et al., *JAMA* 2014), la mortalidad intrahospitalaria de los pacientes derivados oscila entre un $8\%$ y un $15\%$.
+  Bajo un escenario conservador de $10\%$ de mortalidad en derivados, **8 de los 65 hospitales de la red cruzarían el umbral a zona de alerta**, evidenciando que la censura no ajustada favorece artificialmente a los centros periféricos de derivación.
+* **Modelo IPW:** Se congela para Fase 3 el ajuste por probabilidad inversa de censura ($w_i = 1 / P(\text{No Derivado} \mid X_i, \text{Hospital})$) incorporando efectos fijos por prestador.
 
 ---
 
-## 4. Resolución de Casos Pendientes
+## 5. Selección Empírica en Estadía y Auditoría de Casos Específicos
 
-### 4.1 Censura por Traslado, Ponderación IPW y Análisis de Punto de Inflexión (*Tipping Point*)
-* **Riesgo en Emisores de Alta Censura (ej. Lota y Tomé):**
-  Hospitales como Lota (`118106`, censura del $14,2\%$) y Tomé (`119101`, censura del $11,1\%$) derivan selectivamente a sus pacientes críticos a los hospitales regionales de Concepción y Talcahuano. Su $O/E$ crudo calculado solo en pacientes no derivados introduce un sesgo de levedad artificial.
-* **Metodología de Ajuste Congelada:**
-  1. **Ponderación por Probabilidad Inversa de Tratamiento/Censura (IPW):** Cada paciente no censurado recibe un ponderador $w_i = 1 / P(\text{No Censurado} \mid X_i)$, asignando mayor peso analítico a los casos con alto riesgo de derivación que permanecieron en el centro.
-  2. **Análisis de Tipping Point:** Se calcula la tasa mínima de mortalidad intrahospitalaria en los pacientes derivados ($M_{\text{derivados}}$) requerida para que el hospital cruce el límite superior de alerta ($\text{HSMR} > 110$). Para Lota, una mortalidad $> 8,5\%$ en sus derivados (perfectamente plausible en shock séptico o infarto) bastaría para trasladarlo de *Promedio* a *Alerta*.
-
----
-
-### 4.2 Nuevos Prestadores Incorporados (2023–2024)
-Siete establecimientos no estuvieron presentes durante la ventana de desarrollo 2020–2022:
-- **2023:** `110110` (Instituto Traumatológico), `119101` (Hospital de Tomé), `118106` (Hospital de Lota).
-- **2024:** `200717` (Biprovincial Quillota), `116111` (Hospital de Cauquenes), `116107` (Hospital de Constitución), `119102` (Hospital Penco-Lirquén).
-
-**Protocolo de Sensibilidad:** En los informes oficiales se señalan con la marca `[NUEVO_INGRESO]`. El análisis de sensibilidad principal se genera con los 62 hospitales de agudos de adultos presentes de manera ininterrumpida durante los 6 años del panel ($2019–2024$), garantizando comparabilidad longitudinal.
-
----
-
-### 4.3 Quillota: Auditoría de Enlace Físico de Pacientes (107101 y 200717)
-Durante 2024, el Hospital San Martín (`107101`) registró 952 derivaciones hacia otros centros del Servicio de Salud Viña del Mar - Quillota. Al cruzar los identificadores encriptados (`CIP_ENCRIPTADO`) con los ingresos al Hospital Biprovincial (`200717`) dentro de 48 horas:
-* **Traslados directos enlazados en 48 horas:** **0 episodios**.
-* **Causa técnica:** El cierre de camas de San Martín y la apertura de Biprovincial se procesó administrativamente como altas por traslado en bloque o altas a domicilio con reingreso electivo, sin continuidad directa del CIP en el registro de derivaciones hospitalarias.
-* **Resolución:** No existen micro-episodios concatenables a nivel de registro. La entidad "Quillota" se evalúa como una **unidad institucional consolidada** para el año 2024 ($N = 24.599$ episodios, censura combinada $5,50\%$).
+### 5.1 Selección ElasticNet y Estabilidad en el Modelo de Estadía
+Se aplicó regularización ElasticNet con validación cruzada de 5 pliegues sobre la cohorte adulta de sobrevivientes con estancia positiva ($p99 = 54$ días):
+* **Parámetros Óptimos:** $\alpha = \mathbf{0,000207}$, $L_1\text{-ratio} = \mathbf{1,00}$ (selección pura Lasso).
+* **Variables Seleccionadas (25 de 29) y Coeficientes Estandarizados:**
+  1. `EDAD_ANIOS` ($\beta_{\text{std}} = +0,1351 \implies \times 1,145$ por DE de edad)
+  2. `ELIX_24` Desnutrición / Pérdida de peso ($\beta_{\text{std}} = +0,1092 \implies \times 1,115$)
+  3. `ELIX_14` Insuficiencia renal crónica ($\beta_{\text{std}} = +0,0870 \implies \times 1,091$)
+  4. `ELIX_29` Abuso de drogas ($\beta_{\text{std}} = +0,0832 \implies \times 1,087$)
+  5. `ELIX_30` Psicosis ($\beta_{\text{std}} = +0,0561 \implies \times 1,058$)
+  6. `ELIX_04` Trastornos de circulación pulmonar ($\beta_{\text{std}} = +0,0546 \implies \times 1,056$)
+  7. `ELIX_06` Hipertensión no complicada ($\beta_{\text{std}} = +0,0540 \implies \times 1,056$)
+  8. `ELIX_15` Enfermedad hepática ($\beta_{\text{std}} = +0,0537 \implies \times 1,055$)
+  9. `ELIX_01` Insuficiencia cardíaca congestiva ($\beta_{\text{std}} = +0,0532 \implies \times 1,055$)
+  10. `ELIX_09` Otros neurológicos ($\beta_{\text{std}} = +0,0492 \implies \times 1,050$)
+* **Variables Descartadas (Coeficiente Nulo):**
+  `ELIX_11` (Diabetes no complicada), `ELIX_12` (Diabetes complicada), `ELIX_16` (Úlcera péptica) y `ELIX_26` (Anemia hemorrágica).
 
 ---
 
-### 4.4 Auditoría Sintáctica de Diagnósticos CIE-10 (Capa Bronze vs Silver)
-Sobre los $1.039.587$ registros de diagnóstico principal en 2023:
-* **Espacios en blanco iniciales o finales:** **0** ($0,000\%$).
-* **Minúsculas:** **0** ($0,000\%$).
-* **Caracteres especiales o tildes:** **0** ($0,000\%$).
-* **Puntos de separación decimal (ej. `J18.9` vs `J189`):** **977.433 registros con punto ($94,021\%$)** y **62.154 sin punto ($5,979\%$)**.
-* **Acción en Silver:** Queda plenamente validada la función de normalización sintáctica `REPLACE('.', '')` y truncamiento a 3 caracteres (`CIE10_3C`) para garantizar el 100% de homogeneidad en las claves diagnósticas.
+### 5.2 Clarificación Geográfica y Administrativa: Quillota vs Padre Las Casas (`200717`)
+La auditoría territorial de los datos crudos de 2024 desmintió la hipótesis preliminar de que `200717` fuera el reemplazo de Quillota:
+* **Código `200717`:** Corresponde al **Hospital Complejo Asistencial Padre Las Casas**, ubicado en la Región de La Araucanía (*Servicio de Salud Araucanía Sur*, comuna de Padre Las Casas/Temuco). En 2024 registra $10.204$ episodios, y sus derivaciones provienen exclusivamente de la red de la Araucanía: Pitrufquén (488), Villarrica (282), Nueva Imperial (34) y Lautaro (28).
+* **Código `107101`:** Es el **Hospital San Martín de Quillota** (*Servicio de Salud Viña del Mar - Quillota*, Región de Valparaíso).
+* **Conclusión:** Existen cero transferencias y cero coincidencias de `CIP_ENCRIPTADO` entre `107101` y `200717` porque corresponden a establecimientos autónomos distantes por más de 700 kilómetros. Ambos se tratan de manera independiente.
+
+---
+
+### 5.3 Auditoría Sintáctica de Códigos CIE-10 (Capa Bronze 2019–2024)
+Se auditó la totalidad de los registros de diagnóstico principal en la capa Bronze a lo largo de los seis años:
+* **Heterogeneidad de Puntos Decimales:** Entre un **$5,13\%$ y un $6,27\%$** de los registros de cada año se reciben sin punto decimal (ej. $62.154$ registros en 2023, $5,98\%$).
+* **Causa Estructural del Estándar CIE-10:** El **$100\%$ de los códigos sin punto corresponden a categorías de 3 caracteres de longitud** (`N47` Fimosis, `N10` Nefritis tubulointersticial, `N40` Hiperplasia prostática, `J46` Estado asmático, `C73` Cáncer tiroideo, etc.). En la clasificación CIE-10 internacional, estas categorías no poseen cuarto dígito decimal, por lo que su formato sin punto es normativamente correcto.
+* **Validación de Capa Silver:** La función `REPLACE('.', '')` y la extracción canónica del código de 3 caracteres (`CIE10_3C`) unifican el $100\%$ de la base sin pérdida de información.
+
+---
+
+### 5.4 Robustez de Mortalidad y Gobernanza Clínica
+* **Correlación de Rankings (28 Crónicas vs 31 con Agudas):**
+  $$\rho_{\text{Spearman}} = \mathbf{0,9777}$$
+* **Encuadre:** La correlación de $0,978$ constata que la inclusión de `ELIX_02` (Arritmias), `ELIX_22` (Coagulopatía) y `ELIX_25` (Desequilibrio hidroelectrolítico) introduce reordenamientos sensibles de prestadores. La decisión de mantenerlas fuera se sustenta en la **gobernanza clínica del indicador**, garantizando que el sistema no premie a hospitales que inducen o complican el manejo hidroelectrolítico y metabólico durante la internación.
+
+---
+
+### Verificación en el Repositorio
+- [resolucion_observaciones_fase2.md](file:///home/felipe/Documentos/Proyecto%20final/Tesis/Analisis%20exploratorio/resolucion_observaciones_fase2.md)
+- [07_calibracion_inpatient_fase2.py](file:///home/felipe/Documentos/Proyecto%20final/Tesis/Analisis%20exploratorio/07_calibracion_inpatient_fase2.py)
+- Commit de consolidación: `5a37168`.
