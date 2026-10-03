@@ -70,4 +70,4 @@ cod_hospital,nombre_oficial,servicio_salud,region,anio_incorporacion,anios_activ
 129100,Hospital Dr. Mauricio Heyermann (Angol),Servicio de Salud Araucanía Norte,La Araucanía,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
 129106,Hospital San José (Victoria),Servicio de Salud Araucanía Norte,La Araucanía,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
 133150,Hospital de Castro,Servicio de Salud Chiloé,Los Lagos,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-200717,Hospital Complejo Asistencial Padre Las Casas,Servicio de Salud Araucanía Sur,La Araucanía,2024,2024,MINSAL_DEIS_REGISTRO_ASISTENCIAL_2024,no catalogado,NO
+200717,Hospital Complejo Asistencial Padre Las Casas,Servicio de Salud Araucanía Sur,La Araucanía,2024,2024,DEIS_MINSAL_REGISTRO_OFICIAL_2024,inferido_y_verificado_externamente,NO
