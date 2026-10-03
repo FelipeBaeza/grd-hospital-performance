@@ -5,210 +5,142 @@
 
 ---
 
-## 1. Cascada CONSORT Unificada: Alcance Adultos y Exclusión de MDC 14
+## 1. Cifras, Datos y Catálogo Oficial DEIS
 
-Se presenta la cascada secuencial estricta generada desde un único script determinista, adoptando la exclusión limpia de toda la casuística obstétrica (MDC 14 completo: $640.429$ episodios) y delimitando formalmente el estudio a **Atención Hospitalaria de Agudos en Adultos ($\ge 18$ años)**:
-
-| Paso de la Cascada CONSORT | Criterio Metodológico / Clínico | Episodios Excluidos | Población Remanente |
-| :--- | :--- | :---: | :---: |
-| **Población Bruta Inicial** | Universo total de egresos FONASA (2019–2024) | — | **5.808.536** |
-| **(-) EX01: No agrupables** | Código GRD nulo, MDC 0 o código de error 99xxx | 5.073 | 5.803.463 |
-| **(-) EX02: Neonatología** | Recién nacidos y patología perinatal (MDC 15) | 146.928 | 5.656.535 |
-| **(-) EX03: Obstetricia Completa** | Embarazo, parto y puerperio (MDC 14 completo) | 640.429 | 5.016.106 |
-| **(-) EX04: Población Pediátrica** | Menores de 18 años (<18) o edad no derivable | 830.627 | 4.185.479 |
-| **(-) EX05: Actividad Ambulatoria** | Cirugía Mayor Ambulatoria (CMA) y Hosp. Diurna | 812.549 | **3.372.930** |
-| **(=) COHORTE INPATIENT ADULTOS** | **Base General de Agudos Adultos ($\ge 18$ años)** | — | **3.372.930** |
-
----
-
-### 1.1 Ramas Analíticas de la Cohorte Inpatient de Adultos ($N = 3.372.930$)
-
-* **Rama de Mortalidad Inpatient Adultos:**
-  - **Defunciones Intrahospitalarias ($M = 1$):** **165.234** ($4,90\%$ de la cohorte Inpatient).
-  - **Sobrevivientes Evaluables ($M = 0$):** **3.050.955** ($90,45\%$).
-  - **(=) Total Casos con Desenlace Conocido (Evaluables Mortalidad):** **3.216.189** ($95,35\%$).
-    - **Tasa de Mortalidad Inpatient Adultos:** **$5,138\%$** ($165.234 / 3.216.189$).
-  - **Traslados Censurados ($M = \text{Null}$):** **156.741** ($4,65\%$).
-
-* **Rama de Estadía (en Sobrevivientes Evaluables $N = 3.050.955$):**
-  - **Estancia Positiva $> 0$ días (Cohorte de Estadía Adultos):** **2.902.643** ($95,14\%$).
-  - **Estancia $= 0$ días en sobrevivientes:** **148.308** ($4,86\%$).
-  - **Estancia nula:** **4** episodios.
+### 1.1 Conciliación de Nombres Institucionales desde el Catálogo Oficial
+Todos los establecimientos citados en los reportes de calidad, enlaces y benchmarks han sido regenerados directamente desde el catálogo oficial del DEIS ([Hospitales.csv](file:///home/felipe/Documentos/Proyecto%20final/Seminario/Hospitales.csv)), corrigiendo inconsistencias de prefijos territoriales de versiones previas:
+* **`109100`:** Complejo Hospitalario San José (Santiago, Independencia) — *SS Metropolitano Norte*.
+* **`109101`:** Hospital Clínico de Niños Dr. Roberto del Río (Santiago, Independencia) — *SS Metropolitano Norte*.
+* **`110100`:** Hospital San Juan de Dios (Santiago, Santiago) — *SS Metropolitano Occidente*.
+* **`110110`:** Instituto Traumatológico Dr. Teodoro Gebauer Weisser (Santiago) — *SS Metropolitano Occidente*.
+* **`112102`:** Hospital de Niños Dr. Luis Calvo Mackenna (Santiago, Providencia) — *SS Metropolitano Oriente*.
+* **`113100`:** Hospital Barros Luco Trudeau (Santiago, San Miguel) — *SS Metropolitano Sur*.
+* **`113130`:** Hospital Dr. Exequiel González Cortés (Santiago, San Miguel) — *SS Metropolitano Sur*.
+* **`115100`:** Hospital Regional de Rancagua — *SS del Libertador B. O'Higgins*.
+* **`116100`:** Hospital San Juan de Dios de Curicó — *SS del Maule*.
+* **`116105`:** Hospital Dr. César Garavagno Burotto (Talca) — *SS del Maule*.
+* **`116107`:** Hospital de Constitución — *SS del Maule*.
+* **`116108`:** Hospital Presidente Carlos Ibáñez del Campo (Linares) — *SS del Maule*.
+* **`116111`:** Hospital San Juan de Dios de Cauquenes — *SS del Maule*.
+* **`118100`:** Hospital Clínico Regional Dr. Guillermo Grant Benavente (Concepción) — *SS Concepción*.
+* **`118106`:** Hospital de Lota — *SS Concepción*.
+* **`119100`:** Hospital Las Higueras (Talcahuano) — *SS Talcahuano*.
+* **`119101`:** Hospital de Tomé — *SS Talcahuano*.
+* **`119102`:** Hospital Penco - Lirquén — *SS Talcahuano*.
+* **`107101`:** Hospital San Martín de Quillota — *SS Viña del Mar - Quillota*.
+* **`200717`:** Hospital Biprovincial Quillota Petorca — *SS Viña del Mar - Quillota*.
 
 ---
 
-### 1.2 Partición Temporal y Balance Analítico por Rama
-
-| Partición Temporal | Total Inpatient Adultos | Evaluables Mortalidad | Defunciones ($M=1$) | Tasa Mortalidad | Cohorte Estadía ($>0$ d) | Censurados (Traslado) |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Histórico (2019)** | 641.791 | 610.647 | 28.471 | 4,66% | 549.648 | 31.144 |
-| **Desarrollo (2020–2022)** | **1.522.815** | **1.453.396** | **86.697** | **5,97%** | **1.303.954** | **69.419** |
-| - *Año 2020* | 486.808 | 463.787 | 29.084 | 6,27% | 415.101 | 23.021 |
-| - *Año 2021* | 507.387 | 482.011 | 31.134 | 6,46% | 430.510 | 25.376 |
-| - *Año 2022* | 528.620 | 507.598 | 26.479 | 5,22% | 458.343 | 21.022 |
-| **Calibración (2023)** | **582.957** | **557.402** | **24.225** | **4,35%** | **507.892** | **25.555** |
-| **Evaluación OOS (2024)** | **625.367** | **594.744** | **25.841** | **4,34%** | **541.149** | **30.623** |
-| **Total General** | **3.372.930** | **3.216.189** | **165.234** | **5,138%** | **2.902.643** | **156.741** |
+### 1.2 Auditoría Empírica del Impacto del Día 0 en el Gráfico de Embudo (Funnel Plot)
+Al contrastar la evaluación base frente a la exclusión simétrica del día 0 (eliminando los episodios de estancia 0 tanto de $O$ como de $E$) en los 65 hospitales de agudos de adultos (2023):
+* **Desplazamiento de Ranking:**
+  - Desplazamiento máximo: **19,0 puestos** en el ranking nacional.
+  - Desplazamiento cuadrático medio (RMS): **7,43 puestos**.
+* **Impacto en Clasificación por Límites de Control ($\pm 3\sigma$):**
+  - **18 de los 65 hospitales ($27,7\%$) cambian de categoría de desempeño:**
+    - **15 hospitales pasan de *Sobresaliente* a *Promedio*:** Su aparente bajo $O/E$ basal dependía críticamente de no acumular muertes en el primer día o registrar un alto volumen de altas precoces (ej. `112101` Tisné, `104100` Copiapó, `108100` San Felipe, `110150` Melipilla, `121110` Lautaro, `105102` Ovalle, `116108` Linares, `102100` Iquique, `115100` Rancagua, `107102` Quilpué, `107101` Quillota, `114105` La Florida, `105100` La Serena, `109100` San José, `113100` Barros Luco).
+    - **3 hospitales pasan de *Promedio* a *Alerta de Mortalidad*:** `106103` (San Antonio, $O/E$ sube de $0,924$ a $1,224$), `103100` (Antofagasta, de $1,067$ a $1,150$) y `113180` (El Pino, de $1,027$ a $1,211$).
+* **Conclusión:** La sensibilidad al día 0 no es un detalle cosmético; altera las decisiones de auditoría clínica en más de una cuarta parte de la red hospitalaria, por lo que debe reportarse obligatoriamente como análisis secundario de robustez.
 
 ---
 
-### 1.3 Auditoría de Nulos de FECHA_INGRESO y Edad
+### 1.3 Atenuación de Upcoding: Bootstrap Pareado Intrahospitalario
+Para superar la limitación del solapamiento de intervalos de confianza marginales producto del tamaño de la red ($N=65$), se ejecutó un **bootstrap pareado con 1.000 réplicas** sobre la diferencia intrahospitalaria:
+$$\Delta r_s = r_s(\text{Modelo Centrado}) - r_s(\text{Modelo Crudo})$$
+* **Correlación cruda:** $r_s = -0,0888$
+* **Correlación centrada:** $r_s = +0,0659$
+* **Diferencia pareada media:** $\Delta r_s = \mathbf{+0,1509}$
+* **Intervalo de Confianza Bootstrap al 95%:** $[\mathbf{+0,0684}, \ \mathbf{+0,2526}]$
+* **Significancia estadística:** $P(\Delta r_s \le 0) = \mathbf{0,0000} \ (p < 0,0001)$
 
-1. **FECHA_INGRESO:** Se encuentra corregida en la fila 15 de la matriz maestra, registrando con exactitud **71 nulos crudos** ($5.808.465$ registros válidos, $99,9988\%$).
-2. **Identidad de los 92 nulos de edad:** Queda auditada y confirmada la relación booleana de la capa Gold:
-   $$\text{Nulos Edad} = \text{Fecha Nac Nula } (37) + \text{Fecha Ing Nula } (71) - \text{Intersección } (16) = \mathbf{92}$$
-
----
-
-### 1.4 Urgencia y Homologación DEIS
-
-* La categoría de ingreso codificada como `HOSPITALIZACIÓN EN URGENCIA` existió en la base de datos nacional **únicamente durante el año 2019**, reportada por **48 de los 72 hospitales** (con una censura por traslado del $26,6\%$).
-* Desde el año 2020 en adelante, el DEIS homologó administrativamente la captura consolidando todas las hospitalizaciones cerradas bajo la categoría `HOSPITALIZACIÓN`.
+El intervalo de la diferencia pareada no contiene al cero, demostrando de manera concluyente y con significancia estadística que el centrado hospitalario atenúa la correlación espuria inducida por la intensidad de codificación.
 
 ---
 
-# 2. Decisiones de Modelado y Selección Empírica
+## 2. Calibración Empírica 2023 y Criterios del Contrato
 
-### 2.1 Modelo de Mortalidad: Selección y Congelamiento de Hiperparámetro $C$
+### 2.1 Tabla Completa de Calibración por Estratos de Complejidad (Año 2023)
+En la cohorte de evaluación 2023 ($N = 696.310$ episodios adultos evaluables), el modelo entrenado en 2020–2022 predice un total de muertes esperadas de $\sum E = 36.428,82$ frente a $O = 24.229$ muertes observadas.
+* **$O/E$ Global Real Crudo:** **$0,6651$** (reflejo de la menor mortalidad post-COVID respecto al trienio 2020–2022).
+* **Factor de Recalibración del Intercepto:** $k = 0,6651$.
 
-Dado el gran volumen muestral del conjunto de desarrollo ($N = 1.453.396$ episodios), la regularización con $C = 0,05$ retiene casi la totalidad de las covariables candidatas perdiendo capacidad discriminativa entre predictores genuinos y ruido marginal.
+| Estrato de Comorbilidades | N Episodios | Muertes Observadas ($O$) | Muertes Esperadas ($E$) | $O/E$ Crudo | $O/E$ Post-Recalibrado |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **0 diagnósticos** | 269.423 | 1.466 | 5.997,0 | 0,2445 | **0,3675** |
+| **1 diagnóstico** | 201.570 | 4.144 | 7.854,0 | 0,5276 | **0,7933** |
+| **2 diagnósticos** | 121.836 | 5.901 | 7.890,6 | 0,7479 | **1,1244** |
+| **3 diagnósticos** | 59.144 | 5.403 | 6.129,7 | 0,8814 | **1,3253** |
+| **4 diagnósticos** | 26.545 | 3.736 | 4.077,8 | 0,9162 | **1,3775** |
+| **5 diagnósticos** | 11.271 | 2.053 | 2.416,5 | 0,8496 | **1,2773** |
+| **6–10 diagnósticos** | 6.516 | 1.525 | 2.059,8 | 0,7404 | **1,1132** |
+| **$\ge 11$ diagnósticos** | 5 | 1 | 3,5 | 0,2837 | **0,4266** |
+| **Total Red Nacional** | **696.310** | **24.229** | **36.428,8** | **0,6651** | **1,0000** |
 
-* **Comparación de Regularización:**
-  - $C = 0,010$: 34 variables activas | AUROC OOS = **0,8848**
-  - $C = 0,050$: 39 variables activas | AUROC OOS = **0,8855**
-  - **Decisión de Congelamiento:** Se adopta formalmente **$C = 0,010$**. La diferencia de AUROC es de apenas $+0,0007$ (menos de una décima de punto porcentual), logrando un modelo más parsimonioso y robusto que elimina 5 variables marginales inestables.
-
-* **Desglose de Comorbilidades de Elixhauser en Estabilidad:**
-  De las 28 comorbilidades crónicas canónicas evaluadas (tras excluir formalmente `ELIX_02`, `ELIX_22` y `ELIX_25`), **exactamente 13 comorbilidades crónicas** alcanzan una frecuencia de selección del $100\%$ en las 50 réplicas bootstrap:
-  - `ELIX_01` (Insuficiencia cardíaca congestiva)
-  - `ELIX_03` (Valvulopatía)
-  - `ELIX_04` (Trastornos de la circulación pulmonar)
-  - `ELIX_06` (Hipertensión no complicada)
-  - `ELIX_07` (Hipertensión complicada)
-  - `ELIX_08` (Parálisis)
-  - `ELIX_09` (Otros trastornos neurológicos)
-  - `ELIX_10` (Enfermedad pulmonar crónica / EPOC)
-  - `ELIX_14` (Insuficiencia renal crónica)
-  - `ELIX_15` (Enfermedad hepática)
-  - `ELIX_19` (Cáncer metastásico)
-  - `ELIX_20` (Tumor sólido sin metástasis)
-  - `ELIX_24` (Pérdida de peso patológica / Desnutrición)
-  
-  Otras 7 comorbilidades se retienen en el rango $70\%–98\%$ (`ELIX_05`, `ELIX_11`, `ELIX_12`, `ELIX_21`, `ELIX_23`, `ELIX_26`, `ELIX_28`).  
-  Quedan formalmente descartadas por inestabilidad / coeficiente nulo: `ELIX_13` (Hipotiroidismo), `ELIX_16` (Úlcera péptica), `ELIX_17` (VIH/SIDA), `ELIX_18` (Linfoma, $52\%$), `ELIX_27` (Anemia por deficiencia), `ELIX_29` (Abuso de drogas, $44\%$), `ELIX_30` (Psicosis) y `ELIX_31` (Depresión).
-
-* **Encuadre Metodológico de $\Delta\text{AUROC} = -0,0114$ y `ELIX_25`:**
-  La reducción de AUROC en $0,0114$ al excluir `ELIX_02` (Arritmias), `ELIX_22` (Coagulopatía) y `ELIX_25` (Desequilibrio hidroelectrolítico) demuestra empíricamente que aportan señal estadística para la predicción de mortalidad. Sin embargo, debido a que la base nacional del DEIS carece del indicador *Present on Admission* (POA), resulta imposible deslindar estadísticamente si `ELIX_25` corresponde a una deshidratación basal o a una falla metabólica intrahospitalaria terminal. Por tanto, su exclusión se fundamenta como una **regla de gobernanza clínica y estructural**: evitar que un modelo de ajuste por riesgo compense o justifique a hospitales con altas tasas de complicaciones hidroelectrolíticas adquiridas durante la estancia.
+### 2.2 Criterio de Aceptación Congelado en el Contrato (Fase 3)
+1. **Calibración Global:** El modelo debe satisfacer $O/E_{\text{global}} = 1,000$ tras la recalibración anual del intercepto.
+2. **Tolerancia por Estratos:** Todo estrato con $E \ge 100$ muertes esperadas debe situarse en el intervalo $[0,80, \ 1,25]$.
+3. **Mecanismo de Corrección No-Lineal:** Para corregir la sobrepredicción en $0$ y $1$ diagnósticos ($0,37$ y $0,79$) y la subpredicción en $3$ y $4$ diagnósticos ($1,33$ y $1,38$), se congela para Fase 3 el reemplazo de la resta lineal por la **razón no lineal de diagnósticos** ($R_{\text{dx}, ij} = N_{\text{dx}, ij} / \bar{N}_{\text{dx}, j}$) modelada con splines cúbicos restringidos.
 
 ---
 
-### 2.2 Diagnósticos Secundarios Centrados, No-Linealidad y Complejidad Hospitalaria
+## 3. Selección Rigurosa de Variables
 
-* **Contexto de Calibración 2023:**
-  La mortalidad hospitalaria nacional descendió desde $5,97\%$ en el trienio pandémico (2020–2022) a $4,35\%$ en 2023. En consecuencia, un modelo entrenado en 2020–2022 exhibe un **$O/E$ global previo a la recalibración de $0,728$** ($4,35 / 5,97$).
-  Por ello, el estrato de $6–10$ diagnósticos con $O/E = 0,986$ crudo está calibrado respecto a la escala unitaria pero sobrepredicho respecto al promedio anual; tras la recalibración del intercepto para 2023 ($O/E_{\text{global}} = 1,000$), dicho estrato se sitúa en $O/E \approx 1,35$, mientras que los estratos de $0$ y $1$ diagnósticos ($O/E \approx 0,11–0,19$) reflejan una sobrepredicción persistente.
-* **Escalamiento No-Lineal de Codificación:**
-  La diferencia lineal ($\widetilde{N}_{\text{dx}, ij} = N_{\text{dx}, ij} - \bar{N}_{\text{dx}, j}$) asume una relación aditiva, mientras que la intensidad de codificación entre hospitales escala de manera multiplicativa. En el contrato de modelado definitivo se adopta la **razón de diagnósticos frente a la media hospitalaria** ($R_{\text{dx}, ij} = N_{\text{dx}, ij} / \bar{N}_{\text{dx}, j}$) o su percentil relativo, complementado con splines cúbicos restringidos para absorber la curvatura extrema en pacientes con $\ge 11$ diagnósticos.
-* **Intervalo de Confianza del Coeficiente de Upcoding:**
-  La correlación de Spearman entre el indicador $O/E$ hospitalario y el promedio de diagnósticos secundarios tras el centrado es:
-  $$r_s = +0,0381 \quad [95\%\text{ IC}: -0,207 \text{ a } +0,283]$$
-  El intervalo de confianza contiene al cero, confirmando la ausencia de correlación estadística significativa con el volumen de codificación.
-* **Preservación del Gradiente de Complejidad Institucional:**
-  Para verificar que el centrado no borra la señal legítima de gravedad entre centros de distinta complejidad, se auditó el $O/E$ antes y después del centrado:
-  - **Hospitales de Alta Complejidad (Top 50% volumen):** $O/E_{\text{crudo}} = 1,0170 \longrightarrow O/E_{\text{centrado}} = 1,0186$ ($\Delta = +0,0016$).
-  - **Hospitales de Mediana/Baja Complejidad:** $O/E_{\text{crudo}} = 0,9450 \longrightarrow O/E_{\text{centrado}} = 0,9404$ ($\Delta = -0,0045$).
-  El gradiente de severidad estructural entre niveles de atención se mantiene completamente intacto.
+### 3.1 Mortalidad: Regla de 1 Error Estándar y Análisis de Sensibilidad
+* **Criterio de Regularización Congelado:** Se congela el método de optimización por **validación cruzada temporal anidada aplicando la regla del un error estándar (1-SE rule)**, en lugar de un hiperparámetro $C$ fijo, garantizando invariancia ante variaciones muestrales.
+* **Estabilidad del Ranking entre Especificaciones de Comorbilidad:**
+  - **28 crónicas completas vs 13 crónicas estables (100% bootstrap):**
+    $$\rho_{\text{Spearman}} = \mathbf{0,9976}$$
+    El ordenamiento hospitalario es prácticamente idéntico. Retener las 28 crónicas protege la cobertura clínica sin distorsionar el ranking.
+  - **28 crónicas vs 31 categorías (incluyendo complicaciones agudas `ELIX_02, 22, 25`):**
+    $$\rho_{\text{Spearman}} = \mathbf{0,9777}$$
+    Aparecen reordenamientos tangibles, demostrando que incluir arritmias, coagulopatía o desequilibrio hidroelectrolítico premia o castiga diferencialmente a ciertos hospitales según su codificación de complicaciones agudas.
 
 ---
 
-### 2.3 Modelo de Estadía (Gamma $p = 2,0$): Regularización, Estabilidad y Escalas
-
-* **Truncamiento $p99$ Auditado:**
-  En la cohorte definitiva de adultos inpatient sobrevivientes, el percentil 99 de estancia real es de **$54,0$ días en la partición de desarrollo (2020–2022)** y de **$51,0$ días en 2023** (el valor previo de 60 días correspondía a la cohorte preliminar no filtrada).
-* **Escala de los Coeficientes (Enlace Logarítmico):**
-  La variable `EDAD_ANIOS` ingresa estandarizada ($z$-score, media $58,2$, desviación estándar $18,6$ años). Por consiguiente, el coeficiente $\beta = +0,0854$ equivale a un incremento multiplicativo de $\exp(0,0854) = 1,089$ ($+8,9\%$ de estancia) por cada desviación estándar de edad, lo que representa aproximadamente un $+0,47\%$ de mayor estancia por cada año cumplido. Las variables binarias ingresan sin escalar (efecto directo en log-días).
-* **Barrido de Regularización L2 ($\alpha$) y Estabilidad en Estadía:**
-  - $\alpha = 0,0001$: Deviance Explained $D^2 = 12,74\%$
-  - $\alpha = 0,0010$: $D^2 = 12,72\%$
-  - $\alpha = 0,0100$: $D^2 = 12,65\%$ (óptimo para estabilidad de coeficientes)
-  - $\alpha = 0,1000$: $D^2 = 11,80\%$
-* **Variables Retenidas al 100% en Estadía:**
-  `INGRESO_URGENCIA` ($\beta = +0,377$), `CIE10_CAP_K` ($\beta = -0,145$), `CIE10_CAP_N` ($\beta = -0,090$), `INGRESO_CRITICO` ($\beta = +0,087$), `EDAD_ANIOS` ($\beta = +0,085$), `SEXO_MASCULINO` ($\beta = -0,068$), `ELIX_24` Desnutrición ($\beta = +0,065$), `CIE10_CAP_C` Cáncer ($\beta = +0,063$), `DERIVADO_OTRO_HOSPITAL` ($\beta = +0,052$), `ELIX_14` Renal crónica ($\beta = +0,048$).
+### 3.2 Estadía: Devianza con $p99 = 54$ días, Estandarización y Target Encoding LOHO
+* **Devianza Explicada Recalculada:**
+  Con el truncamiento estricto a $p99 = 54$ días en adultos sobrevivientes, el modelo Gamma ($p=2,0$) obtiene:
+  $$D^2 = \mathbf{10,00\%}$$
+  (el $12,7\%$ previo correspondía al límite de 60 días con casos extremos no filtrados).
+* **Estandarización Consistente:** Tanto las variables continuas como las variables binarias y dummies ingresan estandarizadas con `StandardScaler`, asegurando que la penalización ElasticNet/L1 afecte a todos los coeficientes en proporción idéntica a su varianza.
+* **Target Encoding con Leave-One-Hospital-Out (LOHO):**
+  Para la codificación de los diagnósticos principales (`CIE10_3C`), se descarta el target encoding estándar por riesgo de fuga del efecto hospital en centros monográficos (como el Instituto Traumatológico). Se implementa **LOHO con contracción bayesiana empírica** (*empirical Bayes shrinkage*): el target encoding de un episodio en el hospital $j$ se calcula excluyendo a todos los pacientes del hospital $j$, forzando a que la codificación refleje la duración nacional esperada del diagnóstico y no la eficiencia particular del hospital evaluado.
 
 ---
 
-### 2.4 Recálculo del IEMC sobre la Misma Cohorte y Análisis de Discordancia
+## 4. Resolución de Casos Pendientes
 
-Se recalculó tanto la norma GRD nacional como el modelo Gamma ML sobre la **misma cohorte estricta** (adultos $\ge 18$, sin obstetricia, sobrevivientes, estancia positiva $>0$, truncada a $p99 = 54$ días):
-* **Correlación Nacional en los 65 Hospitales de Agudos de Adultos (2023):**
-  $$r_{\text{Pearson}} = \mathbf{0,8395} \qquad \rho_{\text{Spearman}} = \mathbf{0,8330}$$
-  Superando ampliamente el umbral contractual de validación ($r \ge 0,50$).
-
----
-
-### 2.5 Recálculo de la Sensibilidad de Día 0 en la Cohorte Adulta
-
-Se recalculó de manera simétrica la exclusión del día 0 (eliminando los episodios de estancia 0 tanto del numerador $O$ como del denominador ajustado $E$) sobre la cohorte adulta evaluable de 2023:
-* **Correlación del Ranking Hospitalario $O/E$:**
-  $$r_{\text{Pearson}} = \mathbf{0,9619} \qquad \rho_{\text{Spearman}} = \mathbf{0,9447}$$
-  El valor de $\rho = 0,9447$ confirma la alta estabilidad del ranking de desempeño hospitalario, sustituyendo al $0,9975$ previo que correspondía a una corrida preliminar no simétrica.
+### 4.1 Censura por Traslado, Ponderación IPW y Análisis de Punto de Inflexión (*Tipping Point*)
+* **Riesgo en Emisores de Alta Censura (ej. Lota y Tomé):**
+  Hospitales como Lota (`118106`, censura del $14,2\%$) y Tomé (`119101`, censura del $11,1\%$) derivan selectivamente a sus pacientes críticos a los hospitales regionales de Concepción y Talcahuano. Su $O/E$ crudo calculado solo en pacientes no derivados introduce un sesgo de levedad artificial.
+* **Metodología de Ajuste Congelada:**
+  1. **Ponderación por Probabilidad Inversa de Tratamiento/Censura (IPW):** Cada paciente no censurado recibe un ponderador $w_i = 1 / P(\text{No Censurado} \mid X_i)$, asignando mayor peso analítico a los casos con alto riesgo de derivación que permanecieron en el centro.
+  2. **Análisis de Tipping Point:** Se calcula la tasa mínima de mortalidad intrahospitalaria en los pacientes derivados ($M_{\text{derivados}}$) requerida para que el hospital cruce el límite superior de alerta ($\text{HSMR} > 110$). Para Lota, una mortalidad $> 8,5\%$ en sus derivados (perfectamente plausible en shock séptico o infarto) bastaría para trasladarlo de *Promedio* a *Alerta*.
 
 ---
 
-# 3. Auditoría de Establecimientos, Nombres Oficiales y Fusión de Campus
+### 4.2 Nuevos Prestadores Incorporados (2023–2024)
+Siete establecimientos no estuvieron presentes durante la ventana de desarrollo 2020–2022:
+- **2023:** `110110` (Instituto Traumatológico), `119101` (Hospital de Tomé), `118106` (Hospital de Lota).
+- **2024:** `200717` (Biprovincial Quillota), `116111` (Hospital de Cauquenes), `116107` (Hospital de Constitución), `119102` (Hospital Penco-Lirquén).
 
-### 3.1 Nombres Oficiales de Hospitales Pediátricos (Catálogo DEIS)
-
-Verificados directamente contra el catálogo oficial de establecimientos del DEIS ([Hospitales.csv](file:///home/felipe/Documentos/Proyecto%20final/Seminario/Hospitales.csv)):
-* **`109101`:** **Hospital Clínico de Niños Dr. Roberto del Río** (Servicio de Salud Metropolitano Norte, Independencia, Santiago).
-* **`112102`:** **Hospital de Niños Dr. Luis Calvo Mackenna** (Servicio de Salud Metropolitano Oriente, Providencia, Santiago).
-* **`113130`:** **Hospital Dr. Exequiel González Cortés** (Servicio de Salud Metropolitano Sur, San Miguel, Santiago).
+**Protocolo de Sensibilidad:** En los informes oficiales se señalan con la marca `[NUEVO_INGRESO]`. El análisis de sensibilidad principal se genera con los 62 hospitales de agudos de adultos presentes de manera ininterrumpida durante los 6 años del panel ($2019–2024$), garantizando comparabilidad longitudinal.
 
 ---
 
-### 3.2 Dinámica de la Red Hospitalaria y Unidad de Análisis
-
-La composición del panel hospitalario evoluciona por incorporación progresiva de centros al sistema GRD centralizado:
-* **2019–2022:** 65 hospitales reportantes en total (**62 hospitales de agudos de adultos**, al excluir los 3 pediátricos monográficos).
-* **2023:** 68 hospitales reportantes (**65 hospitales de agudos de adultos**). Se incorporan 3 establecimientos:
-  - `110110`: Instituto Traumatológico Dr. Teodoro Gebauer (Santiago)
-  - `119101`: Hospital de Tomé (Talcahuano)
-  - `118106`: Hospital de Lota (Concepción)
-* **2024:** 72 hospitales reportantes (**68 hospitales de agudos de adultos** tras consolidar Quillota). Se incorporan 4 establecimientos:
-  - `200717`: Hospital Biprovincial Quillota Petorca
-  - `116111`: Hospital San Juan de Dios de Cauquenes
-  - `116107`: Hospital de Constitución
-  - `119102`: Hospital Penco - Lirquén
+### 4.3 Quillota: Auditoría de Enlace Físico de Pacientes (107101 y 200717)
+Durante 2024, el Hospital San Martín (`107101`) registró 952 derivaciones hacia otros centros del Servicio de Salud Viña del Mar - Quillota. Al cruzar los identificadores encriptados (`CIP_ENCRIPTADO`) con los ingresos al Hospital Biprovincial (`200717`) dentro de 48 horas:
+* **Traslados directos enlazados en 48 horas:** **0 episodios**.
+* **Causa técnica:** El cierre de camas de San Martín y la apertura de Biprovincial se procesó administrativamente como altas por traslado en bloque o altas a domicilio con reingreso electivo, sin continuidad directa del CIP en el registro de derivaciones hospitalarias.
+* **Resolución:** No existen micro-episodios concatenables a nivel de registro. La entidad "Quillota" se evalúa como una **unidad institucional consolidada** para el año 2024 ($N = 24.599$ episodios, censura combinada $5,50\%$).
 
 ---
 
-### 3.3 Auditoría de Pares de Campus: Corrección de Asignación Territorial
-
-La revisión contra el catálogo oficial del DEIS reveló que varios pares propuestos previamente correspondían a **establecimientos distintos en comunas diferentes pertenecientes al mismo Servicio de Salud**, y no a un mismo campus físico:
-1. **`116105` y `116111`:** `116105` es el Hospital Regional de Talca y `116111` es el Hospital de Cauquenes (separados por más de 100 km). No corresponden a Temuco ni a Padre Las Casas.
-2. **`118100` y `118106`:** `118100` es el Hospital Guillermo Grant Benavente de Concepción y `118106` es el Hospital de Lota (distantes 40 km).
-3. **`119100` y `119101`:** `119100` es el Hospital Las Higueras de Talcahuano y `119101` es el Hospital de Tomé.
-4. **`110100` y `110110`:** `110100` es el Hospital San Juan de Dios y `110110` es el Instituto Traumatológico.
-5. **`111100`:** Hospital Clínico San Borja Arriarán (pertenece al SS Metropolitano Central; no tiene relación institucional ni de campus con `110110`).
-
-**Decisión Metodológica Fundamental:** Todos ellos son **establecimientos hospitalarios independientes con derivaciones interhospitalarias reales**. Tratar sus transferencias como movimientos internos habría vulnerado gravemente la regla de censura de emisores. Por tanto, se mantienen estrictamente como unidades independientes.
-
-* **El único caso genuino de reemplazo y transición de campus:**
-  - **Hospital San Martín de Quillota (`107101`) $\longrightarrow$ Hospital Biprovincial Quillota Petorca (`200717`):**
-    En 2024 operaron en paralelo durante el traslado de pacientes al nuevo edificio.
-    - Censura por traslado `107101`: **$6,68\%$** ($N = 14.245$)
-    - Censura por traslado `200717`: **$3,88\%$** ($N = 10.354$)
-    - Censura combinada de la entidad Quillota en 2024: **$5,50\%$** ($N = 24.599$).
-* **Linares (`116108`):** El Hospital Presidente Carlos Ibáñez del Campo de Linares opera ininterrumpidamente bajo el código `116108`. El código `119102` corresponde en realidad al Hospital Penco-Lirquén (Talcahuano), el cual ingresó al registro GRD en 2024 como nuevo prestador sin constituir ningún quiebre de serie para Linares.
-
----
-
-# 4. Estado de Citas y Normativa
-
-1. **Adams et al. (2010):**
-   - Cita oficial: Adams JL, Mehrotra A, Thomas JW, McGlynn EA. *"Physician Cost Profiling — Reliability and Risk of Misclassification"*. **N Engl J Med** 2010; 362:1014–1021.
-   - Enmarcación: Los umbrales de confiabilidad ($0,70$, $0,80$, $0,90$) se definen como una **convención psicométrica por analogía** basada en Nunnally & Bernstein (*Psychometric Theory*, 3.ª ed., 1994).
-2. **Normativa de Codificación COVID-19:**
-   - Consignada como: *"Codificación operativa de emergencia adoptada centralizadamente por el DEIS en la base de datos nacional, clasificada como pendiente de validación mediante acto administrativo ministerial público"*.
-3. **Versión del Agrupador GRD:**
-   - Consignada textualmente como: *"Versión no documentada formalmente por el DEIS (la base de datos utiliza la cabecera `IR_29301`, sin ficha técnica pública oficial de especificación de release)"*.
+### 4.4 Auditoría Sintáctica de Diagnósticos CIE-10 (Capa Bronze vs Silver)
+Sobre los $1.039.587$ registros de diagnóstico principal en 2023:
+* **Espacios en blanco iniciales o finales:** **0** ($0,000\%$).
+* **Minúsculas:** **0** ($0,000\%$).
+* **Caracteres especiales o tildes:** **0** ($0,000\%$).
+* **Puntos de separación decimal (ej. `J18.9` vs `J189`):** **977.433 registros con punto ($94,021\%$)** y **62.154 sin punto ($5,979\%$)**.
+* **Acción en Silver:** Queda plenamente validada la función de normalización sintáctica `REPLACE('.', '')` y truncamiento a 3 caracteres (`CIE10_3C`) para garantizar el 100% de homogeneidad en las claves diagnósticas.
