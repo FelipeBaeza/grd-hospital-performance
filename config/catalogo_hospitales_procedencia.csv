@@ -1,73 +1,73 @@
-cod_hospital,nombre_oficial,servicio_salud,region,anio_incorporacion,anios_activos,fuente,estado,es_pediatrico
-101100,Hospital Dr. Juan Noé Crevanni (Arica),Servicio de Salud Arica,Arica y Parinacota,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-102100,Hospital Dr. Ernesto Torres Galdames (Iquique),Servicio de Salud Iquique,Tarapacá,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-103100,Hospital Dr. Leonardo Guzmán (Antofagasta),Servicio de Salud Antofagasta,Antofagasta,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-103101,Hospital Dr. Carlos Cisternas (Calama),Servicio de Salud Antofagasta,Antofagasta,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-104100,Hospital San José del Carmen (Copiapó),Servicio de Salud Atacama,Atacama,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-104103,Hospital Provincial del Huasco Monseñor Fernando Ariztía Ruiz (Vallenar),Servicio de Salud Atacama,Atacama,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-105100,Hospital San Juan de Dios (La Serena),Servicio de Salud Coquimbo,Coquimbo,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-105101,Hospital San Pablo (Coquimbo),Servicio de Salud Coquimbo,Coquimbo,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-105102,Hospital Dr. Antonio Tirado Lanas (Ovalle),Servicio de Salud Coquimbo,Coquimbo,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-106100,Hospital Carlos Van Buren (Valparaíso),Servicio de Salud Valparaíso San Antonio,Valparaíso,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-106102,Hospital Dr. Eduardo Pereira Ramírez (Valparaíso),Servicio de Salud Valparaíso San Antonio,Valparaíso,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-106103,Hospital Claudio Vicuña (San Antonio),Servicio de Salud Valparaíso San Antonio,Valparaíso,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-107100,Hospital Dr. Gustavo Fricke (Viña del Mar),Servicio de Salud Viña del Mar Quillota,Valparaíso,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-107101,Hospital San Martín (Quillota),Servicio de Salud Viña del Mar Quillota,Valparaíso,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-107102,Hospital de Quilpué,Servicio de Salud Viña del Mar Quillota,Valparaíso,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-108100,Hospital de San Camilo (San Felipe),Servicio de Salud Aconcagua,Valparaíso,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-108101,Hospital San Juan de Dios (Los Andes),Servicio de Salud Aconcagua,Valparaíso,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-109100,"Complejo Hospitalario San José (Santiago, Independencia)",Servicio de Salud Metropolitano Norte,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-109101,"Hospital Clínico de Niños Dr. Roberto del Río (Santiago, Independencia)",Servicio de Salud Metropolitano Norte,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,SI
-110100,"Hospital San Juan de Dios (Santiago, Santiago)",Servicio de Salud Metropolitano Occidente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-110110,Instituto Traumatológico Dr. Teodoro Gebauer,Servicio de Salud Metropolitano Occidente,Metropolitana,2023,2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-110120,"Hospital Dr. Félix Bulnes Cerda (Santiago, Quinta Normal)",Servicio de Salud Metropolitano Occidente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-110130,Hospital Adalberto Steeger (Talagante),Servicio de Salud Metropolitano Occidente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-110150,Hospital San José (Melipilla),Servicio de Salud Metropolitano Occidente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-111100,"Hospital Clínico San Borja-Arriarán (Santiago, Santiago)",Servicio de Salud Metropolitano Central,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-111101,Hospital Clínico Metropolitano El Carmen Doctor Luis Valentín Ferrada,Servicio de Salud Metropolitano Central,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-111195,Hospital de Urgencia Asistencia Pública Dr. Alejandro del Río,Servicio de Salud Metropolitano Central,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-112100,"Hospital Del Salvador (Santiago, Providencia)",Servicio de Salud Metropolitano Oriente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-112101,"Hospital Dr. Luis Tisné B. (Santiago, Peñalolén)",Servicio de Salud Metropolitano Oriente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-112102,"Hospital de Niños Dr. Luis Calvo Mackenna (Santiago, Providencia)",Servicio de Salud Metropolitano Oriente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,SI
-112103,Instituto Nacional de Enfermedades Respiratorias y Cirugía Torácica,Servicio de Salud Metropolitano Oriente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-112104,Instituto de Neurocirugía Dr. Alfonso Asenjo,Servicio de Salud Metropolitano Oriente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-113100,"Hospital Barros Luco Trudeau (Santiago, San Miguel)",Servicio de Salud Metropolitano Sur,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-113130,"Hospital Dr. Exequiel González Cortés (Santiago, San Miguel)",Servicio de Salud Metropolitano Sur,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,SI
-113150,Hospital San Luis (Buin),Servicio de Salud Metropolitano Sur,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-113180,"Hospital El Pino (Santiago, San Bernardo)",Servicio de Salud Metropolitano Sur,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-114101,"Complejo Hospitalario Dr. Sótero del Río (Santiago, Puente Alto)",Servicio de Salud Metropolitano Sur Oriente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-114103,Hospital Padre Alberto Hurtado (San Ramón),Servicio de Salud Metropolitano Sur Oriente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-114105,Hospital Clínico Metropolitano La Florida Dra. Eloisa Díaz Inzunza,Servicio de Salud Metropolitano Sur Oriente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-115100,Hospital Regional de Rancagua,Servicio de Salud del Libertador B. O'Higgins,O'Higgins,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-115107,Hospital San Juan de Dios (San Fernando),Servicio de Salud del Libertador B. O'Higgins,O'Higgins,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-115110,Hospital de Santa Cruz,Servicio de Salud del Libertador B. O'Higgins,O'Higgins,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-116100,Hospital San Juan de Dios (Curicó),Servicio de Salud del Maule,Maule,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-116105,Hospital Dr. César Garavagno Burotto (Talca),Servicio de Salud del Maule,Maule,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-116107,Hospital de Constitución,Servicio de Salud del Maule,Maule,2024,2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-116108,Hospital Presidente Carlos Ibáñez del Campo (Linares),Servicio de Salud del Maule,Maule,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-116110,Hospital San José (Parral),Servicio de Salud del Maule,Maule,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-116111,Hospital San Juan de Dios (Cauquenes),Servicio de Salud del Maule,Maule,2024,2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-117101,Hospital Clínico Herminda Martín (Chillán),Servicio de Salud Ñuble,Ñuble,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-117102,Hospital de San Carlos,Servicio de Salud Ñuble,Ñuble,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-118100,Hospital Clínico Regional Dr. Guillermo Grant Benavente (Concepción),Servicio de Salud Concepción,Biobío,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-118105,Hospital San José (Coronel),Servicio de Salud Concepción,Biobío,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-118106,Hospital de Lota,Servicio de Salud Concepción,Biobío,2023,2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-119100,Hospital Las Higueras (Talcahuano),Servicio de Salud Talcahuano,Biobío,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-119101,Hospital de Tomé,Servicio de Salud Talcahuano,Biobío,2023,2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-119102,Hospital Penco - Lirquén,Servicio de Salud Talcahuano,Biobío,2024,2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-120101,Complejo Asistencial Dr. Víctor Ríos Ruiz (Los Ángeles),Servicio de Salud Biobío,Biobío,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-121109,Hospital Dr. Hernán Henríquez Aravena (Temuco),Servicio de Salud Araucanía Sur,La Araucanía,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-121110,Hospital Dr. Abraham Godoy (Lautaro),Servicio de Salud Araucanía Sur,La Araucanía,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-121114,Hospital Intercultural de Nueva Imperial,Servicio de Salud Araucanía Sur,La Araucanía,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-121117,Hospital de Pitrufquén,Servicio de Salud Araucanía Sur,La Araucanía,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-121121,Hospital de Villarrica,Servicio de Salud Araucanía Sur,La Araucanía,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-122100,Hospital Clínico Regional (Valdivia),Servicio de Salud Valdivia,Los Ríos,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-123100,Hospital Base San José de Osorno,Servicio de Salud Osorno,Los Lagos,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-124105,Hospital de Puerto Montt,Servicio de Salud Del Reloncaví,Los Lagos,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-125100,Hospital Regional (Coihaique),Servicio de Salud Aysén,Aysén,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-126100,Hospital Clínico de Magallanes Dr. Lautaro Navarro Avaria,Servicio de Salud Magallanes,Magallanes,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-128109,Hospital Provincial Dr. Rafael Avaría (Curanilahue),Servicio de Salud Arauco,Biobío,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-129100,Hospital Dr. Mauricio Heyermann (Angol),Servicio de Salud Araucanía Norte,La Araucanía,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-129106,Hospital San José (Victoria),Servicio de Salud Araucanía Norte,La Araucanía,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-133150,Hospital de Castro,Servicio de Salud Chiloé,Los Lagos,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO
-200717,Hospital Complejo Asistencial Padre Las Casas,Servicio de Salud Araucanía Sur,La Araucanía,2024,2024,DEIS_MINSAL_REGISTRO_OFICIAL_2024,inferido_y_verificado_externamente,NO
+cod_hospital,nombre_oficial,servicio_salud,region,anio_incorporacion,anios_activos,fuente,estado,es_pediatrico,es_monografico
+101100,Hospital Dr. Juan Noé Crevanni (Arica),Servicio de Salud Arica,Arica y Parinacota,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+102100,Hospital Dr. Ernesto Torres Galdames (Iquique),Servicio de Salud Iquique,Tarapacá,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+103100,Hospital Dr. Leonardo Guzmán (Antofagasta),Servicio de Salud Antofagasta,Antofagasta,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+103101,Hospital Dr. Carlos Cisternas (Calama),Servicio de Salud Antofagasta,Antofagasta,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+104100,Hospital San José del Carmen (Copiapó),Servicio de Salud Atacama,Atacama,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+104103,Hospital Provincial del Huasco Monseñor Fernando Ariztía Ruiz (Vallenar),Servicio de Salud Atacama,Atacama,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+105100,Hospital San Juan de Dios (La Serena),Servicio de Salud Coquimbo,Coquimbo,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+105101,Hospital San Pablo (Coquimbo),Servicio de Salud Coquimbo,Coquimbo,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+105102,Hospital Dr. Antonio Tirado Lanas (Ovalle),Servicio de Salud Coquimbo,Coquimbo,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+106100,Hospital Carlos Van Buren (Valparaíso),Servicio de Salud Valparaíso San Antonio,Valparaíso,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+106102,Hospital Dr. Eduardo Pereira Ramírez (Valparaíso),Servicio de Salud Valparaíso San Antonio,Valparaíso,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,SI
+106103,Hospital Claudio Vicuña (San Antonio),Servicio de Salud Valparaíso San Antonio,Valparaíso,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+107100,Hospital Dr. Gustavo Fricke (Viña del Mar),Servicio de Salud Viña del Mar Quillota,Valparaíso,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+107101,Hospital San Martín (Quillota),Servicio de Salud Viña del Mar Quillota,Valparaíso,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+107102,Hospital de Quilpué,Servicio de Salud Viña del Mar Quillota,Valparaíso,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+108100,Hospital de San Camilo (San Felipe),Servicio de Salud Aconcagua,Valparaíso,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+108101,Hospital San Juan de Dios (Los Andes),Servicio de Salud Aconcagua,Valparaíso,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+109100,"Complejo Hospitalario San José (Santiago, Independencia)",Servicio de Salud Metropolitano Norte,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+109101,"Hospital Clínico de Niños Dr. Roberto del Río (Santiago, Independencia)",Servicio de Salud Metropolitano Norte,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,SI,NO
+110100,"Hospital San Juan de Dios (Santiago, Santiago)",Servicio de Salud Metropolitano Occidente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+110110,Instituto Traumatológico Dr. Teodoro Gebauer,Servicio de Salud Metropolitano Occidente,Metropolitana,2023,2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,SI
+110120,"Hospital Dr. Félix Bulnes Cerda (Santiago, Quinta Normal)",Servicio de Salud Metropolitano Occidente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+110130,Hospital Adalberto Steeger (Talagante),Servicio de Salud Metropolitano Occidente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+110150,Hospital San José (Melipilla),Servicio de Salud Metropolitano Occidente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+111100,"Hospital Clínico San Borja-Arriarán (Santiago, Santiago)",Servicio de Salud Metropolitano Central,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+111101,Hospital Clínico Metropolitano El Carmen Doctor Luis Valentín Ferrada,Servicio de Salud Metropolitano Central,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+111195,Hospital de Urgencia Asistencia Pública Dr. Alejandro del Río,Servicio de Salud Metropolitano Central,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+112100,"Hospital Del Salvador (Santiago, Providencia)",Servicio de Salud Metropolitano Oriente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+112101,"Hospital Dr. Luis Tisné B. (Santiago, Peñalolén)",Servicio de Salud Metropolitano Oriente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+112102,"Hospital de Niños Dr. Luis Calvo Mackenna (Santiago, Providencia)",Servicio de Salud Metropolitano Oriente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,SI,NO
+112103,Instituto Nacional de Enfermedades Respiratorias y Cirugía Torácica,Servicio de Salud Metropolitano Oriente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,SI
+112104,Instituto de Neurocirugía Dr. Alfonso Asenjo,Servicio de Salud Metropolitano Oriente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+113100,"Hospital Barros Luco Trudeau (Santiago, San Miguel)",Servicio de Salud Metropolitano Sur,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+113130,"Hospital Dr. Exequiel González Cortés (Santiago, San Miguel)",Servicio de Salud Metropolitano Sur,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,SI,NO
+113150,Hospital San Luis (Buin),Servicio de Salud Metropolitano Sur,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+113180,"Hospital El Pino (Santiago, San Bernardo)",Servicio de Salud Metropolitano Sur,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+114101,"Complejo Hospitalario Dr. Sótero del Río (Santiago, Puente Alto)",Servicio de Salud Metropolitano Sur Oriente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+114103,Hospital Padre Alberto Hurtado (San Ramón),Servicio de Salud Metropolitano Sur Oriente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+114105,Hospital Clínico Metropolitano La Florida Dra. Eloisa Díaz Inzunza,Servicio de Salud Metropolitano Sur Oriente,Metropolitana,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+115100,Hospital Regional de Rancagua,Servicio de Salud del Libertador B. O'Higgins,O'Higgins,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+115107,Hospital San Juan de Dios (San Fernando),Servicio de Salud del Libertador B. O'Higgins,O'Higgins,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+115110,Hospital de Santa Cruz,Servicio de Salud del Libertador B. O'Higgins,O'Higgins,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+116100,Hospital San Juan de Dios (Curicó),Servicio de Salud del Maule,Maule,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+116105,Hospital Dr. César Garavagno Burotto (Talca),Servicio de Salud del Maule,Maule,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+116107,Hospital de Constitución,Servicio de Salud del Maule,Maule,2024,2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+116108,Hospital Presidente Carlos Ibáñez del Campo (Linares),Servicio de Salud del Maule,Maule,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+116110,Hospital San José (Parral),Servicio de Salud del Maule,Maule,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+116111,Hospital San Juan de Dios (Cauquenes),Servicio de Salud del Maule,Maule,2024,2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+117101,Hospital Clínico Herminda Martín (Chillán),Servicio de Salud Ñuble,Ñuble,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+117102,Hospital de San Carlos,Servicio de Salud Ñuble,Ñuble,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+118100,Hospital Clínico Regional Dr. Guillermo Grant Benavente (Concepción),Servicio de Salud Concepción,Biobío,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+118105,Hospital San José (Coronel),Servicio de Salud Concepción,Biobío,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+118106,Hospital de Lota,Servicio de Salud Concepción,Biobío,2023,2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+119100,Hospital Las Higueras (Talcahuano),Servicio de Salud Talcahuano,Biobío,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+119101,Hospital de Tomé,Servicio de Salud Talcahuano,Biobío,2023,2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+119102,Hospital Penco - Lirquén,Servicio de Salud Talcahuano,Biobío,2024,2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+120101,Complejo Asistencial Dr. Víctor Ríos Ruiz (Los Ángeles),Servicio de Salud Biobío,Biobío,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+121109,Hospital Dr. Hernán Henríquez Aravena (Temuco),Servicio de Salud Araucanía Sur,La Araucanía,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+121110,Hospital Dr. Abraham Godoy (Lautaro),Servicio de Salud Araucanía Sur,La Araucanía,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+121114,Hospital Intercultural de Nueva Imperial,Servicio de Salud Araucanía Sur,La Araucanía,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+121117,Hospital de Pitrufquén,Servicio de Salud Araucanía Sur,La Araucanía,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+121121,Hospital de Villarrica,Servicio de Salud Araucanía Sur,La Araucanía,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+122100,Hospital Clínico Regional (Valdivia),Servicio de Salud Valdivia,Los Ríos,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+123100,Hospital Base San José de Osorno,Servicio de Salud Osorno,Los Lagos,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+124105,Hospital de Puerto Montt,Servicio de Salud Del Reloncaví,Los Lagos,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+125100,Hospital Regional (Coihaique),Servicio de Salud Aysén,Aysén,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+126100,Hospital Clínico de Magallanes Dr. Lautaro Navarro Avaria,Servicio de Salud Magallanes,Magallanes,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+128109,Hospital Provincial Dr. Rafael Avaría (Curanilahue),Servicio de Salud Arauco,Biobío,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+129100,Hospital Dr. Mauricio Heyermann (Angol),Servicio de Salud Araucanía Norte,La Araucanía,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+129106,Hospital San José (Victoria),Servicio de Salud Araucanía Norte,La Araucanía,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+133150,Hospital de Castro,Servicio de Salud Chiloé,Los Lagos,2019,2019;2020;2021;2022;2023;2024,DEIS_CATALOGO_OFICIAL_ESTABLECIMIENTOS_2023,catalogado,NO,NO
+200717,Hospital Complejo Asistencial Padre Las Casas,Servicio de Salud Araucanía Sur,La Araucanía,2024,2024,SUPERINTENDENCIA_SALUD_REG_1033_Y_DERIVACIONES_2024,inferido,NO,NO
