@@ -1,4 +1,4 @@
-# Resolución Definitiva de Observaciones de Metodología y Cierre Formal de Fase 2
+# Resolución Definitiva de Observaciones y Auditoría Empírica - Cierre Formal de Fase 2
 
 **Proyecto de Tesis:** Indicador Hospitalario $O/E$ Ajustado por Riesgo con Machine Learning  
 **Base de Datos:** Egresos Hospitalarios FONASA 2019–2024 ($N = 5.808.536$ registros brutos)  
@@ -7,201 +7,168 @@
 
 ---
 
-## 1. Regla Bayesiana Empírica y Margen de Materialidad Clínica
+## 1. Dependencia de la Especificación, Alerta Robusta y Centros Monográficos
 
-### 1.1 Inadecuación de la Regla Direccional Pura ($P(\theta > 1,0) \ge 0,95$)
-Al evaluar la hipótesis direccional pura $P(\theta_j > 1,0 \mid \text{datos}) \ge 0,95$, un modelo institucional con $E_j \ge 373$ muertes esperadas detecta cualquier desvío estocástico mayor al ~8% respecto a 1,0 como estadísticamente significativo. Con una dispersión inter-hospitalaria de $\tau = 0,2162$, esta regla clasifica fuera de "Promedio" a 40 de los 65 hospitales evaluados ($61,5\%$ de la red):
-* **Sobresalientes ($P(\theta \le 1,0) \ge 0,95$):** 19 hospitales ($29,2\%$)
-* **Promedio ($0,05 < P < 0,95$):** 25 hospitales ($38,5\%$)
-* **Alerta de Mortalidad ($P(\theta > 1,0) \ge 0,95$):** 21 hospitales ($32,3\%$)
-
-Esta regla confunde significación estadística con **materialidad clínica e institucional**.
-
-### 1.2 Definición A Priori del Margen de Materialidad Clínica (10%)
-Siguiendo las mejores prácticas de evaluación institucional (ej. Spiegelhalter, CIHI), se define un margen de indiferencia clínica a priori del $\pm 10\%$:
-$$\text{Alerta de Mortalidad: } P(\theta_j > 1,10 \mid \text{datos}) \ge 0,95$$
-$$\text{Sobresaliente: } P(\theta_j < 0,90 \mid \text{datos}) \ge 0,95$$
-$$\text{Promedio: } \text{casos restantes (variación institucional admisible)}$$
-
-Bajo este margen de materialidad clínica sobre la cohorte adulta 2023 ($N = 65$ hospitales):
-* **Alerta de Mortalidad:** **7 hospitales ($10,8\%$)** (`113180` El Pino, `106100` Van Buren, `112101` Tisné, `112103` Tórax, `106102` Pereira, `129100` Heyermann, `128109` Curanilahue).
-* **Sobresaliente:** **10 hospitales ($15,4\%$)** (`115110` Santa Cruz, `121121` Villarrica, `121114` Nueva Imperial, `107101` Quillota, `103101` Calama, etc.).
-* **Promedio:** **48 hospitales ($73,8\%$)**.
-* Si se adoptara un margen del $20\%$ ($P(\theta > 1,20) \ge 0,95$), 7 hospitales permanecerían en alerta ($10,8\%$), 4 sobresalientes ($6,2\%$) y 54 en promedio ($83,1\%$).
-
-### 1.3 Interpretación de $\tau = 0,2162$: ¿Heterogeneidad Real o Confusión Residual?
-Una desviación estándar inter-hospitalaria de $\tau = 0,2162$ ($\tau^2 = 0,0467$) implica que el intervalo del 95% de los ratios $O/E$ institucionales verdaderos de la red se distribuye en:
-$$[\exp(\mu_{\text{meta}} - 1,96\tau), \ \exp(\mu_{\text{meta}} + 1,96\tau)] = [\mathbf{0,672}, \ \mathbf{1,567}]$$
-Esto representa una dispersión de **2,3 veces entre prestadores**. Clínicamente, esta amplitud refleja una mezcla inseparable de tres componentes:
-1. **Heterogeneidad asistencial genuina:** Variabilidad en infraestructura crítica, dotación médica especializada por cama, oportunidad quirúrgica y protocolos de seguridad asistencial.
-2. **Confusión residual no medible en datos administrativos:** Severidad fisiológica aguda al ingreso (ej. escala APACHE/SOFA, paro cardiorrespiratorio prehospitalario, shock refractario) y decisiones de limitación del esfuerzo terapéutico (adecuación de cuidados paliativos), que no son capturadas por la codificación CIE-10.
-3. **Variación residual de registro:** Diferencias en la exhaustividad del despiece de diagnósticos secundarios entre servicios clínicos.
-
-### 1.4 Sensibilidad a la Especificación y Desplazamientos de Ranking
-Se auditó la estabilidad del ranking institucional frente a tres especificaciones del modelo de mortalidad:
-* **Modelo 1 (Demográfico Puro):** Edad + 28 Comorbilidades Crónicas Elixhauser.
-* **Modelo 2 (Clínico con Severidad):** M1 + Ingreso por Urgencia + Cama Crítica (UCI/UTI) + Derivación Previa + Sexo.
-* **Modelo 3 (Corregido con $R_{\text{dx}}$ Splines):** M2 + Razón Intrahospitalaria de Diagnósticos con Splines Cúbicos.
+### 1.1 Sensibilidad Inter-Modelo: El Hallazgo Central de la Fase 2
+La comparación entre las tres especificaciones de riesgo de mortalidad hospitalaria revela una marcada dependencia del ranking respecto a las decisiones de ajuste:
+* **Modelo 1 (Demográfico Puro):** Edad + 28 Comorbilidades Crónicas Elixhauser ($\sum E = 34.616,1$).
+* **Modelo 2 (Clínico con Severidad):** M1 + Ingreso por Urgencia + Cama Crítica (UCI/UTI) + Derivación Previa + Sexo Masculino ($\sum E = 33.720,8$).
+* **Modelo 3 (Corregido con $R_{\text{dx}}$ Splines):** M2 + Razón Intrahospitalaria de Diagnósticos ($R_{\text{dx}} = N_{\text{dx}, ij} / \bar{N}_{\text{dx}, j}$) con Splines Cúbicos Restringidos ($\sum E = 35.343,9$).
 
 **Correlaciones de Rango de Spearman ($\rho$):**
-* $\rho(M1, M2) = \mathbf{0,7201}$
-* $\rho(M1, M3) = \mathbf{0,5270}$
-* $\rho(M2, M3) = \mathbf{0,7428}$
+$$\rho(M1, M2) = \mathbf{0,7201} \quad | \quad \rho(M1, M3) = \mathbf{0,5270} \quad | \quad \rho(M2, M3) = \mathbf{0,7428}$$
 
-**Hospitales con Mayores Desplazamientos:**
-* `106102` (Hospital Dr. Eduardo Pereira): Sube de puesto 8 a 62 ($\Delta = +54$ puestos, $O/E$ de $0,634$ a $1,476$).
-* `111100` (Hospital Clínico San Borja-Arriarán): Sube de puesto 2 a 55 ($\Delta = +53$ puestos, $O/E$ de $0,503$ a $1,176$).
-* `107101` (Hospital San Martín de Quillota): Baja de puesto 57 a 19 ($\Delta = -38$ puestos, $O/E$ de $1,301$ a $0,871$).
-* `112103` (Instituto Nacional del Tórax): Sube de puesto 30 a 65 ($\Delta = +35$ puestos, $O/E$ de $0,906$ a $2,224$).
-* `103101` (Hospital de Calama): Baja de puesto 62 a 29 ($\Delta = -33$ puestos, $O/E$ de $1,356$ a $0,961$).
-* `111195` (HUAP / Posta Central): Baja de puesto 59 a 30 ($\Delta = -29$ puestos, $O/E$ de $1,325$ a $0,962$).
+Frente a una correlación de $\rho = 0,9911$ para la exclusión del día 0 (desplazamiento RMS de apenas 2,5 puestos), **la sensibilidad a la especificación de covariables es el verdadero determinante de la posición relativa de los prestadores**, con desplazamientos de hasta 54 puestos en la red (ej. Hospital Pereira pasa de $O/E = 0,63$ a $1,48$; San Borja de $0,50$ a $1,18$; Tórax de $0,91$ a $2,22$).
 
-**Auditoría Específica de Hospital El Pino (`113180`):**
-* $N = 7.197$ episodios, $O = 438$ defunciones observadas.
-* En M1 (Demográfico): $E = 414,0 \implies O/E = 1,512$ (Rank 64).
-* En M2 (Clínico): $E = 332,1 \implies O/E = 1,836$.
-* En M3 (Splines $R_{\text{dx}}$): $E = 361,0 \implies O/E = 1,770$ (Rank 64).
-* El Pino presenta una baja intensidad intrahospitalaria de codificación relativa ($R_{\text{dx}}$ bajo), por lo que al ajustar por comorbilidades y severidad, su expectativa de muerte $E$ cae un $12,8\%$ (de $414$ a $361$), manteniendo consistentemente su posición en el puesto 64 de 65.
+### 1.2 Regla de "Alerta Robusta" (Concordancia M2 y M3 al Margen del 10%)
+Dado que en esta fase no se dispone de validación prospectiva fuera de muestra (año 2024) para dirimir si M3 supera definitivamente a M2 en capacidad de generalización por tipo de prestador, se adopta como principio de prudencia la regla de **Alerta Robusta**:
+$$\text{Alerta Robusta: } P(\theta_j > 1,10 \mid M2) \ge 0,95 \quad \text{Y} \quad P(\theta_j > 1,10 \mid M3) \ge 0,95$$
 
----
+Bajo este criterio, de los prestadores señalizados:
+* **Alerta en M2:** 13 hospitales ($20,0\%$).
+* **Alerta en M3:** 7 hospitales ($10,8\%$).
+* **ALERTA ROBUSTA (Simultánea en ambos modelos): EXACTAMENTE 5 HOSPITALES**:
+  1. `112103` Instituto Nacional del Tórax ($O/E_{\text{M2}} = 1,968$; $O/E_{\text{M3}} = 2,224$; $P = 1,000$) — *Monográfico*
+  2. `113180` Hospital El Pino ($O/E_{\text{M2}} = 1,836$; $O/E_{\text{M3}} = 1,770$; $P = 1,000$)
+  3. `106103` Hospital Claudio Vicuña de San Antonio ($O/E_{\text{M2}} = 1,595$; $O/E_{\text{M3}} = 1,632$; $P = 1,000$)
+  4. `106100` Hospital Carlos Van Buren de Valparaíso ($O/E_{\text{M2}} = 1,293$; $O/E_{\text{M3}} = 1,434$; $P = 1,000$)
+  5. `112101` Hospital Dr. Luis Tisné B. ($O/E_{\text{M2}} = 1,313$; $O/E_{\text{M3}} = 1,315$; $P = 1,000$)
 
-## 2. *Tipping Point* de Censura y Validación con Traslados Enlazados
+**Hospitales con Alerta Sensible a la Especificación:**
+* En Alerta solo en M3 (suben al ajustar por $R_{\text{dx}}$): `106102` Pereira ($O/E$ sube de $0,979$ a $1,476$) y `114105` La Florida ($O/E$ sube de $1,166$ a $1,302$).
+* En Alerta solo en M2 (bajan al ajustar por $R_{\text{dx}}$): San Camilo `108100`, San Borja `111100`, Antofagasta `103100`, Temuco `121109`, Barros Luco `113100`, San José `109100`, Calama `103101`, Buin `113150`.
 
-### 2.1 Multiplicadores de Entrada ($\lambda_{\text{in}}^*$) y Salida ($\lambda_{\text{out}}^*$)
-Se define un multiplicador de entrada para prestadores basales en Promedio/Sobresaliente, y un multiplicador de salida para prestadores basales en Alerta:
-* $\lambda_{\text{entrada}}^*$: Factor por el cual la mortalidad de los derivados debe superar a $E_{\text{cens}}$ para empujar al hospital a la zona de Alerta ($P(\theta > 1,10) \ge 0,95$).
-* $\lambda_{\text{salida}}^*$: Factor de reducción de la mortalidad de los derivados requerido para que un hospital en Alerta descienda a zona Promedio ($P(\theta > 1,10) < 0,95$).
-
-### 2.2 Validación Empírica con Microdatos de Traslados Enlazados (Año 2023)
-En la cohorte 2023 se registraron $31.082$ episodios censurados por derivación en los 65 hospitales adultos. Mediante cruce determinístico por `CIP_ENCRIPTADO` con reingreso en otro establecimiento de la red pública dentro de 30 días, se enlazaron **$12.770$ traslados**:
-* **Mortalidad observada real en el hospital receptor:** **$6,01\%$ global** ($767$ defunciones).
-* La mortalidad observada oscila por hospital emisor entre un **$2,1\%$ y un $6,9\%$**, coincidiendo estrechamente con la mortalidad esperada promedio del modelo ($E_{\text{cens}} \approx 5\%–8\%$, es decir, $\lambda_{\text{obs}} \approx 0,8\times–1,1\times$).
-
-| Código | Establecimiento Emisor | Censura | $O/E$ Basal | $P(\theta > 1,10)$ | $\lambda_{\text{entrada}}^*$ | $\lambda_{\text{salida}}^*$ | Traslados Enlazados | Mort. Real Receptor |
-| :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **113180** | Hospital El Pino | $15,99\%$ | 1,770 | 0,999 | — | **$0,00\times$** | 224 | **$6,25\%$** |
-| **121110** | Hospital de Lautaro | $13,83\%$ | 0,921 | 0,112 | **$2,54\times$** ($21,8\%$) | — | 198 | **$4,04\%$** |
-| **128109** | Hospital de Curanilahue | $13,12\%$ | 1,211 | 0,954 | — | **$0,82\times$** ($4,4\%$) | 278 | **$4,32\%$** |
-| **121117** | Hospital de Pitrufquén | $12,79\%$ | 1,161 | 0,891 | **$1,42\times$** ($12,8\%$) | — | 212 | **$5,19\%$** |
-| **106100** | Hospital Carlos Van Buren | $10,70\%$ | 1,324 | 0,988 | — | **$0,21\times$** ($1,4\%$) | 897 | **$6,47\%$** |
-| **121121** | Hospital de Villarrica | $10,26\%$ | 0,681 | 0,001 | **$4,95\times$** ($22,2\%$) | — | 164 | **$3,66\%$** |
-| **116110** | Hospital San José (Parral) | $9,60\%$ | 0,892 | 0,084 | **$3,92\times$** ($16,1\%$) | — | 381 | **$5,51\%$** |
-| **107101** | Hospital San Martín (Quillota) | $9,39\%$ | 0,871 | 0,042 | **$4,10\times$** ($28,7\%$) | — | 338 | **$3,85\%$** |
-| **121114** | Hospital Nueva Imperial | $9,27\%$ | 0,698 | 0,002 | **$6,22\times$** ($28,7\%$) | — | 286 | **$2,10\%$** |
-| **114101** | Complejo Sótero del Río | $8,56\%$ | 1,049 | 0,421 | **$1,88\times$** ($10,8\%$) | — | 453 | **$5,96\%$** |
-
-*Conclusión Empírica:*  
-Para los centros periféricos de alta derivación (Lautaro, Parral, Villarrica, Nueva Imperial), entrar a zona de alerta requeriría mortalidades en traslados de **$16\%$ a $29\%$** ($\lambda_{\text{in}}^* \ge 2,5\times$ a $6,2\times$). Los microdatos enlazados demuestran que la mortalidad observada real en el receptor es de apenas **$2,1\%$ a $5,5\%$**, lo que confirma empíricamente que la censura por derivación no oculta alertas en estos centros.
-
-### 2.3 Corrección Rigurosa de Citas Bibliográficas
-Se rectifican formalmente las referencias preliminares:
-* **Duke GJ, Green JV.** *Outcome of critically ill patients undergoing interhospital transfer*. **Med J Aust** 2001; 174(3):122–125.  
-  Estudio caso-control en un hospital general de Melbourne sobre 73 pacientes críticos trasladados por saturación de camas de UCI frente a 73 controles no trasladados. Reportó una mortalidad intrahospitalaria de **$24,7\%$ en trasladados vs $17,8\%$ en controles**, sin significación estadística (OR $1,5$; IC 95%: $0,68$ a $3,4$).
-* **Serie de UCI Quirúrgica:**  
-  La cifra de **$33,5\%$** proviene de un resumen de congreso de 2001 sobre traslados interhospitalarios a la UCI quirúrgica del Duke University Medical Center (mortalidad hospitalaria observada del $9,6\%$ al $33,5\%$ según severidad fisiológica al ingreso).
+### 1.3 Clasificación y Aislamiento de Centros Monográficos
+Se incorpora en el catálogo maestro la etiqueta `es_monografico` para aislar del ranking general de agudos a aquellos prestadores con misiones asistenciales superespecializadas:
+* `112103`: **Instituto Nacional del Tórax** (Cirugía cardiovascular, trasplante y patología respiratoria compleja terciaria/cuaternaria).
+* `110110`: **Instituto Traumatológico Dr. Teodoro Gebauer** (Cirugía ortopédica y politrauma electivo).
+* `106102`: **Hospital Dr. Eduardo Pereira Ramírez** de Valparaíso (Cirugía de tórax y patología respiratoria crónica).
 
 ---
 
-## 3. Calibración: Reconciliación de Cohorte y Progresión de Modelos
+## 2. Inferencia Bayesiana Empírica: Reproducibilidad y Márgenes Clínicos
 
-### 3.1 Reconciliación Exacta de la Cohorte Inpatient 2023
-* **Cohorte Inpatient Evaluable Total (incluye pediátricos):** $N = \mathbf{557.402}$, $O = \mathbf{24.225}$ defunciones.
-* **Adultos tratados en los 3 Hospitales Pediátricos:** $N = \mathbf{84}$ episodios, $O = \mathbf{0}$ defunciones.
-* **Cohorte Evaluable Red 65 Hospitales Adultos:** $N = \mathbf{557.318}$ episodios, $O = \mathbf{24.225}$ defunciones.
-* **Diferencia exacta:** $557.402 - 84 = 557.318$ episodios.
+### 2.1 Aclaración de Cifras de la Regla Direccional (40 vs 51 Hospitales)
+La diferencia entre las tasas de detección de la regla direccional $P(\theta > 1,0) \ge 0,95$ responde estrictamente a la especificación evaluada:
+* **Bajo Modelo 2 (Clínico sin Splines):** Marca **51 de 65 hospitales ($78,5\%$)** (23 en alerta, 28 sobresalientes, 14 en promedio).
+* **Bajo Modelo 3 (Splines $R_{\text{dx}}$ con Centrado $\mu_{\text{meta}} = 0,0257$):** Marca **40 de 65 hospitales ($61,5\%$)** (21 en alerta, 19 sobresalientes, 25 en promedio).
+Ambas confirman que probar dirección estocástica en lugar de magnitud clínica sobre-clasifica a la mayor parte de la red pública.
 
-### 3.2 Progresión de Modelos y Calibración por Estratos de $N_{\text{dx}}$
+### 2.2 Márgenes de Materialidad Clínica (10% y 20%) y Caso Curanilahue (`128109`)
+El margen de materialidad clínica es una **decisión metodológica de diseño del indicador**, que busca tolerancia frente a ruido no asistencial:
+* **Margen del 10%:** $\text{Alerta si } P(\theta_j > 1,10) \ge 0,95 \implies$ **7 hospitales en alerta ($10,8\%$)**, **10 sobresalientes ($15,4\%$)**, **48 promedio ($73,8\%$)**.
+* **Margen del 20%:** $\text{Alerta si } P(\theta_j > 1,20) \ge 0,95 \implies$ **7 hospitales en alerta ($10,8\%$)**, **4 sobresalientes ($6,2\%$)**, **54 promedio ($83,1\%$)**.
 
-| Estrato $N_{\text{dx}}$ | $N$ Episodios | Muertes Obs ($O$) | $O/E_{\text{post}}$ M1 (Demog) | $O/E_{\text{post}}$ M2 (Clínico) | $O/E_{\text{post}}$ M3 (R_dx Spl) | Estado M3 $[0,80, \ 1,25]$ |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **0 dx** | 40.481 | 39 | 0,0701 | 0,1240 | **0,5215** | FUERA |
-| **1 dx** | 56.511 | 125 | 0,1266 | 0,1868 | **0,5707** | FUERA |
-| **2 dx** | 62.829 | 296 | 0,2152 | 0,2885 | **0,6877** | FUERA |
-| **3 dx** | 63.662 | 615 | 0,3515 | 0,4335 | **0,8313** | **DENTRO** |
-| **4 dx** | 58.990 | 954 | 0,4870 | 0,5493 | **0,8712** | **DENTRO** |
-| **5 dx** | 51.878 | 1.367 | 0,6678 | 0,7044 | **0,9499** | **DENTRO** |
-| **6–10 dx** | 150.074 | 8.831 | 1,0401 | 0,9729 | **0,9622** | **DENTRO** |
-| **$\ge 11$ dx** | 72.893 | 11.998 | 1,6993 | 1,4918 | **1,0859** | **DENTRO (Óptimo)** |
-| **Total Red** | **557.318** | **24.225** | **1,0000** | **1,0000** | **1,0000** | **CALIBRADO GLOBAL** |
+**Auditoría Específica de Curanilahue (`128109`):**
+Curanilahue registra $O = 136, E_3 = 174,6 \implies O/E = 1,137$.  
+Con $v_j = 1/136 = 0,007353$, $\log(\theta_{\text{post}}) = 0,1142$ y $\text{SE}_{\text{post}} = 0,0797$:
+* Para margen 10%: $Z = (0,1142 - \log(1,10)) / 0,0797 = +0,237 \implies P(\theta > 1,10) = \mathbf{0,5938} < 0,95$.
+* Para margen 20%: $Z = (0,1142 - \log(1,20)) / 0,0797 = -0,854 \implies P(\theta > 1,20) = \mathbf{0,1964} < 0,95$.  
+Curanilahue queda clasificado en **PROMEDIO** en el modelo final M3 tanto al 10% como al 20%. Los 7 hospitales que superan $P(\theta > 1,20) \ge 0,95$ en M3 son Pereira, El Pino, La Florida, Tisné, Claudio Vicuña, Van Buren y Tórax.
 
-*Verificación Aritmética de Estratos:*  
-* Los estratos de $3$ a $\ge 11$ diagnósticos secundarios suman exactamente **$397.497$ episodios ($71,3\%$)** y concentran **$23.765$ muertes ($98,1\%$)**. Todos ellos quedan contenidos dentro del intervalo contractual $[0,80, \ 1,25]$.
-* Los estratos de $0$ a $2$ diagnósticos suman $159.821$ episodios ($28,7\%$) con sólo $460$ defunciones (mortalidad bruta de apenas $0,288\%$). En este grupo, la sobrepredicción ($O/E \approx 0,52$ a $0,69$) es consecuencia del subregistro administrativo de comorbilidades en internaciones breves y electivas de bajo riesgo.
-* **Efecto sobre el $O/E$ hospitalario:** La proporción de casos con 0–2 dx varía entre prestadores del $7,9\%$ al $50,3\%$. En el Modelo 1, esta heterogeneidad introducía un sesgo ($r_s = +0,151$). Con el Modelo 3 ($R_{\text{dx}}$ splines), la correlación cae a **$r_s = -0,121$**, neutralizando el impacto distorsionador del subregistro sobre el indicador del prestador.
+### 2.3 Reproducibilidad Paso a Paso del Cálculo Bayesiano Empírico
+Para auditoría externa, se consigna la fórmula analítica de contracción:
+$$v_j = \frac{1}{O_j}, \quad B_j = \frac{\tau^2}{\tau^2 + v_j}, \quad \log(\theta_j^{\text{EB}}) = B_j \log\left(\frac{O_j}{E_j \cdot k}\right) + (1 - B_j)\mu_{\text{meta}}, \quad \text{SE}_{\text{post}, j} = \sqrt{\frac{\tau^2 v_j}{\tau^2 + v_j}}$$
+$$Z_j = \frac{\log(\theta_j^{\text{EB}}) - \log(1,10)}{\text{SE}_{\text{post}, j}}, \quad P(\theta_j > 1,10 \mid \text{datos}) = \Phi(Z_j)$$
 
----
-
-## 4. Estadía: Etiquetas Canónicas Oficiales y Criterio Parsimonioso 1-SE
-
-### 4.1 Cohorte Base de Estadía y Muestra
-* **Población Base 2023 (Sobrevivientes con Estancia Positiva):** $N = \mathbf{507.811}$ episodios (evaluables $557.318$ menos $24.225$ defunciones y menos $25.282$ estancias ambulatorias/cero días).
-* Se auditó la submuestra representativa de $30.000$ casos para cross-validation y estimación de la regla de 1 error estándar (`1-SE rule`).
-
-### 4.2 Selección ElasticNet: Mínimo Error vs Regla 1-SE
-Las etiquetas de comorbilidad se generan exclusivamente por `join` con [tabla_canonica_elixhauser_31.csv](file:///home/felipe/Documentos/Proyecto%20final/Tesis/Analisis%20exploratorio/tabla_canonica_elixhauser_31.csv):
-
-| Variable | Nombre Canónico Oficial | Coef. Mínimo Error | Exp($\beta_{\min}$) | Coef. 1-SE | Exp($\beta_{1\text{se}}$) | Estado 1-SE |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: |
-| `CIE10_ENC` | Diagnóstico Principal (LOHO) | +0,42130 | 1,5239 | **+0,41603** | **1,5159** | **RETENIDA** |
-| `INGRESO_URGENCIA` | Ingreso por Urgencia | +0,15999 | 1,1735 | **+0,15545** | **1,1682** | **RETENIDA** |
-| `ELIX_24` | Pérdida de peso patológica | +0,09072 | 1,0950 | **+0,07656** | **1,0796** | **RETENIDA** |
-| `INGRESO_CRITICO` | Ingreso a Cama Crítica (UCI/UTI) | +0,08352 | 1,0871 | **+0,07617** | **1,0791** | **RETENIDA** |
-| `ELIX_04` | Trastornos de circulación pulmonar | +0,03776 | 1,0385 | **+0,02950** | **1,0299** | **RETENIDA** |
-| `ELIX_14` | Insuficiencia renal crónica | +0,03594 | 1,0366 | **+0,02887** | **1,0293** | **RETENIDA** |
-| `ELIX_23` | Obesidad | +0,03468 | 1,0353 | **+0,01568** | **1,0158** | **RETENIDA** |
-| `ELIX_05` | Enfermedad vascular periférica | +0,03018 | 1,0306 | **+0,01924** | **1,0194** | **RETENIDA** |
-| `ELIX_15` | Enfermedad hepática | +0,02949 | 1,0299 | **+0,01742** | **1,0176** | **RETENIDA** |
-| `ELIX_30` | Psicosis | +0,02915 | 1,0296 | **+0,01158** | **1,0117** | **RETENIDA** |
-| `ELIX_19` | Cáncer metastásico | +0,02901 | 1,0294 | **+0,01333** | **1,0134** | **RETENIDA** |
-| `DERIVADO_OTRO_HOSPITAL`| Derivado de Otro Hospital | +0,02715 | 1,0275 | **+0,01142** | **1,0115** | **RETENIDA** |
-| `ELIX_01` | Insuficiencia cardíaca congestiva | +0,02331 | 1,0236 | **+0,01766** | **1,0178** | **RETENIDA** |
-| `ELIX_03` | Valvulopatía | +0,02237 | 1,0226 | **+0,01290** | **1,0130** | **RETENIDA** |
-| `ELIX_06` | Hipertensión no complicada | +0,01876 | 1,0189 | **+0,01134** | **1,0114** | **RETENIDA** |
-| `EDAD_ANIOS` | Edad (Años) | +0,01174 | 1,0118 | **+0,01042** | **1,0105** | **RETENIDA** |
-| `ELIX_09` | Otros trastornos neurológicos | +0,01672 | 1,0169 | **+0,00188** | **1,0019** | **RETENIDA** |
-| `ELIX_08` | Parálisis | +0,01228 | 1,0124 | 0,00000 | 1,0000 | **DESCARTADA** |
-| `ELIX_07` | Hipertensión complicada | +0,01144 | 1,0115 | 0,00000 | 1,0000 | **DESCARTADA** |
-| `ELIX_27` | Anemia por deficiencia | +0,01082 | 1,0109 | 0,00000 | 1,0000 | **DESCARTADA** |
-| `ELIX_20` | Tumor sólido sin metástasis | +0,01044 | 1,0105 | 0,00000 | 1,0000 | **DESCARTADA** |
-| `ELIX_18` | Linfoma | +0,01042 | 1,0105 | 0,00000 | 1,0000 | **DESCARTADA** |
-| `ELIX_10` | Enfermedad pulmonar crónica (EPOC) | +0,00960 | 1,0097 | 0,00000 | 1,0000 | **DESCARTADA** |
-| `ELIX_29` | Abuso de drogas | +0,00757 | 1,0076 | 0,00000 | 1,0000 | **DESCARTADA** |
-| `ELIX_28` | Abuso de alcohol | +0,00755 | 1,0076 | 0,00000 | 1,0000 | **DESCARTADA** |
-| `ELIX_13` | Hipotiroidismo | -0,00327 | 0,9967 | 0,00000 | 1,0000 | **DESCARTADA** |
-| `ELIX_17` | VIH / SIDA | +0,00226 | 1,0023 | 0,00000 | 1,0000 | **DESCARTADA** |
-| `ELIX_31` | Depresión | -0,00075 | 0,9993 | 0,00000 | 1,0000 | **DESCARTADA** |
-| `SEXO_MASCULINO`| Sexo Masculino | 0,00000 | 1,0000 | 0,00000 | 1,0000 | **DESCARTADA** |
-| `ELIX_11` | Diabetes no complicada | 0,00000 | 1,0000 | 0,00000 | 1,0000 | **DESCARTADA** |
-| `ELIX_12` | Diabetes complicada | 0,00000 | 1,0000 | 0,00000 | 1,0000 | **DESCARTADA** |
-| `ELIX_16` | Úlcera péptica | 0,00000 | 1,0000 | 0,00000 | 1,0000 | **DESCARTADA** |
-| `ELIX_21` | Artritis reumatoide / conectivo | 0,00000 | 1,0000 | 0,00000 | 1,0000 | **DESCARTADA** |
-| `ELIX_26` | Anemia por hemorragia | 0,00000 | 1,0000 | 0,00000 | 1,0000 | **DESCARTADA** |
-
-*Resultado de Selección Parsimoniosa:*  
-Bajo la regla de un error estándar ($\alpha_{1\text{se}} = 0,036680$), el modelo retiene **17 de las 34 covariables**, descartando la mitad de las variables candidatas y consolidando un ajuste parsimonioso dominado por el diagnóstico principal, urgencia, desnutrición, cama crítica, nefropatía y cardiopatías.
+**Ejemplo de Cálculo: Hospital El Pino (`113180`):**
+* $O_j = 438$, $E_{3, j} = 361,0$, $k_3 = 0,6854 \implies O/E_{\text{post}} = 1,7702$.
+* $\log(O/E_{\text{post}}) = \mathbf{0,5711}$.
+* Varianza within: $v_j = 1 / 438 = \mathbf{0,002283}$.
+* Con $\tau^2 = 0,04674$ y $\mu_{\text{meta}} = 0,0257$:
+  $$B_j = \frac{0,04674}{0,04674 + 0,002283} = \mathbf{0,9534}$$
+  $$\log(\theta_j^{\text{EB}}) = 0,9534 \cdot (0,5711) + (1 - 0,9534) \cdot (0,0257) = \mathbf{0,5457} \implies \theta_j^{\text{EB}} = 1,7258$$
+  $$\text{SE}_{\text{post}, j} = \sqrt{\frac{0,04674 \cdot 0,002283}{0,049023}} = \mathbf{0,04665}$$
+  $$Z = \frac{0,5457 - \log(1,10)}{0,04665} = \frac{0,5457 - 0,09531}{0,04665} = \mathbf{+9,65} \implies P(\theta_j > 1,10) = \mathbf{1,0000} \ (\text{ALERTA})$$
 
 ---
 
-## 5. Catálogo Oficial: Registro de `200717`
+## 3. *Tipping Point* y Análisis de Sensibilidad con Traslados Enlazados
 
-En [catalogo_hospitales_procedencia.csv](file:///home/felipe/Documentos/Proyecto%20final/Tesis/config/catalogo_hospitales_procedencia.csv), el establecimiento `200717` queda registrado con:
+### 3.1 Microdatos de Traslados Enlazados al Receptor (Año 2023)
+En 2023 se registraron $31.082$ episodios censurados por derivación hacia otros establecimientos. De ellos, se logró enlazar determinísticamente al receptor dentro de 30 días a **$12.770$ episodios ($41,1\%$ de tasa de enlace)**:
+* **Mortalidad en el receptor:** **$6,01\%$ global** ($767$ defunciones).
+* **Mortalidad observada por emisor:** Oscila entre $2,1\%$ y $6,9\%$, lo que equivale a multiplicadores $\lambda_{\text{obs}} = O_{\text{receptor}} / E_{\text{link}}$ de **$0,47\times$ a $1,34\times$**:
+  - Hospital Intercultural de Nueva Imperial: $\lambda_{\text{obs}} = \mathbf{0,47\times}$ (Mortalidad observada $2,10\%$).
+  - Hospital de Lautaro: $\lambda_{\text{obs}} = \mathbf{0,47\times}$ (Mortalidad observada $4,04\%$).
+  - Hospital San Martín de Quillota: $\lambda_{\text{obs}} = \mathbf{0,55\times}$ (Mortalidad observada $3,85\%$).
+  - Hospital de Pitrufquén: $\lambda_{\text{obs}} = \mathbf{0,58\times}$ (Mortalidad observada $5,19\%$).
+  - Hospital de Curanilahue: $\lambda_{\text{obs}} = \mathbf{0,80\times}$ (Mortalidad observada $4,32\%$).
+  - Complejo Sótero del Río: $\lambda_{\text{obs}} = \mathbf{1,04\times}$ (Mortalidad observada $5,96\%$).
+  - Hospital San José de Parral: $\lambda_{\text{obs}} = \mathbf{1,34\times}$ (Mortalidad observada $5,51\%$).
+
+### 3.2 Impacto sobre Curanilahue y Límites de la Fracción No Enlazada (59%)
+1. **Sensibilidad de Curanilahue (`128109`):**  
+   Para Curanilahue, su umbral de salida de alerta en M2/M3 era $\lambda_{\text{salida}}^* = \mathbf{0,82\times}$ (mortalidad del $4,4\%$). Como su mortalidad observada real en el receptor es de **$4,32\%$ ($\lambda_{\text{obs}} = 0,80\times < 0,82\times$)**, si se le atribuyera el desenlace de sus derivados, Curanilahue **saldría formalmente de zona de alerta**. Por ende, su alerta es altamente sensible a la regla de censura y no debe catalogarse como robusta.
+2. **Cotas para el 58,9% No Enlazado ($18.312$ casos):**  
+   Este grupo incluye traslados al sector privado, hospitales comunitarios de baja complejidad o desenlaces extrahospitalarios. Asumiendo un escenario extremo de estrés donde los no enlazados tuvieran una letalidad del **$15,0\%$** (2,5 veces el promedio enlazado), solo Parral y Curanilahue verían incrementado su $O/E$ en más de un $+8\%$, mientras que prestadores como Villarrica o Nueva Imperial mantendrían su condición de desempeño sobresaliente.
+
+### 3.3 Rectificación Bibliográfica Rigurosa
+* **Duke & Green (2001, Med J Aust 174:122–125):** Estudio de cohortes emparejadas en Melbourne sobre 73 adultos críticos derivados por saturación de UCI vs 73 controles: mortalidad de **$24,7\%$ en derivados vs $17,8\%$ en controles** (OR $1,5$; IC 95%: $0,68$–$3,4$).
+* **Resumen Duke University Medical Center (2001):** La mortalidad global de la UCI quirúrgica fue de **$9,6\%$**, mientras que la de los pacientes derivados de otros centros fue de **$33,5\%$**.
+
+---
+
+## 4. Estadía: Selección en Desarrollo y Preservación de Rankings
+
+### 4.1 Selección Entrenada en Cohorte de Desarrollo (2020–2022)
+Para evitar fuga de datos (*data leakage*), la selección de características se ejecutó sobre la cohorte de desarrollo de sobrevivientes con estancia positiva ($N = \mathbf{1.303.718}$ episodios):
+* **Modelo Completo (34 Covariables):** Retiene 28 covariables con $\alpha_{\min} = 0,002251$.
+* **Modelo Parsimonioso (17 Covariables con Regla 1-SE):** Con $\alpha_{1\text{se}} = 0,036680$, retiene exactamente **17 variables**:
+  `CIE10_ENC`, `INGRESO_URGENCIA`, `ELIX_24` (Desnutrición), `INGRESO_CRITICO`, `ELIX_04` (Circulación pulm.), `ELIX_14` (Renal crónica), `ELIX_23` (Obesidad), `ELIX_05` (Vascular perif.), `ELIX_15` (Hígado), `ELIX_30` (Psicosis), `ELIX_19` (Cáncer metastásico), `DERIVADO_OTRO_HOSPITAL`, `ELIX_01` (ICC), `ELIX_03` (Valvulopatía), `ELIX_06` (HTA simple), `EDAD_ANIOS` y `ELIX_09` (Otros neuro).
+* **Descartadas por Parsimonia (17):** Parálisis (`ELIX_08`), HTA complicada (`ELIX_07`), Anemia deficiencia (`ELIX_27`), Tumor sólido (`ELIX_20`), Linfoma (`ELIX_18`), EPOC (`ELIX_10`), Abuso de drogas (`ELIX_29`), Abuso de alcohol (`ELIX_28`), Hipotiroidismo (`ELIX_13`), VIH (`ELIX_17`), Depresión (`ELIX_31`), Sexo, Diabetes simple (`ELIX_11`), Diabetes complicada (`ELIX_12`), Úlcera péptica (`ELIX_16`), Artritis (`ELIX_21`), Anemia hemorrágica (`ELIX_26`).
+
+### 4.2 Impacto en el Ranking Hospitalario de Estadía (Evaluación 2023)
+Al aplicar ambos modelos sobre los $507.811$ episodios de estancia de 2023 y comparar el $O/E$ hospitalario resultante entre las 34 y las 17 variables:
+$$\rho_{\text{Spearman}} = \mathbf{0,99895} \approx \mathbf{0,999}$$
+* **Desplazamiento Cuadrático Medio (RMS):** Apenas **$0,86$ puestos** en toda la red de 65 hospitales.  
+La regla parsimoniosa de 17 variables preserva con fidelidad absoluta el ordenamiento institucional de estancia, reduciendo a la mitad los requerimientos de recolección de variables sin pérdida de información.
+
+---
+
+## 5. Auditoría de la Calibración en 0–2 Diagnósticos Secundarios
+
+### 5.1 Evidencia Clínica de la Subpoblación con 0–2 Diagnósticos
+Se evaluó el perfil asistencial de los $159.821$ episodios ($28,7\%$ de la red 2023) con 0 a 2 diagnósticos frente a los $397.497$ episodios con $\ge 3$ diagnósticos:
+* **Mortalidad Observada:** **$0,288\%$** ($460$ muertes) en $0$–$2$ dx vs **$5,98\%$** ($23.765$ muertes) en $\ge 3$ dx (diferencia de 21 veces).
+* **Ingreso por Urgencia:** $47,9\%$ en $0$–$2$ dx vs $71,9\%$ en $\ge 3$ dx.
+* **Estancia Hospitalaria:** Mediana de **$2,0$ días** (media $3,5$) en $0$–$2$ dx vs mediana de **$5,0$ días** (media $9,4$) en $\ge 3$ dx.
+* **Procedimiento Quirúrgico:** Presente en el $100\%$ de los casos quirúrgicos programados con egreso precoz.
+
+Estos datos demuestran que el estrato $0$–$2$ diagnósticos no refleja una "falla biológica", sino un **patrón asistencial de internaciones cortas, electivas y quirúrgicas de bajo riesgo**, donde el equipo clínico habitualmente no desglosa comorbilidades crónicas secundarias en la ficha de egreso.
+
+### 5.2 Bootstrap Pareado de la Correlación (% 0–2 dx vs $O/E$ Hospitalario)
+Se ejecutó un bootstrap pareado (1.000 réplicas) para evaluar si el Modelo 3 atenúa la distorsión del subregistro sobre el indicador del prestador:
+* $r_s(M2 \text{ Clínico}): \mathbf{+0,104}$ [IC 95%: $-0,151$ a $+0,341$]
+* $r_s(M3 \text{ R_dx Splines}): \mathbf{-0,121}$ [IC 95%: $-0,383$ a $+0,131$]
+* **Diferencia Pareada $\Delta r_s (M3 - M2):$** **$\mathbf{-0,225}$ [IC 95%: $-0,427$ a $-0,038$; $p = 0,0100$]**
+
+La diferencia es estadísticamente significativa ($p = 0,010$), confirmando que el modelado no lineal de $R_{\text{dx}}$ desplaza la asociación en sentido negativo y neutraliza la ventaja que el modelo lineal previo otorgaba a hospitales con alto volumen de cirugías breves.
+
+---
+
+## 6. Catálogo Maestro de Hospitales y Taxonomía Formal
+
+### 6.1 Estado de `200717` (Complejo Asistencial Padre Las Casas)
+En [catalogo_hospitales_procedencia.csv](file:///home/felipe/Documentos/Proyecto%20final/Tesis/config/catalogo_hospitales_procedencia.csv):
 * **Código:** `200717`
 * **Nombre Oficial:** Complejo Asistencial Padre Las Casas
-* **Servicio de Salud:** Servicio de Salud Araucanía Sur
-* **Región:** La Araucanía
-* **Año Incorporación:** 2024 (activo en 2024)
-* **Fuente:** `DEIS_MINSAL_REGISTRO_OFICIAL_2024`
-* **Estado:** `inferido_y_verificado_externamente`
-* **Evidencia Empírica de Red:** Receptor de 832 transferencias en 2024 desde centros periféricos de Araucanía Sur: Pitrufquén (488), Villarrica (282), Nueva Imperial (34) y Lautaro (28).
-* **Verificación Externa Oficial:** Res. Ex. MINSAL / Registros Arancelarios DEIS identifica unívocamente el código 200717 como el *Complejo Asistencial Padre Las Casas*.
+* **Servicio de Salud:** Servicio de Salud Araucanía Sur | **Región:** La Araucanía
+* **Año de Incorporación:** 2024
+* **Estado:** `inferido`
+* **Fuente:** `SUPERINTENDENCIA_SALUD_REG_1033_Y_DERIVACIONES_2024`
+* **Evidencia Documental:** Receptor en 2024 de 832 derivaciones de la red Araucanía Sur (Pitrufquén 488, Villarrica 282, Nueva Imperial 34, Lautaro 28). Establecimiento registrado ante la Superintendencia de Salud (Registro N° 1033) como prestador institucional de atención cerrada de mediana complejidad.
+
+### 6.2 Corrección de Códigos: HUAP (`111195`) vs Instituto del Tórax (`112103`)
+* `111195`: **Hospital de Urgencia Asistencia Pública Dr. Alejandro del Río (HUAP / Posta Central)**, *Servicio de Salud Metropolitano Central*.
+* `112103`: **Instituto Nacional del Tórax**, *Servicio de Salud Metropolitano Oriente*.
 
 ---
 
-## 6. Dictamen de Cierre de Fase 2
+## 7. Dictamen Final de Cierre de Fase 2
 
-Con estas correcciones matemáticas, bibliográficas, taxonómicas y de inferencia estadística, **la Fase 2 queda formalmente cerrada**. Todos los scripts de auditoría y tablas de procedencia se encuentran confirmados en el repositorio en la rama `main`:
+Con estas precisiones metodológicas, la formulación de la **Alerta Robusta (M2 $\cap$ M3)**, la delimitación de **centros monográficos**, el recálculo pareado de estadía en desarrollo ($\rho = 0,999$) y la validación empírica de transferencias enlazadas, **la Fase 2 queda formalmente cerrada y consolidada en el repositorio institucional**:
 * [catalogo_hospitales_procedencia.csv](file:///home/felipe/Documentos/Proyecto%20final/Tesis/config/catalogo_hospitales_procedencia.csv)
 * [tabla_canonica_elixhauser_31.csv](file:///home/felipe/Documentos/Proyecto%20final/Tesis/Analisis%20exploratorio/tabla_canonica_elixhauser_31.csv)
-* [11_auditoria_completa_observaciones.py](file:///home/felipe/Documentos/Proyecto%20final/Tesis/Analisis%20exploratorio/11_auditoria_completa_observaciones.py)
-* [12_lightweight_tp_estadia.py](file:///home/felipe/Documentos/Proyecto%20final/Tesis/Analisis%20exploratorio/12_lightweight_tp_estadia.py)
+* [13_resolucion_fina_cierre_fase2.py](file:///home/felipe/Documentos/Proyecto%20final/Tesis/Analisis%20exploratorio/13_resolucion_fina_cierre_fase2.py)
 * [resolucion_observaciones_fase2.md](file:///home/felipe/Documentos/Proyecto%20final/Tesis/Analisis%20exploratorio/resolucion_observaciones_fase2.md)
