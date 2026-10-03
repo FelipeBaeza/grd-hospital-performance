@@ -16,20 +16,21 @@ Al abrir los archivos, lo primero que descubrí es que **no existe un identifica
 
 Lo segundo que encontré es que los archivos tienen **129 columnas** y aproximadamente 970.000 filas por año. A simple vista, muchas columnas parecen vacías o tienen datos en formatos inconsistentes. El trabajo de esta fase fue sistematizar qué hay exactamente en cada una de esas 129 columnas.
 
-### Estructura general de las 129 columnas
+### Estructura general de las 129 columnas (Matriz Maestra Verificada)
 
-Los datos se pueden clasificar en seis grandes bloques:
+Los datos se estructuran en ocho bloques temáticos cuya suma da **exactamente 129 columnas**:
 
-| Bloque | Columnas | Qué contiene |
-|--------|---------|--------------|
-| **Identificación** | 3 | Código del hospital, identificador encriptado del paciente, servicio de salud |
-| **Datos demográficos** | 5 | Sexo, fecha de nacimiento, etnia, provincia, comuna, nacionalidad, previsión |
-| **Contexto del ingreso** | 6 | Fecha de ingreso, tipo de ingreso, tipo de procedencia, especialidad médica, servicio de ingreso, hospital de procedencia |
-| **Diagnósticos** | 35 | Un diagnóstico principal (DIAGNOSTICO1) y hasta 34 diagnósticos secundarios (DIAGNOSTICO2–DIAGNOSTICO35) |
-| **Procedimientos y evolución** | 39 | Hasta 30 códigos de procedimientos, 3 pares de traslados internos, médico interventor, fechas de intervención, uso de pabellón |
-| **Egreso y resultado** | 8 | Fecha de alta, tipo de alta, servicio de alta, datos de recién nacidos (4 familias de columnas) |
-| **Clasificación GRD** | 4 | Código GRD asignado, peso del GRD, severidad, riesgo de mortalidad del agrupador |
-| **Traslados externos** | 18 | 9 pares de fecha+servicio de traslados internos durante la hospitalización |
+| Bloque | N° Columnas | Qué contiene | Rol Principal |
+|--------|:-----------:|--------------|---------------|
+| **1. Identificación y Red Asistencial** | 3 | Código del hospital, identificador encriptado del paciente (`CIP_ENCRIPTADO`), servicio de salud | `LLAVE_AGREGACION` / `LONGITUDINAL` |
+| **2. Demografía y Protección Social** | 7 | Sexo, fecha de nacimiento, etnia, provincia, comuna, nacionalidad, previsión | `FEATURE_BASAL`, `FUENTE_DERIVADA`, `AUDITORIA` |
+| **3. Contexto del Ingreso y Procedencia** | 7 | Fecha de ingreso, tipo de ingreso, tipo de procedencia, especialidad médica, servicio de ingreso, tipo de actividad, hospital de procedencia | `FEATURE_BASAL`, `FILTRO_COHORTE`, `CONDICIONAL` |
+| **4. Traslados Internos Hospitalarios** | 18 | 9 pares de fecha + servicio de traslados intra-hospitalarios (`FECHATRASLADO1-9`, `SERVICIOTRASLADO1-9`) | `PROHIBIDA_FUGA` (Eventos intra-estadía) |
+| **5. Diagnósticos Clínicos** | 35 | Diagnóstico principal (`DIAGNOSTICO1`) y 34 secundarios (`DIAGNOSTICO2`–`DIAGNOSTICO35`) | `FUENTE_DERIVADA` (deriva Elixhauser y CIE-10) |
+| **6. Procedimientos, Pabellón e Intervención** | 36 | 30 procedimientos quirúrgicos, fecha procedimiento, fecha intervención, especialidad, pabellón, médico interventor y médico alta | `PROHIBIDA_FUGA` (Tratamiento post-ingreso) |
+| **7. Egreso y Familia Neonatal** | 19 | Fecha de alta, tipo de alta, servicio de alta (3) + 4 familias de recién nacidos (`CONDICIONDEALTANEONATO1-4`, `PESORN1-4`, `SEXORN1-4`, `RN1-4ESTADO`) (16) | `TARGET_DERIVADA` (3) / `DESCARTAR` (16) |
+| **8. Clasificación Agrupador IR-GRD** | 4 | Código GRD (`IR_29301_COD_GRD`), peso relativo, severidad, riesgo de mortalidad | `FILTRO_COHORTE` (1) / `PROHIBIDA_FUGA` (3) |
+| **TOTAL BASE FONASA** | **129** | **Partición exhaustiva sin solapamiento (ver matriz_maestra_129_columnas.csv)** | **129 columnas exactas** |
 
 ---
 

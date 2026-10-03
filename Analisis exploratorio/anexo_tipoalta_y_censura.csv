@@ -1,0 +1,13 @@
+tipoalta,n_registros,pct,rol_mortalidad,rol_estancia,justificacion_metodologica
+DOMICILIO,5205550,89.62,NO_EVENTO (0),INCLUIDO,Alta médica estándar a domicilio. Paciente sobreviviente con episodio hospitalario concluido satisfactoriamente.
+FALLECIDO,170692,2.94,EVENTO (1),EXCLUIDO,Defunción intrahospitalaria constatada. Target positivo de mortalidad. Se excluye del modelo de estancia de sobrevivientes para evitar asociar muerte con estancia corta/falsa eficiencia.
+HOSPITALIZACIÓN DOMICILIARIA,138900,2.39,CENSURADO (NULL),EXCLUIDO,El paciente continúa recibiendo cuidados agudos en su hogar por el equipo clínico. Desenlace intrahospitalario no concluido; estancia hospitalaria física truncada.
+DERIVACIÓN OTRO HOSPITAL DEL SERVICIO,123285,2.12,CENSURADO (NULL),EXCLUIDO,Traslado externo inter-hospitalario dentro de la red del Servicio de Salud. Requiere enlace de cadena (protocolo CMS Transfer Attribution). En modelo base se censura.
+ALTA VOLUNTARIA,58281,1.0,NO_EVENTO (0),INCLUIDO_SENSIBILIDAD,Egreso por desistimiento del paciente/familia. Con vida al egreso. La estancia puede estar truncada tempranamente (se evalúa en análisis de sensibilidad).
+DERIVACIÓN OTRO HOSPITAL DE LA RED NACIONAL,44429,0.76,CENSURADO (NULL),EXCLUIDO,Traslado externo a otra red macroregional/nacional por necesidad de alta complejidad. Desenlace desconocido en centro de origen.
+"DERIVACIÓN A OTROS CENTROS (CÁRCEL, HOGAR)",22041,0.38,CENSURADO (NULL),EXCLUIDO,Egreso institucionalizado a recintos penitenciarios o de larga estancia. Desenlace clínico no trazable en la red hospitalaria.
+FUGA DEL PACIENTE,19160,0.33,NO_EVENTO (0),INCLUIDO_SENSIBILIDAD,Abandono no autorizado del recinto asistencial. Paciente con vida al momento del egreso. Estancia censurada a la derecha.
+DERIVACIÓN INST. PRIVADA (COMPRA DE SERVICIOS),18653,0.32,CENSURADO (NULL),EXCLUIDO,Derivación por convenio a clínica privada (Ley de Urgencia o compra de camas). Desenlace no registrado en base pública FONASA.
+DERIVACIÓN INST. PRIVADA (VOLUNTARIO),7443,0.13,CENSURADO (NULL),EXCLUIDO,Traslado a sector privado por decisión particular del paciente o seguro complementario.
+NO IDENTIFICADA,80,0.0,CENSURADO (NULL),EXCLUIDO,Falta de registro o inconsistencia administrativa en el software local.
+DESCONOCIDO,22,0.0,CENSURADO (NULL),EXCLUIDO,Dato ausente o no codificable.
