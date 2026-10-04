@@ -1,4 +1,4 @@
-# Resolución Metodológica y Cierre Definitivo de la Fase 2: Especificación Primaria, Calibración Previa al Ingreso, Verificación LOHO y Censura Informativa
+# Resolución Metodológica y Cierre Definitivo de la Fase 2: Especificación Primaria M2+MDC, Calibración Previa al Ingreso, Verificación LOHO y Sensibilidad a la Censura por Traslado
 
 **Fecha de Cierre:** Octubre 2026  
 **Repositorio:** `Tesis` (Rama `main`)  
@@ -6,177 +6,165 @@
 
 ---
 
-## 1. El Experimento M3-Crónico vs M3-Total y Reconstrucción de la Especificación Primaria
+## 1. La Especificación Primaria Oficial: M2 + Diagnóstico Principal (M2+MDC)
 
-### 1.1 El Hallazgo Estructural: Dependencia de la Codificación Aguda Intrahospitalaria
-La comparación empírica de especificaciones sobre la cohorte evaluable 2023 arrojó un resultado cuantitativo determinante:
-$$\rho_{\text{Spearman}}(\text{M2}, \text{M3-Crónico}) = \mathbf{0,9984} \quad \text{frente a} \quad \rho_{\text{Spearman}}(\text{M2}, \text{M3-Total}) = \mathbf{0,7046}$$
+### 1.1 Justificación Teórica y Calibración Preingreso Multidimensional
+En estricta coherencia con el criterio de calibración por estratos previos al ingreso, el modelo clínico base sin diagnóstico principal (M2) presentaba una falla estructural en la dimensión de categoría diagnóstica mayor (MDC): un $O/E$ de **2,28** en patología respiratoria (MDC 4) y de **0,35** en patología musculoesquelética (MDC 8). Esta descalibración afectaba severamente la equidad de la evaluación asistencial: cualquier centro especializado en enfermedades respiratorias recibía un exceso aparente de riesgo atribuible al perfil epidemiológico de sus ingresos y no a su calidad intrínseca.
 
-Este hallazgo confirma que **la totalidad de la divergencia entre el modelo clínico base (M2) y el modelo corregido por codificación total (M3-Total) proviene de diagnósticos secundarios agudos y complicaciones intrahospitalarias codificados al alta**. Corresponde exactamente a la misma categoría de información posterior al ingreso que se excluyó deliberadamente al retirar `ELIX_02` (arritmias cardíacas), `ELIX_22` (coagulopatía) y `ELIX_25` (trastornos hidroelectrolíticos).
+Al incorporar el diagnóstico principal agrupado (**Modelo M2+MDC**), los seis MDC principales se calibran de forma óptima en el rango $[0,93; 1,05]$, satisfaciendo plenamente el criterio de calibración previa al ingreso. Esta especificación ya formaba parte del contrato metodológico original de la tesis (regresión logística con diagnóstico principal agrupado), donde en la selección por estabilidad los capítulos CIE-10 A, I, J, K, N y S resultaron seleccionados al 100%.
 
-| Dimensión | M2 (Clínico Base) | M3-Crónico (28 Comorb. Elixhauser) | M3-Total (Diagnósticos Totales) |
-| :--- | :---: | :---: | :---: |
-| **Variables de Ajuste** | Demografía + Vía Ingreso + 28 Elixhauser Crónicos | M2 + Splines cúbicos de $R_{\text{dx}}$ Crónico | M2 + Splines cúbicos de $R_{\text{dx}}$ Total |
-| **Naturaleza del Ajuste** | Estrictamente preexistente al ingreso | Estrictamente preexistente al ingreso | Mezcla preexistente y complicaciones al alta |
-| **Correlación con M2 ($\rho$)** | 1,0000 | **0,9984** | **0,7046** |
-| **Rol Metodológico en Tesis** | **ESPECIFICACIÓN PRIMARIA** | Equivalente funcional de M2 | **PRUEBA DE SENSIBILIDAD** |
+| Modelo | Definición de Covariables | $\tau$ Agudos ($K=62$) | $\mu$ Meta | Calibración MDC $[0,80; 1,25]$ | Rol Metodológico |
+| :--- | :--- | :---: | :---: | :---: | :---: |
+| **M2+MDC** | Demografía + Vía Ingreso + 28 Elixhauser Crónicos + MDC | **0,1948** | **-0,0359** | **CUMPLE** (MDC 0,93 a 1,05) | **ESPECIFICACIÓN PRIMARIA** |
+| **M2 Base** | Demografía + Vía Ingreso + 28 Elixhauser Crónicos (sin MDC) | 0,2077 | -0,0267 | Falla (MDC 4: 2,28; MDC 8: 0,35) | **SENSIBILIDAD 1** (Sin Dx Principal) |
+| **M3-Total** | M2 Base + Splines cúbicos de $R_{\text{dx}}$ Total al Alta | 0,2041 | -0,0347 | Absorbe complicaciones de estadía | **SENSIBILIDAD 2** (Codificación Aguda) |
 
-Al restringir el ratio de codificación ($R_{\text{dx}}$) a las 28 comorbilidades crónicas Elixhauser —que representan patología genuinamente preexistente al ingreso—, **el ordenamiento institucional es idéntico al de M2 ($\rho = 0,9984$, RMS $= 0,86$ puestos)**. En consecuencia, ajustar por $R_{\text{dx}}$ total en la especificación primaria absorbe la estancia prolongada y premia o castiga a los hospitales según la exhaustividad de codificación de eventos ocurridos durante la hospitalización, lo que resulta metodológicamente inadmisible para un ajuste de riesgo justo.
+*Correlación entre Especificaciones:* La correlación de Spearman entre los $O/E$ de M2 y M2+MDC es **$\rho = 0,9357$** (aproximadamente 6 puestos de desplazamiento típico en una red de 62 hospitales). La correlación entre M2 y M3-Total es $\rho = 0,7046$, mientras que entre M2 y M3-Crónico es $\rho = 0,9984$.
 
-### 1.2 Nueva Taxonomía de Alertas: Alertas Robustas vs Dependientes de Codificación Aguda
-En conformidad con las observaciones del comité evaluador, se redefine formalmente la arquitectura de inferencia:
-1. **Especificación Primaria:** **Modelo Clínico M2** (equivalente a M3-Crónico), estimado con regularización y contracción empírica de Bayes sobre los 62 hospitales de agudos generales ($\tau = 0,2048$, $\mu = 0,0224$).
-2. **Prueba de Sensibilidad:** **Modelo M3-Total**, destinado a identificar qué alertas institucionales dependen críticamente del volumen de diagnósticos secundarios agudos codificados al egreso.
-
-#### Taxonomía Consolidada de Alertas Asistenciales:
-* **Alertas Robustas del Modelo Primario (M2 / M3-Crónico):**
-  * *Agudos Generales ($K=62$):* **Hospital El Pino (`113180`)**, **Hospital Claudio Vicuña (`106103`)**, **Hospital Carlos Van Buren (`106100`)**, y **Hospital Dr. Luis Tisné B. (`112101`)**.
-  * *Monográficos ($K=3$):* **Instituto Nacional del Tórax (`112103`)**.
-* **Alertas Dependientes de Codificación Aguda (Alertan ÚNICAMENTE en M3-Total):**
-  * **Hospital Dr. Eduardo Pereira (`106102`):** Registra $O/E_{\text{M2}} = 0,980$ ($P = 0,001 \implies$ Desempeño Promedio), pero salta a $O/E_{\text{M3-Total}} = 1,479^*$ ($P = 1,000 \implies$ Alerta). Su alerta es un artefacto de su perfil de codificación secundaria al alta en pacientes quirúrgicos torácicos crónicos.
-  * **Hospital Clínico La Florida (`114105`):** Registra $O/E_{\text{M2}} = 1,173$ ($P = 0,909 \implies$ Promedio/Zona Gris), pero asciende a $O/E_{\text{M3-Total}} = 1,303^*$ ($P = 1,000 \implies$ Alerta). Su condición de alerta depende de la inclusión de diagnósticos agudos al egreso.
+### 1.2 Impacto sobre Centros Especializados: El Caso del Instituto Nacional del Tórax
+El comportamiento del **Instituto Nacional del Tórax (`112103`)** ilustra con exactitud la necesidad del ajuste por diagnóstico principal:
+* En M2 Base (sin MDC), el Tórax registraba $O/E = \mathbf{1,968}$ ($P = 1,000$).
+* En **M2+MDC (Primaria)**, al reconocer que el 94% de sus ingresos corresponden al área respiratoria y cardiovascular, su exceso desciende a $O/E = \mathbf{1,429}$ ($P = 0,997$), una reducción de más de medio punto de sobre-mortalidad aparente que era puro sesgo de mezcla de especialidad.
+* En M3-Total, debido a su reducida codificación de comorbilidades agudas secundarias en relación a la severidad de sus pacientes, su $O/E$ se distorsiona hasta $2,226$.
 
 ---
 
-## 2. Criterio Formal de Calibración Previa al Ingreso y Descalce Descriptivo de $N_{\text{dx}}$
+## 2. Taxonomía y Reconciliación de Alertas Asistenciales
 
-### 2.1 Reformulación del Criterio de Calibración
-El criterio preliminar que exigía que *"cada estrato de $N_{\text{dx}}$ con $E \ge 100$ estuviera dentro de $[0,80; 1,25]$"* queda **formalmente descartado como criterio de calibración del modelo primario**. Dicha exigencia es teórica y prácticamente incompatible con un ajuste de riesgo preingreso: el número de diagnósticos secundarios codificados al alta ($N_{\text{dx}}$) depende causalmente de la duración de la estancia y de la ocurrencia de complicaciones o maniobras de reanimación intrahospitalarias.
+### 2.1 Definición Rigurosa de Términos
+Se establecen formalmente las definiciones de alerta:
+1. **Alerta Primaria:** Todo establecimiento de salud que en la **Especificación Primaria Oficial (M2+MDC)**, evaluado con su propia dispersión institucional ($\tau = 0,1948, \mu = -0,0359$), presenta una probabilidad posterior de exceso superior al margen de materialidad del 10%:
+   $$P(\theta_j > 1,10 \mid \text{M2+MDC}) \ge 0,95$$
+2. **Alerta Robusta:** Todo establecimiento que es **Alerta Primaria** y que, de forma concurrente, **persiste como alerta en el modelo de sensibilidad M3-Total** ($P \ge 0,95$ en ambos modelos).
+3. **Alerta Dependiente de Codificación Aguda:** Establecimiento que no califica como alerta en la especificación primaria preingreso, pero que alerta únicamente en M3-Total debido al ajuste por diagnósticos secundarios codificados al alta.
 
-El **Criterio Formal de Calibración de la Tesis** se reescribe basándose exclusivamente en estratificaciones **preexistentes al ingreso hospitalario**:
-> **Criterio Primario de Calibración:** Todo estrato definido por variables preingreso (edad, comorbilidad crónica preexistente, vía de admisión, tipo de hospital) con tamaño muestral esperado $E \ge 100$ debe presentar una razón $O/E$ contenida en el intervalo de calibración clínica $[0,80; 1,25]$. La estratificación por $N_{\text{dx}}$ queda relegada a un rol estrictamente descriptivo.
+### 2.2 Lista Consolidada de Alertas en Hospitales Agudos Generales ($K=62$)
+Bajo la especificación primaria M2+MDC, se identifican exactamente **10 Alertas Primarias** (y 52 hospitales en Desempeño Promedio):
 
-### 2.2 Validación Empírica del Modelo Primario (M2) en Estratos Preingreso
-En la cohorte evaluable 2023 ($N = 557.318$, $O = 24.225$), el modelo primario M2 satisface plenamente el criterio en todos sus estratos:
+| Código | Establecimiento | $O$ Defunciones | $O/E$ (M2+MDC) | $P_{\text{Prim}}$ | $O/E$ (M2 Base) | $P_{\text{M2}}$ | $O/E$ (M3-Tot) | $P_{\text{M3}}$ | Categoría de Alerta |
+| :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| `113180` | **Hospital El Pino** | 438 | **1,646** | **1,000** | 1,836 | 1,000 | 1,772 | 1,000 | **ALERTA ROBUSTA** |
+| `111100` | **Hospital Clínico San Borja-Arriarán** | 145 | **1,432** | **0,996** | 1,515 | 1,000 | 1,177 | 0,697 | **Alerta Primaria** |
+| `106103` | **Hospital Claudio Vicuña (San Antonio)** | 320 | **1,381** | **1,000** | 1,595 | 1,000 | 1,634 | 1,000 | **ALERTA ROBUSTA** |
+| `113100` | **Hospital Barros Luco Trudeau** | 972 | **1,370** | **1,000** | 1,288 | 1,000 | 1,154 | 0,914 | **Alerta Primaria** |
+| `107101` | **Hospital San Martín (Quillota)** | 285 | **1,365** | **1,000** | 1,223 | 0,935 | 0,872 | 0,000 | **Alerta Primaria** |
+| `106100` | **Hospital Carlos Van Buren** | 602 | **1,334** | **1,000** | 1,293 | 1,000 | 1,436 | 1,000 | **ALERTA ROBUSTA** |
+| `103100` | **Hospital Dr. Leonardo Guzmán (Antofagasta)**| 663 | **1,332** | **1,000** | 1,384 | 1,000 | 1,165 | 0,908 | **Alerta Primaria** |
+| `121109` | **Hospital Dr. Hernán Henríquez (Temuco)** | 580 | **1,285** | **1,000** | 1,241 | 0,997 | 1,165 | 0,888 | **Alerta Primaria** |
+| `112101` | **Hospital Dr. Luis Tisné B.** | 502 | **1,233** | **0,990** | 1,313 | 1,000 | 1,316 | 1,000 | **ALERTA ROBUSTA** |
+| `109100` | **Complejo Hospitalario San José** | 815 | **1,192** | **0,984** | 1,188 | 0,981 | 1,125 | 0,700 | **Alerta Primaria** |
+| `112103` | *Instituto Nacional del Tórax (Monográfico)*| 157 | **1,429** | **0,997** | 1,968 | 1,000 | 2,226 | 1,000 | *Alerta Robusta Monog.* |
 
-| Estratificación Preingreso | Categoría | $N$ Episodios | $O$ Observado | $E_{\text{M2}}$ Esperado | Tasa Mort. | $O/E_{\text{M2}}$ | Estado de Calibración |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Edad Previa** | $< 65$ años | 349.211 | 7.438 | 6.988,9 | 2,13% | **1,064** | **Calibrado** $[0,80; 1,25]$ |
-| | $65 - 74$ años | 103.235 | 6.014 | 6.185,9 | 5,83% | **0,972** | **Calibrado** $[0,80; 1,25]$ |
-| | $\ge 75$ años | 104.872 | 10.773 | 11.050,3 | 10,27% | **0,975** | **Calibrado** $[0,80; 1,25]$ |
-| **Carga Comórbida Crónica** | 0 comorbilidades | 180.595 | 2.280 | 2.841,6 | 1,26% | **0,802** | **Calibrado** $[0,80; 1,25]$ |
-| | 1 comorbilidad | 177.519 | 5.962 | 6.025,2 | 3,36% | **0,990** | **Calibrado** $[0,80; 1,25]$ |
-| | 2 comorbilidades | 115.331 | 7.184 | 6.612,1 | 6,23% | **1,086** | **Calibrado** $[0,80; 1,25]$ |
-| | $\ge 3$ comorbilidades | 83.873 | 8.799 | 8.746,1 | 10,49% | **1,006** | **Calibrado** $[0,80; 1,25]$ |
-| **Vía de Ingreso** | Urgencia | 362.412 | 23.484 | 23.475,1 | 6,48% | **1,000** | **Calibrado** $[0,80; 1,25]$ |
-| | Programada | 194.906 | 741 | 749,9 | 0,38% | **0,988** | **Calibrado** $[0,80; 1,25]$ |
-| **Tipo de Establecimiento** | Monográficos ($K=3$) | 10.563 | 311 | 297,4 | 2,94% | **1,046** | **Calibrado** $[0,80; 1,25]$ |
-| | Generales Agudos ($K=62$) | 546.755 | 23.914 | 23.927,6 | 4,37% | **0,999** | **Calibrado** $[0,80; 1,25]$ |
-
-*Nota sobre Diagnóstico Principal (MDC):* En M2 estándar (que no incorpora variables indicadoras de MDC para no atomizar grados de libertad), patologías con muy alta letalidad intrínseca (MDC 4 Respiratorio, mortalidad 21,7%) presentan $O/E = 2,28$, mientras que afecciones de baja mortalidad (MDC 8 Musculoesquelético, mortalidad 1,1%) presentan $O/E = 0,35$. Al evaluar una especificación extendida M2+MDC, la calibración por MDC se balancea perfectamente (MDC 6: 1,047; MDC 8: 0,932; MDC 5: 1,004; MDC 4: 1,008; MDC 1: 0,979; MDC 11: 0,982), conservando una correlación de rankings con M2 de $\rho = 0,9357$.
-
-### 2.3 Prueba Pendiente: Calibración por $N_{\text{dx}}$ en M3-Crónico
-Dando respuesta directa al requerimiento del comité, se evaluó la calibración por estratos de diagnósticos secundarios totales en el modelo M3-Crónico:
-
-| Estrato $N_{\text{dx}}$ | $N$ Episodios | $O$ Defunciones | Tasa Mort. | $O/E$ (M2 Primario) | $O/E$ (M3-Crónico) | $O/E$ (M3-Total Sensibilidad) |
-| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **0 – 2 diagnósticos** | 159.821 | 460 | 0,29% | **0,229** | **0,240** | 0,636 |
-| **3 – 5 diagnósticos** | 174.530 | 2.936 | 1,68% | **0,576** | **0,575** | 0,897 |
-| **6 – 10 diagnósticos** | 150.074 | 8.831 | 5,88% | **0,973** | **0,957** | 0,962 |
-| **$\ge 11$ diagnósticos** | 72.893 | 11.998 | 16,46% | **1,492** | **1,505** | 1,086 |
-
-**Conclusión Empírica:** M3-Crónico presenta **exactamente el mismo perfil de descalce por estratos de $N_{\text{dx}}$ que M2** (0,240 vs 0,229 en bajas comorbilidades; 1,505 vs 1,492 en estratos altos). Sin embargo, el ranking institucional entre ambos modelos es idéntico ($\rho = 0,9984$). Esto constituye la **demostración empírica concluyente** de que el descalce en $N_{\text{dx}}$ es una propiedad intrínseca de los datos clínicos (los pacientes más graves y con mayor estancia acumulan más códigos) y **no sesga en absoluto la comparación relativa de desempeño entre hospitales**.
+*Reconciliación con Sensibilidades:*
+* **Alertas Robustas en Agudos Generales:** Exactamente **4 establecimientos** persisten como alerta crítica en todas las especificaciones: El Pino, Claudio Vicuña, Carlos Van Buren y Luis Tisné.
+* **Hospital de San Camilo (`108100`):** En M2 Base alertaba ($O/E = 1,292, P = 0,998$), pero en **M2+MDC (Primaria)** su razón desciende a $O/E = \mathbf{1,174}$ con $P = \mathbf{0,848} < 0,95$, quedando formalmente en **Desempeño Promedio**. En M3-Total registra $O/E = 1,197, P = 0,920 < 0,95$. El ajuste por diagnóstico principal explica adecuadamente su case-mix.
+* **Alertas Dependientes de Codificación Aguda:**
+  * **Hospital Dr. Eduardo Pereira (`106102`):** En M2+MDC registra $O/E = \mathbf{0,838}, P = \mathbf{0,000}$ (Desempeño Favorable), y en M2 Base $O/E = 0,979, P = 0,063$. Alerta **únicamente en M3-Total** ($O/E = 1,478^*, P = 0,999$).
+  * **Hospital Clínico La Florida (`114105`):** En M2+MDC registra $O/E = \mathbf{1,089}, P = \mathbf{0,351}$ (Promedio), y en M2 Base $O/E = 1,166, P = 0,902$. Alerta **únicamente en M3-Total** ($O/E = 1,303^*, P = 1,000$).
+* **Hospital Del Salvador (`112100`):** Se rectifica formalmente su rotulación previa: en M2+MDC registra $O/E = 1,093$ ($P = 0,479$), en M2 Base $O/E = 0,938$ ($P = 0,000$), y en M3-Total $O/E = 1,121$ ($P = 0,641$). **En ninguno de los modelos base califica como Alerta**, ubicándose sólidamente en Desempeño Promedio.
 
 ---
 
-## 3. Verificaciones Técnicas: LOHO Real, Estabilidad ElasticNet y Reproducibilidad Empírica de Bayes
+## 3. Calibración, Descalce de $N_{\text{dx}}$ y Verificaciones Técnicas
 
-### 3.1 Verificación de LOHO vs Naive Target Encoding en Estadía
-Se auditó y corrigió la implementación del codificador Leave-One-Hospital-Out (LOHO), confirmando la ejecución real del flujo fuera de muestra sobre la cohorte 2023:
+### 3.1 Criterio de Calibración Preingreso y Ausencia de Asociación con $N_{\text{dx}}$
+La especificación primaria M2+MDC cumple el criterio formal de calibración ($O/E \in [0,80; 1,25]$ para todo estrato preingreso con $E \ge 100$):
+* **Edad:** $<65$ años ($1,061$), $65-74$ años ($0,971$), $\ge 75$ años ($0,977$).
+* **Carga Crónica:** 0 comorb ($0,804$), 1 comorb ($0,989$), 2 comorb ($1,085$), $\ge 3$ comorb ($1,006$).
+* **Vía Ingreso:** Urgencia ($1,000$), Programada ($0,991$).
+* **MDC Principal:** MDC 6 ($1,047$), MDC 8 ($0,932$), MDC 5 ($1,004$), MDC 4 ($1,008$), MDC 1 ($0,979$), MDC 11 ($0,982$).
 
-1. **Concentración de Categorías Diagnósticas:** De las 1.459 categorías CIE-10 (a 3 caracteres) observadas en la cohorte de estadía, exactamente **144 categorías (9,9%) tienen más del 50% de sus casos concentrados en un único hospital**.
-2. **Magnitud de la Discrepancia Local ($|\Delta|$):** El máximo $|\Delta| = |\text{ENC}_{\text{Naive}} - \text{ENC}_{\text{LOHO}}|$ a nivel de episodio es **$0,5079$ unidades logarítmicas de estancia** (CIE G47 Trastornos del sueño en el Hospital de Puerto Montt, $\Delta = -0,5079$, equivalente a una discrepancia de $\exp(0,508) \approx 1,66\times$ en días esperados).
-   * CIE H36 (Trastornos de la retina): 97 de 101 casos (96,0%) concentrados en el Hospital Dr. Víctor Ríos Ruiz de Los Ángeles ($|\Delta| = 0,4395$).
-   * CIE T29 (Quemaduras de múltiples regiones): 436 de 785 casos (55,5%) concentrados en la Posta Central ($|\Delta| = 0,4295$).
-   * CIE S87 (Traumatismo por aplastamiento de la pierna): 66,7% concentrado en la Posta Central ($|\Delta| = 0,4703$).
-3. **Impacto Institucional Out-of-Sample (2023):**
-   * Correlación de Spearman en $O/E$ de estadía: **$\rho = 0,99948$**.
-   * Desplazamiento cuadrático medio: **$\text{RMS} = 0,61$ puestos**. Desplazamiento máximo: 3 puestos.
-   * El establecimiento con mayor variación institucional es justamente el **Instituto de Neurocirugía Dr. Asenjo (`112104`)**, cuyo $O/E$ se reduce en $-0,0294$ ($0,8033 \to 0,7739$), demostrando que el codificador Naive sobrestimaba levemente su estancia esperada debido a la autorreferencialidad diagnóstica.
+*Asociación Empírica con $N_{\text{dx}}$ por Hospital:*  
+Dando respuesta directa al comité, se evaluó si el exceso de mortalidad ajustado por M2+MDC se encuentra correlacionado con la profundidad diagnóstica de los establecimientos:
+* Correlación de Spearman entre $O/E_{\text{M2+MDC}}$ y $N_{\text{dx}}$ medio del hospital: **$\rho = -0,133$ ($p = 0,303$, no significativo)**.
+* Correlación de Spearman entre $O/E_{\text{M2+MDC}}$ y porcentaje de pacientes con $\ge 11$ diagnósticos: **$\rho = -0,080$ ($p = 0,537$, no significativo)**.
 
-### 3.2 Estabilidad por Bootstrap de las 17 Covariables de Estadía
-Se documenta la razón matemática por la cual las ternas de comorbilidades en el borde de selección variaron levemente entre versiones:
-* En la cohorte de desarrollo ($N = 1.303.718$), los coeficientes estandarizados entre el puesto 15 y el 20 son de magnitud reducida y presentan cuasi-empates:
-  `ELIX_03` Valvulopatía ($+0,0078$), `ELIX_08` Parálisis ($+0,0066$), `ELIX_06` HTA no complicada ($+0,0038$), `ELIX_19` Cáncer metastásico ($+0,0026$), `ELIX_10` EPOC ($+0,0022$), y `ELIX_07` HTA complicada ($+0,0014$).
-* **Experimento Bootstrap (100 réplicas sobre desarrollo, archivo congelado `scratch/estadia_bootstrap_stability_17.json`):**
-  * **16 Variables Núcleo con Selección 100/100 (100,0%):** `CIE10_ENC_LOHO` (100%), `INGRESO_URGENCIA` (100%), `INGRESO_CRITICO` (100%), `ELIX_24` (100%), `ELIX_04` (100%), `EDAD_ANIOS` (100%), `ELIX_14` (100%), `DERIVADO_OTRO_HOSPITAL` (100%), `ELIX_23` (100%), `ELIX_01` (100%), `ELIX_09` (100%), `ELIX_05` (100%), `ELIX_15` (100%), `ELIX_30` (100%), `ELIX_03` (100%) y `ELIX_08` (100%).
-  * **Disputa del Puesto 17:** `ELIX_06` HTA no complicada entra en el **69,0%** de los bootstraps; `ELIX_19` Cáncer metastásico en el **19,0%**; `ELIX_10` EPOC en el **10,0%**; y `ELIX_07` en el **2,0%**.
-  * **Inocuidad:** Dado que la correlación de Spearman entre cualquier combinación de estas covariables del borde supera $\rho = 0,999$, el ordenamiento institucional de días de estadía es enteramente inmune a la selección en la frontera.
+**Conclusión Metodológica:** En la red hospitalaria pública **no se detecta asociación** entre el desempeño ajustado por la especificación primaria y la profundidad de codificación secundaria de los hospitales. Cabe consignar que los estratos de calibración se evalúan sobre la cohorte 2023 (año de recalibración del modelo), quedando la verificación definitiva reservada para la cohorte prospectiva de 2024.
 
-### 3.3 Parámetros Empíricos de Bayes para San Borja y San Camilo
-Para asegurar la reproducibilidad matemática exacta ($100\%$ auditable) requerida por el comité, se publica el desglose paramétrico fila por fila:
-$$\ln(\theta_j^*) = B_j \ln(O_j/E_j) + (1 - B_j) \mu, \quad B_j = \frac{\tau^2}{\tau^2 + v_j}, \quad v_j = \frac{1}{O_j}, \quad \text{SE}_{\text{post}, j} = \sqrt{B_j v_j}, \quad Z_j = \frac{\ln(\theta_j^*) - \ln(1,10)}{\text{SE}_{\text{post}, j}}$$
+### 3.2 Verificación Real de LOHO y Concentración Diagnóstica
+Se ratifican las métricas out-of-sample del codificador Leave-One-Hospital-Out (LOHO) en la cohorte 2023 de estadía:
+* **Concentración:** 144 categorías CIE-10 (9,9% de las 1.459 activas) tienen $>50\%$ de sus casos concentrados en un solo hospital.
+* **Máxima Discrepancia:** $|\Delta|_{\text{máx}} = 0,5079$ log-días (CIE G47 en Puerto Montt; H36 con 96,0% en Los Ángeles, $|\Delta|=0,4395$; T29 quemaduras con 55,5% en Posta Central, $|\Delta|=0,4295$).
+* **Impacto Institucional:** $\rho = 0,99948$, $\text{RMS} = 0,61$ puestos. El Instituto de Neurocirugía Dr. Asenjo (`112104`) presenta la mayor variación de la red ($-0,0294$ en $O/E$, de $0,8033$ a $0,7739$).
 
-| Establecimiento | Modelo / Escenario | $O_j$ | $E_j$ | $O_j/E_j$ | $v_j = 1/O$ | $B_j$ | $\ln(\theta_j^*)$ | $\text{SE}_{\text{post}}$ | $Z_j$ | $P(\theta > 1,10)$ | Clasificación |
-| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **San Borja-Arriarán (`111100`)** | **M2 Primario** (Agudos, $\tau=0,2048$) | 145 | 95,7 | 1,515 | 0,006897 | 0,8588 | $+0,3597$ | 0,0770 | $+3,436$ | **0,9997** | **Alerta Primaria** |
-| | **M3a Real** (Agudos, $\tau=0,2048$) | 145 | 123,2 | **1,177** | 0,006897 | 0,8588 | $+0,1431$ | 0,0770 | $+0,621$ | **0,7326** | **Promedio** |
-| | *M3a con $\tau$ previo* ($\tau=0,2173$) | 145 | 123,2 | 1,177 | 0,006897 | 0,8726 | $+0,1422$ | 0,0776 | $+0,604$ | **0,7271** | Promedio |
-| | *Hipótesis del texto previo* ($O/E=1,27$) | 145 | 114,2 | 1,270 | 0,006897 | 0,8712 | $+0,2082$ | 0,0775 | $+1,457$ | **0,9274** | Promedio |
-| **San Camilo (`108100`)** | **M2 Primario** (Agudos, $\tau=0,2048$) | 365 | 282,6 | **1,292** | 0,002740 | 0,9387 | $+0,2416$ | 0,0507 | $+2,884$ | **0,9980** | **Alerta Primaria** |
-| | **M3a Real** (Agudos, $\tau=0,2048$) | 365 | 304,9 | **1,197** | 0,002740 | 0,9387 | $+0,1702$ | 0,0507 | $+1,477$ | **0,9302** | **Promedio** |
-| | *M3a con $\tau$ previo* ($\tau=0,2173$) | 365 | 304,9 | 1,197 | 0,002740 | 0,9452 | $+0,1700$ | 0,0509 | $+1,468$ | **0,9290** | Promedio |
-| | *Hipótesis del texto previo* ($O/E=1,27$) | 365 | 287,4 | 1,270 | 0,002740 | 0,9445 | $+0,2258$ | 0,0509 | $+2,564$ | **0,9948** | Alerta M3 |
+### 3.3 Estabilidad por Bootstrap de las Covariables de Estadía
+Se congelan los resultados de 100 réplicas bootstrap en desarrollo ($N = 1.303.718$) en el archivo [`scratch/estadia_bootstrap_stability_17.json`](file:///home/felipe/Documentos/Proyecto%20final/Tesis/scratch/estadia_bootstrap_stability_17.json):
+* **16 Variables Núcleo al 100%:** Incluyen a `ELIX_03` Valvulopatía (100%) y `ELIX_08` Parálisis (100%).
+* **Borde en Puesto 17:** `ELIX_06` HTA no complicada (69,0%), `ELIX_19` Cáncer metastásico (19,0%), `ELIX_10` EPOC (10,0%), `ELIX_07` HTA complicada (2,0%). Todos con coeficientes entre $+0,0014$ y $+0,0038$. El ordenamiento institucional es enteramente insensible a la alternancia en este borde ($\rho \ge 0,999$).
 
-*Aclaración de Discrepancias Previas:*
-1. **San Borja:** En la versión previa, el texto imprimió erróneamente el encabezado $O/E = 1,27$, pero la función de cálculo utilizó el valor empírico real $O/E = 1,177$, reportando exactamente $P = 0,733$. Tal como observó el comité, un $O/E$ de $1,27$ hubiese generado $P = 0,927 \approx 0,93$. Al corregirse la etiqueta a $O/E = 1,177$, la probabilidad de $0,733$ queda matemáticamente verificada.
-2. **San Camilo:** El valor $P = 0,9980 \approx 0,998$ corresponde estrictamente a su desempeño en el **Modelo Primario M2** ($O/E = 1,292$, $Z = +2,884$), mientras que en M3a su exceso desciende a $O/E = 1,197$, arrojando $P = 0,9302 < 0,95$.
+### 3.4 Desglose Paramétrico Empírico de Bayes (San Borja y San Camilo)
+Se reproduce la inferencia empírica de Bayes empleando para cada modelo sus propios hiperparámetros $(\tau, \mu)$:
 
-### 3.4 Corrección de la Reducción Porcentual de $\tau$
-Al excluir los 3 centros monográficos (Traumatológico, Neurocirugía y Tórax), la dispersión institucional entre hospitales de agudos generales ($K=62$) desciende de $\tau = 0,2173$ a $\tau = 0,2048$. La variación porcentual corresponde a:
-$$\Delta \tau = \frac{0,2173 - 0,2048}{0,2173} = \mathbf{5,75\%}$$
-Se aclara formalmente que la cifra previa de $6,10\%$ resultaba de calcular el cociente respecto del valor nuevo final ($(0,2173 - 0,2048)/0,2048 = 6,10\%$). La tasa de reducción respecto de la dispersión basal de la red es de **$5,75\%$**.
+| Hospital | Especificación | $\tau$ | $\mu$ | $O$ | $E$ | $O/E$ | $v = 1/O$ | $B$ | $\ln(\theta^*)$ | $\text{SE}_{\text{post}}$ | $Z$ | $P(\theta > 1,10)$ | Clasificación |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **San Borja (`111100`)** | **M2+MDC (Primaria)** | 0,1948 | -0,0359 | 145 | 101,3 | **1,432** | 0,006897 | 0,8463 | $+0,2985$ | 0,0764 | $+2,659$ | **0,9961** | **Alerta Primaria** |
+| | M2 Base (Sensibilidad) | 0,2077 | -0,0267 | 145 | 95,7 | 1,515 | 0,006897 | 0,8621 | $+0,3543$ | 0,0771 | $+3,358$ | **0,9996** | Alerta M2 |
+| | M3-Total (Sensibilidad)| 0,2041 | -0,0347 | 145 | 123,2 | 1,177 | 0,006897 | 0,8580 | $+0,1347$ | 0,0769 | $+0,512$ | **0,6967** | Promedio |
+| **San Camilo (`108100`)**| **M2+MDC (Primaria)** | 0,1948 | -0,0359 | 365 | 310,9 | **1,174** | 0,002740 | 0,9326 | $+0,1473$ | 0,0506 | $+1,029$ | **0,8482** | **Promedio** |
+| | M2 Base (Sensibilidad) | 0,2077 | -0,0267 | 365 | 282,6 | 1,292 | 0,002740 | 0,9402 | $+0,2389$ | 0,0508 | $+2,827$ | **0,9977** | Alerta M2 |
+| | M3-Total (Sensibilidad)| 0,2041 | -0,0347 | 365 | 304,9 | 1,197 | 0,002740 | 0,9382 | $+0,1673$ | 0,0507 | $+1,419$ | **0,9204** | Promedio |
+
+*Aclaración de $\tau$:* La reducción de $\tau$ al excluir centros monográficos en agudos generales es de **$5,75\%$** respecto de la dispersión de la red total ($0,2173 \to 0,2048$).
 
 ---
 
-## 4. Análisis Completo de Estrés en Traslados No Enlazados y Censura Informativa
+## 4. Enlace Unificado y Sensibilidad a la Censura por Derivación
 
-### 4.1 Escenario de Estrés con Límite Superior de Byar (95% CI) en Emisores con $\lambda_{\text{obs}} > 1,0$
-Para evaluar rigurosamente la hipótesis de censura informativa, se identificaron los hospitales cuyos traslados enlazados presentan un ratio de mortalidad observado $\lambda_{\text{obs}} = O_{\text{link}} / E_{\text{link}}$ significativamente mayor a 1,0 (límite inferior de Byar $> 1,0$). Para ellos, suponer $\lambda = 1,0$ en sus traslados no enlazados resulta excesivamente optimista. Se aplicó el límite superior del intervalo de Byar ($\,\lambda_{\text{high}}\,\$) como escenario de estrés asistencial:
+### 4.1 Criterio Unificado de Enlace Determinístico
+Para eliminar discrepancias entre corridas, se fija de manera definitiva un único criterio de enlace:
+> **Criterio Unificado:** Se consideran enlazados todos los episodios de derivación que registran un reingreso o admisión hospitalaria subsiguiente en cualquier establecimiento de la red pública (silver 2023), identificado mediante `CIP_ENCRIPTADO`, con fecha de ingreso entre 0 y 30 días posteriores al egreso del emisor (`FECHA_INGRESO_REC >= FECHAALTA` y `FECHA_INGRESO_REC <= FECHAALTA + 30 días`).
 
-| Establecimiento Emisor | $O_{\text{base}}$ | $E_{\text{base}}$ | $O_{\text{link}}$ | $E_{\text{link}}$ | $\lambda_{\text{obs}}$ [IC 95% Byar] | No Enlaz. | $E_{\text{nolink}}$ | $O/E_{\text{base}}$ | $P_{\text{base}}$ | $O/E_{\text{estrés}}$ | $P_{\text{estrés}}$ | Clasificación de Estrés |
+Bajo este criterio unificado se restauran exactamente los conteos de la auditoría canónica:
+* **Total egresos por traslado inpatient adultos 2023:** **25.555** episodios.
+* **Total enlazados:** **11.544** episodios (tasa de enlace global: 45,2%).
+* **Curanilahue (`128109`):** 511 traslados (210 enlazados con 12 defunciones, y 301 no enlazados). Su punto de quiebre exacto bajo M3 es **$2,17\times$** (44 defunciones requeridas en no enlazados, tasa 14,62%). Bajo M2+MDC su punto de quiebre es **$2,73\times$** (18,6% de mortalidad requerida).
+
+### 4.2 Sensibilidad a la Sobremortalidad de Derivados (Evaluación con Límite Superior Byar)
+Se evaluó el comportamiento de los centros de alta complejidad con sobremortalidad observada en sus traslados enlazados bajo la especificación primaria M2+MDC:
+
+| Hospital Emisor | $O_{\text{base}}$ | $E_{\text{base}}$ | Enlazados | $O_{\text{link}}$ | $E_{\text{link}}$ | $\lambda_{\text{obs}}$ [IC 95% Byar] | No Enlaz. | $E_{\text{nolink}}$ | $P_{\text{base}}$ | $\lambda^*$ Quiebre | $P(\text{Byar High})$ | Sensibilidad |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Complejo Hosp. Dr. Sótero del Río (`114101`)** | 1.014 | 934,8 | 28 | 22,7 | **1,23x** [0,82 – 1,78] | 1.978 | 116,9 | 1,085 | 0,311 | **1,164** | **0,972** | **CAMBIA A ALERTA** |
-| **Hospital El Pino (`113180`)** | 438 | 238,6 | 13 | 4,9 | **2,63x** [1,40 – 4,50] | 1.242 | 61,1 | 1,836 | 1,000 | **2,382** | **1,000** | **Alerta Extrema** |
-| **Hospital Barros Luco Trudeau (`113100`)** | 972 | 754,7 | 9 | 4,6 | **1,97x** [0,90 – 3,73] | 452 | 29,8 | 1,288 | 1,000 | **1,384** | **1,000** | **Alerta Consolidada** |
-| **Hospital Del Salvador (`112100`)** | 542 | 577,5 | 22 | 13,1 | **1,68x** [1,05 – 2,54] | 503 | 55,6 | 0,938 | 0,000 | **1,091** | **0,395** | Promedio (Alerta en M3) |
-| **Hospital San José de Parral (`116110`)** | 146 | 171,3 | 22 | 14,6 | **1,51x** [0,95 – 2,29] | 105 | 2,0 | 0,852 | 0,001 | **0,918** | **0,009** | Desempeño Favorable |
+| **Sótero del Río (`114101`)** | 1.014 | 1.109,2 | 621 / 2.385 | 43 | 39,2 | **1,10x** [0,79 – 1,48] | 1.764 | 145,8 | 0,000 | **2,36x** | 0,033 | No vulnerable en M2+MDC |
+| **El Pino (`113180`)** | 438 | 266,1 | 250 / 1.370 | 25 | 12,4 | **2,01x** [1,30 – 2,97] | 1.120 | 55,6 | 1,000 | **0,00x** | 1,000 | Alerta Robusta |
+| **Del Salvador (`112100`)** | 542 | 496,0 | 180 / 669 | 25 | 18,7 | **1,33x** [0,86 – 1,97] | 489 | 47,0 | 0,479 | **1,92x** | **0,959** | **VULNERABLE ($\lambda^* < \text{High}$)** |
+| **Barros Luco (`113100`)** | 972 | 709,3 | 94 / 503 | 16 | 10,3 | **1,56x** [0,89 – 2,53] | 409 | 26,1 | 1,000 | **0,00x** | 1,000 | Alerta Primaria |
+| **Parral (`116110`)** | 146 | 179,3 | 365 / 392 | 24 | 12,9 | **1,87x** [1,20 – 2,78] | 27 | 1,0 | 0,000 | **50,0x** | 0,000 | Inmune |
+| **Curanilahue (`128109`)** | 136 | 139,1 | 210 / 511 | 12 | 10,5 | **1,14x** [0,59 – 1,99] | 301 | 20,5 | 0,203 | **2,73x** | 0,712 | Inmune a Estrés |
 
-*Hallazgo de Censura Informativa:*
-* En el **Complejo Hospitalario Dr. Sótero del Río (`114101`)**, la censura por derivación favorece estructuralmente al establecimiento: tiene **1.978 traslados no enlazados** ($E = 116,9$). Al imputar la sobremortalidad observada en sus pacientes derivados al límite superior de Byar ($1,78\times$), **Sótero del Río pasa directamente a ALERTA ($P = 0,972 \ge 0,95$)**.
-* En el **Hospital Del Salvador (`112100`)**, bajo la especificación M3-Total, aplicar su cota superior Byar ($2,54\times$) eleva su probabilidad posterior a **$P = 1,000$ (Alerta)**.
-* Esto demuestra concluyentemente una **censura informativa favorable a los centros emisores de alta complejidad**: los pacientes trasladados fallecen significativamente más de lo esperado en los centros receptores, y el subenlace administrativo encubre parte sustantiva de su sobremortalidad real.
+*Aclaración sobre Significancia e Interpretación:*
+* Solo **El Pino** ([1,30 a 2,97]) y **Parral** ([1,20 a 2,78]) presentan intervalos de Byar que excluyen estrictamente el 1,0 bajo M2+MDC. En Sótero del Río ([0,79 a 1,48]), Del Salvador ([0,86 a 1,97]), Barros Luco ([0,89 a 2,53]) y Curanilahue ([0,59 a 1,99]), el intervalo incluye el 1,0.
+* **Presentación como Sensibilidad:** No se concluye una censura informativa irrefutable, sino una **sensibilidad asistencial ante la descarga de pacientes críticos**. En el **Hospital Del Salvador (`112100`)**, su punto de quiebre es $\lambda^* = 1,92\times$. Debido a que su cota superior de Byar alcanza $1,97\times$, bajo ese escenario extremo su probabilidad asciende a $P = 0,959$ (Alerta), mientras que con su estimación puntual se ubica sólidamente en Desempeño Promedio ($P = 0,712$). En Sótero del Río, bajo M2+MDC su case-mix favorable aleja el punto de quiebre a $2,36\times$, manteniéndose en promedio incluso bajo estrés Byar ($P = 0,033$).
 
-### 4.2 Ranking de Vulnerabilidad y Puntos de Quiebre ($\lambda^*$) en Todos los Hospitales No Alertados
-Se extendió el cálculo del punto de quiebre $\lambda^*$ (el multiplicador mínimo sobre el riesgo esperado de los traslados no enlazados necesario para cruzar el umbral de alerta $P \ge 0,95$) a la totalidad de hospitales no alertados de la red en el Modelo Primario M2:
+### 4.3 Ranking Completo de Vulnerabilidad al Sublinkeaje en Hospitales No Alertados (M2+MDC)
+En la red de agudos generales ($K=62$), descontando las **10 Alertas Primarias**, se analizan los **52 hospitales no alertados**. La tabla reconcilia exactamente el total de 62 establecimientos ($10 \text{ alertas} + 52 \text{ no alertados} = 62$):
 
-| Código | Establecimiento | Traslados ($N_{\text{tr}}$) | No Enlazados | $E_{\text{nolink}}$ | $P_{\text{base}}$ | $\lambda^*$ Quiebre | Mortalidad Requerida % | Zona de Vulnerabilidad |
+| Código | Establecimiento | $N_{\text{tr}}$ | No Enlaz. | $E_{\text{nolink}}$ | $\lambda_{\text{obs}}$ [Byar High] | $\lambda^*$ Quiebre | Mort. Quiebre % | Condición de Vulnerabilidad |
 | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| `107101` | **Hospital San Martín (Quillota)** | 570 | 392 | 29,2 | 0,928 | **1,39x** | 10,4% | **Crítica** ($< 2\times$) |
-| `114105` | **Hospital Clínico La Florida** | 138 | 67 | 4,7 | 0,909 | **1,51x** | 10,7% | **Crítica** ($< 2\times$) |
-| `114101` | **Complejo Hosp. Dr. Sótero del Río** | 2.385 | 1.978 | 116,9 | 0,311 | **1,70x** | 10,0% | **Crítica** ($< 2\times$) |
-| `105102` | **Hospital de Ovalle** | 219 | 112 | 12,2 | 0,874 | **1,71x** | 18,7% | **Crítica** ($< 2\times$) |
-| `133150` | **Hospital de Castro** | 394 | 298 | 25,7 | 0,811 | **1,81x** | 15,7% | **Crítica** ($< 2\times$) |
-| `128109` | **Hospital de Curanilahue** | 511 | 366 | 19,7 | 0,604 | **1,89x** | 10,2% | **Crítica** ($< 2\times$) |
-| `112100` | Hospital Del Salvador | 669 | 503 | 55,6 | 0,000 | **3,47x** | 38,4% | Moderada ($3\times - 5\times$) |
-| `115100` | Hospital Regional de Rancagua | 834 | 672 | 65,6 | 0,000 | **4,12x** | 40,2% | Moderada ($3\times - 5\times$) |
-| `121110` | Hospital Dr. Abraham Godoy (Lautaro) | 305 | 161 | 15,1 | 0,021 | **4,31x** | 40,5% | Moderada ($3\times - 5\times$) |
-| `117101` | Hospital Clínico Herminda Martín | 636 | 467 | 31,9 | 0,003 | **4,51x** | 30,8% | Moderada ($3\times - 5\times$) |
-| `104100` | Hospital San José del Carmen (Copiapó) | 203 | 96 | 6,4 | 0,667 | **4,56x** | 30,6% | Moderada ($3\times - 5\times$) |
-| `116108` | Hospital de Linares | 372 | 149 | 11,2 | 0,363 | **4,73x** | 35,6% | Moderada ($3\times - 5\times$) |
-| *Resto* | *42 Hospitales Restantes de la Red* | *—* | *—* | *—* | $< 0,10$ | **$> 5,0\text{x}$** | $> 40,0\%$ | **Inmune** ($> 5\times$) |
-
-*Interpretación de la Vulnerabilidad:*
-Solo **6 hospitales en todo el país** presentan un punto de quiebre crítico ($\lambda^* < 2,0\times$). En ellos, un exceso de mortalidad moderado en sus pacientes derivados (tasas de $10\%$ a $18\%$) alteraría su clasificación hacia zona de alerta. Por el contrario, para los 42 hospitales clasificados como "Inmunes", se requerirían tasas de mortalidad biológicamente inverosímiles ($> 40\% - 80\%$) en sus traslados no enlazados para abandonar la categoría de Desempeño Promedio.
+| `105102` | **Hospital de Ovalle** | 219 | 96 | 11,6 | 1,65x [**2,76x**] | **1,78x** | 21,5% | **VULNERABLE** ($\lambda^* < \text{Byar High}$) |
+| `112100` | **Hospital Del Salvador** | 669 | 489 | 47,0 | 1,33x [**1,97x**] | **1,92x** | 18,4% | **VULNERABLE** ($\lambda^* < \text{Byar High}$) |
+| `104100` | **Hospital de Copiapó** | 203 | 78 | 6,0 | 1,42x [**2,70x**] | **1,94x** | 14,9% | **VULNERABLE** ($\lambda^* < \text{Byar High}$) |
+| `114101` | Complejo Hosp. Dr. Sótero del Río | 2.385 | 1.764 | 145,8 | 1,10x [1,48x] | **2,36x** | 19,5% | No vulnerable ($\lambda^* > \text{Byar High}$) |
+| `108100` | Hospital de San Camilo (San Felipe) | 262 | 130 | 11,8 | 0,83x [1,71x] | **2,36x** | 21,5% | No vulnerable ($\lambda^* > \text{Byar High}$) |
+| `133150` | Hospital de Castro | 394 | 274 | 26,5 | 0,66x [1,69x] | **2,44x** | 23,7% | No vulnerable ($\lambda^* > \text{Byar High}$) |
+| `116108` | Hospital de Linares | 372 | 114 | 12,5 | 1,31x [2,05x] | **2,63x** | 28,9% | No vulnerable ($\lambda^* > \text{Byar High}$) |
+| `128109` | Hospital de Curanilahue | 511 | 301 | 20,5 | 1,14x [1,99x] | **2,73x** | 18,6% | No vulnerable ($\lambda^* > \text{Byar High}$) |
+| `107100` | Hospital Dr. Gustavo Fricke | 570 | 348 | 29,8 | 1,02x [1,63x] | **3,26x** | 27,9% | No vulnerable ($\lambda^* > \text{Byar High}$) |
+| `115100` | Hospital Regional de Rancagua | 834 | 604 | 67,8 | 0,65x [1,13x] | **3,45x** | 38,7% | No vulnerable ($\lambda^* > \text{Byar High}$) |
+| `102100` | Hospital de Iquique | 427 | 247 | 21,3 | 0,64x [1,32x] | **4,24x** | 36,5% | No vulnerable ($\lambda^* > \text{Byar High}$) |
+| `121110` | Hospital de Lautaro | 305 | 120 | 15,0 | 1,08x [1,85x] | **4,27x** | 53,5% | No vulnerable ($\lambda^* > \text{Byar High}$) |
+| `117101` | Hospital Herminda Martín (Chillán) | 636 | 432 | 31,4 | 1,30x [2,04x] | **4,77x** | 34,7% | No vulnerable ($\lambda^* > \text{Byar High}$) |
+| `122100` | Hospital Regional de Valdivia | 532 | 407 | 33,7 | 0,95x [1,96x] | **5,12x** | 42,4% | Inmune ($> 5\times$) |
+| `121117` | Hospital de Pitrufquén | 328 | 155 | 17,8 | 1,14x [1,91x] | **5,12x** | 58,8% | Inmune ($> 5\times$) |
+| *Resto* | *37 Hospitales Restantes de la Red* | *—* | *—* | *—* | *—* | **$> 5,0\text{x}$** | $> 40\%$ | **Inmunes** ($> 5\times$) |
+| **Total** | **52 Hospitales No Alertados en M2+MDC** | | | | | | | *(Reconcilia con 10 Alertas = 62 Total)* |
 
 ---
 
 ## 5. Dictamen Metodológico Consolidado de Cierre de Fase 2
 
-Con estas precisiones, la Fase 2 del proyecto de tesis queda **definitiva y formalmente cerrada**:
-
-1. **Especificación Primaria Defendible:** Se re-establece **M2 (Clínico Base / M3-Crónico)** como la especificación primaria oficial, blindando la evaluación contra la absorción indebida de complicaciones intrahospitalarias al alta, y dejando M3-Total como prueba de esfuerzo por codificación aguda.
-2. **Criterio de Calibración Riguroso:** Sustituido el criterio de $N_{\text{dx}}$ por estratificaciones preexistentes al ingreso (edad, carga crónica Elixhauser, vía de ingreso, tipo de hospital), todas verificadas en $[0,80; 1,25]$. Se demostró que la descalibración en $N_{\text{dx}}$ ocurre de forma idéntica en M3-Crónico sin alterar el ordenamiento interhospitalario ($\rho = 0,9984$).
-3. **Auditoría Técnica LOHO y Estadía:** Confirmada la ejecución real de LOHO out-of-sample en 2023, reportando 144 categorías CIE-10 concentradas ($>50\%$), $|\Delta|_{\text{máx}} = 0,5079$, y desplazamiento de Neurocirugía en $-0,0294$ ($0,8033 \to 0,7739$). Congelada la estabilidad bootstrap de las 17 covariables de estadía (`estadia_bootstrap_stability_17.json`).
-4. **Reproducibilidad Numérica Total:** Publicados $O, E, O/E, v, B, \theta^*, \text{SE}_{\text{post}}, Z$ y $P$ para San Borja y San Camilo, aclarando los descalces de etiquetas de borradores previos.
-5. **Censura Informativa Comprobada:** Demostrada la sobremortalidad de los derivados ($\lambda_{\text{obs}} > 1,0$) y el vuelco a Alerta del Complejo Hospitalario Dr. Sótero del Río bajo estrés Byar superior, cuantificando los puntos de quiebre $\lambda^*$ para toda la red hospitalaria pública.
+Con estas precisiones metodológicas y empíricas, la Fase 2 queda **concluida y auditada en su totalidad**:
+1. **Especificación Primaria M2+MDC Oficial:** Calibra de forma intachable en edad, comorbilidad crónica preexistente, vía de ingreso, tipo de establecimiento y diagnóstico principal (MDC). Corrige el sesgo por mezcla de especialidad del Tórax y San Camilo.
+2. **Taxonomía Transparente:** Delimitadas 10 alertas primarias y 4 alertas robustas en agudos generales. Pereira y La Florida quedan documentadas como alertas dependientes de la codificación secundaria aguda al alta en M3-Total.
+3. **Métricas de Estadía Congeladas:** Verificada la rama LOHO real out-of-sample en 2023 (144 diagnósticos concentrados, $|\Delta|_{\text{máx}} = 0,51$) y estabilidad bootstrap de las 17 covariables (`estadia_bootstrap_stability_17.json`).
+4. **Reproducibilidad Paramétrica de Bayes:** Fórmulas e hiperparámetros específicos $(\tau, \mu)$ publicados fila por fila para cada modelo.
+5. **Censura por Derivación:** Criterio determinístico unificado a 30 días, identificando con precisión qué centros son verdaderamente sensibles al estrés de traslados no enlazados (Ovalle, Del Salvador y Copiapó) y cuáles son inmunes.
