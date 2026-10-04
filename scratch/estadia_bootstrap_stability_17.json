@@ -1,0 +1,240 @@
+[
+  {
+    "variable": "EDAD_ANIOS",
+    "freq_top17": 100,
+    "pct_top17": 100.0,
+    "mean_coef": 0.03408284984086712,
+    "std_coef": 0.0014018400117685773
+  },
+  {
+    "variable": "INGRESO_URGENCIA",
+    "freq_top17": 100,
+    "pct_top17": 100.0,
+    "mean_coef": 0.13016456455996614,
+    "std_coef": 0.0012038560584126264
+  },
+  {
+    "variable": "INGRESO_CRITICO",
+    "freq_top17": 100,
+    "pct_top17": 100.0,
+    "mean_coef": 0.07745233699617357,
+    "std_coef": 0.0010903263857933788
+  },
+  {
+    "variable": "DERIVADO_OTRO_HOSPITAL",
+    "freq_top17": 100,
+    "pct_top17": 100.0,
+    "mean_coef": 0.024612548541525378,
+    "std_coef": 0.0009760956624706697
+  },
+  {
+    "variable": "ELIX_01",
+    "freq_top17": 100,
+    "pct_top17": 100.0,
+    "mean_coef": 0.01806504091189976,
+    "std_coef": 0.0010626270862949428
+  },
+  {
+    "variable": "ELIX_03",
+    "freq_top17": 100,
+    "pct_top17": 100.0,
+    "mean_coef": 0.007822946303676848,
+    "std_coef": 0.0011850884996062042
+  },
+  {
+    "variable": "ELIX_04",
+    "freq_top17": 100,
+    "pct_top17": 100.0,
+    "mean_coef": 0.039259473144519205,
+    "std_coef": 0.0009907291026754026
+  },
+  {
+    "variable": "ELIX_05",
+    "freq_top17": 100,
+    "pct_top17": 100.0,
+    "mean_coef": 0.010063360616309676,
+    "std_coef": 0.0010431546577033895
+  },
+  {
+    "variable": "ELIX_08",
+    "freq_top17": 100,
+    "pct_top17": 100.0,
+    "mean_coef": 0.006605058329994595,
+    "std_coef": 0.0011895340075124754
+  },
+  {
+    "variable": "ELIX_09",
+    "freq_top17": 100,
+    "pct_top17": 100.0,
+    "mean_coef": 0.012000137044740612,
+    "std_coef": 0.0011651585701585997
+  },
+  {
+    "variable": "ELIX_14",
+    "freq_top17": 100,
+    "pct_top17": 100.0,
+    "mean_coef": 0.030676970348688392,
+    "std_coef": 0.0011048505220251487
+  },
+  {
+    "variable": "ELIX_15",
+    "freq_top17": 100,
+    "pct_top17": 100.0,
+    "mean_coef": 0.009599648741962993,
+    "std_coef": 0.0010145123495609878
+  },
+  {
+    "variable": "ELIX_23",
+    "freq_top17": 100,
+    "pct_top17": 100.0,
+    "mean_coef": 0.01896805742797985,
+    "std_coef": 0.0011087463397023705
+  },
+  {
+    "variable": "ELIX_24",
+    "freq_top17": 100,
+    "pct_top17": 100.0,
+    "mean_coef": 0.058036046706475004,
+    "std_coef": 0.0012146583355921248
+  },
+  {
+    "variable": "ELIX_30",
+    "freq_top17": 100,
+    "pct_top17": 100.0,
+    "mean_coef": 0.008187806538185299,
+    "std_coef": 0.0011584681795358735
+  },
+  {
+    "variable": "CIE10_ENC_LOHO",
+    "freq_top17": 100,
+    "pct_top17": 100.0,
+    "mean_coef": 0.43435838005998995,
+    "std_coef": 0.001509992551666573
+  },
+  {
+    "variable": "ELIX_06",
+    "freq_top17": 69,
+    "pct_top17": 69.0,
+    "mean_coef": 0.0037611991951456004,
+    "std_coef": 0.0013479845108012036
+  },
+  {
+    "variable": "ELIX_19",
+    "freq_top17": 19,
+    "pct_top17": 19.0,
+    "mean_coef": 0.0026260776817508906,
+    "std_coef": 0.0010488807177941417
+  },
+  {
+    "variable": "ELIX_10",
+    "freq_top17": 10,
+    "pct_top17": 10.0,
+    "mean_coef": 0.002246027387193027,
+    "std_coef": 0.0010437710448157088
+  },
+  {
+    "variable": "ELIX_07",
+    "freq_top17": 2,
+    "pct_top17": 2.0,
+    "mean_coef": 0.0013903746503972872,
+    "std_coef": 0.0009814306281679993
+  },
+  {
+    "variable": "SEXO_MASCULINO",
+    "freq_top17": 0,
+    "pct_top17": 0.0,
+    "mean_coef": 0.0,
+    "std_coef": 0.0
+  },
+  {
+    "variable": "ELIX_11",
+    "freq_top17": 0,
+    "pct_top17": 0.0,
+    "mean_coef": 0.0,
+    "std_coef": 0.0
+  },
+  {
+    "variable": "ELIX_12",
+    "freq_top17": 0,
+    "pct_top17": 0.0,
+    "mean_coef": 0.0,
+    "std_coef": 0.0
+  },
+  {
+    "variable": "ELIX_13",
+    "freq_top17": 0,
+    "pct_top17": 0.0,
+    "mean_coef": 0.0,
+    "std_coef": 0.0
+  },
+  {
+    "variable": "ELIX_16",
+    "freq_top17": 0,
+    "pct_top17": 0.0,
+    "mean_coef": 0.0,
+    "std_coef": 0.0
+  },
+  {
+    "variable": "ELIX_17",
+    "freq_top17": 0,
+    "pct_top17": 0.0,
+    "mean_coef": 8.205245424480989e-05,
+    "std_coef": 0.00029905424556539033
+  },
+  {
+    "variable": "ELIX_18",
+    "freq_top17": 0,
+    "pct_top17": 0.0,
+    "mean_coef": 0.0,
+    "std_coef": 0.0
+  },
+  {
+    "variable": "ELIX_20",
+    "freq_top17": 0,
+    "pct_top17": 0.0,
+    "mean_coef": 0.0,
+    "std_coef": 0.0
+  },
+  {
+    "variable": "ELIX_21",
+    "freq_top17": 0,
+    "pct_top17": 0.0,
+    "mean_coef": 0.0,
+    "std_coef": 0.0
+  },
+  {
+    "variable": "ELIX_26",
+    "freq_top17": 0,
+    "pct_top17": 0.0,
+    "mean_coef": 0.0,
+    "std_coef": 0.0
+  },
+  {
+    "variable": "ELIX_27",
+    "freq_top17": 0,
+    "pct_top17": 0.0,
+    "mean_coef": 6.777916786393543e-06,
+    "std_coef": 4.017310974720276e-05
+  },
+  {
+    "variable": "ELIX_28",
+    "freq_top17": 0,
+    "pct_top17": 0.0,
+    "mean_coef": 0.0,
+    "std_coef": 0.0
+  },
+  {
+    "variable": "ELIX_29",
+    "freq_top17": 0,
+    "pct_top17": 0.0,
+    "mean_coef": 0.0,
+    "std_coef": 0.0
+  },
+  {
+    "variable": "ELIX_31",
+    "freq_top17": 0,
+    "pct_top17": 0.0,
+    "mean_coef": 0.0,
+    "std_coef": 0.0
+  }
+]
