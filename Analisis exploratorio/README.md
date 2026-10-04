@@ -1,25 +1,33 @@
-# Módulo de Análisis Exploratorio de Datos (EDA) y Auditoría Metodológica — Fase 2
+# Módulo de Análisis Exploratorio de Datos (EDA) y Modelado Estadístico — Fase 2
 
-Este directorio contiene la suite completa de código, visualizaciones científicas y scripts de auditoría empírica desarrollados para la **Fase 2: Comprensión de los Datos (Data Understanding)** de la tesis:
+Este directorio contiene la suite consolidada de scripts de cálculo, benchmarks canónicos, tablas de auditoría y documentos oficiales para la **Fase 2: Comprensión de los Datos y Modelado Exploratorio** de la tesis:
 
 > **"Sistema de evaluación del desempeño hospitalario ajustado por riesgo mediante aprendizaje automático"**  
 > *Estudiante: Felipe Ignacio Baeza Muñoz | Carrera: Ingeniería de Ejecución en Computación e Informática — USACH*
 
 ---
 
-## 📁 Estructura del Directorio
+## 📁 Estructura Consolidada del Directorio
 
 ```text
 Analisis exploratorio/
-├── README.md                                    # Guía metodológica y catálogo de artefactos
-├── 01_generar_graficos_eda.py                   # Generador de figuras de alta resolución (300 DPI)
-├── 02_verificar_evidencias_fase2.py             # Auditoría cuantitativa de los 18 problemas de calidad
-├── 03_auditoria_profunda_fase2.py               # Métricas reales de cohorte, POA, upcoding y traslados
-├── 04_protocolo_seleccion_empirica.py           # Protocolo LASSO, estabilidad y validación anidada
-├── matriz_maestra_129_columnas.csv              # Matriz de 129 filas con rol único y conteos exactos
-├── anexo_tipoalta_y_censura.csv                 # Mapeo exhaustivo de los 12 valores de TIPOALTA
-├── informe_verificacion_calidad_fase2.md        # Reporte formal de verificación empírica
-├── resolucion_observaciones_fase2.md            # Resolución punto por punto de la revisión de Fase 2
+├── 01_modelado_benchmarks_mortalidad_m2cap.py   # Modelado M2+CAP, M2 Base, M3-Total, Bayes Empírico y benchmarks
+├── 02_calibracion_preingreso_y_deriva_ndx.py    # Calibración preingreso y serie temporal N_dx de la red (2019–2024)
+├── 03_sensibilidad_complicaciones_poa.py        # Sensibilidad a condiciones agudas y modelo estricto POA-26
+├── 04_analisis_traslados_y_estres_censura.py    # Enlace determinístico a 30d, cotas lambda_salida y estrés Byar
+├── 05_validacion_estadia_loho_y_bootstrap.py    # Validación LOHO out-of-sample y estabilidad bootstrap de estadía
+├── 06_generar_graficos_eda.py                   # Generador de figuras científicas de alta resolución (300 DPI)
+├── benchmarks_modelos_fase2_2023.csv            # Archivo canonical unificado de métricas O, E y P (K = 65)
+├── tabla_canonica_elixhauser_31.csv             # Definición y clasificación POA de las 31 categorías Elixhauser
+├── diccionario_base_datos_129.csv               # Diccionario exhaustivo de las 129 columnas con conteos de nulos
+├── matriz_maestra_129_columnas.csv              # Matriz de metadatos de las 129 columnas con tipos y roles
+├── anexo_tipoalta_y_censura.csv                 # Mapeo exhaustivo de los 12 valores observados de TIPOALTA
+├── resolucion_observaciones_fase2.md            # Informe consolidado de resolución de observaciones (Fase 2)
+├── resolucion_observaciones_fase2.docx          # Versión Word (DOCX) del informe de resolución
+├── informe_verificacion_calidad_fase2.md        # Informe formal de calidad de datos y verificación CONSORT
+├── informe_verificacion_calidad_fase2.docx      # Versión Word (DOCX) del informe de calidad
+├── README.md                                    # Esta guía metodológica y catálogo de artefactos
+├── README.docx                                  # Versión Word (DOCX) de esta guía metodológica
 └── figuras/                                     # Figuras listas para inserción en la tesis
     ├── fig01_distribucion_estancia_hist_box.png
     ├── fig02_piramide_poblacional_edad_sexo.png
@@ -31,56 +39,35 @@ Analisis exploratorio/
 
 ---
 
-## 🚀 Ejecución de Scripts
+## 🚀 Suite de Ejecución de Cálculos
 
-Para reproducir tanto los gráficos como las auditorías completas sobre los 5.8 millones de registros:
+Los cálculos de la Fase 2 se ejecutan de manera reproducible e independiente a través de los siguientes módulos:
 
 ```bash
-# 1. Generar las 6 figuras científicas (300 DPI) en < 3 segundos
-python "Analisis exploratorio/01_generar_graficos_eda.py"
+# 1. Modelado primario M2+CAP, sensibilidades M2 y M3, y generación de benchmarks canonical
+python "Analisis exploratorio/01_modelado_benchmarks_mortalidad_m2cap.py"
 
-# 2. Ejecutar la auditoría y validar los 18 problemas de calidad en < 2 segundos
-python "Analisis exploratorio/02_verificar_evidencias_fase2.py"
+# 2. Evaluación de calibración multidimensional preingreso y deriva temporal de N_dx (2019-2024)
+python "Analisis exploratorio/02_calibracion_preingreso_y_deriva_ndx.py"
 
-# 3. Ejecutar auditoría profunda de cohorte (mortalidad, estadía, upcoding, POA, traslados)
-python "Analisis exploratorio/03_auditoria_profunda_fase2.py"
+# 3. Análisis de sensibilidad POA por supresión de agudos (I26, G93.4, R56) y POA-26
+python "Analisis exploratorio/03_sensibilidad_complicaciones_poa.py"
 
-# 4. Ejecutar el protocolo de selección empírica con Stability Selection (Meinshausen & Bühlmann)
-python "Analisis exploratorio/04_protocolo_seleccion_empirica.py"
+# 4. Enlace determinístico de transferencias a 30 días, cotas de salida lambda_salida y estrés Byar
+python "Analisis exploratorio/04_analisis_traslados_y_estres_censura.py"
+
+# 5. Validación out-of-sample de estadía con Leave-One-Hospital-Out (LOHO) y bootstrap
+python "Analisis exploratorio/05_validacion_estadia_loho_y_bootstrap.py"
+
+# 6. Generación de las 6 figuras científicas EDA (300 DPI)
+python "Analisis exploratorio/06_generar_graficos_eda.py"
 ```
 
 ---
 
-## 📊 Catálogo de Figuras Científicas Generadas
+## 📊 Documentos Oficiales en Formato Word (DOCX)
 
-### 1. `fig01_distribucion_estancia_hist_box.png` — Distribución de Estancia Hospitalaria
-- **Objetivo metodológico:** Justificar la formulación matemática del modelo de estancia (`ESTANCIA_DIAS`).
-- **Hallazgo clave:** Marcada asimetría positiva (*right-skewed*, asimetría = 14.89, curtosis = 629.20) con una masa de probabilidad concentrada en estancia 0 (19.76% de casos ambulatorios) y una cola pesada de hospitalizaciones prolongadas (>30 días).
-- **Decisión de modelado:** Descarta regresión lineal por mínimos cuadrados ordinarios (OLS) y fundamenta el uso de regresión **Tweedie / Poisson sobredispersa** con LightGBM y *capping* a p99 (46 días).
-
-### 2. `fig02_piramide_poblacional_edad_sexo.png` — Pirámide Demográfica Hospitalaria
-- **Objetivo metodológico:** Caracterizar la estructura etaria y por sexo de los usuarios de la red pública FONASA.
-- **Hallazgo clave:** Predominio femenino en edad fértil (20–39 años) por obstetricia/partos, y ensanchamiento bimodal en adultos mayores (>65 años) con mayor comorbilidad y riesgo de mortalidad intrahospitalaria.
-
-### 3. `fig03_top_capitulos_cie10.png` — Principales Motivos de Ingreso por Capítulo CIE-10
-- **Objetivo metodológico:** Resumir los más de 9.500 diagnósticos primarios en categorías clínicas estables.
-- **Hallazgo clave:** Los capítulos líderes son Embarazo/Parto (Cap. 15), Enfermedades del Sistema Digestivo (Cap. 11), Traumatismos/Causas Externas (Cap. 19), Sistema Circulatorio (Cap. 9) y Neoplasias (Cap. 2).
-
-### 4. `fig04_prevalencia_comorbilidades_elixhauser.png` — Prevalencia Comorbilidades de Elixhauser
-- **Objetivo metodológico:** Evaluar la carga comórbida basal preexistente (algoritmo Quan et al., 2005) a partir de los diagnósticos secundarios (`DIAGNOSTICO2` a `DIAGNOSTICO35`).
-- **Hallazgo clave:** Alta prevalencia de hipertensión no complicada, diabetes no complicada, trastornos hidroelectrolíticos, insuficiencia cardíaca congestiva (ICC) y enfermedad pulmonar crónica (EPOC).
-
-### 5. `fig05_evolucion_temporal_egresos_mortalidad.png` — Evolución Temporal y Efecto Pandemia
-- **Objetivo metodológico:** Analizar la estabilidad de la serie temporal (2019–2024) y cuantificar el impacto del COVID-19.
-- **Hallazgo clave:** Drástica caída en el volumen de egresos durante 2020 (~781.000) por suspensión de cirugías electivas, acompañada de un salto en la tasa de mortalidad cruda (>3.8% cruda, 4.07% no censurada) debido a la gravedad de los pacientes ingresados.
-
-### 6. `fig06_distribucion_tipo_alta_censura.png` — Desenlaces de Egreso y Censura Estadística
-- **Objetivo metodológico:** Fundamentar el tratamiento estadístico de la variable objetivo de mortalidad.
-- **Hallazgo clave:** 89.62% egresos a domicilio con vida, 2.94% fallecidos intrahospitalarios confirmados, y un 6.11% de egresos censurados (traslados a otros recintos, hospitalización domiciliaria o fugas) aislados para evitar sesgo de sobrevida espuria.
-
----
-
-## 🔒 Consideraciones Éticas y Cumplimiento
-- **No Data Leakage:** Se verificó que ninguna variable post-ingreso (procedimientos, traslados, desenlaces intermedios) forma parte de la matriz predictiva basal.
-- **Protección de Datos Sensibles (Ley 19.628 / 20.285):** Los 9 identificadores personales encontrados en columnas erróneas han sido aislados y enmascarados, impidiendo cualquier exposición en logs o figuras.
-- **Equidad Algorítmica:** Las variables de etnia y vulnerabilidad socioeconómica no se incorporan como factores de riesgo permisibles en el modelo, preservándolas estrictamente para análisis post-hoc de justicia distributiva.
+A solicitud de la comisión revisora, todos los reportes metodológicos cuentan con su versión correspondiente en Microsoft Word (`.docx`), formateada con estilos tipográficos profesionales, encabezados sombreados en azul marino, bordes limpios en tablas y cajas de llamado (*callouts*) para advertencias metodológicas:
+1. [`resolucion_observaciones_fase2.docx`](file:///home/felipe/Documentos/Proyecto%20final/Tesis/Analisis%20exploratorio/resolucion_observaciones_fase2.docx): Dictamen completo con especificación M2+CAP, cotas de salida, Byar stress reconciliado y deriva de codificación.
+2. [`informe_verificacion_calidad_fase2.docx`](file:///home/felipe/Documentos/Proyecto%20final/Tesis/Analisis%20exploratorio/informe_verificacion_calidad_fase2.docx): Auditoría cuantitativa de calidad de datos, nulos y consistencia CONSORT.
+3. [`README.docx`](file:///home/felipe/Documentos/Proyecto%20final/Tesis/Analisis%20exploratorio/README.docx): Catálogo de scripts y artefactos de la Fase 2.
