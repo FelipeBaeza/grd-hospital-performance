@@ -26,7 +26,7 @@ desde cero (octubre de 2026).
 | `fase6_despliegue/` | Plan de la Fase 6 (en desarrollo) |
 | `auditoria/` | Auditoría externa y resumen del plan de corrección |
 | `historial/` | Versiones anteriores de los informes, sin cambios |
-| `comunicaciones_fonasa/` | Borradores de cartas a FONASA (no enviadas) |
+| `comunicaciones_fonasa/` | Borradores de cartas a FONASA (no enviadas; solo en la copia local, fuera de git) |
 
 Los **planes** de cada fase se conservan como se escribieron: registran lo que se planificó, no lo que se hizo.
 
