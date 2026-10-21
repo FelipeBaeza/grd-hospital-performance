@@ -1,0 +1,11 @@
+item,estado,evidencia,accion
+Oficio FONASA 23364/2026 (respuesta a la solicitud AO004T0010901),AUSENTE,no se encontró el archivo en la carpeta del proyecto,Agregar el oficio al expediente
+Respuesta de FONASA por los microdatos de egresos 2019 a 2024,AUSENTE,no hay en la carpeta un documento de respuesta que acompañe los archivos de egresos,Incorporar la respuesta (con su número de oficio y fecha) al expediente
+Condiciones de uso y de publicación de resultados por hospital,NO DOCUMENTADAS,"el oficio 23364 es un catálogo técnico, sin registros de pacientes, y no se pronuncia sobre publicación por hospital","Consultar por escrito a FONASA (Fase 1, sección 14.4); decisión 10 sigue abierta"
+Diccionario oficial de todas las versiones del agrupador,NO EXISTE SEGÚN EL OFICIO,el oficio advierte que identificar el CDM y el grupo base por la estructura del código no equivale a un diccionario oficial de las versiones históricas,Usar el catálogo GRDs_T10901.xlsx solo como referencia de códigos vigentes
+Archivo de egresos 2019,PRESENTE,GRD_PUBLICO_2019.txt; SHA-256 0737c1e13f7efee5; 1151475 líneas de datos,Conservar sin modificar (regla R4)
+Archivo de egresos 2020,PRESENTE,GRD_PUBLICO_2020.txt; SHA-256 890c2e2e02c48888; 781912 líneas de datos,Conservar sin modificar (regla R4)
+Archivo de egresos 2021,PRESENTE,GRD_PUBLICO_2021.txt; SHA-256 254c5a76fd6fb6f9; 816909 líneas de datos,Conservar sin modificar (regla R4)
+Archivo de egresos 2022,PRESENTE,GRD_PUBLICO_EXTERNO_2022.txt; SHA-256 600b7f529f0ae3d9; 932840 líneas de datos,Conservar sin modificar (regla R4)
+Archivo de egresos 2023,PRESENTE,GRD_PUBLICO_2023.txt; SHA-256 b217aa2b76f47bab; 1039587 líneas de datos,Conservar sin modificar (regla R4)
+Archivo de egresos 2024,PRESENTE,GRD_PUBLICO_2024.txt; SHA-256 0f1d8732f4c722d7; 1085813 líneas de datos,Conservar sin modificar (regla R4)

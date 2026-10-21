@@ -1,0 +1,4340 @@
+{
+ "sexo": [
+  "HOMBRE",
+  "MUJER"
+ ],
+ "tipo_ingreso": [
+  "OBSTETRICA",
+  "PROGRAMADA",
+  "URGENCIA"
+ ],
+ "tipo_procedencia": [
+  {
+   "valor": "APS CONSULTORIO (CESFAM)",
+   "procedencia_agr": "PROGRAMADO"
+  },
+  {
+   "valor": "APS URGENCIA (SAPU, SUR, SUC)",
+   "procedencia_agr": "URGENCIA"
+  },
+  {
+   "valor": "CARDIOCIRUGÍA PAGO GRD",
+   "procedencia_agr": "PROGRAMADO"
+  },
+  {
+   "valor": "CENTRO ESPECIALIDADES (CDT, CRS, CONSULTORIO ADOS. ESP)",
+   "procedencia_agr": "PROGRAMADO"
+  },
+  {
+   "valor": "CIRUGÍA MAYOR AMBULATORIA (CMA)",
+   "procedencia_agr": "PROGRAMADO"
+  },
+  {
+   "valor": "CONSULTA PRIVADA",
+   "procedencia_agr": "PROGRAMADO"
+  },
+  {
+   "valor": "HOSPITALIZACIÓN DIURNA",
+   "procedencia_agr": "(sin mapeo)"
+  },
+  {
+   "valor": "HOSPITALIZACIÓN DOMICILIARIA",
+   "procedencia_agr": "(sin mapeo)"
+  },
+  {
+   "valor": "OTRAS INSTITUCIONES (CÁRCEL, HOGARES DE ANCIANOS, SENAME, EC",
+   "procedencia_agr": "(sin mapeo)"
+  },
+  {
+   "valor": "OTRAS INSTITUCIONES SALUD (CLÍNICAS PRIVADAS, DE REHABILITAC",
+   "procedencia_agr": "(sin mapeo)"
+  },
+  {
+   "valor": "OTROS HOSPITALES DE LA RED",
+   "procedencia_agr": "DERIVADO_OTRO_HOSPITAL"
+  },
+  {
+   "valor": "OTROS HOSPITALES RED NACIONAL",
+   "procedencia_agr": "DERIVADO_OTRO_HOSPITAL"
+  },
+  {
+   "valor": "PLAN DE RESOLUCIÓN LE",
+   "procedencia_agr": "PROGRAMADO"
+  },
+  {
+   "valor": "POSTA RURAL",
+   "procedencia_agr": "(sin mapeo)"
+  },
+  {
+   "valor": "SERVICIO EMERGENCIA (DOMICILIO)",
+   "procedencia_agr": "URGENCIA"
+  }
+ ],
+ "diagnosticos": [
+  {
+   "codigo": "A02",
+   "nombre": "Otras infecciones debidas a Salmonella",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A04",
+   "nombre": "Otras infecciones intestinales bacterianas",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A08",
+   "nombre": "Infecciones intestinales debidas a virus y otros organismos especificados",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A09",
+   "nombre": "Otras gastroenteritis y colitis de origen infeccioso y no especificado",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A15",
+   "nombre": "Tuberculosis respiratoria, confirmada bacteriológica e histológicamente",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A16",
+   "nombre": "Tuberculosis respiratoria, no confirmada bacteriológica o histológicamente",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A17",
+   "nombre": "Tuberculosis del sistema nervioso",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A18",
+   "nombre": "Tuberculosis de otros órganos",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A19",
+   "nombre": "Tuberculosis miliar",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A32",
+   "nombre": "Listeriosis",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A40",
+   "nombre": "Sepsis estreptocócica",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A41",
+   "nombre": "Otras sepsis",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A46",
+   "nombre": "Erisipela",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A49",
+   "nombre": "Infección bacteriana de sitio no especificado",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A52",
+   "nombre": "Sífilis tardía",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A63",
+   "nombre": "Otras enfermedades de transmisión predominantemente sexual, no clasificadas en otra parte",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A81",
+   "nombre": "Infecciones del sistema nervioso central por virus atípico",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A86",
+   "nombre": "Encefalitis viral, no especificada",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "A87",
+   "nombre": "Meningitis viral",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B00",
+   "nombre": "Infecciones herpéticas [herpes simple]",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B02",
+   "nombre": "Herpes zoster",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B15",
+   "nombre": "Hepatitis aguda tipo A",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B16",
+   "nombre": "Hepatitis aguda tipo B",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B19",
+   "nombre": "Hepatitis viral, sin otra especificación",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B20",
+   "nombre": "Enfermedad por virus de la inmunodeficiencia humana [VIH], resultante en enfermedades infecciosas y parasitarias",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B21",
+   "nombre": "Enfermedad por virus de la inmunodeficiencia humana [VIH], resultante en tumores malignos",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B22",
+   "nombre": "Enfermedad por virus de la inmunodeficiencia humana [VIH], resultante en otras enfermedades especificadas",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B23",
+   "nombre": "Enfermedad por virus de la inmunodeficiencia humana [VIH], resultante en otras afecciones",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B24",
+   "nombre": "Enfermedad por virus de la inmunodeficiencia humana [VIH], sin otra especificación",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B33",
+   "nombre": "Otras enfermedades virales, no clasificadas en otra parte",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B34",
+   "nombre": "Infección viral de sitio no especificado",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B37",
+   "nombre": "Candidiasis",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B44",
+   "nombre": "Aspergilosis",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B45",
+   "nombre": "Criptococosis",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B57",
+   "nombre": "Enfermedad de Chagas",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B58",
+   "nombre": "Toxoplasmosis",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B67",
+   "nombre": "Equinococosis",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "B69",
+   "nombre": "Cisticercosis",
+   "grupo_clinico": "I"
+  },
+  {
+   "codigo": "C00",
+   "nombre": "Tumor maligno del labio",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C02",
+   "nombre": "Tumor maligno de otras partes y de las no especificadas de la lengua",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C04",
+   "nombre": "Tumor maligno del piso de la boca",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C06",
+   "nombre": "Tumor maligno de otras partes y de las no especificadas de la boca",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C07",
+   "nombre": "Tumor maligno de la glándula parótida",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C09",
+   "nombre": "Tumor maligno de la amígdala",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C10",
+   "nombre": "Tumor maligno de la orofaringe",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C13",
+   "nombre": "Tumor maligno de la hipofaringe",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C15",
+   "nombre": "Tumor maligno del esófago",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C16",
+   "nombre": "Tumor maligno del estómago",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C17",
+   "nombre": "Tumor maligno del intestino delgado",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C18",
+   "nombre": "Tumor maligno del colon",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C19",
+   "nombre": "Tumor maligno de la unión rectosigmoidea",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C20",
+   "nombre": "Tumor maligno del recto",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C21",
+   "nombre": "Tumor maligno del ano y del conducto anal",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C22",
+   "nombre": "Tumor maligno del hígado y de las vías biliares intrahepáticas",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C23",
+   "nombre": "Tumor maligno de la vesícula biliar",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C24",
+   "nombre": "Tumor maligno de otras partes y de las no especificadas de las vías biliares",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C25",
+   "nombre": "Tumor maligno del páncreas",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C26",
+   "nombre": "Tumor maligno de otros sitios y de los mal definidos de los órganos digestivos",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C30",
+   "nombre": "Tumor maligno de las fosas nasales y del oído medio",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C31",
+   "nombre": "Tumor maligno de los senos paranasales",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C32",
+   "nombre": "Tumor maligno de la laringe",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C34",
+   "nombre": "Tumor maligno de los bronquios y del pulmón",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C38",
+   "nombre": "Tumor maligno del corazón, del mediastino y de la pleura",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C40",
+   "nombre": "Tumor maligno de los huesos y de los cartílagos articulares de los miembros",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C41",
+   "nombre": "Tumor maligno de los huesos y de los cartílagos articulares, de otros sitios y de sitios no especificados",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C43",
+   "nombre": "Melanoma maligno de la piel",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C44",
+   "nombre": "Otros tumores malignos de la piel",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C45",
+   "nombre": "Mesotelioma",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C48",
+   "nombre": "Tumor maligno del peritoneo y del retroperitoneo",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C49",
+   "nombre": "Tumor maligno de otros tejidos conjuntivos y de tejidos blandos",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C50",
+   "nombre": "Tumor maligno de la mama",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C51",
+   "nombre": "Tumor maligno de la vulva",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C52",
+   "nombre": "Tumor maligno de la vagina",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C53",
+   "nombre": "Tumor maligno del cuello del útero",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C54",
+   "nombre": "Tumor maligno del cuerpo del útero",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C55",
+   "nombre": "Tumor maligno del útero, parte no especificada",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C56",
+   "nombre": "Tumor maligno del ovario",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C57",
+   "nombre": "Tumor maligno de otros órganos genitales femeninos y de los no especificados",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C60",
+   "nombre": "Tumor maligno del pene",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C61",
+   "nombre": "Tumor maligno de la próstata",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C62",
+   "nombre": "Tumor maligno del testículo",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C64",
+   "nombre": "Tumor maligno del riñón, excepto de la pelvis renal",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C65",
+   "nombre": "Tumor maligno de la pelvis renal",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C66",
+   "nombre": "Tumor maligno del uréter",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C67",
+   "nombre": "Tumor maligno de la vejiga urinaria",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C69",
+   "nombre": "Tumor maligno del ojo y sus anexos",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C71",
+   "nombre": "Tumor maligno del encéfalo",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C72",
+   "nombre": "Tumor maligno de la médula espinal, de los nervios craneales y de otras partes del sistema nervioso central",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C73",
+   "nombre": "Tumor maligno de la glándula tiroides",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C74",
+   "nombre": "Tumor maligno de la glándula suprarrenal",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C75",
+   "nombre": "Tumor maligno de otras glándulas endocrinas y de estructuras afines",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C76",
+   "nombre": "Tumor maligno de otros sitios y de sitios mal definidos",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C77",
+   "nombre": "Tumor maligno secundario y el no especificado de los ganglios linfáticos",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C78",
+   "nombre": "Tumor maligno secundario de los órganos respiratorios y digestivos",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C79",
+   "nombre": "Tumor maligno secundario de otros sitios y de los no especificados",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C80",
+   "nombre": "Tumor maligno de sitios no especificados",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C81",
+   "nombre": "Linfoma de Hodgkin",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C82",
+   "nombre": "Linfoma folicular",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C83",
+   "nombre": "Linfoma no folicular",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C84",
+   "nombre": "Linfoma de células T/NK maduras",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C85",
+   "nombre": "Linfoma no Hodgkin de otro tipo y el no especificado",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C90",
+   "nombre": "Mieloma múltiple y tumores malignos de células plasmáticas",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C91",
+   "nombre": "Leucemia linfoide",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C92",
+   "nombre": "Leucemia mieloide",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "C95",
+   "nombre": "Leucemia de células de tipo no especificado",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D05",
+   "nombre": "Carcinoma in situ de la mama",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D06",
+   "nombre": "Carcinoma in situ del cuello del útero",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D07",
+   "nombre": "Carcinoma in situ de otros órganos genitales y de los no especificados",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D10",
+   "nombre": "Tumor benigno de la boca y de la faringe",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D11",
+   "nombre": "Tumor benigno de las glándulas salivales mayores",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D12",
+   "nombre": "Tumor benigno del colon, del recto, del conducto anal y del ano",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D13",
+   "nombre": "Tumor benigno de otras partes y de las mal definidas del sistema digestivo",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D14",
+   "nombre": "Tumor benigno del oído medio y del sistema respiratorio",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D15",
+   "nombre": "Tumor benigno de otros órganos intratorácicos y de los no especificados",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D16",
+   "nombre": "Tumor benigno del hueso y del cartílago articular",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D17",
+   "nombre": "Tumores benignos lipomatosos",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D18",
+   "nombre": "Hemangioma y linfangioma de cualquier sitio",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D21",
+   "nombre": "Otros tumores benignos del tejido conjuntivo y de los tejidos blandos",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D23",
+   "nombre": "Otros tumores benignos de la piel",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D24",
+   "nombre": "Tumor benigno de la mama",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D25",
+   "nombre": "Leiomioma del útero",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D26",
+   "nombre": "Otros tumores benignos del útero",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D27",
+   "nombre": "Tumor benigno del ovario",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D28",
+   "nombre": "Tumor benigno de otros órganos genitales femeninos y de los no especificados",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D29",
+   "nombre": "Tumor benigno de los órganos genitales masculinos",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D30",
+   "nombre": "Tumor benigno de los órganos urinarios",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D32",
+   "nombre": "Tumores benignos de las meninges",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D33",
+   "nombre": "Tumor benigno del encéfalo y de otras partes del sistema nervioso central",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D34",
+   "nombre": "Tumor benigno de la glándula tiroides",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D35",
+   "nombre": "Tumor benigno de otras glándulas endocrinas y de las no especificadas",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D36",
+   "nombre": "Tumor benigno de otros sitios y de los no especificados",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D37",
+   "nombre": "Tumor de comportamiento incierto o desconocido de la cavidad bucal y de los órganos digestivos",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D38",
+   "nombre": "Tumor de comportamiento incierto o desconocido del oído medio y de los órganos respiratorios e intratorácicos",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D39",
+   "nombre": "Tumor de comportamiento incierto o desconocido de los órganos genitales femeninos",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D40",
+   "nombre": "Tumor de comportamiento incierto o desconocido de los órganos genitales masculinos",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D41",
+   "nombre": "Tumor de comportamiento incierto o desconocido de los órganos urinarios",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D42",
+   "nombre": "Tumor de comportamiento incierto o desconocido de las meninges",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D43",
+   "nombre": "Tumor de comportamiento incierto o desconocido del encéfalo y del sistema nervioso central",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D44",
+   "nombre": "Tumor de comportamiento incierto o desconocido de las glándulas endocrinas",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D46",
+   "nombre": "Síndromes mielodisplásicos",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D47",
+   "nombre": "Otros tumores de comportamiento incierto o desconocido del tejido linfático, de los órganos hematopoyéticos y de tejidos afines",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D48",
+   "nombre": "Tumor de comportamiento incierto o desconocido de otros sitios y de los no especificados",
+   "grupo_clinico": "II"
+  },
+  {
+   "codigo": "D50",
+   "nombre": "Anemias por deficiencia de hierro",
+   "grupo_clinico": "III"
+  },
+  {
+   "codigo": "D51",
+   "nombre": "Anemia por deficiencia de vitamina B12",
+   "grupo_clinico": "III"
+  },
+  {
+   "codigo": "D52",
+   "nombre": "Anemia por deficiencia de folatos",
+   "grupo_clinico": "III"
+  },
+  {
+   "codigo": "D53",
+   "nombre": "Otras anemias nutricionales",
+   "grupo_clinico": "III"
+  },
+  {
+   "codigo": "D58",
+   "nombre": "Otras anemias hemolíticas hereditarias",
+   "grupo_clinico": "III"
+  },
+  {
+   "codigo": "D59",
+   "nombre": "Anemia hemolítica adquirida",
+   "grupo_clinico": "III"
+  },
+  {
+   "codigo": "D61",
+   "nombre": "Otras anemias aplásticas",
+   "grupo_clinico": "III"
+  },
+  {
+   "codigo": "D62",
+   "nombre": "Anemia posthemorrágica aguda",
+   "grupo_clinico": "III"
+  },
+  {
+   "codigo": "D63",
+   "nombre": "Anemia en enfermedades crónicas clasificadas en otra parte",
+   "grupo_clinico": "III"
+  },
+  {
+   "codigo": "D64",
+   "nombre": "Otras anemias",
+   "grupo_clinico": "III"
+  },
+  {
+   "codigo": "D68",
+   "nombre": "Otros defectos de la coagulación",
+   "grupo_clinico": "III"
+  },
+  {
+   "codigo": "D69",
+   "nombre": "Púrpura y otras afecciones hemorrágicas",
+   "grupo_clinico": "III"
+  },
+  {
+   "codigo": "D70",
+   "nombre": "Agranulocitosis",
+   "grupo_clinico": "III"
+  },
+  {
+   "codigo": "D72",
+   "nombre": "Otros trastornos de los leucocitos",
+   "grupo_clinico": "III"
+  },
+  {
+   "codigo": "D73",
+   "nombre": "Enfermedades del bazo",
+   "grupo_clinico": "III"
+  },
+  {
+   "codigo": "D75",
+   "nombre": "Otras enfermedades de la sangre y de los órganos hematopoyéticos",
+   "grupo_clinico": "III"
+  },
+  {
+   "codigo": "D89",
+   "nombre": "Otros trastornos que afectan el mecanismo de la inmunidad, no clasificados en otra parte",
+   "grupo_clinico": "III"
+  },
+  {
+   "codigo": "E03",
+   "nombre": "Otros hipotiroidismos",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E04",
+   "nombre": "Otros bocios no tóxicos",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E05",
+   "nombre": "Tirotoxicosis [hipertiroidismo]",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E06",
+   "nombre": "Tiroiditis",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E10",
+   "nombre": "Diabetes mellitus insulinodependiente",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E11",
+   "nombre": "Diabetes mellitus no insulinodependiente",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E13",
+   "nombre": "Otras diabetes mellitus especificadas",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E14",
+   "nombre": "Diabetes mellitus, no especificada",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E16",
+   "nombre": "Otros trastornos de la secreción interna del páncreas",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E21",
+   "nombre": "Hiperparatiroidismo y otros trastornos de la glándula paratiroides",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E22",
+   "nombre": "Hiperfunción de la glándula hipófisis",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E27",
+   "nombre": "Otros trastornos de la glándula suprarrenal",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E46",
+   "nombre": "Desnutrición proteicocalórica, no especificada",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E51",
+   "nombre": "Deficiencia de tiamina",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E65",
+   "nombre": "Adiposidad localizada",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E66",
+   "nombre": "Obesidad",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E78",
+   "nombre": "Trastornos del metabolismo de las lipoproteínas y otras lipidemias",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E83",
+   "nombre": "Trastornos del metabolismo de los minerales",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E84",
+   "nombre": "Fibrosis quística",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E85",
+   "nombre": "Amiloidosis",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E86",
+   "nombre": "Depleción del volumen",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E87",
+   "nombre": "Otros trastornos de los líquidos, de los electrólitos y del equilibrio ácido-básico",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E88",
+   "nombre": "Otros trastornos metabólicos",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "E89",
+   "nombre": "Trastornos endocrinos y metabólicos consecutivos a procedimientos, no clasificados en otra parte",
+   "grupo_clinico": "IV"
+  },
+  {
+   "codigo": "F01",
+   "nombre": "Demencia vascular",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F03",
+   "nombre": "Demencia, no especificada",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F05",
+   "nombre": "Delirio, no inducido por alcohol o por otras sustancias psicoactivas",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F06",
+   "nombre": "Otros trastornos mentales debidos a lesión y disfunción cerebral, y a enfermedad física",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F07",
+   "nombre": "Trastornos de la personalidad y del comportamiento debidos a enfermedad, lesión o disfunción cerebral",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F09",
+   "nombre": "Trastorno mental orgánico o sintomático, no especificado",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F10",
+   "nombre": "Trastornos mentales y del comportamiento debidos al uso de alcohol",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F12",
+   "nombre": "Trastornos mentales y del comportamiento debidos al uso de cannabinoides",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F13",
+   "nombre": "Trastornos mentales y del comportamiento debidos al uso de sedantes o hipnóticos",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F14",
+   "nombre": "Trastornos mentales y del comportamiento debidos al uso de cocaína",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F19",
+   "nombre": "Trastornos mentales y del comportamiento debidos al uso de múltiples drogas y al uso de otras sustancias psicoactivas",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F20",
+   "nombre": "Esquizofrenia",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F22",
+   "nombre": "Trastornos delirantes persistentes",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F23",
+   "nombre": "Trastornos psicóticos agudos y transitorios",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F25",
+   "nombre": "Trastornos esquizoafectivos",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F28",
+   "nombre": "Otros trastornos psicóticos de origen no orgánico",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F29",
+   "nombre": "Psicosis de origen no orgánico, no especificada",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F30",
+   "nombre": "Episodio maníaco",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F31",
+   "nombre": "Trastorno afectivo bipolar",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F32",
+   "nombre": "Episodio depresivo",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F33",
+   "nombre": "Trastorno depresivo recurrente",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F41",
+   "nombre": "Otros trastornos de ansiedad",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F43",
+   "nombre": "Reacción al estrés grave y trastornos de adaptación",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F44",
+   "nombre": "Trastornos disociativos [de conversión]",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F45",
+   "nombre": "Trastornos somatomorfos",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F50",
+   "nombre": "Trastornos de la ingestión de alimentos",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F60",
+   "nombre": "Trastornos específicos de la personalidad",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F63",
+   "nombre": "Trastornos de los hábitos y de los impulsos",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F64",
+   "nombre": "Trastornos de la identidad de género",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F71",
+   "nombre": "Retraso mental moderado",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F84",
+   "nombre": "Trastornos generalizados del desarrollo",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "F91",
+   "nombre": "Trastornos de la conducta",
+   "grupo_clinico": "V"
+  },
+  {
+   "codigo": "G00",
+   "nombre": "Meningitis bacteriana, no clasificada en otra parte",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G03",
+   "nombre": "Meningitis debida a otras causas y a las no especificadas",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G04",
+   "nombre": "Encefalitis, mielitis y encefalomielitis",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G06",
+   "nombre": "Absceso y granuloma intracraneal e intrarraquídeo",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G08",
+   "nombre": "Flebitis y tromboflebitis intracraneal e intrarraquídea",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G12",
+   "nombre": "Atrofia muscular espinal y síndromes afines",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G20",
+   "nombre": "Enfermedad de Parkinson",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G21",
+   "nombre": "Parkinsonismo secundario",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G25",
+   "nombre": "Otros trastornos extrapiramidales y del movimiento",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G30",
+   "nombre": "Enfermedad de Alzheimer",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G31",
+   "nombre": "Otras enfermedades degenerativas del sistema nervioso, no clasificadas en otra parte",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G35",
+   "nombre": "Esclerosis múltiple",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G36",
+   "nombre": "Otras desmielinizaciones diseminadas agudas",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G37",
+   "nombre": "Otras enfermedades desmielinizantes del sistema nervioso central",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G40",
+   "nombre": "Epilepsia",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G41",
+   "nombre": "Estado de mal epiléptico",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G43",
+   "nombre": "Migraña",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G44",
+   "nombre": "Otros síndromes de cefalea",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G45",
+   "nombre": "Ataques de isquemia cerebral transitoria y síndromes afines",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G47",
+   "nombre": "Trastornos del sueño",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G50",
+   "nombre": "Trastornos del nervio trigémino",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G51",
+   "nombre": "Trastornos del nervio facial",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G56",
+   "nombre": "Mononeuropatías del miembro superior",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G57",
+   "nombre": "Mononeuropatías del miembro inferior",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G58",
+   "nombre": "Otras mononeuropatías",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G61",
+   "nombre": "Polineuropatía inflamatoria",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G62",
+   "nombre": "Otras polineuropatías",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G70",
+   "nombre": "Miastenia gravis y otros trastornos neuromusculares",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G72",
+   "nombre": "Otras miopatías",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G81",
+   "nombre": "Hemiplejía",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G82",
+   "nombre": "Paraplejía y cuadriplejía",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G83",
+   "nombre": "Otros síndromes paralíticos",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G90",
+   "nombre": "Trastornos del sistema nervioso autónomo",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G91",
+   "nombre": "Hidrocéfalo",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G92",
+   "nombre": "Encefalopatía tóxica",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G93",
+   "nombre": "Otros trastornos del encéfalo",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G94",
+   "nombre": "Otros trastornos del encéfalo en enfermedades clasificadas en otra parte",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G95",
+   "nombre": "Otras enfermedades de la médula espinal",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G96",
+   "nombre": "Otros trastornos del sistema nervioso central",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "G97",
+   "nombre": "Trastornos del sistema nervioso consecutivos a procedimientos, no clasificados en otra parte",
+   "grupo_clinico": "VI"
+  },
+  {
+   "codigo": "H02",
+   "nombre": "Otros trastornos de los párpados",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H04",
+   "nombre": "Trastornos del aparato lagrimal",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H05",
+   "nombre": "Trastornos de la órbita",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H11",
+   "nombre": "Otros trastornos de la conjuntiva",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H16",
+   "nombre": "Queratitis",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H20",
+   "nombre": "Iridociclitis",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H25",
+   "nombre": "Catarata senil",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H26",
+   "nombre": "Otras cataratas",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H33",
+   "nombre": "Desprendimiento y desgarro de la retina",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H34",
+   "nombre": "Oclusión vascular de la retina",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H35",
+   "nombre": "Otros trastornos de la retina",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H36",
+   "nombre": "Trastornos de la retina en enfermedades clasificadas en otra parte",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H40",
+   "nombre": "Glaucoma",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H43",
+   "nombre": "Trastornos del cuerpo vítreo",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H44",
+   "nombre": "Trastornos del globo ocular",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H46",
+   "nombre": "Neuritis óptica",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H49",
+   "nombre": "Estrabismo paralítico",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H53",
+   "nombre": "Alteraciones de la visión",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H59",
+   "nombre": "Trastornos del ojo y sus anexos consecutivos a procedimientos, no clasificados en otra parte",
+   "grupo_clinico": "VII"
+  },
+  {
+   "codigo": "H60",
+   "nombre": "Otitis externa",
+   "grupo_clinico": "VIII"
+  },
+  {
+   "codigo": "H65",
+   "nombre": "Otitis media no supurativa",
+   "grupo_clinico": "VIII"
+  },
+  {
+   "codigo": "H66",
+   "nombre": "Otitis media supurativa y la no especificada",
+   "grupo_clinico": "VIII"
+  },
+  {
+   "codigo": "H71",
+   "nombre": "Colesteatoma del oído medio",
+   "grupo_clinico": "VIII"
+  },
+  {
+   "codigo": "H72",
+   "nombre": "Perforación de la membrana timpánica",
+   "grupo_clinico": "VIII"
+  },
+  {
+   "codigo": "H81",
+   "nombre": "Trastornos de la función vestibular",
+   "grupo_clinico": "VIII"
+  },
+  {
+   "codigo": "H90",
+   "nombre": "Hipoacusia conductiva y neurosensorial",
+   "grupo_clinico": "VIII"
+  },
+  {
+   "codigo": "I05",
+   "nombre": "Enfermedades reumáticas de la válvula mitral",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I06",
+   "nombre": "Enfermedades reumáticas de la válvula aórtica",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I08",
+   "nombre": "Enfermedades valvulares múltiples",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I10",
+   "nombre": "Hipertensión esencial (primaria)",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I11",
+   "nombre": "Enfermedad cardíaca hipertensiva",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I12",
+   "nombre": "Enfermedad renal hipertensiva",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I13",
+   "nombre": "Enfermedad cardiorrenal hipertensiva",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I15",
+   "nombre": "Hipertensión secundaria",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I20",
+   "nombre": "Angina de pecho",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I21",
+   "nombre": "Infarto agudo del miocardio",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I22",
+   "nombre": "Infarto subsecuente del miocardio",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I24",
+   "nombre": "Otras enfermedades isquémicas agudas del corazón",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I25",
+   "nombre": "Enfermedad isquémica crónica del corazón",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I26",
+   "nombre": "Embolia pulmonar",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I27",
+   "nombre": "Otras enfermedades cardiopulmonares",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I30",
+   "nombre": "Pericarditis aguda",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I31",
+   "nombre": "Otras enfermedades del pericardio",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I33",
+   "nombre": "Endocarditis aguda y subaguda",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I34",
+   "nombre": "Trastornos no reumáticos de la válvula mitral",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I35",
+   "nombre": "Trastornos no reumáticos de la válvula aórtica",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I38",
+   "nombre": "Endocarditis, válvula no especificada",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I40",
+   "nombre": "Miocarditis aguda",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I42",
+   "nombre": "Cardiomiopatía",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I44",
+   "nombre": "Bloqueo auriculoventricular y de rama izquierda del haz",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I45",
+   "nombre": "Otros trastornos de la conducción",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I46",
+   "nombre": "Paro cardíaco",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I47",
+   "nombre": "Taquicardia paroxística",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I48",
+   "nombre": "Fibrilación y aleteo auricular",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I49",
+   "nombre": "Otras arritmias cardíacas",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I50",
+   "nombre": "Insuficiencia cardíaca",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I51",
+   "nombre": "Complicaciones y descripciones mal definidas de enfermedad cardíaca",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I60",
+   "nombre": "Hemorragia subaracnoidea",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I61",
+   "nombre": "Hemorragia intraencefálica",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I62",
+   "nombre": "Otras hemorragias intracraneales no traumáticas",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I63",
+   "nombre": "Infarto cerebral",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I64",
+   "nombre": "Accidente vascular encefálico agudo, no especificado como hemorrágico o isquémico",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I65",
+   "nombre": "Oclusión y estenosis de las arterias precerebrales sin ocasionar infarto cerebral",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I66",
+   "nombre": "Oclusión y estenosis de las arterias cerebrales sin ocasionar infarto cerebral",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I67",
+   "nombre": "Otras enfermedades cerebrovasculares",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I69",
+   "nombre": "Secuelas de enfermedad cerebrovascular",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I70",
+   "nombre": "Aterosclerosis",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I71",
+   "nombre": "Aneurisma y disección aórticos",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I72",
+   "nombre": "Otros aneurismas y disecciones",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I73",
+   "nombre": "Otras enfermedades vasculares periféricas",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I74",
+   "nombre": "Embolia y trombosis arteriales",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I77",
+   "nombre": "Otros trastornos arteriales o arteriolares",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I79",
+   "nombre": "Trastornos de las arterias, de las arteriolas y de los vasos capilares en enfermedades clasificadas en otra parte",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I80",
+   "nombre": "Flebitis y tromboflebitis",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I81",
+   "nombre": "Trombosis de la vena porta",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I82",
+   "nombre": "Otras embolias y trombosis venosas",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I83",
+   "nombre": "Venas varicosas de los miembros inferiores",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I85",
+   "nombre": "Várices esofágicas",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I86",
+   "nombre": "Várices de otros sitios",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I87",
+   "nombre": "Otros trastornos de las venas",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I88",
+   "nombre": "Linfadenitis inespecífica",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I89",
+   "nombre": "Otros trastornos no infecciosos de los vasos y ganglios linfáticos",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I95",
+   "nombre": "Hipotensión",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I97",
+   "nombre": "Trastornos del sistema circulatorio consecutivos a procedimientos, no clasificados en otra parte",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I98",
+   "nombre": "Otros trastornos del sistema circulatorio en enfermedades clasificadas en otra parte",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "I99",
+   "nombre": "Otros trastornos y los no especificados del sistema circulatorio",
+   "grupo_clinico": "IX"
+  },
+  {
+   "codigo": "J00",
+   "nombre": "Rinofaringitis aguda [resfriado común]",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J01",
+   "nombre": "Sinusitis aguda",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J03",
+   "nombre": "Amigdalitis aguda",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J06",
+   "nombre": "Infecciones agudas de las vías respiratorias superiores, de sitios múltiples o no especificados",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J10",
+   "nombre": "Influenza debida a virus de la influenza identificado",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J11",
+   "nombre": "Influenza debida a virus no identificado",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J12",
+   "nombre": "Neumonía viral, no clasificada en otra parte",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J13",
+   "nombre": "Neumonía debida a Streptococcus pneumoniae",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J14",
+   "nombre": "Neumonía debida a Haemophilus influenzae",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J15",
+   "nombre": "Neumonía bacteriana, no clasificada en otra parte",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J18",
+   "nombre": "Neumonía, organismo no especificado",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J20",
+   "nombre": "Bronquitis aguda",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J21",
+   "nombre": "Bronquiolitis aguda",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J22",
+   "nombre": "Infección aguda no especificada de las vías respiratorias inferiores",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J32",
+   "nombre": "Sinusitis crónica",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J33",
+   "nombre": "Pólipo nasal",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J34",
+   "nombre": "Otros trastornos de la nariz y de los senos paranasales",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J35",
+   "nombre": "Enfermedades crónicas de las amígdalas y de las adenoides",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J36",
+   "nombre": "Absceso periamigdalino",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J38",
+   "nombre": "Enfermedades de las cuerdas vocales y de la laringe, no clasificadas en otra parte",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J39",
+   "nombre": "Otras enfermedades de las vías respiratorias superiores",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J40",
+   "nombre": "Bronquitis, no especificada como aguda o crónica",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J43",
+   "nombre": "Enfisema",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J44",
+   "nombre": "Otras enfermedades pulmonares obstructivas crónicas",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J45",
+   "nombre": "Asma",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J46",
+   "nombre": "Estado asmático",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J47",
+   "nombre": "Bronquiectasia",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J67",
+   "nombre": "Neumonitis debida a hipersensibilidad al polvo orgánico",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J69",
+   "nombre": "Neumonitis debida a sólidos y líquidos",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J80",
+   "nombre": "Síndrome de dificultad respiratoria del adulto",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J81",
+   "nombre": "Edema pulmonar",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J84",
+   "nombre": "Otras enfermedades pulmonares intersticiales",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J85",
+   "nombre": "Absceso del pulmón y del mediastino",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J86",
+   "nombre": "Piotórax",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J90",
+   "nombre": "Derrame pleural no clasificado en otra parte",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J91",
+   "nombre": "Derrame pleural en afecciones clasificadas en otra parte",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J93",
+   "nombre": "Neumotórax",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J94",
+   "nombre": "Otras afecciones de la pleura",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J95",
+   "nombre": "Trastornos del sistema respiratorio consecutivos a procedimientos, no clasificados en otra parte",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J96",
+   "nombre": "Insuficiencia respiratoria, no clasificada en otra parte",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "J98",
+   "nombre": "Otros trastornos respiratorios",
+   "grupo_clinico": "X"
+  },
+  {
+   "codigo": "K01",
+   "nombre": "Dientes incluidos e impactados",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K02",
+   "nombre": "Caries dental",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K04",
+   "nombre": "Enfermedades de la pulpa y de los tejidos periapicales",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K05",
+   "nombre": "Gingivitis y enfermedades periodontales",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K07",
+   "nombre": "Anomalías dentofaciales [incluso la maloclusión]",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K09",
+   "nombre": "Quistes de la región bucal, no clasificados en otra parte",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K10",
+   "nombre": "Otras enfermedades de los maxilares",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K11",
+   "nombre": "Enfermedades de las glándulas salivales",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K12",
+   "nombre": "Estomatitis y lesiones afines",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K20",
+   "nombre": "Esofagitis",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K21",
+   "nombre": "Enfermedad del reflujo gastroesofágico",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K22",
+   "nombre": "Otras enfermedades del esófago",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K25",
+   "nombre": "Úlcera gástrica",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K26",
+   "nombre": "Úlcera duodenal",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K27",
+   "nombre": "Úlcera péptica, de sitio no especificado",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K29",
+   "nombre": "Gastritis y duodenitis",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K31",
+   "nombre": "Otras enfermedades del estómago y del duodeno",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K35",
+   "nombre": "Apendicitis aguda",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K36",
+   "nombre": "Otros tipos de apendicitis",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K37",
+   "nombre": "Apendicitis, no especificada",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K38",
+   "nombre": "Otras enfermedades del apéndice",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K40",
+   "nombre": "Hernia inguinal",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K41",
+   "nombre": "Hernia femoral",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K42",
+   "nombre": "Hernia umbilical",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K43",
+   "nombre": "Hernia ventral",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K44",
+   "nombre": "Hernia diafragmática",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K45",
+   "nombre": "Otras hernias de la cavidad abdominal",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K46",
+   "nombre": "Hernia no especificada de la cavidad abdominal",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K50",
+   "nombre": "Enfermedad de Crohn [enteritis regional]",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K51",
+   "nombre": "Colitis ulcerativa",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K52",
+   "nombre": "Otras colitis y gastroenteritis no infecciosas",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K55",
+   "nombre": "Trastornos vasculares de los intestinos",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K56",
+   "nombre": "Íleo paralítico y obstrucción intestinal sin hernia",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K57",
+   "nombre": "Enfermedad diverticular del intestino",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K58",
+   "nombre": "Síndrome del colon irritable",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K59",
+   "nombre": "Otros trastornos funcionales del intestino",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K60",
+   "nombre": "Fisura y fístula de las regiones anal y rectal",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K61",
+   "nombre": "Absceso de las regiones anal y rectal",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K62",
+   "nombre": "Otras enfermedades del ano y del recto",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K63",
+   "nombre": "Otras enfermedades de los intestinos",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K64",
+   "nombre": "Hemorroides y trombosis venosa perianal",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K65",
+   "nombre": "Peritonitis",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K66",
+   "nombre": "Otros trastornos del peritoneo",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K70",
+   "nombre": "Enfermedad alcohólica del hígado",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K71",
+   "nombre": "Enfermedad tóxica del hígado",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K72",
+   "nombre": "Insuficiencia hepática, no clasificada en otra parte",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K74",
+   "nombre": "Fibrosis y cirrosis del hígado",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K75",
+   "nombre": "Otras enfermedades inflamatorias del hígado",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K76",
+   "nombre": "Otras enfermedades del hígado",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K80",
+   "nombre": "Colelitiasis",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K81",
+   "nombre": "Colecistitis",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K82",
+   "nombre": "Otras enfermedades de la vesícula biliar",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K83",
+   "nombre": "Otras enfermedades de las vías biliares",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K85",
+   "nombre": "Pancreatitis aguda",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K86",
+   "nombre": "Otras enfermedades del páncreas",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K90",
+   "nombre": "Malabsorción intestinal",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K91",
+   "nombre": "Trastornos del sistema digestivo consecutivos a procedimientos, no clasificados en otra parte",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "K92",
+   "nombre": "Otras enfermedades del sistema digestivo",
+   "grupo_clinico": "XI"
+  },
+  {
+   "codigo": "L02",
+   "nombre": "Absceso cutáneo, furúnculo y carbunco",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L03",
+   "nombre": "Celulitis",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L04",
+   "nombre": "Linfadenitis aguda",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L05",
+   "nombre": "Quiste pilonidal",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L08",
+   "nombre": "Otras infecciones locales de la piel y del tejido subcutáneo",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L10",
+   "nombre": "Pénfigo",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L12",
+   "nombre": "Penfigoide",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L40",
+   "nombre": "Psoriasis",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L51",
+   "nombre": "Eritema multiforme",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L53",
+   "nombre": "Otras afecciones eritematosas",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L72",
+   "nombre": "Quiste folicular de la piel y del tejido subcutáneo",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L73",
+   "nombre": "Otros trastornos foliculares",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L88",
+   "nombre": "Pioderma gangrenoso",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L89",
+   "nombre": "Úlcera de decúbito y área de presión",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L90",
+   "nombre": "Trastornos atróficos de la piel",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L91",
+   "nombre": "Trastornos hipertróficos de la piel",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L92",
+   "nombre": "Trastornos granulomatosos de la piel y del tejido subcutáneo",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L95",
+   "nombre": "Vasculitis limitada a la piel, no clasificada en otra parte",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L97",
+   "nombre": "Úlcera de miembro inferior, no clasificada en otra parte",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "L98",
+   "nombre": "Otros trastornos de la piel y del tejido subcutáneo, no clasificados en otra parte",
+   "grupo_clinico": "XII"
+  },
+  {
+   "codigo": "M00",
+   "nombre": "Artritis piógena",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M05",
+   "nombre": "Artritis reumatoide seropositiva",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M06",
+   "nombre": "Otras artritis reumatoides",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M13",
+   "nombre": "Otras artritis",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M16",
+   "nombre": "Coxartrosis [artrosis de la cadera]",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M17",
+   "nombre": "Gonartrosis [artrosis de la rodilla]",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M19",
+   "nombre": "Otras artrosis",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M20",
+   "nombre": "Deformidades adquiridas de los dedos de la mano y del pie",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M21",
+   "nombre": "Otras deformidades adquiridas de los miembros",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M22",
+   "nombre": "Trastornos de la rótula",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M23",
+   "nombre": "Trastorno interno de la rodilla",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M24",
+   "nombre": "Otros trastornos articulares específicos",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M25",
+   "nombre": "Otros trastornos articulares, no clasificados en otra parte",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M31",
+   "nombre": "Otras vasculopatías necrotizantes",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M32",
+   "nombre": "Lupus eritematoso sistémico",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M33",
+   "nombre": "Dermatopolimiositis",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M34",
+   "nombre": "Esclerosis sistémica",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M35",
+   "nombre": "Otro compromiso sistémico del tejido conjuntivo",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M41",
+   "nombre": "Escoliosis",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M43",
+   "nombre": "Otras dorsopatías deformantes",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M46",
+   "nombre": "Otras espondilopatías inflamatorias",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M47",
+   "nombre": "Espondilosis",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M48",
+   "nombre": "Otras espondilopatías",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M50",
+   "nombre": "Trastornos de disco cervical",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M51",
+   "nombre": "Otros trastornos de los discos intervertebrales",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M53",
+   "nombre": "Otras dorsopatías, no clasificadas en otra parte",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M54",
+   "nombre": "Dorsalgia",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M60",
+   "nombre": "Miositis",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M62",
+   "nombre": "Otros trastornos de los músculos",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M65",
+   "nombre": "Sinovitis y tenosinovitis",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M66",
+   "nombre": "Ruptura espontánea de la sinovia y del tendón",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M67",
+   "nombre": "Otros trastornos de la sinovia y del tendón",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M70",
+   "nombre": "Trastornos de los tejidos blandos relacionados con el uso, el uso excesivo y la presión",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M71",
+   "nombre": "Otras bursopatías",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M72",
+   "nombre": "Trastornos fibroblásticos",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M75",
+   "nombre": "Lesiones del hombro",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M79",
+   "nombre": "Otros trastornos de los tejidos blandos, no clasificados en otra parte",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M80",
+   "nombre": "Osteoporosis con fractura patológica",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M84",
+   "nombre": "Trastornos de la continuidad del hueso",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M86",
+   "nombre": "Osteomielitis",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M87",
+   "nombre": "Osteonecrosis",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M89",
+   "nombre": "Otros trastornos del hueso",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M90",
+   "nombre": "Osteopatías en enfermedades clasificadas en otra parte",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M94",
+   "nombre": "Otros trastornos del cartílago",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M95",
+   "nombre": "Otras deformidades adquiridas del sistema osteomuscular y del tejido conjuntivo",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M96",
+   "nombre": "Trastornos osteomusculares consecutivos a procedimientos, no clasificados en otra parte",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "M99",
+   "nombre": "Lesiones biomecánicas, no clasificadas en otra parte",
+   "grupo_clinico": "XIII"
+  },
+  {
+   "codigo": "N00",
+   "nombre": "Síndrome nefrítico agudo",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N01",
+   "nombre": "Síndrome nefrítico rápidamente progresivo",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N02",
+   "nombre": "Hematuria recurrente y persistente",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N03",
+   "nombre": "Síndrome nefrítico crónico",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N04",
+   "nombre": "Síndrome nefrótico",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N05",
+   "nombre": "Síndrome nefrítico no especificado",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N10",
+   "nombre": "Nefritis tubulointersticial aguda",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N11",
+   "nombre": "Nefritis tubulointersticial crónica",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N12",
+   "nombre": "Nefritis tubulointersticial, no especificada como aguda o crónica",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N13",
+   "nombre": "Uropatía obstructiva y por reflujo",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N15",
+   "nombre": "Otras enfermedades renales tubulointersticiales",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N17",
+   "nombre": "Insuficiencia renal aguda",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N18",
+   "nombre": "Enfermedad renal crónica",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N19",
+   "nombre": "Falla renal no especificada",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N20",
+   "nombre": "Cálculo del riñón y del uréter",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N21",
+   "nombre": "Cálculo de las vías urinarias inferiores",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N23",
+   "nombre": "Cólico renal, no especificado",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N25",
+   "nombre": "Trastornos resultantes de la función tubular renal alterada",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N26",
+   "nombre": "Riñón contraído, no especificado",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N28",
+   "nombre": "Otros trastornos del riñón y del uréter, no clasificados en otra parte",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N30",
+   "nombre": "Cistitis",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N31",
+   "nombre": "Disfunción neuromuscular de la vejiga, no clasificada en otra parte",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N32",
+   "nombre": "Otros trastornos de la vejiga",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N34",
+   "nombre": "Uretritis y síndrome uretral",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N35",
+   "nombre": "Estrechez uretral",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N36",
+   "nombre": "Otros trastornos de la uretra",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N39",
+   "nombre": "Otros trastornos del sistema urinario",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N40",
+   "nombre": "Hiperplasia de la próstata",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N41",
+   "nombre": "Enfermedades inflamatorias de la próstata",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N43",
+   "nombre": "Hidrocele y espermatocele",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N44",
+   "nombre": "Torsión del testículo",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N45",
+   "nombre": "Orquitis y epididimitis",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N47",
+   "nombre": "Prepucio redundante, fimosis y parafimosis",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N48",
+   "nombre": "Otros trastornos del pene",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N49",
+   "nombre": "Trastornos inflamatorios de órganos genitales masculinos, no clasificados en otra parte",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N50",
+   "nombre": "Otros trastornos de los órganos genitales masculinos",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N60",
+   "nombre": "Displasia mamaria benigna",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N61",
+   "nombre": "Trastornos inflamatorios de la mama",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N62",
+   "nombre": "Hipertrofia de la mama",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N63",
+   "nombre": "Masa no especificada en la mama",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N64",
+   "nombre": "Otros trastornos de la mama",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N70",
+   "nombre": "Salpingitis y ooforitis",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N71",
+   "nombre": "Enfermedad inflamatoria del útero, excepto del cuello uterino",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N73",
+   "nombre": "Otras enfermedades pélvicas inflamatorias femeninas",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N75",
+   "nombre": "Enfermedades de la glándula de Bartholin",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N76",
+   "nombre": "Otras afecciones inflamatorias de la vagina y de la vulva",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N80",
+   "nombre": "Endometriosis",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N81",
+   "nombre": "Prolapso genital femenino",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N82",
+   "nombre": "Fístulas que afectan el tracto genital femenino",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N83",
+   "nombre": "Trastornos no inflamatorios del ovario, de la trompa de Falopio y del ligamento ancho",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N84",
+   "nombre": "Pólipo del tracto genital femenino",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N85",
+   "nombre": "Otros trastornos no inflamatorios del útero, excepto del cuello",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N87",
+   "nombre": "Displasia del cuello uterino",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N88",
+   "nombre": "Otros trastornos no inflamatorios del cuello del útero",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N89",
+   "nombre": "Otros trastornos no inflamatorios de la vagina",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N90",
+   "nombre": "Otros trastornos no inflamatorios de la vulva y del perineo",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N92",
+   "nombre": "Menstruación excesiva, frecuente e irregular",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N93",
+   "nombre": "Otras hemorragias uterinas o vaginales anormales",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N94",
+   "nombre": "Dolor y otras afecciones relacionadas con los órganos genitales femeninos y con el ciclo menstrual",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N95",
+   "nombre": "Otros trastornos menopáusicos y perimenopáusicos",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N97",
+   "nombre": "Infertilidad femenina",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "N99",
+   "nombre": "Trastornos del sistema genitourinario consecutivos a procedimientos, no clasificados en otra parte",
+   "grupo_clinico": "XIV"
+  },
+  {
+   "codigo": "O00",
+   "nombre": "Embarazo ectópico",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O01",
+   "nombre": "Mola hidatiforme",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O02",
+   "nombre": "Otros productos anormales de la concepción",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O03",
+   "nombre": "Aborto espontáneo",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O04",
+   "nombre": "Aborto médico",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O05",
+   "nombre": "Otro aborto",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O06",
+   "nombre": "Aborto no especificado",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O08",
+   "nombre": "Complicaciones consecutivas al aborto, al embarazo ectópico y al embarazo molar",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O10",
+   "nombre": "Hipertensión preexistente que complica el embarazo, el parto y el puerperio",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O11",
+   "nombre": "Trastornos hipertensivos preexistentes, con proteinuria agregada",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O12",
+   "nombre": "Edema y proteinuria gestacionales [inducidos por el embarazo] sin hipertensión",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O13",
+   "nombre": "Hipertensión gestacional [inducida por el embarazo] sin proteinuria significativa",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O14",
+   "nombre": "Preeclampsia",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O15",
+   "nombre": "Eclampsia",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O16",
+   "nombre": "Hipertensión materna, no especificada",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O20",
+   "nombre": "Hemorragia precoz del embarazo",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O21",
+   "nombre": "Vómitos excesivos en el embarazo",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O22",
+   "nombre": "Complicaciones venosas y hemorroides en el embarazo",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O23",
+   "nombre": "Infección de las vías genitourinarias en el embarazo",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O24",
+   "nombre": "Diabetes mellitus en el embarazo",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O26",
+   "nombre": "Atención a la madre por otras complicaciones principalmente relacionadas con el embarazo",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O28",
+   "nombre": "Hallazgos anormales en el examen prenatal de la madre",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O30",
+   "nombre": "Embarazo múltiple",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O31",
+   "nombre": "Complicaciones específicas del embarazo múltiple",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O32",
+   "nombre": "Atención materna por presentación anormal del feto, conocida o presunta",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O33",
+   "nombre": "Atención materna por desproporción conocida o presunta",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O34",
+   "nombre": "Atención materna por anormalidades conocidas o presuntas de los órganos pelvianos de la madre",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O35",
+   "nombre": "Atención materna por anormalidad o lesión fetal, conocida o presunta",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O36",
+   "nombre": "Atención materna por otros problemas fetales conocidos o presuntos",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O40",
+   "nombre": "Polihidramnios",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O41",
+   "nombre": "Otros trastornos del líquido amniótico y de las membranas",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O42",
+   "nombre": "Ruptura prematura de las membranas",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O43",
+   "nombre": "Trastornos placentarios",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O44",
+   "nombre": "Placenta previa",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O45",
+   "nombre": "Desprendimiento prematuro de la placenta [abruptio placentae]",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O46",
+   "nombre": "Hemorragia anteparto, no clasificada en otra parte",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O47",
+   "nombre": "Falso trabajo de parto",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O48",
+   "nombre": "Embarazo prolongado",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O60",
+   "nombre": "Trabajo de parto y parto prematuro",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O61",
+   "nombre": "Fracaso de la inducción del trabajo de parto",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O62",
+   "nombre": "Anormalidades de la dinámica del trabajo de parto",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O63",
+   "nombre": "Trabajo de parto prolongado",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O64",
+   "nombre": "Trabajo de parto obstruido debido a mala posición y presentación anormal del feto",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O65",
+   "nombre": "Trabajo de parto obstruido debido a anormalidad de la pelvis materna",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O66",
+   "nombre": "Otras obstrucciones del trabajo de parto",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O68",
+   "nombre": "Trabajo de parto y parto complicados por sufrimiento fetal",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O69",
+   "nombre": "Trabajo de parto y parto complicados por problemas del cordón umbilical",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O70",
+   "nombre": "Desgarro perineal durante el parto",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O71",
+   "nombre": "Otro trauma obstétrico",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O72",
+   "nombre": "Hemorragia postparto",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O73",
+   "nombre": "Retención de la placenta o de las membranas, sin hemorragia",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O75",
+   "nombre": "Otras complicaciones del trabajo de parto y del parto, no clasificadas en otra parte",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O80",
+   "nombre": "Parto único espontáneo",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O81",
+   "nombre": "Parto único con fórceps y ventosa extractora",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O82",
+   "nombre": "Parto único por cesárea",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O83",
+   "nombre": "Otros partos únicos asistidos",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O85",
+   "nombre": "Sepsis puerperal",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O86",
+   "nombre": "Otras infecciones puerperales",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O89",
+   "nombre": "Complicaciones de la anestesia administrada durante el puerperio",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O90",
+   "nombre": "Complicaciones del puerperio, no clasificadas en otra parte",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O91",
+   "nombre": "Infecciones de la mama asociadas con el parto",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O98",
+   "nombre": "Enfermedades maternas infecciosas y parasitarias clasificables en otra parte, pero que complican el embarazo, el parto y el puerperio",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "O99",
+   "nombre": "Otras enfermedades maternas clasificables en otra parte, pero que complican el embarazo, el parto y el puerperio",
+   "grupo_clinico": "XV"
+  },
+  {
+   "codigo": "Q07",
+   "nombre": "Otras malformaciones congénitas del sistema nervioso",
+   "grupo_clinico": "XVII"
+  },
+  {
+   "codigo": "Q18",
+   "nombre": "Otras malformaciones congénitas de la cara y del cuello",
+   "grupo_clinico": "XVII"
+  },
+  {
+   "codigo": "Q21",
+   "nombre": "Malformaciones congénitas de los tabiques cardíacos",
+   "grupo_clinico": "XVII"
+  },
+  {
+   "codigo": "Q23",
+   "nombre": "Malformaciones congénitas de las válvulas aórtica y mitral",
+   "grupo_clinico": "XVII"
+  },
+  {
+   "codigo": "Q25",
+   "nombre": "Malformaciones congénitas de las grandes arterias",
+   "grupo_clinico": "XVII"
+  },
+  {
+   "codigo": "Q27",
+   "nombre": "Otras malformaciones congénitas del sistema vascular periférico",
+   "grupo_clinico": "XVII"
+  },
+  {
+   "codigo": "Q28",
+   "nombre": "Otras malformaciones congénitas del sistema circulatorio",
+   "grupo_clinico": "XVII"
+  },
+  {
+   "codigo": "Q43",
+   "nombre": "Otras malformaciones congénitas del intestino",
+   "grupo_clinico": "XVII"
+  },
+  {
+   "codigo": "Q50",
+   "nombre": "Malformaciones congénitas de los ovarios, de las trompas de Falopio y de los ligamentos anchos",
+   "grupo_clinico": "XVII"
+  },
+  {
+   "codigo": "Q51",
+   "nombre": "Malformaciones congénitas del útero y del cuello uterino",
+   "grupo_clinico": "XVII"
+  },
+  {
+   "codigo": "Q61",
+   "nombre": "Enfermedad quística del riñón",
+   "grupo_clinico": "XVII"
+  },
+  {
+   "codigo": "Q62",
+   "nombre": "Defectos obstructivos congénitos de la pelvis renal y malformaciones congénitas del uréter",
+   "grupo_clinico": "XVII"
+  },
+  {
+   "codigo": "Q66",
+   "nombre": "Deformidades congénitas de los pies",
+   "grupo_clinico": "XVII"
+  },
+  {
+   "codigo": "Q67",
+   "nombre": "Deformidades osteomusculares congénitas de la cabeza, de la cara, de la columna vertebral y del tórax",
+   "grupo_clinico": "XVII"
+  },
+  {
+   "codigo": "Q83",
+   "nombre": "Malformaciones congénitas de la mama",
+   "grupo_clinico": "XVII"
+  },
+  {
+   "codigo": "Q89",
+   "nombre": "Otras malformaciones congénitas, no clasificadas en otra parte",
+   "grupo_clinico": "XVII"
+  },
+  {
+   "codigo": "R00",
+   "nombre": "Anormalidades del latido cardíaco",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R02",
+   "nombre": "Gangrena, no clasificada en otra parte",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R04",
+   "nombre": "Hemorragias de las vías respiratorias",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R06",
+   "nombre": "Anormalidades de la respiración",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R07",
+   "nombre": "Dolor de garganta y en el pecho",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R10",
+   "nombre": "Dolor abdominal y pélvico",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R11",
+   "nombre": "Náusea y vómito",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R13",
+   "nombre": "Disfagia",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R17",
+   "nombre": "Ictericia no especificada",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R18",
+   "nombre": "Ascitis",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R31",
+   "nombre": "Hematuria, no especificada",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R33",
+   "nombre": "Retención de orina",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R40",
+   "nombre": "Somnolencia, estupor y coma",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R41",
+   "nombre": "Otros síntomas y signos que involucran la función cognoscitiva y la conciencia",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R45",
+   "nombre": "Síntomas y signos que involucran el estado emocional",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R50",
+   "nombre": "Fiebre de origen desconocido",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R51",
+   "nombre": "Cefalea",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R55",
+   "nombre": "Síncope y colapso",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R56",
+   "nombre": "Convulsiones, no clasificadas en otra parte",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R57",
+   "nombre": "Choque, no clasificado en otra parte",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R59",
+   "nombre": "Adenomegalia",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R60",
+   "nombre": "Edema, no clasificado en otra parte",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "R65",
+   "nombre": "Síndrome de respuesta inflamatoria sistémica",
+   "grupo_clinico": "XVIII"
+  },
+  {
+   "codigo": "S00",
+   "nombre": "Traumatismo superficial de la cabeza",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S01",
+   "nombre": "Herida de la cabeza",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S02",
+   "nombre": "Fractura de huesos del cráneo y de la cara",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S05",
+   "nombre": "Traumatismo del ojo y de la órbita",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S06",
+   "nombre": "Traumatismo intracraneal",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S09",
+   "nombre": "Otros traumatismos y los no especificados de la cabeza",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S11",
+   "nombre": "Herida del cuello",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S12",
+   "nombre": "Fractura del cuello",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S13",
+   "nombre": "Luxación, esguince y torcedura de articulaciones y ligamentos del cuello",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S14",
+   "nombre": "Traumatismo de la médula espinal y de nervios a nivel del cuello",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S15",
+   "nombre": "Traumatismo de vasos sanguíneos a nivel del cuello",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S19",
+   "nombre": "Otros traumatismos y los no especificados del cuello",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S20",
+   "nombre": "Traumatismo superficial del tórax",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S21",
+   "nombre": "Herida del tórax",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S22",
+   "nombre": "Fractura de las costillas, del esternón y de la columna torácica [dorsal]",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S24",
+   "nombre": "Traumatismo de nervios y de la médula espinal a nivel del tórax",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S25",
+   "nombre": "Traumatismo de vasos sanguíneos del tórax",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S26",
+   "nombre": "Traumatismo del corazón",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S27",
+   "nombre": "Traumatismo de otros órganos intratorácicos y de los no especificados",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S29",
+   "nombre": "Otros traumatismos y los no especificados del tórax",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S30",
+   "nombre": "Traumatismo superficial del abdomen, de la región lumbosacra y de la pelvis",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S31",
+   "nombre": "Herida del abdomen, de la región lumbosacra y de la pelvis",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S32",
+   "nombre": "Fractura de la columna lumbar y de la pelvis",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S34",
+   "nombre": "Traumatismo de los nervios y de la médula espinal lumbar, a nivel del abdomen, de la región lumbosacra y de la pelvis",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S35",
+   "nombre": "Traumatismo de vasos sanguíneos a nivel del abdomen, de la región lumbosacra y de la pelvis",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S36",
+   "nombre": "Traumatismo de órganos intraabdominales",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S37",
+   "nombre": "Traumatismo del aparato urinario y de los órganos pélvicos",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S39",
+   "nombre": "Otros traumatismos y los no especificados del abdomen, de la región lumbosacra y de la pelvis",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S41",
+   "nombre": "Herida del hombro y del brazo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S42",
+   "nombre": "Fractura del hombro y del brazo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S43",
+   "nombre": "Luxación, esguince y torcedura de articulaciones y ligamentos de la cintura escapular",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S45",
+   "nombre": "Traumatismo de vasos sanguíneos a nivel del hombro y del brazo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S46",
+   "nombre": "Traumatismo de tendón y músculo a nivel del hombro y del brazo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S51",
+   "nombre": "Herida del antebrazo y del codo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S52",
+   "nombre": "Fractura del antebrazo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S53",
+   "nombre": "Luxación, esguince y torcedura de articulaciones y ligamentos del codo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S54",
+   "nombre": "Traumatismo de nervios a nivel del antebrazo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S55",
+   "nombre": "Traumatismo de los vasos sanguíneos a nivel del antebrazo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S56",
+   "nombre": "Traumatismo de tendón y músculo a nivel del antebrazo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S61",
+   "nombre": "Herida de la muñeca y de la mano",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S62",
+   "nombre": "Fractura a nivel de la muñeca y de la mano",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S63",
+   "nombre": "Luxación, esguince y torcedura de articulaciones y ligamentos a nivel de la muñeca y de la mano",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S64",
+   "nombre": "Traumatismo de nervios a nivel de la muñeca y de la mano",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S65",
+   "nombre": "Traumatismo de vasos sanguíneos a nivel de la muñeca y de la mano",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S66",
+   "nombre": "Traumatismo de tendón y músculo a nivel de la muñeca y de la mano",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S68",
+   "nombre": "Amputación traumática de la muñeca y de la mano",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S69",
+   "nombre": "Otros traumatismos y los no especificados de la muñeca y de la mano",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S70",
+   "nombre": "Traumatismo superficial de la cadera y del muslo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S71",
+   "nombre": "Herida de la cadera y del muslo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S72",
+   "nombre": "Fractura del fémur",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S73",
+   "nombre": "Luxación, esguince y torcedura de la articulaciónm y de los ligamentos de la cadera",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S75",
+   "nombre": "Traumatismo de vasos sanguíneos a nivel de la cadera y del muslo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S76",
+   "nombre": "Traumatismo de tendón y músculo a nivel de la cadera y del muslo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S79",
+   "nombre": "Otros traumatismos y los no especificados de la cadera y del muslo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S80",
+   "nombre": "Traumatismo superficial de la pierna",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S81",
+   "nombre": "Herida de la pierna",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S82",
+   "nombre": "Fractura de la pierna, inclusive el tobillo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S83",
+   "nombre": "Luxación, esguince y torcedura de articulaciones y ligamentos de la rodilla",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S85",
+   "nombre": "Traumatismo de vasos sanguíneos a nivel de la pierna",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S86",
+   "nombre": "Traumatismo de tendón y músculo a nivel de la pierna",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S89",
+   "nombre": "Otros traumatismos y los no especificados de la pierna",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S91",
+   "nombre": "Herida del tobillo y del pie",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S92",
+   "nombre": "Fractura del pie, excepto del tobillo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S93",
+   "nombre": "Luxación, esguince y torcedura de articulaciones y ligamentos del tobillo y del pie",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "S96",
+   "nombre": "Traumatismo de tendón y músculo a nivel del pie y del tobillo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T00",
+   "nombre": "Traumatismos superficiales que afectan múltiples regiones del cuerpo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T01",
+   "nombre": "Heridas que afectan múltiples regiones del cuerpo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T02",
+   "nombre": "Fracturas que afectan múltiples regiones del cuerpo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T06",
+   "nombre": "Otros traumatismos que afectan múltiples regiones del cuerpo, no clasificados en otra parte",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T07",
+   "nombre": "Traumatismos múltiples, no especificados",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T09",
+   "nombre": "Otros traumatismos de la columna vertebral y del tronco, nivel no especificado",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T11",
+   "nombre": "Otros traumatismos de miembro superior, nivel no especificado",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T12",
+   "nombre": "Fractura de miembro inferior, nivel no especificado",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T13",
+   "nombre": "Otros traumatismos de miembro inferior, nivel no especificado",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T14",
+   "nombre": "Traumatismo de regiones no especificadas del cuerpo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T17",
+   "nombre": "Cuerpo extraño en las vías respiratorias",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T18",
+   "nombre": "Cuerpo extraño en el tubo digestivo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T20",
+   "nombre": "Quemadura y corrosión de la cabeza y del cuello",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T21",
+   "nombre": "Quemadura y corrosión del tronco",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T22",
+   "nombre": "Quemadura y corrosión del hombro y miembro superior, excepto de la muñeca y de la mano",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T23",
+   "nombre": "Quemadura y corrosión de la muñeca y de la mano",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T24",
+   "nombre": "Quemadura y corrosión de la cadera y miembro inferior, excepto tobillo y pie",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T25",
+   "nombre": "Quemadura y corrosión del tobillo y del pie",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T27",
+   "nombre": "Quemadura y corrosión de las vías respiratorias",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T29",
+   "nombre": "Quemaduras y corrosiones de múltiples regiones del cuerpo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T31",
+   "nombre": "Quemaduras clasificadas según la extensión de la superficie del cuerpo afectada",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T36",
+   "nombre": "Envenenamiento por antibióticos sistémicos",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T38",
+   "nombre": "Envenenamiento por hormonas y sus sustitutos y antagonistas sintéticos, no clasificados en otra parte",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T39",
+   "nombre": "Envenenamiento por analgésicos no narcóticos, antipiréticos y antirreumáticos",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T40",
+   "nombre": "Envenenamiento por narcóticos y psicodislépticos [alucinógenos]",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T42",
+   "nombre": "Envenenamiento por antiepilépticos, hipnóticossedantes y drogas antiparkinsonianas",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T43",
+   "nombre": "Envenenamiento por psicotrópicos, no clasificados en otra parte",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T44",
+   "nombre": "Envenenamiento por drogas que afectan principalmente el sistema nervioso autónomo",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T45",
+   "nombre": "Envenenamiento por agentes principalmente sistémicos y hematológicos, no clasificados en otra parte",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T46",
+   "nombre": "Envenenamiento por agentes que afectan principalmente el sistema cardiovascular",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T50",
+   "nombre": "Envenenamiento por diuréticos y otras drogas, medicamentos y sustancias biológicas no especificadas",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T54",
+   "nombre": "Efecto tóxico de sustancias corrosivas",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T56",
+   "nombre": "Efecto tóxico de metales",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T58",
+   "nombre": "Efecto tóxico del monóxido de carbono",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T60",
+   "nombre": "Efecto tóxico de plaguicidas [pesticidas]",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T63",
+   "nombre": "Efecto tóxico del contacto con animales venenosos",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T65",
+   "nombre": "Efecto tóxico de otras sustancias y las no especificadas",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T71",
+   "nombre": "Asfixia",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T75",
+   "nombre": "Efectos de otras causas externas",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T78",
+   "nombre": "Efectos adversos, no clasificados en otra parte",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T79",
+   "nombre": "Algunas complicaciones precoces de traumatismos, no clasificadas en otra parte",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T80",
+   "nombre": "Complicaciones consecutivas a infusión, transfusión e inyección terapéutica",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T81",
+   "nombre": "Complicaciones de procedimientos, no clasificadas en otra parte",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T82",
+   "nombre": "Complicaciones de dispositivos protésicos, implantes e injertos cardiovasculares",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T83",
+   "nombre": "Complicaciones de dispositivos, implantes e injertos genitourinarios",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T84",
+   "nombre": "Complicaciones de dispositivos protésicos, implantes e injertos ortopédicos internos",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T85",
+   "nombre": "Complicaciones de otros dispositivos protésicos, implantes e injertos internos",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T86",
+   "nombre": "Falla y rechazo del trasplante de órganos y tejidos",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T87",
+   "nombre": "Complicaciones peculiares de la reinserción y amputación",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T88",
+   "nombre": "Otras complicaciones de la atención médica y quirúrgica, no clasificadas en otra parte",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T90",
+   "nombre": "Secuelas de traumatismos de la cabeza",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T92",
+   "nombre": "Secuelas de traumatismos de miembro superior",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T93",
+   "nombre": "Secuelas de traumatismos de miembro inferior",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "T95",
+   "nombre": "Secuelas de quemaduras, corrosiones y congelamientos",
+   "grupo_clinico": "XIX"
+  },
+  {
+   "codigo": "U07",
+   "nombre": "Uso emergente de U07",
+   "grupo_clinico": "XXII"
+  },
+  {
+   "codigo": "Z01",
+   "nombre": "Otros exámenes especiales e investigaciones en personas sin quejas o sin diagnóstico informado",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z03",
+   "nombre": "Observación y evaluación médicas por sospecha de enfermedades y afecciones",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z04",
+   "nombre": "Examen y observación por otras razones",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z08",
+   "nombre": "Examen de seguimiento consecutivo al tratamiento por tumor maligno",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z09",
+   "nombre": "Examen de seguimiento consecutivo a tratamiento por otras afecciones diferentes a tumores malignos",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z12",
+   "nombre": "Examen de pesquisa especial para tumores",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z13",
+   "nombre": "Examen de pesquisa especial para otras enfermedades y trastornos",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z20",
+   "nombre": "Contacto con y exposición a enfermedades transmisibles",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z29",
+   "nombre": "Necesidad de otras medidas profilácticas",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z30",
+   "nombre": "Atención para la anticoncepción",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z31",
+   "nombre": "Atención para la procreación",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z32",
+   "nombre": "Examen y prueba del embarazo",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z33",
+   "nombre": "Estado de embarazo, incidental",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z34",
+   "nombre": "Supervisión de embarazo normal",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z35",
+   "nombre": "Supervisión de embarazo de alto riesgo",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z39",
+   "nombre": "Examen y atención del postparto",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z40",
+   "nombre": "Cirugía profiláctica",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z41",
+   "nombre": "Procedimientos para otros propósitos que no sean los de mejorar el estado de salud",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z42",
+   "nombre": "Cuidados posteriores a la cirugía plástica",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z43",
+   "nombre": "Atención de orificios artificiales",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z45",
+   "nombre": "Asistencia y ajuste de dispositivos implantados",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z46",
+   "nombre": "Prueba y ajuste de otros dispositivos",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z47",
+   "nombre": "Otros cuidados posteriores a la ortopedia",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z48",
+   "nombre": "Otros cuidados posteriores a la cirugía",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z49",
+   "nombre": "Cuidados relativos al procedimiento de diálisis",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z51",
+   "nombre": "Otra atención médica",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z52",
+   "nombre": "Donantes de órganos y tejidos",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z53",
+   "nombre": "Persona en contacto con los servicios de salud para procedimientos específicos no realizados",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z54",
+   "nombre": "Convalecencia",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z64",
+   "nombre": "Problemas relacionados con ciertas circunstancias psicosociales",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z75",
+   "nombre": "Problemas relacionados con facilidades de atención médica u otros servicios de salud",
+   "grupo_clinico": "XXI"
+  },
+  {
+   "codigo": "Z76",
+   "nombre": "Personas en contacto con los servicios de salud por otras circunstancias",
+   "grupo_clinico": "XXI"
+  }
+ ],
+ "comorbilidades": [
+  {
+   "id": "ELIX_01",
+   "nombre": "Insuficiencia cardíaca congestiva"
+  },
+  {
+   "id": "ELIX_02",
+   "nombre": "Arritmias cardíacas"
+  },
+  {
+   "id": "ELIX_03",
+   "nombre": "Valvulopatía"
+  },
+  {
+   "id": "ELIX_04",
+   "nombre": "Trastornos de la circulación pulmonar"
+  },
+  {
+   "id": "ELIX_05",
+   "nombre": "Enfermedad vascular periférica"
+  },
+  {
+   "id": "ELIX_06",
+   "nombre": "Hipertensión no complicada"
+  },
+  {
+   "id": "ELIX_07",
+   "nombre": "Hipertensión complicada"
+  },
+  {
+   "id": "ELIX_08",
+   "nombre": "Parálisis"
+  },
+  {
+   "id": "ELIX_09",
+   "nombre": "Otros trastornos neurológicos"
+  },
+  {
+   "id": "ELIX_10",
+   "nombre": "Enfermedad pulmonar crónica"
+  },
+  {
+   "id": "ELIX_11",
+   "nombre": "Diabetes no complicada"
+  },
+  {
+   "id": "ELIX_12",
+   "nombre": "Diabetes complicada"
+  },
+  {
+   "id": "ELIX_13",
+   "nombre": "Hipotiroidismo"
+  },
+  {
+   "id": "ELIX_14",
+   "nombre": "Insuficiencia renal"
+  },
+  {
+   "id": "ELIX_15",
+   "nombre": "Enfermedad hepática"
+  },
+  {
+   "id": "ELIX_16",
+   "nombre": "Úlcera péptica sin sangrado"
+  },
+  {
+   "id": "ELIX_17",
+   "nombre": "VIH/SIDA"
+  },
+  {
+   "id": "ELIX_18",
+   "nombre": "Linfoma"
+  },
+  {
+   "id": "ELIX_19",
+   "nombre": "Cáncer metastásico"
+  },
+  {
+   "id": "ELIX_20",
+   "nombre": "Tumor sólido sin metástasis"
+  },
+  {
+   "id": "ELIX_21",
+   "nombre": "Artritis reumatoide y colagenopatías"
+  },
+  {
+   "id": "ELIX_22",
+   "nombre": "Coagulopatía"
+  },
+  {
+   "id": "ELIX_23",
+   "nombre": "Obesidad"
+  },
+  {
+   "id": "ELIX_24",
+   "nombre": "Pérdida de peso"
+  },
+  {
+   "id": "ELIX_25",
+   "nombre": "Trastornos hidroelectrolíticos"
+  },
+  {
+   "id": "ELIX_26",
+   "nombre": "Anemia por pérdida de sangre"
+  },
+  {
+   "id": "ELIX_27",
+   "nombre": "Anemia por deficiencia"
+  },
+  {
+   "id": "ELIX_28",
+   "nombre": "Abuso de alcohol"
+  },
+  {
+   "id": "ELIX_29",
+   "nombre": "Abuso de drogas"
+  },
+  {
+   "id": "ELIX_30",
+   "nombre": "Psicosis"
+  },
+  {
+   "id": "ELIX_31",
+   "nombre": "Depresión"
+  }
+ ],
+ "grupos_clinicos": {
+  "I": "Cap.01  CIERTAS ENFERMEDADES INFECCIOSAS Y PARASITARIAS (A00-B99)",
+  "II": "Cap.02  NEOPLASIAS (C00-D49)",
+  "III": "Cap.03  ENFERMEDADES DE LA SANGRE Y ÓRGANOS HEMATOPOYÉTICOS Y CIERTOS TRASTORNOS QUE AFECTAN AL MECANISMO INMUNOLÓGICO (D50-D89)",
+  "IV": "Cap.04  ENFERMEDADES ENDOCRINAS, NUTRICIONALES Y METABÓLICAS (E00-E89)",
+  "V": "Cap.05  TRASTORNOS MENTALES Y DE COMPORTAMIENTO (F01-F99)",
+  "VI": "Cap.06  ENFERMEDADES DEL SISTEMA NERVIOSO (G00-G99)",
+  "VII": "Cap.07  ENFERMEDADES DEL OJO Y SUS ANEXOS (H00-H59)",
+  "VIII": "Cap.08  ENFERMEDADES DEL OÍDO Y DE LA APÓFISIS MASTOIDES (H60-H95)",
+  "IX": "Cap.09  ENFERMEDADES DEL APARATO CIRCULATORIO (I00-I99)",
+  "X": "Cap.10  ENFERMEDADES DEL APARATO RESPIRATORIO (J00-J99)",
+  "XI": "Cap.11  ENFERMEDADES DEL APARATO DIGESTIVO (K00-K95)",
+  "XII": "Cap.12  ENFERMEDADES DE LA PIEL Y DEL TEJIDO SUBCUTÁNEO (L00-L99)",
+  "XIII": "Cap.13  ENFERMEDADES DEL APARATO MUSCULOESQUELÉTICO Y DEL TEJIDO CONECTIVO (M00-M99)",
+  "XIV": "Cap.14  ENFERMEDADES DEL APARATO GENITOURINARIO (N00-N99)",
+  "XV": "Cap.15  EMBARAZO, PARTO Y PUERPERIO (O00-O9A)",
+  "XVI": "Cap.16  CIERTAS AFECCIONES ORIGINADAS EN EL PERÍODO PERINATAL (P00-P96)",
+  "XVII": "Cap.17  MALFORMACIONES CONGÉNITAS, DEFORMIDADES Y ANOMALÍAS CROMOSÓMICAS (Q00-Q99)",
+  "XVIII": "Cap.18  SÍNTOMAS, SIGNOS Y RESULTADOS ANORMALES DE PRUEBAS COMPLEMENTARIAS, NO CLASIFICADOS BAJO OTRO CONCEPTO (R00-R99)",
+  "XIX": "Cap.19  LESIONES TRAUMÁTICAS, ENVENENAMIENTOS Y OTRAS CONSECUENCIAS DE CAUSAS EXTERNAS (S00-T88)",
+  "XX": "Cap.20  CAUSAS EXTERNAS DE MORBILIDAD (V00-Y99)",
+  "XXI": "Cap.21  FACTORES QUE INFLUYEN EN EL ESTADO DE SALUD Y CONTACTO CON LOS SERVICIOS SANITARIOS (Z00-Z99)",
+  "XXII": "Cap.22  CÓDIGOS PARA SITUACIONES ESPECIALES (U00-U99)"
+ }
+}

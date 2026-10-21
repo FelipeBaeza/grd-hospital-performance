@@ -1,0 +1,401 @@
+# Reglas de calidad declarativas (lote 1: fechas, identificador y duplicados).
+# Cada regla indica qué mide (tipo), sobre qué columnas, qué tan grave es y qué se hace con el dato:
+#   accion = anular           -> se anula el valor erróneo y se conserva el episodio (regla R5)
+#          | recodificar      -> se lleva a la categoría estándar
+#          | excluir          -> se excluye el episodio de un análisis concreto (no se borra)
+#          | informar_fonasa  -> se informa a FONASA por un canal formal
+#          | informar         -> solo se registra
+# permite_expuesto = true significa que la regla solo devuelve indicadores de violación y puede leer las
+# columnas de resultado del año expuesto (2024) en claro (cortafuegos). Nunca devuelve distribuciones de resultado.
+# alcance = "anio" evalúa cada archivo anual; "regimen" evalúa un conjunto de años que comparten espacio de IDs.
+
+[[regla]]
+id = "Q01"
+nombre = "Fecha de nacimiento vacía"
+tipo = "vacio"
+columnas = ["FECHA_NACIMIENTO"]
+severidad = "media"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Fase 2, sección 4.1 (el diccionario dice 0 vacíos y el repositorio reporta 37)"
+descripcion = "La fecha de nacimiento es nula; la edad no se puede calcular."
+
+[[regla]]
+id = "Q02"
+nombre = "Fecha de ingreso vacía"
+tipo = "vacio"
+columnas = ["FECHA_INGRESO"]
+severidad = "alta"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Fase 2, sección 4.1 (el diccionario dice 0 vacíos y el repositorio reporta 71)"
+descripcion = "La fecha de ingreso es nula; no se puede calcular edad, estadía ni mes de ingreso."
+
+[[regla]]
+id = "Q03"
+nombre = "Fecha de alta vacía"
+tipo = "vacio"
+columnas = ["FECHAALTA"]
+severidad = "alta"
+accion = "anular"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Fase 2, sección 4.1 (18 casos)"
+descripcion = "Sin fecha de alta no se puede calcular la estadía; se anula la estadía de ese episodio."
+
+[[regla]]
+id = "Q04"
+nombre = "Fecha no convertible"
+tipo = "fecha_no_convertible"
+columnas = ["FECHA_NACIMIENTO", "FECHA_INGRESO", "FECHAALTA"]
+severidad = "alta"
+accion = "anular"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Fase 2, problemas de calidad (formato de fecha incorrecto)"
+descripcion = "Valor informado, que no es un centinela, y que no se puede convertir a fecha ni en AAAA-MM-DD ni en DD-MM-AAAA."
+
+[[regla]]
+id = "Q05"
+nombre = "Alta anterior al ingreso"
+tipo = "alta_antes_ingreso"
+columnas = ["FECHA_INGRESO", "FECHAALTA"]
+severidad = "alta"
+accion = "anular"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Fase 2, sección 4.1 (12 casos: 1 en 2019, 10 en 2020 y 1 en 2022)"
+descripcion = "La fecha de alta es anterior a la de ingreso; se anula únicamente el cálculo de la estadía."
+
+[[regla]]
+id = "Q06"
+nombre = "Estadía mayor al máximo plausible"
+tipo = "estancia_maxima"
+columnas = ["FECHA_INGRESO", "FECHAALTA"]
+severidad = "media"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Plan de la Fase 2, Tarea 5"
+descripcion = "La estadía supera estancia_maxima_dias; se revisa como posible error de fecha, no se borra."
+umbral = "estancia_maxima_dias"
+
+[[regla]]
+id = "Q07"
+nombre = "Edad negativa"
+tipo = "edad_negativa"
+columnas = ["FECHA_NACIMIENTO", "FECHA_INGRESO"]
+severidad = "alta"
+accion = "anular"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Fase 2, sección 4.1 (1 caso)"
+descripcion = "El nacimiento es posterior al ingreso; se anula únicamente la edad."
+umbral = "edad_minima"
+
+[[regla]]
+id = "Q08"
+nombre = "Edad mayor al máximo plausible"
+tipo = "edad_mayor"
+columnas = ["FECHA_NACIMIENTO", "FECHA_INGRESO"]
+severidad = "alta"
+accion = "anular"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Fase 2, sección 4.1 (26 casos sobre 110 años)"
+descripcion = "La edad calculada supera edad_maxima; se anula únicamente la edad."
+umbral = "edad_maxima"
+
+[[regla]]
+id = "Q09"
+nombre = "Identificador del paciente vacío"
+tipo = "id_vacio"
+columnas = ["CIP_ENCRIPTADO"]
+severidad = "media"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Fase 2, sección 4.1 (2.044 casos)"
+descripcion = "Sin identificador no se puede construir el historial; el historial debe quedar desconocido y no en cero."
+
+[[regla]]
+id = "Q10"
+nombre = "Identificador con valor centinela"
+tipo = "id_centinela"
+columnas = ["CIP_ENCRIPTADO"]
+severidad = "media"
+accion = "recodificar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Hallazgo de esta suite: DESCONOCIDO en lugar de vacío"
+descripcion = "El identificador es un texto del tipo DESCONOCIDO; se recodifica a nulo."
+
+[[regla]]
+id = "Q11"
+nombre = "Identificador demasiado corto"
+tipo = "id_corto"
+columnas = ["CIP_ENCRIPTADO"]
+severidad = "baja"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Hallazgo de esta suite: IDs de pocos dígitos en 2019 y 2020"
+descripcion = "Identificador numérico con menos dígitos que id_largo_minimo."
+umbral = "id_largo_minimo"
+
+[[regla]]
+id = "Q12"
+nombre = "Identificador no numérico"
+tipo = "id_no_numerico"
+columnas = ["CIP_ENCRIPTADO"]
+severidad = "media"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Hallazgo de esta suite"
+descripcion = "Identificador informado que ni es centinela ni contiene solo dígitos."
+
+[[regla]]
+id = "Q13"
+nombre = "Más de una fecha de nacimiento por identificador"
+tipo = "id_un_nacimiento"
+columnas = ["CIP_ENCRIPTADO", "FECHA_NACIMIENTO"]
+severidad = "alta"
+accion = "excluir"
+permite_expuesto = true
+alcance = "regimen"
+referencia = "Fase 2, sección 4.3 (consistencia del identificador entre años)"
+descripcion = "El mismo identificador aparece con fechas de nacimiento distintas dentro de un mismo espacio de IDs; se excluye de las variables de historial."
+
+[[regla]]
+id = "Q14"
+nombre = "Más de un sexo por identificador"
+tipo = "id_un_sexo"
+columnas = ["CIP_ENCRIPTADO", "SEXO"]
+severidad = "media"
+accion = "excluir"
+permite_expuesto = true
+alcance = "regimen"
+referencia = "Fase 2, sección 4.3 (consistencia del identificador entre años)"
+descripcion = "El mismo identificador aparece con sexos distintos (MUJER y HOMBRE) dentro de un mismo espacio de IDs."
+
+[[regla]]
+id = "Q15"
+nombre = "Filas duplicadas por clave natural"
+tipo = "duplicado_clave"
+columnas = ["CIP_ENCRIPTADO", "COD_HOSPITAL", "FECHA_INGRESO", "FECHAALTA", "DIAGNOSTICO1", "FECHA_NACIMIENTO", "SEXO"]
+severidad = "media"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Fase 2, sección 4.3 (duplicados)"
+descripcion = "Filas con identificador válido y la misma clave (paciente, hospital, ingreso, alta, diagnóstico principal, nacimiento y sexo). Se cuentan las filas sobrantes y no se borra nada."
+
+[[regla]]
+id = "Q16"
+nombre = "Episodios solapados del mismo paciente"
+tipo = "solape_episodios"
+columnas = ["CIP_ENCRIPTADO", "FECHA_INGRESO", "FECHAALTA"]
+severidad = "media"
+accion = "informar"
+permite_expuesto = true
+alcance = "regimen"
+referencia = "Fase 2, sección 4.3 (episodios solapados)"
+descripcion = "Un ingreso ocurre antes del alta de un episodio anterior del mismo identificador (duplicados exactos excluidos). Se atribuye al año del episodio posterior."
+
+[[regla]]
+id = "Q17"
+nombre = "Valor con estructura de RUT"
+tipo = "rut_en_columna"
+columnas = []
+severidad = "alta"
+accion = "informar_fonasa"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Fase 1, sección 14.3 y decisión 11 (9 valores en FECHAPROCEDIMIENTO1)"
+descripcion = "Se busca por patrón, en las 129 columnas, un valor con forma de RUT. Solo se guardan conteos por columna y año; nunca el valor."
+
+[[regla]]
+id = "Q18"
+nombre = "Año de alta distinto del año del archivo"
+tipo = "anio_alta_distinto"
+columnas = ["FECHAALTA"]
+severidad = "baja"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Fase 2, variables derivadas (ANIO_EGRESO a partir de FECHAALTA)"
+descripcion = "El año de la fecha de alta no es el del archivo; afecta la partición temporal por año de egreso."
+
+[[regla]]
+id = "Q19"
+nombre = "Año de ingreso distinto del año del archivo"
+tipo = "anio_ingreso_distinto"
+columnas = ["FECHA_INGRESO"]
+severidad = "baja"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Fase 1, reglas_variables (ANIO_INGRESO)"
+descripcion = "El año de la fecha de ingreso no es el del archivo."
+
+# ===================== Lote 2: validez contra catálogos y consistencia cruzada (Tarea 6) =====================
+
+[[regla]]
+id = "Q20"
+nombre = "Diagnóstico principal fuera de CIE-10"
+tipo = "cie10_principal_invalido"
+columnas = ["DIAGNOSTICO1"]
+severidad = "media"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "CIE-10.csv de la raíz; Fase 2, problemas de calidad"
+descripcion = "El código normalizado (sin punto, en mayúsculas) no existe en el catálogo ni como categoría de tres caracteres. Los que solo existen como categoría se informan aparte."
+
+[[regla]]
+id = "Q21"
+nombre = "Procedimiento fuera de CIE-9-MC"
+tipo = "cie9_invalido"
+columnas_grupo = ["PROC"]
+severidad = "baja"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "CIE-9 .csv de la raíz"
+descripcion = "El código de procedimiento no existe en el catálogo ni como categoría de dos dígitos."
+
+[[regla]]
+id = "Q22"
+nombre = "GRD fuera del catálogo"
+tipo = "grd_fuera_catalogo"
+columnas = ["IR_29301_COD_GRD"]
+severidad = "media"
+accion = "excluir"
+permite_expuesto = true
+alcance = "anio"
+referencia = "GRDs_T10901.xlsx y oficio FONASA 23364/2026"
+descripcion = "Código de seis dígitos que no está en el catálogo del oficio ni en IR-GRD.csv, o con formato inválido. No cuentan los centinelas ni los códigos 98xxxx o 99xxxx (no agrupables)."
+
+[[regla]]
+id = "Q23"
+nombre = "Hospital fuera de Hospitales.csv"
+tipo = "hospital_fuera_catalogo"
+columnas = ["COD_HOSPITAL"]
+severidad = "media"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Hospitales.csv de la raíz; Fase 1, sección 8 (verificación del número de hospitales)"
+descripcion = "El código de hospital no figura en el catálogo de establecimientos."
+
+[[regla]]
+id = "Q24"
+nombre = "Fallecido con riesgo de mortalidad del GRD en cero"
+tipo = "fallecido_riesgo_grd_cero"
+columnas = ["TIPOALTA", "IR_29301_MORTALIDAD"]
+severidad = "baja"
+accion = "informar"
+permite_expuesto = false
+alcance = "anio"
+referencia = "Fase 1, regla R6 (IR_29301_MORTALIDAD prohibida como predictor)"
+descripcion = "TIPOALTA indica fallecimiento y la clase de mortalidad del GRD es 0 (sin gravedad). Cruza el desenlace, por eso no se evalúa en el año expuesto."
+
+[[regla]]
+id = "Q25"
+nombre = "Sexo incompatible con el diagnóstico principal"
+tipo = "sexo_dx_incompatible"
+columnas = ["SEXO", "DIAGNOSTICO1"]
+severidad = "media"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Plan de la Fase 2, Tarea 6"
+descripcion = "Hombre con diagnóstico principal obstétrico (O00 a O99) o de órganos genitales femeninos (N70 a N98), o mujer con diagnóstico de órganos genitales masculinos (N40 a N53) o de próstata, pene y testículo (C60 a C63)."
+
+[[regla]]
+id = "Q26"
+nombre = "GRD de recién nacido (MDC 15) en un paciente mayor"
+tipo = "mdc15_edad_mayor"
+columnas = ["IR_29301_COD_GRD", "FECHA_NACIMIENTO", "FECHA_INGRESO"]
+severidad = "media"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Oficio FONASA 23364/2026 (MDC 15: recién nacidos y otros neonatos)"
+descripcion = "El GRD pertenece al MDC 15 y la edad al ingreso supera edad_neonato_max."
+umbral = "edad_neonato_max"
+
+[[regla]]
+id = "Q27"
+nombre = "GRD de parto (MDC 14) en un hombre"
+tipo = "mdc14_hombre"
+columnas = ["IR_29301_COD_GRD", "SEXO"]
+severidad = "media"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Oficio FONASA 23364/2026 (MDC 14: parto)"
+descripcion = "El GRD pertenece al MDC 14 y el sexo registrado es hombre."
+
+[[regla]]
+id = "Q28"
+nombre = "GRD ambulatorio en actividad de hospitalización"
+tipo = "grd_ambulatorio_en_hospitalizacion"
+columnas = ["IR_29301_COD_GRD", "TIPO_ACTIVIDAD"]
+severidad = "media"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Oficio FONASA 23364/2026 (tercer dígito del GRD)"
+descripcion = "El tercer dígito del GRD corresponde a un tipo ambulatorio (2, 3, 5, 7 o 9) y TIPO_ACTIVIDAD es hospitalización."
+
+[[regla]]
+id = "Q29"
+nombre = "GRD de hospitalización en actividad ambulatoria"
+tipo = "grd_hospitalizado_en_ambulatoria"
+columnas = ["IR_29301_COD_GRD", "TIPO_ACTIVIDAD"]
+severidad = "media"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Oficio FONASA 23364/2026 (tercer dígito del GRD)"
+descripcion = "El tercer dígito del GRD corresponde a un tipo hospitalizado (1, 4, 6 u 8) y TIPO_ACTIVIDAD es cirugía mayor ambulatoria u hospitalización diurna."
+
+[[regla]]
+id = "Q30"
+nombre = "Tipo de alta sin rol asignado"
+tipo = "tipoalta_sin_rol"
+columnas = ["TIPOALTA"]
+severidad = "alta"
+accion = "excluir"
+permite_expuesto = false
+alcance = "anio"
+referencia = "Fase 1, tipoalta_roles.csv (doce valores)"
+descripcion = "La etiqueta de TIPOALTA no coincide con ninguna del archivo de roles, ni exacta ni por prefijo (etiqueta cortada). No se evalúa en el año expuesto."
+
+[[regla]]
+id = "Q31"
+nombre = "Uso de pabellón fuera del catálogo"
+tipo = "usospabellon_invalido"
+columnas = ["USOSPABELLON"]
+severidad = "baja"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Tipo de Pabellon.csv de la raíz"
+descripcion = "El valor de USOSPABELLON no es uno de los tipos de pabellón del catálogo."
+
+[[regla]]
+id = "Q32"
+nombre = "Severidad o mortalidad del GRD fuera del catálogo"
+tipo = "severidad_mortalidad_invalida"
+columnas = ["IR_29301_SEVERIDAD", "IR_29301_MORTALIDAD"]
+severidad = "baja"
+accion = "informar"
+permite_expuesto = true
+alcance = "anio"
+referencia = "Severidad GRD.csv y Mortalidad GRD.csv de la raíz"
+descripcion = "El valor no es una clase del catálogo (0 a 3) ni un centinela. Solo se cuenta la validez; nunca la distribución de clases."

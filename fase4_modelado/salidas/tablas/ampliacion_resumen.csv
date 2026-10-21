@@ -1,0 +1,12 @@
+tarea,algoritmo,origen,pruebas,score_submuestra,score_pliegues,estado
+mortalidad,lightgbm,Fase 4,40,0.4345,0.4419,completo
+mortalidad,xgboost,Fase 4,40,0.4312,0.4411,completo
+mortalidad,logistica,Fase 4,8,0.4073,0.4085,completo
+mortalidad,lgbm_extra,ampliación,40,0.4346,0.4419,completo
+mortalidad,lgbm_rf,ampliación,40,0.4097,0.4158,completo
+estadia,lightgbm,Fase 4,30,4.4434,4.3889,completo
+estadia,xgboost,Fase 4,30,4.4606,4.3994,completo
+estadia,poisson,Fase 4,5,4.7208,4.7046,completo
+estadia,lgbm_extra,ampliación,30,4.4717,4.4117,completo
+estadia,lgbm_rf,ampliación,30,5.2494,5.214,completo
+mortalidad,catboost,ampliación,21,0.4247,,parcial: 21 de 40 pruebas (límite de tiempo)

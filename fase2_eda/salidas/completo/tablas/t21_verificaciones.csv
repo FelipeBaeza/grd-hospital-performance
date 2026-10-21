@@ -1,0 +1,8 @@
+id,descripcion,esperado,observado,base_del_esperado,resultado,fuente
+V01,Todos los archivos tienen el mismo número de columnas,129,129,"Fase 2, sección 1.1",COINCIDE,completo
+V02,Las filas leídas más las rechazadas suman las líneas de datos,si,si,"Fase 1, requisito de lectura sin modificaciones",COINCIDE,completo
+V04,Años en que la segunda columna se llama ID_BENEFICIARIO,2019,2024,"Fase 2, sección 1.3 y problemas de calidad (afirma que ocurre en 2019)",DISCREPA,completo
+V05,Años con FECHA_INGRESO en DD-MM-AAAA,2023,2023,Inspección de los extractos,COINCIDE,completo
+V06,FECHA_NACIMIENTO viene en formato ISO en todos los años,si,no,"Fase 2, problemas de calidad",DISCREPA,completo
+V07,Años con BOM,2021;2022;2023,2021;2022;2023,Inspección de los extractos,COINCIDE,completo
+V08,Cobertura de años,2019;2020;2021;2022;2023;2024,2019;2020;2021;2022;2023;2024,"Fase 2, sección 1.1",COINCIDE,completo

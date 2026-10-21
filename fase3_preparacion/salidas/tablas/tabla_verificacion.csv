@@ -1,0 +1,9 @@
+puerta,nombre,estado,detalle
+P1,Bronce,PASS,"filas leídas 5,808,535; líneas de datos 5,808,536; rechazadas 1; esquema de 129 columnas en 6 archivos"
+P2,Plata,PASS,"5,808,535 filas en Plata = Bronce; tabla de valores anulados por regla y año presente"
+P3,Cascada,PASS,79 cifras comparadas con la Fase 2; 0 con diferencia; la cascada cuadra en todos los años
+P4,Oro,PASS,variables prohibidas en las matrices: 0; agregados de comorbilidad junto a los 31 indicadores: 0; columnas sin fila en el diccionario: 0
+P5,Sellado,PASS,lecturas del desenlace de 2024 concedidas: 0; episodios de 2024 en los archivos de desenlace: 0
+P6,Privacidad,PASS,"archivos de salida con RUT, fechas completas o celdas de 1 a 9 casos: 0; fecha de nacimiento ausente en Oro: sí"
+P7,Sin fuga de información,PASS,"vocabularios idénticos con y sin 2023–2024: sí; tope de estadía 53 días, calculado solo con 2019–2022"
+P8,Reproducibilidad,PASS,"pruebas automáticas: 53 pasaron, 0 fallaron; 41 de 41 archivos idénticos (SHA-256) en dos corridas completas; pico de RAM 3.07 GB"

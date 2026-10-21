@@ -1,0 +1,15 @@
+modulo,parametro,valor,para_que_sirve,afecta
+estadistica,SUAVIZADO_M,20,Pseudoegresos con la tasa global que se suman a cada nivel de una categórica para estimar su tasa,"auc_cv, auc_senal, el representante de cada cluster, BAJA_SENAL y FUGA para las categóricas"
+estadistica,EPS_COLINEALIDAD,"0,000000001",Criterio de colinealidad exacta: una variable es combinación lineal de las demás si su R cuadrado supera uno menos este valor,VIF nulo con colinealidad exacta
+estadistica,DECIMALES_PUBLICADOS,6,Decimales con que se escriben los flotantes y con que se comparan los umbrales,Todas las reglas del árbol de decisión y las marcas de las tablas
+estadistica,SEPARACION_COEF_MAX,12,Un coeficiente de la regresión logística con valor absoluto mayor se declara con separación,"Solo anula el OR de ese coeficiente, nunca un AUC"
+estadistica,SEPARACION_SE_MAX,1000,Un coeficiente con error estándar mayor se declara con separación,"Solo anula el OR de ese coeficiente, nunca un AUC"
+modelos,RIDGE_AUC,1,Ridge de los diseños que entregan un AUC (equivale a C igual a uno de scikit-learn),"Incremento de AUC, referencias y modelo base"
+modelos,RIDGE_WALD,0,Ridge de los diseños que entregan un OR con error de Wald (cero: el OR no tiene sesgo de penalización),OR ajustado y OR de estadía larga de Elixhauser
+modelos,TOPE_FILAS_MODELOS,200000,Tope de filas de entrenamiento de los modelos (muestra reproducible si la ventana lo supera),"Referencias, incremento de AUC y modelo L1"
+modelos,CS_L1,"0,001; 0,004642; 0,02154; 0,1; 0,4642; 2,154; 10",Valores de C (inverso de la penalización) que explora el modelo L1,Variables que sobreviven en el modelo L1 y su importancia
+modelos,PLIEGUES_CV,3,Pliegues de la validación cruzada del modelo L1 (el valor del encargo),C elegido y variables que sobreviven en el modelo L1
+modelos,REPETICIONES_PERMUTACION,10,Repeticiones de la importancia por permutación de cada variable,Importancia por permutación y su desviación
+sospechas,MIN_FILAS_HOSPITAL,100,Un hospital entra a las medidas de variación entre hospitales solo con al menos este número de filas válidas,Variación de los ingresos a cuidados especiales y cardinalidad de ESPECIALIDAD_MEDICA por hospital
+sospechas,ETIQUETA_V_RESULTADO,"0,1",Umbral de visualización de F11_02: se rotulan los puntos con asociación con el resultado de al menos este valor,Solo las etiquetas de la figura F11_02
+modelos,relleno_nulos_modelos,mediana del entrenamiento más indicador de nulos,"Los nulos de numéricas y binarias se rellenan con la mediana de entrenamiento (cero en binarias) más una columna indicadora, solo dentro de los modelos exploratorios; la regla R5 de la Fase 1 lo admite para las líneas base y el panel conserva los nulos","Modelo base, referencias, incremento de AUC y modelo L1"

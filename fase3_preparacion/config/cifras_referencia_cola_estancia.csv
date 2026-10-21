@@ -1,0 +1,9 @@
+base,regla,corte_dias,n_def,n_afectados_def,prop_afectados_def,cumple_def,n_conf,n_afectados_conf,prop_afectados_conf,cumple_conf,propuesta,maximo_def
+E,p99,53,1876523,17995,0.00959,si,519833,4442,0.008545,si,si,3146
+E,"p99,5",68,1876523,9356,0.004986,si,519833,2278,0.004382,si,no,3146
+E,"p99,9",121,1876523,1835,0.000978,si,519833,472,0.000908,si,no,3146
+E,365 días,365,1876523,104,0.000055,si,519833,21,0.00004,si,no,3146
+D_sobrevivientes,p99,52,1960698,18807,0.009592,si,544502,4647,0.008534,si,si,3146
+D_sobrevivientes,"p99,5",67,1960698,9695,0.004945,si,544502,2370,0.004353,si,no,3146
+D_sobrevivientes,"p99,9",119,1960698,1925,0.000982,si,544502,497,0.000913,si,no,3146
+D_sobrevivientes,365 días,365,1960698,104,0.000053,si,544502,21,0.000039,si,no,3146

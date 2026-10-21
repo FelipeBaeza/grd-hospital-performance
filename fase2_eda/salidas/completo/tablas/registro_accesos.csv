@@ -1,0 +1,181 @@
+secuencia,tarea,anio,proposito,n_columnas,columnas_resultado,reglas,decision,motivo
+1,T03,2019,estructura,1,"","",PERMITIDO,año no expuesto
+2,T03,2020,estructura,1,"","",PERMITIDO,año no expuesto
+3,T03,2021,estructura,1,"","",PERMITIDO,año no expuesto
+4,T03,2022,estructura,1,"","",PERMITIDO,año no expuesto
+5,T03,2023,estructura,1,"","",PERMITIDO,año no expuesto
+6,T03,2024,estructura,1,"","",PERMITIDO,año expuesto sin columnas de resultado
+7,T03,2019,estructura,11,FECHAALTA;IR_29301_PESO,"",PERMITIDO,año no expuesto
+8,T03,2020,estructura,11,FECHAALTA;IR_29301_PESO,"",PERMITIDO,año no expuesto
+9,T03,2021,estructura,11,FECHAALTA;IR_29301_PESO,"",PERMITIDO,año no expuesto
+10,T03,2022,estructura,11,FECHAALTA;IR_29301_PESO,"",PERMITIDO,año no expuesto
+11,T03,2023,estructura,11,FECHAALTA;IR_29301_PESO,"",PERMITIDO,año no expuesto
+12,T03,2024,estructura,11,FECHAALTA;IR_29301_PESO,"",PERMITIDO_ENMASCARADO,columnas de resultado entregadas solo como patrón
+13,T04,2019,estructura,16,"","",PERMITIDO,año no expuesto
+14,T04,2019,estructura,16,"","",PERMITIDO,año no expuesto
+15,T04,2019,estructura,16,FECHAALTA;SERVICIOALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+16,T04,2019,estructura,16,"","",PERMITIDO,año no expuesto
+17,T04,2019,estructura,16,"","",PERMITIDO,año no expuesto
+18,T04,2019,estructura,16,"","",PERMITIDO,año no expuesto
+19,T04,2019,estructura,16,"","",PERMITIDO,año no expuesto
+20,T04,2019,estructura,16,IR_29301_MORTALIDAD;IR_29301_PESO;IR_29301_SEVERIDAD,"",PERMITIDO,año no expuesto
+21,T04,2019,estructura,1,"","",PERMITIDO,año no expuesto
+22,T04,2019,estructura,27,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+23,T04,2020,estructura,16,"","",PERMITIDO,año no expuesto
+24,T04,2020,estructura,16,"","",PERMITIDO,año no expuesto
+25,T04,2020,estructura,16,FECHAALTA;SERVICIOALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+26,T04,2020,estructura,16,"","",PERMITIDO,año no expuesto
+27,T04,2020,estructura,16,"","",PERMITIDO,año no expuesto
+28,T04,2020,estructura,16,"","",PERMITIDO,año no expuesto
+29,T04,2020,estructura,16,"","",PERMITIDO,año no expuesto
+30,T04,2020,estructura,16,IR_29301_MORTALIDAD;IR_29301_PESO;IR_29301_SEVERIDAD,"",PERMITIDO,año no expuesto
+31,T04,2020,estructura,1,"","",PERMITIDO,año no expuesto
+32,T04,2020,estructura,27,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+33,T04,2021,estructura,16,"","",PERMITIDO,año no expuesto
+34,T04,2021,estructura,16,"","",PERMITIDO,año no expuesto
+35,T04,2021,estructura,16,FECHAALTA;SERVICIOALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+36,T04,2021,estructura,16,"","",PERMITIDO,año no expuesto
+37,T04,2021,estructura,16,"","",PERMITIDO,año no expuesto
+38,T04,2021,estructura,16,"","",PERMITIDO,año no expuesto
+39,T04,2021,estructura,16,"","",PERMITIDO,año no expuesto
+40,T04,2021,estructura,16,IR_29301_MORTALIDAD;IR_29301_PESO;IR_29301_SEVERIDAD,"",PERMITIDO,año no expuesto
+41,T04,2021,estructura,1,"","",PERMITIDO,año no expuesto
+42,T04,2021,estructura,27,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+43,T04,2022,estructura,16,"","",PERMITIDO,año no expuesto
+44,T04,2022,estructura,16,"","",PERMITIDO,año no expuesto
+45,T04,2022,estructura,16,FECHAALTA;SERVICIOALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+46,T04,2022,estructura,16,"","",PERMITIDO,año no expuesto
+47,T04,2022,estructura,16,"","",PERMITIDO,año no expuesto
+48,T04,2022,estructura,16,"","",PERMITIDO,año no expuesto
+49,T04,2022,estructura,16,"","",PERMITIDO,año no expuesto
+50,T04,2022,estructura,16,IR_29301_MORTALIDAD;IR_29301_PESO;IR_29301_SEVERIDAD,"",PERMITIDO,año no expuesto
+51,T04,2022,estructura,1,"","",PERMITIDO,año no expuesto
+52,T04,2022,estructura,27,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+53,T04,2023,estructura,16,"","",PERMITIDO,año no expuesto
+54,T04,2023,estructura,16,"","",PERMITIDO,año no expuesto
+55,T04,2023,estructura,16,FECHAALTA;SERVICIOALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+56,T04,2023,estructura,16,"","",PERMITIDO,año no expuesto
+57,T04,2023,estructura,16,"","",PERMITIDO,año no expuesto
+58,T04,2023,estructura,16,"","",PERMITIDO,año no expuesto
+59,T04,2023,estructura,16,"","",PERMITIDO,año no expuesto
+60,T04,2023,estructura,16,IR_29301_MORTALIDAD;IR_29301_PESO;IR_29301_SEVERIDAD,"",PERMITIDO,año no expuesto
+61,T04,2023,estructura,1,"","",PERMITIDO,año no expuesto
+62,T04,2023,estructura,27,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+63,T04,2024,estructura,16,"","",PERMITIDO,año expuesto sin columnas de resultado
+64,T04,2024,estructura,16,"","",PERMITIDO,año expuesto sin columnas de resultado
+65,T04,2024,estructura,16,FECHAALTA;SERVICIOALTA;TIPOALTA,"",PERMITIDO_ENMASCARADO,columnas de resultado entregadas solo como patrón
+66,T04,2024,estructura,16,"","",PERMITIDO,año expuesto sin columnas de resultado
+67,T04,2024,estructura,16,"","",PERMITIDO,año expuesto sin columnas de resultado
+68,T04,2024,estructura,16,"","",PERMITIDO,año expuesto sin columnas de resultado
+69,T04,2024,estructura,16,"","",PERMITIDO,año expuesto sin columnas de resultado
+70,T04,2024,estructura,16,IR_29301_MORTALIDAD;IR_29301_PESO;IR_29301_SEVERIDAD,"",PERMITIDO_ENMASCARADO,columnas de resultado entregadas solo como patrón
+71,T04,2024,estructura,1,"","",PERMITIDO,año expuesto sin columnas de resultado
+72,T04,2024,estructura,27,FECHAALTA;TIPOALTA,"",PERMITIDO_ENMASCARADO,columnas de resultado entregadas solo como patrón
+73,T05,2019,calidad,7,FECHAALTA,Q03;Q04;Q05;Q06;Q15;Q18,PERMITIDO,año no expuesto
+74,T05,2020,calidad,7,FECHAALTA,Q03;Q04;Q05;Q06;Q15;Q18,PERMITIDO,año no expuesto
+75,T05,2021,calidad,7,FECHAALTA,Q03;Q04;Q05;Q06;Q15;Q18,PERMITIDO,año no expuesto
+76,T05,2022,calidad,7,FECHAALTA,Q03;Q04;Q05;Q06;Q15;Q18,PERMITIDO,año no expuesto
+77,T05,2023,calidad,7,FECHAALTA,Q03;Q04;Q05;Q06;Q15;Q18,PERMITIDO,año no expuesto
+78,T05,2024,calidad,7,FECHAALTA,Q03;Q04;Q05;Q06;Q15;Q18,PERMITIDO_REGLA_CALIDAD,regla de calidad autorizada: solo indicadores de violación
+79,T05,2019,calidad,16,"",Q17,PERMITIDO,año no expuesto
+80,T05,2019,calidad,16,"",Q17,PERMITIDO,año no expuesto
+81,T05,2019,calidad,16,FECHAALTA;SERVICIOALTA;TIPOALTA,Q17,PERMITIDO,año no expuesto
+82,T05,2019,calidad,16,"",Q17,PERMITIDO,año no expuesto
+83,T05,2019,calidad,16,"",Q17,PERMITIDO,año no expuesto
+84,T05,2019,calidad,16,"",Q17,PERMITIDO,año no expuesto
+85,T05,2019,calidad,16,"",Q17,PERMITIDO,año no expuesto
+86,T05,2019,calidad,16,IR_29301_MORTALIDAD;IR_29301_PESO;IR_29301_SEVERIDAD,Q17,PERMITIDO,año no expuesto
+87,T05,2019,calidad,1,"",Q17,PERMITIDO,año no expuesto
+88,T05,2020,calidad,16,"",Q17,PERMITIDO,año no expuesto
+89,T05,2020,calidad,16,"",Q17,PERMITIDO,año no expuesto
+90,T05,2020,calidad,16,FECHAALTA;SERVICIOALTA;TIPOALTA,Q17,PERMITIDO,año no expuesto
+91,T05,2020,calidad,16,"",Q17,PERMITIDO,año no expuesto
+92,T05,2020,calidad,16,"",Q17,PERMITIDO,año no expuesto
+93,T05,2020,calidad,16,"",Q17,PERMITIDO,año no expuesto
+94,T05,2020,calidad,16,"",Q17,PERMITIDO,año no expuesto
+95,T05,2020,calidad,16,IR_29301_MORTALIDAD;IR_29301_PESO;IR_29301_SEVERIDAD,Q17,PERMITIDO,año no expuesto
+96,T05,2020,calidad,1,"",Q17,PERMITIDO,año no expuesto
+97,T05,2021,calidad,16,"",Q17,PERMITIDO,año no expuesto
+98,T05,2021,calidad,16,"",Q17,PERMITIDO,año no expuesto
+99,T05,2021,calidad,16,FECHAALTA;SERVICIOALTA;TIPOALTA,Q17,PERMITIDO,año no expuesto
+100,T05,2021,calidad,16,"",Q17,PERMITIDO,año no expuesto
+101,T05,2021,calidad,16,"",Q17,PERMITIDO,año no expuesto
+102,T05,2021,calidad,16,"",Q17,PERMITIDO,año no expuesto
+103,T05,2021,calidad,16,"",Q17,PERMITIDO,año no expuesto
+104,T05,2021,calidad,16,IR_29301_MORTALIDAD;IR_29301_PESO;IR_29301_SEVERIDAD,Q17,PERMITIDO,año no expuesto
+105,T05,2021,calidad,1,"",Q17,PERMITIDO,año no expuesto
+106,T05,2022,calidad,16,"",Q17,PERMITIDO,año no expuesto
+107,T05,2022,calidad,16,"",Q17,PERMITIDO,año no expuesto
+108,T05,2022,calidad,16,FECHAALTA;SERVICIOALTA;TIPOALTA,Q17,PERMITIDO,año no expuesto
+109,T05,2022,calidad,16,"",Q17,PERMITIDO,año no expuesto
+110,T05,2022,calidad,16,"",Q17,PERMITIDO,año no expuesto
+111,T05,2022,calidad,16,"",Q17,PERMITIDO,año no expuesto
+112,T05,2022,calidad,16,"",Q17,PERMITIDO,año no expuesto
+113,T05,2022,calidad,16,IR_29301_MORTALIDAD;IR_29301_PESO;IR_29301_SEVERIDAD,Q17,PERMITIDO,año no expuesto
+114,T05,2022,calidad,1,"",Q17,PERMITIDO,año no expuesto
+115,T05,2023,calidad,16,"",Q17,PERMITIDO,año no expuesto
+116,T05,2023,calidad,16,"",Q17,PERMITIDO,año no expuesto
+117,T05,2023,calidad,16,FECHAALTA;SERVICIOALTA;TIPOALTA,Q17,PERMITIDO,año no expuesto
+118,T05,2023,calidad,16,"",Q17,PERMITIDO,año no expuesto
+119,T05,2023,calidad,16,"",Q17,PERMITIDO,año no expuesto
+120,T05,2023,calidad,16,"",Q17,PERMITIDO,año no expuesto
+121,T05,2023,calidad,16,"",Q17,PERMITIDO,año no expuesto
+122,T05,2023,calidad,16,IR_29301_MORTALIDAD;IR_29301_PESO;IR_29301_SEVERIDAD,Q17,PERMITIDO,año no expuesto
+123,T05,2023,calidad,1,"",Q17,PERMITIDO,año no expuesto
+124,T05,2024,calidad,16,"",Q17,PERMITIDO,año expuesto sin columnas de resultado
+125,T05,2024,calidad,16,"",Q17,PERMITIDO,año expuesto sin columnas de resultado
+126,T05,2024,calidad,16,FECHAALTA;SERVICIOALTA;TIPOALTA,Q17,PERMITIDO_REGLA_CALIDAD,regla de calidad autorizada: solo indicadores de violación
+127,T05,2024,calidad,16,"",Q17,PERMITIDO,año expuesto sin columnas de resultado
+128,T05,2024,calidad,16,"",Q17,PERMITIDO,año expuesto sin columnas de resultado
+129,T05,2024,calidad,16,"",Q17,PERMITIDO,año expuesto sin columnas de resultado
+130,T05,2024,calidad,16,"",Q17,PERMITIDO,año expuesto sin columnas de resultado
+131,T05,2024,calidad,16,IR_29301_MORTALIDAD;IR_29301_PESO;IR_29301_SEVERIDAD,Q17,PERMITIDO_REGLA_CALIDAD,regla de calidad autorizada: solo indicadores de violación
+132,T05,2024,calidad,1,"",Q17,PERMITIDO,año expuesto sin columnas de resultado
+133,T06,2019,calidad,75,IR_29301_MORTALIDAD;IR_29301_SEVERIDAD;TIPOALTA,Q24;Q30;Q32,PERMITIDO,año no expuesto
+134,T06,2020,calidad,75,IR_29301_MORTALIDAD;IR_29301_SEVERIDAD;TIPOALTA,Q24;Q30;Q32,PERMITIDO,año no expuesto
+135,T06,2021,calidad,75,IR_29301_MORTALIDAD;IR_29301_SEVERIDAD;TIPOALTA,Q24;Q30;Q32,PERMITIDO,año no expuesto
+136,T06,2022,calidad,75,IR_29301_MORTALIDAD;IR_29301_SEVERIDAD;TIPOALTA,Q24;Q30;Q32,PERMITIDO,año no expuesto
+137,T06,2023,calidad,75,IR_29301_MORTALIDAD;IR_29301_SEVERIDAD;TIPOALTA,Q24;Q30;Q32,PERMITIDO,año no expuesto
+138,T06,2024,calidad,74,IR_29301_MORTALIDAD;IR_29301_SEVERIDAD,Q32,PERMITIDO_REGLA_CALIDAD,regla de calidad autorizada: solo indicadores de violación
+139,T07,2019,resultado,10,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+140,T07,2019,estructura,34,"","",PERMITIDO,año no expuesto
+141,T07,2020,resultado,10,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+142,T07,2020,estructura,34,"","",PERMITIDO,año no expuesto
+143,T07,2021,resultado,10,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+144,T07,2021,estructura,34,"","",PERMITIDO,año no expuesto
+145,T07,2022,resultado,10,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+146,T07,2022,estructura,34,"","",PERMITIDO,año no expuesto
+147,T07,2023,resultado,10,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+148,T07,2023,estructura,34,"","",PERMITIDO,año no expuesto
+149,T07,2024,estructura,8,"","",PERMITIDO,año expuesto sin columnas de resultado
+150,T07,2024,estructura,34,"","",PERMITIDO,año expuesto sin columnas de resultado
+151,T07,2024,resultado,1,TIPOALTA,"",BLOQUEADO,"el año 2024 solo admite ['calidad', 'estructura']"
+152,T08,2019,estructura,5,"","",PERMITIDO,año no expuesto
+153,T08,2019,estructura,34,"","",PERMITIDO,año no expuesto
+154,T08,2020,estructura,5,"","",PERMITIDO,año no expuesto
+155,T08,2020,estructura,34,"","",PERMITIDO,año no expuesto
+156,T08,2021,estructura,5,"","",PERMITIDO,año no expuesto
+157,T08,2021,estructura,34,"","",PERMITIDO,año no expuesto
+158,T08,2022,estructura,5,"","",PERMITIDO,año no expuesto
+159,T08,2022,estructura,34,"","",PERMITIDO,año no expuesto
+160,T08,2023,estructura,5,"","",PERMITIDO,año no expuesto
+161,T08,2023,estructura,34,"","",PERMITIDO,año no expuesto
+162,T08,2024,estructura,5,"","",PERMITIDO,año expuesto sin columnas de resultado
+163,T08,2024,estructura,34,"","",PERMITIDO,año expuesto sin columnas de resultado
+164,T07,2019,resultado,13,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+165,T07,2019,estructura,34,"","",PERMITIDO,año no expuesto
+166,T07,2020,resultado,13,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+167,T07,2020,estructura,34,"","",PERMITIDO,año no expuesto
+168,T07,2021,resultado,13,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+169,T07,2021,estructura,34,"","",PERMITIDO,año no expuesto
+170,T07,2022,resultado,13,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+171,T07,2022,estructura,34,"","",PERMITIDO,año no expuesto
+172,T07,2023,resultado,13,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+173,T07,2023,estructura,34,"","",PERMITIDO,año no expuesto
+174,T07,2024,estructura,11,"","",PERMITIDO,año expuesto sin columnas de resultado
+175,T07,2024,estructura,34,"","",PERMITIDO,año expuesto sin columnas de resultado
+176,T10,2019,seleccion,99,FECHAALTA;IR_29301_MORTALIDAD;IR_29301_PESO;IR_29301_SEVERIDAD;SERVICIOALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+177,T10,2020,seleccion,99,FECHAALTA;IR_29301_MORTALIDAD;IR_29301_PESO;IR_29301_SEVERIDAD;SERVICIOALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+178,T10,2021,seleccion,99,FECHAALTA;IR_29301_MORTALIDAD;IR_29301_PESO;IR_29301_SEVERIDAD;SERVICIOALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+179,T10,2022,seleccion,99,FECHAALTA;IR_29301_MORTALIDAD;IR_29301_PESO;IR_29301_SEVERIDAD;SERVICIOALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+180,T10,2023,seleccion,99,FECHAALTA;IR_29301_MORTALIDAD;IR_29301_PESO;IR_29301_SEVERIDAD;SERVICIOALTA;TIPOALTA,"",PERMITIDO,año no expuesto

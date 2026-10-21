@@ -1,0 +1,2 @@
+n_regimenes,regimenes,autorref_prop_exacta,autorref_prop_aprox,autorref_supera_maximo,historial_anio,historial_factibilidad,historial_cumple_minimo,historial_prop_con_previo,enlace_anio,enlace_ventana_dias,enlace_tasa,enlace_cumple_minimo,enlace_n_elegibles,embudo_periodo,embudo_p0,embudo_phi,embudo_n_evaluados,embudo_n_fuera_95,embudo_n_fuera_998
+2,2019-2020; 2021-2023,0.306408,0.306604,si,2023,0.99844,si,0.024559,2023,30,0.028322,no,918,2019-2023,0.051106,6.33872,66,9,3

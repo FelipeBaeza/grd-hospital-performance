@@ -1,0 +1,53 @@
+columna,descripcion,tipo,estado,origen
+ID_EPISODIO,"Identificador del egreso: año, línea del archivo y huella del contenido",clave,no es predictor,Bronce
+ANIO_EGRESO,Año del archivo de egresos,clave,no es predictor,nombre del archivo
+SPLIT,"Conjunto: entrenamiento (2019–2022), calibración (2023) o prueba (2024); se decide solo por el año",clave,no es predictor,ANIO_EGRESO
+COD_HOSPITAL,"Código del hospital; sirve para agrupar resultados, nunca como predictor (R2)",clave,no es predictor,COD_HOSPITAL
+EDAD_ANIOS,"Edad al ingreso, en años cumplidos (vacía si es imposible)",numérica,permitida,FECHA_NACIMIENTO y FECHA_INGRESO
+SEXO,"Sexo registrado (MUJER, HOMBRE o SIN_DATO)",categórica,permitida,SEXO
+ES_FIN_SEMANA,1 si el ingreso fue sábado o domingo,binaria,permitida (señal baja),FECHA_INGRESO
+TIPO_INGRESO,Forma de ingreso (urgencia o programado),categórica,condicional,TIPO_INGRESO
+TIPO_PROCEDENCIA,De dónde viene el paciente,categórica,condicional,TIPO_PROCEDENCIA
+PROCEDENCIA_AGR,"Procedencia agrupada: URGENCIA, PROGRAMADO o DERIVADO_OTRO_HOSPITAL (pendiente de revisión clínica)",categórica,condicional,TIPO_PROCEDENCIA
+NIVEL_CUIDADO_INGRESO,"1 si ingresó a una unidad de cuidados especiales (UCI, UTI o intermedios); vacía si falta el servicio",binaria,condicional,SERVICIOINGRESO
+CIE10_3C,Diagnóstico principal en 3 caracteres (los poco frecuentes: RARO),categórica,permitida con reserva,DIAGNOSTICO1
+GRUPO_CLINICO,Capítulo CIE-10 del diagnóstico principal,categórica,permitida con reserva,DIAGNOSTICO1 y catálogo CIE-10
+ELIX_01,Elixhauser: Insuficiencia cardíaca congestiva (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_02,Elixhauser: Arritmias cardíacas (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_03,Elixhauser: Valvulopatía (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_04,Elixhauser: Trastornos de la circulación pulmonar (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_05,Elixhauser: Enfermedad vascular periférica (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_06,Elixhauser: Hipertensión no complicada (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_07,Elixhauser: Hipertensión complicada (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_08,Elixhauser: Parálisis (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_09,Elixhauser: Otros trastornos neurológicos (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_10,Elixhauser: Enfermedad pulmonar crónica (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_11,Elixhauser: Diabetes no complicada (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_12,Elixhauser: Diabetes complicada (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_13,Elixhauser: Hipotiroidismo (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_14,Elixhauser: Insuficiencia renal (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_15,Elixhauser: Enfermedad hepática (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_16,Elixhauser: Úlcera péptica sin sangrado (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_17,Elixhauser: VIH/SIDA (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_18,Elixhauser: Linfoma (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_19,Elixhauser: Cáncer metastásico (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_20,Elixhauser: Tumor sólido sin metástasis (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_21,Elixhauser: Artritis reumatoide y colagenopatías (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_22,Elixhauser: Coagulopatía (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_23,Elixhauser: Obesidad (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_24,Elixhauser: Pérdida de peso (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_25,Elixhauser: Trastornos hidroelectrolíticos (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_26,Elixhauser: Anemia por pérdida de sangre (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_27,Elixhauser: Anemia por deficiencia (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_28,Elixhauser: Abuso de alcohol (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_29,Elixhauser: Abuso de drogas (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_30,Elixhauser: Psicosis (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+ELIX_31,Elixhauser: Depresión (solo diagnósticos secundarios),binaria,permitida con reserva,DIAGNOSTICO2 a DIAGNOSTICO35
+EN_COHORTE_D,El egreso pertenece a la cohorte de mortalidad (vacía en 2024),marca,no es predictor,cohortes
+EN_COHORTE_E,El egreso pertenece a la cohorte de estadía (vacía en 2024),marca,no es predictor,cohortes
+MORTALIDAD_BINARIA,1 si el paciente falleció; archivo de desenlace aparte,desenlace,desenlace,TIPOALTA
+ESTANCIA_DIAS,Días de hospitalización (fecha de alta menos fecha de ingreso); archivo de desenlace aparte,desenlace,desenlace,FECHAALTA y FECHA_INGRESO
+ESTANCIA_DIAS_TOPE,Estadía recortada en el percentil 99 de 2019–2022; archivo de desenlace aparte,desenlace,desenlace,ESTANCIA_DIAS
+N_COMORB_ELIX,Número de categorías de Elixhauser; tabla de línea base aparte,numérica,solo línea base,ELIX_01 a ELIX_31
+PUNTAJE_VAN_WALRAVEN,Puntaje de van Walraven; tabla de línea base aparte,numérica,solo línea base,ELIX_01 a ELIX_31
+N_DX_SECUNDARIOS,Cantidad de diagnósticos secundarios (exhaustividad); tabla de línea base aparte,numérica,no es predictor,DIAGNOSTICO2 a DIAGNOSTICO35

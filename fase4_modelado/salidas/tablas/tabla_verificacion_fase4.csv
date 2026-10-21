@@ -1,0 +1,9 @@
+puerta,nombre,estado,detalle
+G1,Entrada íntegra,PASS,"filas 2,640,061 y 2,396,356; 4 huellas SHA-256 registradas; las 8 puertas de la Fase 3 siguen en PASS: sí"
+G2,2024 intacto,PASS,registro de accesos de la Fase 3 sin cambios: sí; años en las matrices: 2019–2023; código que llame al cortafuegos de 2024: 0
+G3,Lista blanca e integridad,PASS,"40 predictores, todos permitidos o condicionales; variables prohibidas en las contribuciones: 0; identificación del hospital: 8.2 % con las condicionales y 3.9 % sin ellas (diferencia 4.2 puntos; límite 5)"
+G4,Comparación justa,PASS,mortalidad: 40 y 40 pruebas (presupuesto 40); estadia: 30 y 30 pruebas (presupuesto 30); mismos pliegues y mismos datos para todos
+G5,Selección declarada,PASS,"reglas con la misma huella que al inicio; la regla, aplicada de nuevo, da el mismo ganador (mortalidad: lightgbm; estadia: lightgbm)"
+G6,Calibración en 2023,PASS,"fuera de muestra, por bloques de 2023: mortalidad: platt, O/E 1.000, pendiente 1.000; estadia: factor, O/E 1.001"
+G7,Reproducibilidad,PASS,"dos entrenamientos finales y una recarga dan predicciones idénticas (diferencia máxima 0.0e+00); pruebas: 45 pasaron, 0 fallaron; pico de memoria 2.99 GB"
+G8,Congelamiento y privacidad,PASS,"9 archivos congelados con huella SHA-256 verificada; fichas de modelo: sí; archivos de salida con RUT, fechas o celdas de 1 a 9 casos: 0"

@@ -1,0 +1,134 @@
+ENCARGO: FASE 2 EDA, TAREAS 12 Y 13 (CIERRE DE EVIDENCIA, RUNNER, INFORMES, VERIFICADORES Y REGENERACIÓN FINAL)
+===============================================================================================================
+
+Este encargo es pesado y depende de lo que dejó el encargo anterior (Tareas 10 y 11). ANTES de nada, lee COMPLETO el archivo
+/home/felipe/Documentos/Proyecto final/Tesis/.agents/tasks/fase2_brief_t10_t11.txt : sus secciones 1 (reglas inviolables), 2 (lo que ya existe), 3 (lecciones de
+herramientas) y 7 (estándar de pruebas) siguen vigentes para este encargo sin cambios. Todo el trabajo es en
+/home/felipe/Documentos/Proyecto final/Tesis/fase2_eda/ ("la suite"). Idioma de textos, informes y mensajes: español.
+
+0. ESTADO DE PARTIDA
+--------------------
+ - Terminadas y probadas: Tareas 1 a 9 (protocolo, infraestructura, recolección, descripción, calidad lotes 1 y 2, cohorte, Elixhauser y comorbilidad, hospitales)
+   y, del encargo anterior, el panel (`eda/panel.py`, `eda/decision.py`), la Tarea 10 (`eda/asociacion.py`, revisada y APROBADA) y la Tarea 11 (`eda/modelos.py`,
+   `eda/sospechas.py`, `eda/sensibilidad_elix.py`, `eda/seleccion.py` y la parte 2 de `eda/decision.py`; implementada con 1.080 pruebas verdes en total, pero su
+   revisión independiente y la verificación global de T10 y T11 NO se hicieron: son el primer lazo de este workflow). Lo que dejan T10 y T11: 19 tablas (2 del panel,
+   6 de la Tarea 10 y 11 de la Tarea 11, incluidas `disponibilidad_variables.csv` y `matriz_decision_variables.csv` con 199 variables), 10 figuras (F10_01 a F10_04 y
+   F11_01 a F11_06) y métricas con prefijos `asociacion.`, `vif.`, `seleccion.`, `fuga.`, `proxy.`. El diseño y el plan de esas tareas están en
+   `.agents/tasks/t10t11_diseno_v3_aprobado.md` y `fase2_eda/.agents/tasks/t10t11_plan_impl.md` (su sección de registro por etapa lista funciones y comandos): léelos
+   solo por partes y solo lo que necesites. Los nombres exactos de módulos, funciones, tablas y variables (por ejemplo el puntaje de van Walraven, que el código
+   devuelve como SCORE_VANWALRAVEN y el universo de variables publica como PUNTAJE_VAN_WALRAVEN) los fija el código y los CSV: verifícalos, no los supongas.
+   Comprueba con la suite completa antes de empezar: debe estar verde. Si algo falta o está roto, repáralo primero y déjalo anotado.
+ - Módulos con `ejecutar(ctx, ...)`: recoleccion (T3, genera t21_informe.md), descripcion (T4, genera t22_informe.md con construir_informe), calidad (T5 lote 1),
+   calidad_catalogos (T6 lote 2), cohorte (T7), comorbilidad (T8), hospitales (T9, acepta `regimenes=` calculados por T5), asociacion (T10), seleccion (T11).
+   Los de T5 a T11 exponen `agregar_secciones(inf, ctx, ...)` para componer informes. `ejecucion.escribir_manifiesto_corrida(ctx, extras, raiz_proyecto)` ya
+   escribe `manifiesto.json` (huellas SHA-256 de insumos, configuración, código y salidas). `protocolo.py` valida hipótesis, plan de figuras y definición de
+   terminado. `privacidad.py` escanea salidas.
+ - Insumos de config a leer: `config/definicion_terminado.csv` (DT01 a DT12 con su nombre de verificador), `config/hipotesis.csv` (H01a..H17b y S01..S15 con tablas
+   clave y criterio de decisión), `config/cifras_documentadas.csv` (C001 a C129: id, documento, ubicacion, descripcion, valor, unidad, decimales, tipo =
+   absoluto|proporcion|estructura|aritmetica, alcance, requiere_resultado, clave_eda, nota), `config/plan_figuras.csv` (F12_01 y F12_02 son de esta tarea),
+   `config/arbol_decision.csv`, `config/conocimiento_clinico.csv`, `config/umbrales.toml`, y de solo lectura `docs/fase1_comprension_dominio/config/
+   decisiones_pendientes.csv` (las 17 decisiones), `docs/fase2_comprension_datos/*` (diccionario, problemas de calidad, variables derivadas).
+ - Métricas: `ctx.registrar_metrica(...)` deja `tablas/metricas_eda.csv` con columnas clave, valor, ic_bajo, ic_alto, tarea, tabla, nivel, alcance, nota. El ledger
+   compara las cifras documentadas con esas métricas por `clave_eda`.
+
+1. TAREA 12: EVIDENCIA PARA DECIDIR Y CIERRE (módulos nuevos, por ejemplo `eda/ledger.py`, `eda/decisiones.py`, `eda/cierre.py`)
+------------------------------------------------------------------------------------------------------------------------------
+Salidas (tablas con `ctx.escribir_tabla`, tarea "T12"; todo agregado, nada que identifique personas ni hospitales por nombre):
+ 1.1 `ledger_cifras.csv`: una fila por cifra documentada (129), con id, documento, ubicación, descripción, valor documentado, valor medido por la suite (clave_eda),
+     nivel (extracto o completo), alcance medido, IC cuando aplica, diferencia absoluta y relativa, y `estado` ∈ {CONFIRMA, DISCREPA, NO VERIFICABLE} más `motivo`.
+     Reglas (documéntalas en el informe y en el código):
+       - proporcion: compara con la regla por z de `conciliacion_z` (errores estándar binomiales) y rotula la magnitud con `conciliacion_dif_relevante_pp`, igual que
+         lo hace la Tarea 4 en `t22_conciliacion.csv` (reutiliza su lógica, no la dupliques). En extracto el resultado es indicativo.
+       - absoluto: en extracto un conteo absoluto de los datos completos no es comparable (los extractos son 5,16 % y no aleatorios): NO VERIFICABLE con motivo, salvo que
+         la cifra documentada provenga de los propios extractos (hipótesis a verificar: varias estimaciones de la Fase 1 salieron de extractos; por ejemplo EX02 de 2019-2024
+         es 7.760 en ambos y EX03 de la definición del pipeline cae dentro de la cota del año expuesto). En modo completo se compara el valor exacto con el redondeo
+         que indica `decimales`.
+       - estructura: se verifica contra la Tarea 3 (columnas, años, archivos).
+       - aritmetica: se recalcula con otras cifras documentadas o medidas.
+       - requiere_resultado = si y alcance que incluye 2024: el desenlace de 2024 no se lee. Usa solo lo medido en 2019-2023 o las cotas que dejó la Tarea 7
+         (`cascada.n_ex03_pipeline.cota_sup_2024`): la cifra queda CONFIRMA si es compatible con la cota, DISCREPA si la contradice y NO VERIFICABLE si no hay
+         cota. Nunca se mide el desenlace de 2024.
+       - Las claves `clave_eda` que no coincidan con una métrica real se corrigen en `config/cifras_documentadas.csv` con str_replace (no con shell) o se agregan alternativas
+         sin cambiar el valor documentado ni su fuente. Casos ya conocidos: C062 a C068 (prevalencias de Elixhauser con mapeo de 3 caracteres) deben apuntar a
+         `elix.prev_pct_3c_todos.*`; C116 y C117 usan definiciones distintas y no son comparables (NO VERIFICABLE con el motivo); las cifras "entre 10 y 20 veces" (C128 y C129)
+         se explican por el factor de muestreo de los extractos (aprox. 1 / 0,0516 = 19,4): verifícalo antes de afirmarlo.
+     Todo estado se justifica con la cifra medida y su tabla. Hallazgos de sesiones previas que debes RE-VERIFICAR y no asumir: cohorte de estadía del pipeline 67,84 %
+     (lectura literal) frente a 62,84 % (sin censurados) y 61,31 % (documentado); promedio de diagnósticos secundarios 4,08 a 5,88 documentado frente a 4,14 a 5,82 medido;
+     diabetes no complicada 14,8 % con el mapeo completo y 0,0 % con el prefijo de tres caracteres; prevalencia de ELIX_06 (hipertensión) 34,1 % en adultos hospitalizados.
+ 1.2 `decisiones_evidencia.csv`: 17 filas (una por decisión de `decisiones_pendientes.csv`) con n, tema, propuesta de la Fase 1, hipótesis que la cubren, evidencia
+     (tablas y cifras clave leídas de los CSV, nunca escritas a mano), veredicto según el `criterio_decision` de cada hipótesis, `tipo_evidencia` ∈ {cuantitativa,
+     parcial, institucional, no depende de datos}, `semaforo` ∈ {verde (la evidencia respalda la propuesta), amarillo (la matiza o es condicional), rojo (la contradice), gris (no
+     evaluable en extracto, depende de datos completos o es una decisión institucional)}, `que_falta_con_datos_completos` y `estado` = "pendiente de decisión humana". La evidencia
+     recomienda, NO decide. Decisiones con evidencia ya producida: 1 (T9 historial y T11 variables de historial), 2 (T9 autorreferencia, T11 proxy y fuga), 3 (T11 proxy),
+     5 (T7 variantes A y B, T9 hospitales pediátricos), 6 (T9 volumen), 7 (T7 cola de estadía), 8 (T8 y T11 Elixhauser), 9 (T7 dispersión), 13 y 16 (T9 enlaces y entrantes),
+     14 (T11 fuga), 15 (T7 estratos), 17 (T7 serie mensual, T11 PSI); 4, 10, 11 y 12 son de calidad o institucionales.
+ 1.3 `supuestos_verificados.csv`: S01 a S15 de `hipotesis.csv` con estado ∈ {ACEPTADO, RECHAZADO, NO EVALUABLE}, la cifra que lo respalda y su tabla (por ejemplo S02 se rechaza
+     si alguna categoría de Elixhauser difiere más de 20 % entre el mapeo completo y el de tres caracteres).
+ 1.4 `cambios_fase1.csv` y `cambios_fase2.csv`: cambios SUGERIDOS a los documentos de las Fases 1 y 2 (no edites `docs/`): id, documento, ubicación, texto actual, hallazgo, texto
+     propuesto, evidencia (tabla y clave), prioridad y tipo (corrección, aclaración o pendiente de datos completos). Salen de las discrepancias del ledger, de los supuestos
+     rechazados y de hallazgos como: las cinco categorías sospechosas de la Fase 1 frente a las que usa el repositorio; el repositorio usa 28 categorías de Elixhauser; HOSPPROCEDENCIA
+     trae nombres y se autorreferencia (usar TIPO_PROCEDENCIA para el traslado entrante); la regla de cola de estadía propuesta; la diferencia entre el mapeo de tres caracteres y el
+     completo; colinealidad exacta de N_COMORB_ELIX y del puntaje de van Walraven con las 31 categorías (si el VIF la confirma), y toda conclusión nueva de T10 y T11 (por
+     ejemplo: el modelo L1 llega a un AUC de 0,925 en 2023 pero está inflado por ESPECIALIDAD_MEDICA y SERVICIOINGRESO, cercanas a proxy o fuga, y no es un desempeño esperable;
+     IR_29301_MORTALIDAD e IR_29301_SEVERIDAD superan el umbral de fuga de 0,85; SERVICIOINGRESO coincide con SERVICIOALTA en 99,2 % de los egresos sin traslado interno).
+     Estas cifras son del implementador de T11 sobre extractos: recalcúlalas desde los CSV antes de citarlas.
+ 1.5 Figuras F12_01 (semáforo de decisiones por tipo de evidencia) y F12_02 (conteo de estados del ledger por documento), con las mismas reglas de figuras.
+ 1.6 `agregar_secciones(inf, ctx, n0)` para el informe de evidencia por decisión y el cierre; incluye la lista de `cambios_protocolo` de `config/umbrales.toml`
+     (cambios hechos al protocolo después de ver resultados) y las limitaciones.
+ 1.7 Métricas del cierre con prefijos `ledger.` y `decisiones.`.
+
+2. TAREA 13: RUNNER, INFORMES, VERIFICADORES Y REGENERACIÓN FINAL
+------------------------------------------------------------------
+ 2.1 `fase2_eda/run_fase2_eda.py` (CLI con argparse): `--fuente {extracto,completo}` (por defecto extracto), `--data-root RUTA` (obligatoria con completo), `--archivo ANIO=RUTA`
+     (repetible, rutas explícitas), `--salida-base` (carpeta de salidas, por defecto `fase2_eda/salidas`), `--sin-pytest`, `--sin-determinismo` y `--solo T3,T4,...` (subconjunto de tareas
+     para depurar). Orden: valida el protocolo (`protocolo.validar_todo`), limpia SOLO `salidas/<fuente>` (nunca otra carpeta; protege con una comprobación de ruta), crea el contexto,
+     ejecuta T3, T4, T5, T6, T7, T8, T9 (con los regímenes de T5 restringidos a años con desenlace), construye el panel UNA vez, ejecuta T10, T11, T12, compone los informes,
+     corre los verificadores DT01 a DT12, escribe el manifiesto y `ctx.escribir_registros()`, e imprime un resumen en español (pasos, tiempos, PASS/FAIL/PENDIENTE). Código de salida
+     distinto de cero si algún DT falla (PENDIENTE no es fallo). Toda la lógica pesada vive en módulos de `eda/` (importables y probables); el script solo orquesta.
+ 2.2 Informes Markdown (solo estos; todos con `Informe`, cifras desde CSV, etiqueta de fuente): `t21_informe.md`, `t22_informe.md`, `t24_informe.md` (secciones 1 a 5 de
+     calidad lote 1 y 6 a 10 de catálogos lote 2), `t23_informe.md` (cohorte n0=1, comorbilidad n0=7, hospitales n0=12; ajusta la numeración si los conteos de secciones cambian),
+     `t23_seleccion_variables.md` (T10 y T11), `t25_evidencia_decisiones.md` (T12) y `t26_cierre.md` (resultado DT01 a DT12, cambios al protocolo, limitaciones, qué falta con datos completos).
+     Cada figura del índice aparece en algún informe con su leyenda y su CSV de origen.
+ 2.3 Verificadores (módulo `eda/verificadores.py` o similar; los nombres salen de la columna `verificador` de `config/definicion_terminado.csv`): decisiones_cubiertas (DT01),
+     cifras_con_csv (DT02: toda cifra de todos los informes tiene CSV y columna de origen y el CSV existe), cero_lecturas_2024 (DT03: registro de accesos sin lecturas permitidas de
+     columnas de resultado de 2024 salvo reglas de calidad autorizadas), escaneo_privacidad (DT04: tablas, informes y manifiesto), cascada_cuadra (DT05: con los valores sin suprimir),
+     diccionario_conciliado (DT06: 129 filas con estado COINCIDE, DISCREPANCIA o NO EVALUABLE), ledger_completo (DT07), figuras_indexadas (DT08: PNG y CSV existen y todas las figuras
+     del plan están), matriz_cubre_candidatas (DT09), pytest_verde (DT10: ejecuta la suite en un subproceso y registra el resultado; con `--sin-pytest` queda PENDIENTE), corrida_determinista
+     (DT11: dos corridas completas en carpetas temporales con los mismos SHA-256 de todas las salidas, excluyendo del cotejo solo marcas de tiempo del manifiesto si las hubiera; con
+     `--sin-determinismo` queda PENDIENTE) y completo_corrido (DT12: PENDIENTE si la fuente es extracto). Salida: `verificacion_dt.csv` con id, criterio, estado (PASS, FAIL, PENDIENTE),
+     detalle y evidencia. Cada verificador tiene una prueba que lo hace fallar a propósito (por ejemplo una cifra sin CSV, una lectura de 2024 inyectada, una celda con 5 casos).
+ 2.4 Pruebas nuevas: ledger y reglas por tipo de cifra (cuentas a mano), semáforo y decisiones (casos sintéticos), verificadores (positivos y negativos), runner de punta a punta
+     sobre datos sintéticos (`--archivo ANIO=RUTA` con la fuente sintética en una carpeta temporal y salida en otra), determinismo, protección de la limpieza de `salidas/<fuente>`.
+     El estándar de la sección 7 del encargo anterior (cuentas a mano, bordes, mutación sobre una copia en /tmp con PYTHONDONTWRITEBYTECODE=1) aplica también aquí.
+ 2.5 Regeneración final: ejecuta el runner real sobre los extractos para generar TODAS las salidas en `fase2_eda/salidas/extracto/` (el runner limpia esa carpeta antes), corre la
+     suite completa, revisa CON `read_file` cada PNG del índice de figuras (hay más de 50: texto cortado, solapes, leyendas sobre datos, ejes ilegibles, escalas engañosas) y lee
+     completos los siete informes verificando que no haya cifras sueltas, llaves sobrantes ni afirmaciones sin respaldo; corrige y repite hasta que todo esté limpio. Verifica con
+     una segunda corrida en carpeta temporal que los hashes coinciden. Deja `salidas/extracto/` como resultado final y borra las carpetas temporales de /tmp.
+
+3. FORMA DE TRABAJAR
+--------------------
+ - Diseño y plan breves y revisados antes de codificar (sobre todo reglas del ledger y criterio de cada una de las 17 decisiones). Implementar-y-revisar con revisor independiente
+   último en cada lazo. Una verificación global al final.
+ - Mismas reglas inviolables y lecciones de herramientas del encargo anterior (sin git; no tocar `docs/`, `.git`, `data seminario/` ni los catálogos de la raíz; solo agregados; 2024 nunca se
+   lee para el desenlace; ediciones solo con herramientas de edición en archivos que ya editaste con ellas; sin dependencias paralelas edición-corrida).
+ - Nada se afirma sin haberlo medido en esta corrida: las cifras de los informes salen de CSV y las conclusiones sobre extractos se rotulan indicativas.
+
+4. CÓMO CERRAR
+--------------
+Mensaje final breve (español, sin guiones largos ni exclamaciones) con: archivos creados y modificados; total de pruebas y nuevas; resultado DT01 a DT12 (cuáles PASS, cuáles
+PENDIENTE y por qué); conteos del ledger (CONFIRMA, DISCREPA, NO VERIFICABLE) y las discrepancias más importantes con su cifra; semáforo de las 17 decisiones; lo que quedó por
+verificar con datos completos; los paquetes instalados (si hubo) y cualquier cambio al protocolo; y la lista de carpetas y archivos que quedan en `fase2_eda/salidas/extracto/`.
+No dejes archivos temporales. El archivo de encargo y la carpeta `.agents/` se borran fuera de este encargo.
+
+5. AHORRO DE USO Y REANUDACIÓN (los dos workflows anteriores se cortaron por "Usage limit reached")
+-----------------------------------------------------------------------------------------------------
+ - Lectura selectiva: NO releas completos el diseño de T10 y T11 (277 KB) ni el plan de T10 y T11 (más de 200 KB). Lee completos solo este encargo, `.agents/tasks/
+   fase2_brief_t10_t11.txt` (secciones 1, 3, 7 y 8) y `.agents/tasks/t10t11_enmiendas.txt`; del resto, solo lo que tu ítem necesite (buscar con grep sobre includePattern
+   "fase2_eda/**" o por rangos de líneas).
+ - El estado vive en archivos: cada etapa tiene un plan con casillas en `fase2_eda/.agents/tasks/` (el planificador lo crea). Cada implementador marca sus casillas y
+   llena el registro de evidencia a medida que avanza, para que una reanudación sepa dónde seguir sin rehacer nada. Un paso que arranca primero lee ese plan y la suite.
+ - Pruebas de mutación DIRIGIDAS: cada mutante se corre contra el archivo de pruebas que debe detectarlo y solo si no falla se corre la suite completa (la suite completa
+   por mutante tardaría una hora). Copia de trabajo en /tmp, editada solo por shell; el código real, solo con herramientas de edición.
+ - La corrida real de punta a punta sobre extractos tarda varios minutos (la Tarea 11 sola, unos 3). No la repitas sin necesidad: corre los módulos nuevos aislados mientras
+   desarrollas y haz la corrida completa del runner al final de cada lazo, y dos veces al final del proyecto (la segunda para el determinismo).
+ - Los lazos son implementador primero y revisor independiente último; bloquean solo HIGH y MEDIUM (los NIT se anotan); si un lazo agota sus vueltas debe PAUSAR, no abortar.

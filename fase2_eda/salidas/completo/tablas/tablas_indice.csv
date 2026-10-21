@@ -1,0 +1,100 @@
+nombre,tarea,descripcion,filas,columnas_conteo,celdas_suprimidas,fuente,sha256
+cambios_fase1.csv,T12,"Cambios sugeridos al documento de la Fase 1 (no se edita ningún documento) con su hallazgo, su evidencia y su prioridad",10,"",0,completo,35a6a908910104b2faed397a773d6f1bced37e1f54036277501d11b5847a97c3
+cambios_fase2.csv,T12,"Cambios sugeridos al documento de la Fase 2 (no se edita ningún documento) con su hallazgo, su evidencia y su prioridad",31,"",0,completo,66ff9e9abcd5ff95ab043e9f5865d23c04488720a2308bf45fef9f09aa5f2cbf
+cambios_protocolo.csv,T12,Cambios hechos al protocolo congelado después de ver resultados,5,"",0,completo,8fca59ecb0f7e75a7bc589d788f6a79cbc481484d3c2972a03733794a2ff4b2e
+clusters_variables.csv,T10,"Cluster de redundancia, grupo del dendrograma y vecino más asociado de cada variable (sin representante)",62,"",0,completo,38afca71b700877be93f8c0226a67895d9df2ae4288296ff63d9d6e9bdb5433d
+decisiones_evidencia.csv,T12,"Evidencia, veredicto y semáforo de cada una de las 17 decisiones pendientes de la Fase 1; la evidencia recomienda y no decide",17,"",0,completo,665051ec342a008f0b1be24cf09a98b32332e5e549dfade014afdf0a0dee84b8
+diccionario_medido.csv,T04,Diccionario medido: documentado frente a medido,129,n_con_med;n_sin_med;n_centinela_med,24,completo,74eb184ec7817520848c38fc75fcce9b2aeb528c2d583ffb0cb96efbc51f9515
+disponibilidad_variables.csv,T11,"Universo de variables (crudas, derivadas y de reglas de la Fase 1) con su rol, si son evaluables y por qué no, y el faltante por año de la Tarea 4",199,"",0,completo,d6961e9f5f3b92488387a92a3d9a77a366bb87f2de6c4909272e202526579297
+ledger_cifras.csv,T12,"Cada cifra documentada de las Fases 1 y 2 frente a lo medido por la suite, con su estado y su motivo",129,n_doc;n_medido,5,completo,de48dc6d6aa2190cb796f8038dc3bea7f7ce136979bdab633faf135da88e29a4
+ledger_motivos.csv,T12,Cifras no verificables agrupadas por la parte fija de su motivo,7,"",0,completo,162e4c64c940cc5636852fba6cef9533da17e2336d79bc3d79766335fc103104
+matriz_asociacion.csv,T10,"Asociación entre cada par de variables del panel en 2019 a 2022 (formato largo y simétrico, diagonal 1, con la posición y el grupo del dendrograma)",3844,n_pares,0,completo,68d0e585dc85526b70422999d35a81c1b7d66c308ba27ca39b60b90d5b974d4a
+matriz_decision_variables.csv,T11,"Matriz de decisión por variable: reglas del árbol activadas, regla decisiva, recomendación y contraste con la Fase 1 (la matriz recomienda; la decisión es humana)",199,"",0,completo,081ce25ce0313933f403bb30f2ee11946feb2b018a2a5206be01b61f1d893ea8
+pares_redundantes.csv,T10,"Pares de variables con asociación igual o superior al umbral de redundancia, con su cluster y la reestimación de 2023 en columnas aparte",9,n_pares;n_pares_2023,0,completo,756f7e2f357dae34c684fb5f4e76963f12dbb6c5b061ad66193530f2b58e60f6
+supuestos_verificados.csv,T12,Estado de los 15 supuestos de datos con la cifra y la tabla que lo respaldan,15,"",0,completo,93a2331cf0f691af228354f2a590f603b95f482482612816236a214dedcccf48
+t21_archivos.csv,T03,Archivos recolectados y cuadratura de lectura,6,"",0,completo,99ed59e50bea5d589425fdd96d67255d033055b8232fb5d517ca26d5f75a12eb
+t21_deriva_esquema.csv,T03,Nombre de cada columna por año contra el canónico,774,"",0,completo,308b3b48a5269cec25e6b5d467958d99d79a849f2a96af45c3c3ca146f71a1cb
+t21_deriva_formato.csv,T03,Indicadores de formato por año,198,n_clase,3,completo,29df7dda5e301d3daa52bfbe00d55a42ee1c0adb191d5f0d84eade56f28a73a3
+t21_esquema_diferencias.csv,T03,Diferencias de esquema,1,"",0,completo,96bd7fcc327f3bfd2088c62a4f8d6603026f05fb44c13bba52453cca836aa5f1
+t21_problemas_carga.csv,T03,Bitácora de problemas de carga,23,"",0,completo,ad19d449ce58f65e197f9cb9ceefb6f73c56fbac402204a0eeb3790dba882411
+t21_procedencia.csv,T03,Hoja de procedencia,10,"",0,completo,a3c3e712e79ea3300a374103eec0fb59c68c058004b996ea792170d34bf95c1c
+t21_resumen.csv,T03,Cifras globales de la recolección,1,"",0,completo,38795c50c318cb79f1e9c72a21e38a3f5529dc3e916ff3ac07d2ca8d3cf13e88
+t21_verificaciones.csv,T03,Verificaciones de la carga,7,"",0,completo,33ba3cbde9c7a5894064808de90156776115f85e041036d105d0420cf520e445
+t22_bloque_rn.csv,T04,Bloque de recién nacidos: valor modal,16,n_informados;n_modal,5,completo,b03d4674256b948ec120a72278d1484a14d1cc6110bd9690f9a17058b1e1c53d
+t22_cardinalidades.csv,T04,"Cardinalidad observada, Chao1 y documentada",126,"",0,completo,fba35cf2c29eca772889e790ae48df828e4ff153353f9c024d9322fefb5d42ca
+t22_conciliacion.csv,T04,Conciliación fila a fila con el diccionario de la Fase 2,129,n_con_med;n_sin_med;n_centinela_med,24,completo,2b559a7184f2455d3b02537a0db0676591b15f59cb4e0c0897ce16ee58e59d9b
+t22_deriva_categorias.csv,T04,Distribución de seis categóricas por año,343,n,14,completo,c38031c4a2f44df9028ecf9e9078bc910e6f15532231b608ab53adfb10b457b7
+t22_etiquetas_truncadas.csv,T04,Etiquetas categóricas que parecen cortadas,4,n,0,completo,4bc7b26bb1880bd38f63b2776104a4c5c69f58e1d39f1bff07ea71c2e3231594
+t22_hist_edad.csv,T04,Histograma de edad al ingreso,660,n,31,completo,fcad9e0726cbf01c0ac438d54f137c7f15d27e0e66bc85c4f9b69d02756ee6da
+t22_hist_estancia.csv,T04,Histograma de estadía (solo 2019 a 2023),328,n,2,completo,9ce80f34740af3728fdd69f8d6413b2d03d22cdc526a73098596f20b9fee4c2f
+t22_pares_traslado.csv,T04,Pares fecha-servicio de traslados internos,9,n_fecha;n_servicio;n_solo_fecha;n_solo_servicio,5,completo,ddaea51c75ced43b07e0932ddabe93b8195e3013e6dc5ba63e190f2b285d0e82
+t22_perfil_columnas.csv,T04,Perfil de las columnas por año,774,n_nulos;n_centinela;n_informados;n_modal;n_patron_moda,164,completo,28e5e7538e7c5bd4b119db2a0b7c047e36df61486ffc6d38a9c8a2ebd3780c27
+t22_psi.csv,T04,PSI entre años de seis categóricas,52,"",0,completo,f2ae4a8145776b1b725a8ad7457a6e86e4e051b7609547dd0f8ccd5b9f61cf45
+t22_resumen.csv,T04,Cifras globales de la descripción,1,"",0,completo,cddafccfdc167a2f2b9cf9fafda11b8798942392a971a4f08fb2f88b1b77a40f
+t22_top_valores.csv,T04,Valores más frecuentes de columnas categóricas,2955,n,535,completo,5972058cfea734a61679c1a77bbd7e6d5659f2ed161df1be376cb414cd21cecb
+t23_cascada.csv,T07,Cascada secuencial de exclusiones y variantes de cohorte A a E,102,n,0,completo,388e41f01df1eb4a62e5dc63e8c1dc2e73efab27abe8f2dbbf88ab4b548fa908
+t23_cascada_pipeline.csv,T07,Cascada con la definición aproximada del pipeline (EX03 con sobrevivientes y mapeo de tres caracteres),82,n,0,completo,2429ae75083d55d7176ac808c7d9104c1962bcb4f21139176b02aa87c0b6a20d
+t23_cascada_variantes.csv,T07,"Tamaño, fallecidos y prevalencia de las variantes de cohorte A a E",33,n;n_fallecidos;n_no_evento;n_censurados;n_sin_dato,0,completo,1ce0db84dba4f7130d4fc391490324f31707a24c717213913d727fe7c971f090
+t23_cola_estancia.csv,T07,Reglas de corte de estadías largas definidas en 2019 a 2022 y confirmadas en 2023,8,n_def;n_afectados_def;n_conf;n_afectados_conf,0,completo,681aada783ab82c6651c5c4862d5fd29c4419d3c074907fe343605eec49977c2
+t23_dendrograma.csv,T10,Hojas y uniones del dendrograma de redundancia (con ellas se reconstruye la matriz de enlace),121,"",0,completo,c9a9b2bc14e85040eb33ff456a4b02870d247c0afc04b1a8e3ee0ef67565cdca
+t23_deriva_codificacion.csv,T08,Promedio de diagnósticos secundarios en adultos hospitalizados por año y hospital,406,n,3,completo,766f2100a6f6085979f9048d2f21867391cde14c282ff5ef9b5bc1e09cdcc70d
+t23_elix_phi.csv,T08,Coeficiente phi entre las 31 categorías de Elixhauser,1922,n_a;n_b;n_ab,4,completo,d43d42821196c74e497c0641aa27df7b0fa372dd882aedfa3a57016f7499c017
+t23_elix_prevalencia.csv,T08,Prevalencia de las 31 categorías de Elixhauser en adultos hospitalizados,279,n;n_base,0,completo,d86ce924a8cb6d704521c9aada5ed78f99fd893f7ca0f35c32a40d66d9943c01
+t23_elix_principal.csv,T08,Efecto de incluir el diagnóstico principal en cada categoría (regla R3),31,n_secundario;n_con_principal;n_principal,0,completo,f0c42932591b53bff82e94b6ccdfa1de81c4e1d2e6bf29a46395cea6e8c41ff0
+t23_elix_vs_3c.csv,T08,Mapeo completo frente al de tres caracteres (supuesto S02),31,n_completo_ah;n_3c_ah;n_completo_todos;n_3c_todos,0,completo,e3a34be70aafbaa9dd52975d616e04400d66af87734e83dd3a3432b078a133c5
+t23_embudo.csv,T09,Embudo crudo exploratorio de mortalidad por hospital (cohorte D),396,n;k,9,completo,f9571efcb896cab41fd9bbfeca457d4d836da2cbb79dc56f625083461ccb6126
+t23_enlaces_traslado.csv,T09,Enlace de traslados salientes y entrantes por ventana y año (decisiones 13 y 16),48,n_total;n_id_invalido;n_elegibles;n_enlazados,0,completo,57ec156c0c8761e682dd9dec7cb370d4f1bfbd547960db9d83a386c0dac228ae
+t23_estabilidad.csv,T11,"AUC por año con el puntaje y la dirección del ranking, cambio de signo de la señal y PSI contra 2023 y de 2019 contra 2020 a 2022 (formato largo)",476,n;n_eventos;n_base;n_nuevo,0,completo,7a5d43b95f60adcd77493a0a5f5c0e2d8a892886a415afcbadcb407a9847c3ac
+t23_estancia_cero.csv,T07,Estadías de 0 días por actividad y desenlace,66,n;n_cero;n_estancia_valida,15,completo,44a5629ac3e2b6253f08e0cb7cd8606c884a27a1793480f40c3d707a87fa6c89
+t23_estancia_dispersion.csv,T07,"Media, varianza e índice de dispersión de la estadía de los sobrevivientes",14,n,0,completo,b2a2f93bfd140fa9dc33ed17f5f57e356bed9f0464a9e608b95d509c002caa34
+t23_estancia_hist.csv,T07,Histograma de la estadía de los sobrevivientes de la cohorte del modelo de mortalidad,112,n,0,completo,adc7097cd4015611ac0bf79b192c79df131b92b485c5456eed51765f5c1f1bc0
+t23_fuga.csv,T11,AUC de las variables de solo fuga y de las condicionales frente a dos modelos de referencia y concordancia de SERVICIOINGRESO con SERVICIOALTA,15,n;n_eventos;n_2023;n_eventos_2023;n_sin_traslado;n_iguales_sin_traslado;n_con_traslado;n_iguales_con_traslado,0,completo,9d09acd42902309e30eb8d02f684a6af391651f25d5d0218b71d38e1b413003b
+t23_historial_factibilidad.csv,T09,Factibilidad del historial de 12 meses por año (decisión 1),5,n_episodios;n_id_valido;n_ventana_completa;n_viable;n_con_previo,0,completo,903d91691dd447416530814ee9f143d58b2702817eef9ebdc8ce06db01610208
+t23_hospitales_anio.csv,T09,"Perfil de cada hospital por año: volumen, menores y catálogo (por código)",400,n_egresos;n_adultos;n_menores;n_edad_desconocida,76,completo,cddb257b238be56e4823b53c556da858d56ee82ed3d7cf7cda50abdaec7b269c
+t23_hospitales_resumen.csv,T09,"Hospitales por año: catálogo, pediátricos y volumen",6,"",0,completo,321247869d9aa258fa1b6ee5490da7ab72e963df40079bab0c2805ac33a9178f
+t23_hospitales_volumen.csv,T09,Egresos elegibles y muertes esperadas por hospital y año (decisión 6),328,n_D,2,completo,9efc46b2cdd022773b03e9a608eb2bd7a5abe0a49fac122d43193dcded24e816
+t23_importancia.csv,T11,"Incremento de AUC sobre edad y sexo de cada candidata, modelo con penalización L1 e importancia por permutación en 2023, y los modelos de referencia",62,n_entrenamiento;n_eventos_entrenamiento;n_2023;n_eventos_2023,0,completo,62e0b49d26f688ef90ff642db8c15be43b75d2e699edfb2185723243ebc554a2
+t23_or_elix.csv,T11,"Odds ratio crudo y ajustado por edad y sexo de las 31 categorías de Elixhauser contra mortalidad, por período (formato largo)",62,n_expuestos;n_eventos_expuestos;n_no_expuestos;n_eventos_no_expuestos,0,completo,590f610513094f1dbccba17b0f52ab7dd56e2e9875f953fbcb7b3dd1dfc5e878
+t23_panel_muestreo.csv,T10,"Cohorte D por año de resultado, tamaño de la muestra del panel y si se muestreó (tope por año)",5,n_cohorte_d;n_muestra;n_eventos_muestra,0,completo,142351bb374e7bcdfeeb8609f2d1f0907f21e63e52ad35ac87efcbbd7d81327d
+t23_panel_niveles.csv,T10,"Niveles de cada categórica del panel por ventana (conteos y proporción; incluye OTROS, (sin mapeo) y (sin dato))",1196,n,57,completo,cfa29a836105b6ae25aae01b07d82df4881e314280b20fa59ea7e32bbdf16b38
+t23_parametros_seleccion.csv,T11,"Constantes técnicas de la selección de variables: valor, para qué sirven y qué resultados afectan",15,"",0,completo,0be96769ec163fbd6abf3726ee4d58b93705b8fed3fe86ce82467512cae78600
+t23_procedencia_autorref.csv,T09,"Hospital de procedencia frente al hospital del egreso, por año y tipo de procedencia",104,n_episodios;n_con_hospproc;n_evaluables;n_autorref_exacta;n_autorref_aprox,49,completo,447a7ec4318953f615b05cb9a2673de9193b4da05f4f5e3f7612dbce83028934
+t23_proxy_hospital.csv,T11,"Asociación de cada candidata con el hospital de egreso, variación entre hospitales de los ingresos a cuidados especiales y cardinalidad de ESPECIALIDAD_MEDICA por hospital",63,n;n_2023,0,completo,ccafa62843231ec3419ea8458b0907e7f4bd1aa2faebc2f3078c25e6735479ab
+t23_ranking_variables.csv,T11,"Señal univariada de cada candidata frente a la mortalidad en 2019 a 2022 y en 2023 (formato largo, un AUC por ventana y su intervalo)",118,n_filas_ventana;n;n_eventos;n_no_eventos;n_expuestos;n_eventos_expuestos;n_no_expuestos;n_eventos_no_expuestos;n_faltante,4,completo,f05263d257a9456a3aac171940e960f284bc4938bd0d6fcdf089c02d28119d4e
+t23_resultado_anio.csv,T07,Mortalidad por año y período con IC de Wilson y razón contra el año previo y contra el primer año,16,n;n_fallecidos;n_no_evento;n_censurados;n_sin_dato,0,completo,156aeefd8eff1744745ff1b1adcb74abc7f9618e9b3d9f91894897bb81c1cfb0
+t23_resultado_edad_sexo.csv,T07,Mortalidad y estadía de sobrevivientes por grupo de edad y sexo en la cohorte dura con desenlace conocido,221,n;n_fallecidos;n_estancia,121,completo,c2da066201613e77019f4b9963a6a4caa9bc0f6be907f5bf00f48e9f1220f3b6
+t23_resultado_entrantes.csv,T09,Mortalidad de los traslados entrantes y de los demás ingresos,12,n;n_fallecidos,0,completo,33202a81ab282cf686a6351f2caa96b1a4251308c22b9fb3687ce161649407b7
+t23_resultado_estratos.csv,T07,Mortalidad por estrato en adultos de la cohorte dura con desenlace conocido (decisión 15),365,n;n_fallecidos,78,completo,8197fc5f71ff2528429ba36025c89ef2421cca00fa7dc3567a712faa4931e662
+t23_resumen.csv,T07,"Cifras derivadas de la cohorte, el desenlace y la estadía",1,n_cero_total;n_cero_ambulatoria;n_cero_fallecidos;n_cero_censurados;n_cero_sobrevivientes;n_ambulatoria;n_ambulatoria_cero,0,completo,93c55924650d8df765098da07c3fda2d35226fa2c301dd5af11c7dfb3dcab2c6
+t23_resumen_asociacion.csv,T10,Cifras de la Tarea 10 para los informes (una fila),1,n_filas_ranking;n_filas_2023;n_filas_vif,0,completo,e76cc85da78ee08b02d77643eb12752da23449ed6877cdea28686394fe42f997
+t23_resumen_comorbilidad.csv,T08,Cifras derivadas de la comorbilidad y la codificación,1,"",0,completo,403812141e5c1e30322d6540a6f82116d8e791b1a431ad0f65d341940bbc3023
+t23_resumen_hospitales.csv,T09,"Veredictos de los criterios de hospitales, historial y traslados",1,enlace_n_elegibles,0,completo,c9f7e22ce36407f50979c95099062041420e22dc4a34bb539bc70131c732db32
+t23_resumen_seleccion.csv,T11,Cifras de la Tarea 11 para los informes y para la Tarea 12 (una fila),1,"",0,completo,3020b2f892cc9984db77c83b034a225aa0f6ff773a5fac63fac71129f10b6b8f
+t23_sensibilidad_elix.csv,T11,"Gradiente de prevalencia de cada categoría de Elixhauser por tramo de estadía de los sobrevivientes, OR de estadía larga e índice de complicación probable",31,n_t1;n_t2;n_t3;n_t4;k_t1;k_t2;k_t3;k_t4,0,completo,65563003276f507d1fb15d009d7bb4536f63c8c0ef6bc7860fab63d59c0b57c9
+t23_serie_mensual.csv,T07,"Serie mensual de egresos y mortalidad por mes de alta, con detección de cambios",60,n_egresos;n_fallecidos;n_censurados,0,completo,b14343af3a4d0706272057a7e42ea3d639786e0da843f54faf906c63bbfb4c54
+t23_tipoalta.csv,T07,"Distribución del tipo de alta con su rol, por año y período",78,n,1,completo,295713cab02ecb3325ba3f58aad829602a772b846ebd5bb6957e01253d6965d3
+t23_vif.csv,T10,"Factor de inflación de la varianza de las variables numéricas y binarias, sin y con los agregados de comorbilidad (colinealidad exacta con VIF nulo)",86,n_filas,0,completo,457edd94dd8c0b79383fdf78785f2459b6801a250d6295609c6f2a749fa2f2ee
+t23_volumen_umbrales.csv,T09,Hospitales que cumplen cada combinación de volumen mínimo (decisión 6),45,"",0,completo,f65e33f2814680eaa051e29178d2615d1f0e9209e7f01ceff18db4d24a6e10d8
+t24_capitulos_cie10.csv,T06,Capítulo CIE-10 del diagnóstico principal,135,n,1,completo,173505b5edf0528927e3c522228add9b8a542f0fc2c6f42a697f7e7322387565
+t24_catalogo_grd_comparacion.csv,T06,Códigos GRD que están solo en uno de los dos catálogos,52,"",0,completo,4e60e7cbbe7b7771ff1a645fbc73439c3f634c992f070afae2a4ee638af929e7
+t24_consistencia_cruzada.csv,T06,Violaciones de reglas de catálogos y consistencia cruzada,91,n_violaciones,10,completo,ffb8360def26abe1b32f7cbda050674da0f87e7a4e224e4025a631801b380cca
+t24_duplicados.csv,T05,Duplicados por clave natural y episodios solapados,6,n_solapes;n_duplicados_exactos_por_id_y_fechas;n_filas_duplicadas_clave,0,completo,59aa674744de2a06a8b058cb8470b4de519bcc0a71a703d31699778a47fb64d3
+t24_formato_cie10.csv,T06,Formato de los diagnósticos,42,n,0,completo,890f55d3433cac00738d8246595f10a56094638eb45a4ffd99f7c408f55beade
+t24_grd_tipo_actividad.csv,T06,Tipo de GRD frente a TIPO_ACTIVIDAD,72,n,10,completo,72019723b33e0cab0f31399f4de9856915e7fb3edea5b2e2ac44882cd460efe0
+t24_hospitales_catalogo.csv,T06,Códigos de hospital frente a Hospitales.csv (solo códigos),400,n_episodios,0,completo,c24bdf42cc65ac2d39671fd2011bba2882a2e2b7673ea845cc388779fac20f9f
+t24_hospitales_resumen.csv,T06,Resumen de hospitales frente al catálogo,7,n_episodios,0,completo,fc1f6e813f1bff1e549866a9e2797d42e0b8741414e0afd2176f1da7cf3686bd
+t24_id_consistencia.csv,T05,Consistencia de nacimiento y sexo por identificador,6,n_ids_nacimiento_inconsistente;n_ids_sexo_inconsistente,0,completo,e597cc6d073a403864a87675f7dafc076163cc282bd941d697653a5a36531811
+t24_id_largo.csv,T05,Largo del identificador por año,39,n,1,completo,f48c7735ec628ade8322e62da75b586aeded595d51a936e7a7aebb5b2501f08f
+t24_id_regimenes.csv,T05,Regímenes de identificadores,2,"",0,completo,faf305e80e0472742cacdedc2c4e01a3c58b53aee902a5e27779f79ea8ab2471
+t24_id_traslape.csv,T05,Traslape de identificadores entre años,15,n_interseccion,0,completo,8a83cafb46025836e4bf4ad1c81b614e881caf1d43da9a09fc76fc49c98116ec
+t24_reglas.csv,T05,Violaciones de reglas de calidad por regla y año,123,n_violaciones,8,completo,f1a372a88328b744a13a114076ebea6ada75c0cd97e6e6562ec16f820e943a0f
+t24_resumen.csv,T05,"Cifras globales de la calidad, lote 1",1,"",0,completo,ed80206cd428cc6a5d1ce4bf40175c513b0ee6193ff1950ab0e9e20eaf3f356f
+t24_resumen_catalogos.csv,T06,Cifras globales de catálogos y consistencia cruzada,1,"",0,completo,ab0423a33eafb82051acc154ff0618ee5fae956348350103eb0c38601b54dab1
+t24_rut_por_columna.csv,T05,Valores con estructura de RUT por columna y año,2,n,1,completo,80ecb54bed49cd2f693068a0252f4239e99be437acdb6cda6a8891851faabf8a
+t24_tipoalta_etiquetas.csv,T06,Etiquetas de TIPOALTA frente a los roles de la Fase 1,12,n,0,completo,e52bcf0da1d6b86da1493cd0c17fddb2848d338536aa8e01807a6687ead7eb14
+t24_validez_codigos.csv,T06,Validez de códigos contra catálogos,97,n,10,completo,89f67ebe56a4bc5aea3e53fca997ee559349ebaa6a7f01e4fd4a9e95f66b311d
+t25_hipotesis_evaluadas.csv,T12,Resultado de cada una de las 26 hipótesis de la Fase 2 según su criterio de decisión,26,"",0,completo,b4aa5beb7647e3c4cd293017f57d20801812da1a5f6442ed102c0d353d45f975
+t25_resumen_evidencia.csv,T12,"Resumen de la evidencia para decidir: conteos del ledger, del semáforo, de los supuestos y de los cambios sugeridos",1,"",0,completo,a4d6925addc6644cf2c333a09c155d5d06d7d891524ba118abbf9a1475a6fba6
+t26_resumen_cierre.csv,T13,Conteos de la verificación y de los productos de la corrida,1,"",0,completo,e5ae809018473092e186ad475243c33f5af7e6b0e5f965f52cc4c87f4cf80004
+umbrales.csv,T01,Umbrales congelados del protocolo,50,"",0,completo,69b76c4d48248c819b38df71e8c01f381ed020f50792b0d7836f892acb7fa2dd
+verificacion_dt.csv,T13,"Resultado de los doce criterios de terminado de la Fase 2 (PASS, FAIL o PENDIENTE)",12,"",0,completo,98ac483cf5ba2aaf8727435a9efd4c038894eef0a75c363a9b8e700a2155456a

@@ -1,0 +1,5 @@
+polars>=2.0
+pyarrow
+numpy
+matplotlib
+pytest
