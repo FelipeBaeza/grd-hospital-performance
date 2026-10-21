@@ -17,3 +17,5 @@ pytest
 - `salidas/ensayo_2023/` es solo un ensayo de código (2023 se usó para calibrar).
 - La etapa `apertura` falla si 2024 ya fue abierto. El protocolo (`config/protocolo_fase5.toml`) no debe cambiar tras el pre-registro.
 - No ejecutar la etapa `verificacion` (puertas de preparación) después de la apertura: su puerta P3 ya no aplica.
+
+Informe explicado: `docs/fase5_evaluacion/Informe_Fase5_v5.docx`.

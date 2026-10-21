@@ -71,3 +71,5 @@ crudos, fuera del repositorio de la tesis; no la subas a GitHub.
 - Limita los hilos de Polars (menos hilos = menos memoria simultánea, algo más lento):
   `POLARS_MAX_THREADS=4 python run_fase2_eda.py ...`
 - Corre por partes con `--solo` (por ejemplo `--solo T3,T4,T5,T6` y luego `--solo T7,T8,T9`).
+
+Informe explicado: `docs/fase2_comprension_datos/Informe_Fase2_v5.docx`.

@@ -1,6 +1,6 @@
 # Fase 3 – Preparación de los datos (guía de la carpeta)
 
-Informe explicado paso a paso: `docs/fase3_preparacion_datos/Informe_Fase3_Preparacion_Datos.docx`.
+Informe explicado paso a paso: `docs/fase3_preparacion_datos/Informe_Fase3_v5.docx`.
 
 ## Cómo ejecutar
 ```
