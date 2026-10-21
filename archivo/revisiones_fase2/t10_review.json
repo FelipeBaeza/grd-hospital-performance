@@ -1,0 +1,54 @@
+{
+  "verdict": "APPROVED",
+  "findings": [
+    {
+      "id": 1,
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "Colores repetidos en F10_02",
+      "detail": "El color de cada subárbol bajo el corte sale de paleta[(grupo - 1) % 6]; con los 7 grupos redundantes del extracto hay colores repetidos y el pie dice 'Cada color es un grupo'. Corregir el pie ('los colores se reutilizan entre grupos') o asignar el color por orden de aparición.",
+      "evidence": "eda/asociacion.py:802 (asignación) y :821 (pie). En /tmp/real_t10/extracto/figuras/F10_02.png el recuento de píxeles Okabe-Ito da bermellón #D55E00 en 6 bandas de hojas (grupos 22, 34 y 46), púrpura #CC79A7 en 4 (grupos 6 y 18), naranja en 3 y celeste en 2."
+    },
+    {
+      "id": 2,
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "Grupos casi perfectos invisibles en F10_02",
+      "detail": "Cinco de los siete grupos redundantes se unen a una altura de 0,000013 a 0,001081 y se dibujan como marcas de menos de 1,2 píxeles pegadas al eje, justo los pares que motivan la figura. Marcarlos con un punto o un rótulo (uniones por debajo de 0,01) o añadir un recuadro ampliado de 0 a 0,05. No bloquea porque F10_01 enmarca y nombra a cada miembro.",
+      "evidence": "altura_union en clusters_variables.csv: ES_FIN_SEMANA/DIA_SEMANA 0,000022; PUEBLO_ORIGINARIO/ETNIA 0,000043; ES_EXTRANJERO/NACIONALIDAD 0,000257; TIPO_PROCEDENCIA/ENTRANTE_TIPO_PROCEDENCIA/PROCEDENCIA_AGR 0,000013 y 0,000059; NIVEL_CUIDADO_INGRESO/SERVICIOINGRESO 0,001081. El eje de F10_02 mide 1.064 píxeles de 0 a 1 (x = 245 a x = 1309)."
+    },
+    {
+      "id": 3,
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "Elixhauser sin nombre en F10_01 a F10_03",
+      "detail": "Las 31 categorías se rotulan ELIX_nn y solo F10_04 las nombra, lo que obliga al lector clínico a cruzar figuras. Rotular con 'nn nombre corto' o incluir una tabla de equivalencias en el informe de la Tarea 10.",
+      "evidence": "Etiquetas ELIX_01 a ELIX_31 en F10_01, F10_02 y F10_03; F10_04 usa 'nn nombre' (figura_phi_elix en eda/asociacion.py). El informe provisional /tmp/real_t10/extracto/informes/t23_prueba_asociacion.md no trae tabla de equivalencias."
+    },
+    {
+      "id": 4,
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "Rotulado menor de F10_01 y F10_04",
+      "detail": "Poner 'Variables' en los ejes de F10_01 (hoy 'Variable (ordenadas por similitud)') y agregar al pie de F10_04 que las celdas grises son las suprimidas, como ya dice el pie de F10_01.",
+      "evidence": "eda/asociacion.py:767-768 (ejes de F10_01); pie de F10_04 en :947 no menciona el gris y el de F10_01 (:774-776) sí; F10_04.png muestra celdas grises en el bloque de categorías raras (por ejemplo 26, 30, 17, 18 y 19)."
+    },
+    {
+      "id": 5,
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "Leyenda 'quince pares' con nueve filas",
+      "detail": "agregar_secciones fija 'Los quince pares más asociados' pero pares_redundantes.csv solo lista los pares redundantes (nueve en el extracto). Escribir 'hasta quince' o armar la leyenda con el número de filas.",
+      "evidence": "eda/asociacion.py:1085; en t23_prueba_asociacion.md la tabla bajo esa leyenda tiene 9 filas (n_pares_redundantes = 9 en t23_resumen_asociacion.csv)."
+    },
+    {
+      "id": 6,
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "git status ejecutado pese a la restricción",
+      "detail": "El registro de la etapa B (sección 11 del plan) declara un git status de solo lectura pese a la regla de no usar git. No cambió el estado del repositorio; no requiere acción salvo no repetirlo.",
+      "evidence": "stat de .git/index: mtime 2026-10-07 20:43:31, sin cambio; ls .git: sin index.lock; solo el directorio .git tiene mtime 2026-10-09 21:47."
+    }
+  ],
+  "reviewDoc": "/home/felipe/Documentos/Proyecto final/Tesis/fase2_eda/.agents/tasks/t10_review.md"
+}

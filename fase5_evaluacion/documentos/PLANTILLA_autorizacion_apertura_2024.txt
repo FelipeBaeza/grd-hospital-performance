@@ -1,0 +1,8 @@
+Plantilla de autorización para abrir el desenlace de 2024 (Fase 5).
+Para activar la apertura, copiar este texto a un archivo llamado autorizacion_apertura_2024.txt en esta misma carpeta, completar los campos y guardarlo.
+NO crear ese archivo sin la autorización del profesor guía: su sola existencia habilita la etapa de apertura.
+
+autorizo-fase-5
+firmante: (nombre de quien autoriza)
+fecha: (fecha de la autorización)
+alcance: una lectura del desenlace de 2024 para construir las cohortes D y E

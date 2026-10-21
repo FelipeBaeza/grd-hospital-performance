@@ -1,0 +1,62 @@
+# Sistema completo: base de datos + carga de datos publicables + API + web. Se levanta con:  docker compose up --build
+# Los puertos quedan atados a 127.0.0.1: es un prototipo de entorno restringido (decisión E1 del plan de la Fase 6).
+name: indicadores-grd
+
+x-bd: &bd
+  POSTGRES_USER: ${POSTGRES_USER:-indicadores}
+  POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-indicadores}
+  POSTGRES_DB: ${POSTGRES_DB:-indicadores}
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment: *bd
+    volumes:
+      - pgdatos:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  carga:
+    build: ./api
+    command: ["python", "-m", "herramientas.cargar_bd", "--esperar", "60"]
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-indicadores}:${POSTGRES_PASSWORD:-indicadores}@db:5432/${POSTGRES_DB:-indicadores}
+    volumes:
+      - ./datos/publicables:/datos:ro
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  api:
+    build: ./api
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-indicadores}:${POSTGRES_PASSWORD:-indicadores}@db:5432/${POSTGRES_DB:-indicadores}
+      CORS_ORIGENES: http://localhost:8080
+    volumes:
+      - ../fase4_modelado/modelos:/modelos:ro
+      - ./datos/publicables:/datos:ro
+    depends_on:
+      carga:
+        condition: service_completed_successfully
+    ports:
+      - "127.0.0.1:8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8000/salud', timeout=3).status == 200 else 1)"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  web:
+    build: ./web
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8080:80"
+
+volumes:
+  pgdatos:

@@ -1,0 +1,7 @@
+regimen,grupo_id,n_ids_con_dos_o_mas_episodios,n_ids_nacimiento_inconsistente,n_ids_con_sexo_en_dos_o_mas_episodios,n_ids_sexo_inconsistente
+régimen 2019 a 2020,todos los IDs,298310,7281,298259,3032
+régimen 2019 a 2020,IDs con 5 o más dígitos,296342,7236,296291,3019
+régimen 2019 a 2020,IDs con menos de 5 dígitos,1968,45,1968,13
+régimen 2021 a 2024,todos los IDs,735241,16489,735185,5330
+régimen 2021 a 2024,IDs con 5 o más dígitos,735241,16489,735185,5330
+régimen 2021 a 2024,IDs con menos de 5 dígitos,0,0,0,0

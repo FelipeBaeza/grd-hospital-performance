@@ -1,0 +1,84 @@
+anio,familia,estado,n,n_total_familia,prop
+2019,CIE-10 diagnóstico principal,centinela,330,49996,0.006601
+2019,CIE-10 diagnóstico principal,valido,49666,49996,0.993399
+2020,CIE-10 diagnóstico principal,valido,49891,49999,0.99784
+2020,CIE-10 diagnóstico principal,centinela,108,49999,0.00216
+2021,CIE-10 diagnóstico principal,valido,49985,49999,0.99972
+2021,CIE-10 diagnóstico principal,centinela,14,49999,0.00028
+2022,CIE-10 diagnóstico principal,centinela,,49998,
+2022,CIE-10 diagnóstico principal,valido,49991,49998,0.99986
+2023,CIE-10 diagnóstico principal,valido,49997,49999,0.99996
+2023,CIE-10 diagnóstico principal,invalido,,49999,
+2024,CIE-10 diagnóstico principal,valido,49999,49999,1
+2019,CIE-10 diagnósticos secundarios,valido,168051,168681,0.996265
+2019,CIE-10 diagnósticos secundarios,solo_categoria,,168681,
+2019,CIE-10 diagnósticos secundarios,centinela,628,168681,0.003723
+2020,CIE-10 diagnósticos secundarios,valido,207123,207317,0.999064
+2020,CIE-10 diagnósticos secundarios,solo_categoria,,207317,
+2020,CIE-10 diagnósticos secundarios,centinela,193,207317,0.000931
+2021,CIE-10 diagnósticos secundarios,centinela,406,228523,0.001777
+2021,CIE-10 diagnósticos secundarios,valido,228117,228523,0.998223
+2022,CIE-10 diagnósticos secundarios,valido,217653,218986,0.993913
+2022,CIE-10 diagnósticos secundarios,centinela,1333,218986,0.006087
+2023,CIE-10 diagnósticos secundarios,centinela,424,226507,0.001872
+2023,CIE-10 diagnósticos secundarios,invalido,395,226507,0.001744
+2023,CIE-10 diagnósticos secundarios,valido,225688,226507,0.996384
+2024,CIE-10 diagnósticos secundarios,valido,238660,239302,0.997317
+2024,CIE-10 diagnósticos secundarios,invalido,174,239302,0.000727
+2024,CIE-10 diagnósticos secundarios,centinela,468,239302,0.001956
+2019,CIE-9-MC procedimientos,valido,333220,333221,0.999997
+2019,CIE-9-MC procedimientos,centinela,,333221,
+2020,CIE-9-MC procedimientos,valido,423346,423346,1
+2021,CIE-9-MC procedimientos,valido,453453,453453,1
+2022,CIE-9-MC procedimientos,centinela,,420913,
+2022,CIE-9-MC procedimientos,valido,420910,420913,0.999993
+2023,CIE-9-MC procedimientos,centinela,15,408101,0.000037
+2023,CIE-9-MC procedimientos,valido,408086,408101,0.999963
+2024,CIE-9-MC procedimientos,valido,401097,401128,0.999923
+2024,CIE-9-MC procedimientos,centinela,31,401128,0.000077
+2019,GRD (código),no_agrupable_98_99,17,49999,0.00034
+2019,GRD (código),solo_en_ir_grd_csv,25,49999,0.0005
+2019,GRD (código),valido,49957,49999,0.99916
+2020,GRD (código),valido,49988,49999,0.99978
+2020,GRD (código),solo_en_ir_grd_csv,,49999,
+2020,GRD (código),no_agrupable_98_99,,49999,
+2021,GRD (código),no_agrupable_98_99,27,49999,0.00054
+2021,GRD (código),solo_en_ir_grd_csv,11,49999,0.00022
+2021,GRD (código),valido,49961,49999,0.99924
+2022,GRD (código),valido,49944,49999,0.9989
+2022,GRD (código),solo_en_ir_grd_csv,18,49999,0.00036
+2022,GRD (código),no_agrupable_98_99,35,49999,0.0007
+2022,GRD (código),centinela,,49999,
+2023,GRD (código),no_agrupable_98_99,72,49999,0.00144
+2023,GRD (código),centinela,,49999,
+2023,GRD (código),valido,49902,49999,0.99806
+2023,GRD (código),solo_en_ir_grd_csv,24,49999,0.00048
+2024,GRD (código),centinela,,49999,
+2024,GRD (código),no_agrupable_98_99,56,49999,0.00112
+2024,GRD (código),solo_en_ir_grd_csv,29,49999,0.00058
+2024,GRD (código),valido,49912,49999,0.99826
+2019,Riesgo de mortalidad del GRD,valido,49999,49999,1
+2020,Riesgo de mortalidad del GRD,valido,49999,49999,1
+2021,Riesgo de mortalidad del GRD,valido,49999,49999,1
+2022,Riesgo de mortalidad del GRD,valido,49997,49999,0.99996
+2022,Riesgo de mortalidad del GRD,centinela,,49999,
+2023,Riesgo de mortalidad del GRD,valido,49998,49999,0.99998
+2023,Riesgo de mortalidad del GRD,centinela,,49999,
+2024,Riesgo de mortalidad del GRD,valido,49997,49999,0.99996
+2024,Riesgo de mortalidad del GRD,centinela,,49999,
+2019,Severidad del GRD,valido,49999,49999,1
+2020,Severidad del GRD,valido,49999,49999,1
+2021,Severidad del GRD,valido,49999,49999,1
+2022,Severidad del GRD,centinela,,49999,
+2022,Severidad del GRD,valido,49997,49999,0.99996
+2023,Severidad del GRD,valido,49998,49999,0.99998
+2023,Severidad del GRD,centinela,,49999,
+2024,Severidad del GRD,centinela,,49999,
+2024,Severidad del GRD,valido,49997,49999,0.99996
+2019,Uso de pabellón,invalido,,27075,
+2019,Uso de pabellón,valido,27067,27075,0.999705
+2021,Uso de pabellón,invalido,,28163,
+2021,Uso de pabellón,valido,28160,28163,0.999893
+2022,Uso de pabellón,valido,29377,29377,1
+2023,Uso de pabellón,valido,29769,29769,1
+2024,Uso de pabellón,valido,29186,29186,1

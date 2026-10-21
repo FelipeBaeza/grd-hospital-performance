@@ -1,0 +1,6 @@
+autorizo-fase-5
+firmante: Felipe Ignacio Baeza Muñoz (estudiante), informa la aprobación del profesor guía Manuel Villalobos Cid. La constancia escrita del propio profesor está pendiente de adjuntar.
+fecha: 2026-10-19
+alcance: una lectura del desenlace de 2024 para construir las cohortes D y E
+decisiones: D1 a D9 aprobadas según la recomendación del Plan_Fase5_Evaluacion. D4 (sensibilidad 2020-2021) queda fuera de esta fase.
+incidente: el profesor guía queda informado de la lectura directa del archivo sellado ocurrida en la preparación (ver INCIDENTES.md).

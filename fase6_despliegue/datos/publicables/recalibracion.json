@@ -1,0 +1,13 @@
+{
+ "mortalidad": {
+  "tipo": "platt",
+  "a": -0.14702706868065482,
+  "b": 1.0336880815403169,
+  "fuente_sha256": "bcb7a04d8249c6fa6099693ac375700a520763c7851b02aa57d1ea2298ac8275"
+ },
+ "estadia": {
+  "tipo": "factor",
+  "f": 0.9380768794226498,
+  "fuente_sha256": "9b8972ec55ab528b888fa9e75e0691778f5353678391c1ecad76fab696ee777d"
+ }
+}

@@ -1,0 +1,98 @@
+anio,familia,estado,n,n_total_familia,prop
+2019,CIE-10 diagnóstico principal,centinela,8573,1151398,0.007446
+2019,CIE-10 diagnóstico principal,valido,1142825,1151398,0.992554
+2020,CIE-10 diagnóstico principal,valido,779540,781911,0.996968
+2020,CIE-10 diagnóstico principal,centinela,2371,781911,0.003032
+2021,CIE-10 diagnóstico principal,centinela,224,816909,0.000274
+2021,CIE-10 diagnóstico principal,valido,816685,816909,0.999726
+2022,CIE-10 diagnóstico principal,centinela,148,932837,0.000159
+2022,CIE-10 diagnóstico principal,valido,932689,932837,0.999841
+2023,CIE-10 diagnóstico principal,valido,1039555,1039587,0.999969
+2023,CIE-10 diagnóstico principal,invalido,32,1039587,0.000031
+2024,CIE-10 diagnóstico principal,valido,1085783,1085813,0.999972
+2024,CIE-10 diagnóstico principal,invalido,30,1085813,0.000028
+2019,CIE-10 diagnósticos secundarios,valido,3885228,3899323,0.996385
+2019,CIE-10 diagnósticos secundarios,solo_categoria,13,3899323,0.000003
+2019,CIE-10 diagnósticos secundarios,centinela,14082,3899323,0.003611
+2020,CIE-10 diagnósticos secundarios,valido,3287768,3291666,0.998816
+2020,CIE-10 diagnósticos secundarios,solo_categoria,,3291666,
+2020,CIE-10 diagnósticos secundarios,centinela,3895,3291666,0.001183
+2021,CIE-10 diagnósticos secundarios,centinela,6589,3722457,0.00177
+2021,CIE-10 diagnósticos secundarios,valido,3715868,3722457,0.99823
+2022,CIE-10 diagnósticos secundarios,centinela,26340,4087287,0.006444
+2022,CIE-10 diagnósticos secundarios,valido,4060946,4087287,0.993555
+2022,CIE-10 diagnósticos secundarios,solo_categoria,,4087287,
+2023,CIE-10 diagnósticos secundarios,invalido,8349,4691590,0.00178
+2023,CIE-10 diagnósticos secundarios,valido,4673785,4691590,0.996205
+2023,CIE-10 diagnósticos secundarios,solo_categoria,,4691590,
+2023,CIE-10 diagnósticos secundarios,centinela,9453,4691590,0.002015
+2024,CIE-10 diagnósticos secundarios,centinela,10791,5194739,0.002077
+2024,CIE-10 diagnósticos secundarios,invalido,4210,5194739,0.00081
+2024,CIE-10 diagnósticos secundarios,solo_categoria,,5194739,
+2024,CIE-10 diagnósticos secundarios,valido,5179737,5194739,0.997112
+2019,CIE-9-MC procedimientos,valido,7759421,7759434,0.999998
+2019,CIE-9-MC procedimientos,invalido,,7759434,
+2019,CIE-9-MC procedimientos,centinela,11,7759434,0.000001
+2020,CIE-9-MC procedimientos,valido,6519497,6519497,1
+2021,CIE-9-MC procedimientos,centinela,,7388944,
+2021,CIE-9-MC procedimientos,valido,7388936,7388944,0.999999
+2022,CIE-9-MC procedimientos,centinela,71,7793417,0.000009
+2022,CIE-9-MC procedimientos,valido,7793346,7793417,0.999991
+2023,CIE-9-MC procedimientos,centinela,275,8452291,0.000033
+2023,CIE-9-MC procedimientos,valido,8452016,8452291,0.999967
+2024,CIE-9-MC procedimientos,centinela,575,8710796,0.000066
+2024,CIE-9-MC procedimientos,valido,8710221,8710796,0.999934
+2019,GRD (código),valido,1150513,1151475,0.999165
+2019,GRD (código),solo_en_ir_grd_csv,396,1151475,0.000344
+2019,GRD (código),no_agrupable_98_99,545,1151475,0.000473
+2019,GRD (código),centinela,21,1151475,0.000018
+2020,GRD (código),valido,781508,781912,0.999483
+2020,GRD (código),solo_en_ir_grd_csv,213,781912,0.000272
+2020,GRD (código),no_agrupable_98_99,191,781912,0.000244
+2021,GRD (código),valido,816253,816909,0.999197
+2021,GRD (código),no_en_catalogo,,816909,
+2021,GRD (código),no_agrupable_98_99,365,816909,0.000447
+2021,GRD (código),solo_en_ir_grd_csv,290,816909,0.000355
+2022,GRD (código),valido,931779,932839,0.998864
+2022,GRD (código),solo_en_ir_grd_csv,311,932839,0.000333
+2022,GRD (código),no_agrupable_98_99,726,932839,0.000778
+2022,GRD (código),centinela,23,932839,0.000025
+2023,GRD (código),centinela,30,1039587,0.000029
+2023,GRD (código),no_agrupable_98_99,1682,1039587,0.001618
+2023,GRD (código),solo_en_ir_grd_csv,394,1039587,0.000379
+2023,GRD (código),valido,1037481,1039587,0.997974
+2024,GRD (código),centinela,15,1085813,0.000014
+2024,GRD (código),no_agrupable_98_99,1474,1085813,0.001358
+2024,GRD (código),solo_en_ir_grd_csv,462,1085813,0.000425
+2024,GRD (código),valido,1083862,1085813,0.998203
+2019,Riesgo de mortalidad del GRD,centinela,21,1151475,0.000018
+2019,Riesgo de mortalidad del GRD,valido,1151454,1151475,0.999982
+2020,Riesgo de mortalidad del GRD,valido,781912,781912,1
+2021,Riesgo de mortalidad del GRD,valido,816909,816909,1
+2022,Riesgo de mortalidad del GRD,centinela,23,932839,0.000025
+2022,Riesgo de mortalidad del GRD,valido,932816,932839,0.999975
+2023,Riesgo de mortalidad del GRD,valido,1039557,1039587,0.999971
+2023,Riesgo de mortalidad del GRD,centinela,30,1039587,0.000029
+2024,Riesgo de mortalidad del GRD,centinela,15,1085813,0.000014
+2024,Riesgo de mortalidad del GRD,valido,1085798,1085813,0.999986
+2019,Severidad del GRD,valido,1151454,1151475,0.999982
+2019,Severidad del GRD,centinela,21,1151475,0.000018
+2020,Severidad del GRD,valido,781912,781912,1
+2021,Severidad del GRD,valido,816909,816909,1
+2022,Severidad del GRD,centinela,23,932839,0.000025
+2022,Severidad del GRD,valido,932816,932839,0.999975
+2023,Severidad del GRD,centinela,30,1039587,0.000029
+2023,Severidad del GRD,valido,1039557,1039587,0.999971
+2024,Severidad del GRD,valido,1085798,1085813,0.999986
+2024,Severidad del GRD,centinela,15,1085813,0.000014
+2019,Uso de pabellón,invalido,259,642341,0.000403
+2019,Uso de pabellón,valido,642082,642341,0.999597
+2020,Uso de pabellón,valido,54,54,1
+2021,Uso de pabellón,invalido,85,462743,0.000184
+2021,Uso de pabellón,valido,462658,462743,0.999816
+2022,Uso de pabellón,valido,565207,565208,0.999998
+2022,Uso de pabellón,invalido,,565208,
+2023,Uso de pabellón,invalido,,635381,
+2023,Uso de pabellón,valido,635378,635381,0.999995
+2024,Uso de pabellón,valido,655577,655582,0.999992
+2024,Uso de pabellón,invalido,,655582,

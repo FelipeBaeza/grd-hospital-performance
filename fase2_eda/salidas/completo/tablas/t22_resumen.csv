@@ -1,0 +1,2 @@
+n_columnas_diccionario,n_columnas_perfiladas,n_columnas_vacias,n_columnas_con_centinelas,n_coincide,n_discrepancia,n_discrepancia_relevante,n_no_evaluable,n_etiquetas_truncadas,rn_prop_modal_minima,psi_maximo,modo_conciliacion
+129,129,2,86,0,129,0,0,4,0.994185,17.941248,exacta (datos completos)

@@ -1,0 +1,66 @@
+{
+  "version": "Fase 1 v2 (octubre 2026)",
+  "particion": {
+    "entrenamiento": [
+      2019,
+      2020,
+      2021,
+      2022
+    ],
+    "calibracion": [
+      2023
+    ],
+    "prueba": [
+      2024
+    ],
+    "nota": "La decision 17 puede mover el inicio del entrenamiento a 2020. Si cambia, se cambia aqui y se deja constancia."
+  },
+  "criterios_modelo": {
+    "bss_minimo": 0.0,
+    "pendiente_calibracion": [
+      0.8,
+      1.2
+    ],
+    "oe_global_mortalidad": [
+      0.95,
+      1.05
+    ],
+    "oe_global_estadia": [
+      0.95,
+      1.05
+    ],
+    "acciones_si_falla": {
+      "pr_auc": "El modelo final es la regresion logistica.",
+      "rmse": "El modelo final es la linea base.",
+      "bss": "Se recalibra con 2023. Si sigue sin cumplirse, no se usa el modelo para el indicador y se revisan las variables.",
+      "pendiente": "Se recalibra con 2023. Si no alcanza, se reporta la desviacion y se analiza el efecto de la pandemia.",
+      "oe_global": "Se recalibra con 2023. Si no alcanza, se reporta la desviacion y se analiza el efecto de la pandemia.",
+      "oe_estadia": "Se revisa la regla de estadias largas y el objetivo Poisson o Tweedie."
+    }
+  },
+  "indicador": {
+    "z_95": 1.959964,
+    "z_998": 3.090232,
+    "winsor": 0.1,
+    "volumen_minimo": {
+      "egresos": 500,
+      "muertes_esperadas": 10,
+      "estado": "propuesta pendiente de aprobacion (decision 6)"
+    },
+    "celda_minima_publicable": 10
+  },
+  "negocio": {
+    "latencia_maxima_s": 2.0
+  },
+  "elixhauser": {
+    "categorias": 31,
+    "sospechosas_fase1": [
+      "ELIX_04",
+      "ELIX_22",
+      "ELIX_24",
+      "ELIX_25",
+      "ELIX_26"
+    ],
+    "nota": "El repositorio usa otra lista de cinco (arritmias, coagulopatia, desnutricion, electrolitos y hemorragia aguda). Hay que dejar una sola."
+  }
+}

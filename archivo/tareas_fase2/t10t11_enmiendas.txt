@@ -1,0 +1,43 @@
+ENMIENDAS DEL ORQUESTADOR AL DISEÑO DE LAS TAREAS 10 Y 11 (vigentes para toda la implementación)
+===============================================================================================
+
+Contexto: el primer workflow (wf_bc0ba68609b81692) agotó sus tres vueltas de diseño y abortó. La tercera revisión dejó 0 HIGH, 2 MEDIUM y 10 NIT. El diseño NO
+se vuelve a revisar: el orquestador lo da por APROBADO con las enmiendas de este archivo. La fase de diseño y su lazo de revisión no se repiten.
+
+Documentos y orden de precedencia (si dos se contradicen, manda el de arriba):
+ 1. Este archivo (enmiendas).
+ 2. /home/felipe/Documentos/Proyecto final/Tesis/.agents/tasks/t10t11_design_review_r3_aceptada.md : los 12 hallazgos de la revisión 3 se ACEPTAN TODOS y se
+    implementan con la corrección exacta que trae cada uno (sección "Hallazgos"). Los dos MEDIUM son obligatorios y los 10 NIT también (son baratos):
+      MEDIUM 1: la cardinalidad de ESPECIALIDAD_MEDICA por hospital (H02b) se calcula en panel.construir_panel sobre el texto sin tope de 60 niveles, antes de
+                recortar, y se guarda solo como agregados (Panel.cardinalidad_especialidad). Mutante M52.
+      MEDIUM 2: el índice de complicación probable tiene orden total (índice desc, rango de or_larga_bajo asc, rango de razon_bajo asc, elix_id asc), en_top5 marca
+                exactamente min(5, m) categorías, y con m < 2 los campos quedan nulos sin lanzar excepción. Mutante M53.
+      NIT 3 a 12: redondear_publicado = np.round(x, 6) y corte del dendrograma con distancia redondeada; AUC de IR_29301_SEVERIDAD en el generador 0,83 (ranking) y
+                0,78 (2023) con prueba de rango 0,80 a 0,85; filas EPS_COLINEALIDAD y DECIMALES_PUBLICADOS en t23_parametros_seleccion.csv; desviación declarada de la
+                escritura por bloques y suma de celdas anuladas en el índice de tablas; n_faltante y su bloque de supresión; DT11 con prueba automática, hilo único de BLAS
+                en regresion_logistica y VIF y StratifiedKFold barajado con semilla en el L1; convergió/ConvergenceWarning del L1; regla única de mutaciones (aplicar M01
+                a M53, y si el tiempo no alcanza al menos las 31 priorizadas más M52 y M53, documentando los mutantes equivalentes que sobrevivan); faltante_max de ETNIA y
+                PUEBLO_ORIGINARIO desde t22 y medicion_completa que exige asociacion_hospital y psi_vs_2023; MUJER como nivel base de SEXO y nivel nuevo en 2023 con la
+                tasa de OTROS si existe y la global si no.
+ 3. /home/felipe/Documentos/Proyecto final/Tesis/.agents/tasks/t10t11_diseno_v3_aprobado.md : el diseño versión 3 (1.145 líneas; copia estable de t10t11_diseno.md).
+    Es la especificación de implementación: módulos (siete: decision, panel, asociacion, modelos, sospechas, sensibilidad_elix, seleccion y lo que el mapa de
+    archivos de la sección 5 enumere), tablas (18 más las que el diseño agregue), figuras (F10_01 a F11_06 con los CSV de respaldo que fija la sección 5, incluida
+    F10_02 con t23_dendrograma.csv: actualiza config/plan_figuras.csv con str_replace), esquemas de columnas, supresión por tabla, casos de borde, pruebas y mutantes.
+    Sus 15 hallazgos de la sección 3 corrigen al encargo original y prevalecen sobre él (por ejemplo el nombre real SCORE_VANWALRAVEN que devuelve el código de
+    elixhauser, y no PUNTAJE_VAN_WALRAVEN).
+ 4. /home/felipe/Documentos/Proyecto final/Tesis/.agents/tasks/fase2_brief_t10_t11.txt : el encargo original. Siguen vigentes íntegras sus secciones 1 (reglas
+    inviolables), 3 (lecciones de herramientas), 7 (estándar de pruebas) y 8 (cierre). Las secciones 2, 4, 5 y 6 se leen como contexto y requisito de producto, con el
+    diseño por encima en todo detalle de implementación.
+
+Reglas del lazo implementar-y-revisar (todos los lazos):
+ - El implementador va primero y el revisor independiente va último en cada vuelta; el veredicto del revisor decide si el lazo se cierra.
+ - Bloquean solo los hallazgos HIGH y MEDIUM. Los NIT se anotan en el documento de revisión; el implementador corrige los que cuesten poco en la vuelta siguiente, pero un
+   NIT nunca mantiene abierto un lazo. Cada hallazgo debe traer evidencia concreta (comando, cifra, línea de código), no opiniones.
+ - Si un lazo agota sus vueltas, debe PAUSAR (no abortar el workflow) para que el orquestador pueda conceder más vueltas.
+ - Antes de revisar, el revisor corre la suite completa, que debe seguir verde (286 pruebas al empezar), y reproduce al menos tres estadísticos de la tarea con
+   scipy o scikit-learn.
+
+Restricciones que no cambian: sin git ni worktree; no tocar .git, docs/, "data seminario/" ni los catálogos de la raíz; solo agregados en las salidas; el año 2024 nunca
+se lee para el desenlace; no crear archivos .md fuera de los artefactos de revisión de este workflow (las salidas de la suite van por la clase Informe); ediciones solo
+con herramientas de edición sobre los archivos ya editados con ellas; nada de edición y corrida dependiente en paralelo; mutaciones con PYTHONDONTWRITEBYTECODE=1 y
+python -B sobre una copia en /tmp; borrar lo temporal de /tmp al terminar. La carpeta .agents/ y estos archivos no se borran ni se mueven.

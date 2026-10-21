@@ -1,0 +1,250 @@
+# Umbrales y parámetros del protocolo estadístico de la Fase 2.
+# Se fijan en la Tarea 1, ANTES de ver resultados. Cambiar un valor exige dejar
+# constancia en el informe de cierre (cambios_protocolo). Cada [umbral.*] lleva
+# valor y justificación; el test de la Tarea 1 lo verifica.
+
+[meta]
+version = "1.5"
+estado = "congelado antes de ver resultados, con cinco cambios declarados"
+semilla = 20261007
+# Cambios hechos al protocolo después de ver resultados (se informan en el cierre).
+cambios_protocolo = [
+  "1.1: se agrega conciliacion_dif_relevante_pp tras la primera corrida sobre extractos. No cambia el estado COINCIDE o DISCREPANCIA (regla por z); solo agrega la columna de magnitud.",
+  "1.2: se agrega id_largo_minimo (regla Q11) antes de ejecutar la Tarea 5. El valor 5 se apoyó en una inspección previa de los patrones de largo de los identificadores, por lo que no es independiente de los datos.",
+  "1.3: se agrega edad_neonato_max (regla Q26) antes de ejecutar la Tarea 6, sin haber visto resultados de esa regla. El valor 1 año es un criterio clínico de tolerancia sobre el límite de 28 días del neonato.",
+  "1.4: la comparación mensual de H17b se define contra el mismo mes del año anterior, que controla la estacionalidad y coincide con el cambio anual que describe cambio_relativo_relevante. La primera versión comparaba cada mes con los tres meses previos y se descartó después de ver que marcaba cerca de un tercio de los meses por el ciclo invernal. No cambia ningún valor de umbral.",
+  "1.5: el criterio de S09 se amplía con el contraste de los egresos con traslado interno, porque la coincidencia entre SERVICIOINGRESO y SERVICIOALTA sin traslado interno es esperable por construcción y no discrimina entre el ingreso y la estadía. Se advirtió después de ver, en los extractos, 99,2 % de coincidencia sin traslado y 15,2 % con traslado. La regla pasa a ser: cada grupo con al menos celda_minima egresos; se acepta si coincide en la mayoría sin traslado y en la minoría con traslado, se rechaza si coincide en la mayoría también con traslado, y no es evaluable si algún grupo es menor al mínimo o si no coincide en la mayoría sin traslado. Aceptarlo no levanta las sospechas de proxy ni de fuga de la Tarea 11 sobre SERVICIOINGRESO. No cambia ningún valor de umbral.",
+]
+
+# --- Partición temporal y cortafuegos de 2024 -------------------------------
+[particion]
+anios_estructura_calidad = [2019, 2020, 2021, 2022, 2023, 2024]
+anios_resultado = [2019, 2020, 2021, 2022, 2023]
+anios_ranking = [2019, 2020, 2021, 2022]
+anio_confirmacion = 2023
+anio_expuesto = 2024
+
+[cortafuegos]
+# En el año expuesto solo se permiten estos propósitos de lectura.
+propositos_permitidos = ["estructura", "calidad"]
+# Columnas que contienen el desenlace o lo revelan. En el año expuesto se
+# entregan enmascaradas (solo patrón) salvo que una regla de calidad autorizada
+# las lea y devuelva únicamente indicadores de violación.
+columnas_resultado = [
+  "TIPOALTA",
+  "FECHAALTA",
+  "SERVICIOALTA",
+  "IR_29301_MORTALIDAD",
+  "IR_29301_SEVERIDAD",
+  "IR_29301_PESO",
+]
+
+# --- Privacidad -------------------------------------------------------------
+[umbral.celda_minima]
+valor = 10
+justificacion = "Regla P2 y requisito de volumen mínimo de la Fase 1 (sección 14.2): no se publican cifras con menos de 10 casos. Se suprimen las celdas de conteo con n entre 1 y 9. El cero se informa porque no identifica a nadie."
+
+# --- Redundancia y multicolinealidad ---------------------------------------
+[umbral.redundancia_abs]
+valor = 0.80
+justificacion = "Definido en el plan de la Fase 2: dos variables con asociación absoluta de 0,80 o más se agrupan como redundantes y se conserva el representante con mayor señal univariada."
+
+[umbral.vif_alerta]
+valor = 5.0
+justificacion = "Regla práctica habitual de multicolinealidad: un VIF de 5 o más indica varianza inflada de forma apreciable. Es una guía y no una prueba."
+
+[umbral.vif_critico]
+valor = 10.0
+justificacion = "Regla práctica habitual: un VIF de 10 o más indica multicolinealidad severa. Equivale a un R2 de 0,90 de la variable contra el resto."
+
+# --- Estabilidad y deriva ---------------------------------------------------
+[umbral.psi_moderado]
+valor = 0.10
+justificacion = "Convención de uso habitual en monitoreo de modelos: por debajo de 0,10 la distribución se considera estable; entre 0,10 y 0,25 hay un cambio moderado."
+
+[umbral.psi_alto]
+valor = 0.25
+justificacion = "Convención de uso habitual en monitoreo de modelos: desde 0,25 el cambio de distribución es grande y la variable se trata como inestable."
+
+[umbral.cambio_relativo_relevante]
+valor = 0.20
+justificacion = "Piso de relevancia práctica para llamar quiebre a un cambio anual de mortalidad o de tasas: el intervalo de confianza debe excluir la igualdad y el cambio relativo debe ser de 20 % o más. Con millones de egresos solo la significación estadística no discrimina."
+
+[umbral.estabilidad_efecto_minimo]
+valor = 0.01
+justificacion = "Un cambio de signo de (AUC - 0,5) entre años solo cuenta como inestabilidad si en ambos años el efecto es de al menos 0,01; por debajo es ruido de muestreo."
+
+# --- Faltantes ----------------------------------------------------------------
+[umbral.faltante_alerta]
+valor = 0.20
+justificacion = "Criterio del protocolo: con más de 20 % de valores faltantes el patrón de omisión puede sesgar el ajuste y la variable se marca para revisión."
+
+[umbral.faltante_alto]
+valor = 0.50
+justificacion = "Criterio del protocolo: con más de 50 % de faltantes la variable pasa a condicional, salvo que el vacío signifique ausencia del evento (por ejemplo HOSPPROCEDENCIA vacía = no viene derivado)."
+
+[umbral.faltante_informativo_or]
+valor = 1.5
+justificacion = "El faltante se declara informativo si el OR de fallecer entre faltantes y no faltantes es de 1,5 o más (o 1/1,5 o menos) y su IC de Woolf excluye 1. Es un tamaño de efecto moderado."
+
+[umbral.faltante_informativo_min_prop]
+valor = 0.01
+justificacion = "Solo se evalúa faltante informativo cuando al menos 1 % de los egresos lo tiene; con menos, el OR depende de muy pocos casos."
+
+# --- Señal univariada y fuga -------------------------------------------------
+[umbral.auc_sospecha_fuga]
+valor = 0.85
+justificacion = "Definido en el plan de la Fase 2: una sola variable con AUC de 0,85 o más para mortalidad es sospechosa de revelar el desenlace; ninguna característica basal debería separar tanto por sí sola."
+
+[umbral.auc_senal_alta]
+valor = 0.70
+justificacion = "Criterio del protocolo: AUC univariado de 0,70 o más se clasifica como señal alta (separación aceptable con una sola variable)."
+
+[umbral.auc_senal_media]
+valor = 0.60
+justificacion = "Criterio del protocolo: AUC univariado entre 0,60 y 0,70 se clasifica como señal media."
+
+[umbral.auc_senal_baja]
+valor = 0.55
+justificacion = "Criterio del protocolo: un AUC univariado menor a 0,55 se clasifica como señal baja salvo que el criterio clínico la sostenga."
+
+[umbral.incremento_auc_minimo]
+valor = 0.005
+justificacion = "Mejora mínima del AUC en 2023 sobre el modelo de edad y sexo para considerar que la variable aporta. Con millones de egresos 0,005 es estable y está por debajo de la variación anual de los AUC univariados."
+
+[umbral.or_relevante]
+valor = 1.2
+justificacion = "Un OR de 1,2 o más (o 1/1,2 o menos) se considera relevante en práctica clínica. Con N de millones, el p-valor no discrimina y se decide por tamaño de efecto e intervalo."
+
+[umbral.importancia_permutacion_min]
+valor = 0.001
+justificacion = "Caída mínima de AUC al permutar una variable para considerarla útil en el modelo multivariado de confirmación (2023)."
+
+# --- Proxy de hospital (regla R2) ---------------------------------------------
+[umbral.proxy_hospital_alto]
+valor = 0.30
+justificacion = "V de Cramér (o raíz de eta cuadrado) con COD_HOSPITAL de 0,30 o más: asociación de tamaño mediano a grande según la escala de Cohen (0,10 pequeño, 0,30 mediano, 0,50 grande). La variable identifica al hospital de forma indirecta (R2)."
+
+[umbral.proxy_hospital_moderado]
+valor = 0.15
+justificacion = "Entre 0,15 y 0,30 la asociación con el hospital es de tamaño pequeño a mediano; la variable pasa a condicional y exige verificación (Fase 1, sección 5.3)."
+
+# --- Identificador, historial y traslados --------------------------------------
+[umbral.id_quiebre_ratio]
+valor = 0.10
+justificacion = "Un par de años consecutivos tiene quiebre de identificador si su traslape de IDs es menor a 10 % de la mediana del traslape de los demás pares. Es independiente de la escala (sirve en extracto y en datos completos)."
+
+[umbral.historial_factibilidad_minima]
+valor = 0.80
+justificacion = "Decisión 1: el historial de 12 meses solo se considera viable en un año si al menos 80 % de los episodios tiene identificador válido y ventana completa."
+
+[umbral.enlace_traslado_minimo]
+valor = 0.30
+justificacion = "Decisión 13: el rastreo de traslados salientes solo se justifica si al menos 30 % de los traslados se enlaza con un ingreso posterior en 30 días dentro de un espacio de identificadores consistente."
+
+[umbral.autorreferencia_procedencia_max]
+valor = 0.05
+justificacion = "HOSPPROCEDENCIA define el traslado entrante; si más de 5 % de sus valores no vacíos apunta al propio hospital, la variable está mal operacionalizada y no puede definir la cohorte."
+
+[umbral.volumen_minimo_egresos]
+valor = 500
+justificacion = "Propuesta pendiente de la decisión 6 (Fase 1, fase1_spec.json): 500 egresos por hospital."
+
+[umbral.muertes_esperadas_minimas]
+valor = 10
+justificacion = "Propuesta pendiente de la decisión 6 (Fase 1, fase1_spec.json): 10 muertes esperadas por hospital."
+
+[umbral.volumen_grid_egresos]
+valor = [200, 500, 1000]
+justificacion = "Cuadrícula de sensibilidad de la decisión 6 indicada en la Fase 2 (sección 5.5)."
+
+[umbral.volumen_grid_muertes]
+valor = [5, 10, 20]
+justificacion = "Cuadrícula de sensibilidad de la decisión 6 indicada en la Fase 2 (sección 5.5)."
+
+[umbral.hospital_pediatrico_prop]
+valor = 0.50
+justificacion = "Decisión 5: un hospital se considera pediátrico o monográfico si más de la mitad de sus egresos son menores de 18 años."
+
+[umbral.estrato_mortalidad_relativa_max]
+valor = 0.25
+justificacion = "Decisión 15: si la mortalidad cruda de un estrato (actividad ambulatoria o estadía de 0 días) es menos de 0,25 veces la del resto, el estrato diluye el O/E y se propone sacarlo del modelo de mortalidad."
+
+[umbral.cola_estadia_perdida_max]
+valor = 0.01
+justificacion = "Decisión 7: la regla de estadías largas no debería afectar a más de 1 % de los sobrevivientes del período de definición (2019 a 2022)."
+
+# --- Parámetros de datos y reglas de calidad -------------------------------------
+[umbral.edad_minima]
+valor = 0
+justificacion = "Una edad negativa es imposible (Fase 2, sección 4.1)."
+
+[umbral.edad_maxima]
+valor = 110
+justificacion = "Fase 2, sección 4.1: edades calculadas sobre 110 años se consideran errores de registro."
+
+[umbral.estancia_maxima_dias]
+valor = 365
+justificacion = "Una estadía de más de un año se revisa como posible error de fecha (plan de la Fase 2, Tarea 5)."
+
+[umbral.edad_adulto]
+valor = 18
+justificacion = "Decisión 5: población de 18 años o más."
+
+[umbral.id_largo_minimo]
+valor = 5
+justificacion = "Largo mínimo esperado de un identificador encriptado numérico. Los identificadores con menos dígitos son atípicos frente al largo modal de 6 a 9 dígitos y pueden provenir de una conversión numérica que perdió ceros iniciales."
+
+[umbral.edad_neonato_max]
+valor = 1
+justificacion = "Un neonato tiene hasta 28 días; se tolera hasta 1 año cumplido por diferencias de registro. Un GRD de recién nacido (MDC 15) con una edad mayor es una inconsistencia."
+
+[umbral.ventana_historial_dias]
+valor = 365
+justificacion = "Decisión 1: hospitalizaciones de los últimos 12 meses."
+
+[umbral.ventanas_traslado_dias]
+valor = [1, 2, 7, 30]
+justificacion = "Decisiones 13 y 16: ventanas de enlace de traslados indicadas en la Fase 2 (sección 5.4)."
+
+[umbral.cola_estadia_percentiles]
+valor = [0.99, 0.995, 0.999]
+justificacion = "Decisión 7: percentiles candidatos para la regla de estadías largas."
+
+# --- Indicador (Fase 1, fase1_spec.json) -------------------------------------------
+[umbral.z_95]
+valor = 1.959964
+justificacion = "Límite de control al 95 % del embudo (Fase 1, fase1_spec.json)."
+
+[umbral.z_998]
+valor = 3.090232
+justificacion = "Límite de control al 99,8 % del embudo (Fase 1, fase1_spec.json)."
+
+[umbral.winsor]
+valor = 0.10
+justificacion = "Winsorización de 10 % en cada cola para estimar la sobredispersión de Spiegelhalter (2005); valor de la Fase 1."
+
+# --- Conciliación y muestreo ---------------------------------------------------------
+[umbral.conciliacion_z]
+valor = 3.0
+justificacion = "En el extracto (5,16 % no aleatorio) las proporciones se comparan con el diccionario usando 3 errores estándar binomiales; el resultado es indicativo, no una prueba."
+
+[umbral.conciliacion_dif_relevante_pp]
+valor = 0.5
+justificacion = "Agregado después de la primera corrida sobre extractos, sin cambiar la regla de estado por z. Con extractos no aleatorios y N de cientos de miles, casi cualquier diferencia supera 3 errores estándar; las diferencias menores a 0,5 puntos porcentuales se rotulan como despreciables en la magnitud."
+
+[umbral.nivel_confianza]
+valor = 0.95
+justificacion = "Nivel de los intervalos de confianza. Los IC ignoran el agrupamiento por paciente y por hospital y se rotulan como indicativos."
+
+[umbral.max_filas_asociacion_por_anio]
+valor = 0
+justificacion = "0 = sin muestreo: los análisis de asociación y los modelos usan TODOS los egresos de la cohorte D de cada año (base completa). Un valor positivo activa una muestra aleatoria reproducible (semilla fija) de hasta ese número de egresos por año, solo como opción para equipos con poca memoria."
+
+[umbral.cardinalidad_max_categorica]
+valor = 60
+justificacion = "Las variables categóricas con más categorías se agrupan: se conservan las 60 más frecuentes y el resto pasa a OTROS, para evitar celdas dispersas en las medidas de asociación."
+
+[umbral.topk_max]
+valor = 15
+justificacion = "Cantidad máxima de categorías que se listan en las tablas de frecuencia por columna."

@@ -1,0 +1,7 @@
+anio,n_hospitales,n_fuera_catalogo,n_pediatricos,n_hospitales_con_cohorte,n_cumplen_volumen,prop_celdas_bajo_minimo
+2019,65,0,3,63,18,0.015873
+2020,65,0,3,65,25,0.046154
+2021,65,0,3,65,27,0.046154
+2022,65,0,3,64,22,0.03125
+2023,68,0,3,67,23,0.029851
+2024,72,1,3,,,

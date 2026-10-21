@@ -1,0 +1,83 @@
+periodo,paso,descripcion,n,prop_del_total,alcance
+2019,TOTAL,Egresos leídos,1151475,1,estructura
+2019,EX01,GRD no agrupable,566,0.000492,estructura
+2019,EX02,Recién nacidos (MDC 15),27695,0.024052,estructura
+2019,EX03_SIN_DESENLACE,"MDC 14 sin comorbilidades con mapeo de tres caracteres, sin mirar el desenlace (cota superior de EX03)",98561,0.085595,estructura
+2019,AMBULATORIA,Actividad distinta de hospitalización (se solapa con las demás),264848,0.230008,estructura
+2019,EX03_PIPELINE,"Obstétricos sin comorbilidades, solo sobrevivientes (mapeo de tres caracteres)",98005,0.085113,resultado
+2019,COHORTE_DURA_PIPELINE,Cohorte dura con la definición del pipeline,1025209,0.890344,resultado
+2019,ESTANCIA_CERO,Estadía de 0 días (se solapa con las demás),252823,0.219564,resultado
+2019,FALLECIDOS,Fallecidos (se solapan con las demás),29587,0.025695,resultado
+2019,CENSURADOS,Censurados por tipo de alta,55696,0.048369,resultado
+2019,COHORTE_ESTANCIA_PIPELINE,"Cohorte dura del pipeline sin estadía de 0 días, actividad ambulatoria ni fallecidos",695398,0.603919,resultado
+2019,COHORTE_ESTANCIA_PIPELINE_SIN_CENSURADOS,Lectura alternativa: la cohorte anterior sin censurados,662642,0.575472,resultado
+2020,TOTAL,Egresos leídos,781912,1,estructura
+2020,EX01,GRD no agrupable,191,0.000244,estructura
+2020,EX02,Recién nacidos (MDC 15),24678,0.031561,estructura
+2020,EX03_SIN_DESENLACE,"MDC 14 sin comorbilidades con mapeo de tres caracteres, sin mirar el desenlace (cota superior de EX03)",79781,0.102033,estructura
+2020,AMBULATORIA,Actividad distinta de hospitalización (se solapa con las demás),79637,0.101849,estructura
+2020,EX03_PIPELINE,"Obstétricos sin comorbilidades, solo sobrevivientes (mapeo de tres caracteres)",79173,0.101256,resultado
+2020,COHORTE_DURA_PIPELINE,Cohorte dura con la definición del pipeline,677870,0.866939,resultado
+2020,ESTANCIA_CERO,Estadía de 0 días (se solapa con las demás),109087,0.139513,resultado
+2020,FALLECIDOS,Fallecidos (se solapan con las demás),29942,0.038293,resultado
+2020,CENSURADOS,Censurados por tipo de alta,46782,0.05983,resultado
+2020,COHORTE_ESTANCIA_PIPELINE,"Cohorte dura del pipeline sin estadía de 0 días, actividad ambulatoria ni fallecidos",537547,0.687478,resultado
+2020,COHORTE_ESTANCIA_PIPELINE_SIN_CENSURADOS,Lectura alternativa: la cohorte anterior sin censurados,495660,0.633908,resultado
+2021,TOTAL,Egresos leídos,816909,1,estructura
+2021,EX01,GRD no agrupable,365,0.000447,estructura
+2021,EX02,Recién nacidos (MDC 15),22904,0.028037,estructura
+2021,EX03_SIN_DESENLACE,"MDC 14 sin comorbilidades con mapeo de tres caracteres, sin mirar el desenlace (cota superior de EX03)",63239,0.077413,estructura
+2021,AMBULATORIA,Actividad distinta de hospitalización (se solapa con las demás),102931,0.126001,estructura
+2021,EX03_PIPELINE,"Obstétricos sin comorbilidades, solo sobrevivientes (mapeo de tres caracteres)",62910,0.07701,resultado
+2021,COHORTE_DURA_PIPELINE,Cohorte dura con la definición del pipeline,730730,0.894506,resultado
+2021,ESTANCIA_CERO,Estadía de 0 días (se solapa con las demás),133815,0.163806,resultado
+2021,FALLECIDOS,Fallecidos (se solapan con las demás),31965,0.039129,resultado
+2021,CENSURADOS,Censurados por tipo de alta,57022,0.069802,resultado
+2021,COHORTE_ESTANCIA_PIPELINE,"Cohorte dura del pipeline sin estadía de 0 días, actividad ambulatoria ni fallecidos",562789,0.688925,resultado
+2021,COHORTE_ESTANCIA_PIPELINE_SIN_CENSURADOS,Lectura alternativa: la cohorte anterior sin censurados,511685,0.626367,resultado
+2022,TOTAL,Egresos leídos,932839,1,estructura
+2022,EX01,GRD no agrupable,749,0.000803,estructura
+2022,EX02,Recién nacidos (MDC 15),25296,0.027117,estructura
+2022,EX03_SIN_DESENLACE,"MDC 14 sin comorbilidades con mapeo de tres caracteres, sin mirar el desenlace (cota superior de EX03)",69936,0.074971,estructura
+2022,AMBULATORIA,Actividad distinta de hospitalización (se solapa con las demás),154767,0.16591,estructura
+2022,EX03_PIPELINE,"Obstétricos sin comorbilidades, solo sobrevivientes (mapeo de tres caracteres)",69623,0.074636,resultado
+2022,COHORTE_DURA_PIPELINE,Cohorte dura con la definición del pipeline,837171,0.897444,resultado
+2022,ESTANCIA_CERO,Estadía de 0 días (se solapa con las demás),185026,0.198347,resultado
+2022,FALLECIDOS,Fallecidos (se solapan con las demás),27379,0.02935,resultado
+2022,CENSURADOS,Censurados por tipo de alta,53319,0.057158,resultado
+2022,COHORTE_ESTANCIA_PIPELINE,"Cohorte dura del pipeline sin estadía de 0 días, actividad ambulatoria ni fallecidos",618743,0.66329,resultado
+2022,COHORTE_ESTANCIA_PIPELINE_SIN_CENSURADOS,Lectura alternativa: la cohorte anterior sin censurados,571139,0.612259,resultado
+2023,TOTAL,Egresos leídos,1039587,1,estructura
+2023,EX01,GRD no agrupable,1712,0.001647,estructura
+2023,EX02,Recién nacidos (MDC 15),24031,0.023116,estructura
+2023,EX03_SIN_DESENLACE,"MDC 14 sin comorbilidades con mapeo de tres caracteres, sin mirar el desenlace (cota superior de EX03)",66195,0.063674,estructura
+2023,AMBULATORIA,Actividad distinta de hospitalización (se solapa con las demás),193544,0.186174,estructura
+2023,EX03_PIPELINE,"Obstétricos sin comorbilidades, solo sobrevivientes (mapeo de tres caracteres)",65896,0.063387,resultado
+2023,COHORTE_DURA_PIPELINE,Cohorte dura con la definición del pipeline,947948,0.911851,resultado
+2023,ESTANCIA_CERO,Estadía de 0 días (se solapa con las demás),223665,0.215148,resultado
+2023,FALLECIDOS,Fallecidos (se solapan con las demás),25136,0.024179,resultado
+2023,CENSURADOS,Censurados por tipo de alta,64705,0.062241,resultado
+2023,COHORTE_ESTANCIA_PIPELINE,"Cohorte dura del pipeline sin estadía de 0 días, actividad ambulatoria ni fallecidos",690964,0.664652,resultado
+2023,COHORTE_ESTANCIA_PIPELINE_SIN_CENSURADOS,Lectura alternativa: la cohorte anterior sin censurados,632846,0.608748,resultado
+2024,TOTAL,Egresos leídos,1085813,1,estructura
+2024,EX01,GRD no agrupable,1489,0.001371,estructura
+2024,EX02,Recién nacidos (MDC 15),22324,0.02056,estructura
+2024,EX03_SIN_DESENLACE,"MDC 14 sin comorbilidades con mapeo de tres caracteres, sin mirar el desenlace (cota superior de EX03)",56509,0.052043,estructura
+2024,AMBULATORIA,Actividad distinta de hospitalización (se solapa con las demás),212041,0.195283,estructura
+2019-2023,TOTAL,Egresos leídos,4722722,1,estructura
+2019-2023,EX01,GRD no agrupable,3583,0.000759,estructura
+2019-2023,EX02,Recién nacidos (MDC 15),124604,0.026384,estructura
+2019-2023,EX03_SIN_DESENLACE,"MDC 14 sin comorbilidades con mapeo de tres caracteres, sin mirar el desenlace (cota superior de EX03)",377712,0.079978,estructura
+2019-2023,AMBULATORIA,Actividad distinta de hospitalización (se solapa con las demás),795727,0.168489,estructura
+2019-2023,EX03_PIPELINE,"Obstétricos sin comorbilidades, solo sobrevivientes (mapeo de tres caracteres)",375607,0.079532,resultado
+2019-2023,COHORTE_DURA_PIPELINE,Cohorte dura con la definición del pipeline,4218928,0.893326,resultado
+2019-2023,ESTANCIA_CERO,Estadía de 0 días (se solapa con las demás),904416,0.191503,resultado
+2019-2023,FALLECIDOS,Fallecidos (se solapan con las demás),144009,0.030493,resultado
+2019-2023,CENSURADOS,Censurados por tipo de alta,277524,0.058764,resultado
+2019-2023,COHORTE_ESTANCIA_PIPELINE,"Cohorte dura del pipeline sin estadía de 0 días, actividad ambulatoria ni fallecidos",3105441,0.657553,resultado
+2019-2023,COHORTE_ESTANCIA_PIPELINE_SIN_CENSURADOS,Lectura alternativa: la cohorte anterior sin censurados,2873972,0.608541,resultado
+2019-2024,TOTAL,Egresos leídos,5808535,1,estructura
+2019-2024,EX01,GRD no agrupable,5072,0.000873,estructura
+2019-2024,EX02,Recién nacidos (MDC 15),146928,0.025295,estructura
+2019-2024,EX03_SIN_DESENLACE,"MDC 14 sin comorbilidades con mapeo de tres caracteres, sin mirar el desenlace (cota superior de EX03)",434221,0.074756,estructura
+2019-2024,AMBULATORIA,Actividad distinta de hospitalización (se solapa con las demás),1007768,0.173498,estructura

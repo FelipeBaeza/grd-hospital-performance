@@ -1,0 +1,495 @@
+diff --git a/eda/calidad.py b/eda/calidad.py
+index 4242666..208920b 100644
+--- a/eda/calidad.py
++++ b/eda/calidad.py
+@@ -368,9 +368,13 @@ def solapes(frames: pl.DataFrame) -> pl.DataFrame:
+     f = frames.filter(pl.col("ing").is_not_null() & pl.col("alta").is_not_null()).sort(["id", "ing", "alta"])
+     if f.height == 0:
+         return pl.DataFrame(schema={"anio": pl.Int64, "n_solapes": pl.Int64, "n_evaluados": pl.Int64, "n_duplicados_exactos": pl.Int64})
++    # Las filas ya vienen ordenadas por id: «el episodio anterior del mismo ID» es la fila anterior si comparte id. Así se evitan las ventanas anidadas
++    # (``.over("id")`` dentro de ``.over("id")``), que con millones de IDs distintos crecen de forma casi cuadrática. Mismo resultado, en tiempo lineal.
++    mismo_id = (pl.col("id") == pl.col("id").shift(1)).fill_null(False)
++    f = f.with_columns(pl.col("alta").cum_max().over("id").alias("_cum_max_alta"))
+     f = f.with_columns(
+-        pl.col("alta").cum_max().over("id").shift(1).over("id").alias("_prev_max_alta"),
+-        ((pl.col("ing") == pl.col("ing").shift(1).over("id")) & (pl.col("alta") == pl.col("alta").shift(1).over("id"))).fill_null(False).alias("_dup"),
++        pl.when(mismo_id).then(pl.col("_cum_max_alta").shift(1)).otherwise(None).alias("_prev_max_alta"),
++        (mismo_id & (pl.col("ing") == pl.col("ing").shift(1)) & (pl.col("alta") == pl.col("alta").shift(1))).fill_null(False).alias("_dup"),
+     )
+     f = f.with_columns(((pl.col("ing") < pl.col("_prev_max_alta")) & ~pl.col("_dup")).fill_null(False).alias("_solapa"))
+     return (
+@@ -408,18 +412,24 @@ def escanear_rut(ctx: Contexto, regla: Regla) -> tuple[pl.DataFrame, dict[int, t
+     por_anio: dict[int, tuple[int, int]] = {}
+     for anio in ctx.fuente.anios():
+         usa_regla = regla_permitida(regla, anio, ctx.cortafuegos)
+-        df = ctx.lector.leer(anio, None, proposito="calidad", tarea=TAREA, reglas=[regla.id] if usa_regla else [])
++        reglas_uso = [regla.id] if usa_regla else []
++        if ctx.lector.cache is not None:
++            # base completa: las 129 columnas por bloques, para no tenerlas todas en memoria a la vez
++            bloques = ctx.lector.leer_por_bloques(anio, None, proposito="calidad", tarea=TAREA, reglas=reglas_uso)
++        else:
++            bloques = iter([ctx.lector.leer(anio, None, proposito="calidad", tarea=TAREA, reglas=reglas_uso)])
+         total = 0
+         evaluados = 0
+-        for col in df.columns:
+-            s = df[col]
+-            evaluados += s.len() - s.null_count()
+-            n = int(df.select(pl.col(col).str.contains(RE_RUT_POLARS).sum()).item() or 0)
+-            if n:
+-                filas.append({"columna": col, "anio": anio, "n": n})
+-                total += n
++        for df in bloques:
++            for col in df.columns:
++                s = df[col]
++                evaluados += s.len() - s.null_count()
++                n = int(df.select(pl.col(col).str.contains(RE_RUT_POLARS).sum()).item() or 0)
++                if n:
++                    filas.append({"columna": col, "anio": anio, "n": n})
++                    total += n
++            del df
+         por_anio[anio] = (total, evaluados)
+-        del df
+     t = pl.DataFrame(filas, schema={"columna": pl.String, "anio": pl.Int64, "n": pl.Int64}).sort(["columna", "anio"])
+     return t, por_anio
+ 
+diff --git a/eda/descripcion.py b/eda/descripcion.py
+index 262fe01..acc8de4 100644
+--- a/eda/descripcion.py
++++ b/eda/descripcion.py
+@@ -257,6 +257,21 @@ def analizar_anio(df: pl.DataFrame, anio: int, protegidas: frozenset[str]) -> tu
+     """Perfila las 129 columnas de un año y calcula conteos auxiliares (sin guardar filas)."""
+     acc = AcumuladoAnio()
+     conteos: dict[str, Counter] = {}
++    perfilar_columnas(df, anio, protegidas, acc, conteos)
++    analizar_resto(df, anio, protegidas, acc)
++    return acc, conteos
++
++
++COLS_RESTO = (
++    CATEGORICAS_DERIVA
++    + ("FECHA_NACIMIENTO", "FECHA_INGRESO", "FECHAALTA")
++    + tuple(f"{t}{k}" for k in range(1, 10) for t in ("FECHATRASLADO", "SERVICIOTRASLADO"))
++)
++"""Columnas que necesita ``analizar_resto`` (deriva de categorías, histogramas y pares de traslado)."""
++
++
++def perfilar_columnas(df: pl.DataFrame, anio: int, protegidas: frozenset[str], acc: "AcumuladoAnio", conteos: dict[str, Counter]) -> None:
++    """Perfil de cada columna de ``df`` (puede ser un bloque de columnas): agrega al acumulado y a los conteos."""
+     for col in df.columns:
+         fila, top, conteo = perfil_columna(df, col, anio, col in protegidas)
+         acc.perfil.append(fila)
+@@ -264,6 +279,22 @@ def analizar_anio(df: pl.DataFrame, anio: int, protegidas: frozenset[str]) -> tu
+         if conteo is not None:
+             conteos[col] = conteo
+ 
++
++def analizar_anio_por_bloques(lector, anio: int, protegidas: frozenset[str], tarea: str, bloque: int = 16) -> tuple["AcumuladoAnio", dict[str, Counter]]:
++    """Igual que ``analizar_anio`` pero sin tener las 129 columnas a la vez: perfila por bloques de columnas y lee aparte
++    solo las columnas que necesitan la deriva, los histogramas y los pares. Da exactamente las mismas cifras."""
++    acc = AcumuladoAnio()
++    conteos: dict[str, Counter] = {}
++    for df in lector.leer_por_bloques(anio, None, bloque=bloque, proposito="estructura", tarea=tarea):
++        perfilar_columnas(df, anio, protegidas, acc, conteos)
++        del df
++    df = lector.leer(anio, list(COLS_RESTO), proposito="estructura", tarea=tarea)
++    analizar_resto(df, anio, protegidas, acc)
++    return acc, conteos
++
++
++def analizar_resto(df: pl.DataFrame, anio: int, protegidas: frozenset[str], acc: "AcumuladoAnio") -> None:
++    """Deriva de categorías, histogramas de edad y estadía y pares fecha-servicio de traslados de un año."""
+     # categorías para la deriva (la columna de resultado del año expuesto no se tabula)
+     for col in CATEGORICAS_DERIVA:
+         if col in protegidas:
+@@ -299,7 +330,6 @@ def analizar_anio(df: pl.DataFrame, anio: int, protegidas: frozenset[str]) -> tu
+                 "n_solo_servicio": int((f.is_null() & s.is_not_null()).sum()),
+             }
+         )
+-    return acc, conteos
+ 
+ 
+ # --------------------------------------------------------------------------- diccionario
+@@ -508,8 +538,14 @@ def calcular(ctx: Contexto) -> dict[str, pl.DataFrame]:
+     conteos_por_anio: dict[int, dict[str, Counter]] = {}
+     anios = ctx.fuente.anios()
+     for anio in anios:
+-        df = ctx.lector.leer(anio, None, proposito="estructura", tarea=TAREA)
+-        acc, conteos = analizar_anio(df, anio, ctx.cortafuegos.columnas_protegidas(anio))
++        protegidas = ctx.cortafuegos.columnas_protegidas(anio)
++        if ctx.lector.cache is not None:
++            # base completa: por bloques de columnas, para no tener las 129 columnas en memoria a la vez
++            df = None
++            acc, conteos = analizar_anio_por_bloques(ctx.lector, anio, protegidas, TAREA)
++        else:
++            df = ctx.lector.leer(anio, None, proposito="estructura", tarea=TAREA)
++            acc, conteos = analizar_anio(df, anio, protegidas)
+         acc_perfil += acc.perfil
+         acc_top += acc.top
+         acc_cat += acc.categorias
+diff --git a/eda/lector.py b/eda/lector.py
+index f99b45d..18984a2 100644
+--- a/eda/lector.py
++++ b/eda/lector.py
+@@ -8,12 +8,23 @@ Garantías:
+ - Una línea con un número de campos distinto del esperado se RECHAZA y se registra; se verifica que
+   ``leídas + rechazadas = líneas de datos``.
+ - Todo acceso pasa por el cortafuegos del año expuesto y queda registrado.
++
++Memoria (modo completo): con la base completa (~5,8 millones de egresos, ~3 GB de texto) releer el texto en cada
++llamada obliga a parsear el archivo entero y a tener muchas columnas como texto a la vez. Por eso, con la fuente
++``completo`` el lector convierte UNA vez cada archivo anual a Parquet (capa Bronce, todo como texto, mismas filas y
++mismo orden) en modo streaming, sin cargar el archivo en memoria, y desde ahí lee solo las columnas pedidas. El
++archivo original no se modifica (R4). La caché se guarda junto a los datos (``<data-root>/_cache_parquet_fase2``),
++nunca en el repositorio, y su nombre incluye la huella SHA-256 del archivo de origen: si el archivo cambia, se
++regenera. ``FASE2_CACHE_PARQUET`` permite elegir otra carpeta o desactivarla (``0``).
+ """
+ 
+ from __future__ import annotations
+ 
+ import hashlib
+ import io
++import json
++import os
++import tempfile
+ from collections import Counter
+ from dataclasses import dataclass, field
+ from pathlib import Path
+@@ -35,6 +46,22 @@ class ArchivoNoEncontrado(FileNotFoundError):
+ 
+ 
+ BOM_UTF8 = b"\xef\xbb\xbf"
++VERSION_CACHE = 1
++"""Versión del formato de la caché Parquet: si cambia la forma de convertir, se regeneran todos los archivos."""
++
++
++def carpeta_cache(fuente: "Fuente") -> Path | None:
++    """Carpeta de la caché Parquet de una fuente, o ``None`` si no se usa.
++
++    Por defecto solo se usa con la fuente ``completo`` y vive en ``<raíz de datos>/_cache_parquet_fase2``. La variable de
++    entorno ``FASE2_CACHE_PARQUET`` la redirige a otra carpeta, o la desactiva con ``0``.
++    """
++    env = os.environ.get("FASE2_CACHE_PARQUET")
++    if env is not None:
++        return None if env.strip() in ("", "0") else Path(env)
++    if fuente.etiqueta != "completo":
++        return None
++    return fuente.raiz / "_cache_parquet_fase2"
+ 
+ 
+ @dataclass(frozen=True)
+@@ -217,18 +244,67 @@ def escanear_archivo(ruta: Path | str, n_campos_esperado: int = esquema.N_COLUMN
+ class Lector:
+     """Lee columnas de los archivos anuales aplicando el cortafuegos de 2024."""
+ 
+-    def __init__(self, fuente: Fuente, cortafuegos: Cortafuegos | None = None) -> None:
++    def __init__(self, fuente: Fuente, cortafuegos: Cortafuegos | None = None, cache: Path | None | str = "auto") -> None:
+         self.fuente = fuente
+         self.cortafuegos = cortafuegos or Cortafuegos()
+         self._escaneos: dict[int, EscaneoArchivo] = {}
+         self.contabilidad: dict[int, dict[str, int]] = {}
++        self.cache: Path | None = carpeta_cache(fuente) if cache == "auto" else (Path(cache) if cache else None)
++        self._parquets: dict[int, Path] = {}
+ 
+     # -- escaneo -------------------------------------------------------------------
+     def escaneo(self, anio: int) -> EscaneoArchivo:
+         if anio not in self._escaneos:
+-            self._escaneos[anio] = escanear_archivo(self.fuente.archivos[anio])
++            self._escaneos[anio] = self._escaneo_con_cache(anio)
+         return self._escaneos[anio]
+ 
++    def _escaneo_con_cache(self, anio: int) -> EscaneoArchivo:
++        """Sin caché, escanea. Con caché, reutiliza el escaneo guardado si la huella SHA-256 del archivo no cambió."""
++        ruta = self.fuente.archivos[anio]
++        if self.cache is None:
++            return escanear_archivo(ruta)
++        sha = sha256_archivo(ruta)
++        json_ruta = self.cache / f"escaneo_{anio}_{sha[:16]}_v{VERSION_CACHE}.json"
++        if json_ruta.is_file():
++            datos = json.loads(json_ruta.read_text(encoding="utf8"))
++            datos["dist_campos"] = {int(k): int(v) for k, v in datos["dist_campos"].items()}
++            esc = EscaneoArchivo(**datos)
++            if esc.sha256 == sha and esc.nombre == ruta.name:
++                return esc
++        esc = escanear_archivo(ruta)
++        self.cache.mkdir(parents=True, exist_ok=True)
++        tmp = json_ruta.with_suffix(".tmp")
++        tmp.write_text(json.dumps(esc.__dict__, ensure_ascii=False), encoding="utf8")
++        tmp.replace(json_ruta)
++        return esc
++
++    def parquet(self, anio: int) -> Path:
++        """Archivo Parquet (capa Bronce) del año: se crea la primera vez en streaming, con todo como texto."""
++        if anio in self._parquets:
++            return self._parquets[anio]
++        assert self.cache is not None
++        esc = self.escaneo(anio)
++        destino = self.cache / f"bronce_{anio}_{esc.sha256[:16]}_v{VERSION_CACHE}.parquet"
++        if destino.is_file():
++            try:
++                n = pl.scan_parquet(destino).select(pl.len()).collect().item()
++            except Exception:
++                n = -1
++            if n == esc.leidas_esperadas:
++                self._parquets[anio] = destino
++                return destino
++            destino.unlink()
++        self.cache.mkdir(parents=True, exist_ok=True)
++        convertir_a_parquet(self.fuente.archivos[anio], esc, destino)
++        self._parquets[anio] = destino
++        return destino
++
++    def preparar_cache(self, anios: Iterable[int] | None = None) -> list[Path]:
++        """Convierte de antemano los años pedidos (todos por defecto). No hace nada si la caché está desactivada."""
++        if self.cache is None:
++            return []
++        return [self.parquet(a) for a in (anios if anios is not None else self.fuente.anios())]
++
+     def escanear_todo(self) -> dict[int, EscaneoArchivo]:
+         return {a: self.escaneo(a) for a in self.fuente.anios()}
+ 
+@@ -265,7 +341,10 @@ class Lector:
+             raise EsquemaInvalido(f"el encabezado de {anio} tiene nombres de columna repetidos")
+ 
+         idxs = sorted({esquema.POS[c] for c in columnas})
+-        df = self._parsear(self.fuente.archivos[anio], esc, idxs)
++        if self.cache is not None:
++            df = pl.read_parquet(self.parquet(anio), columns=idxs)
++        else:
++            df = self._parsear(self.fuente.archivos[anio], esc, idxs)
+         # renombrar por posición al nombre canónico
+         renombre = {esc.encabezado[i]: esquema.COLUMNAS[i] for i in idxs if esc.encabezado[i] != esquema.COLUMNAS[i]}
+         if renombre:
+@@ -303,6 +382,23 @@ class Lector:
+             df = df.with_columns(pl.lit(int(anio), dtype=pl.Int32).alias("anio"))
+         return df
+ 
++    def leer_por_bloques(
++        self,
++        anio: int,
++        columnas: Sequence[str] | None = None,
++        *,
++        bloque: int = 16,
++        **kw,
++    ):
++        """Lee las columnas de un año en bloques de ``bloque`` columnas (en el orden pedido) y entrega cada bloque.
++
++        Sirve para recorrer las 129 columnas de un año de la base completa sin tenerlas todas en memoria a la vez.
++        Cada bloque pasa por el cortafuegos igual que ``leer``.
++        """
++        columnas = list(columnas) if columnas is not None else list(esquema.COLUMNAS)
++        for i in range(0, len(columnas), int(bloque)):
++            yield self.leer(anio, columnas[i:i + int(bloque)], **kw)
++
+     def leer_varios(
+         self,
+         anios: Iterable[int],
+@@ -334,3 +430,39 @@ class Lector:
+                 elif nro not in malas:
+                     buenas.append(linea)
+         return pl.read_csv(io.BytesIO(b"".join(buenas)), **opciones)
++
++
++# ------------------------------------------------------------------------------ caché
++def convertir_a_parquet(ruta: Path, esc: EscaneoArchivo, destino: Path) -> None:
++    """Convierte un archivo anual a Parquet sin cargarlo en memoria (motor streaming de Polars).
++
++    Se leen las mismas filas que ``Lector._parsear``: todo como texto, sin comillas, con BOM retirado y sin las líneas
++    con un número de campos distinto del esperado. El resultado se escribe primero en un archivo temporal y se renombra
++    al final, de modo que una conversión interrumpida nunca deja un Parquet incompleto con el nombre definitivo.
++    """
++    opciones = dict(separator="|", has_header=True, infer_schema=False, quote_char=None, encoding="utf8")
++    tmp = destino.with_name(destino.name + ".tmp")
++    limpio: Path | None = None
++    try:
++        origen = ruta
++        if esc.irregulares:
++            malas = set(esc.irregulares)
++            fd, nombre = tempfile.mkstemp(suffix=".txt", dir=destino.parent)
++            limpio = Path(nombre)
++            with os.fdopen(fd, "wb") as out, open(ruta, "rb") as f:
++                for nro, linea in enumerate(f, start=1):
++                    if nro == 1:
++                        out.write(linea[len(BOM_UTF8):] if linea.startswith(BOM_UTF8) else linea)
++                    elif nro not in malas:
++                        out.write(linea)
++            origen = limpio
++        pl.scan_csv(origen, **opciones).sink_parquet(tmp, compression="zstd", row_group_size=100_000, maintain_order=True)
++        n = pl.scan_parquet(tmp).select(pl.len()).collect().item()
++        if n != esc.leidas_esperadas:
++            raise EsquemaInvalido(f"{ruta.name}: la conversión a Parquet dejó {n} filas y se esperaban {esc.leidas_esperadas}")
++        tmp.replace(destino)
++    finally:
++        if tmp.exists():
++            tmp.unlink()
++        if limpio is not None and limpio.exists():
++            limpio.unlink()
+diff --git a/tests/test_memoria_completo.py b/tests/test_memoria_completo.py
+new file mode 100644
+index 0000000..4917515
+--- /dev/null
++++ b/tests/test_memoria_completo.py
+@@ -0,0 +1,164 @@
++"""Modo de baja memoria para la base completa: caché Parquet del lector y lecturas por bloques de columnas.
++
++Lo que se prueba es que el camino de baja memoria da EXACTAMENTE los mismos datos y las mismas cifras que el camino original (texto completo en memoria):
++- el Parquet de la caché tiene las mismas filas, columnas y valores que la lectura del texto, también con BOM, fechas DD-MM-AAAA, la columna 2 renombrada y
++  líneas irregulares rechazadas;
++- el enmascarado del año expuesto y el registro del cortafuegos funcionan igual;
++- la caché se regenera si el archivo cambia y nunca deja un archivo a medias con el nombre definitivo;
++- la descripción por bloques (Tarea 4) y el escaneo de RUT por bloques (Tarea 5) dan las mismas tablas.
++"""
++
++from __future__ import annotations
++
++import os
++from pathlib import Path
++
++import polars as pl
++import pytest
++
++from eda import calidad, descripcion, esquema, lector
++from eda.contexto import Contexto
++from eda.cortafuegos import Cortafuegos
++from eda.lector import Fuente, Lector
++from sintetico import crear_fuente_sintetica, escribir_archivo, generar_anio
++
++
++@pytest.fixture(scope="module")
++def fuente_con_irregulares(tmp_path_factory) -> Fuente:
++    """Fuente sintética de seis años; 2020 trae dos líneas con un número de campos distinto del esperado."""
++    raiz = tmp_path_factory.mktemp("memoria")
++    f = crear_fuente_sintetica(raiz, n=600, semilla=11)
++    df = generar_anio(2020, n=600, semilla=11)
++    escribir_archivo(df, f.archivos[2020], lineas_extra=["campo|corto", "|".join(["x"] * 130)])
++    return f
++
++
++def _completo(f: Fuente) -> Fuente:
++    return Fuente(etiqueta="completo", raiz=f.raiz, archivos=dict(f.archivos))
++
++
++def test_carpeta_cache_por_defecto(fuente_con_irregulares, monkeypatch):
++    monkeypatch.delenv("FASE2_CACHE_PARQUET", raising=False)
++    assert lector.carpeta_cache(fuente_con_irregulares) is None  # el extracto no usa caché
++    assert lector.carpeta_cache(_completo(fuente_con_irregulares)) == fuente_con_irregulares.raiz / "_cache_parquet_fase2"
++    monkeypatch.setenv("FASE2_CACHE_PARQUET", "0")
++    assert lector.carpeta_cache(_completo(fuente_con_irregulares)) is None
++    monkeypatch.setenv("FASE2_CACHE_PARQUET", "/tmp/otra")
++    assert lector.carpeta_cache(fuente_con_irregulares) == Path("/tmp/otra")
++
++
++def test_parquet_igual_a_texto(fuente_con_irregulares, tmp_path):
++    sin = Lector(fuente_con_irregulares, Cortafuegos(), cache=None)
++    con = Lector(fuente_con_irregulares, Cortafuegos(), cache=tmp_path / "cache")
++    for anio in fuente_con_irregulares.anios():
++        a = sin.leer(anio, None, proposito="estructura")
++        b = con.leer(anio, None, proposito="estructura")
++        assert a.columns == b.columns == list(esquema.COLUMNAS)
++        assert a.equals(b), anio
++        assert con.contabilidad[anio] == sin.contabilidad[anio]
++        cols = ["DIAGNOSTICO3", "CIP_ENCRIPTADO", "FECHA_INGRESO"]
++        assert sin.leer(anio, cols, proposito="estructura").equals(con.leer(anio, cols, proposito="estructura"))
++    assert con.escaneo(2020).rechazadas == 2
++
++
++def test_enmascarado_y_registro_iguales(fuente_con_irregulares, tmp_path):
++    cols_res = ["TIPOALTA", "FECHAALTA"]
++    sin = Lector(fuente_con_irregulares, Cortafuegos(columnas_resultado=cols_res), cache=None)
++    con = Lector(fuente_con_irregulares, Cortafuegos(columnas_resultado=cols_res), cache=tmp_path / "c")
++    a = sin.leer(2024, ["COD_HOSPITAL", "TIPOALTA", "FECHAALTA"], proposito="estructura")
++    b = con.leer(2024, ["COD_HOSPITAL", "TIPOALTA", "FECHAALTA"], proposito="estructura")
++    assert a.equals(b)
++    assert sin.cortafuegos.registro().drop("secuencia").equals(con.cortafuegos.registro().drop("secuencia"))
++
++
++def test_cache_se_reutiliza_y_se_regenera(tmp_path):
++    raiz = tmp_path / "datos"
++    f = crear_fuente_sintetica(raiz, anios=(2019,), n=50, semilla=3)
++    cache = tmp_path / "cache"
++    l1 = Lector(f, Cortafuegos(), cache=cache)
++    p1 = l1.parquet(2019)
++    mtime = p1.stat().st_mtime_ns
++    l2 = Lector(f, Cortafuegos(), cache=cache)
++    assert l2.parquet(2019) == p1 and p1.stat().st_mtime_ns == mtime  # se reutiliza
++    # el archivo cambia: otra huella, otro Parquet, con los datos nuevos
++    escribir_archivo(generar_anio(2019, n=60, semilla=4), f.archivos[2019])
++    l3 = Lector(f, Cortafuegos(), cache=cache)
++    p3 = l3.parquet(2019)
++    assert p3 != p1
++    assert l3.leer(2019, ["COD_HOSPITAL"], proposito="estructura").height == 60
++    assert not list(cache.glob("*.tmp"))
++
++
++def test_parquet_danado_se_rehace(tmp_path):
++    f = crear_fuente_sintetica(tmp_path / "d", anios=(2019,), n=40, semilla=5)
++    cache = tmp_path / "cache"
++    p = Lector(f, Cortafuegos(), cache=cache).parquet(2019)
++    p.write_bytes(b"no es parquet")
++    l = Lector(f, Cortafuegos(), cache=cache)
++    assert l.leer(2019, ["COD_HOSPITAL"], proposito="estructura").height == 40
++
++
++def test_leer_por_bloques_cubre_todas_las_columnas(fuente_con_irregulares, tmp_path):
++    con = Lector(fuente_con_irregulares, Cortafuegos(), cache=tmp_path / "c")
++    bloques = list(con.leer_por_bloques(2021, None, bloque=16, proposito="estructura"))
++    assert [c for b in bloques for c in b.columns] == list(esquema.COLUMNAS)
++    assert pl.concat(bloques, how="horizontal").equals(con.leer(2021, None, proposito="estructura"))
++
++
++def test_descripcion_por_bloques_igual(fuente_con_irregulares, tmp_path):
++    con = Lector(fuente_con_irregulares, Cortafuegos(columnas_resultado=["TIPOALTA", "FECHAALTA"]), cache=tmp_path / "c")
++    for anio in (2019, 2024):
++        prot = con.cortafuegos.columnas_protegidas(anio)
++        acc_a, cont_a = descripcion.analizar_anio(con.leer(anio, None, proposito="estructura"), anio, prot)
++        acc_b, cont_b = descripcion.analizar_anio_por_bloques(con, anio, prot, "T04")
++        assert acc_a.perfil == acc_b.perfil
++        assert acc_a.top == acc_b.top
++        # value_counts no garantiza orden: la tarea ordena después, así que se compara como conjunto ordenado
++        def orden(filas):
++            return sorted(filas, key=lambda d: tuple(str(v) for v in d.values()))
++        assert orden(acc_a.categorias) == orden(acc_b.categorias)
++        assert orden(acc_a.hist_edad) == orden(acc_b.hist_edad) and orden(acc_a.hist_estancia) == orden(acc_b.hist_estancia)
++        assert acc_a.pares == acc_b.pares
++        assert cont_a == cont_b
++
++
++def test_tareas_4_y_5_iguales_con_y_sin_cache(fuente_con_irregulares, tmp_path, monkeypatch):
++    """Las tablas de las Tareas 4 y 5 son idénticas por el camino original y por el de baja memoria."""
++    monkeypatch.delenv("FASE2_CACHE_PARQUET", raising=False)
++    a = Contexto.crear("extracto", fuente=fuente_con_irregulares, dir_salida_base=tmp_path / "a")
++    b = Contexto.crear("extracto", fuente=fuente_con_irregulares, dir_salida_base=tmp_path / "b")
++    assert a.lector.cache is None
++    b.lector.cache = tmp_path / "cache"
++    for ctx in (a, b):
++        descripcion.ejecutar(ctx)
++        calidad.ejecutar(ctx)
++    for nombre in sorted(p.name for p in a.dir_tablas.glob("*.csv")):
++        assert (a.dir_tablas / nombre).read_bytes() == (b.dir_tablas / nombre).read_bytes(), nombre
++
++
++def _solapes_ventanas_anidadas(frames: pl.DataFrame) -> pl.DataFrame:
++    """Versión anterior de ``calidad.solapes`` (ventanas anidadas, casi cuadrática con millones de IDs): sirve de oráculo."""
++    f = frames.filter(pl.col("ing").is_not_null() & pl.col("alta").is_not_null()).sort(["id", "ing", "alta"])
++    f = f.with_columns(
++        pl.col("alta").cum_max().over("id").shift(1).over("id").alias("_prev_max_alta"),
++        ((pl.col("ing") == pl.col("ing").shift(1).over("id")) & (pl.col("alta") == pl.col("alta").shift(1).over("id"))).fill_null(False).alias("_dup"),
++    )
++    f = f.with_columns(((pl.col("ing") < pl.col("_prev_max_alta")) & ~pl.col("_dup")).fill_null(False).alias("_solapa"))
++    return f.group_by("anio").agg(
++        pl.col("_solapa").sum().alias("n_solapes"), pl.len().alias("n_evaluados"), pl.col("_dup").sum().alias("n_duplicados_exactos")
++    ).sort("anio")
++
++
++@pytest.mark.parametrize("semilla", [1, 2, 3])
++def test_solapes_lineal_igual_a_la_version_anterior(semilla):
++    import numpy as np
++
++    rng = np.random.default_rng(semilla)
++    n = 5000
++    ing = np.datetime64("2019-01-01") + rng.integers(0, 900, n).astype("timedelta64[D]")
++    alta = ing + rng.integers(0, 40, n).astype("timedelta64[D]")
++    frames = pl.DataFrame({"id": rng.integers(0, 1500, n).astype(str), "ing": ing.astype("datetime64[D]"), "alta": alta.astype("datetime64[D]"),
++                           "anio": rng.integers(2019, 2024, n)})
++    frames = pl.concat([frames, frames.head(200)])  # duplicados exactos
++    frames = frames.with_columns(pl.when(pl.int_range(pl.len()) % 97 == 0).then(None).otherwise(pl.col("alta")).alias("alta"))  # algunas altas nulas
++    assert calidad.solapes(frames).equals(_solapes_ventanas_anidadas(frames))
