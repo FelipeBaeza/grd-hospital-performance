@@ -1,0 +1,8 @@
+motivo,n_cifras,ids
+el alcance documentado incluye 2024; el desenlace de 2024 no se lee y no hay cota,27,C013; C014; C033; C034; C035; C036; C037; C038; C039; C040; C041; C042; C043; C044; C045; C046; C047; C049; C051; C052; C053; C106; C107; C109; C110; C111; C115
+la corrida no produjo la métrica,5,C087; C088; C099; C126; C127
+valor suprimido por tener menos de diez casos,4,C031; C080; C082; C085
+cifra con menos de diez casos: no se publica,1,C097
+definiciones distintas de la cohorte de adultos hospitalizados: la prevalencia de los scripts exploratorios no usa la cohorte de la variante C de la suite,1,C117
+la Fase 2 compara tres definiciones de cohorte y de prevalencia y dice que la cifra de la Fase 1 no coincide con ninguna cohorte medida; la variante de la suite no es la cohorte de los scripts exploratorios,1,C116
+la métrica de la suite cubre todas las columnas de diagnóstico y el documento solo los diez primeros campos,1,C089

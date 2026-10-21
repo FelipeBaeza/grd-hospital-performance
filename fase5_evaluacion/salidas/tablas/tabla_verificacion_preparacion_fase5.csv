@@ -1,0 +1,10 @@
+puerta,nombre,estado,detalle
+P1,Modelos y planes B intactos,PASS,9 archivos de la Fase 4 y 6 de los planes B con huella SHA-256 igual a su manifiesto
+P2,Protocolo pre-registrado,PASS,huella del protocolo registrada antes de la apertura: 5624bdae5dad1205…
+P3,2024 sin abrir,PASS,lecturas concedidas del desenlace de 2024 en el registro: 0; registro sin cambios desde el pre-registro: sí
+P4,Cohortes D y E reproducen 2023,PASS,"mortalidad 568,737 y estadía 519,833 egresos, con los mismos identificadores que las matrices de la Fase 3"
+P5,Embudo validado con hospitales simulados,PASS,"sin diferencia real quedan fuera del 95 %: 0.051 (esperado cerca de 0,05) y del 99,8 %: 0.0023 (esperado cerca de 0,002)"
+P6,Ensayo general con 2023,PASS,todas las tablas de la evaluación se generaron con 2023
+P7,Privacidad de las salidas,PASS,RUT: 0; fechas completas: 0; celdas de 1 a 9 casos: 0
+P8,Pruebas automáticas,PASS,"15 pasaron, 0 fallaron"
+A,Autorización de apertura,PENDIENTE,falta la autorización escrita del profesor guía

@@ -1,0 +1,3 @@
+comparacion,hospitales,spearman,dif_abs_media,dif_abs_max,hosp_dif_mayor_005,hosp_dif_mayor_010
+Solo adultos (propuesta) vs Adultos + menores de 18,65,0.9993006993006992,0.002293261313839416,0.008782621079007402,0,0
+Solo adultos (propuesta) vs Adultos + menores + recién nacidos,65,0.9994755244755245,0.0020107926330045823,0.00859010268354965,0,0

@@ -1,0 +1,378 @@
+HOSPITALES,
+101100,Hospital Dr. Juan Noé Crevanni (Arica)
+101203,Clínica Hebe
+101212,Clínica San Agustín
+101213,Clínica San José
+101215,Complejo Penitenciario
+101237,Clínica Dr. Héctor Sánchez
+102100,Hospital Dr. Ernesto Torres Galdames (Iquique)
+102200,Clínica Iquique
+102201,Clínica Tarapacá
+102220,Clínica Coposa Cía. Minera Doña Inés de Collahuasi
+102221,Clínica Establecimiento Penitenciario Alto Hospicio
+103100,Hospital Dr. Leonardo Guzmán (Antofagasta)
+103101,Hospital Dr. Carlos Cisternas (Calama)
+103102,Hospital Dr. Marcos Macuada (Tocopilla)
+103103,Hospital 21 de Mayo (Taltal)
+103104,Hospital de Mejillones
+103201,Hospital Cruz del Norte
+103203,Clínica Antofagasta
+103210,Hospital Militar del Norte
+103211,Clínica Mutual de Seguridad CChC de Calama
+103212,Clínica Baquedano
+103214,Clínica Urológica
+103215,Clínica Oriente
+103216,Clínica Mutual de Seguridad CChC Tocopilla
+103218,Clínica El Loa
+103219,Hospital del Cobre Salvador Allende
+103220,Clínica La Portada
+103223,Clínica Oftalmológica (Mas Visión)
+103224,Clínica Cumbres del Norte S.A.
+104100,Hospital San José del Carmen (Copiapó)
+104101,Hospital Dr. Jerónimo Méndez Arancibia (Chañaral)
+104102,Hospital Dr. Florencio Vargas (Diego de Almagro)
+104103,Hospital Provincial del Huasco Monseñor Fernando Ariztía Ruiz (Vallenar)
+104104,Hospital Dr. Manuel MagalhaesMedling (Huasco)
+104200,Clínica San Lorenzo
+104214,Clínica del Trabajador AChS Vallenar
+104238,Clínica Indire
+104249,Clínica Atacama S.A.
+104252,Clínica Dial Vida
+105100,Hospital San Juan de Dios (La Serena)
+105101,Hospital San Pablo (Coquimbo)
+105102,Hospital Dr. Antonio Tirado Lanas (Ovalle)
+105103,Hospital Dr. Humberto Elorza Cortés (Illapel)
+105104,Hospital de Salamanca
+105105,Hospital San Juan de Dios (Combarbalá)
+105106,Hospital Dr. José Arraño (Andacollo)
+105107,Hospital San Juan de Dios (Vicuña)
+105108,Hospital San Pedro (Los Vilos)
+105207,Clínica del Trabajador de la AChS Ovalle
+105208,Clínica Regional Elqui
+105262,Clínica Regional Coquimbo
+106100,Hospital Carlos Van Buren (Valparaíso)
+106102,Hospital Dr. Eduardo Pereira Ramírez (Valparaíso)
+106103,Hospital Claudio Vicuña (San Antonio)
+106104,Hospital Del Salvador (Valparaíso)
+106105,Hospital San José (Casablanca)
+106204,Clínica San Julián
+106205,Clínica San Antonio
+106213,Complejo Penitenciario
+106214,Clínica Valparaíso
+106237,Clínica de la Agrupación Médica Americana
+106241,Clínica Dental (Dirección Servicios Estudiantiles Universidad Católica)
+107100,Hospital Dr. Gustavo Fricke (Viña del Mar)
+107101,Hospital San Martín (Quillota)
+107102,Hospital de Quilpué
+107103,Hospital Dr. Mario Sánchez Vergara (La Calera)
+107104,Hospital Santo Tomás (Limache)
+107105,Hospital San Agustín (La Ligua)
+107106,Hospital Dr. Víctor Hugo Moll (Cabildo)
+107107,Hospital de Petorca
+107108,Hospital Adriana Cousiño (Quintero)
+107109,"Hospital Juana Ross de Edwards (Peñablanca, Villa Alemana)"
+107110,Hospital Centro Geriátrico Paz de la Tarde (Limache)
+107200,Clínica Miraflores
+107206,Clínica Reñaca
+107208,Clínica Los Carrera
+107210,Sanatorio Marítimo San Juan de Dios
+107211,Instituto de Seguridad del Trabajo
+107212,Hospital Niños y Cunas
+107217,Hospital Naval Almirante Neff
+107222,Clínica Los Leones
+107223,Clínica Ciudad del Mar (ex Avansalud)
+107224,Hospital Clínico Viña del Mar
+108100,Hospital de San Camilo (San Felipe)
+108101,Hospital San Juan de Dios (Los Andes)
+108102,Hospital San Francisco (Llaillay)
+108104,Hospital San Antonio (Putaendo)
+108105,Hospital Psiquiátrico Dr. Philippe Pinel (Putaendo)
+108204,Clínica Río Blanco
+109100,"Complejo Hospitalario San José (Santiago, Independencia)"
+109101,"Hospital Clínico de Niños Dr. Roberto del Río (Santiago, Independencia)"
+109102,"Instituto Psiquiátrico Dr. José Horwitz Barak (Santiago, Recoleta)"
+109103,"Instituto Nacional del Cáncer Dr. Caupolicán Pardo Correa (Santiago, Recoleta)"
+109104,Hospital de TilTil
+109200,Hospital Clínico Universidad de Chile
+109201,Clínica Dávila
+109210,Clínica Astra Independencia
+110100,"Hospital San Juan de Dios (Santiago, Santiago)"
+110110,Instituto Traumatológico Dr. Teodoro Gebauer
+110120,"Hospital Dr. Félix Bulnes Cerda (Santiago, Quinta Normal)"
+110130,Hospital Adalberto Steeger (Talagante)
+110140,Hospital de Peñaflor
+110150,Hospital San José (Melipilla)
+110160,Hospital de Curacaví
+110201,Clínica - Psiquiátrica Santa Cecilia
+110268,Clínica del Trabajador AChS
+110270,Clínica Los Maitenes
+110272,Clínica Fundación Gantz
+110276,Clínica Psiquiatrica Victoria
+111100,"Hospital Clínico San Borja-Arriarán (Santiago, Santiago)"
+111101,Hospital Clínico Metropolitano El Carmen Doctor Luis Valentín Ferrada
+111195,Hospital de Urgencia Asistencia Pública Dr. Alejandro del Río
+111200,Hospital Clínico Universidad Católica
+111203,Hospital Penitenciario
+111205,Hospital Clínica IST
+111206,Clínica Los Coihues
+111207,Clínica Santa Inés
+111211,Clínica Central
+111214,Clínica Sierra Bella
+111219,Nueva Clínica Madre e Hijo
+111221,Clínica Juan Pablo II
+111230,Clínica Hospital del Profesor
+111232,Clínica Astra
+111276,Clínica Universidad Católica
+111277,Clínica Pedro Montt
+111295,Clínica Bicentenario
+111297,Clínica Bellolio
+112100,"Hospital Del Salvador (Santiago, Providencia)"
+112101,"Hospital Dr. Luis Tisné B. (Santiago, Peñalolén)"
+112102,"Hospital de Niños Dr. Luis Calvo Mackenna (Santiago, Providencia)"
+112103,Instituto Nacional de Enfermedades Respiratorias y Cirugía Torácica
+112104,Instituto de Neurocirugía Dr. Alfonso Asenjo
+112105,Instituto Nacional de Rehabilitación Infantil Presidente Pedro Aguirre Cerda
+112106,Instituto Nacional Geriátrico Presidente Eduardo Frei Montalva
+112107,Hospital Hanga Roa (Isla De Pascua)
+112200,Clínica Alemana 
+112201,Clínica Tabancura 
+112204,Clínica Cordillera  
+112205,Clínica Psiquiatrica Bretaña 
+112207,Clínica del Carmen 
+112211,Clínica Indisa 
+112212,Clínica Las Condes 
+112215,Clínica Macul 
+112217,Clínica Recuperación Alcohol Alfa 
+112218,Clínica Miguel Claro
+112219,Clínica Servet
+112220,Clínica Oftalmólogica los Andes 
+112222,Clínica Ñuñoa 
+112224,Clínica Psiquiatrica Pocuro 
+112228,Clínica San Andrés 
+112238,Hospital FACH 
+112240,Hospital Carabineros 
+112241,Clínica Oriente 
+112242,Clínica Lo Curro 
+112244,Hospital del Trabajador - Santiago
+112246,Clínica Europa 
+112248,Hospital Dipreca Teniente Hernán Merino
+112249,Clínica Santa María 
+112252,Clínica Psiquiatrica Renacer 
+112254,Clínica Oncológica Arturo López Pérez 
+112258,Clínica Psicoterapia los Tiempos 
+112259,Clínica Colonial 
+112261,Clínica San Carlos de Apoquindo 
+112264,Clínica Instituto El Cedro
+112276,Clínica de Medicina y Estética MYE
+112278,Clínica Monteblanco
+112502,Clínica Las Acacias
+112507,Clínica Fundación Médica San Cristóbal
+112510,Clínica Universidad de Chile Quilín
+112511,Clínica Arauco Salud
+112513,Clínica Astra Providencia
+112528,Clínica Las Lilas
+112530,Hospital Militar de Santiago
+112954,Clínica Avansalud Providencia
+112979,Clínica Los Domínicos
+112999,Clínica Corporación de Ayuda al Paciente Mental
+113100,"Hospital Barros Luco Trudeau (Santiago, San Miguel)"
+113130,"Hospital Dr. Exequiel González Cortés (Santiago, San Miguel)"
+113150,Hospital San Luis (Buin)
+113160,"Hospital de Enfermedades Infecciosas Dr. Lucio Córdova (Santiago, San Miguel)"
+113170,"Hospital Psiquiátrico El Peral (Santiago, Puente Alto)"
+113180,"Hospital El Pino (Santiago, San Bernardo)"
+113190,"Hospital Parroquial (Santiago, San Bernardo) (D)"
+113213,Clínica San Miguel
+113218,Clínica Psiquiátrica Nelly Vergara
+113238,Clínica Santa Lucía
+113242,Clínica Santa Rosa
+113244,Clínica de Cirugía Plástica
+113250,Clínica Astra San Miguel
+113251,Clínica Astra San Bernardo
+114101,"Complejo Hospitalario Dr. Sótero del Río (Santiago, Puente Alto)"
+114102,Hospital San José de Maipo
+114103,Hospital Padre Alberto Hurtado (San Ramón)
+114105,Hospital Clínico Metropolitano La Florida Dra. Eloisa Díaz Inzunza
+114202,Clínica Psiquiatrica Raquel Gaete
+114203,Clínica Salud Ltda. 
+114204,Centro de Enfermedades Respiratorias Infantiles Josefina Martínez (D)
+114209,Clínica Santa Elena 
+114212,Clínica Familia 
+114223,Clínica Vespucio
+114227,Clínica Astra La Florida
+114230,Clínica Astra Puente Alto
+115100,Hospital Regional de Rancagua
+115101,Hospital Santa Filomena (Graneros)
+115102,Hospital de Coínco
+115103,Hospital Del Salvador (Peumo)
+115104,Hospital Dr. Ricardo Valenzuela Sáez (Rengo)
+115105,Hospital San Vicente de Tagua-Tagua
+115106,Hospital de Pichidegua
+115107,Hospital San Juan de Dios (San Fernando)
+115108,Hospital Mercedes (Chimbarongo)
+115109,Hospital de Nancagua
+115110,Hospital de Santa Cruz
+115111,Hospital de Marchigüe
+115112,Hospital de Pichilemu
+115113,Hospital de Lolol
+115114,Hospital de Litueche
+115202,Hospital del Trabajador AChS
+115203,Clínica Mutual de Seguridad CChC Rancagua 
+115204,Clínica del Trabajador AChS San Fernando
+115206,Hospital Clínico Fusat- Rancagua 
+115221,Clínica Isamedica
+115222,Clínica de Salud Integral 
+115231,Clínica Mella
+115241,Hospital - Penitenciario de Rancagua
+115266,Clínica San Francisco
+116100,Hospital San Juan de Dios (Curicó)
+116101,Hospital de Teno
+116102,Hospital de Molina
+116103,Hospital de Hualañé
+116104,Hospital de Licantén
+116105,Hospital Dr. César Garavagno Burotto (Talca)
+116106,Hospital de Curepto
+116107,Hospital de Constitución
+116108,Hospital Presidente Carlos Ibáñez del Campo (Linares)
+116109,Hospital Dr. Abel Fuentealba Lagos de San Javier
+116110,Hospital San José (Parral)
+116111,Hospital San Juan de Dios (Cauquenes)
+116112,Hospital Dr. Benjamín Pedreros (Chanco)
+116208,Clínica del Maule 
+116217,Clínica Enferdial
+116218,Clínica Infantil
+116262,Clínica Regional Lircay 
+116276,Clínica Universidad Católica Del Maule
+117101,Hospital Clínico Herminda Martín (Chillán)
+117102,Hospital de San Carlos
+117103,Hospital Comunitario de Salud Familiar de Bulnes
+117104,Hospital Comunitario de Salud Familiar Pedro Morales Campos (Yungay)
+117106,Hospital Comunitario de Salud Familiar de Quirihue
+117107,Hospital Comunitario de Salud Familiar de El Carmen
+117108,Hospital Comunitario de Salud Familiar Dr. Eduardo Contreras Trabucco de Coelemu
+117205,Clínica Las Amapolas 
+117225,Clínica Chillán
+118100,Hospital Clínico Regional Dr. Guillermo Grant Benavente (Concepción)
+118103,Hospital Traumatológico (Concepción)
+118105,Hospital San José (Coronel)
+118106,Hospital de Lota
+118107,Hospital Clorinda Avello (Santa Juana)
+118108,Hospital San Agustín de Florida
+118200,Hospital Clínico del Sur S.A.
+118202,Clínica de la Mujer Sanatorio Alemán
+118210,Servicios Clínicos Neuropsiquiátricos y Geriátricos R y G Limitada
+118500,Clínica Universitaria San Pedro de la Paz
+118519,Hospital de Centro de Cumplimiento Penitenciario Biobío
+119100,Hospital Las Higueras (Talcahuano)
+119101,Hospital de Tomé
+119102,Hospital Penco - Lirquén
+119200,Hospital Instituto de Seguridad - del Trabajo Talcahuano
+119203,Hospital Naval Almirante Adriazola
+119207,Clínica Bio Bio
+119208,Clínica Universitaria de Concepción
+120101,Complejo Asistencial Dr. Víctor Ríos Ruiz (Los Ángeles)
+120102,Hospital Comunitario de Mulchén
+120103,Hospital Comunitario de Nacimiento
+120104,Hospital Comunitario de Yumbel
+120105,Hospital Comunitario de Laja
+120106,Hospital Comunitario de Santa Bárbara
+120107,Hospital Comunitario Dr. Roberto Muñoz Urrutia de Huépil
+120205,Clínica Adventista 
+120208,Clínica Los Andes 
+120213,Hospital Mutual de Seguridad CChC Los Ángeles 
+121109,Hospital Dr. Hernán Henríquez Aravena (Temuco)
+121110,Hospital Dr. Abraham Godoy (Lautaro)
+121111,Hospital de Galvarino
+121112,Hospital de Vilcún
+121113,Hospital Dr. Eduardo González Galeno (Cunco)
+121114,Hospital Intercultural de Nueva Imperial
+121115,Hospital de Carahue
+121116,Hospital Dr. Arturo Hillerns Larrañaga (Saavedra)
+121117,Hospital de Pitrufquén
+121118,Hospital de Toltén
+121119,Hospital de Gorbea
+121120,Hospital de Loncoche
+121121,Hospital de Villarrica
+121200,Hospital San Francisco (Pucón) (D)
+121201,Hospital Maquehue-Pelal (Padre Las Casas) (D)
+121202,Clínica Alemana de Temuco 
+121205,Hospital del Trabajador AChS de Temuco
+121209,Hospital Clínico de la Universidad Mayor
+122100,Hospital Clínico Regional (Valdivia)
+122101,Hospital de Corral
+122102,Hospital de Los Lagos
+122103,Hospital de Lanco
+122104,Hospital Juan Morey (La Unión)
+122105,Hospital de Río Bueno
+122106,Hospital de Paillaco
+122200,Hospital de Mariquina
+122201,Hospital Padre Bernabé de Lucerna (Panguipulli) (D)
+122202,Clínica Alemana Valdivia 
+122203,Clínica Mutual de Seguridad CChC Valdivia
+122215,Clínica del Trabajador AChS
+122226,Clínica del Trabajador AChS de Valdivia
+123100,Hospital Base San José de Osorno
+123101,Hospital de Purranque
+123102,Hospital de Río Negro
+123103,Hospital de Puerto Octay
+123104,Hospital Misión San Juan de la Costa
+123105,Hospital del Perpetuo Socorro de Quilacahuín
+123203,Clínica Alemana de Osorno
+123209,Clínica de la AChS Osorno
+124105,Hospital de Puerto Montt
+124110,Hospital de Llanquihue
+124115,Hospital de Frutillar
+124120,Hospital de Fresia
+124125,Hospital de Maullín
+124130,Hospital de Calbuco
+124140,Hospital de Palena
+124145,Hospital de Futaleufú
+124210,Clínica de Puerto Varas SpA.
+124240,Clínica Instituto de Seguridad del Trabajo Puerto Montt
+124250,Clínica Puerto Montt 
+124251,Clínica de la AChS Puerto Montt
+124260,Clínica Universitaria de Puerto Montt S.A.
+124274,Clínica Complejo Penitenciario de Puerto Montt
+125100,Hospital Regional (Coihaique)
+125101,Hospital de Puerto Aisén
+125102,Hospital Dr. Leopoldo Ortega R. (Chile Chico)
+125103,Hospital Lord Cochrane
+125104,Hospital Dr. Jorge Ibar (Cisnes)
+125204,Clínica de Trabajador AChS
+126100,Hospital Clínico de Magallanes Dr. Lautaro Navarro Avaria
+126101,Hospital Dr. Augusto Essmann Burgos (-Natales)
+126102,Hospital Dr. Marco Antonio Chamorro (-Porvenir)
+126200,Hospital FFAA Cirujano Guzmán 
+126201,Clínica Magallanes
+126204,Hospital Naval (Puerto Williams) (D)
+126212,Clínica de Recuperación Hogar de Cristo Juan Pablo II
+126225,Clínica Croacia
+126704,Hospital Comunitario Cristina Calderón de Puerto Williams
+128109,Hospital Provincial Dr. Rafael Avaría (Curanilahue)
+128110,Hospital de Lebu
+128111,Hospital Intercultural KallvuLlanka (Cañete)
+128112,Hospital de Contulmo
+128113,Hospital San Vicente (Arauco)
+129100,Hospital Dr. Mauricio Heyermann (Angol)
+129101,Hospital de Purén
+129103,Hospital de Collipulli
+129104,Hospital Dr. Dino Stagno M.(Traiguén)
+129106,Hospital San José (Victoria)
+129107,Hospital Dr. Oscar Hernández E.(Curacautín)
+129108,Hospital de Lonquimay
+129233,Clínica de la Asociación Chilena de Seguridad AChS Angol
+133150,Hospital de Castro
+133155,Hospital de Ancud
+133160,Hospital Comunitario de Achao
+133165,Hospital de Quellón
+133170,Hospital de Queilén
+200050,Hospital Clínico Universidad de Los Andes
+200053,Clínica Ensenada
+200063,Clínica Alemana de La Dehesa
+200076,Hospital de Chaitén
+200081,Clínica Orema
+200090,Clínica Policenter
+200091,Mirandes S.P.A.
+200193,Clínica WLK
+200227,Clínica Psiquiátrica Mida 
+200234,Clínica MEDS La Dehesa

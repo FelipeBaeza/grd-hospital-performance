@@ -1,0 +1,130 @@
+columna,tipo_doc,tipo_medido,con_datos_doc,sin_datos_doc,n_filas_med,n_con_med,n_sin_med,n_centinela_med,pct_sin_doc,pct_sin_med,dif_pp,z,estado,magnitud,categoria_fase1,observacion
+COD_HOSPITAL,Texto,entero,5808536,0,5808535,5808535,0,0,0,0,0,,DISCREPANCIA,despreciable,LLAVE_AGREGACION,""
+CIP_ENCRIPTADO,Texto,entero,5806492,2044,5808535,5806491,2044,15821,0.03519,0.03519,0,,DISCREPANCIA,despreciable,LLAVE_AGREGACION,tiene valores centinela que el diccionario no cuenta como faltantes
+SERVICIO_SALUD,Texto,texto,5808536,0,5808535,5808535,0,1399,0,0,0,,DISCREPANCIA,despreciable,LLAVE_AGREGACION,tiene valores centinela que el diccionario no cuenta como faltantes
+SEXO,Texto,texto,5808536,0,5808535,5808535,0,559,0,0,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHA_NACIMIENTO,Fecha,fecha_iso,5808536,0,5808535,5808535,0,13,0,0,0,,DISCREPANCIA,despreciable,FUENTE_DERIVADA,tiene valores centinela que el diccionario no cuenta como faltantes
+ETNIA,Texto,texto,5808536,0,5808535,5808535,0,19,0,0,0,,DISCREPANCIA,despreciable,AUDITORIA_SENSIBILIDAD,tiene valores centinela que el diccionario no cuenta como faltantes
+PROVINCIA,Texto,texto,5808536,0,5808535,5808535,0,2208,0,0,0,,DISCREPANCIA,despreciable,AUDITORIA_SENSIBILIDAD,tiene valores centinela que el diccionario no cuenta como faltantes
+COMUNA,Texto,texto,5808536,0,5808535,5808535,0,1261,0,0,0,,DISCREPANCIA,despreciable,AUDITORIA_SENSIBILIDAD,tiene valores centinela que el diccionario no cuenta como faltantes
+NACIONALIDAD,Texto,texto,5808536,0,5808535,5808535,0,23677,0,0,0,,DISCREPANCIA,despreciable,AUDITORIA_SENSIBILIDAD,tiene valores centinela que el diccionario no cuenta como faltantes
+PREVISION,Texto,texto,5808536,0,5808535,5808535,0,5168,0,0,0,,DISCREPANCIA,despreciable,AUDITORIA_SENSIBILIDAD,tiene valores centinela que el diccionario no cuenta como faltantes
+TIPO_PROCEDENCIA,Texto,texto,5808536,0,5808535,5808535,0,3430,0,0,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+TIPO_INGRESO,Texto,texto,5808536,0,5808535,5808535,0,463,0,0,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+ESPECIALIDAD_MEDICA,Texto,texto,5808536,0,5808535,5808535,0,59,0,0,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+TIPO_ACTIVIDAD,Texto,texto,5808536,0,5808535,5808535,0,21,0,0,0,,DISCREPANCIA,despreciable,FILTRO_COHORTE,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHA_INGRESO,Fecha,fecha_iso,5808536,0,5808535,5808535,0,52,0,0,0,,DISCREPANCIA,despreciable,FUENTE_DERIVADA,tiene valores centinela que el diccionario no cuenta como faltantes
+SERVICIOINGRESO,Texto,texto,5808533,3,5808535,5808532,,27843,0.000052,0.000052,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+HOSPPROCEDENCIA,Texto,texto,703854,5104682,5808535,703854,5104681,2604,87.88242,87.882418,0.000002,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHATRASLADO1,Fecha,fecha_iso,1001017,4807519,5808535,1001017,4807518,0,82.766449,82.766446,0.000003,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+SERVICIOTRASLADO1,Texto,texto,1001016,4807520,5808535,1001016,4807519,3751,82.766466,82.766463,0.000003,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHATRASLADO2,Fecha,fecha_iso,333365,5475171,5808535,333365,5475170,0,94.260774,94.260773,0.000001,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+SERVICIOTRASLADO2,Texto,texto,333372,5475164,5808535,333372,5475163,1132,94.260654,94.260653,0.000001,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHATRASLADO3,Fecha,fecha_iso,103618,5704918,5808535,103618,5704917,0,98.216108,98.216108,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+SERVICIOTRASLADO3,Texto,texto,103621,5704915,5808535,103621,5704914,354,98.216057,98.216056,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHATRASLADO4,Fecha,fecha_iso,37348,5771188,5808535,37348,5771187,0,99.357015,99.357015,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+SERVICIOTRASLADO4,Texto,texto,37348,5771188,5808535,37348,5771187,122,99.357015,99.357015,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHATRASLADO5,Fecha,fecha_iso,13750,5794786,5808535,13750,5794785,0,99.763279,99.763279,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+SERVICIOTRASLADO5,Texto,texto,13751,5794785,5808535,13751,5794784,23,99.763262,99.763262,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHATRASLADO6,Fecha,fecha_iso,6200,5802336,5808535,6200,5802335,0,99.893261,99.893261,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+SERVICIOTRASLADO6,Texto,texto,6200,5802336,5808535,6200,5802335,13,99.893261,99.893261,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHATRASLADO7,Fecha,fecha_iso,3073,5805463,5808535,3073,5805462,0,99.947095,99.947095,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+SERVICIOTRASLADO7,Texto,texto,3073,5805463,5808535,3073,5805462,0,99.947095,99.947095,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+FECHATRASLADO8,Fecha,fecha_iso,1693,5806843,5808535,1693,5806842,0,99.970853,99.970853,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+SERVICIOTRASLADO8,Texto,texto,1693,5806843,5808535,1693,5806842,,99.970853,99.970853,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHATRASLADO9,Fecha,fecha_iso,973,5807563,5808535,973,5807562,0,99.983249,99.983249,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+SERVICIOTRASLADO9,Texto,texto,973,5807563,5808535,973,5807562,0,99.983249,99.983249,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+FECHAALTA,Fecha,fecha_iso,5808518,18,5808535,5808517,18,0,0.00031,0.00031,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+SERVICIOALTA,Texto,texto,5808536,0,5808535,5808535,0,17086,0,0,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+TIPOALTA,Texto,texto,5808536,0,5808535,5808535,0,102,0,0,0,,DISCREPANCIA,despreciable,TARGET,tiene valores centinela que el diccionario no cuenta como faltantes
+CONDICIONDEALTANEONATO1,Texto,vacia,128946,5679590,5808535,128946,5679589,0,97.78006,97.78006,0,,DISCREPANCIA,despreciable,DESCARTAR,""
+PESORN1,Número,entero,795973,5012563,5808535,795973,5012562,0,86.296495,86.296493,0.000002,,DISCREPANCIA,despreciable,DESCARTAR,""
+SEXORN1,Texto,texto,647342,5161194,5808535,647342,5161193,446,88.855333,88.855331,0.000002,,DISCREPANCIA,despreciable,DESCARTAR,tiene valores centinela que el diccionario no cuenta como faltantes
+RN1ESTADO,Texto,entero,1919691,3888845,5808535,1919691,3888844,0,66.950519,66.950513,0.000006,,DISCREPANCIA,despreciable,DESCARTAR,""
+CONDICIONDEALTANEONATO2,Texto,vacia,1576,5806960,5808535,1576,5806959,0,99.972868,99.972868,0,,DISCREPANCIA,despreciable,DESCARTAR,""
+PESORN2,Número,entero,8596,5799940,5808535,8596,5799939,0,99.852011,99.852011,0,,DISCREPANCIA,despreciable,DESCARTAR,""
+SEXORN2,Texto,texto,8591,5799945,5808535,8591,5799944,31,99.852097,99.852097,0,,DISCREPANCIA,despreciable,DESCARTAR,tiene valores centinela que el diccionario no cuenta como faltantes
+RN2ESTADO,Texto,entero,1444072,4364464,5808535,1444072,4364463,0,75.138796,75.138791,0.000004,,DISCREPANCIA,despreciable,DESCARTAR,""
+CONDICIONDEALTANEONATO3,Texto,vacia,0,5808536,5808535,0,5808535,0,100,100,0,,DISCREPANCIA,despreciable,DESCARTAR,""
+PESORN3,Número,entero,75,5808461,5808535,75,5808460,0,99.998709,99.998709,0,,DISCREPANCIA,despreciable,DESCARTAR,""
+SEXORN3,Texto,texto,75,5808461,5808535,75,5808460,,99.998709,99.998709,0,,DISCREPANCIA,despreciable,DESCARTAR,tiene valores centinela que el diccionario no cuenta como faltantes
+RN3ESTADO,Texto,entero,1437610,4370926,5808535,1437610,4370925,0,75.250046,75.250042,0.000004,,DISCREPANCIA,despreciable,DESCARTAR,""
+CONDICIONDEALTANEONATO4,Texto,vacia,0,5808536,5808535,0,5808535,0,100,100,0,,DISCREPANCIA,despreciable,DESCARTAR,""
+PESORN4,Texto,vacia,1,5808535,5808535,,5808534,0,99.999983,99.999983,0,,DISCREPANCIA,despreciable,DESCARTAR,""
+SEXORN4,Texto,vacia,2,5808534,5808535,,5808533,,99.999966,99.999966,0,,DISCREPANCIA,despreciable,DESCARTAR,tiene valores centinela que el diccionario no cuenta como faltantes
+RN4ESTADO,Texto,vacia,1437552,4370984,5808535,1437552,4370983,0,75.251044,75.25104,0.000004,,DISCREPANCIA,despreciable,DESCARTAR,""
+DIAGNOSTICO1,Texto,texto,5808456,80,5808535,5808455,80,11316,0.001377,0.001377,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO2,Texto,texto,5013342,795194,5808535,5013341,795194,26693,13.690093,13.690096,0.000002,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO3,Texto,texto,4212267,1596269,5808535,4212266,1596269,8883,27.481434,27.481439,0.000005,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO4,Texto,texto,3458008,2350528,5808535,3458007,2350528,7680,40.466789,40.466796,0.000007,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO5,Texto,texto,2744234,3064302,5808535,2744233,3064302,6386,52.755152,52.755161,0.000009,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO6,Texto,texto,2139254,3669282,5808535,2139253,3669282,5048,63.170513,63.170524,0.000011,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO7,Texto,texto,1649276,4159260,5808535,1649275,4159260,3945,71.605995,71.606007,0.000012,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO8,Texto,texto,1264031,4544505,5808535,1264030,4544505,2944,78.238389,78.238403,0.000013,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO9,Texto,texto,967654,4840882,5808535,967653,4840882,2173,83.340828,83.340842,0.000014,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO10,Texto,texto,742548,5065988,5808535,742547,5065988,1628,87.216262,87.216277,0.000015,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO11,Texto,texto,573145,5235391,5808535,573144,5235391,1280,90.132712,90.132727,0.000016,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO12,Texto,texto,445318,5363218,5808535,445317,5363218,971,92.333387,92.333402,0.000016,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO13,Texto,texto,347407,5461129,5808535,347406,5461129,777,94.019026,94.019043,0.000016,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO14,Texto,texto,272849,5535687,5808535,272848,5535687,618,95.30262,95.302637,0.000016,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO15,Texto,texto,214807,5593729,5808535,214806,5593729,450,96.301874,96.30189,0.000017,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO16,Texto,texto,170092,5638444,5808535,170091,5638444,377,97.071689,97.071706,0.000017,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO17,Texto,texto,135074,5673462,5808535,135073,5673462,291,97.67456,97.674577,0.000017,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO18,Texto,texto,107710,5700826,5808535,107709,5700826,201,98.14566,98.145677,0.000017,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO19,Texto,texto,86224,5722312,5808535,86223,5722312,159,98.515564,98.515581,0.000017,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO20,Texto,texto,68946,5739590,5808535,68945,5739590,147,98.813023,98.81304,0.000017,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO21,Texto,texto,55191,5753345,5808535,55190,5753345,109,99.049829,99.049846,0.000017,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO22,Texto,texto,44390,5764146,5808535,44390,5764145,83,99.23578,99.23578,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO23,Texto,texto,35817,5772719,5808535,35817,5772718,72,99.383373,99.383373,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO24,Texto,texto,28984,5779552,5808535,28984,5779551,54,99.50101,99.50101,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO25,Texto,texto,23410,5785126,5808535,23410,5785125,36,99.596972,99.596972,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO26,Texto,texto,18994,5789542,5808535,18994,5789541,30,99.672998,99.672998,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO27,Texto,texto,15357,5793179,5808535,15357,5793178,26,99.735613,99.735613,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO28,Texto,texto,12546,5795990,5808535,12546,5795989,26,99.784008,99.784007,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO29,Texto,texto,10165,5798371,5808535,10165,5798370,20,99.824999,99.824999,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO30,Texto,texto,8227,5800309,5808535,8227,5800308,14,99.858364,99.858364,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO31,Texto,texto,6580,5801956,5808535,6580,5801955,,99.886718,99.886718,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO32,Texto,texto,5262,5803274,5808535,5262,5803273,,99.909409,99.909409,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO33,Texto,texto,4221,5804315,5808535,4221,5804314,,99.927331,99.927331,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO34,Texto,texto,3360,5805176,5808535,3360,5805175,,99.942154,99.942154,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO35,Texto,texto,2392,5806144,5808535,2392,5806143,,99.958819,99.958819,0,,DISCREPANCIA,despreciable,FEATURE_BASAL,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO1,Texto,decimal,5790177,18359,5808535,5790198,18337,35,0.316069,0.315691,0.000379,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO2,Texto,decimal,5322382,486154,5808535,5322440,486095,697,8.369648,8.368633,0.001014,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO3,Texto,decimal,4839004,969532,5808535,4839133,969402,141,16.691504,16.689268,0.002235,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO4,Texto,decimal,4383067,1425469,5808535,4383110,1425425,44,24.540934,24.540181,0.000753,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO5,Texto,decimal,3936386,1872150,5808535,3936391,1872144,,32.231013,32.230915,0.000098,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO6,Texto,decimal,3486957,2321579,5808535,3486960,2321575,,39.968402,39.96834,0.000062,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO7,Texto,decimal,3035918,2772618,5808535,3035920,2772615,,47.733508,47.733465,0.000043,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO8,Texto,decimal,2593981,3214555,5808535,2593981,3214554,,55.341914,55.341906,0.000008,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO9,Texto,decimal,2182953,3625583,5808535,2182953,3625582,,62.418189,62.418183,0.000006,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO10,Texto,decimal,1813151,3995385,5808535,1813152,3995383,,68.784716,68.784694,0.000023,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO11,Texto,decimal,1495958,4312578,5808535,1495958,4312577,,74.245524,74.24552,0.000004,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO12,Texto,decimal,1233614,4574922,5808535,1233613,4574922,0,78.76205,78.762063,0.000014,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+PROCEDIMIENTO13,Texto,decimal,1018742,4789794,5808535,1018741,4789794,0,82.461295,82.461309,0.000014,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+PROCEDIMIENTO14,Texto,decimal,847293,4961243,5808535,847293,4961242,,85.412968,85.412966,0.000003,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO15,Texto,decimal,710846,5097690,5808535,710845,5097690,0,87.762045,87.76206,0.000015,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+PROCEDIMIENTO16,Texto,decimal,600603,5207933,5808535,600603,5207932,,89.659993,89.659992,0.000002,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO17,Texto,decimal,510845,5297691,5808535,510844,5297691,0,91.205271,91.205287,0.000016,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+PROCEDIMIENTO18,Texto,decimal,438126,5370410,5808535,438126,5370409,,92.457204,92.457203,0.000001,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO19,Texto,decimal,377919,5430617,5808535,377919,5430616,,93.493731,93.493729,0.000001,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO20,Texto,decimal,327733,5480803,5808535,327732,5480803,0,94.357735,94.357751,0.000016,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+PROCEDIMIENTO21,Texto,decimal,284956,5523580,5808535,284955,5523580,0,95.094186,95.094202,0.000016,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+PROCEDIMIENTO22,Texto,decimal,249117,5559419,5808535,249116,5559419,0,95.711191,95.711208,0.000016,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+PROCEDIMIENTO23,Texto,decimal,218147,5590389,5808535,218146,5590389,0,96.244372,96.244389,0.000017,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+PROCEDIMIENTO24,Texto,decimal,190748,5617788,5808535,190747,5617788,0,96.716074,96.716091,0.000017,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+PROCEDIMIENTO25,Texto,decimal,166945,5641591,5808535,166944,5641591,0,97.125868,97.125885,0.000017,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+PROCEDIMIENTO26,Texto,decimal,146136,5662400,5808535,146136,5662399,,97.484116,97.484116,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO27,Texto,decimal,127780,5680756,5808535,127779,5680756,0,97.800134,97.800151,0.000017,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+PROCEDIMIENTO28,Texto,decimal,111775,5696761,5808535,111774,5696761,0,98.075677,98.075694,0.000017,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+PROCEDIMIENTO29,Texto,decimal,97619,5710917,5808535,97618,5710917,0,98.319387,98.319404,0.000017,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+PROCEDIMIENTO30,Texto,decimal,85253,5723283,5808535,85252,5723283,0,98.532281,98.532298,0.000017,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+MEDICOINTERV1_ENCRIPTADO,Texto,entero,3200790,2607746,5808535,3200789,2607746,0,44.895065,44.895073,0.000008,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+FECHAPROCEDIMIENTO1,Fecha,vacia,9,5808527,5808535,,5808526,0,99.999845,99.999845,0,,DISCREPANCIA,despreciable,DESCARTAR,""
+FECHAINTERV1,Fecha,fecha_iso,2934666,2873870,5808535,2934665,2873870,19669,49.476667,49.476675,0.000009,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+ESPECIALIDADINTERVENCION,Texto,texto,3206355,2602181,5808535,3206354,2602181,1409,44.799258,44.799265,0.000008,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+MEDICOALTA_ENCRIPTADO,Texto,entero,5804965,3571,5808535,5804964,3571,0,0.061478,0.061478,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+USOSPABELLON,Texto,entero,2961288,2847248,5808535,2961309,2847226,0,49.018341,49.017971,0.00037,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,""
+IR_29301_COD_GRD,Texto,entero,5808461,75,5808535,5808535,0,89,0.001291,0,0.001291,,DISCREPANCIA,despreciable,FILTRO_COHORTE,tiene valores centinela que el diccionario no cuenta como faltantes
+IR_29301_PESO,Número,decimal,5808536,0,5808535,5808535,0,74,0,0,0,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+IR_29301_SEVERIDAD,Texto,entero,5808461,75,5808535,5808535,0,74,0.001291,0,0.001291,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes
+IR_29301_MORTALIDAD,Texto,entero,5808461,75,5808535,5808535,0,74,0.001291,0,0.001291,,DISCREPANCIA,despreciable,PROHIBIDA_FUGA,tiene valores centinela que el diccionario no cuenta como faltantes

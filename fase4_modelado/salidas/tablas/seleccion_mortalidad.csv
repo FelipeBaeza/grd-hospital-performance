@@ -1,0 +1,3 @@
+incumbente,retador,mejora,mejora_minima,mejora_suficiente,calibracion_no_peor,ln_oe_incumbente,ln_oe_retador,dist_pendiente_incumbente,dist_pendiente_retador,reemplaza,ganador_final
+linea_base,lightgbm,0.03339998415446571,0.01,True,True,0.15013328254330863,0.1437457671020181,0.027149399067828095,0.03368808154031688,True,lightgbm
+lightgbm,xgboost,-0.0008069943736142005,0.01,False,True,0.1437457671020181,0.14089150964789968,0.03368808154031688,0.02937211197560763,False,lightgbm

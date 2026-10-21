@@ -1,0 +1,45 @@
+# Umbrales de la Fase 3 (preparación de los datos). Versión 1.0, 18 de octubre de 2026.
+# Regla: ningún valor nuevo sin fecha ni motivo. Los umbrales heredados de la Fase 2 (umbrales.toml v1.5) conservan su valor.
+version = "1.0"
+historial = [
+  "1.0 (2026-10-18): se copian los umbrales de la Fase 2 que gobiernan la construcción de datos y se agregan los propios de la Fase 3, antes de ejecutar la fase.",
+]
+
+[particion]
+anios_entrenamiento = [2019, 2020, 2021, 2022]
+anio_calibracion = 2023
+anio_prueba = 2024            # sellado: su desenlace solo se lee en la Fase 5
+
+[umbral.edad_minima]
+valor = 0
+justificacion = "Heredado de la Fase 2: una edad negativa es imposible."
+[umbral.edad_maxima]
+valor = 110
+justificacion = "Heredado de la Fase 2: más de 110 años se considera error de registro; la edad se anula y el egreso se conserva (regla R5)."
+[umbral.edad_adulto]
+valor = 18
+justificacion = "Decisión 5: población de 18 años o más."
+[umbral.id_largo_minimo]
+valor = 5
+justificacion = "Heredado de la Fase 2: un identificador numérico con menos de 5 dígitos es atípico y no se usa para enlazar."
+[umbral.percentil_estancia]
+valor = 99
+justificacion = "Decisión 7 (Fase 1 v3, sección 10.4): se recorta la estadía en el percentil 99 de los sobrevivientes de 2019 a 2022; con la Fase 2 resultó 53 días."
+[umbral.min_filas_nivel]
+valor = 100
+justificacion = "Propio de la Fase 3: un nivel de una categórica (por ejemplo un código CIE-10 de 3 caracteres) con menos de 100 egresos en 2019–2022 pasa al nivel RARO. Se fija sin mirar el desenlace y solo con los años de entrenamiento."
+[umbral.celda_minima]
+valor = 10
+justificacion = "Privacidad: toda celda de conteo de 1 a 9 casos se suprime en las salidas (criterio DT04 de la Fase 2)."
+[umbral.tamano_lote_filas]
+valor = 200000
+justificacion = "Operativo: filas que se procesan a la vez para acotar la memoria (equipo de 16 GB; pico objetivo bajo 8 GB)."
+
+[sensibles]
+# Columnas que la Fase 2 encontró con valores con forma de RUT (Fase 1, decisión 11). Se descartan en Bronce, en los seis años, sin guardar su contenido.
+columnas = ["USOSPABELLON", "FECHAPROCEDIMIENTO1"]
+patron_rut = '^\d{1,2}\.?\d{3}\.?\d{3}-[\dkK]$'
+
+[referencias]
+total_egresos = 5808535        # Fase 2: 5.808.536 líneas de datos menos 1 línea rechazada (2022)
+lineas_datos = 5808536         # Fase 1

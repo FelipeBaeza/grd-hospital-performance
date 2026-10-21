@@ -1,0 +1,103 @@
+periodo,orden,paso,tipo,descripcion,n,prop_del_total,usa_desenlace,alcance,cuadra
+2019,0,TOTAL,total,Egresos leídos,1151475,1,no,estructura,si
+2019,1,EX01,exclusion,"GRD no agrupable: sin código, centinela, formato inválido o MDC 99",566,0.000492,no,estructura,si
+2019,2,EX02,exclusion,Recién nacidos (MDC 15),27695,0.024052,no,estructura,si
+2019,3,EX03,exclusion,Obstétricos sin comorbilidades (MDC 14 sin categorías de Elixhauser),97168,0.084386,no,estructura,si
+2019,4,A,cohorte,Variante A: cohorte dura,1026046,0.891071,no,estructura,si
+2019,5,EX04,exclusion,Menores de 18 años o con edad desconocida,185087,0.160739,no,estructura,si
+2019,6,B,cohorte,Variante B: adultos,840959,0.730332,no,estructura,si
+2019,7,EX05,exclusion,Actividad distinta de hospitalización,224800,0.195228,no,estructura,si
+2019,8,C,cohorte,Variante C: adultos hospitalizados,616159,0.535104,no,estructura,si
+2019,9,EX06,exclusion,Censurados por tipo de alta o sin dato de desenlace,30528,0.026512,si,resultado,si
+2019,10,D,cohorte,Variante D: cohorte del modelo de mortalidad,585631,0.508592,si,resultado,si
+2019,11,EX07,exclusion,Fallecidos (salen del modelo de estadía),23896,0.020753,si,resultado,si
+2019,12,EX08,exclusion,Sobrevivientes con estadía de 0 días o desconocida,22921,0.019906,si,resultado,si
+2019,13,E,cohorte,Variante E: cohorte del modelo de estadía,538814,0.467934,si,resultado,si
+2020,0,TOTAL,total,Egresos leídos,781912,1,no,estructura,si
+2020,1,EX01,exclusion,"GRD no agrupable: sin código, centinela, formato inválido o MDC 99",191,0.000244,no,estructura,si
+2020,2,EX02,exclusion,Recién nacidos (MDC 15),24678,0.031561,no,estructura,si
+2020,3,EX03,exclusion,Obstétricos sin comorbilidades (MDC 14 sin categorías de Elixhauser),78920,0.100932,no,estructura,si
+2020,4,A,cohorte,Variante A: cohorte dura,678123,0.867263,no,estructura,si
+2020,5,EX04,exclusion,Menores de 18 años o con edad desconocida,94023,0.120248,no,estructura,si
+2020,6,B,cohorte,Variante B: adultos,584100,0.747015,no,estructura,si
+2020,7,EX05,exclusion,Actividad distinta de hospitalización,69275,0.088597,no,estructura,si
+2020,8,C,cohorte,Variante C: adultos hospitalizados,514825,0.658418,no,estructura,si
+2020,9,EX06,exclusion,Censurados por tipo de alta o sin dato de desenlace,40484,0.051776,si,resultado,si
+2020,10,D,cohorte,Variante D: cohorte del modelo de mortalidad,474341,0.606642,si,resultado,si
+2020,11,EX07,exclusion,Fallecidos (salen del modelo de estadía),29093,0.037208,si,resultado,si
+2020,12,EX08,exclusion,Sobrevivientes con estadía de 0 días o desconocida,19172,0.024519,si,resultado,si
+2020,13,E,cohorte,Variante E: cohorte del modelo de estadía,426076,0.544916,si,resultado,si
+2021,0,TOTAL,total,Egresos leídos,816909,1,no,estructura,si
+2021,1,EX01,exclusion,"GRD no agrupable: sin código, centinela, formato inválido o MDC 99",365,0.000447,no,estructura,si
+2021,2,EX02,exclusion,Recién nacidos (MDC 15),22904,0.028037,no,estructura,si
+2021,3,EX03,exclusion,Obstétricos sin comorbilidades (MDC 14 sin categorías de Elixhauser),62507,0.076516,no,estructura,si
+2021,4,A,cohorte,Variante A: cohorte dura,731133,0.894999,no,estructura,si
+2021,5,EX04,exclusion,Menores de 18 años o con edad desconocida,102671,0.125682,no,estructura,si
+2021,6,B,cohorte,Variante B: adultos,628462,0.769317,no,estructura,si
+2021,7,EX05,exclusion,Actividad distinta de hospitalización,89186,0.109175,no,estructura,si
+2021,8,C,cohorte,Variante C: adultos hospitalizados,539276,0.660142,no,estructura,si
+2021,9,EX06,exclusion,Censurados por tipo de alta o sin dato de desenlace,50477,0.06179,si,resultado,si
+2021,10,D,cohorte,Variante D: cohorte del modelo de mortalidad,488799,0.598352,si,resultado,si
+2021,11,EX07,exclusion,Fallecidos (salen del modelo de estadía),31145,0.038125,si,resultado,si
+2021,12,EX08,exclusion,Sobrevivientes con estadía de 0 días o desconocida,19812,0.024252,si,resultado,si
+2021,13,E,cohorte,Variante E: cohorte del modelo de estadía,437842,0.535974,si,resultado,si
+2022,0,TOTAL,total,Egresos leídos,932839,1,no,estructura,si
+2022,1,EX01,exclusion,"GRD no agrupable: sin código, centinela, formato inválido o MDC 99",749,0.000803,no,estructura,si
+2022,2,EX02,exclusion,Recién nacidos (MDC 15),25296,0.027117,no,estructura,si
+2022,3,EX03,exclusion,Obstétricos sin comorbilidades (MDC 14 sin categorías de Elixhauser),69066,0.074038,no,estructura,si
+2022,4,A,cohorte,Variante A: cohorte dura,837728,0.898041,no,estructura,si
+2022,5,EX04,exclusion,Menores de 18 años o con edad desconocida,136305,0.146118,no,estructura,si
+2022,6,B,cohorte,Variante B: adultos,701423,0.751923,no,estructura,si
+2022,7,EX05,exclusion,Actividad distinta de hospitalización,133406,0.143011,no,estructura,si
+2022,8,C,cohorte,Variante C: adultos hospitalizados,568017,0.608912,no,estructura,si
+2022,9,EX06,exclusion,Censurados por tipo de alta o sin dato de desenlace,45464,0.048737,si,resultado,si
+2022,10,D,cohorte,Variante D: cohorte del modelo de mortalidad,522553,0.560175,si,resultado,si
+2022,11,EX07,exclusion,Fallecidos (salen del modelo de estadía),26488,0.028395,si,resultado,si
+2022,12,EX08,exclusion,Sobrevivientes con estadía de 0 días o desconocida,22274,0.023878,si,resultado,si
+2022,13,E,cohorte,Variante E: cohorte del modelo de estadía,473791,0.507902,si,resultado,si
+2023,0,TOTAL,total,Egresos leídos,1039587,1,no,estructura,si
+2023,1,EX01,exclusion,"GRD no agrupable: sin código, centinela, formato inválido o MDC 99",1712,0.001647,no,estructura,si
+2023,2,EX02,exclusion,Recién nacidos (MDC 15),24031,0.023116,no,estructura,si
+2023,3,EX03,exclusion,Obstétricos sin comorbilidades (MDC 14 sin categorías de Elixhauser),65271,0.062786,no,estructura,si
+2023,4,A,cohorte,Variante A: cohorte dura,948573,0.912452,no,estructura,si
+2023,5,EX04,exclusion,Menores de 18 años o con edad desconocida,157504,0.151506,no,estructura,si
+2023,6,B,cohorte,Variante B: adultos,791069,0.760945,no,estructura,si
+2023,7,EX05,exclusion,Actividad distinta de hospitalización,167932,0.161537,no,estructura,si
+2023,8,C,cohorte,Variante C: adultos hospitalizados,623137,0.599408,no,estructura,si
+2023,9,EX06,exclusion,Censurados por tipo de alta o sin dato de desenlace,54400,0.052328,si,resultado,si
+2023,10,D,cohorte,Variante D: cohorte del modelo de mortalidad,568737,0.54708,si,resultado,si
+2023,11,EX07,exclusion,Fallecidos (salen del modelo de estadía),24235,0.023312,si,resultado,si
+2023,12,EX08,exclusion,Sobrevivientes con estadía de 0 días o desconocida,24669,0.02373,si,resultado,si
+2023,13,E,cohorte,Variante E: cohorte del modelo de estadía,519833,0.500038,si,resultado,si
+2024,0,TOTAL,total,Egresos leídos,1085813,1,no,estructura,si
+2024,1,EX01,exclusion,"GRD no agrupable: sin código, centinela, formato inválido o MDC 99",1489,0.001371,no,estructura,si
+2024,2,EX02,exclusion,Recién nacidos (MDC 15),22324,0.02056,no,estructura,si
+2024,3,EX03,exclusion,Obstétricos sin comorbilidades (MDC 14 sin categorías de Elixhauser),55569,0.051177,no,estructura,si
+2024,4,A,cohorte,Variante A: cohorte dura,1006431,0.926892,no,estructura,si
+2024,5,EX04,exclusion,Menores de 18 años o con edad desconocida,157991,0.145505,no,estructura,si
+2024,6,B,cohorte,Variante B: adultos,848440,0.781387,no,estructura,si
+2024,7,EX05,exclusion,Actividad distinta de hospitalización,182990,0.168528,no,estructura,si
+2024,8,C,cohorte,Variante C: adultos hospitalizados,665450,0.612859,no,estructura,si
+2019-2023,0,TOTAL,total,Egresos leídos,4722722,1,no,estructura,si
+2019-2023,1,EX01,exclusion,"GRD no agrupable: sin código, centinela, formato inválido o MDC 99",3583,0.000759,no,estructura,si
+2019-2023,2,EX02,exclusion,Recién nacidos (MDC 15),124604,0.026384,no,estructura,si
+2019-2023,3,EX03,exclusion,Obstétricos sin comorbilidades (MDC 14 sin categorías de Elixhauser),372932,0.078965,no,estructura,si
+2019-2023,4,A,cohorte,Variante A: cohorte dura,4221603,0.893892,no,estructura,si
+2019-2023,5,EX04,exclusion,Menores de 18 años o con edad desconocida,675590,0.143051,no,estructura,si
+2019-2023,6,B,cohorte,Variante B: adultos,3546013,0.750841,no,estructura,si
+2019-2023,7,EX05,exclusion,Actividad distinta de hospitalización,684599,0.144959,no,estructura,si
+2019-2023,8,C,cohorte,Variante C: adultos hospitalizados,2861414,0.605882,no,estructura,si
+2019-2023,9,EX06,exclusion,Censurados por tipo de alta o sin dato de desenlace,221353,0.04687,si,resultado,si
+2019-2023,10,D,cohorte,Variante D: cohorte del modelo de mortalidad,2640061,0.559013,si,resultado,si
+2019-2023,11,EX07,exclusion,Fallecidos (salen del modelo de estadía),134857,0.028555,si,resultado,si
+2019-2023,12,EX08,exclusion,Sobrevivientes con estadía de 0 días o desconocida,108848,0.023048,si,resultado,si
+2019-2023,13,E,cohorte,Variante E: cohorte del modelo de estadía,2396356,0.50741,si,resultado,si
+2019-2024,0,TOTAL,total,Egresos leídos,5808535,1,no,estructura,si
+2019-2024,1,EX01,exclusion,"GRD no agrupable: sin código, centinela, formato inválido o MDC 99",5072,0.000873,no,estructura,si
+2019-2024,2,EX02,exclusion,Recién nacidos (MDC 15),146928,0.025295,no,estructura,si
+2019-2024,3,EX03,exclusion,Obstétricos sin comorbilidades (MDC 14 sin categorías de Elixhauser),428501,0.073771,no,estructura,si
+2019-2024,4,A,cohorte,Variante A: cohorte dura,5228034,0.900061,no,estructura,si
+2019-2024,5,EX04,exclusion,Menores de 18 años o con edad desconocida,833581,0.14351,no,estructura,si
+2019-2024,6,B,cohorte,Variante B: adultos,4394453,0.756551,no,estructura,si
+2019-2024,7,EX05,exclusion,Actividad distinta de hospitalización,867589,0.149365,no,estructura,si
+2019-2024,8,C,cohorte,Variante C: adultos hospitalizados,3526864,0.607186,no,estructura,si

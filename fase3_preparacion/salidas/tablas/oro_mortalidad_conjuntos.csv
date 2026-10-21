@@ -1,0 +1,3 @@
+SPLIT,n_episodios,n_fallecidos,tasa_mortalidad
+calibracion,568737,24235,0.0426119629987147
+entrenamiento,2071324,110622,0.05340642024135287

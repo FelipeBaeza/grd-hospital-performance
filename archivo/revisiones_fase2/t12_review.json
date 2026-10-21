@@ -1,0 +1,63 @@
+{
+  "verdict": "APPROVED",
+  "approved": true,
+  "findings": [
+    {
+      "id": "N1",
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "Orden de filas inestable en t23_resultado_estratos.csv (fuera de T12)",
+      "evidence": "diff -rq entre la corrida del revisor y /tmp/real_t12b/extracto (mismo código, 137 archivos cada una): difieren F08_02.png, figuras_indice.csv, tablas_indice.csv y t23_resultado_estratos.csv. En la tabla se intercambian 3 pares de filas empatadas en n (2019 capitulo_cie10 XX y XVI con n suprimido; 2022 capitulo_cie10 XXII y VI con n 555; 2023 tipo_procedencia CMA y OTRAS INSTITUCIONES con n 119). eda/cohorte.py línea 670: .sort(['variable','periodo','n'], descending=[False, False, True]) sin desempate. Las 9 tablas de T12 y los 2 PNG de T12 son idénticos entre las dos corridas; T12 lee esa tabla por clave y no se afecta.",
+      "action": "Agregar categoria como cuarta clave del orden en tabla_estratos (con una prueba y una nota en el registro, como permite la sección 0 del plan) junto con B0; de lo contrario DT11 falla en la Tarea 13."
+    },
+    {
+      "id": "N2",
+      "severity": "NIT",
+      "confidence": "likely",
+      "title": "Decisión 1 gris sin la consecuencia de S01",
+      "evidence": "decisiones_evidencia.csv fila 1: semáforo gris (H01b y H01c requieren datos completos), veredicto '0 respalda, 1 matiza, 0 contradice, 2 no evaluable' y evidencia con 'S01 RECHAZADO: ... 1,82 %'. El criterio de S01 (texto en cambios_fase2.csv CF2-003) dice 'Si no, se descartan las variables de historial'. t24_id_consistencia.csv: 162 de 8.952 IDs de 5 o más dígitos (1,81 %) con nacimiento inconsistente, de modo que el rechazo no depende de los IDs cortos.",
+      "action": "Agregar al veredicto de la decisión 1 una frase fija con la consecuencia que fija el criterio de S01, sin cambiar el semáforo."
+    },
+    {
+      "id": "N3",
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "Tabla de discrepancias del informe de evidencia pierde decimales",
+      "evidence": "Informe compuesto con ledger.agregar_secciones sobre las tablas de la corrida: C076 muestra Documentado '44 %', Medido '40 %' (ledger_cifras.csv: 40,441704) y Diferencia relativa '8,1 %' (con lo que se ve sería 9,1 %); C128 y C129 muestran Medido '4' y '68' (3,967586 y 67,64); C018 muestra Diferencia relativa '0,2 %' y el motivo 'igualdad con lo que midió la suite de la estructura de los archivos o del diccionario: 2024' en una fila DISCREPA. ledger.valor_con_unidad usa los decimales de la cifra documentada.",
+      "action": "Mostrar el valor medido con al menos dos decimales cuando el documentado trae menos, no publicar la diferencia relativa de un año y redactar el motivo de una discrepancia de estructura como no coincidencia."
+    },
+    {
+      "id": "N4",
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "S11 cita 2019 a 2024 sin nombrar los años",
+      "evidence": "supuestos_verificados.csv S11: 'entre el primer y el último año = 40,4 % (intervalo de 38,7 % a 42,2 %)' con la métrica codificacion.aumento_pct_2019_2024. hipotesis.csv S11: 'Se informa la variación relativa entre 2019 y 2023 con IC'. t23_deriva_codificacion.csv, TODOS 2023: cambio_relativo 0,335861 (0,318896 a 0,353044). El estado ACEPTADO no cambia.",
+      "action": "Nombrar los años en la cifra y declarar por qué se usa 2019 a 2024, o citar 2019 a 2023 como dice el criterio."
+    },
+    {
+      "id": "N5",
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "Borde de la nota de redondeo sin prueba",
+      "evidence": "Mutante en una copia de /tmp: en eda/ledger.py _nota_redondeo, 'if z_tol > z_umbral' por '>=' sobrevive a tests/test_t12_ledger.py (115 passed). _nota_redondeo('DISCREPA', 6.0, 3.0, 2.0, 0, 3.0) devuelve la nota con 'z = 3,00 y no discreparía' y con z 6.1 devuelve ''. test_la_nota_de_redondeo_es_una_funcion_pura_con_sus_bordes cubre umbrales 2,81 y 2,79 contra z con tolerancia 2,80. Los otros 20 mutantes de 21 mueren.",
+      "action": "Agregar a esa prueba el caso z_tol igual al umbral (6.0, 3.0, 2.0, 0, 3.0) con la nota esperada."
+    },
+    {
+      "id": "N6",
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "Salvedad de H11 solo genérica (arrastrado)",
+      "evidence": "decisiones_evidencia.csv fila 11: semáforo amarillo, evidencia 'valores con estructura de RUT = 0' y que_falta_con_datos_completos = 'las cifras del extracto son indicativas: repetir con los datos completos antes de decidir'. metricas_eda.csv: calidad.valores_rut.total = 0 y t24_rut_por_columna.csv sin filas; C097 documenta menos de diez valores en los datos completos. El registro del plan (sección 13, vuelta 2, punto 10) dice que la salvedad específica queda en esa columna.",
+      "action": "Mantener el amarillo por decisión del orquestador y agregar a la decisión 11 la frase de que un cero en un extracto no descarta valores en los datos completos."
+    },
+    {
+      "id": "N7",
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "Prioridad alta de CF2-004 por un rechazo de forma (arrastrado)",
+      "evidence": "cambios_fase2.csv CF2-004: prioridad alta, tipo pendiente de datos completos. supuestos_verificados.csv S03: 99,9993 % con la regla 'se acepta solo con el 100 % exacto'. eda/cierre.py _cambios_supuestos asigna alta a todo supuesto rechazado que afecta una decisión (S03 afecta la decisión 8). La diferencia con el 100 % es de 0,0007 puntos.",
+      "action": "Declarar la diferencia de 0,0007 puntos en el texto propuesto o bajar la prioridad."
+    }
+  ],
+  "reviewDoc": "/home/felipe/Documentos/Proyecto final/Tesis/fase2_eda/.agents/tasks/t12_review.md"
+}

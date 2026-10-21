@@ -1,0 +1,11 @@
+polars>=2.0
+pyarrow
+pandas
+numpy
+scikit-learn>=1.9
+lightgbm>=4.7
+xgboost>=3.4
+optuna>=5
+joblib
+matplotlib
+pytest

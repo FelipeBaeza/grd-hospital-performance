@@ -1,0 +1,10 @@
+archivo,coincide
+mortalidad/modelo_lightgbm.txt,True
+mortalidad/modelo_completo.joblib,True
+mortalidad/recalibrador.joblib,True
+mortalidad/ficha_modelo.md,True
+estadia/modelo_lightgbm.txt,True
+estadia/modelo_completo.joblib,True
+estadia/recalibrador.joblib,True
+estadia/ficha_modelo.md,True
+exhaustividad/modelo_exhaustividad.joblib,True

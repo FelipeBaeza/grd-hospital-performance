@@ -1,0 +1,389 @@
+{
+ "openapi": "3.1.0",
+ "info": {
+  "title": "Indicadores hospitalarios GRD",
+  "description": "Indicador O/E de mortalidad y estadía por hospital (códigos, sin ranking) y demo pedagógica con perfil sintético.",
+  "version": "1.0.0"
+ },
+ "paths": {
+  "/salud": {
+   "get": {
+    "summary": "Salud",
+    "operationId": "salud_salud_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/metodologia": {
+   "get": {
+    "summary": "Metodologia",
+    "operationId": "metodologia_metodologia_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/criterios": {
+   "get": {
+    "summary": "Criterios",
+    "operationId": "criterios_criterios_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/hospitales": {
+   "get": {
+    "summary": "Hospitales",
+    "description": "Códigos disponibles, siempre en orden de código (no hay orden por desempeño).",
+    "operationId": "hospitales_hospitales_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/indicadores/{tarea}": {
+   "get": {
+    "summary": "Indicadores",
+    "operationId": "indicadores_indicadores__tarea__get",
+    "parameters": [
+     {
+      "name": "tarea",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Tarea"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/hospitales/{codigo}": {
+   "get": {
+    "summary": "Ficha",
+    "operationId": "ficha_hospitales__codigo__get",
+    "parameters": [
+     {
+      "name": "codigo",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Codigo"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/subgrupos/{tarea}": {
+   "get": {
+    "summary": "Subgrupos",
+    "operationId": "subgrupos_subgrupos__tarea__get",
+    "parameters": [
+     {
+      "name": "tarea",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Tarea"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/calibracion/{tarea}": {
+   "get": {
+    "summary": "Calibracion",
+    "operationId": "calibracion_calibracion__tarea__get",
+    "parameters": [
+     {
+      "name": "tarea",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Tarea"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/demo/catalogo": {
+   "get": {
+    "summary": "Demo Catalogo",
+    "operationId": "demo_catalogo_demo_catalogo_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/demo/riesgo": {
+   "post": {
+    "summary": "Demo Riesgo",
+    "description": "Calcula riesgo y días esperados de un perfil sintético. El perfil vive solo en memoria durante la llamada: no se guarda ni se registra.",
+    "operationId": "demo_riesgo_demo_riesgo_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PerfilDemo"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "schemas": {
+   "HTTPValidationError": {
+    "properties": {
+     "detail": {
+      "items": {
+       "$ref": "#/components/schemas/ValidationError"
+      },
+      "type": "array",
+      "title": "Detail"
+     }
+    },
+    "type": "object",
+    "title": "HTTPValidationError"
+   },
+   "PerfilDemo": {
+    "properties": {
+     "sexo": {
+      "type": "string",
+      "title": "Sexo"
+     },
+     "edad": {
+      "type": "integer",
+      "maximum": 110.0,
+      "minimum": 18.0,
+      "title": "Edad"
+     },
+     "tipo_ingreso": {
+      "type": "string",
+      "title": "Tipo Ingreso"
+     },
+     "tipo_procedencia": {
+      "type": "string",
+      "title": "Tipo Procedencia"
+     },
+     "diagnostico_principal": {
+      "type": "string",
+      "maxLength": 3,
+      "minLength": 3,
+      "title": "Diagnostico Principal"
+     },
+     "ingreso_fin_de_semana": {
+      "type": "boolean",
+      "title": "Ingreso Fin De Semana",
+      "default": false
+     },
+     "cuidado_intensivo_al_ingreso": {
+      "type": "boolean",
+      "title": "Cuidado Intensivo Al Ingreso",
+      "default": false
+     },
+     "comorbilidades": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "maxItems": 31,
+      "title": "Comorbilidades"
+     }
+    },
+    "type": "object",
+    "required": [
+     "sexo",
+     "edad",
+     "tipo_ingreso",
+     "tipo_procedencia",
+     "diagnostico_principal"
+    ],
+    "title": "PerfilDemo",
+    "description": "Perfil clínico SINTÉTICO. No se guarda, no se registra y no identifica a nadie."
+   },
+   "ValidationError": {
+    "properties": {
+     "loc": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        }
+       ]
+      },
+      "type": "array",
+      "title": "Location"
+     },
+     "msg": {
+      "type": "string",
+      "title": "Message"
+     },
+     "type": {
+      "type": "string",
+      "title": "Error Type"
+     },
+     "input": {
+      "title": "Input"
+     },
+     "ctx": {
+      "type": "object",
+      "title": "Context"
+     }
+    },
+    "type": "object",
+    "required": [
+     "loc",
+     "msg",
+     "type"
+    ],
+    "title": "ValidationError"
+   }
+  }
+ }
+}

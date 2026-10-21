@@ -1,0 +1,17 @@
+tarea,criterio,valor,ic_inf,ic_sup,umbral,veredicto,es_criterio,orden
+mortalidad,Discriminación de mortalidad: PR AUC del modelo menos PR AUC de la logística,0.0328623929211397,0.0279554664274838,0.0376722200755352,> 0,cumple,True,0
+mortalidad,PR AUC del modelo,0.3844170026285861,0.3650337926266461,0.4054707959231897,informativa,informativa,False,1
+mortalidad,Ganancia relativa de PR AUC sobre la prevalencia,8.900658926393293,8.311857339314875,9.489280692146895,informativa,informativa,False,2
+mortalidad,Brier Skill Score,0.2272852811803521,0.2137332742611708,0.2417812428066043,> 0.0,cumple,True,3
+mortalidad,Pendiente de calibración,1.018140253879411,0.9921637317075248,1.0469001786219994,0.8 a 1.2,cumple,True,4
+mortalidad,O/E global de mortalidad,0.9788717917403053,0.9370154864064212,1.0212844801442726,0.95 a 1.05,cumple con incertidumbre,True,5
+mortalidad,auc (informativa),0.9320376541303764,0.9273895947457408,0.9366823589509976,informativa,informativa,False,6
+mortalidad,brier (informativa),0.0319319503043329,0.0301686033892707,0.0338906082238573,informativa,informativa,False,7
+mortalidad,log_loss (informativa),0.1097371115738888,0.1041538643921853,0.1159819669803513,informativa,informativa,False,8
+mortalidad,citl (informativa),-0.0290821286315375,-0.088573813941176,0.028818501377899,informativa,informativa,False,9
+estadia,Error de estadía: RMSE del modelo menos RMSE de la regresión lineal,-0.1922385309771543,-0.2143617840712621,-0.1714196482261401,< 0,cumple,True,0
+estadia,Error de estadía: RMSE del modelo menos RMSE de la regresión poisson,-0.253023897054522,-0.2790659519737938,-0.2288609036742962,< 0,cumple,True,1
+estadia,O/E global de estadía,0.9564631394759064,0.9289361070869055,0.984373465747156,0.95 a 1.05,cumple con incertidumbre,True,2
+estadia,rmse del modelo (informativa),7.011741919400756,6.768789904438213,7.260191386261283,informativa,informativa,False,3
+estadia,mae del modelo (informativa),4.164047848200528,4.022814659443961,4.312747169367532,informativa,informativa,False,4
+estadia,devianza_poisson del modelo (informativa),4.1434411065945,3.95422501901712,4.3340362236236105,informativa,informativa,False,5

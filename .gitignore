@@ -1,56 +1,33 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
+# Entornos y cachés
 venv/
 .venv/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# Testing & Linting
+__pycache__/
+*.pyc
 .pytest_cache/
-.hypothesis/
-.coverage
-htmlcov/
 
-# Ambientes y editores
-.idea/
-.vscode/
-*.swp
-*.swo
-*~
-.DS_Store
+# Archivos temporales de LibreOffice y Word
+.~lock.*#
+~$*
 
-# Datos masivos (NUNCA subir a Git)
-data/raw/*
-!data/raw/.gitkeep
-data/bronze/*
-!data/bronze/.gitkeep
-data/silver/*
-!data/silver/.gitkeep
-data/gold/*
-!data/gold/.gitkeep
+# Datos de FONASA: traen fechas exactas; se guardan fuera de git
+data seminario/
+data seminario_full/
 
-# Artefactos binarios y bases de datos temporales
-*.parquet
-*.pkl
-*.pickle
-*.sqlite
-*.sqlite3
-*.db
+# Capas y carpetas de trabajo generadas (viven fuera del repositorio)
+capas/
+trabajo4/
+trabajo5/
+
+# Fase 6
+fase6_despliegue/web/node_modules/
+fase6_despliegue/web/dist/
+.env
+
+# Carpeta de entrega del orden (se borra al aplicar el script)
+_orden_propuesto/
+
+# Fuera del repositorio público hasta que la autora decida publicarlos
+Oficio_Respuesta_N*23364_T10901.pdf
+docs/comunicaciones_fonasa/
+# Tablas por hospital con muertes observadas de 1 a 9 sin suprimir (criterio DT04)
+fase4_modelado/salidas/tablas/auditoria_extracto_hospital_*.csv

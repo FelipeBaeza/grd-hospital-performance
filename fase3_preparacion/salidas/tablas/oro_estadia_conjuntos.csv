@@ -1,0 +1,3 @@
+SPLIT,n_episodios,estancia_media,estancia_media_con_tope,n_recortados
+calibracion,519833,7.0628701910036495,6.798127475554649,4442
+entrenamiento,1876523,7.473969676897112,7.169867888642985,17995
