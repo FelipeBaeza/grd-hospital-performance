@@ -1,0 +1,35 @@
+{
+ "archivos": {
+  "mortalidad_logistica": {
+   "modelo_completo": {
+    "ruta": "mortalidad_logistica/modelo_completo.joblib",
+    "sha256": "a1391d5312fdf4267d1e1caaefdd60d37e65fbb8dfd7727dc7a1bd379d32ddab"
+   },
+   "recalibrador": {
+    "ruta": "mortalidad_logistica/recalibrador.joblib",
+    "sha256": "fe7865bb6d2d3c1e7c76b9c67fd3583ef05e57b65717ef8eac348decca8f99e4"
+   }
+  },
+  "estadia_poisson": {
+   "modelo_completo": {
+    "ruta": "estadia_poisson/modelo_completo.joblib",
+    "sha256": "5f9a6f1da859ff15a8b983fb85b673440de2168e7f4d121252aa8cfc70dab112"
+   },
+   "recalibrador": {
+    "ruta": "estadia_poisson/recalibrador.joblib",
+    "sha256": "cb776dbed15eac9add8175c0f18bb88c7cce6974fc7b5e880c216dde2ce4d381"
+   }
+  },
+  "estadia_lineal": {
+   "modelo_completo": {
+    "ruta": "estadia_lineal/modelo_completo.joblib",
+    "sha256": "6ca99ae206815a7bff48ccf43c7a5d0af901b9fbbc768192cdd8f075e6af9524"
+   },
+   "recalibrador": {
+    "ruta": "estadia_lineal/recalibrador.joblib",
+    "sha256": "ac2d6f86b3b975c205b92e793f2bf97ecf34746f90ac6768329f4585f4673b53"
+   }
+  }
+ },
+ "nota": "líneas base entrenadas con 2019–2022; recalibradas con 2023; 2024 no se usó"
+}

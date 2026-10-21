@@ -1,0 +1,130 @@
+columna,que_representa,tipo_doc,tipo_medido,categoria_fase1,n_filas_med,n_con_med,n_sin_med,n_centinela_med,pct_sin_doc,pct_sin_med,dif_pp,estado,magnitud,observacion
+COD_HOSPITAL,Código único del hospital donde ocurrió la hospitalización,Texto,entero,LLAVE_AGREGACION,299994,299994,0,0,0,0,0,COINCIDE,no aplica,""
+CIP_ENCRIPTADO,"Identificador del paciente, protegido mediante encriptación. No contiene el RUT real.",Texto,entero,LLAVE_AGREGACION,299994,299863,131,733,0.03519,0.043668,0.008478,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+SERVICIO_SALUD,Servicio de salud (macrorred) al que pertenece el hospital,Texto,texto,LLAVE_AGREGACION,299994,299994,0,71,0,0,0,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+SEXO,Sexo registrado del paciente,Texto,texto,FEATURE_BASAL,299994,299994,0,17,0,0,0,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHA_NACIMIENTO,Fecha de nacimiento del paciente (formato año-mes-día),Fecha,fecha_iso,FUENTE_DERIVADA,299994,299994,0,0,0,0,0,COINCIDE,no aplica,""
+ETNIA,Pertenencia del paciente a un pueblo originario,Texto,texto,AUDITORIA_SENSIBILIDAD,299994,299994,0,0,0,0,0,COINCIDE,no aplica,""
+PROVINCIA,Provincia de residencia del paciente,Texto,texto,AUDITORIA_SENSIBILIDAD,299994,299994,0,91,0,0,0,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+COMUNA,Comuna de residencia del paciente,Texto,texto,AUDITORIA_SENSIBILIDAD,299994,299994,0,46,0,0,0,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+NACIONALIDAD,Nacionalidad del paciente,Texto,texto,AUDITORIA_SENSIBILIDAD,299994,299994,0,817,0,0,0,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+PREVISION,"Sistema de salud del paciente (FONASA, ISAPRE, etc.)",Texto,texto,AUDITORIA_SENSIBILIDAD,299994,299994,0,228,0,0,0,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+TIPO_PROCEDENCIA,"De dónde viene el paciente al ingresar (domicilio, urgencia, derivado)",Texto,texto,FEATURE_BASAL,299994,299994,0,231,0,0,0,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+TIPO_INGRESO,Si el ingreso fue de urgencia o programado,Texto,texto,FEATURE_BASAL,299994,299994,0,31,0,0,0,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+ESPECIALIDAD_MEDICA,Especialidad médica asignada al episodio,Texto,texto,FEATURE_BASAL,299994,299994,0,,0,0,0,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+TIPO_ACTIVIDAD,"Tipo de actividad asistencial (hospitalización, cirugía ambulatoria, etc.)",Texto,texto,FILTRO_COHORTE,299994,299994,0,0,0,0,0,COINCIDE,no aplica,""
+FECHA_INGRESO,Fecha en que el paciente ingresó al hospital (formato día-mes-año),Fecha,fecha_iso,FUENTE_DERIVADA,299994,299994,0,,0,0,0,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+SERVICIOINGRESO,"Unidad clínica donde ingresó el paciente (ej. UCI, medicina interna)",Texto,texto,FEATURE_BASAL,299994,299994,0,1463,0.000052,0,0.000052,NO EVALUABLE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+HOSPPROCEDENCIA,Hospital de origen cuando el paciente viene derivado de otro establecimiento,Texto,texto,FEATURE_BASAL,299994,35718,264276,151,87.88242,88.093762,0.211342,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHATRASLADO1,Fecha del primer traslado interno durante la hospitalización,Fecha,fecha_iso,PROHIBIDA_FUGA,299994,51402,248592,0,82.766449,82.865657,0.099208,DISCREPANCIA,despreciable,""
+SERVICIOTRASLADO1,Unidad de destino del primer traslado interno,Texto,texto,PROHIBIDA_FUGA,299994,51402,248592,201,82.766466,82.865657,0.099191,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHATRASLADO2,Fecha del segundo traslado interno,Fecha,fecha_iso,PROHIBIDA_FUGA,299994,16418,283576,0,94.260774,94.527224,0.26645,DISCREPANCIA,despreciable,""
+SERVICIOTRASLADO2,Unidad de destino del segundo traslado interno,Texto,texto,PROHIBIDA_FUGA,299994,16418,283576,74,94.260654,94.527224,0.26657,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHATRASLADO3,Fecha del tercer traslado interno,Fecha,fecha_iso,PROHIBIDA_FUGA,299994,4954,295040,0,98.216108,98.348634,0.132525,DISCREPANCIA,despreciable,""
+SERVICIOTRASLADO3,Unidad de destino del tercer traslado interno,Texto,texto,PROHIBIDA_FUGA,299994,4954,295040,21,98.216057,98.348634,0.132577,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHATRASLADO4,Fecha del cuarto traslado interno,Fecha,fecha_iso,PROHIBIDA_FUGA,299994,1645,298349,0,99.357015,99.451656,0.09464,DISCREPANCIA,despreciable,""
+SERVICIOTRASLADO4,Unidad de destino del cuarto traslado interno,Texto,texto,PROHIBIDA_FUGA,299994,1645,298349,,99.357015,99.451656,0.09464,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHATRASLADO5,Fecha del quinto traslado interno,Fecha,fecha_iso,PROHIBIDA_FUGA,299994,551,299443,0,99.763279,99.81633,0.05305,DISCREPANCIA,despreciable,""
+SERVICIOTRASLADO5,Unidad de destino del quinto traslado interno,Texto,texto,PROHIBIDA_FUGA,299994,551,299443,0,99.763262,99.81633,0.053067,DISCREPANCIA,despreciable,""
+FECHATRASLADO6,Fecha del sexto traslado interno,Fecha,fecha_iso,PROHIBIDA_FUGA,299994,249,299745,0,99.893261,99.916998,0.023738,DISCREPANCIA,despreciable,""
+SERVICIOTRASLADO6,Unidad de destino del sexto traslado interno,Texto,texto,PROHIBIDA_FUGA,299994,249,299745,,99.893261,99.916998,0.023738,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHATRASLADO7,Fecha del séptimo traslado interno,Fecha,fecha_iso,PROHIBIDA_FUGA,299994,117,299877,0,99.947095,99.960999,0.013904,DISCREPANCIA,despreciable,""
+SERVICIOTRASLADO7,Unidad de destino del séptimo traslado interno,Texto,texto,PROHIBIDA_FUGA,299994,117,299877,0,99.947095,99.960999,0.013904,DISCREPANCIA,despreciable,""
+FECHATRASLADO8,Fecha del octavo traslado interno,Fecha,fecha_iso,PROHIBIDA_FUGA,299994,65,299929,0,99.970853,99.978333,0.00748,DISCREPANCIA,despreciable,""
+SERVICIOTRASLADO8,Unidad de destino del octavo traslado interno,Texto,texto,PROHIBIDA_FUGA,299994,65,299929,,99.970853,99.978333,0.00748,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+FECHATRASLADO9,Fecha del noveno traslado interno,Fecha,fecha_iso,PROHIBIDA_FUGA,299994,35,299959,0,99.983249,99.988333,0.005084,DISCREPANCIA,despreciable,""
+SERVICIOTRASLADO9,Unidad de destino del noveno traslado interno,Texto,texto,PROHIBIDA_FUGA,299994,35,299959,0,99.983249,99.988333,0.005084,DISCREPANCIA,despreciable,""
+FECHAALTA,Fecha en que el paciente fue dado de alta (formato día-mes-año),Fecha,fecha_iso,PROHIBIDA_FUGA,299994,299994,0,0,0.00031,0,0.00031,NO EVALUABLE,no aplica,""
+SERVICIOALTA,Unidad clínica desde donde se dio el alta,Texto,texto,PROHIBIDA_FUGA,299994,299994,0,972,0,0,0,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+TIPOALTA,"Motivo del alta: recuperado, fallecido, trasladado, etc. (18 categorías)",Texto,texto,TARGET,299994,299994,0,,0,0,0,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+CONDICIONDEALTANEONATO1,Condición de alta del primer recién nacido del episodio,Texto,vacia,DESCARTAR,299994,5104,294890,0,97.78006,98.298633,0.518572,DISCREPANCIA,relevante,""
+PESORN1,Peso del primer recién nacido,Número,entero,DESCARTAR,299994,41347,258647,0,86.296495,86.217391,0.079104,COINCIDE,no aplica,""
+SEXORN1,Sexo del primer recién nacido,Texto,texto,DESCARTAR,299994,33502,266492,21,88.855333,88.832443,0.02289,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+RN1ESTADO,Estado del primer recién nacido,Texto,entero,DESCARTAR,299994,93003,206991,0,66.950519,68.99838,2.047861,DISCREPANCIA,relevante,""
+CONDICIONDEALTANEONATO2,Condición de alta del segundo recién nacido,Texto,vacia,DESCARTAR,299994,67,299927,0,99.972868,99.977666,0.004799,COINCIDE,no aplica,""
+PESORN2,Peso del segundo recién nacido,Número,entero,DESCARTAR,299994,469,299525,0,99.852011,99.843664,0.008347,COINCIDE,no aplica,""
+SEXORN2,Sexo del segundo recién nacido,Texto,texto,DESCARTAR,299994,469,299525,,99.852097,99.843664,0.008433,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+RN2ESTADO,Estado del segundo recién nacido,Texto,entero,DESCARTAR,299994,67123,232871,0,75.138796,77.625219,2.486423,DISCREPANCIA,relevante,""
+CONDICIONDEALTANEONATO3,Condición de alta del tercer recién nacido,Texto,vacia,DESCARTAR,299994,0,299994,0,100,100,0,COINCIDE,no aplica,""
+PESORN3,Peso del tercer recién nacido,Número,entero,DESCARTAR,299994,,299989,0,99.998709,99.998333,0.000375,NO EVALUABLE,no aplica,""
+SEXORN3,Sexo del tercer recién nacido,Texto,texto,DESCARTAR,299994,,299989,0,99.998709,99.998333,0.000375,NO EVALUABLE,no aplica,""
+RN3ESTADO,Estado del tercer recién nacido,Texto,entero,DESCARTAR,299994,66764,233230,0,75.250046,77.744888,2.494842,DISCREPANCIA,relevante,""
+CONDICIONDEALTANEONATO4,Condición de alta del cuarto recién nacido,Texto,vacia,DESCARTAR,299994,0,299994,0,100,100,0,COINCIDE,no aplica,""
+PESORN4,Peso del cuarto recién nacido,Texto,vacia,DESCARTAR,299994,0,299994,0,99.999983,100,0.000017,NO EVALUABLE,no aplica,""
+SEXORN4,Sexo del cuarto recién nacido,Texto,vacia,DESCARTAR,299994,0,299994,0,99.999966,100,0.000034,NO EVALUABLE,no aplica,""
+RN4ESTADO,Estado del cuarto recién nacido,Texto,vacia,DESCARTAR,299994,66759,233235,0,75.251044,77.746555,2.495511,DISCREPANCIA,relevante,""
+DIAGNOSTICO1,"Diagnóstico principal: el motivo del ingreso, en código CIE-10",Texto,texto,FEATURE_BASAL,299994,299990,,459,0.001377,0.001333,0.000044,NO EVALUABLE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO2,"Segundo diagnóstico del paciente (enfermedades previas o secundarias), en código CIE-10",Texto,texto,FEATURE_BASAL,299994,259996,39998,1179,13.690093,13.332933,0.35716,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO3,Tercer diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,218640,81354,423,27.481434,27.118542,0.362892,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO4,Cuarto diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,179412,120582,405,40.466789,40.194804,0.271985,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO5,Quinto diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,142480,157514,333,52.755152,52.505717,0.249435,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO6,Sexto diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,111273,188721,250,63.170513,62.908258,0.262255,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO7,Séptimo diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,85706,214288,205,71.605995,71.430762,0.175233,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO8,Octavo diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,65606,234388,159,78.238389,78.130896,0.107493,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO9,Noveno diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,50405,249589,109,83.340828,83.197997,0.142831,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO10,Décimo diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,38641,261353,97,87.216262,87.119409,0.096853,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO11,Undécimo diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,29737,270257,64,90.132712,90.087468,0.045243,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO12,Duodécimo diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,23073,276921,54,92.333387,92.308846,0.02454,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO13,Decimotercer diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,17912,282082,41,94.019026,94.029214,0.010187,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO14,Decimocuarto diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,13974,286020,28,95.30262,95.341907,0.039287,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO15,Decimoquinto diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,10951,289043,26,96.301874,96.349594,0.04772,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO16,Decimosexto diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,8644,291350,18,97.071689,97.118609,0.04692,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO17,Decimoséptimo diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,6806,293188,17,97.67456,97.731288,0.056728,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO18,Decimoctavo diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,5400,294594,,98.14566,98.199964,0.054304,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO19,Decimonoveno diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,4327,295667,,98.515564,98.557638,0.042074,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO20,Vigésimo diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,3396,296598,,98.813023,98.867977,0.054955,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO21,Vigésimo primer diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,2711,297283,,99.049829,99.096315,0.046486,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO22,Vigésimo segundo diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,2150,297844,,99.23578,99.283319,0.047539,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO23,Vigésimo tercer diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,1691,298303,,99.383373,99.436322,0.052949,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO24,Vigésimo cuarto diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,1357,298637,,99.50101,99.547658,0.046647,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO25,Vigésimo quinto diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,1106,298888,,99.596972,99.631326,0.034354,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO26,Vigésimo sexto diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,886,299108,,99.672998,99.704661,0.031662,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO27,Vigésimo séptimo diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,704,299290,0,99.735613,99.765329,0.029715,DISCREPANCIA,despreciable,""
+DIAGNOSTICO28,Vigésimo octavo diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,576,299418,,99.784008,99.807996,0.023989,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO29,Vigésimo noveno diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,456,299538,,99.824999,99.847997,0.022998,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO30,Trigésimo diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,365,299629,,99.858364,99.878331,0.019967,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+DIAGNOSTICO31,Trigésimo primer diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,280,299714,0,99.886718,99.906665,0.019946,DISCREPANCIA,despreciable,""
+DIAGNOSTICO32,Trigésimo segundo diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,229,299765,0,99.909409,99.923665,0.014256,COINCIDE,no aplica,""
+DIAGNOSTICO33,Trigésimo tercer diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,186,299808,0,99.927331,99.937999,0.010668,COINCIDE,no aplica,""
+DIAGNOSTICO34,Trigésimo cuarto diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,141,299853,0,99.942154,99.952999,0.010845,COINCIDE,no aplica,""
+DIAGNOSTICO35,Trigésimo quinto diagnóstico en código CIE-10,Texto,texto,FEATURE_BASAL,299994,99,299895,0,99.958819,99.966999,0.00818,COINCIDE,no aplica,""
+PROCEDIMIENTO1,Primer procedimiento realizado durante la hospitalización (código CIE-9-MC),Texto,decimal,PROHIBIDA_FUGA,299994,299397,597,,0.316069,0.199004,0.117065,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO2,Segundo procedimiento (código CIE-9-MC),Texto,decimal,PROHIBIDA_FUGA,299994,277415,22579,40,8.369648,7.526484,0.843164,DISCREPANCIA,relevante,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO3,Tercer procedimiento (código CIE-9-MC),Texto,decimal,PROHIBIDA_FUGA,299994,253750,46244,,16.691504,15.414975,1.276529,DISCREPANCIA,relevante,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO4,Cuarto procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,230724,69270,0,24.540934,23.090462,1.450472,DISCREPANCIA,relevante,""
+PROCEDIMIENTO5,Quinto procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,207465,92529,,32.231013,30.843617,1.387396,DISCREPANCIA,relevante,tiene valores centinela que el diccionario no cuenta como faltantes
+PROCEDIMIENTO6,Sexto procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,184199,115795,0,39.968402,38.599105,1.369296,DISCREPANCIA,relevante,""
+PROCEDIMIENTO7,Séptimo procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,160562,139432,0,47.733508,46.478263,1.255245,DISCREPANCIA,relevante,""
+PROCEDIMIENTO8,Octavo procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,137290,162704,0,55.341914,54.235751,1.106163,DISCREPANCIA,relevante,""
+PROCEDIMIENTO9,Noveno procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,115660,184334,0,62.418189,61.445896,0.972294,DISCREPANCIA,relevante,""
+PROCEDIMIENTO10,Décimo procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,95887,204107,0,68.784716,68.037027,0.747689,COINCIDE,no aplica,""
+PROCEDIMIENTO11,Undécimo procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,79153,220841,0,74.245524,73.615139,0.630385,COINCIDE,no aplica,""
+PROCEDIMIENTO12,Duodécimo procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,65074,234920,0,78.76205,78.308233,0.453817,COINCIDE,no aplica,""
+PROCEDIMIENTO13,Decimotercer procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,53431,246563,0,82.461295,82.18931,0.271984,COINCIDE,no aplica,""
+PROCEDIMIENTO14,Decimocuarto procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,44222,255772,0,85.412968,85.259039,0.15393,COINCIDE,no aplica,""
+PROCEDIMIENTO15,Decimoquinto procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,36968,263026,0,87.762045,87.677087,0.084959,DISCREPANCIA,despreciable,""
+PROCEDIMIENTO16,Decimosexto procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,31088,268906,0,89.659993,89.637126,0.022867,DISCREPANCIA,despreciable,""
+PROCEDIMIENTO17,Decimoséptimo procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,26359,273635,0,91.205271,91.213491,0.00822,DISCREPANCIA,despreciable,""
+PROCEDIMIENTO18,Decimoctavo procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,22473,277521,0,92.457204,92.50885,0.051646,DISCREPANCIA,despreciable,""
+PROCEDIMIENTO19,Decimonoveno procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,19267,280727,0,93.493731,93.577538,0.083808,DISCREPANCIA,despreciable,""
+PROCEDIMIENTO20,Vigésimo procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,16632,283362,0,94.357735,94.455889,0.098154,DISCREPANCIA,despreciable,""
+PROCEDIMIENTO21,Vigésimo primer procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,14386,285608,0,95.094186,95.204571,0.110385,DISCREPANCIA,despreciable,""
+PROCEDIMIENTO22,Vigésimo segundo procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,12506,287488,0,95.711191,95.83125,0.120059,DISCREPANCIA,despreciable,""
+PROCEDIMIENTO23,Vigésimo tercer procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,10952,289042,0,96.244372,96.34926,0.104888,DISCREPANCIA,despreciable,""
+PROCEDIMIENTO24,Vigésimo cuarto procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,9475,290519,0,96.716074,96.841603,0.125529,DISCREPANCIA,despreciable,""
+PROCEDIMIENTO25,Vigésimo quinto procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,8248,291746,0,97.125868,97.250612,0.124744,DISCREPANCIA,despreciable,""
+PROCEDIMIENTO26,Vigésimo sexto procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,7185,292809,0,97.484116,97.604952,0.120836,DISCREPANCIA,despreciable,""
+PROCEDIMIENTO27,Vigésimo séptimo procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,6228,293766,0,97.800134,97.923958,0.123824,DISCREPANCIA,despreciable,""
+PROCEDIMIENTO28,Vigésimo octavo procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,5417,294577,0,98.075677,98.194297,0.11862,DISCREPANCIA,despreciable,""
+PROCEDIMIENTO29,Vigésimo noveno procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,4676,295318,0,98.319387,98.441302,0.121915,DISCREPANCIA,despreciable,""
+PROCEDIMIENTO30,Trigésimo procedimiento,Texto,decimal,PROHIBIDA_FUGA,299994,4073,295921,0,98.532281,98.642306,0.110025,DISCREPANCIA,despreciable,""
+MEDICOINTERV1_ENCRIPTADO,"Identificador del médico que realizó la intervención (encriptado, sin nombre real)",Texto,entero,PROHIBIDA_FUGA,299994,160107,139887,0,44.895065,46.629933,1.734868,DISCREPANCIA,relevante,""
+FECHAPROCEDIMIENTO1,Fecha registrada del procedimiento 1,Fecha,vacia,DESCARTAR,299994,0,299994,0,99.999845,100,0.000155,NO EVALUABLE,no aplica,""
+FECHAINTERV1,Fecha de la intervención quirúrgica,Fecha,fecha_iso,PROHIBIDA_FUGA,299994,146667,153327,907,49.476667,51.110022,1.633355,DISCREPANCIA,relevante,tiene valores centinela que el diccionario no cuenta como faltantes
+ESPECIALIDADINTERVENCION,Especialidad médica de la intervención,Texto,texto,PROHIBIDA_FUGA,299994,160320,139674,32,44.799258,46.558931,1.759674,DISCREPANCIA,relevante,tiene valores centinela que el diccionario no cuenta como faltantes
+MEDICOALTA_ENCRIPTADO,Identificador del médico que firmó el alta (encriptado),Texto,entero,PROHIBIDA_FUGA,299994,299865,129,0,0.061478,0.043001,0.018478,DISCREPANCIA,despreciable,""
+USOSPABELLON,Indica si el paciente usó pabellón quirúrgico,Texto,entero,PROHIBIDA_FUGA,299994,143570,156424,0,49.018341,52.142376,3.124035,DISCREPANCIA,relevante,""
+IR_29301_COD_GRD,Código del Grupo Relacionado por Diagnóstico asignado al episodio,Texto,entero,FILTRO_COHORTE,299994,299994,0,,0.001291,0,0.001291,NO EVALUABLE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+IR_29301_PESO,Peso relativo del GRD: mide cuántos recursos consume ese tipo de hospitalización en promedio,Número,decimal,PROHIBIDA_FUGA,299994,299994,0,,0,0,0,COINCIDE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+IR_29301_SEVERIDAD,Nivel de severidad asignado por el sistema GRD al episodio,Texto,entero,PROHIBIDA_FUGA,299994,299994,0,,0.001291,0,0.001291,NO EVALUABLE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes
+IR_29301_MORTALIDAD,Riesgo de mortalidad calculado por el sistema GRD usando diagnósticos y procedimientos al alta,Texto,entero,PROHIBIDA_FUGA,299994,299994,0,,0.001291,0,0.001291,NO EVALUABLE,no aplica,tiene valores centinela que el diccionario no cuenta como faltantes

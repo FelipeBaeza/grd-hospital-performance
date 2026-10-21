@@ -1,0 +1,303 @@
+diff --git a/GUIA_BASE_COMPLETA.md b/GUIA_BASE_COMPLETA.md
+index 6e6927a..1ff667a 100644
+--- a/GUIA_BASE_COMPLETA.md
++++ b/GUIA_BASE_COMPLETA.md
+@@ -15,8 +15,11 @@ Ahora la suite trabaja así:
+    esas 10. Los 3 GB de texto quedan en ~270 MB de Parquet comprimido.
+ 3. **Bloques de columnas.** Las dos tareas que recorren las 129 columnas (T4 descripción y el escaneo de RUT de T5)
+    ahora lo hacen de 16 en 16 columnas.
+-4. **Muestras acotadas** (ya existían): las Tareas 10 y 11 usan hasta 200.000 egresos por año para las asociaciones
+-   y los modelos. Los conteos, la cascada y las tasas usan **todos** los datos.
++4. **Sin muestreo.** Las Tareas 10 y 11 usan **todos** los egresos de la cohorte D (2,07 millones en 2019–2022 y 568.737 en
++   2023). El umbral `max_filas_asociacion_por_anio` vale 0 (sin muestreo) y `modelos.TOPE_FILAS_MODELOS` es `None`.
++   Única excepción: el ajuste del modelo L1 usa una muestra fija de 400.000 egresos (`modelos.TOPE_FILAS_L1`), porque con
++   toda la cohorte tardaba más de 2 horas; su AUC y su importancia se evalúan con todos los egresos de 2023. Para volver a
++   muestrear (equipos con poca memoria) pon un entero positivo en `max_filas_asociacion_por_anio` (en `config/umbrales.toml`).
+ 
+ Los resultados son **idénticos** a los del camino anterior: las pruebas `tests/test_memoria_completo.py` comparan
+ fila por fila y tabla por tabla los dos caminos.
+@@ -25,10 +28,11 @@ fila por fila y tabla por tabla los dos caminos.
+ 
+ | | Suite anterior | Suite con baja memoria |
+ |---|---|---|
+-| Pico de RAM | 4,1 GB ya en T3–T4; T5 llevaba más de 11 min sin terminar cuando se detuvo | **4,2 GB** en T3–T12; 4,7 GB contando la corrida repetida de determinismo |
++| Pico de RAM | 4,1 GB ya en T3–T4; T5 llevaba más de 11 min sin terminar cuando se detuvo | **5,7 GB** en la corrida oficial completa (todos los egresos, también en variables y modelos) |
+ | T5 (calidad) | más de 11 min sin terminar (el cálculo de episodios solapados crecía casi al cuadrado con el número de pacientes) | **32 s** |
+-| T3 a T12 | no terminó | **≈ 15 min** |
+-| Corrida oficial (con pytest y determinismo) | — | **52 min**, resultado **12 PASS, 0 PENDIENTE, 0 FAIL** |
++| T3 a T9 y T12 | no terminó | **≈ 15 min** |
++| T10 y T11 (todos los egresos) | — | **≈ 27 min** (caché ya creada) |
++| Corrida oficial (con pytest y determinismo) | — | **1 h 54 min**, resultado **12 PASS, 0 PENDIENTE, 0 FAIL** (1.759 pruebas) |
+ 
+ Con 16 GB y 12 núcleos debería ser más rápido y con holgura de memoria.
+ 
+diff --git a/config/umbrales.toml b/config/umbrales.toml
+index 28f6869..108fc90 100644
+--- a/config/umbrales.toml
++++ b/config/umbrales.toml
+@@ -238,8 +238,8 @@ valor = 0.95
+ justificacion = "Nivel de los intervalos de confianza. Los IC ignoran el agrupamiento por paciente y por hospital y se rotulan como indicativos."
+ 
+ [umbral.max_filas_asociacion_por_anio]
+-valor = 200000
+-justificacion = "En modo completo, los análisis de asociación usan una muestra aleatoria reproducible (semilla fija) de hasta 200.000 egresos por año para acotar memoria; los conteos y la cascada usan todos los datos."
++valor = 0
++justificacion = "0 = sin muestreo: los análisis de asociación y los modelos usan TODOS los egresos de la cohorte D de cada año (base completa). Un valor positivo activa una muestra aleatoria reproducible (semilla fija) de hasta ese número de egresos por año, solo como opción para equipos con poca memoria."
+ 
+ [umbral.cardinalidad_max_categorica]
+ valor = 60
+diff --git a/eda/asociacion.py b/eda/asociacion.py
+index 5ff4b40..11fa1f7 100644
+--- a/eda/asociacion.py
++++ b/eda/asociacion.py
+@@ -1026,15 +1026,21 @@ def agregar_secciones(inf: Informe, ctx: Contexto, n0: int = 1) -> None:
+ 
+     # --- 1. qué se midió -----------------------------------------------------------------------------------
+     inf.seccion(f"{n0}. Qué se midió y con qué medidas")
++    _tope_panel = int(ctx.umbrales["max_filas_asociacion_por_anio"])
++    _cifras_qm = dict(
++        n_var=rs("n_variables"), n_num=rs("n_numericas"), n_bin=rs("n_binarias"), n_cat=rs("n_categoricas"), periodo=rs("periodo"), n_rank=rs("n_filas_ranking"),
++        n_conf=rs("n_filas_2023"),
++    )
++    if _tope_panel > 0:
++        _cifras_qm["tope"] = Cifra_umbral(ctx, "max_filas_asociacion_por_anio")
+     inf.parrafo(
+         "Se analizan {n_var} variables del panel de adultos hospitalizados con desenlace conocido: {n_num} numéricas, {n_bin} binarias y {n_cat} categóricas. Se agrega el hospital de "
+         "egreso como referencia: se mide, pero no entra a los grupos de redundancia ni al VIF. Cada tipo de par usa su propia medida y todas van de cero a uno: el valor absoluto de "
+         "rho de Spearman entre dos numéricas, el valor absoluto de phi entre dos binarias, la raíz de eta al cuadrado entre una numérica y una binaria o una categórica, y la V de "
+         "Cramér corregida por sesgo (Bergsma) cuando interviene una categórica y no una numérica. Los faltantes se eliminan por pares, sin imputar, y el nivel sin dato de una "
+-        "categórica cuenta como un nivel más. La ventana de ranking ({periodo|texto}) reúne {n_rank} egresos y la de confirmación (2023), {n_conf}. El panel toma como máximo "
+-        "{tope|entero} egresos por año, con un muestreo reproducible.",
+-        n_var=rs("n_variables"), n_num=rs("n_numericas"), n_bin=rs("n_binarias"), n_cat=rs("n_categoricas"), periodo=rs("periodo"), n_rank=rs("n_filas_ranking"),
+-        n_conf=rs("n_filas_2023"), tope=Cifra_umbral(ctx, "max_filas_asociacion_por_anio"),
++        "categórica cuenta como un nivel más. La ventana de ranking ({periodo|texto}) reúne {n_rank} egresos y la de confirmación (2023), {n_conf}. "
++        + ("El panel toma como máximo {tope|entero} egresos por año, con un muestreo reproducible." if _tope_panel > 0 else "El panel usa todos los egresos de la cohorte de cada año, sin muestreo."),
++        **_cifras_qm,
+     )
+     por_tipo = [(etiqueta, clusters.filter((pl.col("tipo") == t) & (pl.col("es_referencia") == "no")).height) for t, etiqueta in (("num", "Numéricas"), ("bin", "Binarias"), ("cat", "Categóricas"))]
+     por_tipo.append(("Referencia (hospital de egreso)", clusters.filter(pl.col("es_referencia") == "si").height))
+diff --git a/eda/descripcion.py b/eda/descripcion.py
+index acc8de4..b94cb3e 100644
+--- a/eda/descripcion.py
++++ b/eda/descripcion.py
+@@ -465,7 +465,7 @@ def tabla_conciliacion(
+         pl.col("n_nulos").sum().alias("n_sin_med"),
+         pl.col("n_centinela").sum().alias("n_centinela_med"),
+         pl.col("n_distintos").max().alias("distintos_max"),
+-        pl.col("tipo_inferido").drop_nulls().mode().first().alias("tipo_medido"),
++        pl.col("tipo_inferido").drop_nulls().mode().sort().first().alias("tipo_medido"),
+     )
+     filas = []
+     por_col = {r["columna"]: r for r in agg.iter_rows(named=True)}
+diff --git a/eda/modelos.py b/eda/modelos.py
+index b193eee..122be55 100644
+--- a/eda/modelos.py
++++ b/eda/modelos.py
+@@ -39,8 +39,13 @@ RIDGE_AUC = 1.0
+ categóricas, que casi siempre incluyen ceros verdaderos sin ningún evento."""
+ RIDGE_WALD = 0.0
+ """Ridge de todo diseño que entrega un OR con error de Wald (OR ajustado y OR de estadía larga de Elixhauser): cero, para no sesgar el coeficiente ni su error estándar."""
+-TOPE_FILAS_MODELOS = 200_000
+-"""Tope de filas de entrenamiento de los modelos: si la ventana de ranking lo supera se usa una muestra reproducible (``indices_entrenamiento``)."""
++TOPE_FILAS_MODELOS: int | None = None
++"""Tope de filas de entrenamiento de los modelos. ``None`` (por defecto): los modelos se entrenan con TODAS las filas de la ventana de ranking. Con un entero, si la
++ventana lo supera se usa una muestra reproducible (``indices_entrenamiento``); queda como opción para equipos con poca memoria."""
++TOPE_FILAS_L1: int | None = 400_000
++"""Tope de filas con que se AJUSTA el modelo L1 (el único cálculo de la Fase 2 que no usa todas las filas): con toda la cohorte (más de 2 millones de egresos) el solver
++liblinear con validación cruzada tarda muchas horas. La muestra es reproducible (``default_rng(semilla + 13)``); el AUC y la importancia del modelo se evalúan con TODAS las
++filas. ``None`` ajusta con todas."""
+ CS_L1 = np.logspace(-3, 1, 7)
+ """Valores de C (inverso de la penalización) que explora el modelo L1."""
+ PLIEGUES_CV = 3
+@@ -98,7 +103,7 @@ def indices_entrenamiento(n: int, semilla: int) -> np.ndarray:
+     Es la identidad (``np.arange(n)``) si ``n <= TOPE_FILAS_MODELOS``; si no, una muestra sin reemplazo de ese tamaño con ``default_rng(semilla + 7)``, ordenada. Pura:
+     el tope se lee del módulo en cada llamada.
+     """
+-    if n <= TOPE_FILAS_MODELOS:
++    if TOPE_FILAS_MODELOS is None or n <= TOPE_FILAS_MODELOS:
+         return np.arange(n)
+     return np.sort(np.random.default_rng(semilla + 7).choice(n, size=TOPE_FILAS_MODELOS, replace=False))
+ 
+@@ -158,7 +163,7 @@ def especificar_diseno(panel, variables: Sequence[str], anios_entrenamiento: Seq
+     mascara = _mascara(panel, anios_entrenamiento)
+     posiciones = np.flatnonzero(mascara)
+     filas_entrenamiento = None
+-    if posiciones.size > TOPE_FILAS_MODELOS:
++    if TOPE_FILAS_MODELOS is not None and posiciones.size > TOPE_FILAS_MODELOS:
+         filas_entrenamiento = indices_entrenamiento(posiciones.size, semilla)
+         posiciones = posiciones[filas_entrenamiento]
+     seleccion = np.zeros(mascara.size, dtype=bool)
+@@ -444,6 +449,10 @@ def ajustar_l1(X, y, columnas: Sequence[str], grupos: Mapping[str, Sequence[int]
+             coef=np.full(len(columnas), np.nan), intercepto=float("nan"), c_elegido=float("nan"), columnas=columnas, grupos=grp,
+             sobrevive_por_variable={k: False for k in grp}, estado=POCOS_EVENTOS_L1, convergio=False,
+         )
++    X_aj, y_aj = X, yv
++    if TOPE_FILAS_L1 is not None and yv.size > TOPE_FILAS_L1:
++        pos = np.sort(np.random.default_rng(semilla + 13).choice(yv.size, size=TOPE_FILAS_L1, replace=False))
++        X_aj, y_aj = X[pos], yv[pos]
+     cv = StratifiedKFold(PLIEGUES_CV, shuffle=True, random_state=semilla)
+     with warnings.catch_warnings(), threadpool_limits(limits=1):
+         warnings.simplefilter("ignore", FutureWarning)
+@@ -451,7 +460,7 @@ def ajustar_l1(X, y, columnas: Sequence[str], grupos: Mapping[str, Sequence[int]
+         modelo = LogisticRegressionCV(
+             Cs=CS_L1, l1_ratios=(1.0,), solver="liblinear", scoring="roc_auc", cv=cv, random_state=semilla, n_jobs=1, max_iter=max_iter, refit=True,
+         )
+-        modelo.fit(X, yv)
++        modelo.fit(X_aj, y_aj)
+         coef = np.asarray(modelo.coef_, dtype=np.float64).ravel().copy()
+         intercepto = float(np.asarray(modelo.intercept_, dtype=np.float64).ravel()[0])
+         c_elegido = float(np.asarray(modelo.C_, dtype=np.float64).ravel()[0])
+diff --git a/eda/panel.py b/eda/panel.py
+index 879d418..7e87011 100644
+--- a/eda/panel.py
++++ b/eda/panel.py
+@@ -369,8 +369,9 @@ def es_pueblo_originario(valores: pl.Series) -> pl.Series:
+ 
+ # ------------------------------------------------------------------------------------------- muestreo
+ def muestrear_indices(n: int, tope: int, semilla: int, anio: int) -> np.ndarray:
+-    """Posiciones de las filas de D que entran al panel: todas si ``n <= tope``; si no, una muestra sin reemplazo con ``default_rng(semilla + anio)``, ordenada."""
+-    if n <= tope:
++    """Posiciones de las filas de D que entran al panel: todas si ``tope <= 0`` (sin muestreo) o ``n <= tope``; si no, una muestra sin reemplazo con
++    ``default_rng(semilla + anio)``, ordenada."""
++    if tope <= 0 or n <= tope:
+         return np.arange(n)
+     return np.sort(np.random.default_rng(int(semilla) + int(anio)).choice(n, size=int(tope), replace=False))
+ 
+@@ -480,7 +481,7 @@ def tabla_muestreo(filas: Sequence[Mapping[str, Any]]) -> pl.DataFrame:
+         n_d, n_m = int(f["n_cohorte_d"]), int(f["n_muestra"])
+         salida.append({
+             "anio": int(f["anio"]), "ventana": f["ventana"], "n_cohorte_d": n_d, "n_muestra": n_m, "n_eventos_muestra": int(f["n_eventos_muestra"]),
+-            "muestreado": "si" if n_d > int(f["tope"]) else "no", "tope": int(f["tope"]), "fraccion_muestreada": (n_m / n_d) if n_d else None,
++            "muestreado": "si" if (int(f["tope"]) > 0 and n_d > int(f["tope"])) else "no", "tope": int(f["tope"]), "fraccion_muestreada": (n_m / n_d) if n_d else None,
+         })
+     return pl.DataFrame(salida, schema=ESQUEMA_MUESTREO)
+ 
+diff --git a/eda/seleccion.py b/eda/seleccion.py
+index e871f52..d27994f 100644
+--- a/eda/seleccion.py
++++ b/eda/seleccion.py
+@@ -427,7 +427,8 @@ def tabla_parametros() -> pl.DataFrame:
+         ("estadistica", "SEPARACION_SE_MAX", est.SEPARACION_SE_MAX, "Un coeficiente con error estándar mayor se declara con separación", "Solo anula el OR de ese coeficiente, nunca un AUC"),
+         ("modelos", "RIDGE_AUC", modelos.RIDGE_AUC, "Ridge de los diseños que entregan un AUC (equivale a C igual a uno de scikit-learn)", "Incremento de AUC, referencias y modelo base"),
+         ("modelos", "RIDGE_WALD", modelos.RIDGE_WALD, "Ridge de los diseños que entregan un OR con error de Wald (cero: el OR no tiene sesgo de penalización)", "OR ajustado y OR de estadía larga de Elixhauser"),
+-        ("modelos", "TOPE_FILAS_MODELOS", modelos.TOPE_FILAS_MODELOS, "Tope de filas de entrenamiento de los modelos (muestra reproducible si la ventana lo supera)", "Referencias, incremento de AUC y modelo L1"),
++        ("modelos", "TOPE_FILAS_MODELOS", "sin tope" if modelos.TOPE_FILAS_MODELOS is None else modelos.TOPE_FILAS_MODELOS, "Tope de filas de entrenamiento de los modelos (muestra reproducible si la ventana lo supera)", "Referencias, incremento de AUC y modelo L1"),
++        ("modelos", "TOPE_FILAS_L1", "sin tope" if modelos.TOPE_FILAS_L1 is None else modelos.TOPE_FILAS_L1, "Filas con que se ajusta el modelo L1 (muestra reproducible); su AUC e importancia se evalúan con todas las filas", "Modelo L1"),
+         ("modelos", "CS_L1", "; ".join(_texto_valor(c) for c in modelos.CS_L1), "Valores de C (inverso de la penalización) que explora el modelo L1", "Variables que sobreviven en el modelo L1 y su importancia"),
+         ("modelos", "PLIEGUES_CV", modelos.PLIEGUES_CV, "Pliegues de la validación cruzada del modelo L1 (el valor del encargo)", "C elegido y variables que sobreviven en el modelo L1"),
+         ("modelos", "REPETICIONES_PERMUTACION", modelos.REPETICIONES_PERMUTACION, "Repeticiones de la importancia por permutación de cada variable", "Importancia por permutación y su desviación"),
+diff --git a/tests/test_panel.py b/tests/test_panel.py
+index 2923bf4..a0a1c0c 100644
+--- a/tests/test_panel.py
++++ b/tests/test_panel.py
+@@ -21,7 +21,7 @@ from sintetico import crear_fuente_sintetica, escribir_archivo, generar_anio
+ def u():
+     """Umbrales del proyecto. Las cuentas a mano de este archivo suponen los valores propuestos; si cambian, la prueba lo dice."""
+     u = config.cargar_umbrales()
+-    supuestos = {"celda_minima": 10, "edad_adulto": 18, "cardinalidad_max_categorica": 60, "max_filas_asociacion_por_anio": 200_000, "ventana_historial_dias": 365}
++    supuestos = {"celda_minima": 10, "edad_adulto": 18, "cardinalidad_max_categorica": 60, "max_filas_asociacion_por_anio": 0, "ventana_historial_dias": 365}
+     for clave, valor in supuestos.items():
+         assert u[clave] == valor, f"las cuentas a mano de este archivo suponen {clave} = {valor}"
+     assert u.meta["semilla"] == 20261007
+@@ -603,7 +603,7 @@ def test_la_cohorte_d_por_anio_es_igual_a_la_de_la_tarea_7_y_y_suma_los_fallecid
+         d = var.filter((pl.col("periodo") == str(anio)) & (pl.col("variante") == "D")).row(0, named=True)
+         f = m.filter(pl.col("anio") == anio).row(0, named=True)
+         assert (f["n_cohorte_d"], f["n_muestra"], f["n_eventos_muestra"]) == (d["n"], d["n"], d["n_fallecidos"]), anio
+-        assert f["muestreado"] == "no" and f["tope"] == 200_000 and f["fraccion_muestreada"] == 1.0
++        assert f["muestreado"] == "no" and f["tope"] == 0 and f["fraccion_muestreada"] == 1.0
+     assert [r["n_cohorte_d"] for r in m.iter_rows(named=True)] == [421, 442, 429, 440, 415] and m["n_eventos_muestra"].to_list() == [49, 58, 47, 66, 46]
+     por_anio = dict(panel.datos.group_by("anio").agg(pl.len().alias("n"), pl.col("y").sum().alias("k")).select("anio", pl.struct("n", "k")).iter_rows())
+     assert {a: (v["n"], v["k"]) for a, v in por_anio.items()} == {2019: (421, 49), 2020: (442, 58), 2021: (429, 47), 2022: (440, 66), 2023: (415, 46)}
+diff --git a/tests/test_t10_asociacion.py b/tests/test_t10_asociacion.py
+index cb32be9..169da9c 100644
+--- a/tests/test_t10_asociacion.py
++++ b/tests/test_t10_asociacion.py
+@@ -1162,7 +1162,7 @@ def test_las_cifras_del_informe_vienen_de_los_csv_y_el_resumen_publica_lo_que_ve
+     c = ctx.cifras_informe().filter(pl.col("informe") == "t23_prueba_asociacion_cifras.md")
+     fuentes = set(c["csv"])
+     assert fuentes <= {"t23_resumen_asociacion.csv", "umbrales.csv", "clusters_variables.csv", "pares_redundantes.csv", "t23_vif.csv"} and "t23_resumen_asociacion.csv" in fuentes
+-    assert set(c.filter(pl.col("csv") == "umbrales.csv")["marcador"]) == {"tope", "umbral", "faltante", "alerta", "critico"}
++    assert set(c.filter(pl.col("csv") == "umbrales.csv")["marcador"]) == {"umbral", "faltante", "alerta", "critico"}
+ 
+ 
+ # ============================================================================================ integración sintética (B5): extracto y modo completo
+diff --git a/tests/test_t11_modelos.py b/tests/test_t11_modelos.py
+index 56a6f33..4d3df66 100644
+--- a/tests/test_t11_modelos.py
++++ b/tests/test_t11_modelos.py
+@@ -572,8 +572,31 @@ def test_or_es_relevante_compara_con_los_valores_publicados():
+ 
+ 
+ def test_las_constantes_tecnicas_tienen_los_valores_del_diseno():
+-    assert (modelos.RIDGE_AUC, modelos.RIDGE_WALD, modelos.TOPE_FILAS_MODELOS, modelos.PLIEGUES_CV, modelos.REPETICIONES_PERMUTACION) == (1.0, 0.0, 200_000, 3, 10)
++    assert (modelos.RIDGE_AUC, modelos.RIDGE_WALD, modelos.TOPE_FILAS_MODELOS, modelos.PLIEGUES_CV, modelos.REPETICIONES_PERMUTACION) == (1.0, 0.0, None, 3, 10)
+     assert modelos.CS_L1.tolist() == pytest.approx(np.logspace(-3, 1, 7).tolist()) and len(modelos.CS_L1) == 7
+ 
+ 
+ # FIN-test_t11_modelos
++
++
++def test_l1_se_ajusta_con_muestra_fija_y_el_resto_usa_todas_las_filas(monkeypatch):
++    """``TOPE_FILAS_L1``: el L1 se ajusta con una muestra reproducible; sin tope usa todas las filas; ``TOPE_FILAS_MODELOS`` por defecto no muestrea."""
++    from scipy import sparse
++
++    assert modelos.TOPE_FILAS_MODELOS is None and modelos.TOPE_FILAS_L1 == 400_000
++    assert modelos.indices_entrenamiento(1_000_000, 5).size == 1_000_000
++    rng = np.random.default_rng(0)
++    n = 3000
++    X = sparse.csr_matrix(rng.normal(size=(n, 4)))
++    y = (rng.random(n) < 1 / (1 + np.exp(-(1.5 * X[:, 0].toarray().ravel() - 1.0)))).astype(np.int8)
++    columnas = ("a", "b", "c", "d")
++    grupos = {c: [i] for i, c in enumerate(columnas)}
++    monkeypatch.setattr(modelos, "TOPE_FILAS_L1", 1000)
++    r1 = modelos.ajustar_l1(X, y, columnas, grupos, semilla=3)
++    r2 = modelos.ajustar_l1(X, y, columnas, grupos, semilla=3)
++    assert r1.estado == "ok" and np.array_equal(r1.coef, r2.coef) and r1.c_elegido == r2.c_elegido          # reproducible
++    assert r1.sobrevive_por_variable["a"]
++    monkeypatch.setattr(modelos, "TOPE_FILAS_L1", None)
++    r3 = modelos.ajustar_l1(X, y, columnas, grupos, semilla=3)
++    assert r3.estado == "ok" and r3.sobrevive_por_variable["a"]
++    assert modelos.auc_l1(r1, X, y) > 0.7                                                                       # se evalúa con todas las filas
+diff --git a/tests/test_t11_seleccion.py b/tests/test_t11_seleccion.py
+index 9119ed9..954118d 100644
+--- a/tests/test_t11_seleccion.py
++++ b/tests/test_t11_seleccion.py
+@@ -608,16 +608,16 @@ def test_un_panel_sin_confirmacion_deja_nulas_las_cifras_de_2023(contexto, panel
+ # ======================================================================================================================== parámetros
+ def test_los_parametros_traen_una_fila_por_constante_leida_del_modulo(monkeypatch):
+     t = sel.tabla_parametros()
+-    assert t.columns == sel.COLUMNAS_PARAMETROS == ["modulo", "parametro", "valor", "para_que_sirve", "afecta"] and t.height == 14
++    assert t.columns == sel.COLUMNAS_PARAMETROS == ["modulo", "parametro", "valor", "para_que_sirve", "afecta"] and t.height == 15
+     esperados = {
+-        "SUAVIZADO_M", "EPS_COLINEALIDAD", "DECIMALES_PUBLICADOS", "SEPARACION_COEF_MAX", "SEPARACION_SE_MAX", "RIDGE_AUC", "RIDGE_WALD", "TOPE_FILAS_MODELOS", "CS_L1", "PLIEGUES_CV",
++        "SUAVIZADO_M", "EPS_COLINEALIDAD", "DECIMALES_PUBLICADOS", "SEPARACION_COEF_MAX", "SEPARACION_SE_MAX", "RIDGE_AUC", "RIDGE_WALD", "TOPE_FILAS_MODELOS", "TOPE_FILAS_L1", "CS_L1", "PLIEGUES_CV",
+         "REPETICIONES_PERMUTACION", "MIN_FILAS_HOSPITAL", "ETIQUETA_V_RESULTADO", "relleno_nulos_modelos",
+     }
+-    assert set(t["parametro"]) == esperados and t["parametro"].n_unique() == 14
++    assert set(t["parametro"]) == esperados and t["parametro"].n_unique() == 15
+     assert "RIDGE_DISENO" not in t["parametro"].to_list()
+     v = dict(zip(t["parametro"], t["valor"]))
+     assert v["SUAVIZADO_M"] == "20" and v["EPS_COLINEALIDAD"] == "0,000000001" and v["DECIMALES_PUBLICADOS"] == "6" and v["SEPARACION_COEF_MAX"] == "12" and v["SEPARACION_SE_MAX"] == "1000"
+-    assert v["RIDGE_AUC"] == "1" and v["RIDGE_WALD"] == "0" and v["TOPE_FILAS_MODELOS"] == "200000" and v["PLIEGUES_CV"] == "3" and v["REPETICIONES_PERMUTACION"] == "10"
++    assert v["RIDGE_AUC"] == "1" and v["RIDGE_WALD"] == "0" and v["TOPE_FILAS_MODELOS"] == "sin tope" and v["TOPE_FILAS_L1"] == "400000" and v["PLIEGUES_CV"] == "3" and v["REPETICIONES_PERMUTACION"] == "10"
+     assert v["MIN_FILAS_HOSPITAL"] == "100" and v["ETIQUETA_V_RESULTADO"] == "0,1" and v["CS_L1"] == "0,001; 0,004642; 0,02154; 0,1; 0,4642; 2,154; 10"
+     assert v["relleno_nulos_modelos"] == "mediana del entrenamiento más indicador de nulos"
+     assert dict(zip(t["parametro"], t["modulo"]))["SUAVIZADO_M"] == "estadistica" and dict(zip(t["parametro"], t["modulo"]))["RIDGE_AUC"] == "modelos"
+@@ -1117,7 +1117,7 @@ def test_ejecutar_escribe_las_tablas_con_sus_conteos_registrados_y_sus_columnas(
+     for nombre, columnas in esperadas.items():
+         assert pl.read_csv(ctx.dir_tablas / nombre, n_rows=0).columns == columnas, nombre
+     filas = dict(zip(indice["nombre"], indice["filas"]))
+-    assert filas["disponibilidad_variables.csv"] == filas["matriz_decision_variables.csv"] == 199 and filas["t23_resumen_seleccion.csv"] == 1 and filas["t23_parametros_seleccion.csv"] == 14
++    assert filas["disponibilidad_variables.csv"] == filas["matriz_decision_variables.csv"] == 199 and filas["t23_resumen_seleccion.csv"] == 1 and filas["t23_parametros_seleccion.csv"] == 15
+     assert filas["t23_ranking_variables.csv"] == 112 and filas["t23_sensibilidad_elix.csv"] == 31 and filas["t23_or_elix.csv"] == 62
+ 
+ 
+@@ -1393,7 +1393,7 @@ def test_integracion_extracto_ninguna_no_evaluable_tiene_cifras_y_los_parametros
+     for c in ("auc_ranking", "auc_senal", "auc_confirmacion", "incremento_auc", "asociacion_hospital", "psi_vs_2023", "psi_2019_vs_resto", "psi_max"):
+         assert no[c].null_count() == no.height, c
+     p = ctx.leer_tabla("t23_parametros_seleccion.csv", columnas_texto=sel.COLUMNAS_PARAMETROS)
+-    assert p.height == 14 and str(ctx.semilla) not in (ctx.dir_tablas / "t23_parametros_seleccion.csv").read_text(encoding="utf8")
++    assert p.height == 15 and str(ctx.semilla) not in (ctx.dir_tablas / "t23_parametros_seleccion.csv").read_text(encoding="utf8")
+     assert {"SUAVIZADO_M", "RIDGE_AUC", "RIDGE_WALD", "CS_L1", "TOPE_FILAS_MODELOS", "REPETICIONES_PERMUTACION", "SEPARACION_COEF_MAX", "SEPARACION_SE_MAX", "MIN_FILAS_HOSPITAL",
+             "ETIQUETA_V_RESULTADO", "PLIEGUES_CV", "relleno_nulos_modelos"} <= set(p["parametro"])
+ 

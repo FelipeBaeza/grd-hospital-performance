@@ -1,0 +1,2 @@
+n_cero_total,n_cero_ambulatoria,n_cero_fallecidos,n_cero_censurados,n_cero_sobrevivientes,prop_cero_ambulatoria,prop_cero_fallecidos,prop_cero_censurados,mortalidad_cero_conocida,n_ambulatoria,n_ambulatoria_cero,prop_ambulatoria_cero,n_meses_evaluados,n_meses_alza,n_meses_baja,intento_2024
+904416,705760,11355,26394,866667,0.780349,0.012555,0.029183,0.012932,795727,705760,0.886937,48,12,15,rechazado

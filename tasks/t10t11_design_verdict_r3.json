@@ -1,0 +1,90 @@
+{
+  "verdict": "CHANGES_REQUESTED",
+  "findings": [
+    {
+      "id": 1,
+      "severity": "MEDIUM",
+      "title": "La cardinalidad de ESPECIALIDAD_MEDICA por hospital (H02b) se calcula sobre la variable ya recortada a 60 niveles y subestima los niveles que identifican a un solo hospital",
+      "location": "10.4 (fila cardinalidad_especialidad), 7.5 (tope de 60 niveles), 10.10 (espec_n_niveles_totales, espec_n_niveles_en_un_hospital), 10.12 seccion 4, seccion 20 (H02b)",
+      "fix": "Medido en los extractos (cohorte D 2019-2022, 62 hospitales con al menos 100 filas, solo conteos): sin tope hay 76 niveles y 13 usados por un solo hospital; con el tope de 60 quedan 60 y 5 (62 % menos). El encargo (6.4) pide la cardinalidad de ESPECIALIDAD_MEDICA por hospital como evidencia de H02b y 7.5 manda recortar la variable, asi que n_niveles_totales nunca supera 60 y los niveles raros (los que mas a menudo son de un solo hospital) pasan a OTROS; ademas contradice los 89 niveles que cita la seccion 18. Calcular estas cifras en construir_panel con el texto recortado (strip_chars) ANTES de aplicar 7.5, sobre las mismas filas D muestreadas de la ventana de ranking, y guardar solo agregados en el Panel: Panel.cardinalidad_especialidad = {n_hospitales, card_minima, card_mediana, card_maxima, n_niveles_totales, n_niveles_en_un_hospital} con MIN_FILAS_HOSPITAL. sospechas.tabla_proxy los copia a la fila cardinalidad_especialidad; las filas de variable siguen usando la columna recortada. Prueba: panel artificial con 70 niveles de especialidad, 3 de ellos fuera de los 60 mas frecuentes y de un solo hospital => n_niveles_totales = 70 y n_niveles_en_un_hospital los cuenta. Mutante nuevo M52: calcular la cardinalidad sobre la columna recortada."
+    },
+    {
+      "id": 2,
+      "severity": "MEDIUM",
+      "title": "El indice de complicacion probable no define desempates: rango_indice, en_top5 y elix_top5 quedan indeterminados, y el reescalado divide por cero con una sola categoria",
+      "location": "10.5 (indice_complicacion, rango_indice, en_top5), 10.10 (elix_top5, elix_n_coinciden_fase1, elix_n_coinciden_repo), 14.3 (prueba del indice), 14.8 (DT11)",
+      "fix": "El indice es el promedio de dos rangos, asi que los empates son la regla: simulando 31 categorias (20.000 repeticiones por correlacion 0; 0,5; 0,8 y 0,95) hubo al menos un empate en el 100 % de las corridas y un empate justo entre la 5.a y la 6.a (el corte del top 5) en 21 % a 24 %. Sin regla, el conjunto que se compara con la lista de la Fase 1 depende de la implementacion (rango minimo marca 4 o 6 o mas categorias; sort de polars no es estable sin maintain_order=True) y choca con DT11. Ademas 1 - (promedio_de_rangos - 1)/(m - 1) divide por cero con m = 1. Fijar: rango_indice = posicion 1..m al ordenar por (indice_complicacion desc, rango de or_larga_bajo asc, rango de razon_bajo asc, elix_id asc); en_top5 = si para rango_indice <= 5 (exactamente min(5, m) categorias), no en las demas con indice, nulo sin indice; con m < 2 indice_complicacion, rango_indice y en_top5 quedan nulos y elix_top5 vacio; elix_top5 lista los elix_id en orden de rango_indice separados por punto y coma. Pruebas: tres categorias empatadas en las posiciones 4 a 6 dan exactamente cinco en_top5 y la misma seleccion en dos corridas; m = 1 y m = 0 no lanzan excepcion. Mutante nuevo M53: rango minimo sin desempate."
+    },
+    {
+      "id": 3,
+      "severity": "NIT",
+      "title": "redondear_publicado no fija la funcion de redondeo y el corte del dendrograma usa distancias sin redondear",
+      "location": "8.1 (redondear_publicado y regla transversal), 9.3 (fcluster con t = 1 - redundancia_abs), 13 (invariante de umbrales publicados), 14.3",
+      "fix": "round de Python y np.round o polars difieren en empates decimales exactos (medido: 97.756 diferencias en 200.000 valores k + 0,5e-6; round(0.7999995, 6) da 0.799999 mientras np.round y polars dan 0.8, y el CSV lo escribe polars). Ademas un par en 0.7999999999999999 es arista del componente (publica 0,8) pero fcluster con t = 0.19999999999999996 no lo une. Fijar redondear_publicado(x) = np.round(x, 6); agregar a 14.3 los casos 0.7999995 -> 0.8 y 0.8499995 -> 0.85; calcular la distancia del dendrograma como 1 - redondear_publicado(A) y cortar en 1 - u['redundancia_abs'] + 1e-12; probar con un par en 0.7999999999999999 que es arista del componente y queda en el mismo grupo."
+    },
+    {
+      "id": 4,
+      "severity": "NIT",
+      "title": "El AUC citado para IR_29301_SEVERIDAD en el generador es el ordinal; con el puntaje categorico que fija el diseno da otro valor",
+      "location": "10.7 (ultimo punto: llega a 0,79), 14.2 punto 1 (0,7937), 18",
+      "fix": "0,7937 es el AUC del valor numerico 0 a 3. El diseno trata la variable como categorica (tasa suavizada por nivel) y en el generador los niveles no son monotonos (tasas 0, 0, 0,295 y 0,233 en 2019-2023). Con el metodo del diseno: 0,8312 en 2019-2022 (en muestra) y 0,7837 en 2023. La conclusion de que no supera 0,85 vale, pero con margen 0,019 y no 0,056, y una prueba fijada en 0,79 fallaria. Reescribir 10.7, 14.2 y 18 con 0,83 (ranking) y 0,78 (2023), aclarar que FUGA usa el maximo (0,83, bajo 0,85) y probar 0.80 < auc_ranking < 0.85 en lugar de un valor puntual."
+    },
+    {
+      "id": 5,
+      "severity": "NIT",
+      "title": "t23_parametros_seleccion.csv no lista EPS_COLINEALIDAD ni DECIMALES_PUBLICADOS aunque 8.1 dice que todas las constantes se publican",
+      "location": "8.1 (parrafo de constantes), 4, 10.10 (filas de la tabla), 14.3 (prueba de tabla_parametros)",
+      "fix": "Agregar las filas EPS_COLINEALIDAD (estadistica; criterio de colinealidad exacta del encargo, R2 mayor que 1 menos 1e-9) y DECIMALES_PUBLICADOS (estadistica; decimales con que se comparan los umbrales), o quitar la frase de 8.1. La prueba de tabla_parametros() debe exigir una fila por cada constante enumerada en la seccion 4."
+    },
+    {
+      "id": 6,
+      "severity": "NIT",
+      "title": "La escritura por bloques se presenta como una forma de cumplir la regla de privacidad del encargo, que manda separar en varias tablas, y no se declara como desviacion",
+      "location": "11 (Hay dos formas de cumplirlo), 9.3, 10.4, 10.6, 10.7; encargo seccion 1 (Privacidad)",
+      "fix": "El encargo dice separar en varias tablas las que mezclan conteos de bases distintas y a la vez pide la asociacion de 2023 en columna aparte dentro de pares_redundantes.csv: las dos instrucciones chocan y el diseno las concilia con suprimir_bloques, lo que es razonable pero hay que decirlo. Agregar a la seccion 11 una frase de desviacion declarada (que regla del encargo se reemplaza, por que, y que la compensa: todos los conteos en cols_n, escaner, red de seguridad de escribir_tabla) y hacer que escribir_por_bloques sume las celdas anuladas en el paso previo a celdas_suprimidas de la entrada de la tabla en el indice (hoy se subinforma, como admite 11)."
+    },
+    {
+      "id": 7,
+      "severity": "NIT",
+      "title": "Un conteo de faltantes de 1 a 9 se deduce de dos columnas publicadas aunque prop_faltante se anule",
+      "location": "10.2 (n_filas_ventana, n, prop_faltante), 11 (caso especial 1)",
+      "fix": "Para numericas y binarias n_filas_ventana - n es el conteo de faltantes. El diseno anula prop_faltante si ese conteo esta entre 1 y 9 pero deja publicadas las dos columnas que lo revelan (en los extractos ninguna variable numerica o binaria tiene tan pocos faltantes, por eso es NIT). Agregar n_faltante a la tabla y un tercer bloque de escribir_por_bloques con cols_n = ['n_faltante'] y dependientes = ['n', 'prop_faltante', 'clase_faltante', 'faltante_informativo', 'or_faltante', 'or_faltante_bajo', 'or_faltante_alto']; prueba con una variable de 5 nulos en 100.000 filas."
+    },
+    {
+      "id": 8,
+      "severity": "NIT",
+      "title": "DT11 no tiene prueba automatica, el hilo unico de BLAS solo se fija en modelos y los pliegues del L1 dependen del orden de las filas",
+      "location": "10.1 (threadpool_limits y cv=3 con StratifiedKFold sin barajar), 10.5 (regresion_logistica en Elixhauser), 14.4, 14.8",
+      "fix": "(a) En la integracion de 14.4 correr una segunda vez en otra carpeta y comparar sha256 de tablas_indice.csv y sha256_png y sha256_csv de figuras_indice.csv. (b) Poner threadpool_limits(limits=1) dentro de regresion_logistica y del producto matricial del VIF para cubrir tambien sensibilidad_elix. (c) Pasar cv=StratifiedKFold(PLIEGUES_CV, shuffle=True, random_state=semilla) a LogisticRegressionCV: las filas del panel van por anio y por posicion en el archivo, asi que un StratifiedKFold sin barajar arma bloques contiguos (anios o grupos de hospitales segun el orden del archivo) y el C elegido cambiaria con el orden de los datos completos; sigue siendo el equivalente determinista que admite el encargo."
+    },
+    {
+      "id": 9,
+      "severity": "NIT",
+      "title": "El L1 no registra si liblinear convergio ni que se hace con ConvergenceWarning",
+      "location": "10.1 (ResultadoL1.estado solo ok o pocos eventos; catch_warnings solo para FutureWarning), 12.2",
+      "fix": "Con unas 450 columnas, varias colineales (los agregados de Elixhauser son combinaciones exactas de las 31 categorias) y max_iter=200, algun C puede agotar iteraciones. Agregar convergio: bool a ResultadoL1 (falso si algun elemento de modelo.n_iter_ es igual a max_iter), la columna l1_convergio en la fila MODELO_L1 de t23_importancia.csv, capturar ConvergenceWarning junto con FutureWarning dentro de ajustar_l1 y probarlo con max_iter=1."
+    },
+    {
+      "id": 10,
+      "severity": "NIT",
+      "title": "14.6 dice a la vez que se aplican las 51 mutaciones y que el minimo es de 15 a 20 priorizando 31",
+      "location": "14.6 (parrafo previo a la tabla)",
+      "fix": "Elegir una regla, por ejemplo: se aplican M01 a M51; si el tiempo no alcanza, como minimo las 31 priorizadas, que superan el minimo de 15 a 20 del encargo. Documentar los mutantes equivalentes que sobrevivan."
+    },
+    {
+      "id": 11,
+      "severity": "NIT",
+      "title": "10.9 no dice de donde sale faltante_max para ETNIA y PUEBLO_ORIGINARIO y medicion_completa no exige proxy ni PSI",
+      "location": "10.9 (entradas por variable y Medicion completa)",
+      "fix": "(a) ETNIA y PUEBLO_ORIGINARIO son del panel y parcial pero no tienen fila en t23_ranking_variables.csv (no analizan el resultado): declarar que su faltante_max es faltante_max_t22 con fuente_faltante = t22. (b) Para toda candidata del panel agregar a medicion_completa que existan los valores reales de asociacion_hospital y psi_vs_2023, para que MANTENER no salga de una variable cuyo proxy o deriva no se pudo medir (hoy casi siempre coincide con estado_medicion distinto de ok, pero no esta garantizado)."
+    },
+    {
+      "id": 12,
+      "severity": "NIT",
+      "title": "Dos detalles del texto se contradicen: nivel base de SEXO y puntaje de un nivel nuevo en 2023",
+      "location": "10.1 (modelo base contra MUJER frente a omitir_nivel_base el mas frecuente), 7.5 (nivel nuevo en la confirmacion)",
+      "fix": "(a) Fijar MUJER como nivel base de SEXO (excepcion explicita a omitir_nivel_base) para que el modelo base, el OR de Elixhauser y sus oraculos coincidan aunque HOMBRE fuera el nivel mas frecuente. (b) 7.5 dice que un nivel nuevo en 2023 recibe la tasa global, pero lo recodifica a OTROS, que tiene tasa propia cuando la variable pasa de 60 niveles: escribir que recibe la tasa de OTROS si OTROS existe en la ventana de ranking y la tasa global si no."
+    }
+  ],
+  "reviewDoc": "/home/felipe/Documentos/Proyecto final/Tesis/.agents/tasks/t10t11_design_review.md"
+}

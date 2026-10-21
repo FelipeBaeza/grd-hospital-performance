@@ -1,0 +1,24 @@
+anio,problema,severidad,n,detalle,accion
+2019,Texto (centinela) en columna de formato definido,media,8307,CIP_ENCRIPTADO,Contar como faltante disfrazado
+2019,Texto (centinela) en columna de formato definido,media,21,IR_29301_COD_GRD,Contar como faltante disfrazado
+2020,Peso GRD con coma y sin cero inicial,baja,548775,IR_29301_PESO,"Convertir coma a punto y aceptar ,xxxx"
+2020,Texto (centinela) en columna de formato definido,media,1893,CIP_ENCRIPTADO,Contar como faltante disfrazado
+2021,BOM UTF-8 al inicio del archivo,baja,1,El primer nombre de columna llega con BOM si no se decodifica como utf-8-sig,El lector lo retira
+2021,Peso GRD con coma y sin cero inicial,baja,550246,IR_29301_PESO,"Convertir coma a punto y aceptar ,xxxx"
+2022,BOM UTF-8 al inicio del archivo,baja,1,El primer nombre de columna llega con BOM si no se decodifica como utf-8-sig,El lector lo retira
+2022,Líneas con número de campos distinto del esperado,alta,1,Se rechazan con su número de línea,Informar a FONASA
+2022,Texto (centinela) en columna de formato definido,media,2949,CIP_ENCRIPTADO,Contar como faltante disfrazado
+2022,Texto (centinela) en columna de formato definido,media,23,IR_29301_COD_GRD,Contar como faltante disfrazado
+2023,BOM UTF-8 al inicio del archivo,baja,1,El primer nombre de columna llega con BOM si no se decodifica como utf-8-sig,El lector lo retira
+2023,Fechas en formato DD-MM-AAAA,media,1039587,Columna FECHAALTA,El lector de fechas acepta ISO y DD-MM-AAAA
+2023,Fechas en formato DD-MM-AAAA,media,528813,Columna FECHAINTERV1,El lector de fechas acepta ISO y DD-MM-AAAA
+2023,Fechas en formato DD-MM-AAAA,media,166839,Columna FECHATRASLADO1,El lector de fechas acepta ISO y DD-MM-AAAA
+2023,Fechas en formato DD-MM-AAAA,media,1039587,Columna FECHA_INGRESO,El lector de fechas acepta ISO y DD-MM-AAAA
+2023,Texto (centinela) en columna de formato definido,media,1635,CIP_ENCRIPTADO,Contar como faltante disfrazado
+2023,Texto (centinela) en columna de formato definido,media,10,FECHA_NACIMIENTO,Contar como faltante disfrazado
+2023,Texto (centinela) en columna de formato definido,media,30,IR_29301_COD_GRD,Contar como faltante disfrazado
+2024,Nombre alternativo de la segunda columna (identificador),media,1,El encabezado dice ID_BENEFICIARIO en lugar de CIP_ENCRIPTADO,Alias por posición
+2024,Texto (centinela) en columna de formato definido,media,1037,CIP_ENCRIPTADO,Contar como faltante disfrazado
+2024,Texto (centinela) en columna de formato definido,media,19669,FECHAINTERV1,Contar como faltante disfrazado
+2024,Texto (centinela) en columna de formato definido,media,52,FECHA_INGRESO,Contar como faltante disfrazado
+2024,Texto (centinela) en columna de formato definido,media,15,IR_29301_COD_GRD,Contar como faltante disfrazado

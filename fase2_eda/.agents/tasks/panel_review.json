@@ -1,0 +1,22 @@
+{
+  "verdict": "APPROVED",
+  "findings": [
+    {
+      "id": 1,
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "Base de la cardinalidad sin declarar en las salidas de C",
+      "detail": "La cifra de H02b será 75 niveles y 12 exclusivos (hospitales con al menos 100 filas) frente a los 76 y 13 de la revisión 3; en C3 y C7, anotar la base en la fila cardinalidad_especialidad de t23_proxy_hospital.csv y en la sección 4 del informe, sin dígitos.",
+      "evidence": "Recálculo independiente sobre los extractos 2019-2022 (115.310 filas D): 62 hospitales con al menos 100 filas, 75 niveles, 12 exclusivos; 76 y 13 si los niveles se cuentan sobre los 65 hospitales o si el centinela DESCONOCIDO cuenta como nivel; 77 y 14 con ambas cosas. Código en eda/panel.py:555-590."
+    },
+    {
+      "id": 2,
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "DT11 literal en panel.py",
+      "detail": "Ocho group_by o unique sin maintain_order=True (eda/panel.py líneas 258, 272, 406, 459, 577, 581, 582 y 742), sin efecto medible; agregar el argumento antes de que B y C copien el patrón.",
+      "evidence": "Búsqueda de group_by y unique en eda/panel.py contra la regla DT11 de la sección 0 del plan; dos corridas reales en carpetas distintas dan el mismo hash de datos y los mismos sha256 de t23_panel_muestreo.csv, t23_panel_niveles.csv, tablas_indice.csv, metricas_eda.csv y registro_accesos.csv."
+    }
+  ],
+  "reviewDoc": "/home/felipe/Documentos/Proyecto final/Tesis/fase2_eda/.agents/tasks/panel_review.md"
+}

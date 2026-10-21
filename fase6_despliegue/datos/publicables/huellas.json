@@ -1,0 +1,10 @@
+{
+ "calibracion_decil.csv": "ffea4128e4a1cd24efdb3a3d1e3a2af923c22e868885f26ba2ea29dc35abc154",
+ "contexto_hospital.csv": "c0c6779fbd2590410f55e392b2e660bb10b484e9a08feb083941d84ae2e2b281",
+ "criterio_global.csv": "ba95b79d49c401337c303af9a4f00ed667bd5968ba10857f38a7dccb02b1738b",
+ "demo_catalogo.json": "38be34366caa7ee625998ea6dfd9e71aee397142207ee26167b65f02569024de",
+ "indicador_hospital.csv": "b35858bf0be524c9acd6ba8b96ebd07302f5789f2e6dcc7f105895eb4494637a",
+ "metadatos.json": "f986561d1edc1b3e3c58686143b983bf9e6cbf6bc66d1f26815b28587bf4d90e",
+ "recalibracion.json": "e811213d32ca5dc00ab015d8f25fd5aeb66f2dcdaad0f0f3c1c21ae7f7c8fcff",
+ "subgrupo.csv": "00f3de9642a0b96d37ef3026e5ad1557b17ab55688d9acd46341a644f75f949d"
+}

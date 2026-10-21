@@ -1,0 +1,9 @@
+base,regla,corte_dias,n_def,n_afectados_def,prop_afectados_def,cumple_def,n_conf,n_afectados_conf,prop_afectados_conf,cumple_conf,propuesta,maximo_def
+E,p99,51,104612,1010,0.009655,si,25735,201,0.00781,si,si,2211
+E,"p99,5",66,104612,515,0.004923,si,25735,90,0.003497,si,no,2211
+E,"p99,9",112,104612,102,0.000975,si,25735,25,0.000971,si,no,2211
+E,365 días,365,104612,,,si,25735,0,,si,no,2211
+D_sobrevivientes,p99,50,109128,1064,0.00975,si,26896,215,0.007994,si,si,2211
+D_sobrevivientes,"p99,5",65,109128,536,0.004912,si,26896,93,0.003458,si,no,2211
+D_sobrevivientes,"p99,9",111,109128,105,0.000962,si,26896,25,0.00093,si,no,2211
+D_sobrevivientes,365 días,365,109128,,,si,26896,0,,si,no,2211

@@ -1,0 +1,57 @@
+{
+ "anio_evaluado": 2024,
+ "resumen_fase5": {
+  "n_cohorte_c": 665450,
+  "bootstrap": 1000,
+  "n_mortalidad": 598522,
+  "n_estadia": 545784,
+  "hospitales_mortalidad": {
+   "n_hospitales_total": 72,
+   "n_elegibles": 69,
+   "n_bajo_volumen": 3,
+   "tau2": 0.01591924054484049,
+   "dispersion": 1.0,
+   "pct_fuera_95": 0.15942028985507245,
+   "pct_senal_998": 0.043478260869565216,
+   "egresos_bajo_volumen": 115
+  },
+  "hospitales_estadia": {
+   "n_hospitales_total": 72,
+   "n_elegibles": 69,
+   "n_bajo_volumen": 3,
+   "tau2": 0.011010498252999256,
+   "dispersion": 5.307184193944243,
+   "pct_fuera_95": 0.15942028985507245,
+   "pct_senal_998": 0.028985507246376812,
+   "egresos_bajo_volumen": 104
+  },
+  "exhaustividad": {
+   "indice_global_vs_2023": 1.0377431294589208,
+   "factor_global_2023": 1.155403430686727
+  },
+  "oe_global_mortalidad": 0.9788717917403053,
+  "oe_global_estadia": 0.9564631394759063
+ },
+ "huella_reglas_fase4": "24ed78fcd90b5ee5ca2f93d61225fc8f6e936256d7c88f231720bbfb29391e59",
+ "version_modelos": {
+  "python": "3.13.16",
+  "polars": "2.0.0",
+  "pandas": "3.0.6",
+  "numpy": "2.5.3",
+  "scikit-learn": "1.9.1",
+  "lightgbm": "4.7.0",
+  "xgboost": "3.4.1",
+  "optuna": "5.0.0"
+ },
+ "archivos_modelo": {
+  "mortalidad": {
+   "ruta": "mortalidad/modelo_lightgbm.txt",
+   "sha256": "e33fb2dd9b245ad2958771018c8467d284b73eaca9af8f33ecf01dfffcdbec13"
+  },
+  "estadia": {
+   "ruta": "estadia/modelo_lightgbm.txt",
+   "sha256": "8e9fe8d6ddd6f53f2f5490f22f3333239cb86db705c43218feb843a16a75b4e0"
+  }
+ },
+ "n_diagnosticos_demo": 823
+}

@@ -1,0 +1,36 @@
+# Mapa año -> archivo de egresos. Los nombres se resuelven en este orden:
+#   1) rutas explícitas de [<fuente>.archivos] (relativas a la raíz de datos),
+#   2) un archivo cuyo nombre contenga el año y la extensión .txt dentro de la raíz.
+# La raíz de datos del extracto es la carpeta "data seminario" del proyecto.
+# Para el modo completo se entrega --data-root <carpeta> en run_fase2_eda.py.
+
+[meta]
+anios = [2019, 2020, 2021, 2022, 2023, 2024]
+columnas_esperadas = 129
+separador = "|"
+# Archivo de referencia para el nombre canónico de las columnas (por posición).
+columna_id = 2
+alias_columna_id = ["CIP_ENCRIPTADO", "ID_BENEFICIARIO"]
+filas_extracto_por_anio = 49999
+
+[extracto]
+raiz_relativa_al_proyecto = "data seminario"
+
+[extracto.archivos]
+2019 = ["GRD_PUBLICO_2019 /GRD_PUBLICO_2019.txt"]
+2020 = ["GRD_PUBLICO_2020.txt"]
+2021 = ["GRD_PUBLICO_2021.txt"]
+2022 = ["GRD_PUBLICO_2022/GRD_PUBLICO_EXTERNO_2022.txt"]
+2023 = ["GRD_PUBLICO_2023.txt"]
+2024 = ["GRD_PUBLICO_2024.txt"]
+
+[completo]
+# Rutas relativas a --data-root. Se prueban en orden; si ninguna existe se busca
+# por patrón "*<año>*.txt" dentro de la raíz.
+[completo.archivos]
+2019 = ["GRD_PUBLICO_2019.txt", "GRD_PUBLICO_2019 /GRD_PUBLICO_2019.txt"]
+2020 = ["GRD_PUBLICO_2020.txt"]
+2021 = ["GRD_PUBLICO_2021.txt"]
+2022 = ["GRD_PUBLICO_EXTERNO_2022.txt", "GRD_PUBLICO_2022.txt", "GRD_PUBLICO_2022/GRD_PUBLICO_EXTERNO_2022.txt"]
+2023 = ["GRD_PUBLICO_2023.txt"]
+2024 = ["GRD_PUBLICO_2024.txt"]

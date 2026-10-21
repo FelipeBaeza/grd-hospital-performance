@@ -1,0 +1,1923 @@
+periodo,elix_a,elix_b,nombre_a,nombre_b,n_base,n_a,n_b,n_ab,phi
+2019-2022,ELIX_01,ELIX_01,Insuficiencia cardíaca congestiva,Insuficiencia cardíaca congestiva,2537994,124167,124167,124167,1
+2019-2022,ELIX_01,ELIX_02,Insuficiencia cardíaca congestiva,Arritmias cardíacas,2537994,124167,156611,43869,0.274854
+2019-2022,ELIX_01,ELIX_03,Insuficiencia cardíaca congestiva,Valvulopatía,2537994,124167,47743,17062,0.197993
+2019-2022,ELIX_01,ELIX_04,Insuficiencia cardíaca congestiva,Trastornos de la circulación pulmonar,2537994,124167,37722,10344,0.128288
+2019-2022,ELIX_01,ELIX_05,Insuficiencia cardíaca congestiva,Enfermedad vascular periférica,2537994,124167,80774,11168,0.075091
+2019-2022,ELIX_01,ELIX_06,Insuficiencia cardíaca congestiva,Hipertensión no complicada,2537994,124167,832205,88173,0.18466
+2019-2022,ELIX_01,ELIX_07,Insuficiencia cardíaca congestiva,Hipertensión complicada,2537994,124167,26877,11366,0.179359
+2019-2022,ELIX_01,ELIX_08,Insuficiencia cardíaca congestiva,Parálisis,2537994,124167,18825,1488,0.012071
+2019-2022,ELIX_01,ELIX_09,Insuficiencia cardíaca congestiva,Otros trastornos neurológicos,2537994,124167,77381,5846,0.021889
+2019-2022,ELIX_01,ELIX_10,Insuficiencia cardíaca congestiva,Enfermedad pulmonar crónica,2537994,124167,161363,24359,0.123254
+2019-2022,ELIX_01,ELIX_11,Insuficiencia cardíaca congestiva,Diabetes no complicada,2537994,124167,360764,39390,0.11372
+2019-2022,ELIX_01,ELIX_12,Insuficiencia cardíaca congestiva,Diabetes complicada,2537994,124167,98041,14714,0.094003
+2019-2022,ELIX_01,ELIX_13,Insuficiencia cardíaca congestiva,Hipotiroidismo,2537994,124167,236687,19244,0.048144
+2019-2022,ELIX_01,ELIX_14,Insuficiencia cardíaca congestiva,Insuficiencia renal,2537994,124167,182447,37467,0.201832
+2019-2022,ELIX_01,ELIX_15,Insuficiencia cardíaca congestiva,Enfermedad hepática,2537994,124167,101818,9536,0.042397
+2019-2022,ELIX_01,ELIX_16,Insuficiencia cardíaca congestiva,Úlcera péptica sin sangrado,2537994,124167,10565,1181,0.018841
+2019-2022,ELIX_01,ELIX_17,Insuficiencia cardíaca congestiva,VIH/SIDA,2537994,124167,10929,246,-0.008053
+2019-2022,ELIX_01,ELIX_18,Insuficiencia cardíaca congestiva,Linfoma,2537994,124167,16613,824,0.000255
+2019-2022,ELIX_01,ELIX_19,Insuficiencia cardíaca congestiva,Cáncer metastásico,2537994,124167,44630,1534,-0.009026
+2019-2022,ELIX_01,ELIX_20,Insuficiencia cardíaca congestiva,Tumor sólido sin metástasis,2537994,124167,72160,3629,0.001085
+2019-2022,ELIX_01,ELIX_21,Insuficiencia cardíaca congestiva,Artritis reumatoide y colagenopatías,2537994,124167,36213,2970,0.018457
+2019-2022,ELIX_01,ELIX_22,Insuficiencia cardíaca congestiva,Coagulopatía,2537994,124167,41158,5087,0.044446
+2019-2022,ELIX_01,ELIX_23,Insuficiencia cardíaca congestiva,Obesidad,2537994,124167,327491,21396,0.029281
+2019-2022,ELIX_01,ELIX_24,Insuficiencia cardíaca congestiva,Pérdida de peso,2537994,124167,38461,3399,0.022687
+2019-2022,ELIX_01,ELIX_25,Insuficiencia cardíaca congestiva,Trastornos hidroelectrolíticos,2537994,124167,168777,24619,0.119952
+2019-2022,ELIX_01,ELIX_26,Insuficiencia cardíaca congestiva,Anemia por pérdida de sangre,2537994,124167,5971,437,0.005462
+2019-2022,ELIX_01,ELIX_27,Insuficiencia cardíaca congestiva,Anemia por deficiencia,2537994,124167,25998,3477,0.040002
+2019-2022,ELIX_01,ELIX_28,Insuficiencia cardíaca congestiva,Abuso de alcohol,2537994,124167,108273,5466,0.001527
+2019-2022,ELIX_01,ELIX_29,Insuficiencia cardíaca congestiva,Abuso de drogas,2537994,124167,68133,1810,-0.017215
+2019-2022,ELIX_01,ELIX_30,Insuficiencia cardíaca congestiva,Psicosis,2537994,124167,11065,348,-0.00536
+2019-2022,ELIX_01,ELIX_31,Insuficiencia cardíaca congestiva,Depresión,2537994,124167,71183,4543,0.011732
+2019-2022,ELIX_02,ELIX_01,Arritmias cardíacas,Insuficiencia cardíaca congestiva,2537994,156611,124167,43869,0.274854
+2019-2022,ELIX_02,ELIX_02,Arritmias cardíacas,Arritmias cardíacas,2537994,156611,156611,156611,1
+2019-2022,ELIX_02,ELIX_03,Arritmias cardíacas,Valvulopatía,2537994,156611,47743,17803,0.179068
+2019-2022,ELIX_02,ELIX_04,Arritmias cardíacas,Trastornos de la circulación pulmonar,2537994,156611,37722,9305,0.094419
+2019-2022,ELIX_02,ELIX_05,Arritmias cardíacas,Enfermedad vascular periférica,2537994,156611,80774,11523,0.060996
+2019-2022,ELIX_02,ELIX_06,Arritmias cardíacas,Hipertensión no complicada,2537994,156611,832205,107283,0.19509
+2019-2022,ELIX_02,ELIX_07,Arritmias cardíacas,Hipertensión complicada,2537994,156611,26877,7626,0.095463
+2019-2022,ELIX_02,ELIX_08,Arritmias cardíacas,Parálisis,2537994,156611,18825,2413,0.023881
+2019-2022,ELIX_02,ELIX_09,Arritmias cardíacas,Otros trastornos neurológicos,2537994,156611,77381,8725,0.037621
+2019-2022,ELIX_02,ELIX_10,Arritmias cardíacas,Enfermedad pulmonar crónica,2537994,156611,161363,23636,0.091798
+2019-2022,ELIX_02,ELIX_11,Arritmias cardíacas,Diabetes no complicada,2537994,156611,360764,43101,0.097721
+2019-2022,ELIX_02,ELIX_12,Arritmias cardíacas,Diabetes complicada,2537994,156611,98041,12296,0.053075
+2019-2022,ELIX_02,ELIX_13,Arritmias cardíacas,Hipotiroidismo,2537994,156611,236687,22419,0.044
+2019-2022,ELIX_02,ELIX_14,Arritmias cardíacas,Insuficiencia renal,2537994,156611,182447,34324,0.146224
+2019-2022,ELIX_02,ELIX_15,Arritmias cardíacas,Enfermedad hepática,2537994,156611,101818,10015,0.031143
+2019-2022,ELIX_02,ELIX_16,Arritmias cardíacas,Úlcera péptica sin sangrado,2537994,156611,10565,1363,0.018084
+2019-2022,ELIX_02,ELIX_17,Arritmias cardíacas,VIH/SIDA,2537994,156611,10929,261,-0.010338
+2019-2022,ELIX_02,ELIX_18,Arritmias cardíacas,Linfoma,2537994,156611,16613,930,-0.001932
+2019-2022,ELIX_02,ELIX_19,Arritmias cardíacas,Cáncer metastásico,2537994,156611,44630,2393,-0.004497
+2019-2022,ELIX_02,ELIX_20,Arritmias cardíacas,Tumor sólido sin metástasis,2537994,156611,72160,5245,0.007805
+2019-2022,ELIX_02,ELIX_21,Arritmias cardíacas,Artritis reumatoide y colagenopatías,2537994,156611,36213,2928,0.009574
+2019-2022,ELIX_02,ELIX_22,Arritmias cardíacas,Coagulopatía,2537994,156611,41158,7036,0.05829
+2019-2022,ELIX_02,ELIX_23,Arritmias cardíacas,Obesidad,2537994,156611,327491,19959,-0.001218
+2019-2022,ELIX_02,ELIX_24,Arritmias cardíacas,Pérdida de peso,2537994,156611,38461,4501,0.028519
+2019-2022,ELIX_02,ELIX_25,Arritmias cardíacas,Trastornos hidroelectrolíticos,2537994,156611,168777,27843,0.114541
+2019-2022,ELIX_02,ELIX_26,Arritmias cardíacas,Anemia por pérdida de sangre,2537994,156611,5971,514,0.004919
+2019-2022,ELIX_02,ELIX_27,Arritmias cardíacas,Anemia por deficiencia,2537994,156611,25998,3397,0.029154
+2019-2022,ELIX_02,ELIX_28,Arritmias cardíacas,Abuso de alcohol,2537994,156611,108273,6783,0.000825
+2019-2022,ELIX_02,ELIX_29,Arritmias cardíacas,Abuso de drogas,2537994,156611,68133,1702,-0.02535
+2019-2022,ELIX_02,ELIX_30,Arritmias cardíacas,Psicosis,2537994,156611,11065,441,-0.006009
+2019-2022,ELIX_02,ELIX_31,Arritmias cardíacas,Depresión,2537994,156611,71183,4897,0.005004
+2019-2022,ELIX_03,ELIX_01,Valvulopatía,Insuficiencia cardíaca congestiva,2537994,47743,124167,17062,0.197993
+2019-2022,ELIX_03,ELIX_02,Valvulopatía,Arritmias cardíacas,2537994,47743,156611,17803,0.179068
+2019-2022,ELIX_03,ELIX_03,Valvulopatía,Valvulopatía,2537994,47743,47743,47743,1
+2019-2022,ELIX_03,ELIX_04,Valvulopatía,Trastornos de la circulación pulmonar,2537994,47743,37722,7171,0.154864
+2019-2022,ELIX_03,ELIX_05,Valvulopatía,Enfermedad vascular periférica,2537994,47743,80774,5123,0.059537
+2019-2022,ELIX_03,ELIX_06,Valvulopatía,Hipertensión no complicada,2537994,47743,832205,31004,0.094824
+2019-2022,ELIX_03,ELIX_07,Valvulopatía,Hipertensión complicada,2537994,47743,26877,3613,0.088042
+2019-2022,ELIX_03,ELIX_08,Valvulopatía,Parálisis,2537994,47743,18825,646,0.009865
+2019-2022,ELIX_03,ELIX_09,Valvulopatía,Otros trastornos neurológicos,2537994,47743,77381,2192,0.012421
+2019-2022,ELIX_03,ELIX_10,Valvulopatía,Enfermedad pulmonar crónica,2537994,47743,161363,6714,0.043723
+2019-2022,ELIX_03,ELIX_11,Valvulopatía,Diabetes no complicada,2537994,47743,360764,11881,0.042311
+2019-2022,ELIX_03,ELIX_12,Valvulopatía,Diabetes complicada,2537994,47743,98041,4568,0.04099
+2019-2022,ELIX_03,ELIX_13,Valvulopatía,Hipotiroidismo,2537994,47743,236687,6984,0.025249
+2019-2022,ELIX_03,ELIX_14,Valvulopatía,Insuficiencia renal,2537994,47743,182447,11267,0.08797
+2019-2022,ELIX_03,ELIX_15,Valvulopatía,Enfermedad hepática,2537994,47743,101818,3703,0.02642
+2019-2022,ELIX_03,ELIX_16,Valvulopatía,Úlcera péptica sin sangrado,2537994,47743,10565,479,0.012624
+2019-2022,ELIX_03,ELIX_17,Valvulopatía,VIH/SIDA,2537994,47743,10929,117,-0.003924
+2019-2022,ELIX_03,ELIX_18,Valvulopatía,Linfoma,2537994,47743,16613,341,0.001025
+2019-2022,ELIX_03,ELIX_19,Valvulopatía,Cáncer metastásico,2537994,47743,44630,521,-0.007029
+2019-2022,ELIX_03,ELIX_20,Valvulopatía,Tumor sólido sin metástasis,2537994,47743,72160,1270,-0.001526
+2019-2022,ELIX_03,ELIX_21,Valvulopatía,Artritis reumatoide y colagenopatías,2537994,47743,36213,1386,0.017235
+2019-2022,ELIX_03,ELIX_22,Valvulopatía,Coagulopatía,2537994,47743,41158,2269,0.034321
+2019-2022,ELIX_03,ELIX_23,Valvulopatía,Obesidad,2537994,47743,327491,6369,0.001803
+2019-2022,ELIX_03,ELIX_24,Valvulopatía,Pérdida de peso,2537994,47743,38461,1506,0.018576
+2019-2022,ELIX_03,ELIX_25,Valvulopatía,Trastornos hidroelectrolíticos,2537994,47743,168777,7976,0.055885
+2019-2022,ELIX_03,ELIX_26,Valvulopatía,Anemia por pérdida de sangre,2537994,47743,5971,181,0.004111
+2019-2022,ELIX_03,ELIX_27,Valvulopatía,Anemia por deficiencia,2537994,47743,25998,1692,0.034648
+2019-2022,ELIX_03,ELIX_28,Valvulopatía,Abuso de alcohol,2537994,47743,108273,2229,0.002759
+2019-2022,ELIX_03,ELIX_29,Valvulopatía,Abuso de drogas,2537994,47743,68133,740,-0.009719
+2019-2022,ELIX_03,ELIX_30,Valvulopatía,Psicosis,2537994,47743,11065,101,-0.004717
+2019-2022,ELIX_03,ELIX_31,Valvulopatía,Depresión,2537994,47743,71183,1890,0.009678
+2019-2022,ELIX_04,ELIX_01,Trastornos de la circulación pulmonar,Insuficiencia cardíaca congestiva,2537994,37722,124167,10344,0.128288
+2019-2022,ELIX_04,ELIX_02,Trastornos de la circulación pulmonar,Arritmias cardíacas,2537994,37722,156611,9305,0.094419
+2019-2022,ELIX_04,ELIX_03,Trastornos de la circulación pulmonar,Valvulopatía,2537994,37722,47743,7171,0.154864
+2019-2022,ELIX_04,ELIX_04,Trastornos de la circulación pulmonar,Trastornos de la circulación pulmonar,2537994,37722,37722,37722,1
+2019-2022,ELIX_04,ELIX_05,Trastornos de la circulación pulmonar,Enfermedad vascular periférica,2537994,37722,80774,3022,0.033788
+2019-2022,ELIX_04,ELIX_06,Trastornos de la circulación pulmonar,Hipertensión no complicada,2537994,37722,832205,20506,0.05644
+2019-2022,ELIX_04,ELIX_07,Trastornos de la circulación pulmonar,Hipertensión complicada,2537994,37722,26877,1845,0.045984
+2019-2022,ELIX_04,ELIX_08,Trastornos de la circulación pulmonar,Parálisis,2537994,37722,18825,507,0.008622
+2019-2022,ELIX_04,ELIX_09,Trastornos de la circulación pulmonar,Otros trastornos neurológicos,2537994,37722,77381,1956,0.015263
+2019-2022,ELIX_04,ELIX_10,Trastornos de la circulación pulmonar,Enfermedad pulmonar crónica,2537994,37722,161363,7839,0.072605
+2019-2022,ELIX_04,ELIX_11,Trastornos de la circulación pulmonar,Diabetes no complicada,2537994,37722,360764,9191,0.035704
+2019-2022,ELIX_04,ELIX_12,Trastornos de la circulación pulmonar,Diabetes complicada,2537994,37722,98041,2681,0.020679
+2019-2022,ELIX_04,ELIX_13,Trastornos de la circulación pulmonar,Hipotiroidismo,2537994,37722,236687,4953,0.01607
+2019-2022,ELIX_04,ELIX_14,Trastornos de la circulación pulmonar,Insuficiencia renal,2537994,37722,182447,6749,0.050895
+2019-2022,ELIX_04,ELIX_15,Trastornos de la circulación pulmonar,Enfermedad hepática,2537994,37722,101818,3631,0.035139
+2019-2022,ELIX_04,ELIX_16,Trastornos de la circulación pulmonar,Úlcera péptica sin sangrado,2537994,37722,10565,369,0.01072
+2019-2022,ELIX_04,ELIX_17,Trastornos de la circulación pulmonar,VIH/SIDA,2537994,37722,10929,194,0.00157
+2019-2022,ELIX_04,ELIX_18,Trastornos de la circulación pulmonar,Linfoma,2537994,37722,16613,363,0.004687
+2019-2022,ELIX_04,ELIX_19,Trastornos de la circulación pulmonar,Cáncer metastásico,2537994,37722,44630,1546,0.021867
+2019-2022,ELIX_04,ELIX_20,Trastornos de la circulación pulmonar,Tumor sólido sin metástasis,2537994,37722,72160,1527,0.008904
+2019-2022,ELIX_04,ELIX_21,Trastornos de la circulación pulmonar,Artritis reumatoide y colagenopatías,2537994,37722,36213,1399,0.023634
+2019-2022,ELIX_04,ELIX_22,Trastornos de la circulación pulmonar,Coagulopatía,2537994,37722,41158,2310,0.043781
+2019-2022,ELIX_04,ELIX_23,Trastornos de la circulación pulmonar,Obesidad,2537994,37722,327491,7007,0.020781
+2019-2022,ELIX_04,ELIX_24,Trastornos de la circulación pulmonar,Pérdida de peso,2537994,37722,38461,1804,0.032847
+2019-2022,ELIX_04,ELIX_25,Trastornos de la circulación pulmonar,Trastornos hidroelectrolíticos,2537994,37722,168777,8507,0.078394
+2019-2022,ELIX_04,ELIX_26,Trastornos de la circulación pulmonar,Anemia por pérdida de sangre,2537994,37722,5971,139,0.003378
+2019-2022,ELIX_04,ELIX_27,Trastornos de la circulación pulmonar,Anemia por deficiencia,2537994,37722,25998,1331,0.030547
+2019-2022,ELIX_04,ELIX_28,Trastornos de la circulación pulmonar,Abuso de alcohol,2537994,37722,108273,1941,0.005345
+2019-2022,ELIX_04,ELIX_29,Trastornos de la circulación pulmonar,Abuso de drogas,2537994,37722,68133,850,-0.003277
+2019-2022,ELIX_04,ELIX_30,Trastornos de la circulación pulmonar,Psicosis,2537994,37722,11065,208,0.002152
+2019-2022,ELIX_04,ELIX_31,Trastornos de la circulación pulmonar,Depresión,2537994,37722,71183,1758,0.013805
+2019-2022,ELIX_05,ELIX_01,Enfermedad vascular periférica,Insuficiencia cardíaca congestiva,2537994,80774,124167,11168,0.075091
+2019-2022,ELIX_05,ELIX_02,Enfermedad vascular periférica,Arritmias cardíacas,2537994,80774,156611,11523,0.060996
+2019-2022,ELIX_05,ELIX_03,Enfermedad vascular periférica,Valvulopatía,2537994,80774,47743,5123,0.059537
+2019-2022,ELIX_05,ELIX_04,Enfermedad vascular periférica,Trastornos de la circulación pulmonar,2537994,80774,37722,3022,0.033788
+2019-2022,ELIX_05,ELIX_05,Enfermedad vascular periférica,Enfermedad vascular periférica,2537994,80774,80774,80774,1
+2019-2022,ELIX_05,ELIX_06,Enfermedad vascular periférica,Hipertensión no complicada,2537994,80774,832205,56151,0.141842
+2019-2022,ELIX_05,ELIX_07,Enfermedad vascular periférica,Hipertensión complicada,2537994,80774,26877,2957,0.046085
+2019-2022,ELIX_05,ELIX_08,Enfermedad vascular periférica,Parálisis,2537994,80774,18825,1386,0.020585
+2019-2022,ELIX_05,ELIX_09,Enfermedad vascular periférica,Otros trastornos neurológicos,2537994,80774,77381,3382,0.012002
+2019-2022,ELIX_05,ELIX_10,Enfermedad vascular periférica,Enfermedad pulmonar crónica,2537994,80774,161363,9048,0.035992
+2019-2022,ELIX_05,ELIX_11,Enfermedad vascular periférica,Diabetes no complicada,2537994,80774,360764,15069,0.023059
+2019-2022,ELIX_05,ELIX_12,Enfermedad vascular periférica,Diabetes complicada,2537994,80774,98041,17809,0.171089
+2019-2022,ELIX_05,ELIX_13,Enfermedad vascular periférica,Hipotiroidismo,2537994,80774,236687,8391,0.006625
+2019-2022,ELIX_05,ELIX_14,Enfermedad vascular periférica,Insuficiencia renal,2537994,80774,182447,18662,0.111714
+2019-2022,ELIX_05,ELIX_15,Enfermedad vascular periférica,Enfermedad hepática,2537994,80774,101818,5667,0.027756
+2019-2022,ELIX_05,ELIX_16,Enfermedad vascular periférica,Úlcera péptica sin sangrado,2537994,80774,10565,700,0.012682
+2019-2022,ELIX_05,ELIX_17,Enfermedad vascular periférica,VIH/SIDA,2537994,80774,10929,219,-0.004416
+2019-2022,ELIX_05,ELIX_18,Enfermedad vascular periférica,Linfoma,2537994,80774,16613,1161,0.017599
+2019-2022,ELIX_05,ELIX_19,Enfermedad vascular periférica,Cáncer metastásico,2537994,80774,44630,1646,0.003853
+2019-2022,ELIX_05,ELIX_20,Enfermedad vascular periférica,Tumor sólido sin metástasis,2537994,80774,72160,2773,0.006434
+2019-2022,ELIX_05,ELIX_21,Enfermedad vascular periférica,Artritis reumatoide y colagenopatías,2537994,80774,36213,1651,0.009435
+2019-2022,ELIX_05,ELIX_22,Enfermedad vascular periférica,Coagulopatía,2537994,80774,41158,2287,0.017364
+2019-2022,ELIX_05,ELIX_23,Enfermedad vascular periférica,Obesidad,2537994,80774,327491,7697,-0.01825
+2019-2022,ELIX_05,ELIX_24,Enfermedad vascular periférica,Pérdida de peso,2537994,80774,38461,2621,0.025667
+2019-2022,ELIX_05,ELIX_25,Enfermedad vascular periférica,Trastornos hidroelectrolíticos,2537994,80774,168777,11829,0.058175
+2019-2022,ELIX_05,ELIX_26,Enfermedad vascular periférica,Anemia por pérdida de sangre,2537994,80774,5971,250,0.002778
+2019-2022,ELIX_05,ELIX_27,Enfermedad vascular periférica,Anemia por deficiencia,2537994,80774,25998,1853,0.022863
+2019-2022,ELIX_05,ELIX_28,Enfermedad vascular periférica,Abuso de alcohol,2537994,80774,108273,3959,0.005699
+2019-2022,ELIX_05,ELIX_29,Enfermedad vascular periférica,Abuso de drogas,2537994,80774,68133,1118,-0.014587
+2019-2022,ELIX_05,ELIX_30,Enfermedad vascular periférica,Psicosis,2537994,80774,11065,265,-0.002969
+2019-2022,ELIX_05,ELIX_31,Enfermedad vascular periférica,Depresión,2537994,80774,71183,2736,0.006397
+2019-2022,ELIX_06,ELIX_01,Hipertensión no complicada,Insuficiencia cardíaca congestiva,2537994,832205,124167,88173,0.18466
+2019-2022,ELIX_06,ELIX_02,Hipertensión no complicada,Arritmias cardíacas,2537994,832205,156611,107283,0.19509
+2019-2022,ELIX_06,ELIX_03,Hipertensión no complicada,Valvulopatía,2537994,832205,47743,31004,0.094824
+2019-2022,ELIX_06,ELIX_04,Hipertensión no complicada,Trastornos de la circulación pulmonar,2537994,832205,37722,20506,0.05644
+2019-2022,ELIX_06,ELIX_05,Hipertensión no complicada,Enfermedad vascular periférica,2537994,832205,80774,56151,0.141842
+2019-2022,ELIX_06,ELIX_06,Hipertensión no complicada,Hipertensión no complicada,2537994,832205,832205,832205,1
+2019-2022,ELIX_06,ELIX_07,Hipertensión no complicada,Hipertensión complicada,2537994,832205,26877,0,-0.072262
+2019-2022,ELIX_06,ELIX_08,Hipertensión no complicada,Parálisis,2537994,832205,18825,10008,0.037516
+2019-2022,ELIX_06,ELIX_09,Hipertensión no complicada,Otros trastornos neurológicos,2537994,832205,77381,35294,0.048431
+2019-2022,ELIX_06,ELIX_10,Hipertensión no complicada,Enfermedad pulmonar crónica,2537994,832205,161363,90443,0.129103
+2019-2022,ELIX_06,ELIX_11,Hipertensión no complicada,Diabetes no complicada,2537994,832205,360764,281128,0.391376
+2019-2022,ELIX_06,ELIX_12,Hipertensión no complicada,Diabetes complicada,2537994,832205,98041,70724,0.168012
+2019-2022,ELIX_06,ELIX_13,Hipertensión no complicada,Hipotiroidismo,2537994,832205,236687,112228,0.099919
+2019-2022,ELIX_06,ELIX_14,Hipertensión no complicada,Insuficiencia renal,2537994,832205,182447,131083,0.231546
+2019-2022,ELIX_06,ELIX_15,Hipertensión no complicada,Enfermedad hepática,2537994,832205,101818,46379,0.055572
+2019-2022,ELIX_06,ELIX_16,Hipertensión no complicada,Úlcera péptica sin sangrado,2537994,832205,10565,5557,0.027281
+2019-2022,ELIX_06,ELIX_17,Hipertensión no complicada,VIH/SIDA,2537994,832205,10929,1689,-0.024285
+2019-2022,ELIX_06,ELIX_18,Hipertensión no complicada,Linfoma,2537994,832205,16613,6217,0.00801
+2019-2022,ELIX_06,ELIX_19,Hipertensión no complicada,Cáncer metastásico,2537994,832205,44630,18945,0.027528
+2019-2022,ELIX_06,ELIX_20,Hipertensión no complicada,Tumor sólido sin metástasis,2537994,832205,72160,33354,0.048948
+2019-2022,ELIX_06,ELIX_21,Hipertensión no complicada,Artritis reumatoide y colagenopatías,2537994,832205,36213,17480,0.039673
+2019-2022,ELIX_06,ELIX_22,Hipertensión no complicada,Coagulopatía,2537994,832205,41158,18105,0.030629
+2019-2022,ELIX_06,ELIX_23,Hipertensión no complicada,Obesidad,2537994,832205,327491,116999,0.024073
+2019-2022,ELIX_06,ELIX_24,Hipertensión no complicada,Pérdida de peso,2537994,832205,38461,16288,0.02526
+2019-2022,ELIX_06,ELIX_25,Hipertensión no complicada,Trastornos hidroelectrolíticos,2537994,832205,168777,96892,0.139968
+2019-2022,ELIX_06,ELIX_26,Hipertensión no complicada,Anemia por pérdida de sangre,2537994,832205,5971,2322,0.006308
+2019-2022,ELIX_06,ELIX_27,Hipertensión no complicada,Anemia por deficiencia,2537994,832205,25998,12616,0.034103
+2019-2022,ELIX_06,ELIX_28,Hipertensión no complicada,Abuso de alcohol,2537994,832205,108273,35654,0.000629
+2019-2022,ELIX_06,ELIX_29,Hipertensión no complicada,Abuso de drogas,2537994,832205,68133,8744,-0.070604
+2019-2022,ELIX_06,ELIX_30,Hipertensión no complicada,Psicosis,2537994,832205,11065,2701,-0.011812
+2019-2022,ELIX_06,ELIX_31,Hipertensión no complicada,Depresión,2537994,832205,71183,30379,0.035778
+2019-2022,ELIX_07,ELIX_01,Hipertensión complicada,Insuficiencia cardíaca congestiva,2537994,26877,124167,11366,0.179359
+2019-2022,ELIX_07,ELIX_02,Hipertensión complicada,Arritmias cardíacas,2537994,26877,156611,7626,0.095463
+2019-2022,ELIX_07,ELIX_03,Hipertensión complicada,Valvulopatía,2537994,26877,47743,3613,0.088042
+2019-2022,ELIX_07,ELIX_04,Hipertensión complicada,Trastornos de la circulación pulmonar,2537994,26877,37722,1845,0.045984
+2019-2022,ELIX_07,ELIX_05,Hipertensión complicada,Enfermedad vascular periférica,2537994,26877,80774,2957,0.046085
+2019-2022,ELIX_07,ELIX_06,Hipertensión complicada,Hipertensión no complicada,2537994,26877,832205,0,-0.072262
+2019-2022,ELIX_07,ELIX_07,Hipertensión complicada,Hipertensión complicada,2537994,26877,26877,26877,1
+2019-2022,ELIX_07,ELIX_08,Hipertensión complicada,Parálisis,2537994,26877,18825,313,0.005098
+2019-2022,ELIX_07,ELIX_09,Hipertensión complicada,Otros trastornos neurológicos,2537994,26877,77381,1234,0.009281
+2019-2022,ELIX_07,ELIX_10,Hipertensión complicada,Enfermedad pulmonar crónica,2537994,26877,161363,3932,0.035072
+2019-2022,ELIX_07,ELIX_11,Hipertensión complicada,Diabetes no complicada,2537994,26877,360764,6689,0.03162
+2019-2022,ELIX_07,ELIX_12,Hipertensión complicada,Diabetes complicada,2537994,26877,98041,5363,0.086384
+2019-2022,ELIX_07,ELIX_13,Hipertensión complicada,Hipotiroidismo,2537994,26877,236687,3960,0.01924
+2019-2022,ELIX_07,ELIX_14,Hipertensión complicada,Insuficiencia renal,2537994,26877,182447,14749,0.191001
+2019-2022,ELIX_07,ELIX_15,Hipertensión complicada,Enfermedad hepática,2537994,26877,101818,1767,0.01351
+2019-2022,ELIX_07,ELIX_16,Hipertensión complicada,Úlcera péptica sin sangrado,2537994,26877,10565,276,0.009812
+2019-2022,ELIX_07,ELIX_17,Hipertensión complicada,VIH/SIDA,2537994,26877,10929,50,-0.003864
+2019-2022,ELIX_07,ELIX_18,Hipertensión complicada,Linfoma,2537994,26877,16613,170,-0.000283
+2019-2022,ELIX_07,ELIX_19,Hipertensión complicada,Cáncer metastásico,2537994,26877,44630,349,-0.00362
+2019-2022,ELIX_07,ELIX_20,Hipertensión complicada,Tumor sólido sin metástasis,2537994,26877,72160,803,0.000899
+2019-2022,ELIX_07,ELIX_21,Hipertensión complicada,Artritis reumatoide y colagenopatías,2537994,26877,36213,671,0.009332
+2019-2022,ELIX_07,ELIX_22,Hipertensión complicada,Coagulopatía,2537994,26877,41158,1030,0.018107
+2019-2022,ELIX_07,ELIX_23,Hipertensión complicada,Obesidad,2537994,26877,327491,4593,0.012916
+2019-2022,ELIX_07,ELIX_24,Hipertensión complicada,Pérdida de peso,2537994,26877,38461,632,0.00708
+2019-2022,ELIX_07,ELIX_25,Hipertensión complicada,Trastornos hidroelectrolíticos,2537994,26877,168777,5779,0.061668
+2019-2022,ELIX_07,ELIX_26,Hipertensión complicada,Anemia por pérdida de sangre,2537994,26877,5971,119,0.004431
+2019-2022,ELIX_07,ELIX_27,Hipertensión complicada,Anemia por deficiencia,2537994,26877,25998,725,0.017191
+2019-2022,ELIX_07,ELIX_28,Hipertensión complicada,Abuso de alcohol,2537994,26877,108273,898,-0.004735
+2019-2022,ELIX_07,ELIX_29,Hipertensión complicada,Abuso de drogas,2537994,26877,68133,316,-0.009657
+2019-2022,ELIX_07,ELIX_30,Hipertensión complicada,Psicosis,2537994,26877,11065,55,-0.003633
+2019-2022,ELIX_07,ELIX_31,Hipertensión complicada,Depresión,2537994,26877,71183,870,0.002709
+2019-2022,ELIX_08,ELIX_01,Parálisis,Insuficiencia cardíaca congestiva,2537994,18825,124167,1488,0.012071
+2019-2022,ELIX_08,ELIX_02,Parálisis,Arritmias cardíacas,2537994,18825,156611,2413,0.023881
+2019-2022,ELIX_08,ELIX_03,Parálisis,Valvulopatía,2537994,18825,47743,646,0.009865
+2019-2022,ELIX_08,ELIX_04,Parálisis,Trastornos de la circulación pulmonar,2537994,18825,37722,507,0.008622
+2019-2022,ELIX_08,ELIX_05,Parálisis,Enfermedad vascular periférica,2537994,18825,80774,1386,0.020585
+2019-2022,ELIX_08,ELIX_06,Parálisis,Hipertensión no complicada,2537994,18825,832205,10008,0.037516
+2019-2022,ELIX_08,ELIX_07,Parálisis,Hipertensión complicada,2537994,18825,26877,313,0.005098
+2019-2022,ELIX_08,ELIX_08,Parálisis,Parálisis,2537994,18825,18825,18825,1
+2019-2022,ELIX_08,ELIX_09,Parálisis,Otros trastornos neurológicos,2537994,18825,77381,3254,0.071581
+2019-2022,ELIX_08,ELIX_10,Parálisis,Enfermedad pulmonar crónica,2537994,18825,161363,1595,0.007493
+2019-2022,ELIX_08,ELIX_11,Parálisis,Diabetes no complicada,2537994,18825,360764,4292,0.021252
+2019-2022,ELIX_08,ELIX_12,Parálisis,Diabetes complicada,2537994,18825,98041,1142,0.009884
+2019-2022,ELIX_08,ELIX_13,Parálisis,Hipotiroidismo,2537994,18825,236687,1720,-0.000562
+2019-2022,ELIX_08,ELIX_14,Parálisis,Insuficiencia renal,2537994,18825,182447,1977,0.011089
+2019-2022,ELIX_08,ELIX_15,Parálisis,Enfermedad hepática,2537994,18825,101818,740,-0.000356
+2019-2022,ELIX_08,ELIX_16,Parálisis,Úlcera péptica sin sangrado,2537994,18825,10565,130,0.003683
+2019-2022,ELIX_08,ELIX_17,Parálisis,VIH/SIDA,2537994,18825,10929,144,0.004414
+2019-2022,ELIX_08,ELIX_18,Parálisis,Linfoma,2537994,18825,16613,182,0.003347
+2019-2022,ELIX_08,ELIX_19,Parálisis,Cáncer metastásico,2537994,18825,44630,651,0.011179
+2019-2022,ELIX_08,ELIX_20,Parálisis,Tumor sólido sin metástasis,2537994,18825,72160,626,0.002508
+2019-2022,ELIX_08,ELIX_21,Parálisis,Artritis reumatoide y colagenopatías,2537994,18825,36213,356,0.003384
+2019-2022,ELIX_08,ELIX_22,Parálisis,Coagulopatía,2537994,18825,41158,536,0.008388
+2019-2022,ELIX_08,ELIX_23,Parálisis,Obesidad,2537994,18825,327491,1683,-0.01022
+2019-2022,ELIX_08,ELIX_24,Parálisis,Pérdida de peso,2537994,18825,38461,752,0.017543
+2019-2022,ELIX_08,ELIX_25,Parálisis,Trastornos hidroelectrolíticos,2537994,18825,168777,2898,0.030339
+2019-2022,ELIX_08,ELIX_26,Parálisis,Anemia por pérdida de sangre,2537994,18825,5971,33,-0.00107
+2019-2022,ELIX_08,ELIX_27,Parálisis,Anemia por deficiencia,2537994,18825,25998,361,0.007669
+2019-2022,ELIX_08,ELIX_28,Parálisis,Abuso de alcohol,2537994,18825,108273,1334,0.012064
+2019-2022,ELIX_08,ELIX_29,Parálisis,Abuso de drogas,2537994,18825,68133,701,0.005558
+2019-2022,ELIX_08,ELIX_30,Parálisis,Psicosis,2537994,18825,11065,94,0.000831
+2019-2022,ELIX_08,ELIX_31,Parálisis,Depresión,2537994,18825,71183,1066,0.014964
+2019-2022,ELIX_09,ELIX_01,Otros trastornos neurológicos,Insuficiencia cardíaca congestiva,2537994,77381,124167,5846,0.021889
+2019-2022,ELIX_09,ELIX_02,Otros trastornos neurológicos,Arritmias cardíacas,2537994,77381,156611,8725,0.037621
+2019-2022,ELIX_09,ELIX_03,Otros trastornos neurológicos,Valvulopatía,2537994,77381,47743,2192,0.012421
+2019-2022,ELIX_09,ELIX_04,Otros trastornos neurológicos,Trastornos de la circulación pulmonar,2537994,77381,37722,1956,0.015263
+2019-2022,ELIX_09,ELIX_05,Otros trastornos neurológicos,Enfermedad vascular periférica,2537994,77381,80774,3382,0.012002
+2019-2022,ELIX_09,ELIX_06,Otros trastornos neurológicos,Hipertensión no complicada,2537994,77381,832205,35294,0.048431
+2019-2022,ELIX_09,ELIX_07,Otros trastornos neurológicos,Hipertensión complicada,2537994,77381,26877,1234,0.009281
+2019-2022,ELIX_09,ELIX_08,Otros trastornos neurológicos,Parálisis,2537994,77381,18825,3254,0.071581
+2019-2022,ELIX_09,ELIX_09,Otros trastornos neurológicos,Otros trastornos neurológicos,2537994,77381,77381,77381,1
+2019-2022,ELIX_09,ELIX_10,Otros trastornos neurológicos,Enfermedad pulmonar crónica,2537994,77381,161363,6980,0.01935
+2019-2022,ELIX_09,ELIX_11,Otros trastornos neurológicos,Diabetes no complicada,2537994,77381,360764,14450,0.022646
+2019-2022,ELIX_09,ELIX_12,Otros trastornos neurológicos,Diabetes complicada,2537994,77381,98041,4034,0.012425
+2019-2022,ELIX_09,ELIX_13,Otros trastornos neurológicos,Hipotiroidismo,2537994,77381,236687,9178,0.01546
+2019-2022,ELIX_09,ELIX_14,Otros trastornos neurológicos,Insuficiencia renal,2537994,77381,182447,8989,0.0304
+2019-2022,ELIX_09,ELIX_15,Otros trastornos neurológicos,Enfermedad hepática,2537994,77381,101818,6487,0.039504
+2019-2022,ELIX_09,ELIX_16,Otros trastornos neurológicos,Úlcera péptica sin sangrado,2537994,77381,10565,554,0.008254
+2019-2022,ELIX_09,ELIX_17,Otros trastornos neurológicos,VIH/SIDA,2537994,77381,10929,547,0.007482
+2019-2022,ELIX_09,ELIX_18,Otros trastornos neurológicos,Linfoma,2537994,77381,16613,419,-0.002487
+2019-2022,ELIX_09,ELIX_19,Otros trastornos neurológicos,Cáncer metastásico,2537994,77381,44630,1284,-0.001338
+2019-2022,ELIX_09,ELIX_20,Otros trastornos neurológicos,Tumor sólido sin metástasis,2537994,77381,72160,2345,0.001998
+2019-2022,ELIX_09,ELIX_21,Otros trastornos neurológicos,Artritis reumatoide y colagenopatías,2537994,77381,36213,1389,0.005505
+2019-2022,ELIX_09,ELIX_22,Otros trastornos neurológicos,Coagulopatía,2537994,77381,41158,2931,0.030412
+2019-2022,ELIX_09,ELIX_23,Otros trastornos neurológicos,Obesidad,2537994,77381,327491,6353,-0.024828
+2019-2022,ELIX_09,ELIX_24,Otros trastornos neurológicos,Pérdida de peso,2537994,77381,38461,3406,0.041896
+2019-2022,ELIX_09,ELIX_25,Otros trastornos neurológicos,Trastornos hidroelectrolíticos,2537994,77381,168777,13683,0.078525
+2019-2022,ELIX_09,ELIX_26,Otros trastornos neurológicos,Anemia por pérdida de sangre,2537994,77381,5971,187,0.000234
+2019-2022,ELIX_09,ELIX_27,Otros trastornos neurológicos,Anemia por deficiencia,2537994,77381,25998,1514,0.016418
+2019-2022,ELIX_09,ELIX_28,Otros trastornos neurológicos,Abuso de alcohol,2537994,77381,108273,7230,0.044553
+2019-2022,ELIX_09,ELIX_29,Otros trastornos neurológicos,Abuso de drogas,2537994,77381,68133,2814,0.010445
+2019-2022,ELIX_09,ELIX_30,Otros trastornos neurológicos,Psicosis,2537994,77381,11065,1282,0.032858
+2019-2022,ELIX_09,ELIX_31,Otros trastornos neurológicos,Depresión,2537994,77381,71183,3946,0.024647
+2019-2022,ELIX_10,ELIX_01,Enfermedad pulmonar crónica,Insuficiencia cardíaca congestiva,2537994,161363,124167,24359,0.123254
+2019-2022,ELIX_10,ELIX_02,Enfermedad pulmonar crónica,Arritmias cardíacas,2537994,161363,156611,23636,0.091798
+2019-2022,ELIX_10,ELIX_03,Enfermedad pulmonar crónica,Valvulopatía,2537994,161363,47743,6714,0.043723
+2019-2022,ELIX_10,ELIX_04,Enfermedad pulmonar crónica,Trastornos de la circulación pulmonar,2537994,161363,37722,7839,0.072605
+2019-2022,ELIX_10,ELIX_05,Enfermedad pulmonar crónica,Enfermedad vascular periférica,2537994,161363,80774,9048,0.035992
+2019-2022,ELIX_10,ELIX_06,Enfermedad pulmonar crónica,Hipertensión no complicada,2537994,161363,832205,90443,0.129103
+2019-2022,ELIX_10,ELIX_07,Enfermedad pulmonar crónica,Hipertensión complicada,2537994,161363,26877,3932,0.035072
+2019-2022,ELIX_10,ELIX_08,Enfermedad pulmonar crónica,Parálisis,2537994,161363,18825,1595,0.007493
+2019-2022,ELIX_10,ELIX_09,Enfermedad pulmonar crónica,Otros trastornos neurológicos,2537994,161363,77381,6980,0.01935
+2019-2022,ELIX_10,ELIX_10,Enfermedad pulmonar crónica,Enfermedad pulmonar crónica,2537994,161363,161363,161363,1
+2019-2022,ELIX_10,ELIX_11,Enfermedad pulmonar crónica,Diabetes no complicada,2537994,161363,360764,37970,0.069517
+2019-2022,ELIX_10,ELIX_12,Enfermedad pulmonar crónica,Diabetes complicada,2537994,161363,98041,9118,0.024172
+2019-2022,ELIX_10,ELIX_13,Enfermedad pulmonar crónica,Hipotiroidismo,2537994,161363,236687,20645,0.031079
+2019-2022,ELIX_10,ELIX_14,Enfermedad pulmonar crónica,Insuficiencia renal,2537994,161363,182447,21383,0.061161
+2019-2022,ELIX_10,ELIX_15,Enfermedad pulmonar crónica,Enfermedad hepática,2537994,161363,101818,9407,0.02414
+2019-2022,ELIX_10,ELIX_16,Enfermedad pulmonar crónica,Úlcera péptica sin sangrado,2537994,161363,10565,1136,0.011645
+2019-2022,ELIX_10,ELIX_17,Enfermedad pulmonar crónica,VIH/SIDA,2537994,161363,10929,539,-0.003844
+2019-2022,ELIX_10,ELIX_18,Enfermedad pulmonar crónica,Linfoma,2537994,161363,16613,1138,0.001637
+2019-2022,ELIX_10,ELIX_19,Enfermedad pulmonar crónica,Cáncer metastásico,2537994,161363,44630,3371,0.006554
+2019-2022,ELIX_10,ELIX_20,Enfermedad pulmonar crónica,Tumor sólido sin metástasis,2537994,161363,72160,5766,0.011447
+2019-2022,ELIX_10,ELIX_21,Enfermedad pulmonar crónica,Artritis reumatoide y colagenopatías,2537994,161363,36213,3926,0.022107
+2019-2022,ELIX_10,ELIX_22,Enfermedad pulmonar crónica,Coagulopatía,2537994,161363,41158,4013,0.01785
+2019-2022,ELIX_10,ELIX_23,Enfermedad pulmonar crónica,Obesidad,2537994,161363,327491,26855,0.029062
+2019-2022,ELIX_10,ELIX_24,Enfermedad pulmonar crónica,Pérdida de peso,2537994,161363,38461,5163,0.035923
+2019-2022,ELIX_10,ELIX_25,Enfermedad pulmonar crónica,Trastornos hidroelectrolíticos,2537994,161363,168777,22090,0.073621
+2019-2022,ELIX_10,ELIX_26,Enfermedad pulmonar crónica,Anemia por pérdida de sangre,2537994,161363,5971,443,0.002112
+2019-2022,ELIX_10,ELIX_27,Enfermedad pulmonar crónica,Anemia por deficiencia,2537994,161363,25998,2968,0.02109
+2019-2022,ELIX_10,ELIX_28,Enfermedad pulmonar crónica,Abuso de alcohol,2537994,161363,108273,7819,0.007472
+2019-2022,ELIX_10,ELIX_29,Enfermedad pulmonar crónica,Abuso de drogas,2537994,161363,68133,3468,-0.00863
+2019-2022,ELIX_10,ELIX_30,Enfermedad pulmonar crónica,Psicosis,2537994,161363,11065,856,0.003738
+2019-2022,ELIX_10,ELIX_31,Enfermedad pulmonar crónica,Depresión,2537994,161363,71183,7307,0.027202
+2019-2022,ELIX_11,ELIX_01,Diabetes no complicada,Insuficiencia cardíaca congestiva,2537994,360764,124167,39390,0.11372
+2019-2022,ELIX_11,ELIX_02,Diabetes no complicada,Arritmias cardíacas,2537994,360764,156611,43101,0.097721
+2019-2022,ELIX_11,ELIX_03,Diabetes no complicada,Valvulopatía,2537994,360764,47743,11881,0.042311
+2019-2022,ELIX_11,ELIX_04,Diabetes no complicada,Trastornos de la circulación pulmonar,2537994,360764,37722,9191,0.035704
+2019-2022,ELIX_11,ELIX_05,Diabetes no complicada,Enfermedad vascular periférica,2537994,360764,80774,15069,0.023059
+2019-2022,ELIX_11,ELIX_06,Diabetes no complicada,Hipertensión no complicada,2537994,360764,832205,281128,0.391376
+2019-2022,ELIX_11,ELIX_07,Diabetes no complicada,Hipertensión complicada,2537994,360764,26877,6689,0.03162
+2019-2022,ELIX_11,ELIX_08,Diabetes no complicada,Parálisis,2537994,360764,18825,4292,0.021252
+2019-2022,ELIX_11,ELIX_09,Diabetes no complicada,Otros trastornos neurológicos,2537994,360764,77381,14450,0.022646
+2019-2022,ELIX_11,ELIX_10,Diabetes no complicada,Enfermedad pulmonar crónica,2537994,360764,161363,37970,0.069517
+2019-2022,ELIX_11,ELIX_11,Diabetes no complicada,Diabetes no complicada,2537994,360764,360764,360764,1
+2019-2022,ELIX_11,ELIX_12,Diabetes no complicada,Diabetes complicada,2537994,360764,98041,0,-0.081597
+2019-2022,ELIX_11,ELIX_13,Diabetes no complicada,Hipotiroidismo,2537994,360764,236687,50819,0.066642
+2019-2022,ELIX_11,ELIX_14,Diabetes no complicada,Insuficiencia renal,2537994,360764,182447,55031,0.127105
+2019-2022,ELIX_11,ELIX_15,Diabetes no complicada,Enfermedad hepática,2537994,360764,101818,27148,0.07288
+2019-2022,ELIX_11,ELIX_16,Diabetes no complicada,Úlcera péptica sin sangrado,2537994,360764,10565,2423,0.016144
+2019-2022,ELIX_11,ELIX_17,Diabetes no complicada,VIH/SIDA,2537994,360764,10929,816,-0.012708
+2019-2022,ELIX_11,ELIX_18,Diabetes no complicada,Linfoma,2537994,360764,16613,3001,0.008949
+2019-2022,ELIX_11,ELIX_19,Diabetes no complicada,Cáncer metastásico,2537994,360764,44630,8736,0.020535
+2019-2022,ELIX_11,ELIX_20,Diabetes no complicada,Tumor sólido sin metástasis,2537994,360764,72160,14944,0.031818
+2019-2022,ELIX_11,ELIX_21,Diabetes no complicada,Artritis reumatoide y colagenopatías,2537994,360764,36213,6180,0.009823
+2019-2022,ELIX_11,ELIX_22,Diabetes no complicada,Coagulopatía,2537994,360764,41158,8855,0.02684
+2019-2022,ELIX_11,ELIX_23,Diabetes no complicada,Obesidad,2537994,360764,327491,60327,0.046365
+2019-2022,ELIX_11,ELIX_24,Diabetes no complicada,Pérdida de peso,2537994,360764,38461,6512,0.009651
+2019-2022,ELIX_11,ELIX_25,Diabetes no complicada,Trastornos hidroelectrolíticos,2537994,360764,168777,43230,0.087127
+2019-2022,ELIX_11,ELIX_26,Diabetes no complicada,Anemia por pérdida de sangre,2537994,360764,5971,996,0.003429
+2019-2022,ELIX_11,ELIX_27,Diabetes no complicada,Anemia por deficiencia,2537994,360764,25998,5279,0.017745
+2019-2022,ELIX_11,ELIX_28,Diabetes no complicada,Abuso de alcohol,2537994,360764,108273,15443,0.000293
+2019-2022,ELIX_11,ELIX_29,Diabetes no complicada,Abuso de drogas,2537994,360764,68133,3531,-0.042959
+2019-2022,ELIX_11,ELIX_30,Diabetes no complicada,Psicosis,2537994,360764,11065,1547,-0.000443
+2019-2022,ELIX_11,ELIX_31,Diabetes no complicada,Depresión,2537994,360764,71183,12602,0.016973
+2019-2022,ELIX_12,ELIX_01,Diabetes complicada,Insuficiencia cardíaca congestiva,2537994,98041,124167,14714,0.094003
+2019-2022,ELIX_12,ELIX_02,Diabetes complicada,Arritmias cardíacas,2537994,98041,156611,12296,0.053075
+2019-2022,ELIX_12,ELIX_03,Diabetes complicada,Valvulopatía,2537994,98041,47743,4568,0.04099
+2019-2022,ELIX_12,ELIX_04,Diabetes complicada,Trastornos de la circulación pulmonar,2537994,98041,37722,2681,0.020679
+2019-2022,ELIX_12,ELIX_05,Diabetes complicada,Enfermedad vascular periférica,2537994,98041,80774,17809,0.171089
+2019-2022,ELIX_12,ELIX_06,Diabetes complicada,Hipertensión no complicada,2537994,98041,832205,70724,0.168012
+2019-2022,ELIX_12,ELIX_07,Diabetes complicada,Hipertensión complicada,2537994,98041,26877,5363,0.086384
+2019-2022,ELIX_12,ELIX_08,Diabetes complicada,Parálisis,2537994,98041,18825,1142,0.009884
+2019-2022,ELIX_12,ELIX_09,Diabetes complicada,Otros trastornos neurológicos,2537994,98041,77381,4034,0.012425
+2019-2022,ELIX_12,ELIX_10,Diabetes complicada,Enfermedad pulmonar crónica,2537994,98041,161363,9118,0.024172
+2019-2022,ELIX_12,ELIX_11,Diabetes complicada,Diabetes no complicada,2537994,98041,360764,0,-0.081597
+2019-2022,ELIX_12,ELIX_12,Diabetes complicada,Diabetes complicada,2537994,98041,98041,98041,1
+2019-2022,ELIX_12,ELIX_13,Diabetes complicada,Hipotiroidismo,2537994,98041,236687,13324,0.029396
+2019-2022,ELIX_12,ELIX_14,Diabetes complicada,Insuficiencia renal,2537994,98041,182447,33181,0.206859
+2019-2022,ELIX_12,ELIX_15,Diabetes complicada,Enfermedad hepática,2537994,98041,101818,6286,0.024514
+2019-2022,ELIX_12,ELIX_16,Diabetes complicada,Úlcera péptica sin sangrado,2537994,98041,10565,640,0.007364
+2019-2022,ELIX_12,ELIX_17,Diabetes complicada,VIH/SIDA,2537994,98041,10929,211,-0.006594
+2019-2022,ELIX_12,ELIX_18,Diabetes complicada,Linfoma,2537994,98041,16613,523,-0.003011
+2019-2022,ELIX_12,ELIX_19,Diabetes complicada,Cáncer metastásico,2537994,98041,44630,1403,-0.004994
+2019-2022,ELIX_12,ELIX_20,Diabetes complicada,Tumor sólido sin metástasis,2537994,98041,72160,2658,-0.001593
+2019-2022,ELIX_12,ELIX_21,Diabetes complicada,Artritis reumatoide y colagenopatías,2537994,98041,36213,1506,0.001847
+2019-2022,ELIX_12,ELIX_22,Diabetes complicada,Coagulopatía,2537994,98041,41158,2375,0.012709
+2019-2022,ELIX_12,ELIX_23,Diabetes complicada,Obesidad,2537994,98041,327491,17454,0.029294
+2019-2022,ELIX_12,ELIX_24,Diabetes complicada,Pérdida de peso,2537994,98041,38461,2312,0.013829
+2019-2022,ELIX_12,ELIX_25,Diabetes complicada,Trastornos hidroelectrolíticos,2537994,98041,168777,17828,0.092797
+2019-2022,ELIX_12,ELIX_26,Diabetes complicada,Anemia por pérdida de sangre,2537994,98041,5971,349,0.004994
+2019-2022,ELIX_12,ELIX_27,Diabetes complicada,Anemia por deficiencia,2537994,98041,25998,2622,0.032849
+2019-2022,ELIX_12,ELIX_28,Diabetes complicada,Abuso de alcohol,2537994,98041,108273,3504,-0.006865
+2019-2022,ELIX_12,ELIX_29,Diabetes complicada,Abuso de drogas,2537994,98041,68133,972,-0.020998
+2019-2022,ELIX_12,ELIX_30,Diabetes complicada,Psicosis,2537994,98041,11065,319,-0.003365
+2019-2022,ELIX_12,ELIX_31,Diabetes complicada,Depresión,2537994,98041,71183,3755,0.012448
+2019-2022,ELIX_13,ELIX_01,Hipotiroidismo,Insuficiencia cardíaca congestiva,2537994,236687,124167,19244,0.048144
+2019-2022,ELIX_13,ELIX_02,Hipotiroidismo,Arritmias cardíacas,2537994,236687,156611,22419,0.044
+2019-2022,ELIX_13,ELIX_03,Hipotiroidismo,Valvulopatía,2537994,236687,47743,6984,0.025249
+2019-2022,ELIX_13,ELIX_04,Hipotiroidismo,Trastornos de la circulación pulmonar,2537994,236687,37722,4953,0.01607
+2019-2022,ELIX_13,ELIX_05,Hipotiroidismo,Enfermedad vascular periférica,2537994,236687,80774,8391,0.006625
+2019-2022,ELIX_13,ELIX_06,Hipotiroidismo,Hipertensión no complicada,2537994,236687,832205,112228,0.099919
+2019-2022,ELIX_13,ELIX_07,Hipotiroidismo,Hipertensión complicada,2537994,236687,26877,3960,0.01924
+2019-2022,ELIX_13,ELIX_08,Hipotiroidismo,Parálisis,2537994,236687,18825,1720,-0.000562
+2019-2022,ELIX_13,ELIX_09,Hipotiroidismo,Otros trastornos neurológicos,2537994,236687,77381,9178,0.01546
+2019-2022,ELIX_13,ELIX_10,Hipotiroidismo,Enfermedad pulmonar crónica,2537994,236687,161363,20645,0.031079
+2019-2022,ELIX_13,ELIX_11,Hipotiroidismo,Diabetes no complicada,2537994,236687,360764,50819,0.066642
+2019-2022,ELIX_13,ELIX_12,Hipotiroidismo,Diabetes complicada,2537994,236687,98041,13324,0.029396
+2019-2022,ELIX_13,ELIX_13,Hipotiroidismo,Hipotiroidismo,2537994,236687,236687,236687,1
+2019-2022,ELIX_13,ELIX_14,Hipotiroidismo,Insuficiencia renal,2537994,236687,182447,28104,0.058172
+2019-2022,ELIX_13,ELIX_15,Hipotiroidismo,Enfermedad hepática,2537994,236687,101818,11814,0.01601
+2019-2022,ELIX_13,ELIX_16,Hipotiroidismo,Úlcera péptica sin sangrado,2537994,236687,10565,1102,0.002457
+2019-2022,ELIX_13,ELIX_17,Hipotiroidismo,VIH/SIDA,2537994,236687,10929,441,-0.011965
+2019-2022,ELIX_13,ELIX_18,Hipotiroidismo,Linfoma,2537994,236687,16613,1943,0.006615
+2019-2022,ELIX_13,ELIX_19,Hipotiroidismo,Cáncer metastásico,2537994,236687,44630,4515,0.003638
+2019-2022,ELIX_13,ELIX_20,Hipotiroidismo,Tumor sólido sin metástasis,2537994,236687,72160,8326,0.013016
+2019-2022,ELIX_13,ELIX_21,Hipotiroidismo,Artritis reumatoide y colagenopatías,2537994,236687,36213,6942,0.040729
+2019-2022,ELIX_13,ELIX_22,Hipotiroidismo,Coagulopatía,2537994,236687,41158,5136,0.013921
+2019-2022,ELIX_13,ELIX_23,Hipotiroidismo,Obesidad,2537994,236687,327491,42463,0.048186
+2019-2022,ELIX_13,ELIX_24,Hipotiroidismo,Pérdida de peso,2537994,236687,38461,4031,0.004927
+2019-2022,ELIX_13,ELIX_25,Hipotiroidismo,Trastornos hidroelectrolíticos,2537994,236687,168777,21430,0.030945
+2019-2022,ELIX_13,ELIX_26,Hipotiroidismo,Anemia por pérdida de sangre,2537994,236687,5971,661,0.002913
+2019-2022,ELIX_13,ELIX_27,Hipotiroidismo,Anemia por deficiencia,2537994,236687,25998,3826,0.018859
+2019-2022,ELIX_13,ELIX_28,Hipotiroidismo,Abuso de alcohol,2537994,236687,108273,5211,-0.032761
+2019-2022,ELIX_13,ELIX_29,Hipotiroidismo,Abuso de drogas,2537994,236687,68133,1768,-0.038444
+2019-2022,ELIX_13,ELIX_30,Hipotiroidismo,Psicosis,2537994,236687,11065,1363,0.006809
+2019-2022,ELIX_13,ELIX_31,Hipotiroidismo,Depresión,2537994,236687,71183,11825,0.042564
+2019-2022,ELIX_14,ELIX_01,Insuficiencia renal,Insuficiencia cardíaca congestiva,2537994,182447,124167,37467,0.201832
+2019-2022,ELIX_14,ELIX_02,Insuficiencia renal,Arritmias cardíacas,2537994,182447,156611,34324,0.146224
+2019-2022,ELIX_14,ELIX_03,Insuficiencia renal,Valvulopatía,2537994,182447,47743,11267,0.08797
+2019-2022,ELIX_14,ELIX_04,Insuficiencia renal,Trastornos de la circulación pulmonar,2537994,182447,37722,6749,0.050895
+2019-2022,ELIX_14,ELIX_05,Insuficiencia renal,Enfermedad vascular periférica,2537994,182447,80774,18662,0.111714
+2019-2022,ELIX_14,ELIX_06,Insuficiencia renal,Hipertensión no complicada,2537994,182447,832205,131083,0.231546
+2019-2022,ELIX_14,ELIX_07,Insuficiencia renal,Hipertensión complicada,2537994,182447,26877,14749,0.191001
+2019-2022,ELIX_14,ELIX_08,Insuficiencia renal,Parálisis,2537994,182447,18825,1977,0.011089
+2019-2022,ELIX_14,ELIX_09,Insuficiencia renal,Otros trastornos neurológicos,2537994,182447,77381,8989,0.0304
+2019-2022,ELIX_14,ELIX_10,Insuficiencia renal,Enfermedad pulmonar crónica,2537994,182447,161363,21383,0.061161
+2019-2022,ELIX_14,ELIX_11,Insuficiencia renal,Diabetes no complicada,2537994,182447,360764,55031,0.127105
+2019-2022,ELIX_14,ELIX_12,Insuficiencia renal,Diabetes complicada,2537994,182447,98041,33181,0.206859
+2019-2022,ELIX_14,ELIX_13,Insuficiencia renal,Hipotiroidismo,2537994,182447,236687,28104,0.058172
+2019-2022,ELIX_14,ELIX_14,Insuficiencia renal,Insuficiencia renal,2537994,182447,182447,182447,1
+2019-2022,ELIX_14,ELIX_15,Insuficiencia renal,Enfermedad hepática,2537994,182447,101818,11787,0.034729
+2019-2022,ELIX_14,ELIX_16,Insuficiencia renal,Úlcera péptica sin sangrado,2537994,182447,10565,1854,0.025931
+2019-2022,ELIX_14,ELIX_17,Insuficiencia renal,VIH/SIDA,2537994,182447,10929,600,-0.004325
+2019-2022,ELIX_14,ELIX_18,Insuficiencia renal,Linfoma,2537994,182447,16613,1620,0.008054
+2019-2022,ELIX_14,ELIX_19,Insuficiencia renal,Cáncer metastásico,2537994,182447,44630,3306,0.001134
+2019-2022,ELIX_14,ELIX_20,Insuficiencia renal,Tumor sólido sin metástasis,2537994,182447,72160,6927,0.015967
+2019-2022,ELIX_14,ELIX_21,Insuficiencia renal,Artritis reumatoide y colagenopatías,2537994,182447,36213,5066,0.031677
+2019-2022,ELIX_14,ELIX_22,Insuficiencia renal,Coagulopatía,2537994,182447,41158,7087,0.049857
+2019-2022,ELIX_14,ELIX_23,Insuficiencia renal,Obesidad,2537994,182447,327491,21083,-0.011189
+2019-2022,ELIX_14,ELIX_24,Insuficiencia renal,Pérdida de peso,2537994,182447,38461,5270,0.031281
+2019-2022,ELIX_14,ELIX_25,Insuficiencia renal,Trastornos hidroelectrolíticos,2537994,182447,168777,44491,0.198108
+2019-2022,ELIX_14,ELIX_26,Insuficiencia renal,Anemia por pérdida de sangre,2537994,182447,5971,754,0.010226
+2019-2022,ELIX_14,ELIX_27,Insuficiencia renal,Anemia por deficiencia,2537994,182447,25998,5331,0.052449
+2019-2022,ELIX_14,ELIX_28,Insuficiencia renal,Abuso de alcohol,2537994,182447,108273,6021,-0.013302
+2019-2022,ELIX_14,ELIX_29,Insuficiencia renal,Abuso de drogas,2537994,182447,68133,1805,-0.029189
+2019-2022,ELIX_14,ELIX_30,Insuficiencia renal,Psicosis,2537994,182447,11065,511,-0.006585
+2019-2022,ELIX_14,ELIX_31,Insuficiencia renal,Depresión,2537994,182447,71183,5809,0.006393
+2019-2022,ELIX_15,ELIX_01,Enfermedad hepática,Insuficiencia cardíaca congestiva,2537994,101818,124167,9536,0.042397
+2019-2022,ELIX_15,ELIX_02,Enfermedad hepática,Arritmias cardíacas,2537994,101818,156611,10015,0.031143
+2019-2022,ELIX_15,ELIX_03,Enfermedad hepática,Valvulopatía,2537994,101818,47743,3703,0.02642
+2019-2022,ELIX_15,ELIX_04,Enfermedad hepática,Trastornos de la circulación pulmonar,2537994,101818,37722,3631,0.035139
+2019-2022,ELIX_15,ELIX_05,Enfermedad hepática,Enfermedad vascular periférica,2537994,101818,80774,5667,0.027756
+2019-2022,ELIX_15,ELIX_06,Enfermedad hepática,Hipertensión no complicada,2537994,101818,832205,46379,0.055572
+2019-2022,ELIX_15,ELIX_07,Enfermedad hepática,Hipertensión complicada,2537994,101818,26877,1767,0.01351
+2019-2022,ELIX_15,ELIX_08,Enfermedad hepática,Parálisis,2537994,101818,18825,740,-0.000356
+2019-2022,ELIX_15,ELIX_09,Enfermedad hepática,Otros trastornos neurológicos,2537994,101818,77381,6487,0.039504
+2019-2022,ELIX_15,ELIX_10,Enfermedad hepática,Enfermedad pulmonar crónica,2537994,101818,161363,9407,0.02414
+2019-2022,ELIX_15,ELIX_11,Enfermedad hepática,Diabetes no complicada,2537994,101818,360764,27148,0.07288
+2019-2022,ELIX_15,ELIX_12,Enfermedad hepática,Diabetes complicada,2537994,101818,98041,6286,0.024514
+2019-2022,ELIX_15,ELIX_13,Enfermedad hepática,Hipotiroidismo,2537994,101818,236687,11814,0.01601
+2019-2022,ELIX_15,ELIX_14,Enfermedad hepática,Insuficiencia renal,2537994,101818,182447,11787,0.034729
+2019-2022,ELIX_15,ELIX_15,Enfermedad hepática,Enfermedad hepática,2537994,101818,101818,101818,1
+2019-2022,ELIX_15,ELIX_16,Enfermedad hepática,Úlcera péptica sin sangrado,2537994,101818,10565,2289,0.058166
+2019-2022,ELIX_15,ELIX_17,Enfermedad hepática,VIH/SIDA,2537994,101818,10929,721,0.008664
+2019-2022,ELIX_15,ELIX_18,Enfermedad hepática,Linfoma,2537994,101818,16613,624,-0.001058
+2019-2022,ELIX_15,ELIX_19,Enfermedad hepática,Cáncer metastásico,2537994,101818,44630,2273,0.007372
+2019-2022,ELIX_15,ELIX_20,Enfermedad hepática,Tumor sólido sin metástasis,2537994,101818,72160,3938,0.012602
+2019-2022,ELIX_15,ELIX_21,Enfermedad hepática,Artritis reumatoide y colagenopatías,2537994,101818,36213,2139,0.011618
+2019-2022,ELIX_15,ELIX_22,Enfermedad hepática,Coagulopatía,2537994,101818,41158,11690,0.159583
+2019-2022,ELIX_15,ELIX_23,Enfermedad hepática,Obesidad,2537994,101818,327491,16184,0.018243
+2019-2022,ELIX_15,ELIX_24,Enfermedad hepática,Pérdida de peso,2537994,101818,38461,4203,0.043719
+2019-2022,ELIX_15,ELIX_25,Enfermedad hepática,Trastornos hidroelectrolíticos,2537994,101818,168777,20789,0.112968
+2019-2022,ELIX_15,ELIX_26,Enfermedad hepática,Anemia por pérdida de sangre,2537994,101818,5971,754,0.021321
+2019-2022,ELIX_15,ELIX_27,Enfermedad hepática,Anemia por deficiencia,2537994,101818,25998,3595,0.05089
+2019-2022,ELIX_15,ELIX_28,Enfermedad hepática,Abuso de alcohol,2537994,101818,108273,28135,0.236377
+2019-2022,ELIX_15,ELIX_29,Enfermedad hepática,Abuso de drogas,2537994,101818,68133,3787,0.013089
+2019-2022,ELIX_15,ELIX_30,Enfermedad hepática,Psicosis,2537994,101818,11065,444,0.000003
+2019-2022,ELIX_15,ELIX_31,Enfermedad hepática,Depresión,2537994,101818,71183,3724,0.01056
+2019-2022,ELIX_16,ELIX_01,Úlcera péptica sin sangrado,Insuficiencia cardíaca congestiva,2537994,10565,124167,1181,0.018841
+2019-2022,ELIX_16,ELIX_02,Úlcera péptica sin sangrado,Arritmias cardíacas,2537994,10565,156611,1363,0.018084
+2019-2022,ELIX_16,ELIX_03,Úlcera péptica sin sangrado,Valvulopatía,2537994,10565,47743,479,0.012624
+2019-2022,ELIX_16,ELIX_04,Úlcera péptica sin sangrado,Trastornos de la circulación pulmonar,2537994,10565,37722,369,0.01072
+2019-2022,ELIX_16,ELIX_05,Úlcera péptica sin sangrado,Enfermedad vascular periférica,2537994,10565,80774,700,0.012682
+2019-2022,ELIX_16,ELIX_06,Úlcera péptica sin sangrado,Hipertensión no complicada,2537994,10565,832205,5557,0.027281
+2019-2022,ELIX_16,ELIX_07,Úlcera péptica sin sangrado,Hipertensión complicada,2537994,10565,26877,276,0.009812
+2019-2022,ELIX_16,ELIX_08,Úlcera péptica sin sangrado,Parálisis,2537994,10565,18825,130,0.003683
+2019-2022,ELIX_16,ELIX_09,Úlcera péptica sin sangrado,Otros trastornos neurológicos,2537994,10565,77381,554,0.008254
+2019-2022,ELIX_16,ELIX_10,Úlcera péptica sin sangrado,Enfermedad pulmonar crónica,2537994,10565,161363,1136,0.011645
+2019-2022,ELIX_16,ELIX_11,Úlcera péptica sin sangrado,Diabetes no complicada,2537994,10565,360764,2423,0.016144
+2019-2022,ELIX_16,ELIX_12,Úlcera péptica sin sangrado,Diabetes complicada,2537994,10565,98041,640,0.007364
+2019-2022,ELIX_16,ELIX_13,Úlcera péptica sin sangrado,Hipotiroidismo,2537994,10565,236687,1102,0.002457
+2019-2022,ELIX_16,ELIX_14,Úlcera péptica sin sangrado,Insuficiencia renal,2537994,10565,182447,1854,0.025931
+2019-2022,ELIX_16,ELIX_15,Úlcera péptica sin sangrado,Enfermedad hepática,2537994,10565,101818,2289,0.058166
+2019-2022,ELIX_16,ELIX_16,Úlcera péptica sin sangrado,Úlcera péptica sin sangrado,2537994,10565,10565,10565,1
+2019-2022,ELIX_16,ELIX_17,Úlcera péptica sin sangrado,VIH/SIDA,2537994,10565,10929,63,0.001636
+2019-2022,ELIX_16,ELIX_18,Úlcera péptica sin sangrado,Linfoma,2537994,10565,16613,86,0.001278
+2019-2022,ELIX_16,ELIX_19,Úlcera péptica sin sangrado,Cáncer metastásico,2537994,10565,44630,328,0.006622
+2019-2022,ELIX_16,ELIX_20,Úlcera péptica sin sangrado,Tumor sólido sin metástasis,2537994,10565,72160,409,0.003999
+2019-2022,ELIX_16,ELIX_21,Úlcera péptica sin sangrado,Artritis reumatoide y colagenopatías,2537994,10565,36213,263,0.005792
+2019-2022,ELIX_16,ELIX_22,Úlcera péptica sin sangrado,Coagulopatía,2537994,10565,41158,703,0.025759
+2019-2022,ELIX_16,ELIX_23,Úlcera péptica sin sangrado,Obesidad,2537994,10565,327491,1027,-0.006138
+2019-2022,ELIX_16,ELIX_24,Úlcera péptica sin sangrado,Pérdida de peso,2537994,10565,38461,666,0.025342
+2019-2022,ELIX_16,ELIX_25,Úlcera péptica sin sangrado,Trastornos hidroelectrolíticos,2537994,10565,168777,2139,0.035281
+2019-2022,ELIX_16,ELIX_26,Úlcera péptica sin sangrado,Anemia por pérdida de sangre,2537994,10565,5971,188,0.020608
+2019-2022,ELIX_16,ELIX_27,Úlcera péptica sin sangrado,Anemia por deficiencia,2537994,10565,25998,661,0.033596
+2019-2022,ELIX_16,ELIX_28,Úlcera péptica sin sangrado,Abuso de alcohol,2537994,10565,108273,1587,0.034409
+2019-2022,ELIX_16,ELIX_29,Úlcera péptica sin sangrado,Abuso de drogas,2537994,10565,68133,372,0.003346
+2019-2022,ELIX_16,ELIX_30,Úlcera péptica sin sangrado,Psicosis,2537994,10565,11065,66,0.001852
+2019-2022,ELIX_16,ELIX_31,Úlcera péptica sin sangrado,Depresión,2537994,10565,71183,478,0.006734
+2019-2022,ELIX_17,ELIX_01,VIH/SIDA,Insuficiencia cardíaca congestiva,2537994,10929,124167,246,-0.008053
+2019-2022,ELIX_17,ELIX_02,VIH/SIDA,Arritmias cardíacas,2537994,10929,156611,261,-0.010338
+2019-2022,ELIX_17,ELIX_03,VIH/SIDA,Valvulopatía,2537994,10929,47743,117,-0.003924
+2019-2022,ELIX_17,ELIX_04,VIH/SIDA,Trastornos de la circulación pulmonar,2537994,10929,37722,194,0.00157
+2019-2022,ELIX_17,ELIX_05,VIH/SIDA,Enfermedad vascular periférica,2537994,10929,80774,219,-0.004416
+2019-2022,ELIX_17,ELIX_06,VIH/SIDA,Hipertensión no complicada,2537994,10929,832205,1689,-0.024285
+2019-2022,ELIX_17,ELIX_07,VIH/SIDA,Hipertensión complicada,2537994,10929,26877,50,-0.003864
+2019-2022,ELIX_17,ELIX_08,VIH/SIDA,Parálisis,2537994,10929,18825,144,0.004414
+2019-2022,ELIX_17,ELIX_09,VIH/SIDA,Otros trastornos neurológicos,2537994,10929,77381,547,0.007482
+2019-2022,ELIX_17,ELIX_10,VIH/SIDA,Enfermedad pulmonar crónica,2537994,10929,161363,539,-0.003844
+2019-2022,ELIX_17,ELIX_11,VIH/SIDA,Diabetes no complicada,2537994,10929,360764,816,-0.012708
+2019-2022,ELIX_17,ELIX_12,VIH/SIDA,Diabetes complicada,2537994,10929,98041,211,-0.006594
+2019-2022,ELIX_17,ELIX_13,VIH/SIDA,Hipotiroidismo,2537994,10929,236687,441,-0.011965
+2019-2022,ELIX_17,ELIX_14,VIH/SIDA,Insuficiencia renal,2537994,10929,182447,600,-0.004325
+2019-2022,ELIX_17,ELIX_15,VIH/SIDA,Enfermedad hepática,2537994,10929,101818,721,0.008664
+2019-2022,ELIX_17,ELIX_16,VIH/SIDA,Úlcera péptica sin sangrado,2537994,10929,10565,63,0.001636
+2019-2022,ELIX_17,ELIX_17,VIH/SIDA,VIH/SIDA,2537994,10929,10929,10929,1
+2019-2022,ELIX_17,ELIX_18,VIH/SIDA,Linfoma,2537994,10929,16613,471,0.029807
+2019-2022,ELIX_17,ELIX_19,VIH/SIDA,Cáncer metastásico,2537994,10929,44630,151,-0.001885
+2019-2022,ELIX_17,ELIX_20,VIH/SIDA,Tumor sólido sin metástasis,2537994,10929,72160,367,0.002037
+2019-2022,ELIX_17,ELIX_21,VIH/SIDA,Artritis reumatoide y colagenopatías,2537994,10929,36213,74,-0.004157
+2019-2022,ELIX_17,ELIX_22,VIH/SIDA,Coagulopatía,2537994,10929,41158,472,0.014043
+2019-2022,ELIX_17,ELIX_23,VIH/SIDA,Obesidad,2537994,10929,327491,441,-0.017397
+2019-2022,ELIX_17,ELIX_24,VIH/SIDA,Pérdida de peso,2537994,10929,38461,1123,0.047156
+2019-2022,ELIX_17,ELIX_25,VIH/SIDA,Trastornos hidroelectrolíticos,2537994,10929,168777,1623,0.021645
+2019-2022,ELIX_17,ELIX_26,VIH/SIDA,Anemia por pérdida de sangre,2537994,10929,5971,34,0.001029
+2019-2022,ELIX_17,ELIX_27,VIH/SIDA,Anemia por deficiencia,2537994,10929,25998,279,0.009983
+2019-2022,ELIX_17,ELIX_28,VIH/SIDA,Abuso de alcohol,2537994,10929,108273,892,0.012677
+2019-2022,ELIX_17,ELIX_29,VIH/SIDA,Abuso de drogas,2537994,10929,68133,1507,0.045181
+2019-2022,ELIX_17,ELIX_30,VIH/SIDA,Psicosis,2537994,10929,11065,79,0.002863
+2019-2022,ELIX_17,ELIX_31,VIH/SIDA,Depresión,2537994,10929,71183,595,0.010513
+2019-2022,ELIX_18,ELIX_01,Linfoma,Insuficiencia cardíaca congestiva,2537994,16613,124167,824,0.000255
+2019-2022,ELIX_18,ELIX_02,Linfoma,Arritmias cardíacas,2537994,16613,156611,930,-0.001932
+2019-2022,ELIX_18,ELIX_03,Linfoma,Valvulopatía,2537994,16613,47743,341,0.001025
+2019-2022,ELIX_18,ELIX_04,Linfoma,Trastornos de la circulación pulmonar,2537994,16613,37722,363,0.004687
+2019-2022,ELIX_18,ELIX_05,Linfoma,Enfermedad vascular periférica,2537994,16613,80774,1161,0.017599
+2019-2022,ELIX_18,ELIX_06,Linfoma,Hipertensión no complicada,2537994,16613,832205,6217,0.00801
+2019-2022,ELIX_18,ELIX_07,Linfoma,Hipertensión complicada,2537994,16613,26877,170,-0.000283
+2019-2022,ELIX_18,ELIX_08,Linfoma,Parálisis,2537994,16613,18825,182,0.003347
+2019-2022,ELIX_18,ELIX_09,Linfoma,Otros trastornos neurológicos,2537994,16613,77381,419,-0.002487
+2019-2022,ELIX_18,ELIX_10,Linfoma,Enfermedad pulmonar crónica,2537994,16613,161363,1138,0.001637
+2019-2022,ELIX_18,ELIX_11,Linfoma,Diabetes no complicada,2537994,16613,360764,3001,0.008949
+2019-2022,ELIX_18,ELIX_12,Linfoma,Diabetes complicada,2537994,16613,98041,523,-0.003011
+2019-2022,ELIX_18,ELIX_13,Linfoma,Hipotiroidismo,2537994,16613,236687,1943,0.006615
+2019-2022,ELIX_18,ELIX_14,Linfoma,Insuficiencia renal,2537994,16613,182447,1620,0.008054
+2019-2022,ELIX_18,ELIX_15,Linfoma,Enfermedad hepática,2537994,16613,101818,624,-0.001058
+2019-2022,ELIX_18,ELIX_16,Linfoma,Úlcera péptica sin sangrado,2537994,16613,10565,86,0.001278
+2019-2022,ELIX_18,ELIX_17,Linfoma,VIH/SIDA,2537994,16613,10929,471,0.029807
+2019-2022,ELIX_18,ELIX_18,Linfoma,Linfoma,2537994,16613,16613,16613,1
+2019-2022,ELIX_18,ELIX_19,Linfoma,Cáncer metastásico,2537994,16613,44630,414,0.00453
+2019-2022,ELIX_18,ELIX_20,Linfoma,Tumor sólido sin metástasis,2537994,16613,72160,456,-0.00048
+2019-2022,ELIX_18,ELIX_21,Linfoma,Artritis reumatoide y colagenopatías,2537994,16613,36213,409,0.007085
+2019-2022,ELIX_18,ELIX_22,Linfoma,Coagulopatía,2537994,16613,41158,715,0.017237
+2019-2022,ELIX_18,ELIX_23,Linfoma,Obesidad,2537994,16613,327491,1092,-0.015328
+2019-2022,ELIX_18,ELIX_24,Linfoma,Pérdida de peso,2537994,16613,38461,642,0.015608
+2019-2022,ELIX_18,ELIX_25,Linfoma,Trastornos hidroelectrolíticos,2537994,16613,168777,1508,0.007908
+2019-2022,ELIX_18,ELIX_26,Linfoma,Anemia por pérdida de sangre,2537994,16613,5971,18,-0.002126
+2019-2022,ELIX_18,ELIX_27,Linfoma,Anemia por deficiencia,2537994,16613,25998,250,0.003873
+2019-2022,ELIX_18,ELIX_28,Linfoma,Abuso de alcohol,2537994,16613,108273,497,-0.005119
+2019-2022,ELIX_18,ELIX_29,Linfoma,Abuso de drogas,2537994,16613,68133,241,-0.006196
+2019-2022,ELIX_18,ELIX_30,Linfoma,Psicosis,2537994,16613,11065,21,-0.003814
+2019-2022,ELIX_18,ELIX_31,Linfoma,Depresión,2537994,16613,71183,627,0.004766
+2019-2022,ELIX_19,ELIX_01,Cáncer metastásico,Insuficiencia cardíaca congestiva,2537994,44630,124167,1534,-0.009026
+2019-2022,ELIX_19,ELIX_02,Cáncer metastásico,Arritmias cardíacas,2537994,44630,156611,2393,-0.004497
+2019-2022,ELIX_19,ELIX_03,Cáncer metastásico,Valvulopatía,2537994,44630,47743,521,-0.007029
+2019-2022,ELIX_19,ELIX_04,Cáncer metastásico,Trastornos de la circulación pulmonar,2537994,44630,37722,1546,0.021867
+2019-2022,ELIX_19,ELIX_05,Cáncer metastásico,Enfermedad vascular periférica,2537994,44630,80774,1646,0.003853
+2019-2022,ELIX_19,ELIX_06,Cáncer metastásico,Hipertensión no complicada,2537994,44630,832205,18945,0.027528
+2019-2022,ELIX_19,ELIX_07,Cáncer metastásico,Hipertensión complicada,2537994,44630,26877,349,-0.00362
+2019-2022,ELIX_19,ELIX_08,Cáncer metastásico,Parálisis,2537994,44630,18825,651,0.011179
+2019-2022,ELIX_19,ELIX_09,Cáncer metastásico,Otros trastornos neurológicos,2537994,44630,77381,1284,-0.001338
+2019-2022,ELIX_19,ELIX_10,Cáncer metastásico,Enfermedad pulmonar crónica,2537994,44630,161363,3371,0.006554
+2019-2022,ELIX_19,ELIX_11,Cáncer metastásico,Diabetes no complicada,2537994,44630,360764,8736,0.020535
+2019-2022,ELIX_19,ELIX_12,Cáncer metastásico,Diabetes complicada,2537994,44630,98041,1403,-0.004994
+2019-2022,ELIX_19,ELIX_13,Cáncer metastásico,Hipotiroidismo,2537994,44630,236687,4515,0.003638
+2019-2022,ELIX_19,ELIX_14,Cáncer metastásico,Insuficiencia renal,2537994,44630,182447,3306,0.001134
+2019-2022,ELIX_19,ELIX_15,Cáncer metastásico,Enfermedad hepática,2537994,44630,101818,2273,0.007372
+2019-2022,ELIX_19,ELIX_16,Cáncer metastásico,Úlcera péptica sin sangrado,2537994,44630,10565,328,0.006622
+2019-2022,ELIX_19,ELIX_17,Cáncer metastásico,VIH/SIDA,2537994,44630,10929,151,-0.001885
+2019-2022,ELIX_19,ELIX_18,Cáncer metastásico,Linfoma,2537994,44630,16613,414,0.00453
+2019-2022,ELIX_19,ELIX_19,Cáncer metastásico,Cáncer metastásico,2537994,44630,44630,44630,1
+2019-2022,ELIX_19,ELIX_20,Cáncer metastásico,Tumor sólido sin metástasis,2537994,44630,72160,0,-0.022887
+2019-2022,ELIX_19,ELIX_21,Cáncer metastásico,Artritis reumatoide y colagenopatías,2537994,44630,36213,457,-0.004545
+2019-2022,ELIX_19,ELIX_22,Cáncer metastásico,Coagulopatía,2537994,44630,41158,1128,0.009594
+2019-2022,ELIX_19,ELIX_23,Cáncer metastásico,Obesidad,2537994,44630,327491,2574,-0.028479
+2019-2022,ELIX_19,ELIX_24,Cáncer metastásico,Pérdida de peso,2537994,44630,38461,2468,0.043965
+2019-2022,ELIX_19,ELIX_25,Cáncer metastásico,Trastornos hidroelectrolíticos,2537994,44630,168777,5315,0.028239
+2019-2022,ELIX_19,ELIX_26,Cáncer metastásico,Anemia por pérdida de sangre,2537994,44630,5971,147,0.002599
+2019-2022,ELIX_19,ELIX_27,Cáncer metastásico,Anemia por deficiencia,2537994,44630,25998,857,0.011904
+2019-2022,ELIX_19,ELIX_28,Cáncer metastásico,Abuso de alcohol,2537994,44630,108273,1531,-0.005532
+2019-2022,ELIX_19,ELIX_29,Cáncer metastásico,Abuso de drogas,2537994,44630,68133,513,-0.012706
+2019-2022,ELIX_19,ELIX_30,Cáncer metastásico,Psicosis,2537994,44630,11065,115,-0.003621
+2019-2022,ELIX_19,ELIX_31,Cáncer metastásico,Depresión,2537994,44630,71183,1587,0.006087
+2019-2022,ELIX_20,ELIX_01,Tumor sólido sin metástasis,Insuficiencia cardíaca congestiva,2537994,72160,124167,3629,0.001085
+2019-2022,ELIX_20,ELIX_02,Tumor sólido sin metástasis,Arritmias cardíacas,2537994,72160,156611,5245,0.007805
+2019-2022,ELIX_20,ELIX_03,Tumor sólido sin metástasis,Valvulopatía,2537994,72160,47743,1270,-0.001526
+2019-2022,ELIX_20,ELIX_04,Tumor sólido sin metástasis,Trastornos de la circulación pulmonar,2537994,72160,37722,1527,0.008904
+2019-2022,ELIX_20,ELIX_05,Tumor sólido sin metástasis,Enfermedad vascular periférica,2537994,72160,80774,2773,0.006434
+2019-2022,ELIX_20,ELIX_06,Tumor sólido sin metástasis,Hipertensión no complicada,2537994,72160,832205,33354,0.048948
+2019-2022,ELIX_20,ELIX_07,Tumor sólido sin metástasis,Hipertensión complicada,2537994,72160,26877,803,0.000899
+2019-2022,ELIX_20,ELIX_08,Tumor sólido sin metástasis,Parálisis,2537994,72160,18825,626,0.002508
+2019-2022,ELIX_20,ELIX_09,Tumor sólido sin metástasis,Otros trastornos neurológicos,2537994,72160,77381,2345,0.001998
+2019-2022,ELIX_20,ELIX_10,Tumor sólido sin metástasis,Enfermedad pulmonar crónica,2537994,72160,161363,5766,0.011447
+2019-2022,ELIX_20,ELIX_11,Tumor sólido sin metástasis,Diabetes no complicada,2537994,72160,360764,14944,0.031818
+2019-2022,ELIX_20,ELIX_12,Tumor sólido sin metástasis,Diabetes complicada,2537994,72160,98041,2658,-0.001593
+2019-2022,ELIX_20,ELIX_13,Tumor sólido sin metástasis,Hipotiroidismo,2537994,72160,236687,8326,0.013016
+2019-2022,ELIX_20,ELIX_14,Tumor sólido sin metástasis,Insuficiencia renal,2537994,72160,182447,6927,0.015967
+2019-2022,ELIX_20,ELIX_15,Tumor sólido sin metástasis,Enfermedad hepática,2537994,72160,101818,3938,0.012602
+2019-2022,ELIX_20,ELIX_16,Tumor sólido sin metástasis,Úlcera péptica sin sangrado,2537994,72160,10565,409,0.003999
+2019-2022,ELIX_20,ELIX_17,Tumor sólido sin metástasis,VIH/SIDA,2537994,72160,10929,367,0.002037
+2019-2022,ELIX_20,ELIX_18,Tumor sólido sin metástasis,Linfoma,2537994,72160,16613,456,-0.00048
+2019-2022,ELIX_20,ELIX_19,Tumor sólido sin metástasis,Cáncer metastásico,2537994,72160,44630,0,-0.022887
+2019-2022,ELIX_20,ELIX_20,Tumor sólido sin metástasis,Tumor sólido sin metástasis,2537994,72160,72160,72160,1
+2019-2022,ELIX_20,ELIX_21,Tumor sólido sin metástasis,Artritis reumatoide y colagenopatías,2537994,72160,36213,891,-0.002771
+2019-2022,ELIX_20,ELIX_22,Tumor sólido sin metástasis,Coagulopatía,2537994,72160,41158,1598,0.008029
+2019-2022,ELIX_20,ELIX_23,Tumor sólido sin metástasis,Obesidad,2537994,72160,327491,4672,-0.032806
+2019-2022,ELIX_20,ELIX_24,Tumor sólido sin metástasis,Pérdida de peso,2537994,72160,38461,2350,0.024382
+2019-2022,ELIX_20,ELIX_25,Tumor sólido sin metástasis,Trastornos hidroelectrolíticos,2537994,72160,168777,7310,0.023895
+2019-2022,ELIX_20,ELIX_26,Tumor sólido sin metástasis,Anemia por pérdida de sangre,2537994,72160,5971,222,0.002556
+2019-2022,ELIX_20,ELIX_27,Tumor sólido sin metástasis,Anemia por deficiencia,2537994,72160,25998,1147,0.009602
+2019-2022,ELIX_20,ELIX_28,Tumor sólido sin metástasis,Abuso de alcohol,2537994,72160,108273,2283,-0.009331
+2019-2022,ELIX_20,ELIX_29,Tumor sólido sin metástasis,Abuso de drogas,2537994,72160,68133,681,-0.018424
+2019-2022,ELIX_20,ELIX_30,Tumor sólido sin metástasis,Psicosis,2537994,72160,11065,201,-0.004088
+2019-2022,ELIX_20,ELIX_31,Tumor sólido sin metástasis,Depresión,2537994,72160,71183,2216,0.002759
+2019-2022,ELIX_21,ELIX_01,Artritis reumatoide y colagenopatías,Insuficiencia cardíaca congestiva,2537994,36213,124167,2970,0.018457
+2019-2022,ELIX_21,ELIX_02,Artritis reumatoide y colagenopatías,Arritmias cardíacas,2537994,36213,156611,2928,0.009574
+2019-2022,ELIX_21,ELIX_03,Artritis reumatoide y colagenopatías,Valvulopatía,2537994,36213,47743,1386,0.017235
+2019-2022,ELIX_21,ELIX_04,Artritis reumatoide y colagenopatías,Trastornos de la circulación pulmonar,2537994,36213,37722,1399,0.023634
+2019-2022,ELIX_21,ELIX_05,Artritis reumatoide y colagenopatías,Enfermedad vascular periférica,2537994,36213,80774,1651,0.009435
+2019-2022,ELIX_21,ELIX_06,Artritis reumatoide y colagenopatías,Hipertensión no complicada,2537994,36213,832205,17480,0.039673
+2019-2022,ELIX_21,ELIX_07,Artritis reumatoide y colagenopatías,Hipertensión complicada,2537994,36213,26877,671,0.009332
+2019-2022,ELIX_21,ELIX_08,Artritis reumatoide y colagenopatías,Parálisis,2537994,36213,18825,356,0.003384
+2019-2022,ELIX_21,ELIX_09,Artritis reumatoide y colagenopatías,Otros trastornos neurológicos,2537994,36213,77381,1389,0.005505
+2019-2022,ELIX_21,ELIX_10,Artritis reumatoide y colagenopatías,Enfermedad pulmonar crónica,2537994,36213,161363,3926,0.022107
+2019-2022,ELIX_21,ELIX_11,Artritis reumatoide y colagenopatías,Diabetes no complicada,2537994,36213,360764,6180,0.009823
+2019-2022,ELIX_21,ELIX_12,Artritis reumatoide y colagenopatías,Diabetes complicada,2537994,36213,98041,1506,0.001847
+2019-2022,ELIX_21,ELIX_13,Artritis reumatoide y colagenopatías,Hipotiroidismo,2537994,36213,236687,6942,0.040729
+2019-2022,ELIX_21,ELIX_14,Artritis reumatoide y colagenopatías,Insuficiencia renal,2537994,36213,182447,5066,0.031677
+2019-2022,ELIX_21,ELIX_15,Artritis reumatoide y colagenopatías,Enfermedad hepática,2537994,36213,101818,2139,0.011618
+2019-2022,ELIX_21,ELIX_16,Artritis reumatoide y colagenopatías,Úlcera péptica sin sangrado,2537994,36213,10565,263,0.005792
+2019-2022,ELIX_21,ELIX_17,Artritis reumatoide y colagenopatías,VIH/SIDA,2537994,36213,10929,74,-0.004157
+2019-2022,ELIX_21,ELIX_18,Artritis reumatoide y colagenopatías,Linfoma,2537994,36213,16613,409,0.007085
+2019-2022,ELIX_21,ELIX_19,Artritis reumatoide y colagenopatías,Cáncer metastásico,2537994,36213,44630,457,-0.004545
+2019-2022,ELIX_21,ELIX_20,Artritis reumatoide y colagenopatías,Tumor sólido sin metástasis,2537994,36213,72160,891,-0.002771
+2019-2022,ELIX_21,ELIX_21,Artritis reumatoide y colagenopatías,Artritis reumatoide y colagenopatías,2537994,36213,36213,36213,1
+2019-2022,ELIX_21,ELIX_22,Artritis reumatoide y colagenopatías,Coagulopatía,2537994,36213,41158,1944,0.035687
+2019-2022,ELIX_21,ELIX_23,Artritis reumatoide y colagenopatías,Obesidad,2537994,36213,327491,3999,-0.006677
+2019-2022,ELIX_21,ELIX_24,Artritis reumatoide y colagenopatías,Pérdida de peso,2537994,36213,38461,1100,0.014991
+2019-2022,ELIX_21,ELIX_25,Artritis reumatoide y colagenopatías,Trastornos hidroelectrolíticos,2537994,36213,168777,4436,0.02704
+2019-2022,ELIX_21,ELIX_26,Artritis reumatoide y colagenopatías,Anemia por pérdida de sangre,2537994,36213,5971,126,0.002798
+2019-2022,ELIX_21,ELIX_27,Artritis reumatoide y colagenopatías,Anemia por deficiencia,2537994,36213,25998,1061,0.022769
+2019-2022,ELIX_21,ELIX_28,Artritis reumatoide y colagenopatías,Abuso de alcohol,2537994,36213,108273,792,-0.012377
+2019-2022,ELIX_21,ELIX_29,Artritis reumatoide y colagenopatías,Abuso de drogas,2537994,36213,68133,412,-0.011514
+2019-2022,ELIX_21,ELIX_30,Artritis reumatoide y colagenopatías,Psicosis,2537994,36213,11065,93,-0.003272
+2019-2022,ELIX_21,ELIX_31,Artritis reumatoide y colagenopatías,Depresión,2537994,36213,71183,2009,0.019988
+2019-2022,ELIX_22,ELIX_01,Coagulopatía,Insuficiencia cardíaca congestiva,2537994,41158,124167,5087,0.044446
+2019-2022,ELIX_22,ELIX_02,Coagulopatía,Arritmias cardíacas,2537994,41158,156611,7036,0.05829
+2019-2022,ELIX_22,ELIX_03,Coagulopatía,Valvulopatía,2537994,41158,47743,2269,0.034321
+2019-2022,ELIX_22,ELIX_04,Coagulopatía,Trastornos de la circulación pulmonar,2537994,41158,37722,2310,0.043781
+2019-2022,ELIX_22,ELIX_05,Coagulopatía,Enfermedad vascular periférica,2537994,41158,80774,2287,0.017364
+2019-2022,ELIX_22,ELIX_06,Coagulopatía,Hipertensión no complicada,2537994,41158,832205,18105,0.030629
+2019-2022,ELIX_22,ELIX_07,Coagulopatía,Hipertensión complicada,2537994,41158,26877,1030,0.018107
+2019-2022,ELIX_22,ELIX_08,Coagulopatía,Parálisis,2537994,41158,18825,536,0.008388
+2019-2022,ELIX_22,ELIX_09,Coagulopatía,Otros trastornos neurológicos,2537994,41158,77381,2931,0.030412
+2019-2022,ELIX_22,ELIX_10,Coagulopatía,Enfermedad pulmonar crónica,2537994,41158,161363,4013,0.01785
+2019-2022,ELIX_22,ELIX_11,Coagulopatía,Diabetes no complicada,2537994,41158,360764,8855,0.02684
+2019-2022,ELIX_22,ELIX_12,Coagulopatía,Diabetes complicada,2537994,41158,98041,2375,0.012709
+2019-2022,ELIX_22,ELIX_13,Coagulopatía,Hipotiroidismo,2537994,41158,236687,5136,0.013921
+2019-2022,ELIX_22,ELIX_14,Coagulopatía,Insuficiencia renal,2537994,41158,182447,7087,0.049857
+2019-2022,ELIX_22,ELIX_15,Coagulopatía,Enfermedad hepática,2537994,41158,101818,11690,0.159583
+2019-2022,ELIX_22,ELIX_16,Coagulopatía,Úlcera péptica sin sangrado,2537994,41158,10565,703,0.025759
+2019-2022,ELIX_22,ELIX_17,Coagulopatía,VIH/SIDA,2537994,41158,10929,472,0.014043
+2019-2022,ELIX_22,ELIX_18,Coagulopatía,Linfoma,2537994,41158,16613,715,0.017237
+2019-2022,ELIX_22,ELIX_19,Coagulopatía,Cáncer metastásico,2537994,41158,44630,1128,0.009594
+2019-2022,ELIX_22,ELIX_20,Coagulopatía,Tumor sólido sin metástasis,2537994,41158,72160,1598,0.008029
+2019-2022,ELIX_22,ELIX_21,Coagulopatía,Artritis reumatoide y colagenopatías,2537994,41158,36213,1944,0.035687
+2019-2022,ELIX_22,ELIX_22,Coagulopatía,Coagulopatía,2537994,41158,41158,41158,1
+2019-2022,ELIX_22,ELIX_23,Coagulopatía,Obesidad,2537994,41158,327491,5214,-0.000901
+2019-2022,ELIX_22,ELIX_24,Coagulopatía,Pérdida de peso,2537994,41158,38461,2457,0.046812
+2019-2022,ELIX_22,ELIX_25,Coagulopatía,Trastornos hidroelectrolíticos,2537994,41158,168777,12642,0.124012
+2019-2022,ELIX_22,ELIX_26,Coagulopatía,Anemia por pérdida de sangre,2537994,41158,5971,338,0.015529
+2019-2022,ELIX_22,ELIX_27,Coagulopatía,Anemia por deficiencia,2537994,41158,25998,2144,0.053361
+2019-2022,ELIX_22,ELIX_28,Coagulopatía,Abuso de alcohol,2537994,41158,108273,5279,0.054383
+2019-2022,ELIX_22,ELIX_29,Coagulopatía,Abuso de drogas,2537994,41158,68133,1254,0.002878
+2019-2022,ELIX_22,ELIX_30,Coagulopatía,Psicosis,2537994,41158,11065,178,-0.000068
+2019-2022,ELIX_22,ELIX_31,Coagulopatía,Depresión,2537994,41158,71183,1737,0.011008
+2019-2022,ELIX_23,ELIX_01,Obesidad,Insuficiencia cardíaca congestiva,2537994,327491,124167,21396,0.029281
+2019-2022,ELIX_23,ELIX_02,Obesidad,Arritmias cardíacas,2537994,327491,156611,19959,-0.001218
+2019-2022,ELIX_23,ELIX_03,Obesidad,Valvulopatía,2537994,327491,47743,6369,0.001803
+2019-2022,ELIX_23,ELIX_04,Obesidad,Trastornos de la circulación pulmonar,2537994,327491,37722,7007,0.020781
+2019-2022,ELIX_23,ELIX_05,Obesidad,Enfermedad vascular periférica,2537994,327491,80774,7697,-0.01825
+2019-2022,ELIX_23,ELIX_06,Obesidad,Hipertensión no complicada,2537994,327491,832205,116999,0.024073
+2019-2022,ELIX_23,ELIX_07,Obesidad,Hipertensión complicada,2537994,327491,26877,4593,0.012916
+2019-2022,ELIX_23,ELIX_08,Obesidad,Parálisis,2537994,327491,18825,1683,-0.01022
+2019-2022,ELIX_23,ELIX_09,Obesidad,Otros trastornos neurológicos,2537994,327491,77381,6353,-0.024828
+2019-2022,ELIX_23,ELIX_10,Obesidad,Enfermedad pulmonar crónica,2537994,327491,161363,26855,0.029062
+2019-2022,ELIX_23,ELIX_11,Obesidad,Diabetes no complicada,2537994,327491,360764,60327,0.046365
+2019-2022,ELIX_23,ELIX_12,Obesidad,Diabetes complicada,2537994,327491,98041,17454,0.029294
+2019-2022,ELIX_23,ELIX_13,Obesidad,Hipotiroidismo,2537994,327491,236687,42463,0.048186
+2019-2022,ELIX_23,ELIX_14,Obesidad,Insuficiencia renal,2537994,327491,182447,21083,-0.011189
+2019-2022,ELIX_23,ELIX_15,Obesidad,Enfermedad hepática,2537994,327491,101818,16184,0.018243
+2019-2022,ELIX_23,ELIX_16,Obesidad,Úlcera péptica sin sangrado,2537994,327491,10565,1027,-0.006138
+2019-2022,ELIX_23,ELIX_17,Obesidad,VIH/SIDA,2537994,327491,10929,441,-0.017397
+2019-2022,ELIX_23,ELIX_18,Obesidad,Linfoma,2537994,327491,16613,1092,-0.015328
+2019-2022,ELIX_23,ELIX_19,Obesidad,Cáncer metastásico,2537994,327491,44630,2574,-0.028479
+2019-2022,ELIX_23,ELIX_20,Obesidad,Tumor sólido sin metástasis,2537994,327491,72160,4672,-0.032806
+2019-2022,ELIX_23,ELIX_21,Obesidad,Artritis reumatoide y colagenopatías,2537994,327491,36213,3999,-0.006677
+2019-2022,ELIX_23,ELIX_22,Obesidad,Coagulopatía,2537994,327491,41158,5214,-0.000901
+2019-2022,ELIX_23,ELIX_23,Obesidad,Obesidad,2537994,327491,327491,327491,1
+2019-2022,ELIX_23,ELIX_24,Obesidad,Pérdida de peso,2537994,327491,38461,1128,-0.036894
+2019-2022,ELIX_23,ELIX_25,Obesidad,Trastornos hidroelectrolíticos,2537994,327491,168777,22363,0.002759
+2019-2022,ELIX_23,ELIX_26,Obesidad,Anemia por pérdida de sangre,2537994,327491,5971,798,0.000668
+2019-2022,ELIX_23,ELIX_27,Obesidad,Anemia por deficiencia,2537994,327491,25998,3054,-0.003509
+2019-2022,ELIX_23,ELIX_28,Obesidad,Abuso de alcohol,2537994,327491,108273,9678,-0.024967
+2019-2022,ELIX_23,ELIX_29,Obesidad,Abuso de drogas,2537994,327491,68133,4758,-0.029331
+2019-2022,ELIX_23,ELIX_30,Obesidad,Psicosis,2537994,327491,11065,999,-0.007649
+2019-2022,ELIX_23,ELIX_31,Obesidad,Depresión,2537994,327491,71183,10796,0.011467
+2019-2022,ELIX_24,ELIX_01,Pérdida de peso,Insuficiencia cardíaca congestiva,2537994,38461,124167,3399,0.022687
+2019-2022,ELIX_24,ELIX_02,Pérdida de peso,Arritmias cardíacas,2537994,38461,156611,4501,0.028519
+2019-2022,ELIX_24,ELIX_03,Pérdida de peso,Valvulopatía,2537994,38461,47743,1506,0.018576
+2019-2022,ELIX_24,ELIX_04,Pérdida de peso,Trastornos de la circulación pulmonar,2537994,38461,37722,1804,0.032847
+2019-2022,ELIX_24,ELIX_05,Pérdida de peso,Enfermedad vascular periférica,2537994,38461,80774,2621,0.025667
+2019-2022,ELIX_24,ELIX_06,Pérdida de peso,Hipertensión no complicada,2537994,38461,832205,16288,0.02526
+2019-2022,ELIX_24,ELIX_07,Pérdida de peso,Hipertensión complicada,2537994,38461,26877,632,0.00708
+2019-2022,ELIX_24,ELIX_08,Pérdida de peso,Parálisis,2537994,38461,18825,752,0.017543
+2019-2022,ELIX_24,ELIX_09,Pérdida de peso,Otros trastornos neurológicos,2537994,38461,77381,3406,0.041896
+2019-2022,ELIX_24,ELIX_10,Pérdida de peso,Enfermedad pulmonar crónica,2537994,38461,161363,5163,0.035923
+2019-2022,ELIX_24,ELIX_11,Pérdida de peso,Diabetes no complicada,2537994,38461,360764,6512,0.009651
+2019-2022,ELIX_24,ELIX_12,Pérdida de peso,Diabetes complicada,2537994,38461,98041,2312,0.013829
+2019-2022,ELIX_24,ELIX_13,Pérdida de peso,Hipotiroidismo,2537994,38461,236687,4031,0.004927
+2019-2022,ELIX_24,ELIX_14,Pérdida de peso,Insuficiencia renal,2537994,38461,182447,5270,0.031281
+2019-2022,ELIX_24,ELIX_15,Pérdida de peso,Enfermedad hepática,2537994,38461,101818,4203,0.043719
+2019-2022,ELIX_24,ELIX_16,Pérdida de peso,Úlcera péptica sin sangrado,2537994,38461,10565,666,0.025342
+2019-2022,ELIX_24,ELIX_17,Pérdida de peso,VIH/SIDA,2537994,38461,10929,1123,0.047156
+2019-2022,ELIX_24,ELIX_18,Pérdida de peso,Linfoma,2537994,38461,16613,642,0.015608
+2019-2022,ELIX_24,ELIX_19,Pérdida de peso,Cáncer metastásico,2537994,38461,44630,2468,0.043965
+2019-2022,ELIX_24,ELIX_20,Pérdida de peso,Tumor sólido sin metástasis,2537994,38461,72160,2350,0.024382
+2019-2022,ELIX_24,ELIX_21,Pérdida de peso,Artritis reumatoide y colagenopatías,2537994,38461,36213,1100,0.014991
+2019-2022,ELIX_24,ELIX_22,Pérdida de peso,Coagulopatía,2537994,38461,41158,2457,0.046812
+2019-2022,ELIX_24,ELIX_23,Pérdida de peso,Obesidad,2537994,38461,327491,1128,-0.036894
+2019-2022,ELIX_24,ELIX_24,Pérdida de peso,Pérdida de peso,2537994,38461,38461,38461,1
+2019-2022,ELIX_24,ELIX_25,Pérdida de peso,Trastornos hidroelectrolíticos,2537994,38461,168777,12279,0.12584
+2019-2022,ELIX_24,ELIX_26,Pérdida de peso,Anemia por pérdida de sangre,2537994,38461,5971,239,0.009887
+2019-2022,ELIX_24,ELIX_27,Pérdida de peso,Anemia por deficiencia,2537994,38461,25998,2588,0.070277
+2019-2022,ELIX_24,ELIX_28,Pérdida de peso,Abuso de alcohol,2537994,38461,108273,3849,0.035242
+2019-2022,ELIX_24,ELIX_29,Pérdida de peso,Abuso de drogas,2537994,38461,68133,1995,0.019206
+2019-2022,ELIX_24,ELIX_30,Pérdida de peso,Psicosis,2537994,38461,11065,428,0.012743
+2019-2022,ELIX_24,ELIX_31,Pérdida de peso,Depresión,2537994,38461,71183,2520,0.028154
+2019-2022,ELIX_25,ELIX_01,Trastornos hidroelectrolíticos,Insuficiencia cardíaca congestiva,2537994,168777,124167,24619,0.119952
+2019-2022,ELIX_25,ELIX_02,Trastornos hidroelectrolíticos,Arritmias cardíacas,2537994,168777,156611,27843,0.114541
+2019-2022,ELIX_25,ELIX_03,Trastornos hidroelectrolíticos,Valvulopatía,2537994,168777,47743,7976,0.055885
+2019-2022,ELIX_25,ELIX_04,Trastornos hidroelectrolíticos,Trastornos de la circulación pulmonar,2537994,168777,37722,8507,0.078394
+2019-2022,ELIX_25,ELIX_05,Trastornos hidroelectrolíticos,Enfermedad vascular periférica,2537994,168777,80774,11829,0.058175
+2019-2022,ELIX_25,ELIX_06,Trastornos hidroelectrolíticos,Hipertensión no complicada,2537994,168777,832205,96892,0.139968
+2019-2022,ELIX_25,ELIX_07,Trastornos hidroelectrolíticos,Hipertensión complicada,2537994,168777,26877,5779,0.061668
+2019-2022,ELIX_25,ELIX_08,Trastornos hidroelectrolíticos,Parálisis,2537994,168777,18825,2898,0.030339
+2019-2022,ELIX_25,ELIX_09,Trastornos hidroelectrolíticos,Otros trastornos neurológicos,2537994,168777,77381,13683,0.078525
+2019-2022,ELIX_25,ELIX_10,Trastornos hidroelectrolíticos,Enfermedad pulmonar crónica,2537994,168777,161363,22090,0.073621
+2019-2022,ELIX_25,ELIX_11,Trastornos hidroelectrolíticos,Diabetes no complicada,2537994,168777,360764,43230,0.087127
+2019-2022,ELIX_25,ELIX_12,Trastornos hidroelectrolíticos,Diabetes complicada,2537994,168777,98041,17828,0.092797
+2019-2022,ELIX_25,ELIX_13,Trastornos hidroelectrolíticos,Hipotiroidismo,2537994,168777,236687,21430,0.030945
+2019-2022,ELIX_25,ELIX_14,Trastornos hidroelectrolíticos,Insuficiencia renal,2537994,168777,182447,44491,0.198108
+2019-2022,ELIX_25,ELIX_15,Trastornos hidroelectrolíticos,Enfermedad hepática,2537994,168777,101818,20789,0.112968
+2019-2022,ELIX_25,ELIX_16,Trastornos hidroelectrolíticos,Úlcera péptica sin sangrado,2537994,168777,10565,2139,0.035281
+2019-2022,ELIX_25,ELIX_17,Trastornos hidroelectrolíticos,VIH/SIDA,2537994,168777,10929,1623,0.021645
+2019-2022,ELIX_25,ELIX_18,Trastornos hidroelectrolíticos,Linfoma,2537994,168777,16613,1508,0.007908
+2019-2022,ELIX_25,ELIX_19,Trastornos hidroelectrolíticos,Cáncer metastásico,2537994,168777,44630,5315,0.028239
+2019-2022,ELIX_25,ELIX_20,Trastornos hidroelectrolíticos,Tumor sólido sin metástasis,2537994,168777,72160,7310,0.023895
+2019-2022,ELIX_25,ELIX_21,Trastornos hidroelectrolíticos,Artritis reumatoide y colagenopatías,2537994,168777,36213,4436,0.02704
+2019-2022,ELIX_25,ELIX_22,Trastornos hidroelectrolíticos,Coagulopatía,2537994,168777,41158,12642,0.124012
+2019-2022,ELIX_25,ELIX_23,Trastornos hidroelectrolíticos,Obesidad,2537994,168777,327491,22363,0.002759
+2019-2022,ELIX_25,ELIX_24,Trastornos hidroelectrolíticos,Pérdida de peso,2537994,168777,38461,12279,0.12584
+2019-2022,ELIX_25,ELIX_25,Trastornos hidroelectrolíticos,Trastornos hidroelectrolíticos,2537994,168777,168777,168777,1
+2019-2022,ELIX_25,ELIX_26,Trastornos hidroelectrolíticos,Anemia por pérdida de sangre,2537994,168777,5971,755,0.011683
+2019-2022,ELIX_25,ELIX_27,Trastornos hidroelectrolíticos,Anemia por deficiencia,2537994,168777,25998,6822,0.07999
+2019-2022,ELIX_25,ELIX_28,Trastornos hidroelectrolíticos,Abuso de alcohol,2537994,168777,108273,14895,0.060213
+2019-2022,ELIX_25,ELIX_29,Trastornos hidroelectrolíticos,Abuso de drogas,2537994,168777,68133,5193,0.006478
+2019-2022,ELIX_25,ELIX_30,Trastornos hidroelectrolíticos,Psicosis,2537994,168777,11065,1382,0.01551
+2019-2022,ELIX_25,ELIX_31,Trastornos hidroelectrolíticos,Depresión,2537994,168777,71183,8314,0.034292
+2019-2022,ELIX_26,ELIX_01,Anemia por pérdida de sangre,Insuficiencia cardíaca congestiva,2537994,5971,124167,437,0.005462
+2019-2022,ELIX_26,ELIX_02,Anemia por pérdida de sangre,Arritmias cardíacas,2537994,5971,156611,514,0.004919
+2019-2022,ELIX_26,ELIX_03,Anemia por pérdida de sangre,Valvulopatía,2537994,5971,47743,181,0.004111
+2019-2022,ELIX_26,ELIX_04,Anemia por pérdida de sangre,Trastornos de la circulación pulmonar,2537994,5971,37722,139,0.003378
+2019-2022,ELIX_26,ELIX_05,Anemia por pérdida de sangre,Enfermedad vascular periférica,2537994,5971,80774,250,0.002778
+2019-2022,ELIX_26,ELIX_06,Anemia por pérdida de sangre,Hipertensión no complicada,2537994,5971,832205,2322,0.006308
+2019-2022,ELIX_26,ELIX_07,Anemia por pérdida de sangre,Hipertensión complicada,2537994,5971,26877,119,0.004431
+2019-2022,ELIX_26,ELIX_08,Anemia por pérdida de sangre,Parálisis,2537994,5971,18825,33,-0.00107
+2019-2022,ELIX_26,ELIX_09,Anemia por pérdida de sangre,Otros trastornos neurológicos,2537994,5971,77381,187,0.000234
+2019-2022,ELIX_26,ELIX_10,Anemia por pérdida de sangre,Enfermedad pulmonar crónica,2537994,5971,161363,443,0.002112
+2019-2022,ELIX_26,ELIX_11,Anemia por pérdida de sangre,Diabetes no complicada,2537994,5971,360764,996,0.003429
+2019-2022,ELIX_26,ELIX_12,Anemia por pérdida de sangre,Diabetes complicada,2537994,5971,98041,349,0.004994
+2019-2022,ELIX_26,ELIX_13,Anemia por pérdida de sangre,Hipotiroidismo,2537994,5971,236687,661,0.002913
+2019-2022,ELIX_26,ELIX_14,Anemia por pérdida de sangre,Insuficiencia renal,2537994,5971,182447,754,0.010226
+2019-2022,ELIX_26,ELIX_15,Anemia por pérdida de sangre,Enfermedad hepática,2537994,5971,101818,754,0.021321
+2019-2022,ELIX_26,ELIX_16,Anemia por pérdida de sangre,Úlcera péptica sin sangrado,2537994,5971,10565,188,0.020608
+2019-2022,ELIX_26,ELIX_17,Anemia por pérdida de sangre,VIH/SIDA,2537994,5971,10929,34,0.001029
+2019-2022,ELIX_26,ELIX_18,Anemia por pérdida de sangre,Linfoma,2537994,5971,16613,18,-0.002126
+2019-2022,ELIX_26,ELIX_19,Anemia por pérdida de sangre,Cáncer metastásico,2537994,5971,44630,147,0.002599
+2019-2022,ELIX_26,ELIX_20,Anemia por pérdida de sangre,Tumor sólido sin metástasis,2537994,5971,72160,222,0.002556
+2019-2022,ELIX_26,ELIX_21,Anemia por pérdida de sangre,Artritis reumatoide y colagenopatías,2537994,5971,36213,126,0.002798
+2019-2022,ELIX_26,ELIX_22,Anemia por pérdida de sangre,Coagulopatía,2537994,5971,41158,338,0.015529
+2019-2022,ELIX_26,ELIX_23,Anemia por pérdida de sangre,Obesidad,2537994,5971,327491,798,0.000668
+2019-2022,ELIX_26,ELIX_24,Anemia por pérdida de sangre,Pérdida de peso,2537994,5971,38461,239,0.009887
+2019-2022,ELIX_26,ELIX_25,Anemia por pérdida de sangre,Trastornos hidroelectrolíticos,2537994,5971,168777,755,0.011683
+2019-2022,ELIX_26,ELIX_26,Anemia por pérdida de sangre,Anemia por pérdida de sangre,2537994,5971,5971,5971,1
+2019-2022,ELIX_26,ELIX_27,Anemia por pérdida de sangre,Anemia por deficiencia,2537994,5971,25998,25,-0.002921
+2019-2022,ELIX_26,ELIX_28,Anemia por pérdida de sangre,Abuso de alcohol,2537994,5971,108273,493,0.009589
+2019-2022,ELIX_26,ELIX_29,Anemia por pérdida de sangre,Abuso de drogas,2537994,5971,68133,131,-0.001474
+2019-2022,ELIX_26,ELIX_30,Anemia por pérdida de sangre,Psicosis,2537994,5971,11065,30,0.00049
+2019-2022,ELIX_26,ELIX_31,Anemia por pérdida de sangre,Depresión,2537994,5971,71183,237,0.003425
+2019-2022,ELIX_27,ELIX_01,Anemia por deficiencia,Insuficiencia cardíaca congestiva,2537994,25998,124167,3477,0.040002
+2019-2022,ELIX_27,ELIX_02,Anemia por deficiencia,Arritmias cardíacas,2537994,25998,156611,3397,0.029154
+2019-2022,ELIX_27,ELIX_03,Anemia por deficiencia,Valvulopatía,2537994,25998,47743,1692,0.034648
+2019-2022,ELIX_27,ELIX_04,Anemia por deficiencia,Trastornos de la circulación pulmonar,2537994,25998,37722,1331,0.030547
+2019-2022,ELIX_27,ELIX_05,Anemia por deficiencia,Enfermedad vascular periférica,2537994,25998,80774,1853,0.022863
+2019-2022,ELIX_27,ELIX_06,Anemia por deficiencia,Hipertensión no complicada,2537994,25998,832205,12616,0.034103
+2019-2022,ELIX_27,ELIX_07,Anemia por deficiencia,Hipertensión complicada,2537994,25998,26877,725,0.017191
+2019-2022,ELIX_27,ELIX_08,Anemia por deficiencia,Parálisis,2537994,25998,18825,361,0.007669
+2019-2022,ELIX_27,ELIX_09,Anemia por deficiencia,Otros trastornos neurológicos,2537994,25998,77381,1514,0.016418
+2019-2022,ELIX_27,ELIX_10,Anemia por deficiencia,Enfermedad pulmonar crónica,2537994,25998,161363,2968,0.02109
+2019-2022,ELIX_27,ELIX_11,Anemia por deficiencia,Diabetes no complicada,2537994,25998,360764,5279,0.017745
+2019-2022,ELIX_27,ELIX_12,Anemia por deficiencia,Diabetes complicada,2537994,25998,98041,2622,0.032849
+2019-2022,ELIX_27,ELIX_13,Anemia por deficiencia,Hipotiroidismo,2537994,25998,236687,3826,0.018859
+2019-2022,ELIX_27,ELIX_14,Anemia por deficiencia,Insuficiencia renal,2537994,25998,182447,5331,0.052449
+2019-2022,ELIX_27,ELIX_15,Anemia por deficiencia,Enfermedad hepática,2537994,25998,101818,3595,0.05089
+2019-2022,ELIX_27,ELIX_16,Anemia por deficiencia,Úlcera péptica sin sangrado,2537994,25998,10565,661,0.033596
+2019-2022,ELIX_27,ELIX_17,Anemia por deficiencia,VIH/SIDA,2537994,25998,10929,279,0.009983
+2019-2022,ELIX_27,ELIX_18,Anemia por deficiencia,Linfoma,2537994,25998,16613,250,0.003873
+2019-2022,ELIX_27,ELIX_19,Anemia por deficiencia,Cáncer metastásico,2537994,25998,44630,857,0.011904
+2019-2022,ELIX_27,ELIX_20,Anemia por deficiencia,Tumor sólido sin metástasis,2537994,25998,72160,1147,0.009602
+2019-2022,ELIX_27,ELIX_21,Anemia por deficiencia,Artritis reumatoide y colagenopatías,2537994,25998,36213,1061,0.022769
+2019-2022,ELIX_27,ELIX_22,Anemia por deficiencia,Coagulopatía,2537994,25998,41158,2144,0.053361
+2019-2022,ELIX_27,ELIX_23,Anemia por deficiencia,Obesidad,2537994,25998,327491,3054,-0.003509
+2019-2022,ELIX_27,ELIX_24,Anemia por deficiencia,Pérdida de peso,2537994,25998,38461,2588,0.070277
+2019-2022,ELIX_27,ELIX_25,Anemia por deficiencia,Trastornos hidroelectrolíticos,2537994,25998,168777,6822,0.07999
+2019-2022,ELIX_27,ELIX_26,Anemia por deficiencia,Anemia por pérdida de sangre,2537994,25998,5971,25,-0.002921
+2019-2022,ELIX_27,ELIX_27,Anemia por deficiencia,Anemia por deficiencia,2537994,25998,25998,25998,1
+2019-2022,ELIX_27,ELIX_28,Anemia por deficiencia,Abuso de alcohol,2537994,25998,108273,2276,0.022595
+2019-2022,ELIX_27,ELIX_29,Anemia por deficiencia,Abuso de drogas,2537994,25998,68133,737,0.000946
+2019-2022,ELIX_27,ELIX_30,Anemia por deficiencia,Psicosis,2537994,25998,11065,200,0.005147
+2019-2022,ELIX_27,ELIX_31,Anemia por deficiencia,Depresión,2537994,25998,71183,1478,0.017748
+2019-2022,ELIX_28,ELIX_01,Abuso de alcohol,Insuficiencia cardíaca congestiva,2537994,108273,124167,5466,0.001527
+2019-2022,ELIX_28,ELIX_02,Abuso de alcohol,Arritmias cardíacas,2537994,108273,156611,6783,0.000825
+2019-2022,ELIX_28,ELIX_03,Abuso de alcohol,Valvulopatía,2537994,108273,47743,2229,0.002759
+2019-2022,ELIX_28,ELIX_04,Abuso de alcohol,Trastornos de la circulación pulmonar,2537994,108273,37722,1941,0.005345
+2019-2022,ELIX_28,ELIX_05,Abuso de alcohol,Enfermedad vascular periférica,2537994,108273,80774,3959,0.005699
+2019-2022,ELIX_28,ELIX_06,Abuso de alcohol,Hipertensión no complicada,2537994,108273,832205,35654,0.000629
+2019-2022,ELIX_28,ELIX_07,Abuso de alcohol,Hipertensión complicada,2537994,108273,26877,898,-0.004735
+2019-2022,ELIX_28,ELIX_08,Abuso de alcohol,Parálisis,2537994,108273,18825,1334,0.012064
+2019-2022,ELIX_28,ELIX_09,Abuso de alcohol,Otros trastornos neurológicos,2537994,108273,77381,7230,0.044553
+2019-2022,ELIX_28,ELIX_10,Abuso de alcohol,Enfermedad pulmonar crónica,2537994,108273,161363,7819,0.007472
+2019-2022,ELIX_28,ELIX_11,Abuso de alcohol,Diabetes no complicada,2537994,108273,360764,15443,0.000293
+2019-2022,ELIX_28,ELIX_12,Abuso de alcohol,Diabetes complicada,2537994,108273,98041,3504,-0.006865
+2019-2022,ELIX_28,ELIX_13,Abuso de alcohol,Hipotiroidismo,2537994,108273,236687,5211,-0.032761
+2019-2022,ELIX_28,ELIX_14,Abuso de alcohol,Insuficiencia renal,2537994,108273,182447,6021,-0.013302
+2019-2022,ELIX_28,ELIX_15,Abuso de alcohol,Enfermedad hepática,2537994,108273,101818,28135,0.236377
+2019-2022,ELIX_28,ELIX_16,Abuso de alcohol,Úlcera péptica sin sangrado,2537994,108273,10565,1587,0.034409
+2019-2022,ELIX_28,ELIX_17,Abuso de alcohol,VIH/SIDA,2537994,108273,10929,892,0.012677
+2019-2022,ELIX_28,ELIX_18,Abuso de alcohol,Linfoma,2537994,108273,16613,497,-0.005119
+2019-2022,ELIX_28,ELIX_19,Abuso de alcohol,Cáncer metastásico,2537994,108273,44630,1531,-0.005532
+2019-2022,ELIX_28,ELIX_20,Abuso de alcohol,Tumor sólido sin metástasis,2537994,108273,72160,2283,-0.009331
+2019-2022,ELIX_28,ELIX_21,Abuso de alcohol,Artritis reumatoide y colagenopatías,2537994,108273,36213,792,-0.012377
+2019-2022,ELIX_28,ELIX_22,Abuso de alcohol,Coagulopatía,2537994,108273,41158,5279,0.054383
+2019-2022,ELIX_28,ELIX_23,Abuso de alcohol,Obesidad,2537994,108273,327491,9678,-0.024967
+2019-2022,ELIX_28,ELIX_24,Abuso de alcohol,Pérdida de peso,2537994,108273,38461,3849,0.035242
+2019-2022,ELIX_28,ELIX_25,Abuso de alcohol,Trastornos hidroelectrolíticos,2537994,108273,168777,14895,0.060213
+2019-2022,ELIX_28,ELIX_26,Abuso de alcohol,Anemia por pérdida de sangre,2537994,108273,5971,493,0.009589
+2019-2022,ELIX_28,ELIX_27,Abuso de alcohol,Anemia por deficiencia,2537994,108273,25998,2276,0.022595
+2019-2022,ELIX_28,ELIX_28,Abuso de alcohol,Abuso de alcohol,2537994,108273,108273,108273,1
+2019-2022,ELIX_28,ELIX_29,Abuso de alcohol,Abuso de drogas,2537994,108273,68133,17568,0.176853
+2019-2022,ELIX_28,ELIX_30,Abuso de alcohol,Psicosis,2537994,108273,11065,1017,0.016127
+2019-2022,ELIX_28,ELIX_31,Abuso de alcohol,Depresión,2537994,108273,71183,5237,0.025982
+2019-2022,ELIX_29,ELIX_01,Abuso de drogas,Insuficiencia cardíaca congestiva,2537994,68133,124167,1810,-0.017215
+2019-2022,ELIX_29,ELIX_02,Abuso de drogas,Arritmias cardíacas,2537994,68133,156611,1702,-0.02535
+2019-2022,ELIX_29,ELIX_03,Abuso de drogas,Valvulopatía,2537994,68133,47743,740,-0.009719
+2019-2022,ELIX_29,ELIX_04,Abuso de drogas,Trastornos de la circulación pulmonar,2537994,68133,37722,850,-0.003277
+2019-2022,ELIX_29,ELIX_05,Abuso de drogas,Enfermedad vascular periférica,2537994,68133,80774,1118,-0.014587
+2019-2022,ELIX_29,ELIX_06,Abuso de drogas,Hipertensión no complicada,2537994,68133,832205,8744,-0.070604
+2019-2022,ELIX_29,ELIX_07,Abuso de drogas,Hipertensión complicada,2537994,68133,26877,316,-0.009657
+2019-2022,ELIX_29,ELIX_08,Abuso de drogas,Parálisis,2537994,68133,18825,701,0.005558
+2019-2022,ELIX_29,ELIX_09,Abuso de drogas,Otros trastornos neurológicos,2537994,68133,77381,2814,0.010445
+2019-2022,ELIX_29,ELIX_10,Abuso de drogas,Enfermedad pulmonar crónica,2537994,68133,161363,3468,-0.00863
+2019-2022,ELIX_29,ELIX_11,Abuso de drogas,Diabetes no complicada,2537994,68133,360764,3531,-0.042959
+2019-2022,ELIX_29,ELIX_12,Abuso de drogas,Diabetes complicada,2537994,68133,98041,972,-0.020998
+2019-2022,ELIX_29,ELIX_13,Abuso de drogas,Hipotiroidismo,2537994,68133,236687,1768,-0.038444
+2019-2022,ELIX_29,ELIX_14,Abuso de drogas,Insuficiencia renal,2537994,68133,182447,1805,-0.029189
+2019-2022,ELIX_29,ELIX_15,Abuso de drogas,Enfermedad hepática,2537994,68133,101818,3787,0.013089
+2019-2022,ELIX_29,ELIX_16,Abuso de drogas,Úlcera péptica sin sangrado,2537994,68133,10565,372,0.003346
+2019-2022,ELIX_29,ELIX_17,Abuso de drogas,VIH/SIDA,2537994,68133,10929,1507,0.045181
+2019-2022,ELIX_29,ELIX_18,Abuso de drogas,Linfoma,2537994,68133,16613,241,-0.006196
+2019-2022,ELIX_29,ELIX_19,Abuso de drogas,Cáncer metastásico,2537994,68133,44630,513,-0.012706
+2019-2022,ELIX_29,ELIX_20,Abuso de drogas,Tumor sólido sin metástasis,2537994,68133,72160,681,-0.018424
+2019-2022,ELIX_29,ELIX_21,Abuso de drogas,Artritis reumatoide y colagenopatías,2537994,68133,36213,412,-0.011514
+2019-2022,ELIX_29,ELIX_22,Abuso de drogas,Coagulopatía,2537994,68133,41158,1254,0.002878
+2019-2022,ELIX_29,ELIX_23,Abuso de drogas,Obesidad,2537994,68133,327491,4758,-0.029331
+2019-2022,ELIX_29,ELIX_24,Abuso de drogas,Pérdida de peso,2537994,68133,38461,1995,0.019206
+2019-2022,ELIX_29,ELIX_25,Abuso de drogas,Trastornos hidroelectrolíticos,2537994,68133,168777,5193,0.006478
+2019-2022,ELIX_29,ELIX_26,Abuso de drogas,Anemia por pérdida de sangre,2537994,68133,5971,131,-0.001474
+2019-2022,ELIX_29,ELIX_27,Abuso de drogas,Anemia por deficiencia,2537994,68133,25998,737,0.000946
+2019-2022,ELIX_29,ELIX_28,Abuso de drogas,Abuso de alcohol,2537994,68133,108273,17568,0.176853
+2019-2022,ELIX_29,ELIX_29,Abuso de drogas,Abuso de drogas,2537994,68133,68133,68133,1
+2019-2022,ELIX_29,ELIX_30,Abuso de drogas,Psicosis,2537994,68133,11065,1637,0.049579
+2019-2022,ELIX_29,ELIX_31,Abuso de drogas,Depresión,2537994,68133,71183,4105,0.032395
+2019-2022,ELIX_30,ELIX_01,Psicosis,Insuficiencia cardíaca congestiva,2537994,11065,124167,348,-0.00536
+2019-2022,ELIX_30,ELIX_02,Psicosis,Arritmias cardíacas,2537994,11065,156611,441,-0.006009
+2019-2022,ELIX_30,ELIX_03,Psicosis,Valvulopatía,2537994,11065,47743,101,-0.004717
+2019-2022,ELIX_30,ELIX_04,Psicosis,Trastornos de la circulación pulmonar,2537994,11065,37722,208,0.002152
+2019-2022,ELIX_30,ELIX_05,Psicosis,Enfermedad vascular periférica,2537994,11065,80774,265,-0.002969
+2019-2022,ELIX_30,ELIX_06,Psicosis,Hipertensión no complicada,2537994,11065,832205,2701,-0.011812
+2019-2022,ELIX_30,ELIX_07,Psicosis,Hipertensión complicada,2537994,11065,26877,55,-0.003633
+2019-2022,ELIX_30,ELIX_08,Psicosis,Parálisis,2537994,11065,18825,94,0.000831
+2019-2022,ELIX_30,ELIX_09,Psicosis,Otros trastornos neurológicos,2537994,11065,77381,1282,0.032858
+2019-2022,ELIX_30,ELIX_10,Psicosis,Enfermedad pulmonar crónica,2537994,11065,161363,856,0.003738
+2019-2022,ELIX_30,ELIX_11,Psicosis,Diabetes no complicada,2537994,11065,360764,1547,-0.000443
+2019-2022,ELIX_30,ELIX_12,Psicosis,Diabetes complicada,2537994,11065,98041,319,-0.003365
+2019-2022,ELIX_30,ELIX_13,Psicosis,Hipotiroidismo,2537994,11065,236687,1363,0.006809
+2019-2022,ELIX_30,ELIX_14,Psicosis,Insuficiencia renal,2537994,11065,182447,511,-0.006585
+2019-2022,ELIX_30,ELIX_15,Psicosis,Enfermedad hepática,2537994,11065,101818,444,0.000003
+2019-2022,ELIX_30,ELIX_16,Psicosis,Úlcera péptica sin sangrado,2537994,11065,10565,66,0.001852
+2019-2022,ELIX_30,ELIX_17,Psicosis,VIH/SIDA,2537994,11065,10929,79,0.002863
+2019-2022,ELIX_30,ELIX_18,Psicosis,Linfoma,2537994,11065,16613,21,-0.003814
+2019-2022,ELIX_30,ELIX_19,Psicosis,Cáncer metastásico,2537994,11065,44630,115,-0.003621
+2019-2022,ELIX_30,ELIX_20,Psicosis,Tumor sólido sin metástasis,2537994,11065,72160,201,-0.004088
+2019-2022,ELIX_30,ELIX_21,Psicosis,Artritis reumatoide y colagenopatías,2537994,11065,36213,93,-0.003272
+2019-2022,ELIX_30,ELIX_22,Psicosis,Coagulopatía,2537994,11065,41158,178,-0.000068
+2019-2022,ELIX_30,ELIX_23,Psicosis,Obesidad,2537994,11065,327491,999,-0.007649
+2019-2022,ELIX_30,ELIX_24,Psicosis,Pérdida de peso,2537994,11065,38461,428,0.012743
+2019-2022,ELIX_30,ELIX_25,Psicosis,Trastornos hidroelectrolíticos,2537994,11065,168777,1382,0.01551
+2019-2022,ELIX_30,ELIX_26,Psicosis,Anemia por pérdida de sangre,2537994,11065,5971,30,0.00049
+2019-2022,ELIX_30,ELIX_27,Psicosis,Anemia por deficiencia,2537994,11065,25998,200,0.005147
+2019-2022,ELIX_30,ELIX_28,Psicosis,Abuso de alcohol,2537994,11065,108273,1017,0.016127
+2019-2022,ELIX_30,ELIX_29,Psicosis,Abuso de drogas,2537994,11065,68133,1637,0.049579
+2019-2022,ELIX_30,ELIX_30,Psicosis,Psicosis,2537994,11065,11065,11065,1
+2019-2022,ELIX_30,ELIX_31,Psicosis,Depresión,2537994,11065,71183,675,0.013208
+2019-2022,ELIX_31,ELIX_01,Depresión,Insuficiencia cardíaca congestiva,2537994,71183,124167,4543,0.011732
+2019-2022,ELIX_31,ELIX_02,Depresión,Arritmias cardíacas,2537994,71183,156611,4897,0.005004
+2019-2022,ELIX_31,ELIX_03,Depresión,Valvulopatía,2537994,71183,47743,1890,0.009678
+2019-2022,ELIX_31,ELIX_04,Depresión,Trastornos de la circulación pulmonar,2537994,71183,37722,1758,0.013805
+2019-2022,ELIX_31,ELIX_05,Depresión,Enfermedad vascular periférica,2537994,71183,80774,2736,0.006397
+2019-2022,ELIX_31,ELIX_06,Depresión,Hipertensión no complicada,2537994,71183,832205,30379,0.035778
+2019-2022,ELIX_31,ELIX_07,Depresión,Hipertensión complicada,2537994,71183,26877,870,0.002709
+2019-2022,ELIX_31,ELIX_08,Depresión,Parálisis,2537994,71183,18825,1066,0.014964
+2019-2022,ELIX_31,ELIX_09,Depresión,Otros trastornos neurológicos,2537994,71183,77381,3946,0.024647
+2019-2022,ELIX_31,ELIX_10,Depresión,Enfermedad pulmonar crónica,2537994,71183,161363,7307,0.027202
+2019-2022,ELIX_31,ELIX_11,Depresión,Diabetes no complicada,2537994,71183,360764,12602,0.016973
+2019-2022,ELIX_31,ELIX_12,Depresión,Diabetes complicada,2537994,71183,98041,3755,0.012448
+2019-2022,ELIX_31,ELIX_13,Depresión,Hipotiroidismo,2537994,71183,236687,11825,0.042564
+2019-2022,ELIX_31,ELIX_14,Depresión,Insuficiencia renal,2537994,71183,182447,5809,0.006393
+2019-2022,ELIX_31,ELIX_15,Depresión,Enfermedad hepática,2537994,71183,101818,3724,0.01056
+2019-2022,ELIX_31,ELIX_16,Depresión,Úlcera péptica sin sangrado,2537994,71183,10565,478,0.006734
+2019-2022,ELIX_31,ELIX_17,Depresión,VIH/SIDA,2537994,71183,10929,595,0.010513
+2019-2022,ELIX_31,ELIX_18,Depresión,Linfoma,2537994,71183,16613,627,0.004766
+2019-2022,ELIX_31,ELIX_19,Depresión,Cáncer metastásico,2537994,71183,44630,1587,0.006087
+2019-2022,ELIX_31,ELIX_20,Depresión,Tumor sólido sin metástasis,2537994,71183,72160,2216,0.002759
+2019-2022,ELIX_31,ELIX_21,Depresión,Artritis reumatoide y colagenopatías,2537994,71183,36213,2009,0.019988
+2019-2022,ELIX_31,ELIX_22,Depresión,Coagulopatía,2537994,71183,41158,1737,0.011008
+2019-2022,ELIX_31,ELIX_23,Depresión,Obesidad,2537994,71183,327491,10796,0.011467
+2019-2022,ELIX_31,ELIX_24,Depresión,Pérdida de peso,2537994,71183,38461,2520,0.028154
+2019-2022,ELIX_31,ELIX_25,Depresión,Trastornos hidroelectrolíticos,2537994,71183,168777,8314,0.034292
+2019-2022,ELIX_31,ELIX_26,Depresión,Anemia por pérdida de sangre,2537994,71183,5971,237,0.003425
+2019-2022,ELIX_31,ELIX_27,Depresión,Anemia por deficiencia,2537994,71183,25998,1478,0.017748
+2019-2022,ELIX_31,ELIX_28,Depresión,Abuso de alcohol,2537994,71183,108273,5237,0.025982
+2019-2022,ELIX_31,ELIX_29,Depresión,Abuso de drogas,2537994,71183,68133,4105,0.032395
+2019-2022,ELIX_31,ELIX_30,Depresión,Psicosis,2537994,71183,11065,675,0.013208
+2019-2022,ELIX_31,ELIX_31,Depresión,Depresión,2537994,71183,71183,71183,1
+2023,ELIX_01,ELIX_01,Insuficiencia cardíaca congestiva,Insuficiencia cardíaca congestiva,687018,39671,39671,39671,1
+2023,ELIX_01,ELIX_02,Insuficiencia cardíaca congestiva,Arritmias cardíacas,687018,39671,46649,14117,0.283347
+2023,ELIX_01,ELIX_03,Insuficiencia cardíaca congestiva,Valvulopatía,687018,39671,16260,6158,0.214247
+2023,ELIX_01,ELIX_04,Insuficiencia cardíaca congestiva,Trastornos de la circulación pulmonar,687018,39671,10966,3654,0.150407
+2023,ELIX_01,ELIX_05,Insuficiencia cardíaca congestiva,Enfermedad vascular periférica,687018,39671,26252,4230,0.088346
+2023,ELIX_01,ELIX_06,Insuficiencia cardíaca congestiva,Hipertensión no complicada,687018,39671,245155,29115,0.194848
+2023,ELIX_01,ELIX_07,Insuficiencia cardíaca congestiva,Hipertensión complicada,687018,39671,6201,2750,0.157821
+2023,ELIX_01,ELIX_08,Insuficiencia cardíaca congestiva,Parálisis,687018,39671,6403,614,0.015863
+2023,ELIX_01,ELIX_09,Insuficiencia cardíaca congestiva,Otros trastornos neurológicos,687018,39671,23578,2010,0.02223
+2023,ELIX_01,ELIX_10,Insuficiencia cardíaca congestiva,Enfermedad pulmonar crónica,687018,39671,51100,8261,0.12629
+2023,ELIX_01,ELIX_11,Insuficiencia cardíaca congestiva,Diabetes no complicada,687018,39671,102977,12732,0.118623
+2023,ELIX_01,ELIX_12,Insuficiencia cardíaca congestiva,Diabetes complicada,687018,39671,31710,5243,0.101472
+2023,ELIX_01,ELIX_13,Insuficiencia cardíaca congestiva,Hipotiroidismo,687018,39671,73663,6721,0.049765
+2023,ELIX_01,ELIX_14,Insuficiencia cardíaca congestiva,Insuficiencia renal,687018,39671,53809,12372,0.21518
+2023,ELIX_01,ELIX_15,Insuficiencia cardíaca congestiva,Enfermedad hepática,687018,39671,31221,3580,0.053246
+2023,ELIX_01,ELIX_16,Insuficiencia cardíaca congestiva,Úlcera péptica sin sangrado,687018,39671,3325,387,0.017534
+2023,ELIX_01,ELIX_17,Insuficiencia cardíaca congestiva,VIH/SIDA,687018,39671,3150,87,-0.008765
+2023,ELIX_01,ELIX_18,Insuficiencia cardíaca congestiva,Linfoma,687018,39671,4395,266,0.000956
+2023,ELIX_01,ELIX_19,Insuficiencia cardíaca congestiva,Cáncer metastásico,687018,39671,14399,594,-0.010344
+2023,ELIX_01,ELIX_20,Insuficiencia cardíaca congestiva,Tumor sólido sin metástasis,687018,39671,22910,1412,0.003096
+2023,ELIX_01,ELIX_21,Insuficiencia cardíaca congestiva,Artritis reumatoide y colagenopatías,687018,39671,13045,1228,0.021705
+2023,ELIX_01,ELIX_22,Insuficiencia cardíaca congestiva,Coagulopatía,687018,39671,15679,2247,0.056062
+2023,ELIX_01,ELIX_23,Insuficiencia cardíaca congestiva,Obesidad,687018,39671,99134,6717,0.017628
+2023,ELIX_01,ELIX_24,Insuficiencia cardíaca congestiva,Pérdida de peso,687018,39671,13392,1393,0.027971
+2023,ELIX_01,ELIX_25,Insuficiencia cardíaca congestiva,Trastornos hidroelectrolíticos,687018,39671,58133,9644,0.140968
+2023,ELIX_01,ELIX_26,Insuficiencia cardíaca congestiva,Anemia por pérdida de sangre,687018,39671,2195,200,0.0081
+2023,ELIX_01,ELIX_27,Insuficiencia cardíaca congestiva,Anemia por deficiencia,687018,39671,9988,1573,0.051939
+2023,ELIX_01,ELIX_28,Insuficiencia cardíaca congestiva,Abuso de alcohol,687018,39671,34140,2039,0.001942
+2023,ELIX_01,ELIX_29,Insuficiencia cardíaca congestiva,Abuso de drogas,687018,39671,25107,817,-0.021043
+2023,ELIX_01,ELIX_30,Insuficiencia cardíaca congestiva,Psicosis,687018,39671,3580,128,-0.006823
+2023,ELIX_01,ELIX_31,Insuficiencia cardíaca congestiva,Depresión,687018,39671,26769,1783,0.007651
+2023,ELIX_02,ELIX_01,Arritmias cardíacas,Insuficiencia cardíaca congestiva,687018,46649,39671,14117,0.283347
+2023,ELIX_02,ELIX_02,Arritmias cardíacas,Arritmias cardíacas,687018,46649,46649,46649,1
+2023,ELIX_02,ELIX_03,Arritmias cardíacas,Valvulopatía,687018,46649,16260,6050,0.188251
+2023,ELIX_02,ELIX_04,Arritmias cardíacas,Trastornos de la circulación pulmonar,687018,46649,10966,3042,0.106061
+2023,ELIX_02,ELIX_05,Arritmias cardíacas,Enfermedad vascular periférica,687018,46649,26252,4097,0.069852
+2023,ELIX_02,ELIX_06,Arritmias cardíacas,Hipertensión no complicada,687018,46649,245155,32995,0.197448
+2023,ELIX_02,ELIX_07,Arritmias cardíacas,Hipertensión complicada,687018,46649,6201,1764,0.082157
+2023,ELIX_02,ELIX_08,Arritmias cardíacas,Parálisis,687018,46649,6403,889,0.027351
+2023,ELIX_02,ELIX_09,Arritmias cardíacas,Otros trastornos neurológicos,687018,46649,23578,2810,0.038425
+2023,ELIX_02,ELIX_10,Arritmias cardíacas,Enfermedad pulmonar crónica,687018,46649,51100,7718,0.093677
+2023,ELIX_02,ELIX_11,Arritmias cardíacas,Diabetes no complicada,687018,46649,102977,13234,0.101169
+2023,ELIX_02,ELIX_12,Arritmias cardíacas,Diabetes complicada,687018,46649,31710,3841,0.046542
+2023,ELIX_02,ELIX_13,Arritmias cardíacas,Hipotiroidismo,687018,46649,73663,7593,0.048457
+2023,ELIX_02,ELIX_14,Arritmias cardíacas,Insuficiencia renal,687018,46649,53809,10512,0.147689
+2023,ELIX_02,ELIX_15,Arritmias cardíacas,Enfermedad hepática,687018,46649,31221,3400,0.03556
+2023,ELIX_02,ELIX_16,Arritmias cardíacas,Úlcera péptica sin sangrado,687018,46649,3325,413,0.015609
+2023,ELIX_02,ELIX_17,Arritmias cardíacas,VIH/SIDA,687018,46649,3150,99,-0.009839
+2023,ELIX_02,ELIX_18,Arritmias cardíacas,Linfoma,687018,46649,4395,345,0.00338
+2023,ELIX_02,ELIX_19,Arritmias cardíacas,Cáncer metastásico,687018,46649,14399,815,-0.006572
+2023,ELIX_02,ELIX_20,Arritmias cardíacas,Tumor sólido sin metástasis,687018,46649,22910,1828,0.008778
+2023,ELIX_02,ELIX_21,Arritmias cardíacas,Artritis reumatoide y colagenopatías,687018,46649,13045,1036,0.006369
+2023,ELIX_02,ELIX_22,Arritmias cardíacas,Coagulopatía,687018,46649,15679,2786,0.066693
+2023,ELIX_02,ELIX_23,Arritmias cardíacas,Obesidad,687018,46649,99134,5979,-0.012386
+2023,ELIX_02,ELIX_24,Arritmias cardíacas,Pérdida de peso,687018,46649,13392,1708,0.033425
+2023,ELIX_02,ELIX_25,Arritmias cardíacas,Trastornos hidroelectrolíticos,687018,46649,58133,9966,0.125124
+2023,ELIX_02,ELIX_26,Arritmias cardíacas,Anemia por pérdida de sangre,687018,46649,2195,200,0.005224
+2023,ELIX_02,ELIX_27,Arritmias cardíacas,Anemia por deficiencia,687018,46649,9988,1396,0.034697
+2023,ELIX_02,ELIX_28,Arritmias cardíacas,Abuso de alcohol,687018,46649,34140,2334,0.000423
+2023,ELIX_02,ELIX_29,Arritmias cardíacas,Abuso de drogas,687018,46649,25107,703,-0.030889
+2023,ELIX_02,ELIX_30,Arritmias cardíacas,Psicosis,687018,46649,3580,135,-0.008686
+2023,ELIX_02,ELIX_31,Arritmias cardíacas,Depresión,687018,46649,26769,1782,-0.001065
+2023,ELIX_03,ELIX_01,Valvulopatía,Insuficiencia cardíaca congestiva,687018,16260,39671,6158,0.214247
+2023,ELIX_03,ELIX_02,Valvulopatía,Arritmias cardíacas,687018,16260,46649,6050,0.188251
+2023,ELIX_03,ELIX_03,Valvulopatía,Valvulopatía,687018,16260,16260,16260,1
+2023,ELIX_03,ELIX_04,Valvulopatía,Trastornos de la circulación pulmonar,687018,16260,10966,2719,0.18791
+2023,ELIX_03,ELIX_05,Valvulopatía,Enfermedad vascular periférica,687018,16260,26252,1956,0.066665
+2023,ELIX_03,ELIX_06,Valvulopatía,Hipertensión no complicada,687018,16260,245155,10994,0.103772
+2023,ELIX_03,ELIX_07,Valvulopatía,Hipertensión complicada,687018,16260,6201,925,0.078794
+2023,ELIX_03,ELIX_08,Valvulopatía,Parálisis,687018,16260,6403,255,0.01031
+2023,ELIX_03,ELIX_09,Valvulopatía,Otros trastornos neurológicos,687018,16260,23578,765,0.010886
+2023,ELIX_03,ELIX_10,Valvulopatía,Enfermedad pulmonar crónica,687018,16260,51100,2470,0.046003
+2023,ELIX_03,ELIX_11,Valvulopatía,Diabetes no complicada,687018,16260,102977,4085,0.044201
+2023,ELIX_03,ELIX_12,Valvulopatía,Diabetes complicada,687018,16260,31710,1796,0.047712
+2023,ELIX_03,ELIX_13,Valvulopatía,Hipotiroidismo,687018,16260,73663,2644,0.027872
+2023,ELIX_03,ELIX_14,Valvulopatía,Insuficiencia renal,687018,16260,53809,4104,0.100875
+2023,ELIX_03,ELIX_15,Valvulopatía,Enfermedad hepática,687018,16260,31221,1480,0.034071
+2023,ELIX_03,ELIX_16,Valvulopatía,Úlcera péptica sin sangrado,687018,16260,3325,153,0.010252
+2023,ELIX_03,ELIX_17,Valvulopatía,VIH/SIDA,687018,16260,3150,36,-0.005464
+2023,ELIX_03,ELIX_18,Valvulopatía,Linfoma,687018,16260,4395,96,-0.000963
+2023,ELIX_03,ELIX_19,Valvulopatía,Cáncer metastásico,687018,16260,14399,191,-0.010013
+2023,ELIX_03,ELIX_20,Valvulopatía,Tumor sólido sin metástasis,687018,16260,22910,500,-0.002252
+2023,ELIX_03,ELIX_21,Valvulopatía,Artritis reumatoide y colagenopatías,687018,16260,13045,589,0.019663
+2023,ELIX_03,ELIX_22,Valvulopatía,Coagulopatía,687018,16260,15679,1056,0.043917
+2023,ELIX_03,ELIX_23,Valvulopatía,Obesidad,687018,16260,99134,2258,-0.002405
+2023,ELIX_03,ELIX_24,Valvulopatía,Pérdida de peso,687018,16260,13392,648,0.022929
+2023,ELIX_03,ELIX_25,Valvulopatía,Trastornos hidroelectrolíticos,687018,16260,58133,3331,0.067267
+2023,ELIX_03,ELIX_26,Valvulopatía,Anemia por pérdida de sangre,687018,16260,2195,87,0.005947
+2023,ELIX_03,ELIX_27,Valvulopatía,Anemia por deficiencia,687018,16260,9988,745,0.040688
+2023,ELIX_03,ELIX_28,Valvulopatía,Abuso de alcohol,687018,16260,34140,886,0.003437
+2023,ELIX_03,ELIX_29,Valvulopatía,Abuso de drogas,687018,16260,25107,374,-0.011238
+2023,ELIX_03,ELIX_30,Valvulopatía,Psicosis,687018,16260,3580,47,-0.005018
+2023,ELIX_03,ELIX_31,Valvulopatía,Depresión,687018,16260,26769,775,0.006999
+2023,ELIX_04,ELIX_01,Trastornos de la circulación pulmonar,Insuficiencia cardíaca congestiva,687018,10966,39671,3654,0.150407
+2023,ELIX_04,ELIX_02,Trastornos de la circulación pulmonar,Arritmias cardíacas,687018,10966,46649,3042,0.106061
+2023,ELIX_04,ELIX_03,Trastornos de la circulación pulmonar,Valvulopatía,687018,10966,16260,2719,0.18791
+2023,ELIX_04,ELIX_04,Trastornos de la circulación pulmonar,Trastornos de la circulación pulmonar,687018,10966,10966,10966,1
+2023,ELIX_04,ELIX_05,Trastornos de la circulación pulmonar,Enfermedad vascular periférica,687018,10966,26252,1159,0.04483
+2023,ELIX_04,ELIX_06,Trastornos de la circulación pulmonar,Hipertensión no complicada,687018,10966,245155,6330,0.058593
+2023,ELIX_04,ELIX_07,Trastornos de la circulación pulmonar,Hipertensión complicada,687018,10966,6201,486,0.047527
+2023,ELIX_04,ELIX_08,Trastornos de la circulación pulmonar,Parálisis,687018,10966,6403,173,0.008557
+2023,ELIX_04,ELIX_09,Trastornos de la circulación pulmonar,Otros trastornos neurológicos,687018,10966,23578,632,0.01631
+2023,ELIX_04,ELIX_10,Trastornos de la circulación pulmonar,Enfermedad pulmonar crónica,687018,10966,51100,2459,0.07274
+2023,ELIX_04,ELIX_11,Trastornos de la circulación pulmonar,Diabetes no complicada,687018,10966,102977,2517,0.028414
+2023,ELIX_04,ELIX_12,Trastornos de la circulación pulmonar,Diabetes complicada,687018,10966,31710,1008,0.027779
+2023,ELIX_04,ELIX_13,Trastornos de la circulación pulmonar,Hipotiroidismo,687018,10966,73663,1725,0.020616
+2023,ELIX_04,ELIX_14,Trastornos de la circulación pulmonar,Insuficiencia renal,687018,10966,53809,2351,0.064499
+2023,ELIX_04,ELIX_15,Trastornos de la circulación pulmonar,Enfermedad hepática,687018,10966,31221,1270,0.04303
+2023,ELIX_04,ELIX_16,Trastornos de la circulación pulmonar,Úlcera péptica sin sangrado,687018,10966,3325,142,0.014882
+2023,ELIX_04,ELIX_17,Trastornos de la circulación pulmonar,VIH/SIDA,687018,10966,3150,45,-0.000908
+2023,ELIX_04,ELIX_18,Trastornos de la circulación pulmonar,Linfoma,687018,10966,4395,105,0.005076
+2023,ELIX_04,ELIX_19,Trastornos de la circulación pulmonar,Cáncer metastásico,687018,10966,14399,619,0.031553
+2023,ELIX_04,ELIX_20,Trastornos de la circulación pulmonar,Tumor sólido sin metástasis,687018,10966,22910,575,0.01354
+2023,ELIX_04,ELIX_21,Trastornos de la circulación pulmonar,Artritis reumatoide y colagenopatías,687018,10966,13045,535,0.027808
+2023,ELIX_04,ELIX_22,Trastornos de la circulación pulmonar,Coagulopatía,687018,10966,15679,910,0.051309
+2023,ELIX_04,ELIX_23,Trastornos de la circulación pulmonar,Obesidad,687018,10966,99134,1779,0.0065
+2023,ELIX_04,ELIX_24,Trastornos de la circulación pulmonar,Pérdida de peso,687018,10966,13392,709,0.041604
+2023,ELIX_04,ELIX_25,Trastornos de la circulación pulmonar,Trastornos hidroelectrolíticos,687018,10966,58133,2975,0.085427
+2023,ELIX_04,ELIX_26,Trastornos de la circulación pulmonar,Anemia por pérdida de sangre,687018,10966,2195,59,0.004932
+2023,ELIX_04,ELIX_27,Trastornos de la circulación pulmonar,Anemia por deficiencia,687018,10966,9988,557,0.038577
+2023,ELIX_04,ELIX_28,Trastornos de la circulación pulmonar,Abuso de alcohol,687018,10966,34140,699,0.008234
+2023,ELIX_04,ELIX_29,Trastornos de la circulación pulmonar,Abuso de drogas,687018,10966,25107,381,-0.001223
+2023,ELIX_04,ELIX_30,Trastornos de la circulación pulmonar,Psicosis,687018,10966,3580,66,0.001429
+2023,ELIX_04,ELIX_31,Trastornos de la circulación pulmonar,Depresión,687018,10966,26769,688,0.015648
+2023,ELIX_05,ELIX_01,Enfermedad vascular periférica,Insuficiencia cardíaca congestiva,687018,26252,39671,4230,0.088346
+2023,ELIX_05,ELIX_02,Enfermedad vascular periférica,Arritmias cardíacas,687018,26252,46649,4097,0.069852
+2023,ELIX_05,ELIX_03,Enfermedad vascular periférica,Valvulopatía,687018,26252,16260,1956,0.066665
+2023,ELIX_05,ELIX_04,Enfermedad vascular periférica,Trastornos de la circulación pulmonar,687018,26252,10966,1159,0.04483
+2023,ELIX_05,ELIX_05,Enfermedad vascular periférica,Enfermedad vascular periférica,687018,26252,26252,26252,1
+2023,ELIX_05,ELIX_06,Enfermedad vascular periférica,Hipertensión no complicada,687018,26252,245155,18873,0.150648
+2023,ELIX_05,ELIX_07,Enfermedad vascular periférica,Hipertensión complicada,687018,26252,6201,733,0.039824
+2023,ELIX_05,ELIX_08,Enfermedad vascular periférica,Parálisis,687018,26252,6403,538,0.023178
+2023,ELIX_05,ELIX_09,Enfermedad vascular periférica,Otros trastornos neurológicos,687018,26252,23578,1314,0.017227
+2023,ELIX_05,ELIX_10,Enfermedad vascular periférica,Enfermedad pulmonar crónica,687018,26252,51100,3579,0.047063
+2023,ELIX_05,ELIX_11,Enfermedad vascular periférica,Diabetes no complicada,687018,26252,102977,5147,0.025781
+2023,ELIX_05,ELIX_12,Enfermedad vascular periférica,Diabetes complicada,687018,26252,31710,6328,0.18514
+2023,ELIX_05,ELIX_13,Enfermedad vascular periférica,Hipotiroidismo,687018,26252,73663,3294,0.01176
+2023,ELIX_05,ELIX_14,Enfermedad vascular periférica,Insuficiencia renal,687018,26252,53809,6356,0.121512
+2023,ELIX_05,ELIX_15,Enfermedad vascular periférica,Enfermedad hepática,687018,26252,31221,2149,0.034851
+2023,ELIX_05,ELIX_16,Enfermedad vascular periférica,Úlcera péptica sin sangrado,687018,26252,3325,264,0.014983
+2023,ELIX_05,ELIX_17,Enfermedad vascular periférica,VIH/SIDA,687018,26252,3150,88,-0.003638
+2023,ELIX_05,ELIX_18,Enfermedad vascular periférica,Linfoma,687018,26252,4395,224,0.005339
+2023,ELIX_05,ELIX_19,Enfermedad vascular periférica,Cáncer metastásico,687018,26252,14399,544,-0.000329
+2023,ELIX_05,ELIX_20,Enfermedad vascular periférica,Tumor sólido sin metástasis,687018,26252,22910,1004,0.005437
+2023,ELIX_05,ELIX_21,Enfermedad vascular periférica,Artritis reumatoide y colagenopatías,687018,26252,13045,732,0.012992
+2023,ELIX_05,ELIX_22,Enfermedad vascular periférica,Coagulopatía,687018,26252,15679,1109,0.025924
+2023,ELIX_05,ELIX_23,Enfermedad vascular periférica,Obesidad,687018,26252,99134,2601,-0.025649
+2023,ELIX_05,ELIX_24,Enfermedad vascular periférica,Pérdida de peso,687018,26252,13392,1103,0.032473
+2023,ELIX_05,ELIX_25,Enfermedad vascular periférica,Trastornos hidroelectrolíticos,687018,26252,58133,4958,0.07466
+2023,ELIX_05,ELIX_26,Enfermedad vascular periférica,Anemia por pérdida de sangre,687018,26252,2195,122,0.005129
+2023,ELIX_05,ELIX_27,Enfermedad vascular periférica,Anemia por deficiencia,687018,26252,9988,802,0.026664
+2023,ELIX_05,ELIX_28,Enfermedad vascular periférica,Abuso de alcohol,687018,26252,34140,1615,0.010847
+2023,ELIX_05,ELIX_29,Enfermedad vascular periférica,Abuso de drogas,687018,26252,25107,533,-0.017253
+2023,ELIX_05,ELIX_30,Enfermedad vascular periférica,Psicosis,687018,26252,3580,103,-0.003564
+2023,ELIX_05,ELIX_31,Enfermedad vascular periférica,Depresión,687018,26252,26769,1129,0.004164
+2023,ELIX_06,ELIX_01,Hipertensión no complicada,Insuficiencia cardíaca congestiva,687018,245155,39671,29115,0.194848
+2023,ELIX_06,ELIX_02,Hipertensión no complicada,Arritmias cardíacas,687018,245155,46649,32995,0.197448
+2023,ELIX_06,ELIX_03,Hipertensión no complicada,Valvulopatía,687018,245155,16260,10994,0.103772
+2023,ELIX_06,ELIX_04,Hipertensión no complicada,Trastornos de la circulación pulmonar,687018,245155,10966,6330,0.058593
+2023,ELIX_06,ELIX_05,Hipertensión no complicada,Enfermedad vascular periférica,687018,245155,26252,18873,0.150648
+2023,ELIX_06,ELIX_06,Hipertensión no complicada,Hipertensión no complicada,687018,245155,245155,245155,1
+2023,ELIX_06,ELIX_07,Hipertensión no complicada,Hipertensión complicada,687018,245155,6201,0,-0.071087
+2023,ELIX_06,ELIX_08,Hipertensión no complicada,Parálisis,687018,245155,6403,3677,0.04402
+2023,ELIX_06,ELIX_09,Hipertensión no complicada,Otros trastornos neurológicos,687018,245155,23578,11242,0.047206
+2023,ELIX_06,ELIX_10,Hipertensión no complicada,Enfermedad pulmonar crónica,687018,245155,51100,28977,0.124394
+2023,ELIX_06,ELIX_11,Hipertensión no complicada,Diabetes no complicada,687018,245155,102977,81565,0.38148
+2023,ELIX_06,ELIX_12,Hipertensión no complicada,Diabetes complicada,687018,245155,31710,23798,0.180754
+2023,ELIX_06,ELIX_13,Hipertensión no complicada,Hipotiroidismo,687018,245155,73663,37853,0.113592
+2023,ELIX_06,ELIX_14,Hipertensión no complicada,Insuficiencia renal,687018,245155,53809,40135,0.236729
+2023,ELIX_06,ELIX_15,Hipertensión no complicada,Enfermedad hepática,687018,245155,31221,15389,0.061972
+2023,ELIX_06,ELIX_16,Hipertensión no complicada,Úlcera péptica sin sangrado,687018,245155,3325,1835,0.028392
+2023,ELIX_06,ELIX_17,Hipertensión no complicada,VIH/SIDA,687018,245155,3150,568,-0.025008
+2023,ELIX_06,ELIX_18,Hipertensión no complicada,Linfoma,687018,245155,4395,1872,0.011574
+2023,ELIX_06,ELIX_19,Hipertensión no complicada,Cáncer metastásico,687018,245155,14399,6335,0.025386
+2023,ELIX_06,ELIX_20,Hipertensión no complicada,Tumor sólido sin metástasis,687018,245155,22910,11254,0.052102
+2023,ELIX_06,ELIX_21,Hipertensión no complicada,Artritis reumatoide y colagenopatías,687018,245155,13045,6519,0.041497
+2023,ELIX_06,ELIX_22,Hipertensión no complicada,Coagulopatía,687018,245155,15679,7324,0.03518
+2023,ELIX_06,ELIX_23,Hipertensión no complicada,Obesidad,687018,245155,99134,34131,-0.010756
+2023,ELIX_06,ELIX_24,Hipertensión no complicada,Pérdida de peso,687018,245155,13392,6015,0.027168
+2023,ELIX_06,ELIX_25,Hipertensión no complicada,Trastornos hidroelectrolíticos,687018,245155,58133,34618,0.151462
+2023,ELIX_06,ELIX_26,Hipertensión no complicada,Anemia por pérdida de sangre,687018,245155,2195,917,0.0072
+2023,ELIX_06,ELIX_27,Hipertensión no complicada,Anemia por deficiencia,687018,245155,9988,5164,0.040612
+2023,ELIX_06,ELIX_28,Hipertensión no complicada,Abuso de alcohol,687018,245155,34140,12348,0.002314
+2023,ELIX_06,ELIX_29,Hipertensión no complicada,Abuso de drogas,687018,245155,25107,3538,-0.087781
+2023,ELIX_06,ELIX_30,Hipertensión no complicada,Psicosis,687018,245155,3580,903,-0.015803
+2023,ELIX_06,ELIX_31,Hipertensión no complicada,Depresión,687018,245155,26769,10921,0.021491
+2023,ELIX_07,ELIX_01,Hipertensión complicada,Insuficiencia cardíaca congestiva,687018,6201,39671,2750,0.157821
+2023,ELIX_07,ELIX_02,Hipertensión complicada,Arritmias cardíacas,687018,6201,46649,1764,0.082157
+2023,ELIX_07,ELIX_03,Hipertensión complicada,Valvulopatía,687018,6201,16260,925,0.078794
+2023,ELIX_07,ELIX_04,Hipertensión complicada,Trastornos de la circulación pulmonar,687018,6201,10966,486,0.047527
+2023,ELIX_07,ELIX_05,Hipertensión complicada,Enfermedad vascular periférica,687018,6201,26252,733,0.039824
+2023,ELIX_07,ELIX_06,Hipertensión complicada,Hipertensión no complicada,687018,6201,245155,0,-0.071087
+2023,ELIX_07,ELIX_07,Hipertensión complicada,Hipertensión complicada,687018,6201,6201,6201,1
+2023,ELIX_07,ELIX_08,Hipertensión complicada,Parálisis,687018,6201,6403,112,0.008682
+2023,ELIX_07,ELIX_09,Hipertensión complicada,Otros trastornos neurológicos,687018,6201,23578,338,0.010583
+2023,ELIX_07,ELIX_10,Hipertensión complicada,Enfermedad pulmonar crónica,687018,6201,51100,1022,0.032893
+2023,ELIX_07,ELIX_11,Hipertensión complicada,Diabetes no complicada,687018,6201,102977,1615,0.029557
+2023,ELIX_07,ELIX_12,Hipertensión complicada,Diabetes complicada,687018,6201,31710,1011,0.053163
+2023,ELIX_07,ELIX_13,Hipertensión complicada,Hipotiroidismo,687018,6201,73663,1025,0.017914
+2023,ELIX_07,ELIX_14,Hipertensión complicada,Insuficiencia renal,687018,6201,53809,3438,0.169116
+2023,ELIX_07,ELIX_15,Hipertensión complicada,Enfermedad hepática,687018,6201,31221,529,0.018267
+2023,ELIX_07,ELIX_16,Hipertensión complicada,Úlcera péptica sin sangrado,687018,6201,3325,61,0.006872
+2023,ELIX_07,ELIX_17,Hipertensión complicada,VIH/SIDA,687018,6201,3150,15,-0.00306
+2023,ELIX_07,ELIX_18,Hipertensión complicada,Linfoma,687018,6201,4395,44,0.000836
+2023,ELIX_07,ELIX_19,Hipertensión complicada,Cáncer metastásico,687018,6201,14399,114,-0.001715
+2023,ELIX_07,ELIX_20,Hipertensión complicada,Tumor sólido sin metástasis,687018,6201,22910,221,0.001219
+2023,ELIX_07,ELIX_21,Hipertensión complicada,Artritis reumatoide y colagenopatías,687018,6201,13045,203,0.009614
+2023,ELIX_07,ELIX_22,Hipertensión complicada,Coagulopatía,687018,6201,15679,422,0.028907
+2023,ELIX_07,ELIX_23,Hipertensión complicada,Obesidad,687018,6201,99134,1048,0.006711
+2023,ELIX_07,ELIX_24,Hipertensión complicada,Pérdida de peso,687018,6201,13392,178,0.006359
+2023,ELIX_07,ELIX_25,Hipertensión complicada,Trastornos hidroelectrolíticos,687018,6201,58133,1749,0.067703
+2023,ELIX_07,ELIX_26,Hipertensión complicada,Anemia por pérdida de sangre,687018,6201,2195,57,0.010142
+2023,ELIX_07,ELIX_27,Hipertensión complicada,Anemia por deficiencia,687018,6201,9988,312,0.028526
+2023,ELIX_07,ELIX_28,Hipertensión complicada,Abuso de alcohol,687018,6201,34140,266,-0.002985
+2023,ELIX_07,ELIX_29,Hipertensión complicada,Abuso de drogas,687018,6201,25107,127,-0.008171
+2023,ELIX_07,ELIX_30,Hipertensión complicada,Psicosis,687018,6201,3580,26,-0.001349
+2023,ELIX_07,ELIX_31,Hipertensión complicada,Depresión,687018,6201,26769,277,0.002814
+2023,ELIX_08,ELIX_01,Parálisis,Insuficiencia cardíaca congestiva,687018,6403,39671,614,0.015863
+2023,ELIX_08,ELIX_02,Parálisis,Arritmias cardíacas,687018,6403,46649,889,0.027351
+2023,ELIX_08,ELIX_03,Parálisis,Valvulopatía,687018,6403,16260,255,0.01031
+2023,ELIX_08,ELIX_04,Parálisis,Trastornos de la circulación pulmonar,687018,6403,10966,173,0.008557
+2023,ELIX_08,ELIX_05,Parálisis,Enfermedad vascular periférica,687018,6403,26252,538,0.023178
+2023,ELIX_08,ELIX_06,Parálisis,Hipertensión no complicada,687018,6403,245155,3677,0.04402
+2023,ELIX_08,ELIX_07,Parálisis,Hipertensión complicada,687018,6403,6201,112,0.008682
+2023,ELIX_08,ELIX_08,Parálisis,Parálisis,687018,6403,6403,6403,1
+2023,ELIX_08,ELIX_09,Parálisis,Otros trastornos neurológicos,687018,6403,23578,1145,0.07699
+2023,ELIX_08,ELIX_10,Parálisis,Enfermedad pulmonar crónica,687018,6403,51100,625,0.008588
+2023,ELIX_08,ELIX_11,Parálisis,Diabetes no complicada,687018,6403,102977,1624,0.028188
+2023,ELIX_08,ELIX_12,Parálisis,Diabetes complicada,687018,6403,31710,464,0.012162
+2023,ELIX_08,ELIX_13,Parálisis,Hipotiroidismo,687018,6403,73663,723,0.001785
+2023,ELIX_08,ELIX_14,Parálisis,Insuficiencia renal,687018,6403,53809,813,0.017562
+2023,ELIX_08,ELIX_15,Parálisis,Enfermedad hepática,687018,6403,31221,313,0.001602
+2023,ELIX_08,ELIX_16,Parálisis,Úlcera péptica sin sangrado,687018,6403,3325,49,0.003931
+2023,ELIX_08,ELIX_17,Parálisis,VIH/SIDA,687018,6403,3150,28,-0.000304
+2023,ELIX_08,ELIX_18,Parálisis,Linfoma,687018,6403,4395,53,0.002287
+2023,ELIX_08,ELIX_19,Parálisis,Cáncer metastásico,687018,6403,14399,246,0.011823
+2023,ELIX_08,ELIX_20,Parálisis,Tumor sólido sin metástasis,687018,6403,22910,224,0.000884
+2023,ELIX_08,ELIX_21,Parálisis,Artritis reumatoide y colagenopatías,687018,6403,13045,149,0.003043
+2023,ELIX_08,ELIX_22,Parálisis,Coagulopatía,687018,6403,15679,250,0.010536
+2023,ELIX_08,ELIX_23,Parálisis,Obesidad,687018,6403,99134,599,-0.014007
+2023,ELIX_08,ELIX_24,Parálisis,Pérdida de peso,687018,6403,13392,351,0.024783
+2023,ELIX_08,ELIX_25,Parálisis,Trastornos hidroelectrolíticos,687018,6403,58133,1226,0.03724
+2023,ELIX_08,ELIX_26,Parálisis,Anemia por pérdida de sangre,687018,6403,2195,26,0.001488
+2023,ELIX_08,ELIX_27,Parálisis,Anemia por deficiencia,687018,6403,9988,192,0.012518
+2023,ELIX_08,ELIX_28,Parálisis,Abuso de alcohol,687018,6403,34140,447,0.008979
+2023,ELIX_08,ELIX_29,Parálisis,Abuso de drogas,687018,6403,25107,305,0.005732
+2023,ELIX_08,ELIX_30,Parálisis,Psicosis,687018,6403,3580,46,0.002658
+2023,ELIX_08,ELIX_31,Parálisis,Depresión,687018,6403,26769,429,0.014052
+2023,ELIX_09,ELIX_01,Otros trastornos neurológicos,Insuficiencia cardíaca congestiva,687018,23578,39671,2010,0.02223
+2023,ELIX_09,ELIX_02,Otros trastornos neurológicos,Arritmias cardíacas,687018,23578,46649,2810,0.038425
+2023,ELIX_09,ELIX_03,Otros trastornos neurológicos,Valvulopatía,687018,23578,16260,765,0.010886
+2023,ELIX_09,ELIX_04,Otros trastornos neurológicos,Trastornos de la circulación pulmonar,687018,23578,10966,632,0.01631
+2023,ELIX_09,ELIX_05,Otros trastornos neurológicos,Enfermedad vascular periférica,687018,23578,26252,1314,0.017227
+2023,ELIX_09,ELIX_06,Otros trastornos neurológicos,Hipertensión no complicada,687018,23578,245155,11242,0.047206
+2023,ELIX_09,ELIX_07,Otros trastornos neurológicos,Hipertensión complicada,687018,23578,6201,338,0.010583
+2023,ELIX_09,ELIX_08,Otros trastornos neurológicos,Parálisis,687018,23578,6403,1145,0.07699
+2023,ELIX_09,ELIX_09,Otros trastornos neurológicos,Otros trastornos neurológicos,687018,23578,23578,23578,1
+2023,ELIX_09,ELIX_10,Otros trastornos neurológicos,Enfermedad pulmonar crónica,687018,23578,51100,2370,0.018779
+2023,ELIX_09,ELIX_11,Otros trastornos neurológicos,Diabetes no complicada,687018,23578,102977,4528,0.022262
+2023,ELIX_09,ELIX_12,Otros trastornos neurológicos,Diabetes complicada,687018,23578,31710,1373,0.01085
+2023,ELIX_09,ELIX_13,Otros trastornos neurológicos,Hipotiroidismo,687018,23578,73663,3340,0.020982
+2023,ELIX_09,ELIX_14,Otros trastornos neurológicos,Insuficiencia renal,687018,23578,53809,2873,0.030542
+2023,ELIX_09,ELIX_15,Otros trastornos neurológicos,Enfermedad hepática,687018,23578,31221,2038,0.037103
+2023,ELIX_09,ELIX_16,Otros trastornos neurológicos,Úlcera péptica sin sangrado,687018,23578,3325,202,0.010126
+2023,ELIX_09,ELIX_17,Otros trastornos neurológicos,VIH/SIDA,687018,23578,3150,181,0.008627
+2023,ELIX_09,ELIX_18,Otros trastornos neurológicos,Linfoma,687018,23578,4395,141,-0.000986
+2023,ELIX_09,ELIX_19,Otros trastornos neurológicos,Cáncer metastásico,687018,23578,14399,477,-0.000958
+2023,ELIX_09,ELIX_20,Otros trastornos neurológicos,Tumor sólido sin metástasis,687018,23578,22910,856,0.003106
+2023,ELIX_09,ELIX_21,Otros trastornos neurológicos,Artritis reumatoide y colagenopatías,687018,23578,13045,512,0.003767
+2023,ELIX_09,ELIX_22,Otros trastornos neurológicos,Coagulopatía,687018,23578,15679,1207,0.035814
+2023,ELIX_09,ELIX_23,Otros trastornos neurológicos,Obesidad,687018,23578,99134,2030,-0.031223
+2023,ELIX_09,ELIX_24,Otros trastornos neurológicos,Pérdida de peso,687018,23578,13392,1228,0.044439
+2023,ELIX_09,ELIX_25,Otros trastornos neurológicos,Trastornos hidroelectrolíticos,687018,23578,58133,5044,0.087592
+2023,ELIX_09,ELIX_26,Otros trastornos neurológicos,Anemia por pérdida de sangre,687018,23578,2195,92,0.002362
+2023,ELIX_09,ELIX_27,Otros trastornos neurológicos,Anemia por deficiencia,687018,23578,9988,624,0.018785
+2023,ELIX_09,ELIX_28,Otros trastornos neurológicos,Abuso de alcohol,687018,23578,34140,2172,0.036806
+2023,ELIX_09,ELIX_29,Otros trastornos neurológicos,Abuso de drogas,687018,23578,25107,1128,0.011349
+2023,ELIX_09,ELIX_30,Otros trastornos neurológicos,Psicosis,687018,23578,3580,427,0.033775
+2023,ELIX_09,ELIX_31,Otros trastornos neurológicos,Depresión,687018,23578,26769,1539,0.02563
+2023,ELIX_10,ELIX_01,Enfermedad pulmonar crónica,Insuficiencia cardíaca congestiva,687018,51100,39671,8261,0.12629
+2023,ELIX_10,ELIX_02,Enfermedad pulmonar crónica,Arritmias cardíacas,687018,51100,46649,7718,0.093677
+2023,ELIX_10,ELIX_03,Enfermedad pulmonar crónica,Valvulopatía,687018,51100,16260,2470,0.046003
+2023,ELIX_10,ELIX_04,Enfermedad pulmonar crónica,Trastornos de la circulación pulmonar,687018,51100,10966,2459,0.07274
+2023,ELIX_10,ELIX_05,Enfermedad pulmonar crónica,Enfermedad vascular periférica,687018,51100,26252,3579,0.047063
+2023,ELIX_10,ELIX_06,Enfermedad pulmonar crónica,Hipertensión no complicada,687018,51100,245155,28977,0.124394
+2023,ELIX_10,ELIX_07,Enfermedad pulmonar crónica,Hipertensión complicada,687018,51100,6201,1022,0.032893
+2023,ELIX_10,ELIX_08,Enfermedad pulmonar crónica,Parálisis,687018,51100,6403,625,0.008588
+2023,ELIX_10,ELIX_09,Enfermedad pulmonar crónica,Otros trastornos neurológicos,687018,51100,23578,2370,0.018779
+2023,ELIX_10,ELIX_10,Enfermedad pulmonar crónica,Enfermedad pulmonar crónica,687018,51100,51100,51100,1
+2023,ELIX_10,ELIX_11,Enfermedad pulmonar crónica,Diabetes no complicada,687018,51100,102977,11784,0.064099
+2023,ELIX_10,ELIX_12,Enfermedad pulmonar crónica,Diabetes complicada,687018,51100,31710,3375,0.026873
+2023,ELIX_10,ELIX_13,Enfermedad pulmonar crónica,Hipotiroidismo,687018,51100,73663,7504,0.036308
+2023,ELIX_10,ELIX_14,Enfermedad pulmonar crónica,Insuficiencia renal,687018,51100,53809,7081,0.063566
+2023,ELIX_10,ELIX_15,Enfermedad pulmonar crónica,Enfermedad hepática,687018,51100,31221,3368,0.027855
+2023,ELIX_10,ELIX_16,Enfermedad pulmonar crónica,Úlcera péptica sin sangrado,687018,51100,3325,393,0.011645
+2023,ELIX_10,ELIX_17,Enfermedad pulmonar crónica,VIH/SIDA,687018,51100,3150,233,-0.000106
+2023,ELIX_10,ELIX_18,Enfermedad pulmonar crónica,Linfoma,687018,51100,4395,396,0.004808
+2023,ELIX_10,ELIX_19,Enfermedad pulmonar crónica,Cáncer metastásico,687018,51100,14399,1203,0.005112
+2023,ELIX_10,ELIX_20,Enfermedad pulmonar crónica,Tumor sólido sin metástasis,687018,51100,22910,2092,0.011987
+2023,ELIX_10,ELIX_21,Enfermedad pulmonar crónica,Artritis reumatoide y colagenopatías,687018,51100,13045,1584,0.024945
+2023,ELIX_10,ELIX_22,Enfermedad pulmonar crónica,Coagulopatía,687018,51100,15679,1633,0.017341
+2023,ELIX_10,ELIX_23,Enfermedad pulmonar crónica,Obesidad,687018,51100,99134,8374,0.015794
+2023,ELIX_10,ELIX_24,Enfermedad pulmonar crónica,Pérdida de peso,687018,51100,13392,1872,0.035147
+2023,ELIX_10,ELIX_25,Enfermedad pulmonar crónica,Trastornos hidroelectrolíticos,687018,51100,58133,8590,0.085034
+2023,ELIX_10,ELIX_26,Enfermedad pulmonar crónica,Anemia por pérdida de sangre,687018,51100,2195,178,0.001449
+2023,ELIX_10,ELIX_27,Enfermedad pulmonar crónica,Anemia por deficiencia,687018,51100,9988,1327,0.027071
+2023,ELIX_10,ELIX_28,Enfermedad pulmonar crónica,Abuso de alcohol,687018,51100,34140,2881,0.008722
+2023,ELIX_10,ELIX_29,Enfermedad pulmonar crónica,Abuso de drogas,687018,51100,25107,1564,-0.008971
+2023,ELIX_10,ELIX_30,Enfermedad pulmonar crónica,Psicosis,687018,51100,3580,314,0.003677
+2023,ELIX_10,ELIX_31,Enfermedad pulmonar crónica,Depresión,687018,51100,26769,2821,0.023792
+2023,ELIX_11,ELIX_01,Diabetes no complicada,Insuficiencia cardíaca congestiva,687018,102977,39671,12732,0.118623
+2023,ELIX_11,ELIX_02,Diabetes no complicada,Arritmias cardíacas,687018,102977,46649,13234,0.101169
+2023,ELIX_11,ELIX_03,Diabetes no complicada,Valvulopatía,687018,102977,16260,4085,0.044201
+2023,ELIX_11,ELIX_04,Diabetes no complicada,Trastornos de la circulación pulmonar,687018,102977,10966,2517,0.028414
+2023,ELIX_11,ELIX_05,Diabetes no complicada,Enfermedad vascular periférica,687018,102977,26252,5147,0.025781
+2023,ELIX_11,ELIX_06,Diabetes no complicada,Hipertensión no complicada,687018,102977,245155,81565,0.38148
+2023,ELIX_11,ELIX_07,Diabetes no complicada,Hipertensión complicada,687018,102977,6201,1615,0.029557
+2023,ELIX_11,ELIX_08,Diabetes no complicada,Parálisis,687018,102977,6403,1624,0.028188
+2023,ELIX_11,ELIX_09,Diabetes no complicada,Otros trastornos neurológicos,687018,102977,23578,4528,0.022262
+2023,ELIX_11,ELIX_10,Diabetes no complicada,Enfermedad pulmonar crónica,687018,102977,51100,11784,0.064099
+2023,ELIX_11,ELIX_11,Diabetes no complicada,Diabetes no complicada,687018,102977,102977,102977,1
+2023,ELIX_11,ELIX_12,Diabetes no complicada,Diabetes complicada,687018,102977,31710,0,-0.092368
+2023,ELIX_11,ELIX_13,Diabetes no complicada,Hipotiroidismo,687018,102977,73663,16375,0.070295
+2023,ELIX_11,ELIX_14,Diabetes no complicada,Insuficiencia renal,687018,102977,53809,16254,0.124275
+2023,ELIX_11,ELIX_15,Diabetes no complicada,Enfermedad hepática,687018,102977,31221,8483,0.074461
+2023,ELIX_11,ELIX_16,Diabetes no complicada,Úlcera péptica sin sangrado,687018,102977,3325,790,0.017134
+2023,ELIX_11,ELIX_17,Diabetes no complicada,VIH/SIDA,687018,102977,3150,266,-0.012443
+2023,ELIX_11,ELIX_18,Diabetes no complicada,Linfoma,687018,102977,4395,865,0.010548
+2023,ELIX_11,ELIX_19,Diabetes no complicada,Cáncer metastásico,687018,102977,14399,2840,0.019406
+2023,ELIX_11,ELIX_20,Diabetes no complicada,Tumor sólido sin metástasis,687018,102977,22910,5079,0.037361
+2023,ELIX_11,ELIX_21,Diabetes no complicada,Artritis reumatoide y colagenopatías,687018,102977,13045,2284,0.00982
+2023,ELIX_11,ELIX_22,Diabetes no complicada,Coagulopatía,687018,102977,15679,3398,0.028613
+2023,ELIX_11,ELIX_23,Diabetes no complicada,Obesidad,687018,102977,99134,16753,0.021977
+2023,ELIX_11,ELIX_24,Diabetes no complicada,Pérdida de peso,687018,102977,13392,2228,0.006509
+2023,ELIX_11,ELIX_25,Diabetes no complicada,Trastornos hidroelectrolíticos,687018,102977,58133,14429,0.083739
+2023,ELIX_11,ELIX_26,Diabetes no complicada,Anemia por pérdida de sangre,687018,102977,2195,436,0.007731
+2023,ELIX_11,ELIX_27,Diabetes no complicada,Anemia por deficiencia,687018,102977,9988,2129,0.021527
+2023,ELIX_11,ELIX_28,Diabetes no complicada,Abuso de alcohol,687018,102977,34140,5123,0.000108
+2023,ELIX_11,ELIX_29,Diabetes no complicada,Abuso de drogas,687018,102977,25107,1313,-0.053247
+2023,ELIX_11,ELIX_30,Diabetes no complicada,Psicosis,687018,102977,3580,500,-0.002073
+2023,ELIX_11,ELIX_31,Diabetes no complicada,Depresión,687018,102977,26769,4464,0.009516
+2023,ELIX_12,ELIX_01,Diabetes complicada,Insuficiencia cardíaca congestiva,687018,31710,39671,5243,0.101472
+2023,ELIX_12,ELIX_02,Diabetes complicada,Arritmias cardíacas,687018,31710,46649,3841,0.046542
+2023,ELIX_12,ELIX_03,Diabetes complicada,Valvulopatía,687018,31710,16260,1796,0.047712
+2023,ELIX_12,ELIX_04,Diabetes complicada,Trastornos de la circulación pulmonar,687018,31710,10966,1008,0.027779
+2023,ELIX_12,ELIX_05,Diabetes complicada,Enfermedad vascular periférica,687018,31710,26252,6328,0.18514
+2023,ELIX_12,ELIX_06,Diabetes complicada,Hipertensión no complicada,687018,31710,245155,23798,0.180754
+2023,ELIX_12,ELIX_07,Diabetes complicada,Hipertensión complicada,687018,31710,6201,1011,0.053163
+2023,ELIX_12,ELIX_08,Diabetes complicada,Parálisis,687018,31710,6403,464,0.012162
+2023,ELIX_12,ELIX_09,Diabetes complicada,Otros trastornos neurológicos,687018,31710,23578,1373,0.01085
+2023,ELIX_12,ELIX_10,Diabetes complicada,Enfermedad pulmonar crónica,687018,31710,51100,3375,0.026873
+2023,ELIX_12,ELIX_11,Diabetes complicada,Diabetes no complicada,687018,31710,102977,0,-0.092368
+2023,ELIX_12,ELIX_12,Diabetes complicada,Diabetes complicada,687018,31710,31710,31710,1
+2023,ELIX_12,ELIX_13,Diabetes complicada,Hipotiroidismo,687018,31710,73663,4897,0.033565
+2023,ELIX_12,ELIX_14,Diabetes complicada,Insuficiencia renal,687018,31710,53809,10258,0.20073
+2023,ELIX_12,ELIX_15,Diabetes complicada,Enfermedad hepática,687018,31710,31221,2409,0.03224
+2023,ELIX_12,ELIX_16,Diabetes complicada,Úlcera péptica sin sangrado,687018,31710,3325,247,0.009349
+2023,ELIX_12,ELIX_17,Diabetes complicada,VIH/SIDA,687018,31710,3150,91,-0.005585
+2023,ELIX_12,ELIX_18,Diabetes complicada,Linfoma,687018,31710,4395,187,-0.00138
+2023,ELIX_12,ELIX_19,Diabetes complicada,Cáncer metastásico,687018,31710,14399,599,-0.003177
+2023,ELIX_12,ELIX_20,Diabetes complicada,Tumor sólido sin metástasis,687018,31710,22910,1082,0.000949
+2023,ELIX_12,ELIX_21,Diabetes complicada,Artritis reumatoide y colagenopatías,687018,31710,13045,624,0.001113
+2023,ELIX_12,ELIX_22,Diabetes complicada,Coagulopatía,687018,31710,15679,1148,0.019711
+2023,ELIX_12,ELIX_23,Diabetes complicada,Obesidad,687018,31710,99134,5408,0.016433
+2023,ELIX_12,ELIX_24,Diabetes complicada,Pérdida de peso,687018,31710,13392,986,0.01846
+2023,ELIX_12,ELIX_25,Diabetes complicada,Trastornos hidroelectrolíticos,687018,31710,58133,6995,0.107476
+2023,ELIX_12,ELIX_26,Diabetes complicada,Anemia por pérdida de sangre,687018,31710,2195,128,0.003281
+2023,ELIX_12,ELIX_27,Diabetes complicada,Anemia por deficiencia,687018,31710,9988,1161,0.040569
+2023,ELIX_12,ELIX_28,Diabetes complicada,Abuso de alcohol,687018,31710,34140,1383,-0.006154
+2023,ELIX_12,ELIX_29,Diabetes complicada,Abuso de drogas,687018,31710,25107,517,-0.023729
+2023,ELIX_12,ELIX_30,Diabetes complicada,Psicosis,687018,31710,3580,126,-0.003781
+2023,ELIX_12,ELIX_31,Diabetes complicada,Depresión,687018,31710,26769,1491,0.009158
+2023,ELIX_13,ELIX_01,Hipotiroidismo,Insuficiencia cardíaca congestiva,687018,73663,39671,6721,0.049765
+2023,ELIX_13,ELIX_02,Hipotiroidismo,Arritmias cardíacas,687018,73663,46649,7593,0.048457
+2023,ELIX_13,ELIX_03,Hipotiroidismo,Valvulopatía,687018,73663,16260,2644,0.027872
+2023,ELIX_13,ELIX_04,Hipotiroidismo,Trastornos de la circulación pulmonar,687018,73663,10966,1725,0.020616
+2023,ELIX_13,ELIX_05,Hipotiroidismo,Enfermedad vascular periférica,687018,73663,26252,3294,0.01176
+2023,ELIX_13,ELIX_06,Hipotiroidismo,Hipertensión no complicada,687018,73663,245155,37853,0.113592
+2023,ELIX_13,ELIX_07,Hipotiroidismo,Hipertensión complicada,687018,73663,6201,1025,0.017914
+2023,ELIX_13,ELIX_08,Hipotiroidismo,Parálisis,687018,73663,6403,723,0.001785
+2023,ELIX_13,ELIX_09,Hipotiroidismo,Otros trastornos neurológicos,687018,73663,23578,3340,0.020982
+2023,ELIX_13,ELIX_10,Hipotiroidismo,Enfermedad pulmonar crónica,687018,73663,51100,7504,0.036308
+2023,ELIX_13,ELIX_11,Hipotiroidismo,Diabetes no complicada,687018,73663,102977,16375,0.070295
+2023,ELIX_13,ELIX_12,Hipotiroidismo,Diabetes complicada,687018,73663,31710,4897,0.033565
+2023,ELIX_13,ELIX_13,Hipotiroidismo,Hipotiroidismo,687018,73663,73663,73663,1
+2023,ELIX_13,ELIX_14,Hipotiroidismo,Insuficiencia renal,687018,73663,53809,9490,0.065146
+2023,ELIX_13,ELIX_15,Hipotiroidismo,Enfermedad hepática,687018,73663,31221,4284,0.021152
+2023,ELIX_13,ELIX_16,Hipotiroidismo,Úlcera péptica sin sangrado,687018,73663,3325,411,0.003694
+2023,ELIX_13,ELIX_17,Hipotiroidismo,VIH/SIDA,687018,73663,3150,155,-0.012726
+2023,ELIX_13,ELIX_18,Hipotiroidismo,Linfoma,687018,73663,4395,616,0.008542
+2023,ELIX_13,ELIX_19,Hipotiroidismo,Cáncer metastásico,687018,73663,14399,1796,0.00828
+2023,ELIX_13,ELIX_20,Hipotiroidismo,Tumor sólido sin metástasis,687018,73663,22910,3353,0.023493
+2023,ELIX_13,ELIX_21,Hipotiroidismo,Artritis reumatoide y colagenopatías,687018,73663,13045,2649,0.043098
+2023,ELIX_13,ELIX_22,Hipotiroidismo,Coagulopatía,687018,73663,15679,2244,0.017733
+2023,ELIX_13,ELIX_23,Hipotiroidismo,Obesidad,687018,73663,99134,13074,0.032731
+2023,ELIX_13,ELIX_24,Hipotiroidismo,Pérdida de peso,687018,73663,13392,1685,0.008476
+2023,ELIX_13,ELIX_25,Hipotiroidismo,Trastornos hidroelectrolíticos,687018,73663,58133,8531,0.038844
+2023,ELIX_13,ELIX_26,Hipotiroidismo,Anemia por pérdida de sangre,687018,73663,2195,273,0.003139
+2023,ELIX_13,ELIX_27,Hipotiroidismo,Anemia por deficiencia,687018,73663,9988,1592,0.020481
+2023,ELIX_13,ELIX_28,Hipotiroidismo,Abuso de alcohol,687018,73663,34140,2154,-0.032615
+2023,ELIX_13,ELIX_29,Hipotiroidismo,Abuso de drogas,687018,73663,25107,745,-0.048815
+2023,ELIX_13,ELIX_30,Hipotiroidismo,Psicosis,687018,73663,3580,495,0.007263
+2023,ELIX_13,ELIX_31,Hipotiroidismo,Depresión,687018,73663,26769,4529,0.040328
+2023,ELIX_14,ELIX_01,Insuficiencia renal,Insuficiencia cardíaca congestiva,687018,53809,39671,12372,0.21518
+2023,ELIX_14,ELIX_02,Insuficiencia renal,Arritmias cardíacas,687018,53809,46649,10512,0.147689
+2023,ELIX_14,ELIX_03,Insuficiencia renal,Valvulopatía,687018,53809,16260,4104,0.100875
+2023,ELIX_14,ELIX_04,Insuficiencia renal,Trastornos de la circulación pulmonar,687018,53809,10966,2351,0.064499
+2023,ELIX_14,ELIX_05,Insuficiencia renal,Enfermedad vascular periférica,687018,53809,26252,6356,0.121512
+2023,ELIX_14,ELIX_06,Insuficiencia renal,Hipertensión no complicada,687018,53809,245155,40135,0.236729
+2023,ELIX_14,ELIX_07,Insuficiencia renal,Hipertensión complicada,687018,53809,6201,3438,0.169116
+2023,ELIX_14,ELIX_08,Insuficiencia renal,Parálisis,687018,53809,6403,813,0.017562
+2023,ELIX_14,ELIX_09,Insuficiencia renal,Otros trastornos neurológicos,687018,53809,23578,2873,0.030542
+2023,ELIX_14,ELIX_10,Insuficiencia renal,Enfermedad pulmonar crónica,687018,53809,51100,7081,0.063566
+2023,ELIX_14,ELIX_11,Insuficiencia renal,Diabetes no complicada,687018,53809,102977,16254,0.124275
+2023,ELIX_14,ELIX_12,Insuficiencia renal,Diabetes complicada,687018,53809,31710,10258,0.20073
+2023,ELIX_14,ELIX_13,Insuficiencia renal,Hipotiroidismo,687018,53809,73663,9490,0.065146
+2023,ELIX_14,ELIX_14,Insuficiencia renal,Insuficiencia renal,687018,53809,53809,53809,1
+2023,ELIX_14,ELIX_15,Insuficiencia renal,Enfermedad hepática,687018,53809,31221,4081,0.042546
+2023,ELIX_14,ELIX_16,Insuficiencia renal,Úlcera péptica sin sangrado,687018,53809,3325,609,0.027211
+2023,ELIX_14,ELIX_17,Insuficiencia renal,VIH/SIDA,687018,53809,3150,217,-0.002383
+2023,ELIX_14,ELIX_18,Insuficiencia renal,Linfoma,687018,53809,4395,584,0.016293
+2023,ELIX_14,ELIX_19,Insuficiencia renal,Cáncer metastásico,687018,53809,14399,1092,-0.001353
+2023,ELIX_14,ELIX_20,Insuficiencia renal,Tumor sólido sin metástasis,687018,53809,22910,2421,0.018908
+2023,ELIX_14,ELIX_21,Insuficiencia renal,Artritis reumatoide y colagenopatías,687018,53809,13045,1869,0.033632
+2023,ELIX_14,ELIX_22,Insuficiencia renal,Coagulopatía,687018,53809,15679,2991,0.063956
+2023,ELIX_14,ELIX_23,Insuficiencia renal,Obesidad,687018,53809,99134,6449,-0.02028
+2023,ELIX_14,ELIX_24,Insuficiencia renal,Pérdida de peso,687018,53809,13392,1821,0.030256
+2023,ELIX_14,ELIX_25,Insuficiencia renal,Trastornos hidroelectrolíticos,687018,53809,58133,15421,0.211551
+2023,ELIX_14,ELIX_26,Insuficiencia renal,Anemia por pérdida de sangre,687018,53809,2195,329,0.01508
+2023,ELIX_14,ELIX_27,Insuficiencia renal,Anemia por deficiencia,687018,53809,9988,2184,0.063443
+2023,ELIX_14,ELIX_28,Insuficiencia renal,Abuso de alcohol,687018,53809,34140,2096,-0.014408
+2023,ELIX_14,ELIX_29,Insuficiencia renal,Abuso de drogas,687018,53809,25107,765,-0.034688
+2023,ELIX_14,ELIX_30,Insuficiencia renal,Psicosis,687018,53809,3580,183,-0.007328
+2023,ELIX_14,ELIX_31,Insuficiencia renal,Depresión,687018,53809,26769,2099,0.000067
+2023,ELIX_15,ELIX_01,Enfermedad hepática,Insuficiencia cardíaca congestiva,687018,31221,39671,3580,0.053246
+2023,ELIX_15,ELIX_02,Enfermedad hepática,Arritmias cardíacas,687018,31221,46649,3400,0.03556
+2023,ELIX_15,ELIX_03,Enfermedad hepática,Valvulopatía,687018,31221,16260,1480,0.034071
+2023,ELIX_15,ELIX_04,Enfermedad hepática,Trastornos de la circulación pulmonar,687018,31221,10966,1270,0.04303
+2023,ELIX_15,ELIX_05,Enfermedad hepática,Enfermedad vascular periférica,687018,31221,26252,2149,0.034851
+2023,ELIX_15,ELIX_06,Enfermedad hepática,Hipertensión no complicada,687018,31221,245155,15389,0.061972
+2023,ELIX_15,ELIX_07,Enfermedad hepática,Hipertensión complicada,687018,31221,6201,529,0.018267
+2023,ELIX_15,ELIX_08,Enfermedad hepática,Parálisis,687018,31221,6403,313,0.001602
+2023,ELIX_15,ELIX_09,Enfermedad hepática,Otros trastornos neurológicos,687018,31221,23578,2038,0.037103
+2023,ELIX_15,ELIX_10,Enfermedad hepática,Enfermedad pulmonar crónica,687018,31221,51100,3368,0.027855
+2023,ELIX_15,ELIX_11,Enfermedad hepática,Diabetes no complicada,687018,31221,102977,8483,0.074461
+2023,ELIX_15,ELIX_12,Enfermedad hepática,Diabetes complicada,687018,31221,31710,2409,0.03224
+2023,ELIX_15,ELIX_13,Enfermedad hepática,Hipotiroidismo,687018,31221,73663,4284,0.021152
+2023,ELIX_15,ELIX_14,Enfermedad hepática,Insuficiencia renal,687018,31221,53809,4081,0.042546
+2023,ELIX_15,ELIX_15,Enfermedad hepática,Enfermedad hepática,687018,31221,31221,31221,1
+2023,ELIX_15,ELIX_16,Enfermedad hepática,Úlcera péptica sin sangrado,687018,31221,3325,741,0.059403
+2023,ELIX_15,ELIX_17,Enfermedad hepática,VIH/SIDA,687018,31221,3150,252,0.01126
+2023,ELIX_15,ELIX_18,Enfermedad hepática,Linfoma,687018,31221,4395,200,0.000024
+2023,ELIX_15,ELIX_19,Enfermedad hepática,Cáncer metastásico,687018,31221,14399,859,0.009984
+2023,ELIX_15,ELIX_20,Enfermedad hepática,Tumor sólido sin metástasis,687018,31221,22910,1523,0.018757
+2023,ELIX_15,ELIX_21,Enfermedad hepática,Artritis reumatoide y colagenopatías,687018,31221,13045,947,0.018136
+2023,ELIX_15,ELIX_22,Enfermedad hepática,Coagulopatía,687018,31221,15679,4846,0.19344
+2023,ELIX_15,ELIX_23,Enfermedad hepática,Obesidad,687018,31221,99134,5043,0.010699
+2023,ELIX_15,ELIX_24,Enfermedad hepática,Pérdida de peso,687018,31221,13392,1480,0.044051
+2023,ELIX_15,ELIX_25,Enfermedad hepática,Trastornos hidroelectrolíticos,687018,31221,58133,7578,0.123952
+2023,ELIX_15,ELIX_26,Enfermedad hepática,Anemia por pérdida de sangre,687018,31221,2195,297,0.024427
+2023,ELIX_15,ELIX_27,Enfermedad hepática,Anemia por deficiencia,687018,31221,9988,1449,0.058101
+2023,ELIX_15,ELIX_28,Enfermedad hepática,Abuso de alcohol,687018,31221,34140,8069,0.209602
+2023,ELIX_15,ELIX_29,Enfermedad hepática,Abuso de drogas,687018,31221,25107,1377,0.008791
+2023,ELIX_15,ELIX_30,Enfermedad hepática,Psicosis,687018,31221,3580,172,0.000904
+2023,ELIX_15,ELIX_31,Enfermedad hepática,Depresión,687018,31221,26769,1376,0.005761
+2023,ELIX_16,ELIX_01,Úlcera péptica sin sangrado,Insuficiencia cardíaca congestiva,687018,3325,39671,387,0.017534
+2023,ELIX_16,ELIX_02,Úlcera péptica sin sangrado,Arritmias cardíacas,687018,3325,46649,413,0.015609
+2023,ELIX_16,ELIX_03,Úlcera péptica sin sangrado,Valvulopatía,687018,3325,16260,153,0.010252
+2023,ELIX_16,ELIX_04,Úlcera péptica sin sangrado,Trastornos de la circulación pulmonar,687018,3325,10966,142,0.014882
+2023,ELIX_16,ELIX_05,Úlcera péptica sin sangrado,Enfermedad vascular periférica,687018,3325,26252,264,0.014983
+2023,ELIX_16,ELIX_06,Úlcera péptica sin sangrado,Hipertensión no complicada,687018,3325,245155,1835,0.028392
+2023,ELIX_16,ELIX_07,Úlcera péptica sin sangrado,Hipertensión complicada,687018,3325,6201,61,0.006872
+2023,ELIX_16,ELIX_08,Úlcera péptica sin sangrado,Parálisis,687018,3325,6403,49,0.003931
+2023,ELIX_16,ELIX_09,Úlcera péptica sin sangrado,Otros trastornos neurológicos,687018,3325,23578,202,0.010126
+2023,ELIX_16,ELIX_10,Úlcera péptica sin sangrado,Enfermedad pulmonar crónica,687018,3325,51100,393,0.011645
+2023,ELIX_16,ELIX_11,Úlcera péptica sin sangrado,Diabetes no complicada,687018,3325,102977,790,0.017134
+2023,ELIX_16,ELIX_12,Úlcera péptica sin sangrado,Diabetes complicada,687018,3325,31710,247,0.009349
+2023,ELIX_16,ELIX_13,Úlcera péptica sin sangrado,Hipotiroidismo,687018,3325,73663,411,0.003694
+2023,ELIX_16,ELIX_14,Úlcera péptica sin sangrado,Insuficiencia renal,687018,3325,53809,609,0.027211
+2023,ELIX_16,ELIX_15,Úlcera péptica sin sangrado,Enfermedad hepática,687018,3325,31221,741,0.059403
+2023,ELIX_16,ELIX_16,Úlcera péptica sin sangrado,Úlcera péptica sin sangrado,687018,3325,3325,3325,1
+2023,ELIX_16,ELIX_17,Úlcera péptica sin sangrado,VIH/SIDA,687018,3325,3150,16,0.000234
+2023,ELIX_16,ELIX_18,Úlcera péptica sin sangrado,Linfoma,687018,3325,4395,22,0.000192
+2023,ELIX_16,ELIX_19,Úlcera péptica sin sangrado,Cáncer metastásico,687018,3325,14399,133,0.00927
+2023,ELIX_16,ELIX_20,Úlcera péptica sin sangrado,Tumor sólido sin metástasis,687018,3325,22910,155,0.005154
+2023,ELIX_16,ELIX_21,Úlcera péptica sin sangrado,Artritis reumatoide y colagenopatías,687018,3325,13045,119,0.008585
+2023,ELIX_16,ELIX_22,Úlcera péptica sin sangrado,Coagulopatía,687018,3325,15679,299,0.031336
+2023,ELIX_16,ELIX_23,Úlcera péptica sin sangrado,Obesidad,687018,3325,99134,341,-0.008284
+2023,ELIX_16,ELIX_24,Úlcera péptica sin sangrado,Pérdida de peso,687018,3325,13392,248,0.027791
+2023,ELIX_16,ELIX_25,Úlcera péptica sin sangrado,Trastornos hidroelectrolíticos,687018,3325,58133,829,0.041271
+2023,ELIX_16,ELIX_26,Úlcera péptica sin sangrado,Anemia por pérdida de sangre,687018,3325,2195,65,0.020209
+2023,ELIX_16,ELIX_27,Úlcera péptica sin sangrado,Anemia por deficiencia,687018,3325,9988,250,0.035336
+2023,ELIX_16,ELIX_28,Úlcera péptica sin sangrado,Abuso de alcohol,687018,3325,34140,464,0.028836
+2023,ELIX_16,ELIX_29,Úlcera péptica sin sangrado,Abuso de drogas,687018,3325,25107,134,0.001396
+2023,ELIX_16,ELIX_30,Úlcera péptica sin sangrado,Psicosis,687018,3325,3580,25,0.002235
+2023,ELIX_16,ELIX_31,Úlcera péptica sin sangrado,Depresión,687018,3325,26769,187,0.006226
+2023,ELIX_17,ELIX_01,VIH/SIDA,Insuficiencia cardíaca congestiva,687018,3150,39671,87,-0.008765
+2023,ELIX_17,ELIX_02,VIH/SIDA,Arritmias cardíacas,687018,3150,46649,99,-0.009839
+2023,ELIX_17,ELIX_03,VIH/SIDA,Valvulopatía,687018,3150,16260,36,-0.005464
+2023,ELIX_17,ELIX_04,VIH/SIDA,Trastornos de la circulación pulmonar,687018,3150,10966,45,-0.000908
+2023,ELIX_17,ELIX_05,VIH/SIDA,Enfermedad vascular periférica,687018,3150,26252,88,-0.003638
+2023,ELIX_17,ELIX_06,VIH/SIDA,Hipertensión no complicada,687018,3150,245155,568,-0.025008
+2023,ELIX_17,ELIX_07,VIH/SIDA,Hipertensión complicada,687018,3150,6201,15,-0.00306
+2023,ELIX_17,ELIX_08,VIH/SIDA,Parálisis,687018,3150,6403,28,-0.000304
+2023,ELIX_17,ELIX_09,VIH/SIDA,Otros trastornos neurológicos,687018,3150,23578,181,0.008627
+2023,ELIX_17,ELIX_10,VIH/SIDA,Enfermedad pulmonar crónica,687018,3150,51100,233,-0.000106
+2023,ELIX_17,ELIX_11,VIH/SIDA,Diabetes no complicada,687018,3150,102977,266,-0.012443
+2023,ELIX_17,ELIX_12,VIH/SIDA,Diabetes complicada,687018,3150,31710,91,-0.005585
+2023,ELIX_17,ELIX_13,VIH/SIDA,Hipotiroidismo,687018,3150,73663,155,-0.012726
+2023,ELIX_17,ELIX_14,VIH/SIDA,Insuficiencia renal,687018,3150,53809,217,-0.002383
+2023,ELIX_17,ELIX_15,VIH/SIDA,Enfermedad hepática,687018,3150,31221,252,0.01126
+2023,ELIX_17,ELIX_16,VIH/SIDA,Úlcera péptica sin sangrado,687018,3150,3325,16,0.000234
+2023,ELIX_17,ELIX_17,VIH/SIDA,VIH/SIDA,687018,3150,3150,3150,1
+2023,ELIX_17,ELIX_18,VIH/SIDA,Linfoma,687018,3150,4395,119,0.026713
+2023,ELIX_17,ELIX_19,VIH/SIDA,Cáncer metastásico,687018,3150,14399,57,-0.001357
+2023,ELIX_17,ELIX_20,VIH/SIDA,Tumor sólido sin metástasis,687018,3150,22910,152,0.005635
+2023,ELIX_17,ELIX_21,VIH/SIDA,Artritis reumatoide y colagenopatías,687018,3150,13045,15,-0.007074
+2023,ELIX_17,ELIX_22,VIH/SIDA,Coagulopatía,687018,3150,15679,172,0.014444
+2023,ELIX_17,ELIX_23,VIH/SIDA,Obesidad,687018,3150,99134,149,-0.018734
+2023,ELIX_17,ELIX_24,VIH/SIDA,Pérdida de peso,687018,3150,13392,369,0.047938
+2023,ELIX_17,ELIX_25,VIH/SIDA,Trastornos hidroelectrolíticos,687018,3150,58133,561,0.022796
+2023,ELIX_17,ELIX_26,VIH/SIDA,Anemia por pérdida de sangre,687018,3150,2195,,
+2023,ELIX_17,ELIX_27,VIH/SIDA,Anemia por deficiencia,687018,3150,9988,120,0.013357
+2023,ELIX_17,ELIX_28,VIH/SIDA,Abuso de alcohol,687018,3150,34140,306,0.014819
+2023,ELIX_17,ELIX_29,VIH/SIDA,Abuso de drogas,687018,3150,25107,576,0.05292
+2023,ELIX_17,ELIX_30,VIH/SIDA,Psicosis,687018,3150,3580,39,0.006759
+2023,ELIX_17,ELIX_31,VIH/SIDA,Depresión,687018,3150,26769,246,0.013724
+2023,ELIX_18,ELIX_01,Linfoma,Insuficiencia cardíaca congestiva,687018,4395,39671,266,0.000956
+2023,ELIX_18,ELIX_02,Linfoma,Arritmias cardíacas,687018,4395,46649,345,0.00338
+2023,ELIX_18,ELIX_03,Linfoma,Valvulopatía,687018,4395,16260,96,-0.000963
+2023,ELIX_18,ELIX_04,Linfoma,Trastornos de la circulación pulmonar,687018,4395,10966,105,0.005076
+2023,ELIX_18,ELIX_05,Linfoma,Enfermedad vascular periférica,687018,4395,26252,224,0.005339
+2023,ELIX_18,ELIX_06,Linfoma,Hipertensión no complicada,687018,4395,245155,1872,0.011574
+2023,ELIX_18,ELIX_07,Linfoma,Hipertensión complicada,687018,4395,6201,44,0.000836
+2023,ELIX_18,ELIX_08,Linfoma,Parálisis,687018,4395,6403,53,0.002287
+2023,ELIX_18,ELIX_09,Linfoma,Otros trastornos neurológicos,687018,4395,23578,141,-0.000986
+2023,ELIX_18,ELIX_10,Linfoma,Enfermedad pulmonar crónica,687018,4395,51100,396,0.004808
+2023,ELIX_18,ELIX_11,Linfoma,Diabetes no complicada,687018,4395,102977,865,0.010548
+2023,ELIX_18,ELIX_12,Linfoma,Diabetes complicada,687018,4395,31710,187,-0.00138
+2023,ELIX_18,ELIX_13,Linfoma,Hipotiroidismo,687018,4395,73663,616,0.008542
+2023,ELIX_18,ELIX_14,Linfoma,Insuficiencia renal,687018,4395,53809,584,0.016293
+2023,ELIX_18,ELIX_15,Linfoma,Enfermedad hepática,687018,4395,31221,200,0.000024
+2023,ELIX_18,ELIX_16,Linfoma,Úlcera péptica sin sangrado,687018,4395,3325,22,0.000192
+2023,ELIX_18,ELIX_17,Linfoma,VIH/SIDA,687018,4395,3150,119,0.026713
+2023,ELIX_18,ELIX_18,Linfoma,Linfoma,687018,4395,4395,4395,1
+2023,ELIX_18,ELIX_19,Linfoma,Cáncer metastásico,687018,4395,14399,134,0.005339
+2023,ELIX_18,ELIX_20,Linfoma,Tumor sólido sin metástasis,687018,4395,22910,171,0.002485
+2023,ELIX_18,ELIX_21,Linfoma,Artritis reumatoide y colagenopatías,687018,4395,13045,106,0.003016
+2023,ELIX_18,ELIX_22,Linfoma,Coagulopatía,687018,4395,15679,297,0.024047
+2023,ELIX_18,ELIX_23,Linfoma,Obesidad,687018,4395,99134,304,-0.017155
+2023,ELIX_18,ELIX_24,Linfoma,Pérdida de peso,687018,4395,13392,234,0.019588
+2023,ELIX_18,ELIX_25,Linfoma,Trastornos hidroelectrolíticos,687018,4395,58133,592,0.014439
+2023,ELIX_18,ELIX_26,Linfoma,Anemia por pérdida de sangre,687018,4395,2195,13,-0.000337
+2023,ELIX_18,ELIX_27,Linfoma,Anemia por deficiencia,687018,4395,9988,101,0.00566
+2023,ELIX_18,ELIX_28,Linfoma,Abuso de alcohol,687018,4395,34140,169,-0.00415
+2023,ELIX_18,ELIX_29,Linfoma,Abuso de drogas,687018,4395,25107,87,-0.007163
+2023,ELIX_18,ELIX_30,Linfoma,Psicosis,687018,4395,3580,20,-0.000736
+2023,ELIX_18,ELIX_31,Linfoma,Depresión,687018,4395,26769,237,0.006204
+2023,ELIX_19,ELIX_01,Cáncer metastásico,Insuficiencia cardíaca congestiva,687018,14399,39671,594,-0.010344
+2023,ELIX_19,ELIX_02,Cáncer metastásico,Arritmias cardíacas,687018,14399,46649,815,-0.006572
+2023,ELIX_19,ELIX_03,Cáncer metastásico,Valvulopatía,687018,14399,16260,191,-0.010013
+2023,ELIX_19,ELIX_04,Cáncer metastásico,Trastornos de la circulación pulmonar,687018,14399,10966,619,0.031553
+2023,ELIX_19,ELIX_05,Cáncer metastásico,Enfermedad vascular periférica,687018,14399,26252,544,-0.000329
+2023,ELIX_19,ELIX_06,Cáncer metastásico,Hipertensión no complicada,687018,14399,245155,6335,0.025386
+2023,ELIX_19,ELIX_07,Cáncer metastásico,Hipertensión complicada,687018,14399,6201,114,-0.001715
+2023,ELIX_19,ELIX_08,Cáncer metastásico,Parálisis,687018,14399,6403,246,0.011823
+2023,ELIX_19,ELIX_09,Cáncer metastásico,Otros trastornos neurológicos,687018,14399,23578,477,-0.000958
+2023,ELIX_19,ELIX_10,Cáncer metastásico,Enfermedad pulmonar crónica,687018,14399,51100,1203,0.005112
+2023,ELIX_19,ELIX_11,Cáncer metastásico,Diabetes no complicada,687018,14399,102977,2840,0.019406
+2023,ELIX_19,ELIX_12,Cáncer metastásico,Diabetes complicada,687018,14399,31710,599,-0.003177
+2023,ELIX_19,ELIX_13,Cáncer metastásico,Hipotiroidismo,687018,14399,73663,1796,0.00828
+2023,ELIX_19,ELIX_14,Cáncer metastásico,Insuficiencia renal,687018,14399,53809,1092,-0.001353
+2023,ELIX_19,ELIX_15,Cáncer metastásico,Enfermedad hepática,687018,14399,31221,859,0.009984
+2023,ELIX_19,ELIX_16,Cáncer metastásico,Úlcera péptica sin sangrado,687018,14399,3325,133,0.00927
+2023,ELIX_19,ELIX_17,Cáncer metastásico,VIH/SIDA,687018,14399,3150,57,-0.001357
+2023,ELIX_19,ELIX_18,Cáncer metastásico,Linfoma,687018,14399,4395,134,0.005339
+2023,ELIX_19,ELIX_19,Cáncer metastásico,Cáncer metastásico,687018,14399,14399,14399,1
+2023,ELIX_19,ELIX_20,Cáncer metastásico,Tumor sólido sin metástasis,687018,14399,22910,0,-0.027175
+2023,ELIX_19,ELIX_21,Cáncer metastásico,Artritis reumatoide y colagenopatías,687018,14399,13045,160,-0.008443
+2023,ELIX_19,ELIX_22,Cáncer metastásico,Coagulopatía,687018,14399,15679,529,0.013635
+2023,ELIX_19,ELIX_23,Cáncer metastásico,Obesidad,687018,14399,99134,924,-0.033363
+2023,ELIX_19,ELIX_24,Cáncer metastásico,Pérdida de peso,687018,14399,13392,1040,0.05581
+2023,ELIX_19,ELIX_25,Cáncer metastásico,Trastornos hidroelectrolíticos,687018,14399,58133,2356,0.041535
+2023,ELIX_19,ELIX_26,Cáncer metastásico,Anemia por pérdida de sangre,687018,14399,2195,87,0.007382
+2023,ELIX_19,ELIX_27,Cáncer metastásico,Anemia por deficiencia,687018,14399,9988,408,0.016865
+2023,ELIX_19,ELIX_28,Cáncer metastásico,Abuso de alcohol,687018,14399,34140,502,-0.009985
+2023,ELIX_19,ELIX_29,Cáncer metastásico,Abuso de drogas,687018,14399,25107,206,-0.01734
+2023,ELIX_19,ELIX_30,Cáncer metastásico,Psicosis,687018,14399,3580,41,-0.004803
+2023,ELIX_19,ELIX_31,Cáncer metastásico,Depresión,687018,14399,26769,585,0.001258
+2023,ELIX_20,ELIX_01,Tumor sólido sin metástasis,Insuficiencia cardíaca congestiva,687018,22910,39671,1412,0.003096
+2023,ELIX_20,ELIX_02,Tumor sólido sin metástasis,Arritmias cardíacas,687018,22910,46649,1828,0.008778
+2023,ELIX_20,ELIX_03,Tumor sólido sin metástasis,Valvulopatía,687018,22910,16260,500,-0.002252
+2023,ELIX_20,ELIX_04,Tumor sólido sin metástasis,Trastornos de la circulación pulmonar,687018,22910,10966,575,0.01354
+2023,ELIX_20,ELIX_05,Tumor sólido sin metástasis,Enfermedad vascular periférica,687018,22910,26252,1004,0.005437
+2023,ELIX_20,ELIX_06,Tumor sólido sin metástasis,Hipertensión no complicada,687018,22910,245155,11254,0.052102
+2023,ELIX_20,ELIX_07,Tumor sólido sin metástasis,Hipertensión complicada,687018,22910,6201,221,0.001219
+2023,ELIX_20,ELIX_08,Tumor sólido sin metástasis,Parálisis,687018,22910,6403,224,0.000884
+2023,ELIX_20,ELIX_09,Tumor sólido sin metástasis,Otros trastornos neurológicos,687018,22910,23578,856,0.003106
+2023,ELIX_20,ELIX_10,Tumor sólido sin metástasis,Enfermedad pulmonar crónica,687018,22910,51100,2092,0.011987
+2023,ELIX_20,ELIX_11,Tumor sólido sin metástasis,Diabetes no complicada,687018,22910,102977,5079,0.037361
+2023,ELIX_20,ELIX_12,Tumor sólido sin metástasis,Diabetes complicada,687018,22910,31710,1082,0.000949
+2023,ELIX_20,ELIX_13,Tumor sólido sin metástasis,Hipotiroidismo,687018,22910,73663,3353,0.023493
+2023,ELIX_20,ELIX_14,Tumor sólido sin metástasis,Insuficiencia renal,687018,22910,53809,2421,0.018908
+2023,ELIX_20,ELIX_15,Tumor sólido sin metástasis,Enfermedad hepática,687018,22910,31221,1523,0.018757
+2023,ELIX_20,ELIX_16,Tumor sólido sin metástasis,Úlcera péptica sin sangrado,687018,22910,3325,155,0.005154
+2023,ELIX_20,ELIX_17,Tumor sólido sin metástasis,VIH/SIDA,687018,22910,3150,152,0.005635
+2023,ELIX_20,ELIX_18,Tumor sólido sin metástasis,Linfoma,687018,22910,4395,171,0.002485
+2023,ELIX_20,ELIX_19,Tumor sólido sin metástasis,Cáncer metastásico,687018,22910,14399,0,-0.027175
+2023,ELIX_20,ELIX_20,Tumor sólido sin metástasis,Tumor sólido sin metástasis,687018,22910,22910,22910,1
+2023,ELIX_20,ELIX_21,Tumor sólido sin metástasis,Artritis reumatoide y colagenopatías,687018,22910,13045,418,-0.001011
+2023,ELIX_20,ELIX_22,Tumor sólido sin metástasis,Coagulopatía,687018,22910,15679,761,0.012929
+2023,ELIX_20,ELIX_23,Tumor sólido sin metástasis,Obesidad,687018,22910,99134,1734,-0.036265
+2023,ELIX_20,ELIX_24,Tumor sólido sin metástasis,Pérdida de peso,687018,22910,13392,1027,0.034036
+2023,ELIX_20,ELIX_25,Tumor sólido sin metástasis,Trastornos hidroelectrolíticos,687018,22910,58133,2975,0.030191
+2023,ELIX_20,ELIX_26,Tumor sólido sin metástasis,Anemia por pérdida de sangre,687018,22910,2195,123,0.007155
+2023,ELIX_20,ELIX_27,Tumor sólido sin metástasis,Anemia por deficiencia,687018,22910,9988,549,0.014625
+2023,ELIX_20,ELIX_28,Tumor sólido sin metástasis,Abuso de alcohol,687018,22910,34140,837,-0.011247
+2023,ELIX_20,ELIX_29,Tumor sólido sin metástasis,Abuso de drogas,687018,22910,25107,246,-0.025545
+2023,ELIX_20,ELIX_30,Tumor sólido sin metástasis,Psicosis,687018,22910,3580,70,-0.005561
+2023,ELIX_20,ELIX_31,Tumor sólido sin metástasis,Depresión,687018,22910,26769,906,0.000559
+2023,ELIX_21,ELIX_01,Artritis reumatoide y colagenopatías,Insuficiencia cardíaca congestiva,687018,13045,39671,1228,0.021705
+2023,ELIX_21,ELIX_02,Artritis reumatoide y colagenopatías,Arritmias cardíacas,687018,13045,46649,1036,0.006369
+2023,ELIX_21,ELIX_03,Artritis reumatoide y colagenopatías,Valvulopatía,687018,13045,16260,589,0.019663
+2023,ELIX_21,ELIX_04,Artritis reumatoide y colagenopatías,Trastornos de la circulación pulmonar,687018,13045,10966,535,0.027808
+2023,ELIX_21,ELIX_05,Artritis reumatoide y colagenopatías,Enfermedad vascular periférica,687018,13045,26252,732,0.012992
+2023,ELIX_21,ELIX_06,Artritis reumatoide y colagenopatías,Hipertensión no complicada,687018,13045,245155,6519,0.041497
+2023,ELIX_21,ELIX_07,Artritis reumatoide y colagenopatías,Hipertensión complicada,687018,13045,6201,203,0.009614
+2023,ELIX_21,ELIX_08,Artritis reumatoide y colagenopatías,Parálisis,687018,13045,6403,149,0.003043
+2023,ELIX_21,ELIX_09,Artritis reumatoide y colagenopatías,Otros trastornos neurológicos,687018,13045,23578,512,0.003767
+2023,ELIX_21,ELIX_10,Artritis reumatoide y colagenopatías,Enfermedad pulmonar crónica,687018,13045,51100,1584,0.024945
+2023,ELIX_21,ELIX_11,Artritis reumatoide y colagenopatías,Diabetes no complicada,687018,13045,102977,2284,0.00982
+2023,ELIX_21,ELIX_12,Artritis reumatoide y colagenopatías,Diabetes complicada,687018,13045,31710,624,0.001113
+2023,ELIX_21,ELIX_13,Artritis reumatoide y colagenopatías,Hipotiroidismo,687018,13045,73663,2649,0.043098
+2023,ELIX_21,ELIX_14,Artritis reumatoide y colagenopatías,Insuficiencia renal,687018,13045,53809,1869,0.033632
+2023,ELIX_21,ELIX_15,Artritis reumatoide y colagenopatías,Enfermedad hepática,687018,13045,31221,947,0.018136
+2023,ELIX_21,ELIX_16,Artritis reumatoide y colagenopatías,Úlcera péptica sin sangrado,687018,13045,3325,119,0.008585
+2023,ELIX_21,ELIX_17,Artritis reumatoide y colagenopatías,VIH/SIDA,687018,13045,3150,15,-0.007074
+2023,ELIX_21,ELIX_18,Artritis reumatoide y colagenopatías,Linfoma,687018,13045,4395,106,0.003016
+2023,ELIX_21,ELIX_19,Artritis reumatoide y colagenopatías,Cáncer metastásico,687018,13045,14399,160,-0.008443
+2023,ELIX_21,ELIX_20,Artritis reumatoide y colagenopatías,Tumor sólido sin metástasis,687018,13045,22910,418,-0.001011
+2023,ELIX_21,ELIX_21,Artritis reumatoide y colagenopatías,Artritis reumatoide y colagenopatías,687018,13045,13045,13045,1
+2023,ELIX_21,ELIX_22,Artritis reumatoide y colagenopatías,Coagulopatía,687018,13045,15679,781,0.034515
+2023,ELIX_21,ELIX_23,Artritis reumatoide y colagenopatías,Obesidad,687018,13045,99134,1405,-0.014488
+2023,ELIX_21,ELIX_24,Artritis reumatoide y colagenopatías,Pérdida de peso,687018,13045,13392,473,0.016872
+2023,ELIX_21,ELIX_25,Artritis reumatoide y colagenopatías,Trastornos hidroelectrolíticos,687018,13045,58133,1870,0.02936
+2023,ELIX_21,ELIX_26,Artritis reumatoide y colagenopatías,Anemia por pérdida de sangre,687018,13045,2195,61,0.003651
+2023,ELIX_21,ELIX_27,Artritis reumatoide y colagenopatías,Anemia por deficiencia,687018,13045,9988,470,0.024979
+2023,ELIX_21,ELIX_28,Artritis reumatoide y colagenopatías,Abuso de alcohol,687018,13045,34140,341,-0.015079
+2023,ELIX_21,ELIX_29,Artritis reumatoide y colagenopatías,Abuso de drogas,687018,13045,25107,160,-0.018002
+2023,ELIX_21,ELIX_30,Artritis reumatoide y colagenopatías,Psicosis,687018,13045,3580,23,-0.006662
+2023,ELIX_21,ELIX_31,Artritis reumatoide y colagenopatías,Depresión,687018,13045,26769,845,0.018557
+2023,ELIX_22,ELIX_01,Coagulopatía,Insuficiencia cardíaca congestiva,687018,15679,39671,2247,0.056062
+2023,ELIX_22,ELIX_02,Coagulopatía,Arritmias cardíacas,687018,15679,46649,2786,0.066693
+2023,ELIX_22,ELIX_03,Coagulopatía,Valvulopatía,687018,15679,16260,1056,0.043917
+2023,ELIX_22,ELIX_04,Coagulopatía,Trastornos de la circulación pulmonar,687018,15679,10966,910,0.051309
+2023,ELIX_22,ELIX_05,Coagulopatía,Enfermedad vascular periférica,687018,15679,26252,1109,0.025924
+2023,ELIX_22,ELIX_06,Coagulopatía,Hipertensión no complicada,687018,15679,245155,7324,0.03518
+2023,ELIX_22,ELIX_07,Coagulopatía,Hipertensión complicada,687018,15679,6201,422,0.028907
+2023,ELIX_22,ELIX_08,Coagulopatía,Parálisis,687018,15679,6403,250,0.010536
+2023,ELIX_22,ELIX_09,Coagulopatía,Otros trastornos neurológicos,687018,15679,23578,1207,0.035814
+2023,ELIX_22,ELIX_10,Coagulopatía,Enfermedad pulmonar crónica,687018,15679,51100,1633,0.017341
+2023,ELIX_22,ELIX_11,Coagulopatía,Diabetes no complicada,687018,15679,102977,3398,0.028613
+2023,ELIX_22,ELIX_12,Coagulopatía,Diabetes complicada,687018,15679,31710,1148,0.019711
+2023,ELIX_22,ELIX_13,Coagulopatía,Hipotiroidismo,687018,15679,73663,2244,0.017733
+2023,ELIX_22,ELIX_14,Coagulopatía,Insuficiencia renal,687018,15679,53809,2991,0.063956
+2023,ELIX_22,ELIX_15,Coagulopatía,Enfermedad hepática,687018,15679,31221,4846,0.19344
+2023,ELIX_22,ELIX_16,Coagulopatía,Úlcera péptica sin sangrado,687018,15679,3325,299,0.031336
+2023,ELIX_22,ELIX_17,Coagulopatía,VIH/SIDA,687018,15679,3150,172,0.014444
+2023,ELIX_22,ELIX_18,Coagulopatía,Linfoma,687018,15679,4395,297,0.024047
+2023,ELIX_22,ELIX_19,Coagulopatía,Cáncer metastásico,687018,15679,14399,529,0.013635
+2023,ELIX_22,ELIX_20,Coagulopatía,Tumor sólido sin metástasis,687018,15679,22910,761,0.012929
+2023,ELIX_22,ELIX_21,Coagulopatía,Artritis reumatoide y colagenopatías,687018,15679,13045,781,0.034515
+2023,ELIX_22,ELIX_22,Coagulopatía,Coagulopatía,687018,15679,15679,15679,1
+2023,ELIX_22,ELIX_23,Coagulopatía,Obesidad,687018,15679,99134,2037,-0.006253
+2023,ELIX_22,ELIX_24,Coagulopatía,Pérdida de peso,687018,15679,13392,1135,0.058473
+2023,ELIX_22,ELIX_25,Coagulopatía,Trastornos hidroelectrolíticos,687018,15679,58133,5564,0.148399
+2023,ELIX_22,ELIX_26,Coagulopatía,Anemia por pérdida de sangre,687018,15679,2195,184,0.023128
+2023,ELIX_22,ELIX_27,Coagulopatía,Anemia por deficiencia,687018,15679,9988,1082,0.069547
+2023,ELIX_22,ELIX_28,Coagulopatía,Abuso de alcohol,687018,15679,34140,2122,0.060231
+2023,ELIX_22,ELIX_29,Coagulopatía,Abuso de drogas,687018,15679,25107,619,0.00239
+2023,ELIX_22,ELIX_30,Coagulopatía,Psicosis,687018,15679,3580,78,-0.000501
+2023,ELIX_22,ELIX_31,Coagulopatía,Depresión,687018,15679,26769,806,0.009826
+2023,ELIX_23,ELIX_01,Obesidad,Insuficiencia cardíaca congestiva,687018,99134,39671,6717,0.017628
+2023,ELIX_23,ELIX_02,Obesidad,Arritmias cardíacas,687018,99134,46649,5979,-0.012386
+2023,ELIX_23,ELIX_03,Obesidad,Valvulopatía,687018,99134,16260,2258,-0.002405
+2023,ELIX_23,ELIX_04,Obesidad,Trastornos de la circulación pulmonar,687018,99134,10966,1779,0.0065
+2023,ELIX_23,ELIX_05,Obesidad,Enfermedad vascular periférica,687018,99134,26252,2601,-0.025649
+2023,ELIX_23,ELIX_06,Obesidad,Hipertensión no complicada,687018,99134,245155,34131,-0.010756
+2023,ELIX_23,ELIX_07,Obesidad,Hipertensión complicada,687018,99134,6201,1048,0.006711
+2023,ELIX_23,ELIX_08,Obesidad,Parálisis,687018,99134,6403,599,-0.014007
+2023,ELIX_23,ELIX_09,Obesidad,Otros trastornos neurológicos,687018,99134,23578,2030,-0.031223
+2023,ELIX_23,ELIX_10,Obesidad,Enfermedad pulmonar crónica,687018,99134,51100,8374,0.015794
+2023,ELIX_23,ELIX_11,Obesidad,Diabetes no complicada,687018,99134,102977,16753,0.021977
+2023,ELIX_23,ELIX_12,Obesidad,Diabetes complicada,687018,99134,31710,5408,0.016433
+2023,ELIX_23,ELIX_13,Obesidad,Hipotiroidismo,687018,99134,73663,13074,0.032731
+2023,ELIX_23,ELIX_14,Obesidad,Insuficiencia renal,687018,99134,53809,6449,-0.02028
+2023,ELIX_23,ELIX_15,Obesidad,Enfermedad hepática,687018,99134,31221,5043,0.010699
+2023,ELIX_23,ELIX_16,Obesidad,Úlcera péptica sin sangrado,687018,99134,3325,341,-0.008284
+2023,ELIX_23,ELIX_17,Obesidad,VIH/SIDA,687018,99134,3150,149,-0.018734
+2023,ELIX_23,ELIX_18,Obesidad,Linfoma,687018,99134,4395,304,-0.017155
+2023,ELIX_23,ELIX_19,Obesidad,Cáncer metastásico,687018,99134,14399,924,-0.033363
+2023,ELIX_23,ELIX_20,Obesidad,Tumor sólido sin metástasis,687018,99134,22910,1734,-0.036265
+2023,ELIX_23,ELIX_21,Obesidad,Artritis reumatoide y colagenopatías,687018,99134,13045,1405,-0.014488
+2023,ELIX_23,ELIX_22,Obesidad,Coagulopatía,687018,99134,15679,2037,-0.006253
+2023,ELIX_23,ELIX_23,Obesidad,Obesidad,687018,99134,99134,99134,1
+2023,ELIX_23,ELIX_24,Obesidad,Pérdida de peso,687018,99134,13392,334,-0.047893
+2023,ELIX_23,ELIX_25,Obesidad,Trastornos hidroelectrolíticos,687018,99134,58133,6991,-0.020798
+2023,ELIX_23,ELIX_26,Obesidad,Anemia por pérdida de sangre,687018,99134,2195,273,-0.00321
+2023,ELIX_23,ELIX_27,Obesidad,Anemia por deficiencia,687018,99134,9988,1264,-0.006133
+2023,ELIX_23,ELIX_28,Obesidad,Abuso de alcohol,687018,99134,34140,3360,-0.029856
+2023,ELIX_23,ELIX_29,Obesidad,Abuso de drogas,687018,99134,25107,1809,-0.040042
+2023,ELIX_23,ELIX_30,Obesidad,Psicosis,687018,99134,3580,317,-0.011483
+2023,ELIX_23,ELIX_31,Obesidad,Depresión,687018,99134,26769,4101,0.005102
+2023,ELIX_24,ELIX_01,Pérdida de peso,Insuficiencia cardíaca congestiva,687018,13392,39671,1393,0.027971
+2023,ELIX_24,ELIX_02,Pérdida de peso,Arritmias cardíacas,687018,13392,46649,1708,0.033425
+2023,ELIX_24,ELIX_03,Pérdida de peso,Valvulopatía,687018,13392,16260,648,0.022929
+2023,ELIX_24,ELIX_04,Pérdida de peso,Trastornos de la circulación pulmonar,687018,13392,10966,709,0.041604
+2023,ELIX_24,ELIX_05,Pérdida de peso,Enfermedad vascular periférica,687018,13392,26252,1103,0.032473
+2023,ELIX_24,ELIX_06,Pérdida de peso,Hipertensión no complicada,687018,13392,245155,6015,0.027168
+2023,ELIX_24,ELIX_07,Pérdida de peso,Hipertensión complicada,687018,13392,6201,178,0.006359
+2023,ELIX_24,ELIX_08,Pérdida de peso,Parálisis,687018,13392,6403,351,0.024783
+2023,ELIX_24,ELIX_09,Pérdida de peso,Otros trastornos neurológicos,687018,13392,23578,1228,0.044439
+2023,ELIX_24,ELIX_10,Pérdida de peso,Enfermedad pulmonar crónica,687018,13392,51100,1872,0.035147
+2023,ELIX_24,ELIX_11,Pérdida de peso,Diabetes no complicada,687018,13392,102977,2228,0.006509
+2023,ELIX_24,ELIX_12,Pérdida de peso,Diabetes complicada,687018,13392,31710,986,0.01846
+2023,ELIX_24,ELIX_13,Pérdida de peso,Hipotiroidismo,687018,13392,73663,1685,0.008476
+2023,ELIX_24,ELIX_14,Pérdida de peso,Insuficiencia renal,687018,13392,53809,1821,0.030256
+2023,ELIX_24,ELIX_15,Pérdida de peso,Enfermedad hepática,687018,13392,31221,1480,0.044051
+2023,ELIX_24,ELIX_16,Pérdida de peso,Úlcera péptica sin sangrado,687018,13392,3325,248,0.027791
+2023,ELIX_24,ELIX_17,Pérdida de peso,VIH/SIDA,687018,13392,3150,369,0.047938
+2023,ELIX_24,ELIX_18,Pérdida de peso,Linfoma,687018,13392,4395,234,0.019588
+2023,ELIX_24,ELIX_19,Pérdida de peso,Cáncer metastásico,687018,13392,14399,1040,0.05581
+2023,ELIX_24,ELIX_20,Pérdida de peso,Tumor sólido sin metástasis,687018,13392,22910,1027,0.034036
+2023,ELIX_24,ELIX_21,Pérdida de peso,Artritis reumatoide y colagenopatías,687018,13392,13045,473,0.016872
+2023,ELIX_24,ELIX_22,Pérdida de peso,Coagulopatía,687018,13392,15679,1135,0.058473
+2023,ELIX_24,ELIX_23,Pérdida de peso,Obesidad,687018,13392,99134,334,-0.047893
+2023,ELIX_24,ELIX_24,Pérdida de peso,Pérdida de peso,687018,13392,13392,13392,1
+2023,ELIX_24,ELIX_25,Pérdida de peso,Trastornos hidroelectrolíticos,687018,13392,58133,4781,0.137998
+2023,ELIX_24,ELIX_26,Pérdida de peso,Anemia por pérdida de sangre,687018,13392,2195,104,0.01142
+2023,ELIX_24,ELIX_27,Pérdida de peso,Anemia por deficiencia,687018,13392,9988,1094,0.079104
+2023,ELIX_24,ELIX_28,Pérdida de peso,Abuso de alcohol,687018,13392,34140,1422,0.036652
+2023,ELIX_24,ELIX_29,Pérdida de peso,Abuso de drogas,687018,13392,25107,989,0.028032
+2023,ELIX_24,ELIX_30,Pérdida de peso,Psicosis,687018,13392,3580,166,0.01407
+2023,ELIX_24,ELIX_31,Pérdida de peso,Depresión,687018,13392,26769,982,0.025038
+2023,ELIX_25,ELIX_01,Trastornos hidroelectrolíticos,Insuficiencia cardíaca congestiva,687018,58133,39671,9644,0.140968
+2023,ELIX_25,ELIX_02,Trastornos hidroelectrolíticos,Arritmias cardíacas,687018,58133,46649,9966,0.125124
+2023,ELIX_25,ELIX_03,Trastornos hidroelectrolíticos,Valvulopatía,687018,58133,16260,3331,0.067267
+2023,ELIX_25,ELIX_04,Trastornos hidroelectrolíticos,Trastornos de la circulación pulmonar,687018,58133,10966,2975,0.085427
+2023,ELIX_25,ELIX_05,Trastornos hidroelectrolíticos,Enfermedad vascular periférica,687018,58133,26252,4958,0.07466
+2023,ELIX_25,ELIX_06,Trastornos hidroelectrolíticos,Hipertensión no complicada,687018,58133,245155,34618,0.151462
+2023,ELIX_25,ELIX_07,Trastornos hidroelectrolíticos,Hipertensión complicada,687018,58133,6201,1749,0.067703
+2023,ELIX_25,ELIX_08,Trastornos hidroelectrolíticos,Parálisis,687018,58133,6403,1226,0.03724
+2023,ELIX_25,ELIX_09,Trastornos hidroelectrolíticos,Otros trastornos neurológicos,687018,58133,23578,5044,0.087592
+2023,ELIX_25,ELIX_10,Trastornos hidroelectrolíticos,Enfermedad pulmonar crónica,687018,58133,51100,8590,0.085034
+2023,ELIX_25,ELIX_11,Trastornos hidroelectrolíticos,Diabetes no complicada,687018,58133,102977,14429,0.083739
+2023,ELIX_25,ELIX_12,Trastornos hidroelectrolíticos,Diabetes complicada,687018,58133,31710,6995,0.107476
+2023,ELIX_25,ELIX_13,Trastornos hidroelectrolíticos,Hipotiroidismo,687018,58133,73663,8531,0.038844
+2023,ELIX_25,ELIX_14,Trastornos hidroelectrolíticos,Insuficiencia renal,687018,58133,53809,15421,0.211551
+2023,ELIX_25,ELIX_15,Trastornos hidroelectrolíticos,Enfermedad hepática,687018,58133,31221,7578,0.123952
+2023,ELIX_25,ELIX_16,Trastornos hidroelectrolíticos,Úlcera péptica sin sangrado,687018,58133,3325,829,0.041271
+2023,ELIX_25,ELIX_17,Trastornos hidroelectrolíticos,VIH/SIDA,687018,58133,3150,561,0.022796
+2023,ELIX_25,ELIX_18,Trastornos hidroelectrolíticos,Linfoma,687018,58133,4395,592,0.014439
+2023,ELIX_25,ELIX_19,Trastornos hidroelectrolíticos,Cáncer metastásico,687018,58133,14399,2356,0.041535
+2023,ELIX_25,ELIX_20,Trastornos hidroelectrolíticos,Tumor sólido sin metástasis,687018,58133,22910,2975,0.030191
+2023,ELIX_25,ELIX_21,Trastornos hidroelectrolíticos,Artritis reumatoide y colagenopatías,687018,58133,13045,1870,0.02936
+2023,ELIX_25,ELIX_22,Trastornos hidroelectrolíticos,Coagulopatía,687018,58133,15679,5564,0.148399
+2023,ELIX_25,ELIX_23,Trastornos hidroelectrolíticos,Obesidad,687018,58133,99134,6991,-0.020798
+2023,ELIX_25,ELIX_24,Trastornos hidroelectrolíticos,Pérdida de peso,687018,58133,13392,4781,0.137998
+2023,ELIX_25,ELIX_25,Trastornos hidroelectrolíticos,Trastornos hidroelectrolíticos,687018,58133,58133,58133,1
+2023,ELIX_25,ELIX_26,Trastornos hidroelectrolíticos,Anemia por pérdida de sangre,687018,58133,2195,364,0.016521
+2023,ELIX_25,ELIX_27,Trastornos hidroelectrolíticos,Anemia por deficiencia,687018,58133,9988,3138,0.100185
+2023,ELIX_25,ELIX_28,Trastornos hidroelectrolíticos,Abuso de alcohol,687018,58133,34140,5551,0.064071
+2023,ELIX_25,ELIX_29,Trastornos hidroelectrolíticos,Abuso de drogas,687018,58133,25107,2344,0.006119
+2023,ELIX_25,ELIX_30,Trastornos hidroelectrolíticos,Psicosis,687018,58133,3580,505,0.014679
+2023,ELIX_25,ELIX_31,Trastornos hidroelectrolíticos,Depresión,687018,58133,26769,3419,0.031187
+2023,ELIX_26,ELIX_01,Anemia por pérdida de sangre,Insuficiencia cardíaca congestiva,687018,2195,39671,200,0.0081
+2023,ELIX_26,ELIX_02,Anemia por pérdida de sangre,Arritmias cardíacas,687018,2195,46649,200,0.005224
+2023,ELIX_26,ELIX_03,Anemia por pérdida de sangre,Valvulopatía,687018,2195,16260,87,0.005947
+2023,ELIX_26,ELIX_04,Anemia por pérdida de sangre,Trastornos de la circulación pulmonar,687018,2195,10966,59,0.004932
+2023,ELIX_26,ELIX_05,Anemia por pérdida de sangre,Enfermedad vascular periférica,687018,2195,26252,122,0.005129
+2023,ELIX_26,ELIX_06,Anemia por pérdida de sangre,Hipertensión no complicada,687018,2195,245155,917,0.0072
+2023,ELIX_26,ELIX_07,Anemia por pérdida de sangre,Hipertensión complicada,687018,2195,6201,57,0.010142
+2023,ELIX_26,ELIX_08,Anemia por pérdida de sangre,Parálisis,687018,2195,6403,26,0.001488
+2023,ELIX_26,ELIX_09,Anemia por pérdida de sangre,Otros trastornos neurológicos,687018,2195,23578,92,0.002362
+2023,ELIX_26,ELIX_10,Anemia por pérdida de sangre,Enfermedad pulmonar crónica,687018,2195,51100,178,0.001449
+2023,ELIX_26,ELIX_11,Anemia por pérdida de sangre,Diabetes no complicada,687018,2195,102977,436,0.007731
+2023,ELIX_26,ELIX_12,Anemia por pérdida de sangre,Diabetes complicada,687018,2195,31710,128,0.003281
+2023,ELIX_26,ELIX_13,Anemia por pérdida de sangre,Hipotiroidismo,687018,2195,73663,273,0.003139
+2023,ELIX_26,ELIX_14,Anemia por pérdida de sangre,Insuficiencia renal,687018,2195,53809,329,0.01508
+2023,ELIX_26,ELIX_15,Anemia por pérdida de sangre,Enfermedad hepática,687018,2195,31221,297,0.024427
+2023,ELIX_26,ELIX_16,Anemia por pérdida de sangre,Úlcera péptica sin sangrado,687018,2195,3325,65,0.020209
+2023,ELIX_26,ELIX_17,Anemia por pérdida de sangre,VIH/SIDA,687018,2195,3150,,
+2023,ELIX_26,ELIX_18,Anemia por pérdida de sangre,Linfoma,687018,2195,4395,13,-0.000337
+2023,ELIX_26,ELIX_19,Anemia por pérdida de sangre,Cáncer metastásico,687018,2195,14399,87,0.007382
+2023,ELIX_26,ELIX_20,Anemia por pérdida de sangre,Tumor sólido sin metástasis,687018,2195,22910,123,0.007155
+2023,ELIX_26,ELIX_21,Anemia por pérdida de sangre,Artritis reumatoide y colagenopatías,687018,2195,13045,61,0.003651
+2023,ELIX_26,ELIX_22,Anemia por pérdida de sangre,Coagulopatía,687018,2195,15679,184,0.023128
+2023,ELIX_26,ELIX_23,Anemia por pérdida de sangre,Obesidad,687018,2195,99134,273,-0.00321
+2023,ELIX_26,ELIX_24,Anemia por pérdida de sangre,Pérdida de peso,687018,2195,13392,104,0.01142
+2023,ELIX_26,ELIX_25,Anemia por pérdida de sangre,Trastornos hidroelectrolíticos,687018,2195,58133,364,0.016521
+2023,ELIX_26,ELIX_26,Anemia por pérdida de sangre,Anemia por pérdida de sangre,687018,2195,2195,2195,1
+2023,ELIX_26,ELIX_27,Anemia por pérdida de sangre,Anemia por deficiencia,687018,2195,9988,12,-0.004291
+2023,ELIX_26,ELIX_28,Anemia por pérdida de sangre,Abuso de alcohol,687018,2195,34140,220,0.013166
+2023,ELIX_26,ELIX_29,Anemia por pérdida de sangre,Abuso de drogas,687018,2195,25107,61,-0.002641
+2023,ELIX_26,ELIX_30,Anemia por pérdida de sangre,Psicosis,687018,2195,3580,,
+2023,ELIX_26,ELIX_31,Anemia por pérdida de sangre,Depresión,687018,2195,26769,131,0.006061
+2023,ELIX_27,ELIX_01,Anemia por deficiencia,Insuficiencia cardíaca congestiva,687018,9988,39671,1573,0.051939
+2023,ELIX_27,ELIX_02,Anemia por deficiencia,Arritmias cardíacas,687018,9988,46649,1396,0.034697
+2023,ELIX_27,ELIX_03,Anemia por deficiencia,Valvulopatía,687018,9988,16260,745,0.040688
+2023,ELIX_27,ELIX_04,Anemia por deficiencia,Trastornos de la circulación pulmonar,687018,9988,10966,557,0.038577
+2023,ELIX_27,ELIX_05,Anemia por deficiencia,Enfermedad vascular periférica,687018,9988,26252,802,0.026664
+2023,ELIX_27,ELIX_06,Anemia por deficiencia,Hipertensión no complicada,687018,9988,245155,5164,0.040612
+2023,ELIX_27,ELIX_07,Anemia por deficiencia,Hipertensión complicada,687018,9988,6201,312,0.028526
+2023,ELIX_27,ELIX_08,Anemia por deficiencia,Parálisis,687018,9988,6403,192,0.012518
+2023,ELIX_27,ELIX_09,Anemia por deficiencia,Otros trastornos neurológicos,687018,9988,23578,624,0.018785
+2023,ELIX_27,ELIX_10,Anemia por deficiencia,Enfermedad pulmonar crónica,687018,9988,51100,1327,0.027071
+2023,ELIX_27,ELIX_11,Anemia por deficiencia,Diabetes no complicada,687018,9988,102977,2129,0.021527
+2023,ELIX_27,ELIX_12,Anemia por deficiencia,Diabetes complicada,687018,9988,31710,1161,0.040569
+2023,ELIX_27,ELIX_13,Anemia por deficiencia,Hipotiroidismo,687018,9988,73663,1592,0.020481
+2023,ELIX_27,ELIX_14,Anemia por deficiencia,Insuficiencia renal,687018,9988,53809,2184,0.063443
+2023,ELIX_27,ELIX_15,Anemia por deficiencia,Enfermedad hepática,687018,9988,31221,1449,0.058101
+2023,ELIX_27,ELIX_16,Anemia por deficiencia,Úlcera péptica sin sangrado,687018,9988,3325,250,0.035336
+2023,ELIX_27,ELIX_17,Anemia por deficiencia,VIH/SIDA,687018,9988,3150,120,0.013357
+2023,ELIX_27,ELIX_18,Anemia por deficiencia,Linfoma,687018,9988,4395,101,0.00566
+2023,ELIX_27,ELIX_19,Anemia por deficiencia,Cáncer metastásico,687018,9988,14399,408,0.016865
+2023,ELIX_27,ELIX_20,Anemia por deficiencia,Tumor sólido sin metástasis,687018,9988,22910,549,0.014625
+2023,ELIX_27,ELIX_21,Anemia por deficiencia,Artritis reumatoide y colagenopatías,687018,9988,13045,470,0.024979
+2023,ELIX_27,ELIX_22,Anemia por deficiencia,Coagulopatía,687018,9988,15679,1082,0.069547
+2023,ELIX_27,ELIX_23,Anemia por deficiencia,Obesidad,687018,9988,99134,1264,-0.006133
+2023,ELIX_27,ELIX_24,Anemia por deficiencia,Pérdida de peso,687018,9988,13392,1094,0.079104
+2023,ELIX_27,ELIX_25,Anemia por deficiencia,Trastornos hidroelectrolíticos,687018,9988,58133,3138,0.100185
+2023,ELIX_27,ELIX_26,Anemia por deficiencia,Anemia por pérdida de sangre,687018,9988,2195,12,-0.004291
+2023,ELIX_27,ELIX_27,Anemia por deficiencia,Anemia por deficiencia,687018,9988,9988,9988,1
+2023,ELIX_27,ELIX_28,Anemia por deficiencia,Abuso de alcohol,687018,9988,34140,933,0.024436
+2023,ELIX_27,ELIX_29,Anemia por deficiencia,Abuso de drogas,687018,9988,25107,394,0.001879
+2023,ELIX_27,ELIX_30,Anemia por deficiencia,Psicosis,687018,9988,3580,96,0.007424
+2023,ELIX_27,ELIX_31,Anemia por deficiencia,Depresión,687018,9988,26769,680,0.018276
+2023,ELIX_28,ELIX_01,Abuso de alcohol,Insuficiencia cardíaca congestiva,687018,34140,39671,2039,0.001942
+2023,ELIX_28,ELIX_02,Abuso de alcohol,Arritmias cardíacas,687018,34140,46649,2334,0.000423
+2023,ELIX_28,ELIX_03,Abuso de alcohol,Valvulopatía,687018,34140,16260,886,0.003437
+2023,ELIX_28,ELIX_04,Abuso de alcohol,Trastornos de la circulación pulmonar,687018,34140,10966,699,0.008234
+2023,ELIX_28,ELIX_05,Abuso de alcohol,Enfermedad vascular periférica,687018,34140,26252,1615,0.010847
+2023,ELIX_28,ELIX_06,Abuso de alcohol,Hipertensión no complicada,687018,34140,245155,12348,0.002314
+2023,ELIX_28,ELIX_07,Abuso de alcohol,Hipertensión complicada,687018,34140,6201,266,-0.002985
+2023,ELIX_28,ELIX_08,Abuso de alcohol,Parálisis,687018,34140,6403,447,0.008979
+2023,ELIX_28,ELIX_09,Abuso de alcohol,Otros trastornos neurológicos,687018,34140,23578,2172,0.036806
+2023,ELIX_28,ELIX_10,Abuso de alcohol,Enfermedad pulmonar crónica,687018,34140,51100,2881,0.008722
+2023,ELIX_28,ELIX_11,Abuso de alcohol,Diabetes no complicada,687018,34140,102977,5123,0.000108
+2023,ELIX_28,ELIX_12,Abuso de alcohol,Diabetes complicada,687018,34140,31710,1383,-0.006154
+2023,ELIX_28,ELIX_13,Abuso de alcohol,Hipotiroidismo,687018,34140,73663,2154,-0.032615
+2023,ELIX_28,ELIX_14,Abuso de alcohol,Insuficiencia renal,687018,34140,53809,2096,-0.014408
+2023,ELIX_28,ELIX_15,Abuso de alcohol,Enfermedad hepática,687018,34140,31221,8069,0.209602
+2023,ELIX_28,ELIX_16,Abuso de alcohol,Úlcera péptica sin sangrado,687018,34140,3325,464,0.028836
+2023,ELIX_28,ELIX_17,Abuso de alcohol,VIH/SIDA,687018,34140,3150,306,0.014819
+2023,ELIX_28,ELIX_18,Abuso de alcohol,Linfoma,687018,34140,4395,169,-0.00415
+2023,ELIX_28,ELIX_19,Abuso de alcohol,Cáncer metastásico,687018,34140,14399,502,-0.009985
+2023,ELIX_28,ELIX_20,Abuso de alcohol,Tumor sólido sin metástasis,687018,34140,22910,837,-0.011247
+2023,ELIX_28,ELIX_21,Abuso de alcohol,Artritis reumatoide y colagenopatías,687018,34140,13045,341,-0.015079
+2023,ELIX_28,ELIX_22,Abuso de alcohol,Coagulopatía,687018,34140,15679,2122,0.060231
+2023,ELIX_28,ELIX_23,Abuso de alcohol,Obesidad,687018,34140,99134,3360,-0.029856
+2023,ELIX_28,ELIX_24,Abuso de alcohol,Pérdida de peso,687018,34140,13392,1422,0.036652
+2023,ELIX_28,ELIX_25,Abuso de alcohol,Trastornos hidroelectrolíticos,687018,34140,58133,5551,0.064071
+2023,ELIX_28,ELIX_26,Abuso de alcohol,Anemia por pérdida de sangre,687018,34140,2195,220,0.013166
+2023,ELIX_28,ELIX_27,Abuso de alcohol,Anemia por deficiencia,687018,34140,9988,933,0.024436
+2023,ELIX_28,ELIX_28,Abuso de alcohol,Abuso de alcohol,687018,34140,34140,34140,1
+2023,ELIX_28,ELIX_29,Abuso de alcohol,Abuso de drogas,687018,34140,25107,6670,0.193558
+2023,ELIX_28,ELIX_30,Abuso de alcohol,Psicosis,687018,34140,3580,403,0.020941
+2023,ELIX_28,ELIX_31,Abuso de alcohol,Depresión,687018,34140,26769,2206,0.030314
+2023,ELIX_29,ELIX_01,Abuso de drogas,Insuficiencia cardíaca congestiva,687018,25107,39671,817,-0.021043
+2023,ELIX_29,ELIX_02,Abuso de drogas,Arritmias cardíacas,687018,25107,46649,703,-0.030889
+2023,ELIX_29,ELIX_03,Abuso de drogas,Valvulopatía,687018,25107,16260,374,-0.011238
+2023,ELIX_29,ELIX_04,Abuso de drogas,Trastornos de la circulación pulmonar,687018,25107,10966,381,-0.001223
+2023,ELIX_29,ELIX_05,Abuso de drogas,Enfermedad vascular periférica,687018,25107,26252,533,-0.017253
+2023,ELIX_29,ELIX_06,Abuso de drogas,Hipertensión no complicada,687018,25107,245155,3538,-0.087781
+2023,ELIX_29,ELIX_07,Abuso de drogas,Hipertensión complicada,687018,25107,6201,127,-0.008171
+2023,ELIX_29,ELIX_08,Abuso de drogas,Parálisis,687018,25107,6403,305,0.005732
+2023,ELIX_29,ELIX_09,Abuso de drogas,Otros trastornos neurológicos,687018,25107,23578,1128,0.011349
+2023,ELIX_29,ELIX_10,Abuso de drogas,Enfermedad pulmonar crónica,687018,25107,51100,1564,-0.008971
+2023,ELIX_29,ELIX_11,Abuso de drogas,Diabetes no complicada,687018,25107,102977,1313,-0.053247
+2023,ELIX_29,ELIX_12,Abuso de drogas,Diabetes complicada,687018,25107,31710,517,-0.023729
+2023,ELIX_29,ELIX_13,Abuso de drogas,Hipotiroidismo,687018,25107,73663,745,-0.048815
+2023,ELIX_29,ELIX_14,Abuso de drogas,Insuficiencia renal,687018,25107,53809,765,-0.034688
+2023,ELIX_29,ELIX_15,Abuso de drogas,Enfermedad hepática,687018,25107,31221,1377,0.008791
+2023,ELIX_29,ELIX_16,Abuso de drogas,Úlcera péptica sin sangrado,687018,25107,3325,134,0.001396
+2023,ELIX_29,ELIX_17,Abuso de drogas,VIH/SIDA,687018,25107,3150,576,0.05292
+2023,ELIX_29,ELIX_18,Abuso de drogas,Linfoma,687018,25107,4395,87,-0.007163
+2023,ELIX_29,ELIX_19,Abuso de drogas,Cáncer metastásico,687018,25107,14399,206,-0.01734
+2023,ELIX_29,ELIX_20,Abuso de drogas,Tumor sólido sin metástasis,687018,25107,22910,246,-0.025545
+2023,ELIX_29,ELIX_21,Abuso de drogas,Artritis reumatoide y colagenopatías,687018,25107,13045,160,-0.018002
+2023,ELIX_29,ELIX_22,Abuso de drogas,Coagulopatía,687018,25107,15679,619,0.00239
+2023,ELIX_29,ELIX_23,Abuso de drogas,Obesidad,687018,25107,99134,1809,-0.040042
+2023,ELIX_29,ELIX_24,Abuso de drogas,Pérdida de peso,687018,25107,13392,989,0.028032
+2023,ELIX_29,ELIX_25,Abuso de drogas,Trastornos hidroelectrolíticos,687018,25107,58133,2344,0.006119
+2023,ELIX_29,ELIX_26,Abuso de drogas,Anemia por pérdida de sangre,687018,25107,2195,61,-0.002641
+2023,ELIX_29,ELIX_27,Abuso de drogas,Anemia por deficiencia,687018,25107,9988,394,0.001879
+2023,ELIX_29,ELIX_28,Abuso de drogas,Abuso de alcohol,687018,25107,34140,6670,0.193558
+2023,ELIX_29,ELIX_29,Abuso de drogas,Abuso de drogas,687018,25107,25107,25107,1
+2023,ELIX_29,ELIX_30,Abuso de drogas,Psicosis,687018,25107,3580,741,0.06574
+2023,ELIX_29,ELIX_31,Abuso de drogas,Depresión,687018,25107,26769,2129,0.046129
+2023,ELIX_30,ELIX_01,Psicosis,Insuficiencia cardíaca congestiva,687018,3580,39671,128,-0.006823
+2023,ELIX_30,ELIX_02,Psicosis,Arritmias cardíacas,687018,3580,46649,135,-0.008686
+2023,ELIX_30,ELIX_03,Psicosis,Valvulopatía,687018,3580,16260,47,-0.005018
+2023,ELIX_30,ELIX_04,Psicosis,Trastornos de la circulación pulmonar,687018,3580,10966,66,0.001429
+2023,ELIX_30,ELIX_05,Psicosis,Enfermedad vascular periférica,687018,3580,26252,103,-0.003564
+2023,ELIX_30,ELIX_06,Psicosis,Hipertensión no complicada,687018,3580,245155,903,-0.015803
+2023,ELIX_30,ELIX_07,Psicosis,Hipertensión complicada,687018,3580,6201,26,-0.001349
+2023,ELIX_30,ELIX_08,Psicosis,Parálisis,687018,3580,6403,46,0.002658
+2023,ELIX_30,ELIX_09,Psicosis,Otros trastornos neurológicos,687018,3580,23578,427,0.033775
+2023,ELIX_30,ELIX_10,Psicosis,Enfermedad pulmonar crónica,687018,3580,51100,314,0.003677
+2023,ELIX_30,ELIX_11,Psicosis,Diabetes no complicada,687018,3580,102977,500,-0.002073
+2023,ELIX_30,ELIX_12,Psicosis,Diabetes complicada,687018,3580,31710,126,-0.003781
+2023,ELIX_30,ELIX_13,Psicosis,Hipotiroidismo,687018,3580,73663,495,0.007263
+2023,ELIX_30,ELIX_14,Psicosis,Insuficiencia renal,687018,3580,53809,183,-0.007328
+2023,ELIX_30,ELIX_15,Psicosis,Enfermedad hepática,687018,3580,31221,172,0.000904
+2023,ELIX_30,ELIX_16,Psicosis,Úlcera péptica sin sangrado,687018,3580,3325,25,0.002235
+2023,ELIX_30,ELIX_17,Psicosis,VIH/SIDA,687018,3580,3150,39,0.006759
+2023,ELIX_30,ELIX_18,Psicosis,Linfoma,687018,3580,4395,20,-0.000736
+2023,ELIX_30,ELIX_19,Psicosis,Cáncer metastásico,687018,3580,14399,41,-0.004803
+2023,ELIX_30,ELIX_20,Psicosis,Tumor sólido sin metástasis,687018,3580,22910,70,-0.005561
+2023,ELIX_30,ELIX_21,Psicosis,Artritis reumatoide y colagenopatías,687018,3580,13045,23,-0.006662
+2023,ELIX_30,ELIX_22,Psicosis,Coagulopatía,687018,3580,15679,78,-0.000501
+2023,ELIX_30,ELIX_23,Psicosis,Obesidad,687018,3580,99134,317,-0.011483
+2023,ELIX_30,ELIX_24,Psicosis,Pérdida de peso,687018,3580,13392,166,0.01407
+2023,ELIX_30,ELIX_25,Psicosis,Trastornos hidroelectrolíticos,687018,3580,58133,505,0.014679
+2023,ELIX_30,ELIX_26,Psicosis,Anemia por pérdida de sangre,687018,3580,2195,,
+2023,ELIX_30,ELIX_27,Psicosis,Anemia por deficiencia,687018,3580,9988,96,0.007424
+2023,ELIX_30,ELIX_28,Psicosis,Abuso de alcohol,687018,3580,34140,403,0.020941
+2023,ELIX_30,ELIX_29,Psicosis,Abuso de drogas,687018,3580,25107,741,0.06574
+2023,ELIX_30,ELIX_30,Psicosis,Psicosis,687018,3580,3580,3580,1
+2023,ELIX_30,ELIX_31,Psicosis,Depresión,687018,3580,26769,297,0.016456
+2023,ELIX_31,ELIX_01,Depresión,Insuficiencia cardíaca congestiva,687018,26769,39671,1783,0.007651
+2023,ELIX_31,ELIX_02,Depresión,Arritmias cardíacas,687018,26769,46649,1782,-0.001065
+2023,ELIX_31,ELIX_03,Depresión,Valvulopatía,687018,26769,16260,775,0.006999
+2023,ELIX_31,ELIX_04,Depresión,Trastornos de la circulación pulmonar,687018,26769,10966,688,0.015648
+2023,ELIX_31,ELIX_05,Depresión,Enfermedad vascular periférica,687018,26769,26252,1129,0.004164
+2023,ELIX_31,ELIX_06,Depresión,Hipertensión no complicada,687018,26769,245155,10921,0.021491
+2023,ELIX_31,ELIX_07,Depresión,Hipertensión complicada,687018,26769,6201,277,0.002814
+2023,ELIX_31,ELIX_08,Depresión,Parálisis,687018,26769,6403,429,0.014052
+2023,ELIX_31,ELIX_09,Depresión,Otros trastornos neurológicos,687018,26769,23578,1539,0.02563
+2023,ELIX_31,ELIX_10,Depresión,Enfermedad pulmonar crónica,687018,26769,51100,2821,0.023792
+2023,ELIX_31,ELIX_11,Depresión,Diabetes no complicada,687018,26769,102977,4464,0.009516
+2023,ELIX_31,ELIX_12,Depresión,Diabetes complicada,687018,26769,31710,1491,0.009158
+2023,ELIX_31,ELIX_13,Depresión,Hipotiroidismo,687018,26769,73663,4529,0.040328
+2023,ELIX_31,ELIX_14,Depresión,Insuficiencia renal,687018,26769,53809,2099,0.000067
+2023,ELIX_31,ELIX_15,Depresión,Enfermedad hepática,687018,26769,31221,1376,0.005761
+2023,ELIX_31,ELIX_16,Depresión,Úlcera péptica sin sangrado,687018,26769,3325,187,0.006226
+2023,ELIX_31,ELIX_17,Depresión,VIH/SIDA,687018,26769,3150,246,0.013724
+2023,ELIX_31,ELIX_18,Depresión,Linfoma,687018,26769,4395,237,0.006204
+2023,ELIX_31,ELIX_19,Depresión,Cáncer metastásico,687018,26769,14399,585,0.001258
+2023,ELIX_31,ELIX_20,Depresión,Tumor sólido sin metástasis,687018,26769,22910,906,0.000559
+2023,ELIX_31,ELIX_21,Depresión,Artritis reumatoide y colagenopatías,687018,26769,13045,845,0.018557
+2023,ELIX_31,ELIX_22,Depresión,Coagulopatía,687018,26769,15679,806,0.009826
+2023,ELIX_31,ELIX_23,Depresión,Obesidad,687018,26769,99134,4101,0.005102
+2023,ELIX_31,ELIX_24,Depresión,Pérdida de peso,687018,26769,13392,982,0.025038
+2023,ELIX_31,ELIX_25,Depresión,Trastornos hidroelectrolíticos,687018,26769,58133,3419,0.031187
+2023,ELIX_31,ELIX_26,Depresión,Anemia por pérdida de sangre,687018,26769,2195,131,0.006061
+2023,ELIX_31,ELIX_27,Depresión,Anemia por deficiencia,687018,26769,9988,680,0.018276
+2023,ELIX_31,ELIX_28,Depresión,Abuso de alcohol,687018,26769,34140,2206,0.030314
+2023,ELIX_31,ELIX_29,Depresión,Abuso de drogas,687018,26769,25107,2129,0.046129
+2023,ELIX_31,ELIX_30,Depresión,Psicosis,687018,26769,3580,297,0.016456
+2023,ELIX_31,ELIX_31,Depresión,Depresión,687018,26769,26769,26769,1

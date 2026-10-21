@@ -1,0 +1,62 @@
+{
+  "verdict": "APPROVED",
+  "findings": [
+    {
+      "id": 1,
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "Afirmación de AUC inflado del L1",
+      "detail": "El resumen del implementador y el registro del plan dicen que el AUC de 2023 de 0,925 del modelo L1 está inflado por ESPECIALIDAD_MEDICA y SERVICIOINGRESO y que no es un desempeño esperable, pero ninguna salida de la suite lo mide. Matizar la frase (las dos condicionales aportan unos 0,016 puntos) o agregar una fila de sensibilidad (L1 sin condicionales) a t23_importancia.csv. El informe provisional solo advierte que los coeficientes pueden codificar el hospital y no necesita cambio.",
+      "evidence": "Reajuste independiente con LogisticRegression L1 (liblinear) al C publicado de 0,464159 sobre un diseño propio: 47 variables, 294 columnas, AUC 2023 0,9251, AUC ranking 0,9248, 176 coeficientes no nulos y 42 variables que sobreviven, igual a t23_importancia.csv. Sin ESPECIALIDAD_MEDICA y SERVICIOINGRESO: 45 variables, 170 columnas, AUC 2023 0,9096. Sin las cuatro condicionales (más NIVEL_CUIDADO_INGRESO y DERIVADO_OTRO_HOSPITAL): 43 variables, 167 columnas, AUC 2023 0,9033. El reajuste usa el C publicado y no repite la validación cruzada de cada variante."
+    },
+    {
+      "id": 2,
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "Rótulos de F11_02 cruzados por líneas y sin guía",
+      "detail": "Las líneas punteadas de los umbrales de proxy (0,15 y 0,30) atraviesan ocho rótulos, que siguen legibles, y los rótulos de ELIX_14, ELIX_01, ELIX_22 y ELIX_15 quedan junto a una pila de cuatro triángulos sin guía hacia su punto, con el 5 de ELIX_15 tocando su marcador. Dar fondo blanco semitransparente a los rótulos en etiquetas_sin_solape o agregar líneas guía.",
+      "evidence": "F11_02.png de la regeneración (idéntico por hash al del implementador), recortes ampliados a resolución nativa: GRUPO_CLINICO, PUNTAJE_VAN_WALRAVEN, N_COMORB_ELIX, PUNTAJE_VAN_WALRAVEN_SIN_5, ELIX_25, SERVICIOINGRESO, ES_EXTRANJERO y ENTRANTE_TIPO_PROCEDENCIA quedan cruzados por las líneas en 0,15 o 0,30. sospechas.figura_proxy dibuja las líneas con axvline y etiquetas_sin_solape esquiva solo rótulos y puntos. El registro del plan ya reconoce el cruce de algún rótulo."
+    },
+    {
+      "id": 3,
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "Pie de F11_05 con 0,93",
+      "detail": "El pie de F11_05 dice AUC del modelo L1 en 2023: 0,93 mientras t23_importancia.csv, el resumen y el informe dan 0,925. Pasar tres decimales a _coma en la línea del pie.",
+      "evidence": "eda/seleccion.py:652 llama a _coma(auc_modelo) con el valor por defecto de dos decimales. F11_05.png muestra 0,93 en el pie y t23_resumen_seleccion.csv trae auc_modelo_l1_2023 igual a 0,9251."
+    },
+    {
+      "id": 4,
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "P y q publicados como 0,0",
+      "detail": "Contexto.escribir_tabla redondea los flotantes a seis decimales, de modo que los p muy pequeños se publican como 0,0 y quien recalcule Benjamini y Hochberg desde los p publicados, o los lea como exactos, se equivoca. Declarar en la descripción de las tablas que 0,0 significa menor que 0,000001 o publicar también el logaritmo del p. Los q se calculan antes de redondear y no se contaminan.",
+      "evidence": "eda/contexto.py, _limpiar_numericos (round a 6 decimales). En t23_or_elix.csv, p_crudo es 0,0 en 44 de 60 filas con valor, q_crudo en 44 de 60, p_ajustado en 28 de 60 y q_ajustado en 27 de 60. En t23_sensibilidad_elix.csv, p_larga y q_larga son 0,0 en 27 de 31. Mi p ajustado de ELIX_24 es 5,4e-99 y se publica como 0,0."
+    },
+    {
+      "id": 5,
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "F08_02 no reproducible entre corridas (Tarea 8, preexistente)",
+      "detail": "La figura F08_02 de la Tarea 8 cambia de bytes entre corridas con el mismo código, y con ella su fila y las sumas de verificación de figuras_indice.csv. No pertenece al diff de la Tarea 11 (comorbilidad.py no cambió desde el 8 de octubre), pero invalida una comparación de determinismo sobre toda la carpeta. Agregar maintain_order=True a ese group_by o limitar la comparación global a las filas de las Tareas 10 y 11.",
+      "evidence": "eda/comorbilidad.py:424 recorre hosp.group_by sobre cod_hospital sin maintain_order. Cuatro corridas con el mismo código dieron los hashes de F08_02.png 1854107f, 97dc874d, 553137a5 y 69f0e8a6, mientras F08_01.png, F08_03.png y t23_deriva_codificacion.csv salieron iguales en las tres que comparé. Contra la corrida del implementador, 50 de 52 archivos son idénticos y F08_02.png difiere en 2.668 píxeles (diferencia máxima 6 sobre la suma de canales); las 11 tablas y los 6 PNG de la Tarea 11 son idénticos."
+    },
+    {
+      "id": 6,
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "Salidas reales borradas por el reinicio del equipo",
+      "detail": "El equipo se reinició durante la revisión y desaparecieron las salidas reales que el plan pedía conservar hasta verificacion-global. Ese paso debe regenerar la Tarea 11 (3 a 4 minutos) y reescribir el script de corrida antes de abrir los PNG.",
+      "evidence": "A las 15:27 del 10 de octubre, /tmp/real_t11 y /tmp/real_t11_run.py no existen y /tmp solo trae entradas del arranque de las 15:26; tampoco hay /tmp/real_t10. La sección S14 del plan fija conservarlos hasta la verificación global. Mi regeneración posterior tardó 250 s y 737 MB."
+    },
+    {
+      "id": 7,
+      "severity": "NIT",
+      "confidence": "confirmed",
+      "title": "Edición por shell de test_t11_seleccion.py",
+      "detail": "El implementador declara dos ediciones por shell contra la regla de no mezclar herramientas de edición sobre el mismo archivo. El archivo está íntegro; no requiere acción salvo no repetirlo.",
+      "evidence": "tests/test_t11_seleccion.py tiene 1.551 líneas, UTF-8 sin retornos de carro, termina en la marca FIN-test_t11_seleccion, recolecta 114 pruebas y no trae print, breakpoint, pdb ni rutas de /tmp. La suite completa da 1.080 símbolos de avance sin ninguna línea de fallo."
+    }
+  ],
+  "reviewDoc": "/home/felipe/Documentos/Proyecto final/Tesis/fase2_eda/.agents/tasks/t11_cierre_review.md"
+}

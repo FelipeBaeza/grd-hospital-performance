@@ -1,0 +1,2 @@
+n_categorias,n_sobre_umbral_3c,min_episodios_linea,prev_completo_ELIX_11,prev_3c_ELIX_11,prev_completo_ELIX_12,prev_3c_ELIX_12,phi_max,phi_max_a,phi_max_b,periodo_phi,n_pares_redundantes,n_pares,n_hospitales_cambio,cambio_hosp_p10,cambio_hosp_p90,n_hospitales_con_alza
+31,11,100,0.146371,0,0.041936,0,0.391376,ELIX_06,ELIX_11,2019-2022,0,462,62,0.076541,0.930375,61

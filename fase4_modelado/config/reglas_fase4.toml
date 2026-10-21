@@ -1,0 +1,56 @@
+# Reglas de la Fase 4 (Modelado). Se congelan ANTES de entrenar; la huella SHA-256 de este archivo queda en el manifiesto.
+version = "1.0"
+
+[semilla]
+maestra = 20261018
+
+[validacion]
+# cada pliegue: años de entrenamiento y año de validación (siempre hacia adelante)
+pliegue1_entrenamiento = [2019, 2020]
+pliegue1_validacion = 2021
+pliegue2_entrenamiento = [2019, 2020, 2021]
+pliegue2_validacion = 2022
+anios_entrenamiento_final = [2019, 2020, 2021, 2022]
+anio_calibracion = 2023
+anio_sellado = 2024
+
+[seleccion]
+orden = ["linea_base", "lightgbm", "xgboost"]          # de más simple a más complejo
+mortalidad_metrica = "pr_auc"                            # mayor es mejor
+mortalidad_mejora_minima_abs = 0.010
+estadia_metrica = "devianza_poisson"                     # menor es mejor
+estadia_mejora_minima_rel = 0.01
+tolerancia_ln_oe_2023 = 0.02                             # la calibración en 2023 (antes de recalibrar) no puede ser peor por más de esto
+tolerancia_pendiente_2023 = 0.05                         # idem para la pendiente (solo mortalidad)
+
+[ajuste]
+pruebas_mortalidad = 40
+pruebas_estadia = 30
+submuestra_ajuste = 0.30                                 # fracción de las filas de entrenamiento de cada pliegue usada en las pruebas
+rondas_detencion_temprana = 50
+max_arboles = 1500
+n_hilos = 2
+c_logistica = [0.003, 0.01, 0.03, 0.1, 0.3, 1.0, 3.0, 10.0]  # enmienda unica: se agregan 3.0 y 10.0 porque el optimo estaba en el borde (1.0)
+alpha_poisson = [1e-6, 1e-5, 1e-4, 1e-3, 1e-2]
+alpha_lineal = [1.0, 10.0, 100.0]
+
+[calibracion]
+bloques = 5
+empate_relativo = 0.005                                  # diferencia relativa por debajo de la cual se prefiere el método más simple
+
+[umbrales]
+pendiente_min = 0.8
+pendiente_max = 1.2
+oe_min = 0.95
+oe_max = 1.05
+
+[integridad]
+max_dif_exactitud_pp = 5.0                               # propuesta D5
+muestra_entrenamiento = 200000
+muestra_evaluacion = 100000
+iteraciones = 60
+muestra_contribuciones = 100000
+
+[exhaustividad]
+excluir_prefijos = ["Z55", "Z56", "Z57", "Z58", "Z59", "Z60", "Z61", "Z62", "Z63", "Z64", "Z65", "Z34", "Z35", "Z36", "Z37", "Z38", "Z39", "O80"]
+bandas_edad = [18, 30, 40, 50, 60, 70, 80, 90, 200]

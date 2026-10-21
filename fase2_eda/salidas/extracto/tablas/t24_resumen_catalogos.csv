@@ -1,0 +1,2 @@
+n_reglas_cruzadas,n_codigos_hospital_distintos,n_codigos_hospital_fuera_catalogo,n_codigos_hospital_privado_probable,n_hospitales_catalogo,n_etiquetas_tipoalta,n_etiquetas_tipoalta_por_prefijo,n_etiquetas_tipoalta_sin_rol,pct_perdido_union_exacta,n_grd_xlsx,n_grd_ir_csv,n_grd_solo_xlsx,n_grd_solo_csv,n_cie10_catalogo,n_cie9_catalogo
+13,72,1,0,377,11,2,0,0.718814,1058,1066,22,30,39873,4646

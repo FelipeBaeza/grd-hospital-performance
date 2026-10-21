@@ -1,0 +1,41 @@
+# Protocolo pre-registrado de la Fase 5 (Evaluación). Versión 1.0, 19 de octubre de 2026.
+# Regla: este archivo se escribe y se firma (huella SHA-256) ANTES de abrir el desenlace de 2024. Después no se cambia; una desviación se declara en el informe.
+version = "1.0"
+semilla = 20261019
+
+[ensayo]
+anio = 2023            # año con desenlace conocido para depurar el código; sus resultados NO se reportan como evaluación (2023 se usó para calibrar)
+
+[criterios]
+bss_minimo = 0.0
+pendiente = [0.8, 1.2]
+oe_global = [0.95, 1.05]
+pr_auc_frente_a = "logistica"          # plan B si falla: regresión logística congelada
+rmse_frente_a = ["lineal", "poisson"]  # plan B si falla: la línea base congelada
+regla_veredicto = "cumple si el valor puntual cumple y el intervalo de confianza queda entero del lado favorable; 'cumple con incertidumbre' si el punto cumple pero el intervalo cruza el umbral; 'no cumple' si el punto no cumple"
+
+[incertidumbre]
+bootstrap = 1000                       # remuestreo de hospitales completos
+nivel = 0.95
+
+[hospital]
+min_egresos = 500
+min_esperado = 10                      # muertes esperadas (mortalidad); mismo criterio de volumen para estadía (días/estancia media)
+celda_minima = 10                      # toda cifra de 1 a 9 casos se suprime
+z_alerta = 1.96                        # límite 95 %
+z_senal = 3.09                         # límite 99,8 %
+winsor = 0.10                          # Spiegelhalter (2005)
+dispersion_estadia = "residuos de Pearson globales (quasi-Poisson)"
+
+[estadia]
+tope_dias = 53
+
+[apertura]
+archivo_autorizacion = "documentos/autorizacion_apertura_2024.txt"
+frase = "autorizo-fase-5"
+lecturas_concedidas_permitidas = 1
+alcance = "una lectura del desenlace de 2024 para construir las cohortes D y E"
+
+[[incidentes]]
+fecha = "2026-10-19"
+descripcion = "Durante la preparación de la Fase 5, el asistente cargó el archivo sellado desenlace_2024.parquet completo con una lectura directa (fuera del cortafuegos y sin registro) solo para listar sus nombres de columna. No se imprimió, calculó ni guardó ningún valor; el archivo no se volvió a abrir. Se declara para que el profesor guía lo conozca al autorizar la apertura."

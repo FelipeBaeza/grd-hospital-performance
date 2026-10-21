@@ -1,0 +1,3 @@
+con_condicionales,n_predictores,n_hospitales,n_evaluacion,exactitud_top1,clase_mayoritaria
+True,40,65,98161,0.08155988630922668,0.04532233037803533
+False,36,65,98161,0.03934352747017655,0.04532233037803533

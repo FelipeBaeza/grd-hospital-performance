@@ -1,0 +1,9 @@
+puerta,nombre,estado,detalle
+G1,Modelos intactos,PASS,9 archivos de la Fase 4 y 6 de los planes B siguen con la huella del manifiesto
+G2,Apertura única y autorizada,PASS,lecturas concedidas de 2024 en el registro: 1; archivo de autorización completo: sí
+G3,Protocolo pre-registrado,PASS,la huella del protocolo es la registrada y el registro es anterior a la apertura
+G4,Sin reajuste con 2024,PASS,el código de la fase no entrena ni recalibra y los modelos no cambiaron
+G5,Criterios completos,PASS,"7 criterios con valor, intervalo y veredicto; gráficos de embudo de mortalidad y estadía generados"
+G6,Indicador válido,PASS,O/E calculado en 69 hospitales de mortalidad y 69 de estadía que cumplen el volumen mínimo (el O/E se omite solo donde hay menos de 10 eventos)
+G7,Privacidad y sin ranking,PASS,"RUT, fechas y celdas de 1 a 9 casos: 0 hallazgos; tablas por hospital ordenadas por código y sin columnas de posición"
+G8,Reproducibilidad,PASS,"18 pruebas pasaron, 0 fallaron; semilla 20261019; 1000 réplicas; huella del desenlace abierto registrada"

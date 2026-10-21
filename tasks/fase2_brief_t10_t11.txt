@@ -1,0 +1,290 @@
+ENCARGO: FASE 2 EDA, TAREAS 10 Y 11 (ASOCIACIÓN ENTRE VARIABLES Y SELECCIÓN ESTADÍSTICA DE VARIABLES)
+=====================================================================================================
+
+Este encargo es pesado: requisitos con varias decisiones de diseño, cuatro módulos nuevos, muchas tablas y figuras, y un estándar de pruebas alto.
+Todo el trabajo se hace en /home/felipe/Documentos/Proyecto final/Tesis/fase2_eda/ (en adelante "la suite"). Los textos, nombres, comentarios, informes y
+mensajes del proyecto van en español.
+
+0. CONTEXTO
+-----------
+Tesis de Felipe Baeza Muñoz (USACH): desempeño hospitalario ajustado por riesgo con egresos GRD de FONASA 2019 a 2024, metodología CRISP-DM. La suite
+reproducible de la Fase 2 (comprensión de datos) se reconstruyó por tareas. Las Tareas 1 a 9 están terminadas y probadas (suite: 286 pruebas verdes con
+`cd fase2_eda && ../venv/bin/python -m pytest tests -q`). Faltan las Tareas 10 y 11 (este encargo) y las Tareas 12 y 13 (cierre, runner e informes; vienen
+en un encargo posterior que usa lo que produzcas aquí).
+
+Pedido del usuario (textual): "esta bien el plan quiero que lo ejecutes, tambien necesito que respaldes con graficos y la seleccion de variables de forma
+estadistica por ejemplo con la matriz de correlación entre otras cosas, para las tomas de desiciones o tambien conocimiento medico."
+Es decir: las Tareas 10 y 11 deben dar evidencia estadística y gráfica (matriz de correlación o asociación, redundancia, multicolinealidad, ranking de
+variables, estabilidad, proxy del hospital, fuga, sensibilidad de Elixhauser) para decidir qué variables entran al modelo, y dejar a mano el criterio clínico.
+
+Datos: extractos en `data seminario/` (49.999 filas por año, 2019 a 2024, 129 columnas separadas por "|", 5,16 % del total y NO una muestra aleatoria).
+Los datos completos aún no se tienen: todo se prueba con extractos y con datos SINTÉTICOS (tests/sintetico.py), pero el código debe funcionar igual en modo
+completo (millones de filas), con el tope de muestreo descrito más abajo. Los extractos sirven para desarrollar y probar, nunca para decidir.
+
+1. REGLAS INVIOLABLES
+---------------------
+ - Sin git. No ejecutes ningún comando git. No toques `.git`, `docs/`, `data seminario/` ni los catálogos de la raíz del proyecto (CIE-10.csv, CIE-9 .csv,
+   GRDs_T10901.xlsx, Hospitales.csv, IR-GRD.csv, Mortalidad GRD.csv, Severidad GRD.csv, Tipo de Pabellon.csv). Los PDF solo se leen con `pdftotext -layout`
+   a la salida estándar. No crees archivos .md salvo los informes que genera la suite (los informes salen de `Informe(...)`, no los escribas a mano).
+ - Privacidad: las salidas son solo agregados (tablas CSV, figuras PNG, informes). Nunca filas, identificadores, fechas de nacimiento ni valores con forma
+   de RUT. Las celdas de conteo con n entre 1 y 9 se suprimen (el cero se informa): usa `ctx.escribir_tabla(nombre, df, tarea=, descripcion=, cols_n=[...],
+   dependientes=[...])`, que suprime y registra la tabla. Si una tabla mezcla conteos de bases distintas, sepárala en varias tablas para que la supresión de
+   una columna no anule cifras no relacionadas. Pruebas solo con datos sintéticos. Tras cada corrida real: `privacidad.escanear_salidas(ctx.dir_salida,
+   ctx.indice_tablas(), ctx.celda_minima)` y `privacidad.total_violaciones(...) == 0`.
+ - Partición temporal y año expuesto: 2024 está expuesto. Todo resultado (mortalidad, estadía, AUC, OR, importancia) se calcula SOLO con 2019 a 2023.
+   El ranking de variables usa 2019 a 2022 (`ctx.umbrales.particion["anios_ranking"]`) y la confirmación usa 2023 (`anio_confirmacion`). 2024 solo aporta
+   estructura y calidad, y en estas tareas no hace falta leerlo. Todas las lecturas pasan por `ctx.lector.leer(anio, columnas, proposito=..., tarea=...)`
+   (cortafuegos). Al terminar una corrida: `ctx.cortafuegos.violaciones() == 0` y `ctx.cortafuegos.n_bloqueos() == 0`.
+ - Etiquetas: toda salida lleva la etiqueta "extracto" o "completo" (`ctx.etiqueta`). Con extractos nada es concluyente: dilo en los informes.
+ - Figuras: matplotlib con backend Agg, paleta Okabe-Ito (`graficos.OKABE_ITO`), 150 dpi, títulos y ejes en español, pie con fuente y años, y NUNCA una figura
+   sin su CSV de respaldo (`ctx.figuras.guardar_figura(fig, id_figura=, tarea=, titulo=, descripcion_alt=, csv=, anios=, decision=, uso_interno=,
+   extra_pie=)` falla si el CSV no existe en la carpeta de tablas). Usa `graficos.nueva_figura` o `graficos.nueva_figura_multiple` (layout constrained,
+   pie con reserva automática). Figuras por hospital: "uso interno" (`uso_interno=True`) y códigos de hospital, nunca nombres. Los títulos de figura no
+   pueden llevar dígitos que el validador de prosa rechace (ver 2.5). Revisa CADA PNG abriéndolo con `read_file` (texto cortado, solapes, leyendas sobre los
+   datos, ejes ilegibles, escalas engañosas) y corrígelo antes de dar la tarea por terminada.
+ - Conocimiento clínico: solo se puede citar Elixhauser 1998, Quan 2005, van Walraven 2009 y Spiegelhalter 2005; todo lo demás queda "pendiente de revisión
+   clínica (decisión 12)". Ver `config/conocimiento_clinico.csv` y `eda/conocimiento.py`.
+ - Umbrales: no cambies ningún valor de `config/umbrales.toml`. Si de verdad falta un umbral nuevo, agrégalo con valor y justificación, súbele la versión,
+   agrega una nota en `cambios_protocolo` explicando por qué y cuándo se agregó (mira los cambios 1.1 a 1.4) y mantén verde `tests/test_t01_protocolo.py`.
+   Usa los umbrales existentes: redundancia_abs 0,80; vif_alerta 5; vif_critico 10; psi_moderado 0,10; psi_alto 0,25; auc_sospecha_fuga 0,85;
+   auc_senal_alta 0,70; auc_senal_media 0,60; auc_senal_baja 0,55; incremento_auc_minimo 0,005; or_relevante 1,2; importancia_permutacion_min 0,001;
+   proxy_hospital_alto 0,30; proxy_hospital_moderado 0,15; faltante_alerta 0,20; faltante_alto 0,50; faltante_informativo_or 1,5;
+   faltante_informativo_min_prop 0,01; estabilidad_efecto_minimo 0,01; cardinalidad_max_categorica 60; max_filas_asociacion_por_anio 200000;
+   nivel_confianza 0,95; semilla 20261007; celda_minima 10; edad_adulto 18.
+ - Estilo de respuesta de los agentes al usuario: español, breve, sin guiones largos ni signos de exclamación, plano antes que negrita. Informa solo lo que
+   verificaste.
+
+2. LO QUE YA EXISTE (léelo antes de escribir código; imita su estilo y sus convenciones)
+-----------------------------------------------------------------------------------------
+2.1 Paquete `eda/` (nombres en español). Módulos relevantes:
+ - `contexto.py`: `Contexto.crear("extracto"|"completo", data_root=, dir_salida_base=, fuente=)`; `ctx.escribir_tabla`, `ctx.leer_tabla(nombre, columnas_texto=)`,
+   `ctx.registrar_metrica(clave, valor, tarea=, tabla=, ic_bajo=, ic_alto=, nivel=, nota=, conteo=, alcance=)`, `ctx.escribir_registros()`, `ctx.umbrales`,
+   `ctx.semilla`, `ctx.figuras`, `ctx.cortafuegos`, `ctx.lector`, `ctx.etiqueta`, `ctx.dir_tablas/dir_figuras/dir_informes`.
+ - `cohorte.py`: `leer_base(ctx, anio, cat, e, e3, extras=False)` lee un año con el cortafuegos y devuelve la base tipada con indicadores de cohorte. Columnas
+   tipadas: anio, sexo, edad, actividad, tipo_ingreso, procedencia, capitulo, mdc, grd_estado, hospital, id_num, ing, alta, hospproc, rol (EVENTO, NO_EVENTO,
+   CENSURADO, SIN_DATO), etiqueta_roles, estancia, mes_alta; indicadores: ex01, ex02, ex03, A, B, C, conocido, D, E. Cohortes: A = cohorte dura (sin GRD no
+   agrupable, recién nacidos MDC 15 ni obstétricos MDC 14 sin comorbilidades); B = A y edad >= 18; C = B y TIPO_ACTIVIDAD "HOSPITALIZACIÓN"; D = C con
+   desenlace conocido (EVENTO o NO_EVENTO) = cohorte del modelo de mortalidad; E = D, sobrevivientes con estadía > 0 = cohorte del modelo de estadía.
+   Funciones útiles: `tipar`, `agregar_comorbilidad`, `marcar`, `etiqueta_periodo`, `con_periodos`, `con_wilson`, `_grupo_edad_expr`.
+ - `hospitales.py` (Tarea 9, el mejor modelo de estilo y de pruebas): `procesar_anio`, `regimenes_de`, `historial_regimen`, `enlaces_regimen`, etc. Los
+   identificadores de paciente forman "espacios" (regímenes) de años consecutivos; el historial de 12 meses solo vale dentro de un espacio.
+ - `elixhauser.py`: `cargar()`, `cargar(solo_3c=True)`, `calcular_flags(df_diagnosticos, columnas, e)` (devuelve ELIX_01..ELIX_31 en 0/1, N_COMORB_ELIX y los
+   puntajes de van Walraven PUNTAJE_VAN_WALRAVEN y PUNTAJE_VAN_WALRAVEN_SIN_5; el documento de variables derivadas llama SCORE_VANWALRAVEN al primero: usa
+   el nombre PUNTAJE_VAN_WALRAVEN que ya usan el código y `conocimiento_clinico.csv`), `mascara_por_episodio`, `IDS`, `e.pesos`, `e.sospechosas` (las 5 categorías
+   que la Fase 1 sospecha complicaciones de la hospitalización: ELIX_04, ELIX_22, ELIX_24, ELIX_25, ELIX_26; el repositorio usa otra lista de cinco: arritmias,
+   coagulopatía, desnutrición, electrolitos y hemorragia aguda, y la Fase 1 pide dejar una sola).
+ - `comorbilidad.py` (Tarea 8): tablas t23_elix_prevalencia, t23_elix_phi (matriz phi 31 x 31 de 2019-2022 y 2023), etc.
+ - `conocimiento.py` y `config/conocimiento_clinico.csv` (57 filas; columnas variable, grupo, racional, direccion_esperada, referencia, certeza,
+   validar_con, evidencia_eda). `certeza` solo puede ser "verificada en fuente" o "pendiente de revisión clínica (decisión 12)". La columna evidencia_eda
+   cita tablas que ESTAS tareas deben producir: t23_proxy_hospital.csv, t23_fuga.csv, t23_sensibilidad_elix.csv y otras: revisa cuáles y asegúrate de que
+   existan con esos nombres.
+ - `estadistica.py`: chao1, psi, clasificar_psi, wilson, razon_de_proporciones, percentil_de_conteos, momentos_de_conteos, winsorizar, phi_spiegelhalter,
+   limites_proporcion, puntaje_z_proporcion. Para estas tareas agrega (con pruebas contra scipy/sklearn): Spearman, V de Cramér corregida por sesgo
+   (Bergsma 2013), eta cuadrado, AUC por rangos con IC de Hanley-McNeil, OR de Woolf, regresión logística por mínimos cuadrados reponderados en numpy con
+   errores de Wald (para OR ajustado por edad y sexo), Benjamini-Hochberg, información mutua normalizada, VIF y ordenamiento por clusters (scipy.cluster).
+ - `graficos.py`: nueva_figura, nueva_figura_multiple, mapa_calor(..., coma_decimal=True), formato_miles, formato_decimal, barras_verticales, OKABE_ITO,
+   CMAP_DIVERGENTE, CMAP_SECUENCIAL. `informes.py`: Informe, cifra, validar_narrativa. `config.py`, `rutas.py`, `supresion.py`, `privacidad.py`.
+ - Tests: `tests/test_t09_hospitales.py` es el modelo (cuentas a mano, bordes, oráculo independiente, integración sintética, pruebas de mutación). Datos
+   sintéticos: `tests/sintetico.py` (`crear_fuente_sintetica(raiz, n=700, semilla=29)`; 7 hospitales con códigos 101100..107100, el 107100 es pediátrico; hay
+   columnas proxy del hospital ESPECIALIDAD_MEDICA, PROVINCIA y COMUNA; severidad del GRD asociada al desenlace; IDs en dos espacios 2019-2020 y 2021-2024).
+   Si necesitas que el generador sintético tenga alguna propiedad nueva (por ejemplo una variable redundante), agrégala SIN alterar el flujo del generador
+   aleatorio principal (usa un `default_rng` aparte, como se hizo con la autorreferencia) para no romper las pruebas anteriores.
+ - Corrida real de ejemplo (extractos, salidas en una carpeta temporal): `ctx = Contexto.crear("extracto", dir_salida_base="/tmp/real_t10")`; luego el
+   `ejecutar(ctx)` del módulo; luego `ctx.escribir_registros()`. Informe provisional: `inf = Informe(ctx, "x.md", "Título")`, `modulo.agregar_secciones(inf,
+   ctx, n0=1)`, `inf.guardar()`.
+2.2 `config/`: umbrales.toml (ver arriba), `arbol_decision.csv` (9 reglas de decisión de variables, en orden), `hipotesis.csv` (hipótesis H01a..H17b y
+   supuestos S01..S15 con tablas_clave y criterio_decision), `plan_figuras.csv` (F10_01..F10_04 y F11_01..F11_06 ya están planificadas; si cambias la
+   tabla CSV de respaldo de una figura, actualiza el plan con str_replace), `definicion_terminado.csv` (DT01..DT12), `cifras_documentadas.csv`.
+2.3 Documentos de entrada (solo lectura): `docs/fase2_comprension_datos/Fase_2__Diccionario_de_Base_de_Datos.csv` (129 variables con la columna "Categoría
+   Fase 1" = rol: FEATURE_BASAL, TARGET, FUENTE_DERIVADA, FILTRO_COHORTE, LLAVE_AGREGACION, AUDITORIA_SENSIBILIDAD, PROHIBIDA_FUGA, DESCARTAR, CONDICIONAL),
+   `docs/fase2_comprension_datos/Fase_2__Variables_Derivadas.csv` (variables derivadas y si entran al modelo), `docs/fase1_comprension_dominio/config/
+   reglas_variables.csv` (roles explícitos y notas), `docs/fase1_comprension_dominio/Fase_1__Comprensión_del_dominio_-_Reglas_del_Modelo.csv` (R1 a R8),
+   `docs/fase1_comprension_dominio/config/decisiones_pendientes.csv` (17 decisiones).
+2.4 Tablas ya producidas por tareas anteriores que puedes reutilizar (en una corrida real quedan en `salidas/<fuente>/tablas`; para tus corridas, genéralas
+   en tu carpeta temporal o léelas del módulo): `t22_perfil_columnas.csv` (nulos, centinelas y faltantes por columna y año), `t22_psi.csv`,
+   `t22_cardinalidades.csv`, `t23_elix_phi.csv`, `t23_elix_prevalencia.csv`, `t24_id_regimenes.csv`.
+2.5 Validador de prosa (informes.validar_narrativa): la prosa de un informe se escribe como plantilla con marcadores `{nombre|formato}` y NO puede llevar
+   dígitos sueltos (se rechazan en plantillas, títulos de sección, leyendas de tabla y títulos de figura), salvo años 2019 a 2024, "Fase N", "decisión N",
+   R1 a R8, ELIX_nn, "MDC N", códigos F/T/H/S/DT con dígitos, "95 %", "99,8 %", percentiles tipo p99 y algunos más. Prohibido en prosa: años como "2005",
+   "0 días", "18 años", "excluye 1". Formatos de marcador: entero, dec1 a dec4, pct1, pct2, prop1, prop2, texto (para strings usa SIEMPRE `|texto`). API:
+   `Informe(ctx, archivo, titulo)`, `.seccion(titulo)`, `.parrafo(plantilla, **cifras)`, `.tabla(csv, df=, columnas=, encabezados=, formatos=, max_filas=,
+   leyenda=)`, `.figura(id)`, `.texto_libre_sin_cifras(texto)`, `.guardar()`. Las cifras salen de `cifra(ctx, csv, columna, columnas_texto=[...], **filtro)`
+   (debe quedar exactamente una fila) o `descripcion.Cifra_umbral(ctx, nombre)`. Cada módulo de tarea expone `agregar_secciones(inf, ctx, n0=1)` (mira
+   `hospitales.agregar_secciones`): devuelve secciones que luego compone un informe mayor (lo hace la Tarea 13).
+
+3. LECCIONES DE HERRAMIENTAS (cuestan horas si se ignoran)
+------------------------------------------------------------
+ - NO mezcles ediciones hechas con las herramientas de edición (str_replace, fs_write, fs_append) con ediciones por shell (python write_text, sed -i, cat >)
+   sobre el MISMO archivo: las ediciones posteriores con la herramienta pueden no persistir. Elige un método por archivo. Para archivos nuevos usa fs_write una
+   vez y luego str_replace.
+ - No lances en paralelo una edición y la corrida que depende de ella (la corrida puede importar el módulo antes de que termine la edición). Para pruebas de
+   mutación sobre una copia usa `PYTHONDONTWRITEBYTECODE=1`, `python -B` y borra `__pycache__` en cada iteración (si no, un .pyc viejo del mismo tamaño y de
+   la misma hora enmascara la mutación).
+ - No uses grep_search sobre todo el árbol (incluye `venv`); usa `includePattern` "fase2_eda/**".
+ - Polars (2.0.0): las Series no tienen el operador `>>`; `schema_overrides` ignora columnas que no existen; `join_asof(..., check_sortedness=False)`;
+   aritmética de fechas con `dt.offset_by("30d")`; `replace_strict(...)` más `fill_null(...)`; evita `Categorical` para hospitales (problemas de caché de
+   strings); 0/0 entre enteros da NaN: conviértelo a nulo donde corresponda (las salidas pasan por `_limpiar_numericos`).
+ - Pruebas: `cd /home/felipe/Documentos/Proyecto\ final/Tesis/fase2_eda && ../venv/bin/python -m pytest tests -q` (pytest.ini ya fija pythonpath y -p no:cacheprovider).
+   Instalar paquetes: solo si es imprescindible, con versión exacta, y agregándolos a `requirements.txt`. Ya están numpy 2.5.3, scipy 1.18.1,
+   matplotlib 3.11.2, scikit-learn 1.9.1, pytest 9.1.1 y polars. No hay statsmodels: no lo uses.
+ - Con scikit-learn usa `random_state=ctx.semilla`, `n_jobs=1` y solvers deterministas: DT11 exige que dos corridas den los mismos hashes de salida.
+ - Las tablas con varias columnas de conteo provenientes de bases distintas se separan. Los conteos de meses u hospitales no se registran en `cols_n` si
+   anularían cifras no relacionadas. Las métricas con alcance 2019-2024 que dependen del desenlace no se registran (el desenlace solo existe hasta 2023).
+
+4. PANEL COMPARTIDO (módulo nuevo `eda/panel.py`)
+---------------------------------------------------
+Las Tareas 10 y 11 analizan las mismas variables sobre las mismas filas. Construye un panel UNA vez y compártelo:
+ - `construir_panel(ctx, cat=None, historial=None) -> Panel` (dataclass). Filas: solo la cohorte D (adultos hospitalizados de la cohorte dura con desenlace
+   conocido; usa la lógica de `cohorte.tipar`/`marcar`, no la reimplementes) de los años con resultado 2019 a 2023. Etiqueta `y` = 1 si rol == "EVENTO".
+   Conserva `anio` y `hospital` (el hospital se usa SOLO para el análisis de proxy, nunca como predictor). Tope de muestreo: si la cohorte D de un año supera
+   `max_filas_asociacion_por_anio`, toma una muestra aleatoria reproducible (`np.random.default_rng(semilla + anio)`, índices ordenados). Registra en una tabla
+   `t23_panel_muestreo.csv` por año: filas de la cohorte D, filas de la muestra y si se muestreó (con supresión de celdas chicas).
+ - Metadatos por variable (`Variable`: nombre, tipo "num"|"bin"|"cat", grupo, rol_fase1, momento "basal"|"alta"|"durante", evaluable "si"|"no"|"parcial",
+   motivo). Un solo registro de verdad que usen ambas tareas y el generador de `disponibilidad_variables.csv`.
+ - Variables del panel (nombres canónicos; usa los de `Fase_2__Variables_Derivadas.csv` cuando existan):
+     numéricas: EDAD_ANIOS, N_DX_SEC (diagnósticos secundarios informados), N_COMORB_ELIX, PUNTAJE_VAN_WALRAVEN (con las 31 categorías),
+       PUNTAJE_VAN_WALRAVEN_SIN_5 (solo comparación), y en modo completo con historial viable N_EGRESOS_12M y DIAS_DESDE_EGRESO_PREVIO.
+     binarias: ELIX_01 a ELIX_31 (solo diagnósticos secundarios, mapeo completo de 4 y más caracteres), ES_FIN_SEMANA, NIVEL_CUIDADO_INGRESO (SERVICIOINGRESO
+       en UCI, UTI u otra unidad de cuidados especiales), DERIVADO_OTRO_HOSPITAL (HOSPPROCEDENCIA informada: definición de la Fase 1), ENTRANTE_TIPO_PROCEDENCIA
+       (TIPO_PROCEDENCIA contiene "OTROS HOSPITALES": la definición que la Tarea 9 propone porque HOSPPROCEDENCIA tiene 31 % de autorreferencia),
+       HISTORIA_DISPONIBLE (modo completo), ES_EXTRANJERO y PUEBLO_ORIGINARIO (solo equidad y proxy).
+     categóricas: SEXO, TIPO_INGRESO, PROCEDENCIA_AGR (3 grupos: urgencia, derivado de otro hospital, programado; define el mapeo explícito en un diccionario del
+       módulo, léelo de los valores reales de TIPO_PROCEDENCIA y márcalo "pendiente de revisión clínica (decisión 12)"), TIPO_PROCEDENCIA, GRUPO_CLINICO
+       (capítulo CIE-10 del diagnóstico principal), CIE10_3C, MES_INGRESO, DIA_SEMANA, ESPECIALIDAD_MEDICA, SERVICIOINGRESO, PREVISION, NACIONALIDAD, ETNIA,
+       PROVINCIA, COMUNA, SERVICIO_SALUD, y la referencia COD_HOSPITAL.
+     solo para evidencia de fuga (nunca candidatas): IR_29301_SEVERIDAD, IR_29301_MORTALIDAD, IR_29301_PESO, SERVICIOALTA, USOSPABELLON, N_PROCEDIMIENTOS (conteo
+       de PROCEDIMIENTO1..30 informados), N_TRASLADOS_INTERNOS (conteo de FECHATRASLADO1..9 informadas).
+   Las categóricas con más de `cardinalidad_max_categorica` niveles conservan los 60 más frecuentes (calculados en 2019-2022) y el resto pasa a "OTROS". Los
+   faltantes y centinelas (DESCONOCIDO, etc.) se conservan como un nivel propio "(sin dato)" o su propio valor; NUNCA se imputan (regla R5). Variables que
+   no se pueden construir (ESPECIALIDAD_MACRO sin mapeo definido, TRAMO_FONASA, INDICE_PRIVACION que exige una fuente externa) quedan en el registro de
+   variables con evaluable = "no" y el motivo.
+ - Historial (N_EGRESOS_12M, DIAS_DESDE_EGRESO_PREVIO, HISTORIA_DISPONIBLE): requiere todos los egresos 2019 a 2023 (no solo la cohorte D), con episodios
+   previos estrictamente anteriores (alta < ingreso), ventana de 365 días y dentro del mismo espacio de identificadores (`hospitales.regimenes_de`). En
+   extractos es NO EVALUABLE (el ingreso previo casi nunca está en el mismo extracto): no se calcula ni entra a rankings, y la matriz de decisión lo rotula
+   "no evaluable en extracto". Impleméntalo igual y pruébalo con datos sintéticos creando el contexto con etiqueta "completo"
+   (`Contexto.crear("completo", fuente=fuente_sintetica, ...)`), para que la ruta de modo completo esté probada.
+ - Nunca se lee el año 2024 para construir el panel.
+
+5. TAREA 10: ASOCIACIÓN, REDUNDANCIA Y MULTICOLINEALIDAD (módulo nuevo `eda/asociacion.py`)
+-----------------------------------------------------------------------------------------
+Datos: panel de la ventana de ranking (2019 a 2022). Variables: todas las numéricas, binarias y categóricas del panel EXCEPTO las de solo fuga, más la
+referencia COD_HOSPITAL (marcada `es_referencia`, fuera de clusters, VIF y redundancia).
+Medida de asociación entre cada par, siempre un número en [0, 1] más el signo cuando existe:
+   numérica con numérica: |rho de Spearman| (con signo);  binaria con binaria: |phi| (con signo);  categórica o binaria con categórica: V de Cramér corregida
+   por sesgo de Bergsma (2013);  numérica con categórica o con binaria: raíz de eta cuadrado.
+   Faltantes: eliminación por pares para numéricas; para categóricas el faltante es un nivel más.
+Salidas (tablas con `ctx.escribir_tabla`, tarea "T10"):
+   - `matriz_asociacion.csv` en formato largo: variable_a, variable_b, medida, valor_con_signo, asociacion_abs, n_pares, periodo ("2019-2022"), mas el tipo de
+     cada variable. Simétrica y con la diagonal en 1.
+   - `pares_redundantes.csv`: pares con asociacion_abs >= redundancia_abs (0,80), con medida, cluster y n.
+   - `clusters_variables.csv`: una fila por variable: cluster de redundancia (componentes conexas del grafo con aristas asociacion_abs >= 0,80), tamaño del
+     cluster, posición en el orden del dendrograma (agrupamiento jerárquico de enlace promedio sobre la distancia 1 - asociacion_abs, scipy.cluster.hierarchy),
+     y la altura de unión. El representante de cada cluster NO se decide aquí (lo decide la Tarea 11 con la señal univariada).
+   - `t23_vif.csv`: VIF de las variables numéricas y binarias en dos conjuntos: "base" (sin los agregados N_COMORB_ELIX, PUNTAJE_VAN_WALRAVEN,
+     PUNTAJE_VAN_WALRAVEN_SIN_5 ni N_DX_SEC) y "con_agregados". VIF_j = 1 / (1 - R2_j) con R2_j de la regresión de la variable j contra las demás, resuelto
+     con mínimos cuadrados (lstsq) para tolerar matrices singulares: si R2_j > 1 - 1e-9 informa VIF nulo con `colinealidad_exacta = "si"`. Hallazgo esperado a
+     verificar, no a asumir: N_COMORB_ELIX (suma de las 31 categorías) y PUNTAJE_VAN_WALRAVEN (combinación lineal de ellas) son colineales exactos con las 31
+     categorías (con jerarquías entre categorías, revisa si la identidad es exacta en los datos).
+     Clasifica con vif_alerta y vif_critico.
+   - `t23_resumen_asociacion.csv` (una fila con las cifras para informes y métricas: número de variables, de pares, de pares redundantes, de clusters con más de
+     un miembro, VIF máximo por conjunto, número de colinealidades exactas, etc.) y registra las métricas con prefijo `asociacion.` y `vif.`.
+   - Estabilidad de la redundancia: para los pares redundantes de 2019-2022, la asociación en 2023 (columna aparte) y si se mantiene >= 0,80.
+Figuras (ids y CSV según `config/plan_figuras.csv`):
+   F10_01 mapa de calor agrupado de la matriz de asociación (orden del dendrograma, escala secuencial 0 a 1, etiquetas legibles, línea o marca entre
+   clusters, coma decimal); F10_02 dendrograma con la línea de corte en distancia 0,20 (1 - 0,80); F10_03 barras horizontales de VIF (escala logarítmica,
+   líneas en 5 y 10, colinealidad exacta señalada en el borde); F10_04 matriz phi de las 31 categorías de Elixhauser ordenada por clusters (signo con paleta
+   divergente), leída de `t23_elix_phi.csv` (período 2019-2022). Alternativas que mejoren la lectura son bienvenidas si el CSV de respaldo existe.
+Informe: `agregar_secciones(inf, ctx, n0)` con (a) qué se midió y con qué medidas, (b) la matriz y su lectura, (c) pares y clusters redundantes, (d) VIF y
+colinealidad exacta, (e) límites (extracto, IC que ignoran el agrupamiento por hospital, V depende del número de niveles, VIF solo para variables numéricas
+y binarias). Toda cifra desde CSV.
+Métricas: `ctx.registrar_metrica(..., tarea="T10", alcance="2019-2022")`.
+
+6. TAREA 11: SELECCIÓN ESTADÍSTICA DE VARIABLES (módulos nuevos `eda/seleccion.py` y los auxiliares que hagan falta, por ejemplo `eda/decision.py`)
+------------------------------------------------------------------------------------------------------------------------------------------------
+Sobre el panel. Ranking con 2019-2022, confirmación con 2023, 2024 nunca. Tablas (tarea "T11"):
+ 6.1 `disponibilidad_variables.csv`: las 129 columnas crudas más las derivadas (de `Fase_2__Variables_Derivadas.csv`, expandiendo "ELIX_03 a ELIX_31" y los demás
+     nombres compuestos), una fila por variable: nombre, origen (cruda o derivada), tipo, rol de la Fase 1 (de la columna "Categoría Fase 1" del
+     diccionario y de reglas_variables.csv; las derivadas heredan el rol de su fuente o el que declara su fila), uso en el modelo según el documento, faltante
+     por año (de `t22_perfil_columnas.csv` para crudas; para derivadas, el de sus fuentes), evaluable (si, no, parcial) y motivo. Esta tabla fija el universo
+     de "candidatas" que cubre la matriz de decisión (DT09: la matriz debe contener TODAS).
+ 6.2 `t23_ranking_variables.csv`: para cada variable candidata evaluable (no solo fuga): señal univariada frente a mortalidad en 2019-2022 y en 2023.
+     Numéricas: AUC orientado con IC de Hanley-McNeil; binarias igual. Categóricas: AUC de la puntuación = tasa de eventos suavizada por nivel estimada en 2019-2022
+     y evaluada en 2019-2022 (optimista) y en 2023 (honesta). Además: V de Cramér o eta con el desenlace, información mutua normalizada, OR crudo para
+     binarias, % de faltantes, clasificación de la señal con auc_senal_alta/media/baja, y faltante informativo (OR de fallecer entre faltantes y no
+     faltantes con IC de Woolf, solo si la variable tiene al menos faltante_informativo_min_prop de faltantes). Ordena por señal en 2019-2022.
+ 6.3 `t23_estabilidad.csv`: por variable y año 2019 a 2023 el AUC (con las puntuaciones fijas de la ventana de ranking para categóricas), el cambio de signo de
+     (AUC - 0,5) entre años solo si el efecto es >= estabilidad_efecto_minimo en ambos años, y PSI (binning por deciles de la ventana de ranking o categorías)
+     de 2019-2022 contra 2023 y de 2019 contra 2020-2022 (evidencia de H17a), clasificados con psi_moderado y psi_alto.
+ 6.4 `t23_proxy_hospital.csv`: para cada variable (también las de equidad: PREVISION, NACIONALIDAD, ETNIA, PROVINCIA, COMUNA, SERVICIO_SALUD, y las condicionales
+     SERVICIOINGRESO, ESPECIALIDAD_MEDICA, DERIVADO_OTRO_HOSPITAL...) la asociación con COD_HOSPITAL (V corregida o raíz de eta cuadrado, medida igual que en la
+     Tarea 10) y su clasificación con proxy_hospital_alto y proxy_hospital_moderado; junto con su señal frente al desenlace (para el mapa F11_02). Incluye la
+     variación entre hospitales de la proporción de ingresos a UCI o intermedio (evidencia H02a) y la cardinalidad de ESPECIALIDAD_MEDICA por hospital (H02b).
+ 6.5 `t23_or_elix.csv` y `t23_sensibilidad_elix.csv` (hipótesis H08 y decisión 8): para cada una de las 31 categorías, OR crudo (Woolf) y OR ajustado por edad
+     (lineal y cuadrática) y sexo (logística en numpy, Wald), con IC, q de Benjamini-Hochberg y la prevalencia; y la evidencia de "probable complicación de la
+     hospitalización": gradiente de la prevalencia por tramos de estadía en sobrevivientes (cohorte E), OR ajustado por edad y sexo de tener estadía larga
+     (>= percentil 75 de los sobrevivientes de 2019-2022), y un índice de complicación probable que ordena las 31 categorías. Compara las 5 primeras con las
+     5 de la Fase 1 (ELIX_04, ELIX_22, ELIX_24, ELIX_25, ELIX_26) y con las que usa el repositorio (arritmias, coagulopatía, desnutrición, electrolitos y
+     hemorragia). La lista final queda "pendiente de revisión clínica (decisión 12)": la tabla informa, no decide.
+ 6.6 `t23_importancia.csv` (valor incremental, solo evaluado en 2023, modelos entrenados en 2019-2022): (a) incremento de AUC en 2023 de cada variable sobre el
+     modelo de edad (lineal y cuadrática) y sexo, regresión logística; (b) modelo multivariado con regularización L1 y validación cruzada
+     (`LogisticRegressionCV(penalty="l1", solver="liblinear", scoring="roc_auc", cv=3, random_state=ctx.semilla)` o equivalente determinista), con los
+     coeficientes que sobreviven; (c) importancia por permutación en 2023 (caída del AUC al permutar la variable o el grupo de dummies, con semilla fija y
+     varias repeticiones) y su clasificación con importancia_permutacion_min. Tiempo: la Tarea 11 completa debe correr en menos de unos 5 minutos sobre
+     extractos y no explotar la memoria en modo completo (panel acotado a 200.000 filas por año).
+ 6.7 `t23_fuga.csv` (hipótesis H14, H02a, S09 y decisión 14): AUC y V frente al desenlace de las variables de solo fuga (IR_29301_SEVERIDAD,
+     IR_29301_MORTALIDAD, IR_29301_PESO, SERVICIOALTA, USOSPABELLON, N_PROCEDIMIENTOS, N_TRASLADOS_INTERNOS) y de las condicionales (SERVICIOINGRESO...),
+     comparadas con el AUC del modelo de edad y sexo y con el de las 31 categorías de Elixhauser (referencias "basales"). Marca `supera_a_basales` y
+     `supera_umbral_fuga` (>= auc_sospecha_fuga). Más una fila-tipo "concordancia" con la comparación SERVICIOINGRESO contra SERVICIOALTA entre egresos sin
+     traslado interno (prop. de igualdad) para S09. IR_29301_MORTALIDAD queda prohibida siempre (R6) aunque la señal sea baja; dilo en la tabla.
+ 6.8 `matriz_decision_variables.csv`: una fila por variable de `disponibilidad_variables.csv` (todas), aplicando `config/arbol_decision.csv` EN ORDEN (la primera
+     regla que corresponde fija la recomendación; guarda también todas las reglas activadas): R_FASE1 (rol excluye, prevalece sobre la estadística), FUGA (AUC
+     >= 0,85 en ranking o confirmación), PROXY (asociación con COD_HOSPITAL >= 0,30), PROXY_MOD (0,15 a 0,30, condicional), CALIDAD (faltante >= 0,50 salvo que
+     el vacío signifique ausencia del evento, PSI >= 0,25, o cambio de signo), REDUNDANTE (en un cluster de la Tarea 10 sin ser el representante, que es el de
+     mayor señal univariada en 2019-2022; los empates por menor faltante y luego por nombre), BAJA_SENAL (AUC < 0,55 y incremento sobre edad y sexo < 0,005),
+     CLINICO (BAJA_SENAL con certeza "verificada en fuente" en conocimiento_clinico.csv: mantener por criterio clínico) y MANTENER. Columnas mínimas: variable,
+     tipo, rol_fase1, evaluable, motivo_no_evaluable, auc_ranking, auc_confirmacion, incremento_auc, asociacion_hospital, psi_max, faltante_max, cluster,
+     es_representante, certeza_clinica, regla_decisiva, reglas_activadas, recomendacion, y una columna `evidencia` con las tablas de respaldo. Las variables
+     no evaluables (por ejemplo historial en extractos, sin mapeo, fuentes externas) llevan recomendación según la regla de la Fase 1 o "NO EVALUABLE", nunca
+     una conclusión inventada. La matriz recomienda; la decisión es humana.
+ 6.9 Métricas con prefijos `seleccion.`, `fuga.`, `proxy.` (por ejemplo `fuga.auc.IR_29301_SEVERIDAD`, `proxy.v.ESPECIALIDAD_MEDICA`,
+     `seleccion.n_mantener`), con `alcance` explícito ("2019-2022" o "2023").
+Figuras (ids y CSV según el plan): F11_01 ranking de variables por señal univariada con IC (barras horizontales ordenadas, líneas en los umbrales de señal y
+ de fuga); F11_02 mapa de proxies (asociación con el desenlace contra asociación con el hospital, con las líneas de proxy_hospital_moderado y alto, etiquetas
+ legibles sin solaparse, uso interno si muestra hospitales); F11_03 mapa de calor de estabilidad por año (AUC - 0,5 por variable y año, PSI en columnas
+ aparte o figura vecina); F11_04 bosque de OR de las 31 categorías (crudo y ajustado, escala logarítmica); F11_05 importancia por permutación en 2023;
+ F11_06 evidencia de fuga (AUC de las variables prohibidas y condicionales frente a las referencias basales y el umbral 0,85). Mismas reglas de figuras.
+Informe: `agregar_secciones(inf, ctx, n0)` con la lectura de cada tabla, qué se decide con ella, las advertencias (extracto no aleatorio, IC que ignoran el
+ agrupamiento por hospital, categóricas con puntuación en la misma ventana son optimistas, historial no evaluable, y el criterio clínico pendiente de
+ la decisión 12), la matriz de decisión resumida por recomendación y el contraste explícito entre la recomendación estadística y la regla de la Fase 1
+ cuando difieren (por ejemplo una variable que la Fase 1 excluye pero que la estadística no objeta, o al revés).
+
+7. ESTÁNDAR DE PRUEBAS Y VERIFICACIÓN (cada tarea, antes de darla por terminada)
+----------------------------------------------------------------------------------
+ a) Pruebas por módulo en `tests/` (`test_panel.py`, `test_estadistica_asociacion.py` o ampliando `test_estadistica.py`, `test_t10_asociacion.py`,
+    `test_t11_seleccion.py`, más las que correspondan). Incluye: cuentas hechas a mano con valores esperados explícitos; casos de borde (empates, un solo nivel,
+    categorías con cero eventos, faltantes, matrices singulares, bordes de umbrales con igualdad); oráculos independientes contra scipy/sklearn
+    (`scipy.stats.spearmanr`, `scipy.stats.contingency.association(..., method="cramer", correction=True)` solo como referencia aproximada, `sklearn.metrics.
+    roc_auc_score`, `sklearn.linear_model.LogisticRegression(penalty=None)` para OR ajustado, `numpy.linalg.inv` para VIF); integración sintética de punta a
+    punta (tablas, figuras, métricas, escaneo de privacidad en cero, informe armado sin llaves sobrantes, 2024 sin lecturas de resultado: cortafuegos sin
+    violaciones ni bloqueos); y la ruta de modo completo con etiqueta "completo" sobre datos sintéticos (la fuente sintética viene etiquetada "extracto":
+    crea `dataclasses.replace(fuente, etiqueta="completo")`, `Fuente` es un dataclass congelado, y pásala a `Contexto.crear("completo", fuente=...)`).
+ b) Pruebas de mutación manuales (como en la Tarea 9): copia del paquete a /tmp con enlaces simbólicos a los catálogos de la raíz y a docs, aplica 15 a 20
+    mutaciones realistas (cambiar >= por >, olvidar la corrección de sesgo de V, ordenar al revés, omitir la winsorización o el suavizado, invertir un signo,
+    usar la ventana equivocada de años) y comprueba que cada una hace fallar alguna prueba; refuerza las pruebas con las que sobrevivan (salvo mutantes
+    equivalentes, que se documentan). Borra la copia al terminar.
+ c) Corrida real sobre los extractos en una carpeta temporal (`/tmp/real_t10`, `/tmp/real_t11`), informe provisional, escaneo de privacidad, y revisión visual de
+    CADA PNG con `read_file`. Anota los hallazgos verificados.
+ d) La suite completa debe quedar verde (`pytest tests -q`) y no se pueden romper las pruebas de las Tareas 1 a 9. Actualiza `config/plan_figuras.csv` si
+    cambian las tablas de respaldo.
+ e) Limpieza: borra las carpetas temporales de /tmp que hayas creado. No dejes archivos nuevos en la raíz del proyecto fuera de `fase2_eda/` (este mismo
+    archivo de encargo se borra al final del proyecto, no lo borres tú).
+ f) Una revisión independiente (otro agente, con ojos nuevos) de cada tarea contra este encargo, con rechazo si hay cifras sin respaldo, lecturas de 2024,
+    figuras ilegibles, pruebas vacuas o estadísticos mal calculados.
+
+8. CÓMO CERRAR
+--------------
+Mensaje final breve (español, sin guiones largos ni exclamaciones) con: archivos creados y modificados; número de pruebas (total y nuevas); qué se verificó y
+cómo; hallazgos reales verificados en los extractos que sirvan al usuario (variables con más señal, sospechas de fuga con sus AUC, proxies del hospital con
+su asociación, pares redundantes y colinealidades exactas, 5 categorías de Elixhauser con más probabilidad de complicación frente a la lista de la Fase 1);
+decisiones de diseño que tomaste y por qué (incluidos cambios al protocolo, si los hubo); y lo que NO pudiste verificar (por ejemplo el modo completo con datos
+reales, el historial en extractos, el mapeo de ESPECIALIDAD_MACRO).

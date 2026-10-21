@@ -1,0 +1,171 @@
+{
+ "archivos": 41,
+ "iguales": 41,
+ "detalle": [
+  {
+   "archivo": "bronce/bronce_2019.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "bronce/bronce_2020.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "bronce/bronce_2021.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "bronce/bronce_2022.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "bronce/bronce_2023.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "bronce/bronce_2024.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "cohortes/cohorte_2019.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "cohortes/cohorte_2020.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "cohortes/cohorte_2021.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "cohortes/cohorte_2022.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "cohortes/cohorte_2023.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "cohortes/cohorte_2024.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "oro/desenlace_estadia.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "oro/desenlace_mortalidad.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "oro/linea_base_2019.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "oro/linea_base_2020.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "oro/linea_base_2021.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "oro/linea_base_2022.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "oro/linea_base_2023.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "oro/linea_base_2024.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "oro/matriz_estadia.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "oro/matriz_mortalidad.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "oro/oro_predictores_2019.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "oro/oro_predictores_2020.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "oro/oro_predictores_2021.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "oro/oro_predictores_2022.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "oro/oro_predictores_2023.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "oro/oro_predictores_2024.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "oro/predictores_2024_cohorte_C.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "plata/desenlace_2019.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "plata/desenlace_2020.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "plata/desenlace_2021.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "plata/desenlace_2022.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "plata/desenlace_2023.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "plata/plata_2019.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "plata/plata_2020.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "plata/plata_2021.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "plata/plata_2022.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "plata/plata_2023.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "plata/plata_2024.parquet",
+   "igual": true
+  },
+  {
+   "archivo": "sellado/desenlace_2024.parquet",
+   "igual": true
+  }
+ ],
+ "pico_ram_gb": 3.07
+}
