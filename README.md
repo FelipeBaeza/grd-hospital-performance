@@ -62,4 +62,14 @@ Python 3.13 con las versiones del manifiesto de la Fase 4 (`fase4_modelado/model
 ## Datos y privacidad
 
 Los archivos de FONASA traen fechas exactas de nacimiento, ingreso y alta: no se suben a git ni a ningún
-repositorio público. Antes de publicar este repositorio, revisar el plan de corrección (`docs/auditoria/`), etapa 4.1.
+repositorio público.
+
+Este repositorio es público. Quedan solo en la copia local de la autora, fuera de git (ver `.gitignore`):
+
+- `Oficio_Respuesta_N°23364_T10901.pdf` y `docs/comunicaciones_fonasa/`: correspondencia con FONASA. Sin el
+  oficio, la Fase 2 registra su procedencia como «AUSENTE»; no cambia ningún cálculo.
+- `fase4_modelado/salidas/tablas/auditoria_extracto_hospital_*.csv`: tablas por hospital con muertes observadas
+  de 1 a 9 sin suprimir. Se regeneran con `python run_auditoria.py --capas <capas> --trabajo <trabajo>
+  --tarea mortalidad|estadia --pruebas hospital` en `fase4_modelado/`.
+
+La prueba de privacidad de la Fase 5 usa valores inventados (hallazgo H-09 de la auditoría, `docs/auditoria/`).
