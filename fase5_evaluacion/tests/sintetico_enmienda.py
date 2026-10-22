@@ -51,13 +51,25 @@ def crear(base: Path, por_hospital: int = 1200, semilla: int = 11) -> dict:
     est[pred_cols + ["SPLIT"]].to_parquet(capas / "oro" / "matriz_estadia.parquet")
     est.assign(ESTANCIA_DIAS_TOPE=np.minimum(est["ESTANCIA_DIAS"], 53))[["ID_EPISODIO", "ESTANCIA_DIAS_TOPE"]].to_parquet(capas / "oro" / "desenlace_estadia.parquet")
     (capas / "oro" / "parametros_oro.json").write_text(json.dumps({"tope_estancia_dias": 53}))
-    for anio in (2023, 2024):
+    (capas / "cohortes").mkdir(parents=True, exist_ok=True)
+    for anio in range(2019, 2025):
         d = todo[todo["ANIO_EGRESO"] == anio]
-        d[pred_cols].drop(columns=["ANIO_EGRESO"]).assign(EN_COHORTE_D=True, EN_COHORTE_E=True, SPLIT="x").to_parquet(capas / "oro" / f"oro_predictores_{anio}.parquet")
-        d[["ID_EPISODIO", "ES_TRASLADO_ENTRANTE"]].to_parquet(capas / "plata" / f"plata_{anio}.parquet")
-        des = pd.DataFrame({"ID_EPISODIO": d["ID_EPISODIO"], "ROL": np.where(d["MORTALIDAD_BINARIA"] == 1, "EVENTO", "NO_EVENTO"),
+        k = len(d)
+        if anio >= 2023:
+            d[pred_cols].drop(columns=["ANIO_EGRESO"]).assign(EN_COHORTE_D=True, EN_COHORTE_E=True, SPLIT="x").to_parquet(capas / "oro" / f"oro_predictores_{anio}.parquet")
+        # Plata: lo que leen las enmiendas (traslados, MDC y diagnósticos, con algún Z51.5 en un secundario)
+        pla = d[["ID_EPISODIO", "COD_HOSPITAL", "ES_TRASLADO_ENTRANTE"]].assign(MDC=rng.choice(["04", "05", "14"], k, p=[0.6, 0.33, 0.07]),
+                                                                              DIAGNOSTICO1=d["CIE10_3C"].to_numpy() + "9")
+        for i in range(2, 36):
+            pla[f"DIAGNOSTICO{i}"] = np.where(rng.random(k) < (0.03 if i == 2 else 0.0), "Z515", None) if i <= 3 else None
+        pla.to_parquet(capas / "plata" / f"plata_{anio}.parquet")
+        etiqueta = np.where(d["MORTALIDAD_BINARIA"] == 1, "FALLECIDO", rng.choice(["DOMICILIO", "ALTA VOLUNTARIA", "FUGA DEL PACIENTE", "HOSPITALIZACIÓN DOMICILIARIA"],
+                                                                                  k, p=[0.95, 0.025, 0.01, 0.015]))
+        rol = np.where(etiqueta == "FALLECIDO", "EVENTO", np.where(etiqueta == "HOSPITALIZACIÓN DOMICILIARIA", "CENSURADO", "NO_EVENTO"))
+        des = pd.DataFrame({"ID_EPISODIO": d["ID_EPISODIO"], "ROL": rol, "ETIQUETA_TIPOALTA": etiqueta,
                             "ESTANCIA_DIAS": d["ESTANCIA_DIAS"], "ES_TRASLADO_SALIENTE": False})
-        des.to_parquet((t5 / "evaluacion_2024" / "desenlace_2024.parquet") if anio == 2024 else (capas / "plata" / "desenlace_2023.parquet"))
+        des.to_parquet((t5 / "evaluacion_2024" / "desenlace_2024.parquet") if anio == 2024 else (capas / "plata" / f"desenlace_{anio}.parquet"))
+        pd.DataFrame({"ID_EPISODIO": d["ID_EPISODIO"], "C": True}).to_parquet(capas / "cohortes" / f"cohorte_{anio}.parquet")
     lgbm = {"learning_rate": 0.1, "num_leaves": 15, "min_child_samples": 20, "colsample": 0.9, "subsample": 0.9, "reg_alpha": 0.0, "reg_lambda": 0.0}
     (t4 / "candidatos_mortalidad.json").write_text(json.dumps({"lightgbm": {"tipo": "lightgbm", "params": lgbm, "n_arboles": 20},
                                                                "linea_base": {"tipo": "logistica", "params": {"C": 1.0}, "n_arboles": None}}))

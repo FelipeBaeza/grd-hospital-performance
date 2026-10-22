@@ -1,0 +1,146 @@
+# Enmienda 02 al protocolo de la Fase 5 (versión 3.0): datos y cohortes. Texto explicado: documentos/ENMIENDA_02.md.
+# BORRADOR. No tiene validez hasta que exista documentos/registro_enmienda_02.json con su huella y las firmas
+# (python registrar_enmienda.py --enmienda 2 firmar ...). Después de firmado no se cambia: un cambio exige una enmienda nueva.
+# El protocolo v1.0 y la enmienda 01 siguen vigentes; el v1.0 define el resultado primario.
+version = "3.0"
+enmienda = 2
+protocolo_base = "config/protocolo_fase5_v2.toml"
+huella_base = "0f199fb8270cf74fd8d4c3c8ed2a36a73c9015f38a880317710cf5e3a0f9b454"
+texto = "documentos/ENMIENDA_02.md"
+semilla = 20261019
+
+[resultado_primario]
+congelado = true
+descripcion = "Modelos de la Fase 4, protocolo v1.0 y tablas de salidas/evaluacion_2024: no se modifican, no se re-etiquetan y no se reemplazan."
+codigo_con_opcion_apagada = "Los cambios de código de las Fases 3 y 5 quedan detrás de una opción apagada por defecto; sin ella, cascadas, capas Oro y cohortes evaluadas son idénticas byte a byte."
+
+[disenos.anidado]
+entrenar = [2019, 2020, 2021]
+calibrar = 2022
+probar = 2023
+rol = "resultado de la enmienda (no usa 2024)"
+
+[disenos.original]
+entrenar = [2019, 2020, 2021, 2022]
+calibrar = 2023
+probar = 2024
+rol = "secundario, rotulado 'ya abierto'"
+
+[receta]
+igual_que = "enmienda 01 ([receta] de protocolo_fase5_v2.toml)"
+cambio_de_cohorte = "se aplica a la vez en entrenamiento, calibración y prueba"
+base_de_comparacion = "la variante base del mismo diseño y la misma tarea (la de la enmienda 01)"
+comparacion_por_hospital = "sobre los hospitales elegibles en las dos versiones"
+
+[regla_lectura]
+igual_que = "enmienda 01"
+min_misma_zona = 0.80
+min_rho = 0.90
+
+[publicacion]
+igual_que = "enmienda 01"
+tasas_por_hospital = "una tasa de contexto se publica solo si su conteo es 0 o al menos 10; con conteos de 1 a 9 se suprime"
+muertes_obstetricas = "solo el total 2019-2023, sin desglose por hospital ni por año"
+
+[decisiones]
+ex03 = "conservadora: se excluye el MDC 14 completo (decisión del autor, 21-10-2026), declarada como limitación"
+rol_estancia = "alta voluntaria y fuga salen de la cohorte E; en D siguen como no evento"
+
+# ------------------------------------------------------------------ lista cerrada de análisis
+# Ninguno se corrió antes como exploración.
+
+[[analisis]]
+id = "E2.1"
+nombre = "Sin alta voluntaria ni fuga en la cohorte E"
+tipo = "cohorte"
+reentrena = "solo estadía"
+tareas = ["estadia"]
+excluir_tipoalta_de = "fase3_preparacion/config/tipoalta_roles.csv: rol_estancia = INCLUIDO_SENSIBILIDAD"
+disenos = ["anidado", "original"]
+regla = true
+plan = "1.1"
+hallazgo = "H-08"
+
+[[analisis]]
+id = "E2.2"
+nombre = "Sin el MDC 14 completo en las cohortes D y E"
+tipo = "cohorte"
+reentrena = true
+tareas = ["mortalidad", "estadia"]
+excluir_mdc = ["14"]
+informar = "muertes obstétricas que salen de D, solo el total 2019-2023"
+disenos = ["anidado", "original"]
+regla = true
+plan = "1.2"
+hallazgo = "H-07"
+
+[[analisis]]
+id = "E2.3"
+nombre = "E2.1 y E2.2 juntas (cohorte candidata a versión 2)"
+tipo = "cohorte"
+reentrena = true
+tareas = ["mortalidad", "estadia"]
+combina = ["E2.1", "E2.2"]
+disenos = ["anidado", "original"]
+regla = true
+plan = "1.1, 1.2"
+hallazgo = "H-07, H-08"
+
+[[analisis]]
+id = "E2.4a"
+nombre = "Grupos de pares por tipo de establecimiento DEIS"
+tipo = "indicador"
+reentrena = false
+fuente = "fase3_preparacion/config/tipo_establecimiento.csv (huella registrada antes de correr)"
+cambio = "un embudo por tipo de establecimiento"
+disenos = ["anidado", "original"]
+regla = true
+plan = "1.3"
+hallazgo = "H-01, H-18"
+
+[[analisis]]
+id = "E2.4b"
+nombre = "Análisis 3.1a con la lista de institutos monográficos del catálogo DEIS"
+tipo = "indicador"
+reentrena = false
+fuente = "fase3_preparacion/config/tipo_establecimiento.csv"
+disenos = ["anidado", "original"]
+regla = true
+plan = "1.3"
+hallazgo = "H-01"
+
+[[analisis]]
+id = "E2.5"
+nombre = "Embudo sin los hospitales con menos de 2 años en GRD"
+tipo = "indicador"
+reentrena = false
+fuente = "fase3_preparacion/salidas/tablas/catalogo_hospitales_anio.csv (primer año con egresos)"
+reportar_aparte = true
+disenos = ["anidado", "original"]
+regla = true
+plan = "1.4"
+hallazgo = "H-06"
+
+[[analisis]]
+id = "E2.6a"
+nombre = "Tasas de contexto por hospital y su correlación con el O/E"
+tipo = "contexto"
+reentrena = false
+tasas = ["Z51.5 en cualquier diagnóstico", "alta a hospitalización domiciliaria", "alta voluntaria y fuga"]
+cohorte_tasas = "C (adultos hospitalizados): la hospitalización domiciliaria está censurada y no entra a D"
+informar = "correlación de rangos de cada tasa con el O/E de cada tarea; tasas por hospital con la regla de [publicacion]"
+disenos = ["anidado", "original"]
+regla = false
+plan = "1.5"
+hallazgo = "H-15"
+
+[[analisis]]
+id = "E2.6b"
+nombre = "Mortalidad sin los episodios con Z51.5 en cualquier diagnóstico"
+tipo = "indicador"
+reentrena = false
+tareas = ["mortalidad"]
+disenos = ["anidado", "original"]
+regla = true
+plan = "1.5"
+hallazgo = "H-15"

@@ -7,6 +7,27 @@ Incidentes: `documentos/INCIDENTES.md` (I-01 a I-10). El profesor guía ratific�
 `documentos/registro_enmienda_01.json`, con la aprobación verbal del profesor guía anotada. Falta adjuntar su
 constancia escrita (`docs/gobernanza/`).
 
+- El código de los 15 análisis (`run_enmienda01.py` y `enmienda01/`) se registró antes de correr
+  (`documentos/registro_corrida_enmienda_01.json`, commit `b718454`).
+- Se corrió una vez, el 22-10-2026.
+- Resultados publicables: `salidas/enmienda_01/` (empezar por `RESUMEN.md`). Anexo:
+  `docs/fase5_evaluacion/Anexo_Enmienda01_resultados.docx`.
+- En resumen: 41 de 44 combinaciones cumplen la regla. Las 3 que no cumplen son de mortalidad: sin las variables
+  condicionales y sin comorbilidades.
+
+```
+# solo si la enmienda y el código están registrados; las tablas por hospital quedan en --interna (fuera del repositorio)
+python run_enmienda01.py --capas <capas> --trabajo4 <trabajo4> --trabajo5 <trabajo5> --interna <carpeta interna> [--exploracion <salida de la auditoría>]
+```
+
+**Enmienda 02** (borrador, datos y cohortes): `config/protocolo_fase5_v3.toml` y `documentos/ENMIENDA_02.md`, con
+su código en `run_enmienda02.py` y `enmienda02/`. No se corre hasta registrarla con
+`python registrar_enmienda.py --enmienda 2 ...`.
+
+`evaluacion/enmienda.py` y `registrar_enmienda.py` se generalizaron **después** de la corrida de la enmienda 01, para
+registrar también la 02 (`--enmienda 2`). Para la 01 se comportan igual, y las pruebas lo verifican. Por eso su
+huella ya no coincide con la que guarda `registro_corrida_enmienda_01.json`, que es la del código con que se corrió.
+
 ```
 pip install -r requirements.txt
 # preparación

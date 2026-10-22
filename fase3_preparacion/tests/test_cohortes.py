@@ -75,3 +75,59 @@ def test_comorbilidad_de_obstetricos_usa_solo_diagnosticos_secundarios(tmp_path)
     dx = pl.DataFrame({c: ["", ""] for c in esquema.DIAG}).with_columns(pl.Series("DIAGNOSTICO2", ["I500", ""]), pl.Series("DIAGNOSTICO1", ["O800", "I500"]))
     flags = elixhauser.calcular_flags(dx, esquema.DIAG_SEC, e)
     assert flags["N_COMORB_ELIX"].to_list() == [1, 0]
+
+
+# ------------------------------------------------------------------ enmienda 02 (borrador): opciones apagadas por defecto
+def _con_tipoalta(**cols):
+    b = base(**cols)
+    return b.with_columns(pl.Series("ETIQUETA_TIPOALTA", cols.get("ETIQUETA_TIPOALTA", ["DOMICILIO"] * b.height)))
+
+
+def test_sin_opciones_todo_queda_igual():
+    b = _con_tipoalta(MDC=["04", "14", "14"], N_COMORB_MDC14=[None, 0, 2], ETIQUETA_TIPOALTA=["ALTA VOLUNTARIA", "DOMICILIO", "FUGA DEL PACIENTE"])
+    assert cohortes.marcar(b).equals(cohortes.marcar(b, opciones=cohortes.Opciones()))
+    assert "EX09" not in cohortes.marcar(b).columns
+    assert not cohortes.Opciones().activas
+
+
+def test_mdc14_completo_saca_cesarea_y_preeclampsia_con_comorbilidades():
+    # cesárea con hipertensión y preeclampsia con insuficiencia renal: MDC 14 con comorbilidades, hoy en la cohorte
+    b = base(MDC=["14", "14", "14", "04"], N_COMORB_MDC14=[0, 1, 2, None], ROL=["NO_EVENTO", "NO_EVENTO", "EVENTO", "EVENTO"])
+    hoy = cohortes.marcar(b)
+    assert hoy["EX03"].to_list() == [True, False, False, False] and hoy["D"].to_list() == [False, True, True, True]
+    op = cohortes.Opciones(mdc14_completo=True)
+    m = cohortes.marcar(b, opciones=op)
+    assert m["EX03"].to_list() == [True, True, True, False] and m["D"].to_list() == [False, False, False, True]
+    muertes_maternas = m.filter(pl.col("D") & (pl.col("MDC") == "14") & (pl.col("ROL") == "EVENTO")).height
+    assert muertes_maternas == 0
+    c = cohortes.cascada_anio(m, 2020, op)
+    assert cohortes.cuadra(c)
+    assert c.filter(pl.col("paso") == "EX03")["descripcion"][0] == cohortes.DESC_EX03_MDC14_COMPLETO
+
+
+def test_alta_voluntaria_y_fuga_salen_de_e_pero_no_de_d():
+    b = _con_tipoalta(ROL=["NO_EVENTO"] * 4 + ["EVENTO"], ESTANCIA_DIAS=[3, 3, 3, 0, 3],
+                      ETIQUETA_TIPOALTA=["DOMICILIO", "ALTA VOLUNTARIA", "FUGA DEL PACIENTE", "ALTA VOLUNTARIA", "FALLECIDO"])
+    op = cohortes.Opciones(excluir_tipoalta_e=("ALTA VOLUNTARIA", "FUGA DEL PACIENTE"))
+    m = cohortes.marcar(b, opciones=op)
+    assert m["D"].to_list() == [True] * 5
+    assert m["E"].to_list() == [True, False, False, False, False]
+    assert m["EX09"].to_list() == [False, True, True, False, False]     # la de 0 días ya salía por EX08
+    c = cohortes.cascada_anio(m, 2021, op)
+    v = dict(zip(c["paso"], c["n"]))
+    assert cohortes.cuadra(c) and v["EX09"] == 2 and v["EX08"] == 1 and v["EX07"] == 1 and v["E"] == 1
+    assert c["paso"].to_list()[-1] == "EX09"                            # al final: no mueve el orden de los pasos existentes
+
+
+def test_la_opcion_de_tipo_de_alta_exige_la_etiqueta():
+    import pytest
+    with pytest.raises(ValueError, match="ETIQUETA_TIPOALTA"):
+        cohortes.marcar(base(MDC=["04"]), opciones=cohortes.Opciones(excluir_tipoalta_e=("ALTA VOLUNTARIA",)))
+
+
+def test_tipos_de_alta_fuera_de_e_salen_de_la_configuracion():
+    from prep.config import DIR_CONFIG
+    roles = pl.read_csv(DIR_CONFIG / "tipoalta_roles.csv")
+    assert cohortes.tipoalta_fuera_de_e(roles) == ("ALTA VOLUNTARIA", "FUGA DEL PACIENTE")
+    op = cohortes.opciones_enmienda02(roles)
+    assert op.activas and op.mdc14_completo

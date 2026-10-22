@@ -1,4 +1,5 @@
-"""Registra la enmienda 01 al protocolo de la Fase 5. Se ejecuta desde fase5_evaluacion/.
+"""Registra las enmiendas al protocolo de la Fase 5. Se ejecuta desde fase5_evaluacion/. Por defecto actúa sobre la
+enmienda 01; «--enmienda 2» actúa sobre la enmienda 02 (que exige la 01 registrada).
 
     python registrar_enmienda.py huellas
         Muestra las huellas que van en la constancia del profesor guía (Parte C). No escribe nada.
@@ -17,7 +18,8 @@ from evaluacion import enmienda
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="Registro de la enmienda 01 del protocolo de la Fase 5")
+    ap = argparse.ArgumentParser(description="Registro de las enmiendas al protocolo de la Fase 5")
+    ap.add_argument("--enmienda", type=int, default=1, choices=sorted(enmienda.ENMIENDAS))
     sub = ap.add_subparsers(dest="accion", required=True)
     sub.add_parser("huellas")
     f = sub.add_parser("firmar")
@@ -31,14 +33,15 @@ def main() -> int:
     a = ap.parse_args()
     try:
         if a.accion == "huellas":
-            for ruta, h in enmienda.huellas().items():
+            for ruta, h in enmienda.huellas(n=a.enmienda).items():
                 print(f"{ruta}\n  SHA-256: {h}")
         elif a.accion == "firmar":
-            print("registrado:", enmienda.firmar(a.autor, a.profesor, a.fecha_firma, sin_constancia=a.sin_constancia, nota=a.nota))
-            print("siguiente: git add documentos/registro_enmienda_01.json && git commit -m 'Registra la enmienda 01' "
-                  "&& git tag -a enmienda-01 -m 'Enmienda 01 firmada' && git push --follow-tags")
+            ruta = enmienda.firmar(a.autor, a.profesor, a.fecha_firma, sin_constancia=a.sin_constancia, nota=a.nota, n=a.enmienda)
+            print("registrado:", ruta)
+            print(f"siguiente: git add {ruta.relative_to(ruta.parents[1])} && git commit -m 'Registra la enmienda {a.enmienda:02d}' "
+                  f"&& git tag -a enmienda-{a.enmienda:02d} -m 'Enmienda {a.enmienda:02d} firmada' && git push --follow-tags")
         else:
-            print("registrado:", enmienda.antes_de_correr(a.scripts))
+            print("registrado:", enmienda.antes_de_correr(a.scripts, n=a.enmienda))
     except (enmienda.ErrorEnmienda, ValueError) as e:
         print(f"ERROR: {e}", file=sys.stderr)
         return 1
