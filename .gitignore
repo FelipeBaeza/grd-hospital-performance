@@ -31,3 +31,6 @@ Oficio_Respuesta_N*23364_T10901.pdf
 docs/comunicaciones_fonasa/
 # Tablas por hospital con muertes observadas de 1 a 9 sin suprimir (criterio DT04)
 fase4_modelado/salidas/tablas/auditoria_extracto_hospital_*.csv
+
+# Copia local del catálogo DEIS (el que usa el proyecto está en fase3_preparacion/config/fuentes/)
+Base de Establecimientos *.xlsx

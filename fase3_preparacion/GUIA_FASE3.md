@@ -14,7 +14,7 @@ Las capas (Bronce, Plata, Oro, sellado; unos 800 MB) se escriben en `--capas`, n
 ## Contenido
 - `prep/` código por capa: bronce, plata, cohortes, oro, sellado, catalogo, privacidad, verificacion, orquestador.
 - `config/` umbrales congelados y tablas de referencia (Elixhauser, roles de TIPOALTA, cifras de la Fase 2).
-- `tests/` 61 pruebas con datos sintéticos (`python -m pytest`).
+- `tests/` 63 pruebas con datos sintéticos (`python -m pytest`).
 - `salidas/tablas/` resultados en CSV; `tabla_verificacion.csv` tiene las 8 puertas (P1 a P8, todas PASS en la corrida final).
 - `salidas/figuras/` gráficos del informe.
 
@@ -29,6 +29,9 @@ Las capas (Bronce, Plata, Oro, sellado; unos 800 MB) se escriben en `--capas`, n
 ## Agregado por el plan de corrección (octubre de 2026)
 - `prep/cohortes.py` acepta las opciones de la enmienda 02 (MDC 14 completo fuera; alta voluntaria y fuga fuera de E,
   paso EX09). Vienen **apagadas**: sin ellas las cohortes quedan idénticas byte a byte.
+- `catalogo_deis.py`: arma `config/tipo_establecimiento.csv` desde la Base de Establecimientos 2025 del DEIS
+  (`config/fuentes/`). Los 72 hospitales GRD quedan en: 52 generales de alta complejidad, 14 de mediana, 3 institutos
+  monográficos y 3 pediátricos. Incluye el primer año en GRD (plan 1.3 y 1.4).
 - `prep/sello_cripto.py`: sello criptográfico para un año de prueba nuevo (plan 4.5). El profesor guía cifra el
   desenlace con su clave (`python -m prep.sello_cripto sellar <archivo>`) y solo él lo puede abrir.
 

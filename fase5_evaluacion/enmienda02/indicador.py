@@ -25,6 +25,7 @@ def _pendiente(tarea, dis, id_, motivo) -> dict:
 def correr(capas, trabajo5, interna01, salida, enm, eps: dict, raiz_tesis, usar_deis: bool,
            tareas=("mortalidad", "estadia"), disenos=("anidado", "original"), log=print) -> dict:
     prot = c1.protocolo()
+    salida.mkdir(parents=True, exist_ok=True)
     primer = i1.primer_anio_grd(raiz_tesis)
     deis = pd.read_csv(comun.CATALOGO_DEIS, dtype={"cod_hospital": str}) if usar_deis else None
     filas, marcas, correl, tasas = [], [], [], []

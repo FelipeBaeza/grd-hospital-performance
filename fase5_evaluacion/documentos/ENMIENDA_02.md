@@ -1,13 +1,17 @@
 # Enmienda 02 al protocolo de la Fase 5: datos y cohortes
 
-**Estado: borrador.** Archivo de la enmienda: `config/protocolo_fase5_v3.toml`. Protocolo base: la enmienda 01
+Archivo de la enmienda: `config/protocolo_fase5_v3.toml`. Protocolo base: la enmienda 01
 (`config/protocolo_fase5_v2.toml`, huella `0f199fb8…`), que a su vez se apoya en el protocolo v1.0
 (`5624bdae…`). Los dos siguen vigentes.
 
 > **Validez.** Este texto y `protocolo_fase5_v3.toml` valen solo cuando existe
-> `documentos/registro_enmienda_02.json`, que registra sus huellas, la firma del autor y la aprobación del
-> profesor guía. Hasta entonces son un borrador: se pueden corregir, pero ningún análisis de la lista se corre
-> como resultado.
+> `documentos/registro_enmienda_02.json`, que registra sus huellas y la firma del autor. Hasta entonces son un
+> borrador: se pueden corregir, pero ningún análisis de la lista se corre como resultado.
+>
+> **Aprobación del profesor guía.** Por decisión del autor (22-10-2026), el profesor guía revisa y firma esta
+> enmienda **después** de conocer sus resultados, igual que la apertura de 2024 (incidente I-10). Lo que protege
+> la enmienda es que la lista cerrada, la regla de lectura y el código quedan registrados y en GitHub antes de
+> correr.
 
 ## 1. Por qué existe
 
@@ -81,13 +85,23 @@ hay nada «ya conocido».
   - Se informa cuántas muertes obstétricas salen de la cohorte D, sumadas en todos los años (2019–2023: 46),
     sin desglose por hospital ni por año.
   - Un modelo sin MDC 14 conserva las categorías de las variables, pero no ve episodios obstétricos.
-- **E2.4a y E2.4b** necesitan `fase3_preparacion/config/tipo_establecimiento.csv`. Ese archivo clasifica los
-  72 códigos de hospital desde el registro de establecimientos del DEIS, con la fuente y la fecha de descarga.
-  - Su huella se registra antes de correr los dos análisis.
-  - Si el catálogo no existe al registrar la enmienda, E2.4a y E2.4b se corren después, sin cambiar la lista,
-    apenas se agregue y se registre su huella.
-- **E2.5.** El primer año en GRD sale de `catalogo_hospitales_anio.csv`: el primer año con egresos. La columna
-  `anios_en_grd` se agrega al catálogo de la Fase 3.
+- **E2.4a y E2.4b** usan `fase3_preparacion/config/tipo_establecimiento.csv`. Ese archivo lo construyó
+  `fase3_preparacion/catalogo_deis.py` el 22-10-2026, antes de registrar esta enmienda, desde la Base de
+  Establecimientos 2025 del DEIS (`config/fuentes/DEIS_Base_de_Establecimientos_2025.xlsx`, entregada por el autor).
+  - Los 72 códigos GRD están en el DEIS con el mismo código.
+  - El DEIS los clasifica a todos como «Hospital», 58 de alta y 14 de mediana complejidad. No distingue institutos
+    ni hospitales pediátricos.
+  - **Regla:**
+    - **instituto monográfico** si el nombre DEIS empieza con «Instituto»: 3 hospitales, los mismos de la lista
+      provisional de la enmienda 01;
+    - **pediátrico** si el nombre contiene «Niños», más el Hospital Dr. Exequiel González Cortés: 3 hospitales,
+      ninguno con el volumen mínimo de adultos;
+    - si no, **general de alta o de mediana complejidad**, según el DEIS (52 y 14).
+  - En la práctica, E2.4a tiene tres embudos (alta, mediana e institutos).
+  - Como la lista de institutos coincide con la provisional, se espera que E2.4b repita el resultado de 3.1a.
+  - La huella del catálogo se registra antes de correr.
+- **E2.5.** El primer año en GRD sale de `catalogo_hospitales_anio.csv`: el primer año con egresos. Va también
+  como columna `primer_anio_grd` en `tipo_establecimiento.csv` (plan 1.4).
 - **E2.6a.**
   - Las tasas son por hospital y por año evaluado, sobre la cohorte C (adultos hospitalizados). No se usa la
     cohorte D porque el alta a hospitalización domiciliaria está censurada y no entra a ella.
@@ -114,13 +128,15 @@ indicador y debe validarse en un año nuevo (2025) antes de usarse.
 
 ## 7. Cómo se registra
 
-Igual que la enmienda 01:
+Igual que la enmienda 01, salvo que la aprobación del profesor viene después de los resultados:
 
-1. El autor y el profesor guía revisan este texto y `protocolo_fase5_v3.toml`, y lo corrigen.
+1. El autor revisa este texto y `protocolo_fase5_v3.toml`.
 2. `python registrar_enmienda.py --enmienda 2 huellas` muestra las dos huellas.
-3. `python registrar_enmienda.py --enmienda 2 firmar …` crea `documentos/registro_enmienda_02.json`.
+3. `python registrar_enmienda.py --enmienda 2 firmar … --sin-constancia --nota …` crea
+   `documentos/registro_enmienda_02.json`. La nota deja escrito que el profesor firma después.
 4. Antes de la primera corrida, `python registrar_enmienda.py --enmienda 2 antes-de-correr <scripts>` registra la
-   huella del código. El código se sube a git **antes** de correr, para que la hora de GitHub sirva de prueba.
+   huella del código y del catálogo DEIS. El código se sube a git **antes** de correr, para que la hora de GitHub
+   sirva de prueba.
 5. Se corren los análisis y se informan en un anexo de la Fase 5, rotulados «enmienda 02».
 
 ## 8. Fuera de esta enmienda
