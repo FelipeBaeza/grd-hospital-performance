@@ -7,8 +7,8 @@ calculado.
 | --- | --- | --- |
 | 0.1 Congelar el estado | Etiqueta `v1-congelado` y `docs/historial/MANIFIESTO_v1-congelado.sha256` | Hecho |
 | 0.2 Versiones de la Fase 1 y desviaciones | `docs/fase1_comprension_dominio/VERSIONES_Y_DESVIACIONES.md` | Hecho |
-| 0.3 Registro de incidentes | `fase5_evaluacion/documentos/INCIDENTES.md` (I-01 a I-09) | Hecho; falta decidir I-09 |
-| 0.4 Constancia del profesor guía | `Etapa0_Gobernanza_para_firma.docx` (sección 3) y `fase5_evaluacion/documentos/PLANTILLA_constancia_profesor_guia.md` | **Falta la firma** |
+| 0.3 Registro de incidentes | `fase5_evaluacion/documentos/INCIDENTES.md` (I-01 a I-10) | Hecho; falta decidir I-09 |
+| 0.4 Constancia del profesor guía | `Etapa0_Gobernanza_para_firma.docx` (sección 3) y `fase5_evaluacion/documentos/PLANTILLA_constancia_profesor_guia.md`. La Parte A es una ratificación posterior (I-10) | **Falta la firma** |
 | 0.5 Enmienda 01 | `fase5_evaluacion/config/protocolo_fase5_v2.toml` y `fase5_evaluacion/documentos/ENMIENDA_01.md` | Borrador; **falta aprobarla y registrarla** |
 
 ## Cómo se cierra

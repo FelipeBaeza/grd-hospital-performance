@@ -21,6 +21,7 @@ Hora de referencia (UTC), 19-10-2026:
 | I-07 | 20-10-2026 | Auditoría | Relectura de 2024 en una reproducción independiente aislada | Después | No (resultados idénticos) |
 | I-08 | 20-10-2026 | Auditoría | Sensibilidades exploratorias corridas antes de pre-registrar la enmienda 01 | Después | No; sus resultados ya se conocen |
 | I-09 | 21-10-2026 | Repositorio | Publicación de valores reales en GitHub: la prueba de privacidad y tablas por hospital con celdas menores que 10 | Después | No; decisión de publicación pendiente |
+| I-10 | Después del 19-10-2026 | F5 | El profesor guía autorizó por escrito después de conocer los resultados de 2024 | Después | No cambia cifras; la autorización previa no operó |
 
 ---
 
@@ -212,3 +213,29 @@ propio proyecto se fijó.
 2. **Mantener el historial y declararlo aquí**, como queda hoy.
 
 Mientras no se decida, se mantiene la opción 2.
+
+---
+
+## I-10. El profesor guía autorizó después de conocer los resultados de 2024
+
+**Qué pasó.** La apertura del 19-10-2026, a las 13:04:55 UTC, se activó con `autorizacion_apertura_2024.txt`. Ese
+archivo lo firmó el estudiante e «informa la aprobación del profesor guía». A su vez, `DECISIONES_FASE5.md` dice que
+el estudiante tomó las decisiones del profesor como aprobatorias.
+
+El profesor guía dio su autorización **después de conocer los resultados de 2024**, según lo informó el autor el
+21-10-2026. Su constancia escrita es, por lo tanto, una **ratificación posterior** y no una autorización previa.
+
+**Evidencia.**
+- `autorizacion_apertura_2024.txt` y `DECISIONES_FASE5.md` (19-10-2026).
+- La declaración del autor (21-10-2026).
+- La Parte A de la constancia del profesor, con la fecha de su primera aprobación (pendiente de firma).
+
+**Impacto.** No cambia ninguna cifra. Los criterios y la regla de veredicto se pre-registraron antes de abrir
+(12:16:38 UTC) y los modelos ya estaban congelados. Lo que no operó fue la salvaguarda de gobernanza: que un tercero
+autorizara la apertura antes de que ocurriera. Por eso la evaluación de 2024 se describe así: «realizada con la
+aprobación informada por el estudiante y ratificada por el profesor guía después de conocer los resultados».
+
+**Medida.**
+1. La Parte A de la constancia se firma como ratificación posterior e indica cuándo dio el profesor su primera aprobación.
+2. Para un año de prueba nuevo (2025), la autorización del profesor se registra antes de abrir. Idealmente se usa el sello criptográfico del plan (etapa 4.5), para que sin su clave el año no se pueda leer.
+3. Por decisión del autor y del profesor (21-10-2026), los análisis de la enmienda 01 se informan tal cual resulten. No se modifican ni se descartan porque no mejoren el modelo.

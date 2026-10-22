@@ -1,7 +1,7 @@
 # Guía de la Fase 5 (Evaluación)
 
 Estado: **completa**. 2024 se abrió una vez (ver `documentos/autorizacion_apertura_2024.txt` y `documentos/DECISIONES_FASE5.md`).
-Incidentes: `documentos/INCIDENTES.md` (I-01 a I-09).
+Incidentes: `documentos/INCIDENTES.md` (I-01 a I-10). El profesor guía ratificó la apertura después de conocer los resultados (I-10).
 
 Pendiente: la constancia escrita del profesor guía y el registro de la **enmienda 01**. Los archivos de la enmienda
 son `config/protocolo_fase5_v2.toml` y `documentos/ENMIENDA_01.md`; se registra con `python registrar_enmienda.py`
