@@ -1,0 +1,231 @@
+# Enmienda 01 al protocolo de la Fase 5 (versión 2.0). Texto explicado: documentos/ENMIENDA_01.md.
+# Este archivo NO tiene validez hasta que exista documentos/registro_enmienda_01.json con su huella y las firmas
+# (python registrar_enmienda.py firmar ...). Después de firmado no se cambia: un cambio exige una enmienda nueva.
+# El protocolo v1.0 (config/protocolo_fase5.toml) sigue vigente y define el resultado primario.
+version = "2.0"
+enmienda = 1
+protocolo_base = "config/protocolo_fase5.toml"
+huella_base = "5624bdae5dad1205081c7765d16046890f5c460667031b336dc21c1e02d42256"
+texto = "documentos/ENMIENDA_01.md"
+semilla = 20261019
+
+[resultado_primario]
+congelado = true
+descripcion = "Modelos de la Fase 4, protocolo v1.0 y tablas de salidas/evaluacion_2024: no se modifican, no se re-etiquetan y no se reemplazan. Son el resultado confirmatorio de la tesis."
+
+[disenos.anidado]
+entrenar = [2019, 2020, 2021]
+calibrar = 2022
+probar = 2023
+rol = "resultado de la enmienda (no usa 2024)"
+
+[disenos.original]
+entrenar = [2019, 2020, 2021, 2022]
+calibrar = 2023
+probar = 2024
+rol = "secundario, rotulado 'ya abierto'"
+
+[receta]
+modelo = "LightGBM de cada tarea con los hiperparámetros y el número de árboles congelados en fase4_modelado/modelos/<tarea>/"
+recalibracion = { mortalidad = "platt", estadia = "factor_unico" }
+cohortes = "las de la Fase 3 y del protocolo v1.0, sin cambios"
+indicador = "embudo del protocolo v1.0: winsorización 0,10; z 1,96 y 3,09; mínimo 500 egresos y 10 eventos esperados"
+bootstrap = 1000                       # remuestreo de hospitales completos, como en v1.0
+nivel = 0.95
+base_de_comparacion = "la variante base del mismo diseño y la misma tarea"
+
+[metricas]
+modelo_mortalidad = ["auc", "pr_auc", "brier_skill_score", "pendiente_calibracion", "oe_global_con_ic"]
+modelo_estadia = ["rmse", "devianza_poisson", "oe_global_con_ic"]
+indicador = ["pct_fuera_95", "pct_fuera_998", "tau2", "pct_misma_zona", "rho_spearman_oe", "n_cambian_zona", "fuera_a_dentro", "dentro_a_fuera"]
+
+[regla_lectura]
+min_misma_zona = 0.80
+min_rho = 0.90
+zonas = ["dentro de lo esperado", "alerta alta", "alerta baja", "señal alta", "señal baja"]
+texto = "La conclusión de la Fase 5 se mantiene frente a un análisis si al menos el 80 % de los hospitales conserva su zona y la correlación de rangos (Spearman) del O/E por hospital con la base es de al menos 0,90. Si no se cumple, se informa que el indicador no es robusto a esa decisión. El resultado primario no se reemplaza; una variante mejor solo puede adoptarse como versión 2 para el despliegue y validarse en un año nuevo (2025)."
+
+[publicacion]
+regla = "Las tablas por hospital de la enmienda siguen las reglas de supresión del protocolo v1.0 (celda mínima 10, también los conteos reconstruibles). Se publican los resúmenes por análisis y la lista de códigos de hospital que cambian de zona, sin conteos."
+
+# ------------------------------------------------------------------ lista cerrada de análisis
+# conocido = el análisis ya se corrió como exploración en la auditoría (incidente I-08) y su resultado se conoce.
+
+[[analisis]]
+id = "2.1"
+nombre = "Sin las 5 categorías de Elixhauser sospechosas de la Fase 1"
+tipo = "modelo"
+reentrena = true
+quitar = ["ELIX_04", "ELIX_22", "ELIX_24", "ELIX_25", "ELIX_26"]
+disenos = ["anidado", "original"]
+regla = true
+conocido = true
+hallazgo = "H-02"
+
+[[analisis]]
+id = "2.2"
+nombre = "Sin 2020 y 2021 en el entrenamiento"
+tipo = "modelo"
+reentrena = true
+sin_anios_entrenamiento = [2020, 2021]
+disenos = ["anidado", "original"]
+nota = "En el diseño anidado solo queda 2019 para entrenar."
+regla = true
+conocido = true
+hallazgo = "H-04"
+
+[[analisis]]
+id = "2.3"
+nombre = "Sin las 4 variables condicionales"
+tipo = "modelo"
+reentrena = true
+quitar = ["TIPO_INGRESO", "TIPO_PROCEDENCIA", "PROCEDENCIA_AGR", "NIVEL_CUIDADO_INGRESO"]
+disenos = ["anidado", "original"]
+regla = true
+conocido = true
+hallazgo = "H-10"
+
+[[analisis]]
+id = "2.4"
+nombre = "Resistente a la codificación: sin ninguna comorbilidad secundaria"
+tipo = "modelo"
+reentrena = true
+quitar = ["ELIX_01..ELIX_31"]
+disenos = ["anidado", "original"]
+regla = true
+conocido = true
+hallazgo = "H-02, H-12"
+
+[[analisis]]
+id = "2.5"
+nombre = "Línea base en vez de LightGBM, a nivel de hospital"
+tipo = "modelo"
+reentrena = "solo en el diseño anidado"
+modelo_original = "planes B congelados de la Fase 5 (logística en mortalidad, Poisson en estadía), sin reentrenar"
+modelo_anidado = "receta de la línea base de la Fase 4, entrenada en el diseño anidado"
+disenos = ["anidado", "original"]
+regla = true
+conocido = true
+hallazgo = "pregunta 8 del comité"
+
+[[analisis]]
+id = "2.6"
+nombre = "Sin traslados entrantes en la evaluación"
+tipo = "indicador"
+reentrena = false
+cambio = "quitar de las cohortes evaluadas los episodios con TIPO_PROCEDENCIA de traslado desde otro hospital"
+disenos = ["anidado", "original"]
+regla = true
+conocido = true
+hallazgo = "H-03 (decisión 16 original)"
+
+[[analisis]]
+id = "3.1a"
+nombre = "Sin los institutos monográficos en el embudo general"
+tipo = "indicador"
+reentrena = false
+excluir_hospitales = ["110110", "112103", "112104"]
+fuente_lista = "provisional, por nombre en Hospitales.csv, hasta tener el catálogo DEIS (plan, etapa 1.3)"
+reportar_aparte = true
+disenos = ["anidado", "original"]
+regla = true
+conocido = true
+hallazgo = "H-01"
+
+[[analisis]]
+id = "3.1b"
+nombre = "Grupos de pares por tercil de egresos"
+tipo = "indicador"
+reentrena = false
+cambio = "un embudo por tercil de egresos evaluables del hospital en el año evaluado"
+disenos = ["anidado", "original"]
+regla = true
+conocido = true
+hallazgo = "H-01, H-06"
+
+[[analisis]]
+id = "3.2"
+nombre = "Marca de hospitales con menos de 2 años en GRD"
+tipo = "presentacion"
+reentrena = false
+fuente = "fase3_preparacion/salidas/tablas/catalogo_hospitales_anio.csv"
+informar = "número de hospitales marcados en cada zona"
+disenos = ["anidado", "original"]
+regla = false
+conocido = false
+hallazgo = "H-06"
+
+[[analisis]]
+id = "3.3"
+nombre = "Re-basado anual del esperado (suma de observados igual a suma de esperados)"
+tipo = "indicador"
+reentrena = false
+disenos = ["anidado", "original"]
+regla = true
+conocido = true
+hallazgo = "H-11"
+
+[[analisis]]
+id = "3.4a"
+nombre = "Embudo sin winsorizar"
+tipo = "indicador"
+reentrena = false
+winsor = 0.0
+disenos = ["anidado", "original"]
+regla = true
+conocido = true
+hallazgo = "H-05"
+
+[[analisis]]
+id = "3.4b"
+nombre = "Embudo con truncamiento al 10 % por cola, al estilo SHMI"
+tipo = "indicador"
+reentrena = false
+truncamiento = 0.10
+disenos = ["anidado", "original"]
+regla = true
+conocido = false
+hallazgo = "H-05"
+
+[[analisis]]
+id = "3.4c"
+nombre = "Validación del embudo con heterogeneidad real (puerta P5b)"
+tipo = "simulacion"
+reentrena = false
+cambio = "hospitales simulados como normales con el tau estimado sin winsorizar y los esperados reales; proporción fuera del 95 % con el método del protocolo y sin winsorizar"
+replicas = 400
+semilla = 7
+disenos = ["anidado", "original"]
+regla = false
+conocido = true
+hallazgo = "H-05"
+
+[[analisis]]
+id = "3.5"
+nombre = "Estabilidad interanual del O/E por hospital, 2023 frente a 2024"
+tipo = "descriptivo"
+reentrena = false
+informar = ["rho_spearman_oe", "alertas que se repiten en la misma dirección"]
+fuente = "salidas/ensayo_2023 (modelos congelados) y salidas/evaluacion_2024"
+regla = false
+conocido = true
+hallazgo = "auditoría, sección 3.4"
+
+[[analisis]]
+id = "3.6"
+nombre = "Calibración por estrato de hospital"
+tipo = "descriptivo"
+reentrena = false
+estratos = ["tercil de egresos", "general o instituto monográfico (lista provisional de 3.1a)", "años en GRD: menos de 2 o 2 y más"]
+informar = "O/E del estrato con intervalo bootstrap por hospital"
+disenos = ["anidado", "original"]
+regla = false
+conocido = "en parte (subgrupos por tamaño de la Fase 5)"
+hallazgo = "auditoría, sección 3.1"
+
+# ------------------------------------------------------------------ fuera de esta enmienda
+[fuera_de_alcance]
+enmienda_02 = ["rol_estancia: alta voluntaria y fuga fuera de la cohorte E (H-08)", "EX03: definición de parto sin complicación (H-07, requiere contraparte clínica)", "catálogo de tipo de establecimiento DEIS (H-01, H-18)", "tasas de contexto por hospital: paliativos Z51.5, hospitalización domiciliaria, alta voluntaria (H-15)"]
+
+# El código que corre estos análisis no forma parte de este archivo: su huella se registra aparte, antes de la
+# primera corrida, con «python registrar_enmienda.py antes-de-correr <scripts>» (documentos/registro_corrida_enmienda_01.json).

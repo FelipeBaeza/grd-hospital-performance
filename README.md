@@ -28,6 +28,13 @@ Resultado en 2024: los 7 criterios de aceptación se cumplen (5 con holgura y 2 
 mortalidad 0,979 y de estadía 0,957). Una reproducción independiente desde cero (octubre de 2026) obtuvo
 resultados idénticos byte a byte.
 
+2024 quedó reservado para el pipeline definitivo, que lo leyó una sola vez después de pre-registrar el protocolo.
+No fue un año ciego para el autor: un prototipo anterior se evaluó en 2024 el 27-09-2026 (incidente I-01 en
+`fase5_evaluacion/documentos/INCIDENTES.md`).
+
+**Gobernanza (etapa 0 del plan de corrección):** los incidentes, las versiones de la Fase 1 y la enmienda 01 al
+protocolo están listos. Falta la firma del profesor guía (`docs/gobernanza/`).
+
 ## Estructura
 
 ```
@@ -64,7 +71,7 @@ Python 3.13 con las versiones del manifiesto de la Fase 4 (`fase4_modelado/model
 Los archivos de FONASA traen fechas exactas de nacimiento, ingreso y alta: no se suben a git ni a ningún
 repositorio público.
 
-Este repositorio es público. Quedan solo en la copia local de la autora, fuera de git (ver `.gitignore`):
+Este repositorio es público. Quedan solo en la copia local del autor, fuera de git (ver `.gitignore`):
 
 - `Oficio_Respuesta_N°23364_T10901.pdf` y `docs/comunicaciones_fonasa/`: correspondencia con FONASA. Sin el
   oficio, la Fase 2 registra su procedencia como «AUSENTE»; no cambia ningún cálculo.

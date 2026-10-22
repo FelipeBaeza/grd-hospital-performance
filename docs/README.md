@@ -8,6 +8,8 @@
 4. `fase2_comprension_datos/Informe_Fase2_v5.docx`, `fase3_preparacion_datos/Informe_Fase3_v5.docx` y
    `fase4_modelado/Informe_Fase4_v5.docx`, según lo que se necesite revisar.
 5. `auditoria/` — auditoría metodológica externa y resumen del plan de corrección.
+6. `gobernanza/` — etapa 0 del plan de corrección: constancia para el profesor guía, enmienda 01, versiones de la
+   Fase 1 e incidentes.
 
 Los informes **v5** describen solo lo que se ejecutó, con cifras comprobadas en una reproducción independiente
 desde cero (octubre de 2026).
@@ -18,13 +20,14 @@ desde cero (octubre de 2026).
 | --- | --- |
 | `00_guia_del_proyecto/` | Guía del proyecto |
 | `00_propuesta_seminario/` | Informe de seminario (agosto de 2026): el punto de partida |
-| `fase1_comprension_dominio/` | Informe v5 y tablas de la Fase 1 |
+| `fase1_comprension_dominio/` | Informe v5, tablas de la Fase 1 y `VERSIONES_Y_DESVIACIONES.md` (qué versión es el pre-registro y qué cambió) |
 | `fase2_comprension_datos/` | Informe v5 y tablas de respaldo de la Fase 2 |
 | `fase3_preparacion_datos/` | Informe v5 y plan original de la Fase 3 |
 | `fase4_modelado/` | Informe v5 y plan original de la Fase 4 |
 | `fase5_evaluacion/` | Informe v5 (preparación y evaluación) y plan original de la Fase 5 |
 | `fase6_despliegue/` | Plan de la Fase 6 (en desarrollo) |
 | `auditoria/` | Auditoría externa y resumen del plan de corrección |
+| `gobernanza/` | Documento para revisión y firma del profesor guía (etapa 0) |
 | `historial/` | Versiones anteriores de los informes, sin cambios |
 | `comunicaciones_fonasa/` | Borradores de cartas a FONASA (no enviadas; solo en la copia local, fuera de git) |
 

@@ -26,7 +26,7 @@ fase6_despliegue/web/dist/
 # Carpeta de entrega del orden (se borra al aplicar el script)
 _orden_propuesto/
 
-# Fuera del repositorio público hasta que la autora decida publicarlos
+# Fuera del repositorio público hasta que el autor decida publicarlos
 Oficio_Respuesta_N*23364_T10901.pdf
 docs/comunicaciones_fonasa/
 # Tablas por hospital con muertes observadas de 1 a 9 sin suprimir (criterio DT04)
