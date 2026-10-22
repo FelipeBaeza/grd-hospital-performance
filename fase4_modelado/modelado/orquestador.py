@@ -102,7 +102,7 @@ def etapa_contrato(capas: Path, trabajo: Path, salidas: Path, reglas) -> None:
     csv(pd.DataFrame([{"archivo": k, "sha256": v} for k, v in huellas.items()]), salidas / "tablas" / "contrato_entrada.csv")
 
 
-def etapa_ajuste(capas: Path, trabajo: Path, salidas: Path, reglas, tareas, avisar=print) -> None:
+def etapa_ajuste(capas: Path, trabajo: Path, salidas: Path, reglas, tareas, avisar=print, semilla_por_prueba: bool = False) -> None:
     for tarea in tareas:
         df = cargar_matriz(capas, tarea)
         avisar(f"[ajuste] {tarea}: {len(df):,} filas")
@@ -118,7 +118,7 @@ def etapa_ajuste(capas: Path, trabajo: Path, salidas: Path, reglas, tareas, avis
             if ruta.exists():
                 avisar(f"[ajuste] {tarea}/{tipo} ya estaba hecho")
                 continue
-            r = tuning.ajustar_gbm(tarea, tipo, df, reglas, trabajo / "optuna", avisar=avisar)
+            r = tuning.ajustar_gbm(tarea, tipo, df, reglas, trabajo / "optuna", avisar=avisar, semilla_por_prueba=semilla_por_prueba)
             csv(r["tabla"], salidas / "tablas" / f"ajuste_pruebas_{tarea}_{tipo}.csv")
             jw(ruta, {"tipo": tipo, "params": r["params"], "mejor_valor_submuestra": r["mejor_valor_submuestra"]})
         del df
@@ -336,6 +336,8 @@ def main(argv=None) -> int:
     ap.add_argument("--tareas", nargs="*", default=list(TAREAS))
     ap.add_argument("--reglas", default=None, help="TOML alternativo de reglas (solo para pruebas rápidas)")
     ap.add_argument("--sin-pytest", action="store_true")
+    ap.add_argument("--semilla-por-prueba", action="store_true",
+                    help="Optuna reproducible ante cortes (plan 4.8). Apagado por defecto: la corrida congelada se hizo sin esta opción")
     ap.add_argument("--salidas", default=str(DIR_SALIDAS))
     ap.add_argument("--modelos", default=str(DIR_MODELOS))
     a = ap.parse_args(argv)
@@ -349,7 +351,7 @@ def main(argv=None) -> int:
         if e == "contrato":
             etapa_contrato(capas, trabajo, salidas, reglas)
         elif e == "ajuste":
-            etapa_ajuste(capas, trabajo, salidas, reglas, a.tareas)
+            etapa_ajuste(capas, trabajo, salidas, reglas, a.tareas, semilla_por_prueba=a.semilla_por_prueba)
         elif e == "comparacion":
             etapa_comparacion(capas, trabajo, salidas, reglas, a.tareas)
         elif e == "seleccion":
