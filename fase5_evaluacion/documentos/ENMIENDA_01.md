@@ -99,6 +99,10 @@ Si no se cumple, se informa que el indicador no es robusto a esa decisión. El r
 Una variante que resulte mejor solo puede adoptarse como **versión 2** para el despliegue, y debe validarse en un año
 nuevo (2025). Nunca se elige entre variantes mirando 2024.
 
+Estos análisis miden si el indicador es robusto y justo; no buscan subir el AUC. Por eso **ningún análisis de la
+lista se modifica, se repite con otra configuración ni se descarta porque no mejore el modelo**. Si quitar variables
+con posible fuga baja el AUC, eso es un resultado, no un error.
+
 ## 8. Qué se publica
 
 Las tablas por hospital siguen las reglas de supresión del protocolo v1.0: celda mínima de 10, también para los
