@@ -48,8 +48,9 @@ pytest
     (`evaluacion/sin_ajuste.py`). La evaluación real de 2024 también corre dentro de esa guardia.
   - **P7 y G7** suman el escáner por propiedad (`evaluacion/privacidad_propiedad.py`), que intenta reconstruir
     conteos de 1 a 9 combinando tablas (tasa × tamaño, O/E × esperado y complementos) y busca valores reales en
-    pruebas y documentos. Los hallazgos ya declarados (incidente I-11) están en
-    `config/privacidad_hallazgos_declarados.csv`; uno nuevo hace fallar la puerta.
+    pruebas y documentos. Los 13 hallazgos del incidente I-11 se corrigieron regenerando las tablas por subgrupo
+    (`regenerar_subgrupos.py`). La lista de hallazgos declarados (`config/privacidad_hallazgos_declarados.csv`) queda
+    vacía, así que cualquier hallazgo hace fallar la puerta.
 - `run_fase5.py` crea la carpeta de trabajo si no existe.
 
 Informe explicado: `docs/fase5_evaluacion/Informe_Fase5_v5.docx`.

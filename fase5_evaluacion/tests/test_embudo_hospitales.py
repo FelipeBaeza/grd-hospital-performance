@@ -48,3 +48,30 @@ def test_oe_de_mortalidad_es_observado_sobre_esperado():
     y = np.zeros(1000); y[:80] = 1
     t, _ = hospitales.tabla(h, y, e, "mortalidad", cargar_protocolo())
     assert abs(t["oe"].iloc[0] - 0.8) < 1e-9
+
+
+def test_subgrupos_sin_celdas_pequenas_ni_complementos(tmp_path):
+    """Incidente I-11: los grupos pequeños se combinan, no queda ninguna celda oculta y el escáner por propiedad no
+    reconstruye ningún conteo; con agrupar_pequenos=False se reproduce el método anterior."""
+    from evaluacion import privacidad_propiedad as pp
+    from evaluacion import subgrupos
+    rng = np.random.default_rng(9)
+    n = 6000
+    df = pd.DataFrame({"EDAD_ANIOS": rng.uniform(18, 95, n), "SEXO": rng.choice(["HOMBRE", "MUJER"], n),
+                       "GRUPO_CLINICO": rng.choice(["I", "II", "III"], n), "COD_HOSPITAL": rng.choice(["a", "b", "c"], n), "ELIX_01": 0})
+    df.loc[:4, "SEXO"] = "SIN_DATO"                                # 5 egresos: grupo omitido con el método anterior
+    df.loc[5:60, "GRUPO_CLINICO"] = "RARO"                         # 56 egresos con pocas muertes
+    y = (rng.random(n) < 0.05).astype(float)
+    y[5:60] = 0
+    y[5:8] = 1                                                     # 3 muertes en el grupo raro
+    p = np.full(n, 0.05)
+    antes = subgrupos.tabla(df, y, p, "mortalidad", 10, agrupar_pequenos=False)
+    assert antes["observado"].isna().any() or (antes.groupby("variable")["n"].sum().nunique() > 1)
+    t = subgrupos.tabla(df, y, p, "mortalidad", 10)
+    assert t["observado"].notna().all() and (t["observado"] >= 10).all() and (t["n"] >= 10).all()
+    assert t.groupby("variable")["n"].sum().nunique() == 1 and t.groupby("variable")["observado"].sum().nunique() == 1
+    assert "HOMBRE o SIN_DATO" in set(t["grupo"]) and any(" o RARO" in g or "RARO o " in g for g in t["grupo"])
+    t.to_csv(tmp_path / "subgrupos_mortalidad.csv", index=False)
+    assert pp.reconstrucciones(tmp_path) == []
+    antes.to_csv(tmp_path / "subgrupos_mortalidad.csv", index=False)
+    assert pp.reconstrucciones(tmp_path) != []                    # el método anterior sí deja conteos reconstruibles

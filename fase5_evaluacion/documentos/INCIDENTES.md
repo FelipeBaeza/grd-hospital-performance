@@ -22,7 +22,7 @@ Hora de referencia (UTC), 19-10-2026:
 | I-08 | 20-10-2026 | Auditoría | Sensibilidades exploratorias corridas antes de pre-registrar la enmienda 01 | Después | No; sus resultados ya se conocen |
 | I-09 | 21-10-2026 | Repositorio | Publicación de valores reales en GitHub: la prueba de privacidad y tablas por hospital con celdas menores que 10 | Después | No; decisión de publicación pendiente |
 | I-10 | Después del 19-10-2026 | F5 | El profesor guía autorizó por escrito después de conocer los resultados de 2024 | Después | No cambia cifras; la autorización previa no operó |
-| I-11 | 22-10-2026 | F5 y F6 | El escáner por propiedad encontró conteos nacionales de 1 a 9 reconstruibles por complemento en las tablas por subgrupo | Después | No; decisión de publicación pendiente |
+| I-11 | 22-10-2026 | F5 y F6 | El escáner por propiedad encontró conteos nacionales de 1 a 9 reconstruibles por complemento en las tablas por subgrupo | Después | No; tablas regeneradas el mismo día |
 
 ---
 
@@ -264,7 +264,7 @@ total es un conteo de 1 a 9, en dos situaciones:
 - **Celda oculta:** el grupo «sexo sin dato» o un grupo clínico poco frecuente tienen el observado suprimido.
 - **Fila omitida:** el grupo no se publicó por tener menos de 10 egresos.
 
-La lista exacta está en `config/privacidad_hallazgos_declarados.csv`, sin los conteos.
+La lista exacta estaba en `config/privacidad_hallazgos_declarados.csv`, sin los conteos (commit `ba759d1`).
 
 **Impacto.** Ningún resultado cambia.
 
@@ -275,13 +275,27 @@ La lista exacta está en `config/privacidad_hallazgos_declarados.csv`, sin los c
 - El escáner original no lo detectaba porque revisa patrones dentro de un archivo, no lo que se puede deducir
   combinando celdas.
 
-**Medida.**
+**Medida (decisión del autor, 22-10-2026: regenerar las tablas).**
 
-1. Los 13 hallazgos quedan **declarados** en `config/privacidad_hallazgos_declarados.csv`. Las puertas P7 y G7 y la
-   prueba `test_salidas_reales_sin_hallazgos_nuevos` fallan ante cualquier hallazgo nuevo.
-2. **Decisión pendiente del autor**, junto con la de I-09:
-   - (a) regenerar esas tablas con supresión secundaria (ocultar también un segundo grupo, o unir «sin dato» y los
-     grupos raros en un grupo «otros») y reescribir o no el historial público;
-   - (b) mantenerlas como están, declarando el riesgo.
-3. Para un año nuevo (2025), la supresión secundaria debe aplicarse desde el código de las tablas por subgrupo.
+1. `evaluacion/subgrupos.py` ya no oculta ni omite grupos pequeños: los **combina**. Los grupos con menos de 10
+   egresos o, en mortalidad, con menos de 10 muertes se juntan en un grupo «A o B». Si el combinado sigue siendo
+   pequeño, se le suma el grupo publicado que menos agrega (en mortalidad, el de menos muertes). Así no queda ninguna
+   celda oculta, y ningún complemento revela un conteo pequeño. El método anterior sigue disponible
+   (`agrupar_pequenos=False`) y una prueba comprueba las dos cosas.
+2. `regenerar_subgrupos.py` rehízo las 4 tablas de la Fase 5 (ensayo 2023 y evaluación 2024) con los modelos
+   congelados y la guardia sin ajustes.
+   - **Control:** antes de escribir comprobó que el método anterior reproduce byte a byte las tablas publicadas.
+   - **Registro:** las huellas anteriores y nuevas están en `salidas/tablas/regeneracion_subgrupos_I-11.csv`.
+   - **Lectura de 2024:** para 2024 volvió a leer el desenlace ya abierto (`trabajo5`), con la autorización del autor.
+3. `fase6_despliegue/datos/publicables/subgrupo.csv` se rehízo desde las tablas nuevas, igual que en
+   `exportar_publicables.py`, y se actualizó su huella en `huellas.json`.
+4. **Qué cambió en las tablas:**
+   - Sexo: el grupo «sin dato», cuando es pequeño, se une a otro sexo.
+   - Grupos clínicos: los capítulos raros se unen entre sí y, en mortalidad 2024, con el capítulo XV.
+   - Ningún otro valor cambia. El capítulo XXII de mortalidad 2024 sigue igual (O/E 0,58). En estadía 2024 pasa a
+     ser «XXII o sin capítulo», con 6 egresos más.
+5. El escáner por propiedad ya no encuentra ningún conteo reconstruible en lo publicado, y la lista de hallazgos
+   declarados queda vacía. Las puertas P7 y G7 fallan ante cualquier hallazgo nuevo.
+6. Las versiones anteriores de esas tablas siguen en el **historial público** de git. Reescribirlo o no es la misma
+   decisión pendiente de I-09.
 

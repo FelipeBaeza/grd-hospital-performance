@@ -7,7 +7,7 @@ calculado.
 | --- | --- | --- |
 | 0.1 Congelar el estado | Etiqueta `v1-congelado` y `docs/historial/MANIFIESTO_v1-congelado.sha256` | Hecho |
 | 0.2 Versiones de la Fase 1 y desviaciones | `docs/fase1_comprension_dominio/VERSIONES_Y_DESVIACIONES.md` | Hecho |
-| 0.3 Registro de incidentes | `fase5_evaluacion/documentos/INCIDENTES.md` (I-01 a I-11) | Hecho; falta decidir I-09 e I-11 |
+| 0.3 Registro de incidentes | `fase5_evaluacion/documentos/INCIDENTES.md` (I-01 a I-11) | Hecho; I-11 corregido; falta decidir I-09 |
 | 0.4 Constancia del profesor guía | `Etapa0_Gobernanza_para_firma.docx` (sección 3) y `fase5_evaluacion/documentos/PLANTILLA_constancia_profesor_guia.md`. La Parte A es una ratificación posterior (I-10) | **Falta la firma** |
 | 0.5 Enmienda 01 | `fase5_evaluacion/config/protocolo_fase5_v2.toml` y `fase5_evaluacion/documentos/ENMIENDA_01.md` | **Registrada el 21-10-2026** (`documentos/registro_enmienda_01.json`) con la aprobación verbal del profesor anotada; falta adjuntar la constancia escrita. **Corrida el 22-10-2026**, con el código registrado antes (`b718454`): resultados en `docs/fase5_evaluacion/Anexo_Enmienda01_resultados.docx` |
 
