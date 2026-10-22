@@ -4,12 +4,14 @@
 
 1. `00_guia_del_proyecto/Guia_del_proyecto.docx` — la guía de entrada.
 2. `fase1_comprension_dominio/Informe_Fase1_v5.docx` — diseño, reglas y decisiones (con los cambios y sus fechas).
-3. `fase5_evaluacion/Informe_Fase5_v5.docx` — resultados en 2024 y cómo leerlos.
+3. `fase5_evaluacion/Informe_Fase5_v5.docx` — resultados en 2024 y cómo leerlos; y
+   `fase5_evaluacion/Anexo_Enmienda01_resultados.docx` — los 15 análisis de robustez de la enmienda 01.
 4. `fase2_comprension_datos/Informe_Fase2_v5.docx`, `fase3_preparacion_datos/Informe_Fase3_v5.docx` y
    `fase4_modelado/Informe_Fase4_v5.docx`, según lo que se necesite revisar.
 5. `auditoria/` — auditoría metodológica externa y resumen del plan de corrección.
 6. `gobernanza/` — etapa 0 del plan de corrección: constancia para el profesor guía, enmienda 01, versiones de la
    Fase 1 e incidentes.
+7. `defensa/` — material para la defensa (etapa 5): citas del informe de seminario verificadas.
 
 Los informes **v5** describen solo lo que se ejecutó, con cifras comprobadas en una reproducción independiente
 desde cero (octubre de 2026).
@@ -24,10 +26,11 @@ desde cero (octubre de 2026).
 | `fase2_comprension_datos/` | Informe v5 y tablas de respaldo de la Fase 2 |
 | `fase3_preparacion_datos/` | Informe v5 y plan original de la Fase 3 |
 | `fase4_modelado/` | Informe v5 y plan original de la Fase 4 |
-| `fase5_evaluacion/` | Informe v5 (preparación y evaluación) y plan original de la Fase 5 |
+| `fase5_evaluacion/` | Informe v5 (preparación y evaluación), anexo de la enmienda 01 y plan original de la Fase 5 |
 | `fase6_despliegue/` | Plan de la Fase 6 (en desarrollo) |
 | `auditoria/` | Auditoría externa y resumen del plan de corrección |
 | `gobernanza/` | Documento para revisión y firma del profesor guía (etapa 0) |
+| `defensa/` | Material para la defensa (etapa 5): citas verificadas |
 | `historial/` | Versiones anteriores de los informes, sin cambios |
 | `comunicaciones_fonasa/` | Borradores de cartas a FONASA (no enviadas; solo en la copia local, fuera de git) |
 
