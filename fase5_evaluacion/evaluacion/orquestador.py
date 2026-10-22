@@ -113,7 +113,9 @@ def etapa_evaluacion_2024(capas: Path, trabajo5: Path, prot, B: int) -> dict:
     voc = vocabulario_cie(RAIZ.parent / "fase3_preparacion" / "salidas" / "tablas" / "oro_vocabularios.csv")
     df_exh = cargar_anio(capas, 2024, reglas4, voc)
     destino = DIR_SALIDAS / "evaluacion_2024"
-    r = analisis.evaluar(mort, est, df_exh, tras, prot, destino, B=B, entrantes=_entrantes(capas, 2024))
+    from . import sin_ajuste
+    with sin_ajuste.prohibir_ajustes():          # plan 4.3: cualquier entrenamiento o recalibración durante la evaluación falla
+        r = analisis.evaluar(mort, est, df_exh, tras, prot, destino, B=B, entrantes=_entrantes(capas, 2024))
     for nombre, ejes in (("mortalidad", "muertes esperadas del hospital (escala log)"), ("estadia", "días esperados del hospital (escala log)")):
         tab = pd.read_csv(destino / "tablas" / f"oe_hospital_{nombre}.csv")
         res = r["resumen"][f"hospitales_{nombre}"]
@@ -132,6 +134,7 @@ def main(argv=None) -> int:
     p.add_argument("--bootstrap", type=int, default=None)
     a = p.parse_args(argv)
     capas, trabajo = Path(a.capas), Path(a.trabajo)
+    trabajo.mkdir(parents=True, exist_ok=True)                 # plan 4.8: la carpeta de trabajo se crea si no existe
     prot = cargar_protocolo()
     (DIR_SALIDAS / "tablas").mkdir(parents=True, exist_ok=True)
     tiempos = []

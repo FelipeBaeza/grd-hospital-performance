@@ -121,3 +121,12 @@ def test_faltantes_se_cuentan_y_nunca_se_imputan(tmp_path):
     rep, p = construir(tmp_path, 2020, [fila(SEXO=""), fila(TIPO_INGRESO="DESCONOCIDO"), fila()])
     assert p["SEXO"].to_list()[0] == "SIN_DATO" and p["TIPO_INGRESO"][1] == "(sin dato)"
     assert rep["faltantes"]["SEXO"] == 1 and rep["faltantes"]["TIPO_INGRESO"] == 1
+
+
+def test_etiqueta_cortada_ambigua_no_se_asigna():
+    """Auditoría §3.5, prueba 9: si la etiqueta cortada calza con dos tipos de alta, no se adivina el rol."""
+    from prep import definiciones as dfn
+    assert dfn.rol_de_etiqueta("DERIVACIÓN OTRO HOSPITAL DE", ROLES)[1] == "sin_rol"
+    assert dfn.rol_de_etiqueta("DERIVACIÓN INST. PRIVADA (", ROLES)[1] == "sin_rol"
+    nombre, via, rol = dfn.rol_de_etiqueta("DERIVACIÓN INST. PRIVADA (COMPRA DE SERVIC", ROLES)
+    assert (nombre, via, rol) == ("DERIVACIÓN INST. PRIVADA (COMPRA DE SERVICIOS)", "por_prefijo", "CENSURADO")

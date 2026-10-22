@@ -72,3 +72,18 @@ def test_mascaras_finales_separan_entrenamiento_y_calibracion():
 def test_submuestra_es_determinista():
     a, b = datos.submuestra(1000, 0.3, 5), datos.submuestra(1000, 0.3, 5)
     assert (a == b).all() and 200 < a.sum() < 400 and datos.submuestra(10, 1.0, 1).all()
+
+
+def test_canario_copia_del_desenlace_no_entra_al_modelo():
+    """Auditoría §3.5, prueba 6: una columna igual al desenlace, con un nombre inocente, no pasa la lista blanca ni
+    llega al modelo: el modelo entrenado con ella da exactamente las mismas predicciones que sin ella."""
+    from modelado.candidatos import entrenar
+    with pytest.raises(datos.DatoProhibido):
+        datos.verificar_lista_blanca(datos.PREDICTORES + ["MARCA_ADMINISTRATIVA"])
+    df = hacer_df(3000, semilla=4)
+    df["MARCA_ADMINISTRATIVA"] = df["y"]
+    params = {"learning_rate": 0.1, "num_leaves": 15, "min_child_samples": 20, "colsample": 1.0, "subsample": 1.0, "reg_alpha": 0.0, "reg_lambda": 0.0}
+    m = entrenar("lightgbm", "mortalidad", df, params, 0, 1, n_arboles=30)
+    limpio = entrenar("lightgbm", "mortalidad", df.drop(columns="MARCA_ADMINISTRATIVA"), params, 0, 1, n_arboles=30)
+    assert "MARCA_ADMINISTRATIVA" not in m.objeto.booster_.feature_name()
+    assert np.array_equal(m.predecir(df), limpio.predecir(df))
