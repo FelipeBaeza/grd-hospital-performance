@@ -1,6 +1,8 @@
 """Ajuste de hiperparámetros con pliegues hacia adelante. Misma búsqueda (TPE) y mismo número de pruebas para LightGBM y XGBoost."""
 from __future__ import annotations
 
+import csv
+import datetime as dt
 import time
 from pathlib import Path
 
@@ -55,8 +57,32 @@ def _evaluar_pliegue(tipo, tarea, df, tr, va, params, reglas, semilla, fraccion)
     return met, m.n_arboles
 
 
-def ajustar_gbm(tarea: str, tipo: str, df: pd.DataFrame, reglas: Reglas, almacen: Path, n_pruebas: int | None = None, avisar=print) -> dict:
-    """Optuna (TPE, semilla fija), con almacenamiento en SQLite para poder retomar. Devuelve los mejores hiperparámetros y la tabla de pruebas."""
+REGISTRO_REANUDACIONES = "reanudaciones.csv"
+
+
+def registrar_reanudacion(almacen: Path, estudio_nombre: str, terminadas: int, abiertas: list[int], n_pruebas: int, semilla_por_prueba: bool) -> Path:
+    """Anota en ``almacen/reanudaciones.csv`` cada vez que un estudio se retoma (hallazgo H-19, incidente I-04).
+    Una prueba que quedó abierta por un corte conserva sus parámetros y el muestreador nuevo la ve, así que una corrida
+    retomada puede no dar las mismas pruebas que una de corrido. El registro deja constancia de cuándo pasó."""
+    ruta = almacen / REGISTRO_REANUDACIONES
+    nueva = not ruta.exists()
+    with open(ruta, "a", newline="", encoding="utf8") as fh:
+        w = csv.writer(fh)
+        if nueva:
+            w.writerow(["momento_utc", "estudio", "pruebas_terminadas", "pruebas_abiertas", "pruebas_objetivo", "semilla_por_prueba"])
+        w.writerow([dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat(), estudio_nombre, terminadas,
+                    " ".join(map(str, abiertas)), n_pruebas, semilla_por_prueba])
+    return ruta
+
+
+def ajustar_gbm(tarea: str, tipo: str, df: pd.DataFrame, reglas: Reglas, almacen: Path, n_pruebas: int | None = None, avisar=print,
+                semilla_por_prueba: bool = False) -> dict:
+    """Optuna (TPE, semilla fija), con almacenamiento en SQLite para poder retomar. Devuelve los mejores hiperparámetros y la tabla de pruebas.
+
+    Cada reanudación queda en ``almacen/reanudaciones.csv``. Con ``semilla_por_prueba`` (apagado por defecto, para que
+    la corrida congelada se reproduzca igual), las pruebas abiertas por un corte se marcan como fallidas y el
+    muestreador se crea de nuevo antes de la prueba i-ésima con la semilla ``maestra + i``. Así, una corrida
+    cortada y retomada da las mismas pruebas que una de corrido."""
     a = reglas.ajuste
     n_pruebas = n_pruebas or (a["pruebas_mortalidad"] if tarea == "mortalidad" else a["pruebas_estadia"])
     semilla = reglas.semilla["maestra"]
@@ -78,8 +104,18 @@ def ajustar_gbm(tarea: str, tipo: str, df: pd.DataFrame, reglas: Reglas, almacen
         return float(np.mean(puntajes))
 
     hechas = len([t for t in estudio.trials if t.state.is_finished()])
+    abiertas = [t.number for t in estudio.trials if t.state == optuna.trial.TrialState.RUNNING]
+    if hechas or abiertas:
+        registrar_reanudacion(almacen, estudio.study_name, hechas, abiertas, n_pruebas, semilla_por_prueba)
+        avisar(f"[ajuste {tarea}/{tipo}] se retoma con {hechas} pruebas terminadas y {len(abiertas)} abiertas; anotado en {REGISTRO_REANUDACIONES}")
+    if semilla_por_prueba and abiertas:
+        for t in estudio.trials:
+            if t.state == optuna.trial.TrialState.RUNNING:
+                estudio._storage.set_trial_state_values(t._trial_id, optuna.trial.TrialState.FAIL)
     t0 = time.time()
     for i in range(hechas, n_pruebas):
+        if semilla_por_prueba:
+            estudio.sampler = optuna.samplers.TPESampler(seed=semilla + i)
         estudio.optimize(objetivo, n_trials=1)
         avisar(f"[ajuste {tarea}/{tipo}] prueba {i + 1}/{n_pruebas}; mejor {estudio.best_value:.4f}; {time.time() - t0:.0f} s")
     mejor = estudio.best_trial
