@@ -40,6 +40,11 @@ protocolo están listos. Falta la firma del profesor guía (`docs/gobernanza/`).
 comorbilidades. El O/E de estadía depende del tamaño del hospital. Resumen en
 `fase5_evaluacion/salidas/enmienda_01/RESUMEN.md`; anexo en `docs/fase5_evaluacion/Anexo_Enmienda01_resultados.docx`.
 
+**Enmienda 02 (datos y cohortes, registrada antes de correr):** los 24 análisis cumplen la regla. Excluir el MDC 14
+completo y sacar el alta voluntaria y la fuga de la estadía no cambian el indicador. El catálogo DEIS clasifica a los
+72 hospitales GRD. Resumen en `fase5_evaluacion/salidas/enmienda_02/RESUMEN.md`; anexo en
+`docs/fase5_evaluacion/Anexo_Enmienda02_resultados.docx`.
+
 ## Estructura
 
 ```

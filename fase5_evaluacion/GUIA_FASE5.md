@@ -25,6 +25,11 @@ en `run_enmienda02.py` y `enmienda02/`. Se registra con `python registrar_enmien
 correr; el profesor guía la firma después de los resultados (decisión del autor, 22-10-2026). Usa el catálogo DEIS
 de `fase3_preparacion/config/tipo_establecimiento.csv`.
 
+- Registrada el 22-10-2026 y corrida una vez, con el código y el catálogo registrados antes (`ca3c40b`).
+- Resultados en `salidas/enmienda_02/` (empezar por `RESUMEN.md`) y en
+  `docs/fase5_evaluacion/Anexo_Enmienda02_resultados.docx`.
+- En resumen: los 24 análisis cumplen la regla, y las correcciones de cohorte no cambian el indicador.
+
 ```
 python run_enmienda02.py --capas <capas> --trabajo4 <trabajo4> --trabajo5 <trabajo5> --interna01 <carpeta interna de la enmienda 01> --interna <carpeta interna>
 ```

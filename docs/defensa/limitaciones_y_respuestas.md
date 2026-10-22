@@ -1,7 +1,7 @@
 # Limitaciones y respuestas al comité (plan de corrección 5.2 y 5.3)
 
-Versión del 22-10-2026. Usa la evidencia de la enmienda 01, que se corrió una vez con el código registrado antes
-(`docs/fase5_evaluacion/Anexo_Enmienda01_resultados.docx`). Las cifras de 2024 son del diseño original, rotulado
+Versión del 22-10-2026. Usa la evidencia de las enmiendas 01 y 02, que se corrieron una vez cada una con el código
+registrado antes (`docs/fase5_evaluacion/Anexo_Enmienda01_resultados.docx` y `Anexo_Enmienda02_resultados.docx`). Las cifras de 2024 son del diseño original, rotulado
 «ya abierto». Las de 2023 son del diseño anidado, que no usa 2024.
 
 **Regla de lectura.** Una decisión «resiste» si al menos el 80 % de los hospitales conserva su zona en el embudo y la
@@ -24,8 +24,8 @@ Cada limitación dice qué es, cuánto pesa según la evidencia y qué se hizo o
 | **Paradoja del diagnóstico secundario** | En los fallecidos se registran menos enfermedades crónicas | HTA no complicada OR 0,89; hipotiroidismo OR 0,91 (Fase 2) | Declararlo |
 | **Sin contraparte clínica** | Nadie validó clínicamente las reglas de cohorte ni las variables de proceso | Decisión 12 de la Fase 1, pendiente | La enmienda 02 adopta la opción conservadora para EX03 (MDC 14 completo fuera) |
 | **Solo adultos; sin pediatría ni neonatología** | El indicador no cubre esos servicios | Cohorte B (18 años o más) y EX02 | Declararlo |
-| **Población obstétrica arbitraria (EX03)** | «MDC 14 sin Elixhauser» no equivale a parto sin complicación | Hallazgo H-07 | Enmienda 02, análisis E2.2 y E2.3 (pendiente de registrar) |
-| **Alta voluntaria y fuga en la cohorte de estadía** | Estadías cortadas por decisión del paciente | Cerca del 2 % de E (H-08) | Enmienda 02, análisis E2.1 |
+| **Población obstétrica arbitraria (EX03)** | «MDC 14 sin Elixhauser» no equivale a parto sin complicación | Hallazgo H-07 | Excluir el MDC 14 completo no cambia el indicador: en 2023 ningún hospital cambia de zona, en 2024 uno (E2.2). Salen 46 muertes obstétricas en 2019–2023. Se puede adoptar en una versión 2 |
+| **Alta voluntaria y fuga en la cohorte de estadía** | Estadías cortadas por decisión del paciente | Cerca del 2 % de E (H-08) | Sacarlas no cambia el indicador: ningún hospital cambia de zona, ρ 0,998 (E2.1) |
 
 ### 1.2 Modelo
 
@@ -43,7 +43,7 @@ Cada limitación dice qué es, cuánto pesa según la evidencia y qué se hizo o
 | Limitación | Qué implica | Evidencia | Qué se hizo / trabajo futuro |
 |---|---|---|---|
 | **El embudo winsorizado deja fuera a hospitales «normales»** | El 15,9 % fuera no es por sí solo señal de mal ajuste | Con la variación real, el procedimiento deja fuera 11,6–13,2 % de hospitales sin diferencias; sin winsorizar, cerca del 5 % (3.4c) | Informar el embudo sin winsorizar como sensibilidad (3.4a: 8,7 % fuera en mortalidad 2024). Modelo jerárquico como trabajo futuro |
-| **El O/E de estadía depende del tamaño del hospital** | Los hospitales pequeños y nuevos salen «mejor de lo esperado» | O/E 0,85–0,86 en el tercil de menos egresos; 0,79–0,83 en los hospitales con menos de 2 años en GRD (3.6). Con grupos de pares, los hospitales fuera bajan del 15,9 % al 5,8 % (3.1b) | Presentar la estadía por grupo de pares o junto al volumen. Grupos DEIS en la enmienda 02 (E2.4) |
+| **El O/E de estadía depende del tamaño del hospital** | Los hospitales pequeños y nuevos salen «mejor de lo esperado» | O/E 0,85–0,86 en el tercil de menos egresos; 0,79–0,83 en los hospitales con menos de 2 años en GRD (3.6). Con grupos por volumen, los hospitales fuera bajan del 15,9 % al 5,8 % (3.1b); con grupos DEIS, solo al 11,6 % (E2.4a) | Presentar la estadía por grupo de pares de volumen, o junto al volumen |
 | **Institutos monográficos en el embudo general** | En 2024 los 3 quedan fuera en mortalidad (2 en señal baja) | 3.1a: sacarlos no mueve al resto (97–100 %) | Informarlos aparte |
 | **Un único año de prueba, y no ciego** | 2024 se evaluó antes con un prototipo (I-01), y el profesor ratificó la apertura después (I-10) | Incidentes I-01 a I-10 | Enmienda 01 con diseño anidado (2023). Validar en 2025 con sello criptográfico (plan 4.5) |
 | **Estabilidad entre años moderada** | El orden de los hospitales cambia algo de un año a otro | ρ 0,821 (mortalidad) y 0,882 (estadía); 8 de 11 y 6 de 9 alertas repetidas (3.5) | Leer las alertas como persistentes cuando se repiten |
@@ -72,7 +72,9 @@ No del todo, y por eso no lo presento como medida de calidad.
 - **Persistencia.** Las alertas se repiten entre años (ρ 0,82 y 0,88). Eso indica diferencias sistemáticas, no
   necesariamente de calidad.
 
-Propongo leer la estadía por grupo de pares. La enmienda 02 agrega los grupos del catálogo DEIS.
+Propongo leer la estadía por grupo de pares de volumen. Con los grupos de complejidad del DEIS (alta, mediana e
+institutos), los hospitales de estadía fuera de los límites solo bajan al 11,6 % (enmienda 02, E2.4a): el tamaño pesa
+más que la complejidad.
 
 **2. Sin marcador POA, ¿por qué usar coagulopatía o trastornos hidroelectrolíticos?**
 Es el estándar de los indicadores tipo HSMR. Medí qué pasa sin las 5 categorías sospechosas: el PR AUC baja 0,028,
@@ -125,8 +127,10 @@ por hospital.
 
 **11. ¿Qué pasa con los pacientes derivados o enviados a hospitalización domiciliaria?**
 Quedan censurados. Los hospitales con alerta baja de estadía derivan el doble que el resto (auditoría, H-06). La
-enmienda 02 informa, junto al O/E, la tasa de hospitalización domiciliaria y de alta voluntaria por hospital
-(E2.6a). La mortalidad a 30 días con el Registro Civil es trabajo futuro.
+enmienda 02 publica, junto al O/E, la tasa de hospitalización domiciliaria y de alta voluntaria por hospital
+(E2.6a). Los hospitales con más altas a domicilio tienen un O/E de estadía algo más bajo (ρ −0,14 a −0,26). Sacar
+el alta voluntaria y la fuga de la estadía no cambia el indicador (E2.1). La mortalidad a 30 días con el Registro
+Civil es trabajo futuro.
 
 **12. ¿Se puede reidentificar a alguien con lo que publica?**
 No hay registros individuales, y las celdas de 1 a 9 casos se suprimen. Encontré y declaré tres problemas:
@@ -148,13 +152,18 @@ Lo presento como limitación principal. Una versión 2 del indicador debería mo
 clínicamente cada variable.
 
 **14. ¿Quién validó clínicamente las reglas?**
-Nadie todavía, y es una limitación. Las reglas se basan en literatura y datos. Para EX03 adopté la opción
-conservadora: excluir el MDC 14 completo, en la enmienda 02. Pedí revisión de la procedencia y del nivel de cuidado.
+Nadie todavía, y es una limitación. Las reglas se basan en literatura y datos. Para EX03 probé la opción
+conservadora, que excluye el MDC 14 completo, y el indicador no cambia: en 2023 ningún hospital cambia de zona y en
+2024 uno solo (enmienda 02, E2.2). Pedí revisión de la procedencia y del nivel de cuidado.
 
 **15. ¿Qué pasa si un hospital codifica más paliativos (Z51.5)?**
-Su esperado sube y su O/E baja. Cerca del 3 % de las muertes de 2019 a 2023 tiene Z51.5 en algún diagnóstico. La
-enmienda 02 informa la tasa de Z51.5 por hospital junto al O/E (E2.6a) y repite el O/E de mortalidad sin esos
-episodios (E2.6b).
+Su esperado sube y su O/E baja. Cerca del 3 % de las muertes de 2019 a 2023 tiene Z51.5 en algún diagnóstico. Lo
+medí en la enmienda 02:
+
+- la tasa de Z51.5 por hospital no se relaciona con el O/E (|ρ| de 0,02 o menos, E2.6a);
+- sin esos episodios, el indicador resiste: 96,9 y 95,7 % de los hospitales en la misma zona (E2.6b).
+
+Con estos datos no hay señal de que la codificación de paliativos explique las diferencias.
 
 ---
 
@@ -162,4 +171,5 @@ episodios (E2.6b).
 
 Las versiones v3 y v4 de las Fases 1 y 2 decían que `Hospitales.csv` traía el nivel de complejidad. Solo trae código
 y nombre. Los informes v5 ya no lo afirman, y la Fase 1 v5 advierte que el archivo traduce los códigos a nombres.
-El nivel de complejidad saldrá del catálogo DEIS (enmienda 02, E2.4).
+El nivel de complejidad ahora sale del catálogo DEIS (`fase3_preparacion/config/tipo_establecimiento.csv`): 52
+hospitales generales de alta complejidad, 14 de mediana, 3 institutos y 3 pediátricos.
