@@ -3,9 +3,9 @@
 Estado: **completa**. 2024 se abrió una vez (ver `documentos/autorizacion_apertura_2024.txt` y `documentos/DECISIONES_FASE5.md`).
 Incidentes: `documentos/INCIDENTES.md` (I-01 a I-10). El profesor guía ratificó la apertura después de conocer los resultados (I-10).
 
-Pendiente: la constancia escrita del profesor guía y el registro de la **enmienda 01**. Los archivos de la enmienda
-son `config/protocolo_fase5_v2.toml` y `documentos/ENMIENDA_01.md`; se registra con `python registrar_enmienda.py`
-(ver `docs/gobernanza/README.md`). Ningún análisis de la enmienda se corre antes de ese registro.
+**Enmienda 01** (`config/protocolo_fase5_v2.toml` y `documentos/ENMIENDA_01.md`): registrada el 21-10-2026 en
+`documentos/registro_enmienda_01.json`, con la aprobación verbal del profesor guía anotada. Falta adjuntar su
+constancia escrita (`docs/gobernanza/`).
 
 ```
 pip install -r requirements.txt
