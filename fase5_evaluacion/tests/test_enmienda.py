@@ -77,3 +77,45 @@ def test_corrida_falla_si_la_enmienda_cambio(raiz):
     (raiz / "sens.py").write_text("print(1)\n")
     with pytest.raises(enmienda.ErrorEnmienda, match="cambió después de firmarse"):
         enmienda.antes_de_correr(["sens.py"], raiz=raiz, ahora=T)
+
+
+# ------------------------------------------------------------------ enmienda 02 (borrador): mismo registro, encadenado a la 01
+@pytest.fixture
+def raiz2(raiz: Path) -> Path:
+    e = enmienda.ENMIENDAS[2]
+    for rel in (e["protocolo"], e["texto"]):
+        shutil.copy(RAIZ / rel, raiz / rel)
+    (raiz.parent / "fase3_preparacion" / "prep").mkdir(parents=True, exist_ok=True)
+    (raiz.parent / "fase3_preparacion" / "prep" / "cohortes.py").write_text("y = 2\n")
+    (raiz / "script2.py").write_text("print(2)\n")
+    return raiz
+
+
+def test_enmienda_02_exige_la_01_registrada(raiz2):
+    with pytest.raises(enmienda.ErrorEnmienda, match="enmienda anterior"):
+        enmienda.firmar("Autor", "Profesor", "2026-10-22", raiz=raiz2, sin_constancia=True, ahora=T, n=2)
+    enmienda.firmar("Autor", "Profesor", "2026-10-21", raiz=raiz2, sin_constancia=True, ahora=T)
+    ruta = enmienda.firmar("Autor", "Profesor", "2026-10-22", raiz=raiz2, sin_constancia=True, ahora=T, n=2)
+    reg = json.loads(ruta.read_text())
+    assert ruta.name == "registro_enmienda_02.json" and reg["enmienda"] == 2
+    assert reg["huella_protocolo_base"] == enmienda.sha256_archivo(raiz2 / enmienda.PROTOCOLO_V2)
+    assert set(reg["huellas"]) == {"config/protocolo_fase5_v3.toml", "documentos/ENMIENDA_02.md"}
+    # el registro de la 01 no se toca
+    assert json.loads((raiz2 / enmienda.REGISTRO).read_text())["enmienda"] == 1
+
+
+def test_enmienda_02_registra_codigo_de_la_fase_3(raiz2):
+    enmienda.firmar("Autor", "Profesor", "2026-10-21", raiz=raiz2, sin_constancia=True, ahora=T)
+    enmienda.firmar("Autor", "Profesor", "2026-10-22", raiz=raiz2, sin_constancia=True, ahora=T, n=2)
+    ruta = enmienda.antes_de_correr(["script2.py", "../fase3_preparacion/prep/cohortes.py"], raiz=raiz2, ahora=T, n=2)
+    reg = json.loads(ruta.read_text())
+    assert ruta.name == "registro_corrida_enmienda_02.json"
+    assert set(reg["scripts"]) == {"script2.py", "../fase3_preparacion/prep/cohortes.py"}
+    assert not (raiz2 / enmienda.REGISTRO_CORRIDA).exists()          # la corrida de la 01 es otro archivo
+
+
+def test_enmienda_02_falla_si_cambia_la_base(raiz2):
+    enmienda.firmar("Autor", "Profesor", "2026-10-21", raiz=raiz2, sin_constancia=True, ahora=T)
+    (raiz2 / enmienda.PROTOCOLO_V2).write_text((raiz2 / enmienda.PROTOCOLO_V2).read_text() + "\n# cambio\n")
+    with pytest.raises(enmienda.ErrorEnmienda, match="protocolo base"):
+        enmienda.firmar("Autor", "Profesor", "2026-10-22", raiz=raiz2, sin_constancia=True, ahora=T, n=2)
