@@ -49,8 +49,11 @@ protocolo están listos. Falta la firma del profesor guía (`docs/gobernanza/`).
 
 ## Cómo correrlo
 
-Python 3.13 con las versiones del manifiesto de la Fase 4 (`fase4_modelado/modelos/manifiesto.json`); bastan
-2 núcleos y 7 GB de RAM. Los datos completos de FONASA y las capas intermedias viven **fuera** del repositorio.
+Python 3.13.16 con las versiones exactas de `requirements-lock.txt` (las mismas del manifiesto de la Fase 4 y de
+la reproducción independiente): `python3.13 -m venv venv && venv/bin/pip install -r requirements-lock.txt`.
+También hay un `Dockerfile` con ese entorno (`docker build -t grd-tesis .`; las instrucciones de montaje van en
+el archivo). Bastan 2 núcleos y 7 GB de RAM. Los datos completos de FONASA y las capas intermedias viven
+**fuera** del repositorio.
 
 | Fase | Comando (desde la carpeta de la fase) | Tiempo aprox. |
 | --- | --- | --- |

@@ -1,0 +1,13 @@
+.git
+venv/
+.venv/
+**/__pycache__/
+data seminario/
+data seminario_full/
+capas/
+trabajo4/
+trabajo5/
+fase6_despliegue/web/node_modules/
+Oficio_Respuesta_N*
+docs/comunicaciones_fonasa/
+fase4_modelado/salidas/tablas/auditoria_extracto_hospital_*.csv
