@@ -57,6 +57,8 @@ def correr(capas: Path, trabajo4: Path, trabajo5: Path, interna01: Path, salida:
                 ent, cal = d[d["ANIO_EGRESO"].isin(cfg["ent"])], d[d["ANIO_EGRESO"] == cfg["cal"]]
                 prueba = (d24 if cfg["prueba"] == 2024 else df[df["ANIO_EGRESO"] == cfg["prueba"]]).reset_index(drop=True)
                 prueba = prueba[~prueba["ID_EPISODIO"].isin(fuera)].reset_index(drop=True)
+                if len(fuera) == 0 or len(d) == len(df):
+                    raise RuntimeError(f"{id_} ({tarea}, {dis}): el filtro no sacó ningún egreso; revisar los identificadores")
                 est = _estimador_gbm("lightgbm", tarea, lgbm["params"], comun.SEMILLA_MODELO, 2, int(lgbm["n_arboles"]), None)
                 est.fit(ent[PREDICTORES], ent["y"].to_numpy())
                 f = (lambda x: est.predict_proba(x[PREDICTORES])[:, 1]) if tarea == "mortalidad" else (lambda x: est.predict(x[PREDICTORES]))

@@ -131,3 +131,24 @@ def test_tipos_de_alta_fuera_de_e_salen_de_la_configuracion():
     assert cohortes.tipoalta_fuera_de_e(roles) == ("ALTA VOLUNTARIA", "FUGA DEL PACIENTE")
     op = cohortes.opciones_enmienda02(roles)
     assert op.activas and op.mdc14_completo
+
+
+# ------------------------------------------------------------------ catálogo DEIS (plan 1.3)
+def test_reglas_del_tipo_de_establecimiento():
+    import pytest
+    import catalogo_deis as cd
+    assert cd.tipo("110110", "Instituto Traumatológico Dr. Teodoro Gebauer", "Alta Complejidad")[0] == "instituto monográfico"
+    assert cd.tipo("112102", "Hospital de Niños Dr. Luis Calvo Mackenna", "Alta Complejidad")[0] == "pediátrico"
+    assert cd.tipo("113130", "Hospital Dr. Exequiel González Cortés", "Alta Complejidad")[0] == "pediátrico"
+    assert cd.tipo("116110", "Hospital San José (Parral)", "Mediana Complejidad")[0] == "general de mediana complejidad"
+    with pytest.raises(ValueError):
+        cd.tipo("999999", "Hospital X", "No Aplica")
+
+
+def test_el_catalogo_publicado_sale_de_la_fuente_deis():
+    import pandas as pd
+    import catalogo_deis as cd
+    nuevo = cd.construir()
+    guardado = pd.read_csv(cd.DESTINO, dtype={"cod_hospital": str})
+    pd.testing.assert_frame_equal(nuevo.reset_index(drop=True), guardado, check_dtype=False)
+    assert len(guardado) == 72 and set(guardado.loc[guardado["tipo"] == "instituto monográfico", "cod_hospital"]) == {"110110", "112103", "112104"}

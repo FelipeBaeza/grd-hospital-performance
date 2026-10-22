@@ -1,6 +1,6 @@
 # Enmienda 02 al protocolo de la Fase 5 (versión 3.0): datos y cohortes. Texto explicado: documentos/ENMIENDA_02.md.
-# BORRADOR. No tiene validez hasta que exista documentos/registro_enmienda_02.json con su huella y las firmas
-# (python registrar_enmienda.py --enmienda 2 firmar ...). Después de firmado no se cambia: un cambio exige una enmienda nueva.
+# No tiene validez hasta que exista documentos/registro_enmienda_02.json con su huella y la firma del autor
+# (python registrar_enmienda.py --enmienda 2 firmar ...). El profesor guía la firma después de los resultados (decisión del autor, 22-10-2026). Después de firmado no se cambia: un cambio exige una enmienda nueva.
 # El protocolo v1.0 y la enmienda 01 siguen vigentes; el v1.0 define el resultado primario.
 version = "3.0"
 enmienda = 2
@@ -91,7 +91,8 @@ id = "E2.4a"
 nombre = "Grupos de pares por tipo de establecimiento DEIS"
 tipo = "indicador"
 reentrena = false
-fuente = "fase3_preparacion/config/tipo_establecimiento.csv (huella registrada antes de correr)"
+fuente = "fase3_preparacion/config/tipo_establecimiento.csv (catalogo_deis.py, DEIS Base de Establecimientos 2025; huella registrada antes de correr)"
+regla_tipo = "instituto monográfico si el nombre DEIS empieza con «Instituto»; pediátrico si contiene «Niños» o es el 113130; si no, general de alta o mediana complejidad según el DEIS"
 cambio = "un embudo por tipo de establecimiento"
 disenos = ["anidado", "original"]
 regla = true

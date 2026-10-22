@@ -90,3 +90,24 @@ def test_punta_a_punta_con_datos_sinteticos(tmp_path, monkeypatch):
     publicar.escribir(m, r, filtros.muertes_obstetricas(eps), pub, {"prueba": True})
     assert (pub / "tasas_contexto_hospital.csv").exists()
     assert pd.read_csv(pub / "muertes_obstetricas_excluidas.csv")["muertes"].astype(str).iloc[0] != ""
+
+
+def test_e24_con_catalogo_deis_sintetico(tmp_path, monkeypatch):
+    """E2.4a y E2.4b con un catálogo de tipos sobre los hospitales sintéticos (3 institutos, como el real)."""
+    from enmienda01 import modelo as m1
+    from enmienda02 import indicador
+    from evaluacion import prediccion
+    rutas = sint.crear(tmp_path)
+    monkeypatch.setattr(prediccion, "predecir", sint.prediccion_falsa)
+    int01, int02 = tmp_path / "interna01", tmp_path / "interna02"
+    m1.correr(rutas["capas"], rutas["trabajo4"], rutas["trabajo5"], int01, c1.cargar_enmienda(), log=lambda *_: None)
+    tipos = {c: ("instituto monográfico" if c in ("110110", "112103", "112104") else "general de mediana complejidad" if c.endswith("1")
+                 else "general de alta complejidad") for c in sint.HOSPITALES}
+    cat = tmp_path / "tipo_establecimiento.csv"
+    pd.DataFrame({"cod_hospital": list(tipos), "tipo": list(tipos.values())}).to_csv(cat, index=False)
+    monkeypatch.setattr(comun, "CATALOGO_DEIS", cat)
+    eps = {a: filtros.episodios(rutas["capas"], rutas["trabajo5"], a) for a in range(2019, 2025)}
+    r = indicador.correr(rutas["capas"], rutas["trabajo5"], int01, int02, comun.cargar_enmienda(), eps, comun.RAIZ.parent, usar_deis=True, log=lambda *_: None)
+    ind = r["indicador"]
+    assert set(ind.loc[ind["estado"] == "corrido", "analisis"]) == {"E2.4a", "E2.4b", "E2.5", "E2.6b"}
+    assert set(r["marcas"].loc[r["marcas"]["analisis"] == "E2.4b", "cod_hospital"]) <= {"110110", "112103", "112104"}

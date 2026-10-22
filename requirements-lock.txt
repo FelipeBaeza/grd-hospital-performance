@@ -2,7 +2,8 @@
 # idénticos byte a byte. Python 3.13.16 (el mismo del manifiesto de la Fase 4). Se instala con:
 #     python3.13 -m venv venv && venv/bin/pip install -r requirements-lock.txt
 # Incluye las dependencias de las pruebas de la Fase 6 (API); la web de la Fase 6 tiene su propio package-lock.json.
-# Generado con «pip freeze» del entorno de la reproducción el 22-10-2026.
+# Generado con «pip freeze» del entorno de la reproducción el 22-10-2026; openpyxl se agregó el mismo día para leer el
+# catálogo de establecimientos del DEIS (fase3_preparacion/catalogo_deis.py).
 alembic==1.20.0
 annotated-doc==0.0.5
 annotated-types==0.8.0
@@ -13,6 +14,7 @@ cloudpickle==3.1.2
 colorlog==6.12.0
 contourpy==1.4.0
 cycler==0.12.1
+et_xmlfile==2.0.0
 fastapi==0.148.0
 fonttools==4.67.0
 h11==0.16.0
@@ -30,16 +32,17 @@ matplotlib==3.11.2
 narwhals==2.27.1
 numpy==2.5.3
 nvidia-nccl-cu13==2.32.3 ; platform_system == "Linux" and platform_machine == "x86_64"
+openpyxl==3.1.5
 opentelemetry-api==1.45.1
 optuna==5.0.0
 packaging==26.3
 pandas==3.0.6
 pillow==13.0.0
 pluggy==1.7.0
-polars==2.0.0
 polars-runtime-32==2.0.0
-psycopg==3.3.6
+polars==2.0.0
 psycopg-binary==3.3.6
+psycopg==3.3.6
 pyarrow==25.0.1
 pydantic==2.14.1
 pydantic_core==2.50.1

@@ -20,9 +20,14 @@ constancia escrita (`docs/gobernanza/`).
 python run_enmienda01.py --capas <capas> --trabajo4 <trabajo4> --trabajo5 <trabajo5> --interna <carpeta interna> [--exploracion <salida de la auditoría>]
 ```
 
-**Enmienda 02** (borrador, datos y cohortes): `config/protocolo_fase5_v3.toml` y `documentos/ENMIENDA_02.md`, con
-su código en `run_enmienda02.py` y `enmienda02/`. No se corre hasta registrarla con
-`python registrar_enmienda.py --enmienda 2 ...`.
+**Enmienda 02** (datos y cohortes): `config/protocolo_fase5_v3.toml` y `documentos/ENMIENDA_02.md`, con su código
+en `run_enmienda02.py` y `enmienda02/`. Se registra con `python registrar_enmienda.py --enmienda 2 ...` antes de
+correr; el profesor guía la firma después de los resultados (decisión del autor, 22-10-2026). Usa el catálogo DEIS
+de `fase3_preparacion/config/tipo_establecimiento.csv`.
+
+```
+python run_enmienda02.py --capas <capas> --trabajo4 <trabajo4> --trabajo5 <trabajo5> --interna01 <carpeta interna de la enmienda 01> --interna <carpeta interna>
+```
 
 `evaluacion/enmienda.py` y `registrar_enmienda.py` se generalizaron **después** de la corrida de la enmienda 01, para
 registrar también la 02 (`--enmienda 2`). Para la 01 se comportan igual, y las pruebas lo verifican. Por eso su
