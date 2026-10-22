@@ -22,6 +22,7 @@ Hora de referencia (UTC), 19-10-2026:
 | I-08 | 20-10-2026 | Auditoría | Sensibilidades exploratorias corridas antes de pre-registrar la enmienda 01 | Después | No; sus resultados ya se conocen |
 | I-09 | 21-10-2026 | Repositorio | Publicación de valores reales en GitHub: la prueba de privacidad y tablas por hospital con celdas menores que 10 | Después | No; decisión de publicación pendiente |
 | I-10 | Después del 19-10-2026 | F5 | El profesor guía autorizó por escrito después de conocer los resultados de 2024 | Después | No cambia cifras; la autorización previa no operó |
+| I-11 | 22-10-2026 | F5 y F6 | El escáner por propiedad encontró conteos nacionales de 1 a 9 reconstruibles por complemento en las tablas por subgrupo | Después | No; decisión de publicación pendiente |
 
 ---
 
@@ -243,3 +244,44 @@ aprobación informada por el estudiante y ratificada por el profesor guía despu
 1. La Parte A de la constancia se firma como ratificación posterior e indica cuándo dio el profesor su primera aprobación.
 2. Para un año de prueba nuevo (2025), la autorización del profesor se registra antes de abrir. Idealmente se usa el sello criptográfico del plan (etapa 4.5), para que sin su clave el año no se pueda leer.
 3. Por decisión del autor y del profesor (21-10-2026), los análisis de la enmienda 01 se informan tal cual resulten. No se modifican ni se descartan porque no mejoren el modelo.
+
+---
+
+## I-11. Conteos pequeños reconstruibles por complemento en las tablas por subgrupo (22-10-2026)
+
+**Qué pasó.** El escáner de privacidad por propiedad (`evaluacion/privacidad_propiedad.py`, plan 4.2) revisó todo lo
+publicado por las Fases 3 a 6. Encontró 13 casos del mismo tipo, todos en las tablas de calibración por subgrupo de
+pacientes y en su copia de la Fase 6:
+
+- `salidas/ensayo_2023/tablas/subgrupos_*.csv`;
+- `salidas/evaluacion_2024/tablas/subgrupos_*.csv`;
+- `fase6_despliegue/datos/publicables/subgrupo.csv`.
+
+Cada tabla divide la misma cohorte según varias variables (edad, sexo, comorbilidades, grupo clínico y tamaño del
+hospital). Una variable con todos sus grupos publicados da el total. En otra variable, lo que falta para llegar a ese
+total es un conteo de 1 a 9, en dos situaciones:
+
+- **Celda oculta:** el grupo «sexo sin dato» o un grupo clínico poco frecuente tienen el observado suprimido.
+- **Fila omitida:** el grupo no se publicó por tener menos de 10 egresos.
+
+La lista exacta está en `config/privacidad_hallazgos_declarados.csv`, sin los conteos.
+
+**Impacto.** Ningún resultado cambia.
+
+- Los conteos son **nacionales**, de pacientes con sexo sin dato o de grupos clínicos raros; no son por hospital.
+  El riesgo de identificar a alguien es bajo.
+- Aun así, el criterio DT04 del proyecto prohíbe publicar conteos de 1 a 9, también los reconstruibles. Igual que en
+  I-09, las tablas están en el repositorio público.
+- El escáner original no lo detectaba porque revisa patrones dentro de un archivo, no lo que se puede deducir
+  combinando celdas.
+
+**Medida.**
+
+1. Los 13 hallazgos quedan **declarados** en `config/privacidad_hallazgos_declarados.csv`. Las puertas P7 y G7 y la
+   prueba `test_salidas_reales_sin_hallazgos_nuevos` fallan ante cualquier hallazgo nuevo.
+2. **Decisión pendiente del autor**, junto con la de I-09:
+   - (a) regenerar esas tablas con supresión secundaria (ocultar también un segundo grupo, o unir «sin dato» y los
+     grupos raros en un grupo «otros») y reescribir o no el historial público;
+   - (b) mantenerlas como están, declarando el riesgo.
+3. Para un año nuevo (2025), la supresión secundaria debe aplicarse desde el código de las tablas por subgrupo.
+
