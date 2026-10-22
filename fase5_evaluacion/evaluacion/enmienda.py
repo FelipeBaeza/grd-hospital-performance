@@ -55,7 +55,7 @@ def _verificar_base(raiz: Path) -> dict:
 
 
 def firmar(autor: str, profesor: str, fecha_firma: str, raiz: Path = RAIZ, sin_constancia: bool = False,
-           ahora: dt.datetime | None = None) -> Path:
+           ahora: dt.datetime | None = None, nota: str | None = None) -> Path:
     """Crea documentos/registro_enmienda_01.json. No sobrescribe un registro existente."""
     if (raiz / REGISTRO).exists():
         raise ErrorEnmienda("la enmienda 01 ya está registrada; un cambio exige una enmienda nueva")
@@ -75,6 +75,7 @@ def firmar(autor: str, profesor: str, fecha_firma: str, raiz: Path = RAIZ, sin_c
         "codigo_evaluacion": huellas_codigo(raiz),
         "analisis": [a["id"] for a in datos["analisis"]],
         "firmas": {"autor": autor.strip(), "profesor_guia": profesor.strip(), "fecha_firma": fecha_firma},
+        "nota": (nota or "").strip() or None,
         "momento_utc": t.isoformat(), "momento_epoch": int(t.timestamp()),
     }
     (raiz / REGISTRO).write_text(json.dumps(registro, ensure_ascii=False, indent=1) + "\n", encoding="utf8")

@@ -51,6 +51,12 @@ def test_firmar_rechaza_protocolo_base_cambiado(raiz):
         enmienda.firmar("Autor", "Profesor", "2026-10-22", raiz=raiz, sin_constancia=True, ahora=T)
 
 
+def test_la_nota_queda_en_el_registro(raiz):
+    ruta = enmienda.firmar("Autor", "Profesor", "2026-10-22", raiz=raiz, sin_constancia=True, ahora=T, nota="aprobación verbal")
+    reg = json.loads(ruta.read_text())
+    assert reg["nota"] == "aprobación verbal" and reg["constancia"]["sha256"] is None
+
+
 def test_corrida_exige_firma_y_enmienda_intacta(raiz):
     script = raiz / "sens.py"
     script.write_text("print('analisis')\n")
