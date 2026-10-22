@@ -31,7 +31,7 @@ Observaciones: ______________________________________________
 
 ## Parte B. Incidentes declarados después de la apertura
 
-- [ ] Conozco el registro de incidentes I-01 a I-10 (`documentos/INCIDENTES.md`). Entre ellos está la evaluación de un prototipo anterior en 2024, el 27-09-2026 (I-01).
+- [ ] Conozco el registro de incidentes I-01 a I-11 (`documentos/INCIDENTES.md`). Entre ellos está la evaluación de un prototipo anterior en 2024, el 27-09-2026 (I-01).
 - [ ] Conozco la tabla de versiones y desviaciones de la Fase 1 (`docs/fase1_comprension_dominio/VERSIONES_Y_DESVIACIONES.md`). En ella, la versión v4 se presenta como enmienda posterior a la apertura.
 
 Observaciones: ______________________________________________

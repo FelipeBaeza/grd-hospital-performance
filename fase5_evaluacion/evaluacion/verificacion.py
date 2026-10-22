@@ -17,6 +17,15 @@ def _p(id_, nombre, ok, detalle):
     return {"puerta": id_, "nombre": nombre, "estado": "PASS" if ok else "FAIL", "detalle": detalle}
 
 
+def _propiedad() -> dict:
+    """Escáner por propiedad sobre lo publicado por las Fases 3 a 6 y sobre pruebas y documentos (plan 4.2)."""
+    from . import privacidad_propiedad as pp
+    t = RAIZ.parent
+    return pp.verificar([DIR_SALIDAS, t / "fase3_preparacion" / "salidas", t / "fase4_modelado" / "salidas", t / "fase6_despliegue" / "datos"],
+                        [RAIZ / "tests", t / "fase3_preparacion" / "tests", t / "fase4_modelado" / "tests", t / "docs"],
+                        ruta_declarados=RAIZ / "config" / "privacidad_hallazgos_declarados.csv")
+
+
 def verificar_preparacion(prot, trabajo: Path, con_pytest: bool = True) -> pd.DataFrame:
     out = []
     pre = json.loads((RAIZ / "documentos" / "registro_preapertura.json").read_text(encoding="utf8"))
@@ -42,10 +51,13 @@ def verificar_preparacion(prot, trabajo: Path, con_pytest: bool = True) -> pd.Da
     tablas = ["criterios_mortalidad", "criterios_estadia", "oe_hospital_mortalidad", "oe_hospital_estadia", "indice_exhaustividad_hospital", "subgrupos_mortalidad", "subgrupos_estadia", "tasa_traslado_hospital"]
     falt = [t for t in tablas if not (DIR_SALIDAS / "ensayo_2023" / "tablas" / f"{t}.csv").exists()]
     out.append(_p("P6", "Ensayo general con 2023", not falt, "todas las tablas de la evaluación se generaron con 2023" if not falt else f"faltan: {falt}"))
-    # P7 privacidad
+    # P7 privacidad: patrones (privacidad.py) y propiedad (privacidad_propiedad.py, plan 4.2)
     h = privacidad.escanear_carpeta(DIR_SALIDAS)
     r7 = {"rut": sum(x["rut"] for x in h), "fechas": sum(x["fechas"] for x in h), "celdas_pequenas": sum(x["celdas_pequenas"] for x in h)}
-    out.append(_p("P7", "Privacidad de las salidas", r7["rut"] == 0 and r7["fechas"] == 0 and r7["celdas_pequenas"] == 0, f"RUT: {r7['rut']}; fechas completas: {r7['fechas']}; celdas de 1 a 9 casos: {r7['celdas_pequenas']}"))
+    prop = _propiedad()
+    out.append(_p("P7", "Privacidad de las salidas", r7["rut"] == 0 and r7["fechas"] == 0 and r7["celdas_pequenas"] == 0 and prop["ok"],
+                  f"RUT: {r7['rut']}; fechas completas: {r7['fechas']}; celdas de 1 a 9 casos: {r7['celdas_pequenas']}; "
+                  f"conteos reconstruibles nuevos: {len(prop['nuevos'])} (declarados en incidentes: {len(prop['declarados'])})"))
     # P8 pruebas
     pas, fal = 0, 0
     if con_pytest:
@@ -100,9 +112,16 @@ def verificar_cierre(prot, trabajo: Path, con_pytest: bool = True) -> pd.DataFra
     t_lect = pd.to_datetime(lect["momento_utc"]).min().timestamp() if len(lect) else float("inf")
     okp = pre["huella_protocolo"] == prot.huella() and pre["momento_epoch"] < t_lect
     out.append(_p("G3", "Protocolo pre-registrado", okp, "la huella del protocolo es la registrada y el registro es anterior a la apertura" if okp else "el protocolo cambió o se registró después de la apertura"))
-    # G4 sin reajuste con 2024
-    bad = [f.name for f in (RAIZ / "evaluacion").glob("*.py") if f.name not in ("planes_b.py", "verificacion.py") and re.search(r"\.fit\(|ajustar_final|entrenar\(", f.read_text(encoding="utf8"))]
-    out.append(_p("G4", "Sin reajuste con 2024", not bad and all(v[0] for v in r.values()), "el código de la fase no entrena ni recalibra y los modelos no cambiaron" if not bad else f"se encontraron ajustes en: {bad}"))
+    # G4 sin reajuste con 2024: la evaluación completa corre con los ajustes interceptados (plan 4.3); antes era una
+    # búsqueda de texto («.fit(») que no veía fit_transform ni entrenamientos llamados desde otros módulos
+    from . import sin_ajuste
+    try:
+        sin_ajuste.prueba_humo()
+        bad = None
+    except sin_ajuste.AjusteProhibido as e:
+        bad = str(e)
+    out.append(_p("G4", "Sin reajuste con 2024", bad is None and all(v[0] for v in r.values()),
+                  "la evaluación completa corre con los ajustes prohibidos y los modelos no cambiaron" if bad is None else bad))
     # G5 criterios completos
     cm, ce = pd.read_csv(destino / "tablas" / "criterios_mortalidad.csv"), pd.read_csv(destino / "tablas" / "criterios_estadia.csv")
     vv = veredicto_global(destino)
@@ -117,7 +136,10 @@ def verificar_cierre(prot, trabajo: Path, con_pytest: bool = True) -> pd.DataFra
     h = privacidad.escanear_carpeta(destino)
     sin_rank = all(pd.read_csv(f)["cod_hospital"].is_monotonic_increasing for f in (destino / "tablas").glob("*hospital*.csv"))
     no_rank_col = not any(("rank" in c.lower() or "posicion" in c.lower()) for f in (destino / "tablas").glob("*.csv") for c in pd.read_csv(f, nrows=1).columns)
-    out.append(_p("G7", "Privacidad y sin ranking", not h and sin_rank and no_rank_col, f"RUT, fechas y celdas de 1 a 9 casos: {len(h)} hallazgos; tablas por hospital ordenadas por código y sin columnas de posición"))
+    prop = _propiedad()
+    out.append(_p("G7", "Privacidad y sin ranking", not h and sin_rank and no_rank_col and prop["ok"],
+                  f"RUT, fechas y celdas de 1 a 9 casos: {len(h)} hallazgos; conteos reconstruibles nuevos: {len(prop['nuevos'])} "
+                  f"(declarados: {len(prop['declarados'])}); tablas por hospital ordenadas por código y sin columnas de posición"))
     # G8 reproducibilidad
     if con_pytest:
         rr = subprocess.run([sys.executable, "-m", "pytest", "-o", "addopts=-p no:cacheprovider", "--tb=line"], cwd=RAIZ, capture_output=True, text=True)
