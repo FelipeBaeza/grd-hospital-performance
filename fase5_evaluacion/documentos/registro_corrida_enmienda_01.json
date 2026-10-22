@@ -1,0 +1,38 @@
+{
+ "enmienda": 1,
+ "huellas_enmienda": {
+  "config/protocolo_fase5_v2.toml": "0f199fb8270cf74fd8d4c3c8ed2a36a73c9015f38a880317710cf5e3a0f9b454",
+  "documentos/ENMIENDA_01.md": "13360e85a52beedd31d10ab1376bc9d28a016888fe77cd17a8e920e0c2080dcf"
+ },
+ "scripts": {
+  "run_enmienda01.py": "9a6184b2509094ebc145e50b1bdbc32013505c7c2ae886ee40f9417aedfc61d9",
+  "enmienda01/__init__.py": "6b2b5f1d43369cf658ceb7a7cb28cc62122e8b57ec7fce684a59be71843f6ab0",
+  "enmienda01/comun.py": "ee0ab01a0a0585302d3a66b0d08541d8f49cc55b7b8ed473ddf771cd4c051c72",
+  "enmienda01/modelo.py": "20b8c1dd54dab2da3d44998e22937d3876ae43440fcc685dbb2d4fbe53579da2",
+  "enmienda01/indicador.py": "bab907b936e3a84cd5d8ca2d433bd7b917cfebd158e4bfba08607bc15c9fcdcb",
+  "enmienda01/publicar.py": "555379455e36330598433ee5d6df34561e1e3bb976dafc6ed6583bfcda7acae2"
+ },
+ "codigo_evaluacion": {
+  "evaluacion/__init__.py": "42fe743738535b4956cc6ae67fecf529eb9d055fb69e8ade38a275d41c70f809",
+  "evaluacion/analisis.py": "748b19f4bea10073859474ba53e8636a41f5e9737d40fca4c5fa4761d2b7f2e1",
+  "evaluacion/apertura.py": "c68d436b0afa9cc0b0db828002aba7a6cfb73ac64840f55ca85dbd2871c0a685",
+  "evaluacion/cohortes.py": "528f1cac734f3e4b024ab9d3865ec829e8d221d3612e16e81338cca8666c4957",
+  "evaluacion/config.py": "2e7d2e26dc1c91f35f1dc403251e275a12339b4dd1f281d9b6220ce36f011e5b",
+  "evaluacion/criterios.py": "7a3dcb07563259e907d0b594fcaf96f6509a5b101d0b096fcd6e2cd6430c09d1",
+  "evaluacion/embudo.py": "6b934c9460ce91049b00841d06583273e8aded76454fd925daaef442a5f0c25f",
+  "evaluacion/enmienda.py": "dc967342e813372977e7ef45b028add34f252f82ff5757ec19052c86e5f1b4bb",
+  "evaluacion/exhaustividad_indice.py": "c0d88e06ff0b529208c192575a0ef0279cb0ee49d37b79dd41ecb03975fd3039",
+  "evaluacion/figuras.py": "cd8e36acf68c3a7565695d9b5f19a4ffa02f85aa1242e52da16a2c3d163c6ee6",
+  "evaluacion/hospitales.py": "f96bb3917b68dd9a21de9a564612f26503a610ffbc1d4ba16c73921468ae61af",
+  "evaluacion/huellas.py": "ad4470c3d39b18e3aa573f0b4f37379e56e9e15058452efc18c3a30c5f81ce36",
+  "evaluacion/orquestador.py": "1b406324366cfca1f5d6aa6b0a9b1d74cb548d714f3b94df5e8e8ba9004ce5ec",
+  "evaluacion/planes_b.py": "06735d1d60f25b9ff970f804651a1fd03b9ef2a11295a169b7f31b797d7835e3",
+  "evaluacion/prediccion.py": "1e941f91da00f77576f7728798e9196a20030f37c38b51c5af15071e29a9d0bb",
+  "evaluacion/privacidad.py": "1b65553dd569b99f4beed98ebc3694e75145fa75177404276b0365f8256d5284",
+  "evaluacion/subgrupos.py": "2818e04dfcddbc3d42d8fb30648fd63ba79d882db18fbafcec2c7e68fbac5d92",
+  "evaluacion/verificacion.py": "cd6a4c4e488670d834fa2e17ecc70fc3da5779301a2223deaf5ddf4a2a577878"
+ },
+ "codigo_cambiado_desde_firma": [],
+ "momento_utc": "2026-10-22T02:24:47+00:00",
+ "momento_epoch": 1792635887
+}
