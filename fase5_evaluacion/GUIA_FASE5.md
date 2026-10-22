@@ -1,7 +1,7 @@
 # Guía de la Fase 5 (Evaluación)
 
 Estado: **completa**. 2024 se abrió una vez (ver `documentos/autorizacion_apertura_2024.txt` y `documentos/DECISIONES_FASE5.md`).
-Incidentes: `documentos/INCIDENTES.md` (I-01 a I-10). El profesor guía ratificó la apertura después de conocer los resultados (I-10).
+Incidentes: `documentos/INCIDENTES.md` (I-01 a I-11). El profesor guía ratificó la apertura después de conocer los resultados (I-10).
 
 **Enmienda 01** (`config/protocolo_fase5_v2.toml` y `documentos/ENMIENDA_01.md`): registrada el 21-10-2026 en
 `documentos/registro_enmienda_01.json`, con la aprobación verbal del profesor guía anotada. Falta adjuntar su
@@ -43,5 +43,13 @@ pytest
 - `salidas/ensayo_2023/` es solo un ensayo de código (2023 se usó para calibrar).
 - La etapa `apertura` falla si 2024 ya fue abierto. El protocolo (`config/protocolo_fase5.toml`) no debe cambiar tras el pre-registro.
 - No ejecutar la etapa `verificacion` (puertas de preparación) después de la apertura: su puerta P3 ya no aplica.
+- Puertas reforzadas por el plan de corrección (octubre de 2026):
+  - **G4** ya no busca texto: corre la evaluación completa con cualquier entrenamiento o recalibración interceptado
+    (`evaluacion/sin_ajuste.py`). La evaluación real de 2024 también corre dentro de esa guardia.
+  - **P7 y G7** suman el escáner por propiedad (`evaluacion/privacidad_propiedad.py`), que intenta reconstruir
+    conteos de 1 a 9 combinando tablas (tasa × tamaño, O/E × esperado y complementos) y busca valores reales en
+    pruebas y documentos. Los hallazgos ya declarados (incidente I-11) están en
+    `config/privacidad_hallazgos_declarados.csv`; uno nuevo hace fallar la puerta.
+- `run_fase5.py` crea la carpeta de trabajo si no existe.
 
 Informe explicado: `docs/fase5_evaluacion/Informe_Fase5_v5.docx`.

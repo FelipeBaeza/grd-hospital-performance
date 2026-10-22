@@ -109,3 +109,12 @@ def test_punta_a_punta_con_datos_sinteticos(tmp_path, monkeypatch):
     tablas = publicar.escribir(m, r, pub, {"prueba": True})
     assert (pub / "resumen_modelo.csv").exists() and "metadatos.json" in [p.name for p in pub.iterdir()]
     assert "calibracion_por_estrato.csv" in tablas
+
+
+def test_embudo_con_heterogeneidad_real_deja_fuera_mas_del_5_por_ciento():
+    """Auditoría §3.5, prueba 1 (H-05): con τ > 0 y todos los hospitales «normales», el embudo winsorizado deja fuera
+    bastante más del 5 %; sin winsorizar queda cerca del 5 %."""
+    esp = np.random.default_rng(2).uniform(30, 600, 69)
+    con = comun.simular_p5b(esp, 1.0, 0.17, 0.10, rep=200, semilla=7)
+    sin = comun.simular_p5b(esp, 1.0, 0.17, 0.0, rep=200, semilla=7)
+    assert con > 0.08 and 0.02 < sin < 0.08 and con > sin

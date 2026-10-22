@@ -14,7 +14,7 @@ Las capas (Bronce, Plata, Oro, sellado; unos 800 MB) se escriben en `--capas`, n
 ## Contenido
 - `prep/` código por capa: bronce, plata, cohortes, oro, sellado, catalogo, privacidad, verificacion, orquestador.
 - `config/` umbrales congelados y tablas de referencia (Elixhauser, roles de TIPOALTA, cifras de la Fase 2).
-- `tests/` 53 pruebas con datos sintéticos (`python -m pytest`).
+- `tests/` 61 pruebas con datos sintéticos (`python -m pytest`).
 - `salidas/tablas/` resultados en CSV; `tabla_verificacion.csv` tiene las 8 puertas (P1 a P8, todas PASS en la corrida final).
 - `salidas/figuras/` gráficos del informe.
 
@@ -25,6 +25,12 @@ Las capas (Bronce, Plata, Oro, sellado; unos 800 MB) se escriben en `--capas`, n
 4. Valores imposibles se anulan y se cuentan; nunca se imputan.
 5. Salidas sin RUT, fechas completas ni celdas de 1 a 9 casos.
 6. Severidad, peso y riesgo de mortalidad del GRD no pasan a Plata ni a Oro.
+
+## Agregado por el plan de corrección (octubre de 2026)
+- `prep/cohortes.py` acepta las opciones de la enmienda 02 (MDC 14 completo fuera; alta voluntaria y fuga fuera de E,
+  paso EX09). Vienen **apagadas**: sin ellas las cohortes quedan idénticas byte a byte.
+- `prep/sello_cripto.py`: sello criptográfico para un año de prueba nuevo (plan 4.5). El profesor guía cifra el
+  desenlace con su clave (`python -m prep.sello_cripto sellar <archivo>`) y solo él lo puede abrir.
 
 ## Pendiente
 Lectura enmascarada de TIPOALTA 2024 (requiere aprobación expresa del profesor guía), cartas a FONASA, revisión clínica y carga del `catalogo_hospitales.sql` en PostgreSQL.
