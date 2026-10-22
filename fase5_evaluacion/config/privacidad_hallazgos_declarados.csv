@@ -1,14 +1,1 @@
 clave,incidente,detalle
-complemento | salidas/ensayo_2023/tablas/subgrupos_estadia.csv |  | n | sexo |  |  | ,I-11,filas omitidas
-complemento | salidas/ensayo_2023/tablas/subgrupos_estadia.csv |  | n | grupo_clinico |  |  | ,I-11,filas omitidas
-complemento | salidas/ensayo_2023/tablas/subgrupos_mortalidad.csv |  | n | sexo |  |  | ,I-11,filas omitidas
-complemento | salidas/ensayo_2023/tablas/subgrupos_mortalidad.csv |  | n | grupo_clinico |  |  | ,I-11,filas omitidas
-complemento | salidas/ensayo_2023/tablas/subgrupos_mortalidad.csv |  | observado | sexo |  |  | ,I-11,filas omitidas
-complemento | salidas/evaluacion_2024/tablas/subgrupos_estadia.csv |  | n | grupo_clinico |  |  | ,I-11,filas omitidas
-complemento | salidas/evaluacion_2024/tablas/subgrupos_mortalidad.csv |  | n | grupo_clinico |  |  | ,I-11,filas omitidas
-complemento | salidas/evaluacion_2024/tablas/subgrupos_mortalidad.csv |  | observado | sexo |  |  | ,I-11,una celda oculta
-complemento | salidas/evaluacion_2024/tablas/subgrupos_mortalidad.csv |  | observado | grupo_clinico |  |  | ,I-11,2 celdas ocultas
-complemento | datos/publicables/subgrupo.csv | estadia | n | grupo_clinico |  |  | ,I-11,filas omitidas
-complemento | datos/publicables/subgrupo.csv | mortalidad | n | grupo_clinico |  |  | ,I-11,filas omitidas
-complemento | datos/publicables/subgrupo.csv | mortalidad | observado_pub | sexo |  |  | ,I-11,una celda oculta
-complemento | datos/publicables/subgrupo.csv | mortalidad | observado_pub | grupo_clinico |  |  | ,I-11,2 celdas ocultas

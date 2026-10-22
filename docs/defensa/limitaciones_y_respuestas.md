@@ -55,7 +55,7 @@ Cada limitación dice qué es, cuánto pesa según la evidencia y qué se hizo o
 |---|---|---|
 | Exposiciones de 2024 antes de la apertura y cambios de código posteriores | I-01 a I-07 | Declaradas |
 | La enmienda 01 no es ciega: sus análisis se exploraron antes | I-08; las 40 comparaciones son idénticas | Declarado; se informaron todos los resultados |
-| Valores reales en el repositorio público | I-09 (prueba y tablas del prototipo) e I-11 (conteos nacionales por complemento) | Decisión de publicación pendiente |
+| Valores reales en el repositorio público | I-09 (prueba y tablas del prototipo) e I-11 (conteos nacionales por complemento) | I-11 corregido (tablas regeneradas); historial público pendiente (I-09) |
 
 ---
 
@@ -133,9 +133,10 @@ No hay registros individuales, y las celdas de 1 a 9 casos se suprimen. Encontr�
 
 - la prueba de privacidad usaba valores reales (I-09, corregido);
 - había tablas de un prototipo con celdas pequeñas en el historial público (I-09);
-- hay conteos nacionales reconstruibles por complemento en las tablas por subgrupo (I-11).
+- había conteos nacionales reconstruibles por complemento en las tablas por subgrupo (I-11, corregido: los grupos
+  pequeños ahora se combinan).
 
-El escáner nuevo intenta reconstruir conteos combinando tablas, y falla ante cualquier hallazgo no declarado. Los
+El escáner nuevo intenta reconstruir conteos combinando tablas, y hoy no encuentra ninguno en lo publicado. Los
 códigos de hospital no anonimizan: la protección es no rankear.
 
 **13. ¿Por qué incluir el nivel de cuidado al ingreso si depende de las camas UCI?**

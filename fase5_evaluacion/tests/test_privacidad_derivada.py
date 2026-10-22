@@ -25,9 +25,11 @@ def test_subgrupo_pequeno_oculta_oe():
     df = pd.DataFrame({"EDAD_ANIOS": [30.0] * 40, "SEXO": ["HOMBRE"] * 20 + ["MUJER"] * 20, "GRUPO_CLINICO": ["I"] * 40, "COD_HOSPITAL": [1] * 20 + [2] * 20,
                        **{f"ELIX_{i:02d}": [0] * 40 for i in range(1, 4)}})
     y = np.array([1, 1] + [0] * 38, float)
-    t = subgrupos.tabla(df, y, np.full(40, 0.1), "mortalidad", 10)
+    t = subgrupos.tabla(df, y, np.full(40, 0.1), "mortalidad", 10, agrupar_pequenos=False)   # método anterior
     chico = t[t["observado"].isna()]
     assert len(chico) > 0 and chico["oe"].isna().all()
+    n = subgrupos.tabla(df, y, np.full(40, 0.1), "mortalidad", 10)                           # método actual (I-11)
+    assert (n["observado"].isna() | (n["observado"] >= 10)).all() and n.loc[n["observado"].isna(), "oe"].isna().all()
 
 
 def test_el_escaner_detecta_filtraciones_derivadas(tmp_path):
