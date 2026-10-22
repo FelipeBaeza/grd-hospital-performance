@@ -185,6 +185,10 @@ mejor».
 **Medida.** La enmienda 01 lo declara en su sección 6. Se informan todos los análisis de su lista, cumplan o no la
 regla. Si al repetirlos un resultado difiere del exploratorio, se informa la diferencia y su causa.
 
+**Resultado (22-10-2026).** La corrida registrada de la enmienda 01 repitió los análisis con el código registrado
+antes de correr (commit `b718454`). Las 40 comparaciones posibles con la exploración (% en la misma zona y ρ, por
+análisis, tarea y diseño) son idénticas (`salidas/enmienda_01/comparacion_con_exploracion.csv`).
+
 ---
 
 ## I-09. Valores reales publicados en GitHub (21-10-2026)

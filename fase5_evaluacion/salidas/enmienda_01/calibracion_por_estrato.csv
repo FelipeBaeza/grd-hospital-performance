@@ -1,0 +1,29 @@
+diseno,anio,tarea,estrato,grupo,cantidad_hospitales,oe,ic_inf,ic_sup,nota
+anidado,2023,mortalidad,tercil de egresos,T1 menor,22,,,,O/E no publicado: el estrato contiene un hospital con menos de 10 muertes
+anidado,2023,mortalidad,tercil de egresos,T2,21,0.9186514830147922,0.8481740006572299,0.9935503779301403,
+anidado,2023,mortalidad,tercil de egresos,T3 mayor,22,0.922819675881798,0.8535759656966804,0.9873604129416653,
+anidado,2023,mortalidad,tipo de hospital,general,62,0.9066157950939805,0.862382044783708,0.949315315013484,
+anidado,2023,mortalidad,tipo de hospital,instituto monográfico,3,,,,O/E no publicado: el estrato contiene un hospital con menos de 10 muertes
+anidado,2023,mortalidad,años en GRD,2 o más,62,0.9078969216739264,0.8658075083059761,0.9474548694888524,
+anidado,2023,mortalidad,años en GRD,menos de 2,3,,,,O/E no publicado: el estrato contiene un hospital con menos de 10 muertes
+original,2024,mortalidad,tercil de egresos,T1 menor,23,,,,O/E no publicado: el estrato contiene un hospital con menos de 10 muertes
+original,2024,mortalidad,tercil de egresos,T2,23,0.9738435247140462,0.8998784815981267,1.0549604618160553,
+original,2024,mortalidad,tercil de egresos,T3 mayor,23,0.9987773482447228,0.935703324071857,1.0585084511266751,
+original,2024,mortalidad,tipo de hospital,general,66,0.9796208852828443,0.9381283148304015,1.0236294247585997,
+original,2024,mortalidad,tipo de hospital,instituto monográfico,3,,,,O/E no publicado: el estrato contiene un hospital con menos de 10 muertes
+original,2024,mortalidad,años en GRD,2 o más,62,0.9807308356444983,0.9385555333487465,1.0240799952067703,
+original,2024,mortalidad,años en GRD,menos de 2,7,,,,O/E no publicado: el estrato contiene un hospital con menos de 10 muertes
+anidado,2023,estadia,tercil de egresos,T1 menor,22,0.8642349164744965,0.7891910050241746,0.9329886063759965,
+anidado,2023,estadia,tercil de egresos,T2,21,0.9605252681802703,0.9254027422525158,0.9960074465574389,
+anidado,2023,estadia,tercil de egresos,T3 mayor,22,0.9570373139914433,0.9168104904346558,0.9966227411399643,
+anidado,2023,estadia,tipo de hospital,general,62,0.9472900914048306,0.9212700417369746,0.974381353965949,
+anidado,2023,estadia,tipo de hospital,instituto monográfico,3,0.8478970714189203,0.7633785654516458,0.9050704386467442,
+anidado,2023,estadia,años en GRD,2 o más,62,0.9477086575400737,0.9234044803639785,0.9742213113120252,
+anidado,2023,estadia,años en GRD,menos de 2,3,0.79356271468294,0.7633785654516458,0.8456669556722425,
+original,2024,estadia,tercil de egresos,T1 menor,23,0.8499326355503177,0.7928719571577955,0.9060822797392423,
+original,2024,estadia,tercil de egresos,T2,23,0.9787910933779291,0.9443447027672849,1.0128376055707282,
+original,2024,estadia,tercil de egresos,T3 mayor,23,0.9683595041405296,0.9270076181772693,1.0097609626497033,
+original,2024,estadia,tipo de hospital,general,66,0.9577817929310755,0.9311990154784671,0.987135511782884,
+original,2024,estadia,tipo de hospital,instituto monográfico,3,0.8772524836037956,0.7111892794377468,1.0268867790209502,
+original,2024,estadia,años en GRD,2 o más,62,0.9610211307480006,0.9341974738803798,0.9895218881295283,
+original,2024,estadia,años en GRD,menos de 2,7,0.8291412888898868,0.7131992735047966,0.9270570796218497,

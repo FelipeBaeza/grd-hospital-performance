@@ -35,6 +35,11 @@ No fue un año ciego para el autor: un prototipo anterior se evaluó en 2024 el 
 **Gobernanza (etapa 0 del plan de corrección):** los incidentes, las versiones de la Fase 1 y la enmienda 01 al
 protocolo están listos. Falta la firma del profesor guía (`docs/gobernanza/`).
 
+**Enmienda 01 (15 análisis de robustez, registrados antes de correr):** el indicador cumple la regla de lectura en
+41 de 44 combinaciones. Las 3 que no cumplen son de mortalidad: sin las variables condicionales y sin
+comorbilidades. El O/E de estadía depende del tamaño del hospital. Resumen en
+`fase5_evaluacion/salidas/enmienda_01/RESUMEN.md`; anexo en `docs/fase5_evaluacion/Anexo_Enmienda01_resultados.docx`.
+
 ## Estructura
 
 ```

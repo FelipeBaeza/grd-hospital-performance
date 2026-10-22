@@ -1,0 +1,23 @@
+tarea,diseno,anio,analisis,cod_hospital,zona_protocolo,con_menos_de_2_anios_en_grd
+mortalidad,anidado,2023,3.1a,110110,señal baja,
+mortalidad,anidado,2023,3.1a,112103,dentro de lo esperado,
+mortalidad,anidado,2023,3.1a,112104,alerta baja,
+mortalidad,anidado,2023,3.2,,alerta baja,1.0
+mortalidad,anidado,2023,3.2,,dentro de lo esperado,1.0
+mortalidad,anidado,2023,3.2,,señal baja,1.0
+mortalidad,original,2024,3.1a,110110,señal baja,
+mortalidad,original,2024,3.1a,112103,alerta alta,
+mortalidad,original,2024,3.1a,112104,señal baja,
+mortalidad,original,2024,3.2,,dentro de lo esperado,6.0
+mortalidad,original,2024,3.2,,señal baja,1.0
+estadia,anidado,2023,3.1a,110110,alerta baja,
+estadia,anidado,2023,3.1a,112103,dentro de lo esperado,
+estadia,anidado,2023,3.1a,112104,dentro de lo esperado,
+estadia,anidado,2023,3.2,,alerta baja,2.0
+estadia,anidado,2023,3.2,,dentro de lo esperado,1.0
+estadia,original,2024,3.1a,110110,alerta baja,
+estadia,original,2024,3.1a,112103,dentro de lo esperado,
+estadia,original,2024,3.1a,112104,dentro de lo esperado,
+estadia,original,2024,3.2,,alerta baja,3.0
+estadia,original,2024,3.2,,dentro de lo esperado,3.0
+estadia,original,2024,3.2,,señal baja,1.0
