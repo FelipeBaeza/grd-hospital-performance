@@ -1,0 +1,54 @@
+{
+ "enmienda": 2,
+ "version": "3.0",
+ "huellas": {
+  "config/protocolo_fase5_v3.toml": "48c03f77113513df0e2e7dc82bc922244f24fd07d48744301b7659eecd2c8231",
+  "documentos/ENMIENDA_02.md": "ea377d3490151fcd733c8739033afc89973e2239fc5bc6b31ffe85ed791ea3a5"
+ },
+ "huella_protocolo_base": "0f199fb8270cf74fd8d4c3c8ed2a36a73c9015f38a880317710cf5e3a0f9b454",
+ "constancia": {
+  "ruta": null,
+  "sha256": null,
+  "nota": "registrada sin constancia escrita del profesor guía"
+ },
+ "codigo_evaluacion": {
+  "evaluacion/__init__.py": "42fe743738535b4956cc6ae67fecf529eb9d055fb69e8ade38a275d41c70f809",
+  "evaluacion/analisis.py": "748b19f4bea10073859474ba53e8636a41f5e9737d40fca4c5fa4761d2b7f2e1",
+  "evaluacion/apertura.py": "c68d436b0afa9cc0b0db828002aba7a6cfb73ac64840f55ca85dbd2871c0a685",
+  "evaluacion/cohortes.py": "528f1cac734f3e4b024ab9d3865ec829e8d221d3612e16e81338cca8666c4957",
+  "evaluacion/config.py": "2e7d2e26dc1c91f35f1dc403251e275a12339b4dd1f281d9b6220ce36f011e5b",
+  "evaluacion/criterios.py": "7a3dcb07563259e907d0b594fcaf96f6509a5b101d0b096fcd6e2cd6430c09d1",
+  "evaluacion/embudo.py": "6b934c9460ce91049b00841d06583273e8aded76454fd925daaef442a5f0c25f",
+  "evaluacion/enmienda.py": "f93e10cd1951c500a49c02f5d97c77cce26a1b99ee365fd909a9f36e549d3c85",
+  "evaluacion/exhaustividad_indice.py": "c0d88e06ff0b529208c192575a0ef0279cb0ee49d37b79dd41ecb03975fd3039",
+  "evaluacion/figuras.py": "cd8e36acf68c3a7565695d9b5f19a4ffa02f85aa1242e52da16a2c3d163c6ee6",
+  "evaluacion/hospitales.py": "f96bb3917b68dd9a21de9a564612f26503a610ffbc1d4ba16c73921468ae61af",
+  "evaluacion/huellas.py": "ad4470c3d39b18e3aa573f0b4f37379e56e9e15058452efc18c3a30c5f81ce36",
+  "evaluacion/orquestador.py": "225988ada0d736ecd0d107cd5f2065519a32d0a60d344333816bfbe7d60ad26c",
+  "evaluacion/planes_b.py": "06735d1d60f25b9ff970f804651a1fd03b9ef2a11295a169b7f31b797d7835e3",
+  "evaluacion/prediccion.py": "1e941f91da00f77576f7728798e9196a20030f37c38b51c5af15071e29a9d0bb",
+  "evaluacion/privacidad.py": "1b65553dd569b99f4beed98ebc3694e75145fa75177404276b0365f8256d5284",
+  "evaluacion/privacidad_propiedad.py": "d7aefd32422b350ecf3e965b0d1099f528ed08a436484ecade9baabeef3e86db",
+  "evaluacion/sin_ajuste.py": "f90906c962d1a625ab6ae4ceb00e3a1ab2be726d6a094376c1bfd3fda5cb36f8",
+  "evaluacion/subgrupos.py": "5ef187793b8a33b6c4d245f4d3d97798bc4a3c081083d23875289603f18f6b43",
+  "evaluacion/verificacion.py": "e74e3dfdbc47da03f1e925139e02008751116fda9ea1234ffc5f5ce3c0cc320c"
+ },
+ "analisis": [
+  "E2.1",
+  "E2.2",
+  "E2.3",
+  "E2.4a",
+  "E2.4b",
+  "E2.5",
+  "E2.6a",
+  "E2.6b"
+ ],
+ "firmas": {
+  "autor": "Felipe Ignacio Baeza Muñoz",
+  "profesor_guia": "Manuel Villalobos Cid (firma pendiente: revisa después de los resultados)",
+  "fecha_firma": "2026-10-22"
+ },
+ "nota": "Registro hecho por el asistente a pedido del autor (22-10-2026). Sin aprobación previa del profesor guía: por decisión del autor, el profesor revisa y firma esta enmienda después de conocer sus resultados, como en el incidente I-10. Decisión del autor del 21-10-2026: EX03 conservador (MDC 14 completo fuera). Catálogo DEIS construido antes del registro (commit b1cfe7d).",
+ "momento_utc": "2026-10-22T15:05:36+00:00",
+ "momento_epoch": 1792681536
+}
