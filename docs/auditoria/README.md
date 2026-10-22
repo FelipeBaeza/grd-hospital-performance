@@ -5,7 +5,7 @@
 - `Plan_de_correccion_resumen.docx` — resumen del plan de corrección y de la reproducción independiente: qué se
   reprodujo, el hallazgo nuevo H-19 (Optuna y las reanudaciones) y las sensibilidades exploratorias.
 
-Las versiones completas y vivas de ambos documentos están en claude.ai (privadas de la autora):
+Las versiones completas y vivas de ambos documentos están en claude.ai (privadas del autor):
 
 - Auditoría: https://claude.ai/artifact/Aa5pcfFhM1HLeMHHeR9tYF
 - Plan de corrección y reproducción independiente: https://claude.ai/artifact/Q1GfYBUwxUcMtFZpxoz1re
