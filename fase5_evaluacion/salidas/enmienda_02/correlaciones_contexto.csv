@@ -1,0 +1,13 @@
+tarea,diseno,anio,analisis,tasa,comparados,rho_con_oe
+mortalidad,anidado,2023,E2.6a,tasa_z515,65,-0.021080408548303897
+mortalidad,anidado,2023,E2.6a,tasa_alta_domiciliaria,65,0.17823426573426573
+mortalidad,anidado,2023,E2.6a,tasa_voluntaria_fuga,65,0.1429632867132867
+estadia,anidado,2023,E2.6a,tasa_z515,65,-0.00026460763868163886
+estadia,anidado,2023,E2.6a,tasa_alta_domiciliaria,65,-0.13833041958041958
+estadia,anidado,2023,E2.6a,tasa_voluntaria_fuga,65,-0.15926573426573426
+mortalidad,original,2024,E2.6a,tasa_z515,69,0.01992504178210728
+mortalidad,original,2024,E2.6a,tasa_alta_domiciliaria,69,0.16046766532700038
+mortalidad,original,2024,E2.6a,tasa_voluntaria_fuga,69,0.22981366459627334
+estadia,original,2024,E2.6a,tasa_z515,69,0.017639468071671296
+estadia,original,2024,E2.6a,tasa_alta_domiciliaria,69,-0.25823894775301426
+estadia,original,2024,E2.6a,tasa_voluntaria_fuga,69,-0.1975520643039825

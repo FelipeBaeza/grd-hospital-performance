@@ -1,0 +1,33 @@
+tarea,diseno,anio,analisis,cod_hospital,zona_protocolo
+mortalidad,anidado,2023,E2.4b,110110,señal baja
+mortalidad,anidado,2023,E2.4b,112103,dentro de lo esperado
+mortalidad,anidado,2023,E2.4b,112104,alerta baja
+mortalidad,anidado,2023,E2.5,110110,señal baja
+mortalidad,anidado,2023,E2.5,118106,dentro de lo esperado
+mortalidad,anidado,2023,E2.5,119101,alerta baja
+estadia,anidado,2023,E2.4b,110110,alerta baja
+estadia,anidado,2023,E2.4b,112103,dentro de lo esperado
+estadia,anidado,2023,E2.4b,112104,dentro de lo esperado
+estadia,anidado,2023,E2.5,110110,alerta baja
+estadia,anidado,2023,E2.5,118106,alerta baja
+estadia,anidado,2023,E2.5,119101,dentro de lo esperado
+mortalidad,original,2024,E2.4b,110110,señal baja
+mortalidad,original,2024,E2.4b,112103,alerta alta
+mortalidad,original,2024,E2.4b,112104,señal baja
+mortalidad,original,2024,E2.5,110110,señal baja
+mortalidad,original,2024,E2.5,116107,dentro de lo esperado
+mortalidad,original,2024,E2.5,116111,dentro de lo esperado
+mortalidad,original,2024,E2.5,118106,dentro de lo esperado
+mortalidad,original,2024,E2.5,119101,dentro de lo esperado
+mortalidad,original,2024,E2.5,119102,dentro de lo esperado
+mortalidad,original,2024,E2.5,200717,dentro de lo esperado
+estadia,original,2024,E2.4b,110110,alerta baja
+estadia,original,2024,E2.4b,112103,dentro de lo esperado
+estadia,original,2024,E2.4b,112104,dentro de lo esperado
+estadia,original,2024,E2.5,110110,alerta baja
+estadia,original,2024,E2.5,116107,señal baja
+estadia,original,2024,E2.5,116111,dentro de lo esperado
+estadia,original,2024,E2.5,118106,alerta baja
+estadia,original,2024,E2.5,119101,dentro de lo esperado
+estadia,original,2024,E2.5,119102,alerta baja
+estadia,original,2024,E2.5,200717,dentro de lo esperado
