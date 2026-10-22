@@ -1,0 +1,30 @@
+{
+ "enmienda": 2,
+ "registro_enmienda": "6b3e66e73e7e097542ed8267601909d9d9d11bf4add3a382809973a6737fc154",
+ "registro_corrida": "2b9b921e06fd0b71d66135e35565f6faf0ba5703610e1b213cb1f0bb0e307df2",
+ "momento_corrida_registrada": "2026-10-22T15:05:36+00:00",
+ "inicio_utc": "2026-10-22T15:05:47+00:00",
+ "fin_utc": "2026-10-22T15:53:14+00:00",
+ "huellas_oro": {
+  "matriz_mortalidad": "41ae559cf3c009f6d8a1e3f86a0951b8c76f1b26ad2da0bacb61cb4ead88e9aa",
+  "matriz_estadia": "35e37c790342385fef238e2453a7c68a8c490d0348d73ad8608e3824f6f18d75",
+  "desenlace_mortalidad": "fb09e5eca57d1d660acb11658b4ab05b76777cbb26a7fb49aca204a0ae22f53e",
+  "desenlace_estadia": "5027cb776d0ecc1c3eca53fcfb47266172fd055fa73eb8218c2c34021cee083e"
+ },
+ "catalogo_deis": true,
+ "semilla_modelo": 20261018,
+ "semilla_bootstrap": 20261019,
+ "python": "3.13.16",
+ "lightgbm": "4.7.0",
+ "scikit_learn": "1.9.1",
+ "numpy": "2.5.3",
+ "pandas": "3.0.6",
+ "archivos": [
+  "correlaciones_contexto.csv",
+  "hospitales_informados_aparte.csv",
+  "muertes_obstetricas_excluidas.csv",
+  "resumen_indicador.csv",
+  "resumen_modelo.csv",
+  "tasas_contexto_hospital.csv"
+ ]
+}
