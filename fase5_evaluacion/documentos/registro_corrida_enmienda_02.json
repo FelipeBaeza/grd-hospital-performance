@@ -1,0 +1,45 @@
+{
+ "enmienda": 2,
+ "huellas_enmienda": {
+  "config/protocolo_fase5_v3.toml": "48c03f77113513df0e2e7dc82bc922244f24fd07d48744301b7659eecd2c8231",
+  "documentos/ENMIENDA_02.md": "ea377d3490151fcd733c8739033afc89973e2239fc5bc6b31ffe85ed791ea3a5"
+ },
+ "scripts": {
+  "run_enmienda02.py": "93632a531530d008c72e6f24a8fb9d801fe66e1b09545f37d64ca3230f2fcef2",
+  "enmienda02/__init__.py": "d6cad867df7735a4cfbe043bbfb0f80df72c19c253190834dbe46e82cd106ac2",
+  "enmienda02/comun.py": "fe3892e9dd9b9a606bd9d8c8f9426d523a0050798d22dad0b96dbdc593531cb7",
+  "enmienda02/filtros.py": "2bb67cf030f660115896bcd20b18b02e98ce09a9166db885d90b073cc954d18a",
+  "enmienda02/modelo.py": "879e2ac78be2a62f57f76f2656d400c261deacdf7d3cfd6c86b140e4ca61acb0",
+  "enmienda02/indicador.py": "37c9b756018248627bba0403026f69d3a970ef6171a8506ae13b7beef1115ddc",
+  "enmienda02/publicar.py": "6edb2b3145e9c173ec2c433397cb7508f9646c31aca159761669566180a3969d",
+  "enmienda01/comun.py": "ee0ab01a0a0585302d3a66b0d08541d8f49cc55b7b8ed473ddf771cd4c051c72",
+  "enmienda01/modelo.py": "20b8c1dd54dab2da3d44998e22937d3876ae43440fcc685dbb2d4fbe53579da2",
+  "../fase3_preparacion/prep/cohortes.py": "94fcf1b74c56e8559e7fedf0589a52c414b84002ef5ecfb5870ada1afe9ab9c7",
+  "../fase3_preparacion/config/tipo_establecimiento.csv": "7281224aabd396d5b9820ad95d8a2182d8017d6f40f29ed764278f804064a2a9"
+ },
+ "codigo_evaluacion": {
+  "evaluacion/__init__.py": "42fe743738535b4956cc6ae67fecf529eb9d055fb69e8ade38a275d41c70f809",
+  "evaluacion/analisis.py": "748b19f4bea10073859474ba53e8636a41f5e9737d40fca4c5fa4761d2b7f2e1",
+  "evaluacion/apertura.py": "c68d436b0afa9cc0b0db828002aba7a6cfb73ac64840f55ca85dbd2871c0a685",
+  "evaluacion/cohortes.py": "528f1cac734f3e4b024ab9d3865ec829e8d221d3612e16e81338cca8666c4957",
+  "evaluacion/config.py": "2e7d2e26dc1c91f35f1dc403251e275a12339b4dd1f281d9b6220ce36f011e5b",
+  "evaluacion/criterios.py": "7a3dcb07563259e907d0b594fcaf96f6509a5b101d0b096fcd6e2cd6430c09d1",
+  "evaluacion/embudo.py": "6b934c9460ce91049b00841d06583273e8aded76454fd925daaef442a5f0c25f",
+  "evaluacion/enmienda.py": "f93e10cd1951c500a49c02f5d97c77cce26a1b99ee365fd909a9f36e549d3c85",
+  "evaluacion/exhaustividad_indice.py": "c0d88e06ff0b529208c192575a0ef0279cb0ee49d37b79dd41ecb03975fd3039",
+  "evaluacion/figuras.py": "cd8e36acf68c3a7565695d9b5f19a4ffa02f85aa1242e52da16a2c3d163c6ee6",
+  "evaluacion/hospitales.py": "f96bb3917b68dd9a21de9a564612f26503a610ffbc1d4ba16c73921468ae61af",
+  "evaluacion/huellas.py": "ad4470c3d39b18e3aa573f0b4f37379e56e9e15058452efc18c3a30c5f81ce36",
+  "evaluacion/orquestador.py": "225988ada0d736ecd0d107cd5f2065519a32d0a60d344333816bfbe7d60ad26c",
+  "evaluacion/planes_b.py": "06735d1d60f25b9ff970f804651a1fd03b9ef2a11295a169b7f31b797d7835e3",
+  "evaluacion/prediccion.py": "1e941f91da00f77576f7728798e9196a20030f37c38b51c5af15071e29a9d0bb",
+  "evaluacion/privacidad.py": "1b65553dd569b99f4beed98ebc3694e75145fa75177404276b0365f8256d5284",
+  "evaluacion/privacidad_propiedad.py": "d7aefd32422b350ecf3e965b0d1099f528ed08a436484ecade9baabeef3e86db",
+  "evaluacion/sin_ajuste.py": "f90906c962d1a625ab6ae4ceb00e3a1ab2be726d6a094376c1bfd3fda5cb36f8",
+  "evaluacion/subgrupos.py": "5ef187793b8a33b6c4d245f4d3d97798bc4a3c081083d23875289603f18f6b43",
+  "evaluacion/verificacion.py": "e74e3dfdbc47da03f1e925139e02008751116fda9ea1234ffc5f5ce3c0cc320c"
+ },
+ "codigo_cambiado_desde_firma": [],
+ "momento_utc": "2026-10-22T15:05:36+00:00",
+ "momento_epoch": 1792681536
+}
