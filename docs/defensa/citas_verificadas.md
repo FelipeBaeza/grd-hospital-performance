@@ -121,6 +121,16 @@ proyecto:
 > la logística en PR AUC (+0,032), pero las dos dejaron al 94–100 % de los hospitales en la misma zona del embudo
 > (enmienda 01, análisis 2.5).
 
+## 5. DIPRES y la Comisión Nacional de Productividad (revisión del profesor guía, 24-10-2026)
+
+El profesor guía pidió citar las métricas de eficiencia de la DIPRES y de la Comisión Nacional de Productividad
+que menciona la Fase 1. Se verificaron las dos referencias del informe de seminario:
+
+| Cita del seminario | Qué se encontró | Qué se hace |
+| --- | --- | --- |
+| Dirección de Presupuestos (2021). *Evaluación de la eficiencia hospitalaria: indicadores de mortalidad y estancia por GRD* | No se encontró un documento con ese título. Lo que sí existe es Urbina y Sugg (2021), *Análisis de la eficiencia de los hospitales públicos de alta complejidad en Chile entre 2014 y 2018* (DIPRES, junio de 2021): mide la **eficiencia de costos** de 65 hospitales con una frontera estocástica, no la mortalidad ni la estadía | La Fase 1 v6 cita Urbina y Sugg (2021) y describe lo que mide. El título del seminario debe corregirse en el informe final |
+| Comisión Nacional de Productividad (2020). *Uso eficiente de quirófanos electivos y gestión de lista de espera quirúrgica no GES* | El estudio existe (resumen ejecutivo de enero de 2020, *Uso eficiente de quirófanos electivos y gestión de lista de espera quirúrgica*). Compara el uso de los pabellones entre hospitales públicos | Se cita tal cual en la Fase 1 v6 |
+
 ## Fuentes consultadas
 
 - Chen y cols. (2023): [registro DOAJ](https://doaj.org/article/eb7bee0de8b4433e99ecb003a37980f2),
@@ -129,3 +139,5 @@ proyecto:
 - Zeleke y cols. (2023): [Frontiers in Artificial Intelligence](https://www.frontiersin.org/articles/10.3389/frai.2023.1179226/full).
 - Guzmán-Muñoz y cols. (2025): [MDPI, Journal of Clinical Medicine](https://www.mdpi.com/2077-0383/14/21/7717).
 - Guzmán-Muñoz y cols. (2026): [registro de la Universidad Europea](https://abacus.universidadeuropea.com/signposting/describedby/2c6ed882-5b06-451f-9e81-2822a159be37).
+- Urbina y Sugg (2021): [Diario Financiero, 5 de julio de 2021](https://www.df.cl/economia-y-politica/macro/informe-de-la-dipres-mide-que-tan-eficientes-son-los-gastos-de-los).
+- Comisión Nacional de Productividad (2020): [resumen ejecutivo](https://cnep.cl/wp-content/uploads/2025/05/Uso-eficiente-de-quirofanos-resumen-ejecutivo.pdf).

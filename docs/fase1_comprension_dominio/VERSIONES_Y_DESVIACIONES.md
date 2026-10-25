@@ -15,7 +15,7 @@ el cambio se decidió antes o después de abrir 2024. Las horas son UTC.
 | Protocolo de la Fase 5 v1.0 (`fase5_evaluacion/config/protocolo_fase5.toml`) | 19-10-2026 12:16:38 (huella `5624bdae…`) | **Pre-registro de la evaluación** | Fija la regla de veredicto, el volumen mínimo, el embudo y la apertura única, 48 minutos antes de abrir 2024 |
 | Fase 1 v4 (`docs/historial/fase1/Informe_Fase1_v4_consenso.docx`) | Archivo del 19-10 a las 22:53. Su texto cita resultados de la Fase 5 de 2024 | **Enmienda posterior a la apertura** | Adopta como decisiones del proyecto lo que ya se había ejecutado. En los traslados entrantes da como motivo que excluirlos «obligaría a… repetir el examen de 2024» |
 | Fase 1 v5 (`docs/historial/fase1/Informe_Fase1_v5.docx`) | 21-10-2026 | Versión explicativa breve | Explica lo que se ejecutó, sin tomar decisiones nuevas. Reemplazada por la v6 |
-| Fase 1 v6 (`docs/fase1_comprension_dominio/Informe_Fase1_v6.docx`) | 25-10-2026 | **Informe vigente** | Restaura la estructura y el texto de la versión 2 y corrige lo que ya no se aplica, con cifras del repositorio. No toma decisiones nuevas. Su Anexo A lista cada cambio respecto de la versión 2 |
+| Fase 1 v6 (`docs/fase1_comprension_dominio/Informe_Fase1_v6.docx`) | 25-10-2026 | **Informe vigente** | Restaura la estructura y el texto de la versión 2 y corrige lo que ya no se aplica, con cifras del repositorio. No toma decisiones nuevas. Su Anexo A lista cada cambio respecto de la versión 2; su Anexo B responde la revisión técnica del profesor guía (24-10-2026). Las observaciones que la Fase 2 ya había resuelto se responden en el informe de la Fase 2 v6 (sección 9) |
 
 **Por qué el pre-registro es la versión del 27-09 y no la v3.** El plan de corrección proponía restituir la v3. Al
 revisar las fechas se ve que la v3 no puede probar que es anterior a la apertura. Además, se escribió después de
@@ -46,6 +46,7 @@ lo pre-registrado).
 | 9 | **Volumen mínimo** (decisión 6) | Seminario: «número suficiente» | 500 egresos y 10 muertes esperadas, «para confirmar» | Adoptado, «con muertes esperadas en todas las fases». La Fase 3 había usado muertes observadas | Protocolo v1.0 (`min_esperado = 10`), antes de abrir | Aclaración | Ninguno: la Fase 5 usó muertes esperadas | — |
 | 10 | **Nombres de hospitales** (decisión 10) | — | «Pendiente definir» / «Aceptado» | Solo códigos, sin nombres | Fase 5 (D6), el 19-10 | Aclaración | Ninguno. Los códigos DEIS no anonimizan (H-18) | — |
 | 11 | **Qué no es el indicador** (§11.4) | Seminario §4.3 y §5.2 | Sin sección | Sección nueva | v4 | Aclaración | Ninguno | — |
+| 12 | **Qué pasa si un criterio falla en 2024** (§12) | Versión 2 (§12): si el modelo no supera a la logística en 2024, el modelo final es la logística | Igual | El protocolo de la Fase 5 v1.0 mantuvo un «plan B» (logística o línea base congeladas) que se activaría con el resultado de 2024 | Pre-registrado el 19-10, antes de abrir. Lo señaló el profesor guía (observación O1, 24-10) | Desviación de diseño: usa 2024 para elegir, contra la regla R7 | Ninguno: no se activó, porque los siete criterios se cumplieron | La v6 de la Fase 1 fija que en 2024 solo se reporta; los análisis posteriores usan el diseño anidado |
 
 ## 3. Cómo leer esta tabla
 
