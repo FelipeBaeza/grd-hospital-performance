@@ -4,7 +4,7 @@
 
 1. `00_guia_del_proyecto/Guia_del_proyecto.docx` — la guía de entrada.
 2. `fase1_comprension_dominio/Informe_Fase1_v6.docx` — diseño, reglas y decisiones. Restaura la versión 2 del
-   informe, la corrige según lo ejecutado (Anexo A) y responde la revisión técnica del profesor guía (Anexo B).
+   informe, la corrige según lo ejecutado e incorpora la revisión técnica del profesor guía.
 3. `fase5_evaluacion/Informe_Fase5_v5.docx` — resultados en 2024 y cómo leerlos; y
    `fase5_evaluacion/Anexo_Enmienda01_resultados.docx` y `Anexo_Enmienda02_resultados.docx` — los análisis de
    robustez de las enmiendas 01 y 02.
