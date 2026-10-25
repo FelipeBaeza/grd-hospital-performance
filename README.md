@@ -50,7 +50,7 @@ completo y sacar el alta voluntaria y la fuga de la estadía no cambian el indic
 ```
 .
 ├── README.md                  este archivo
-├── docs/                      informes v5 por fase, guía, auditoría e historial de versiones
+├── docs/                      informes por fase (v5; Fase 1 v6), guía, auditoría e historial de versiones
 ├── fase2_eda/ … fase6_despliegue/   código de cada fase (cada una con su GUIA_*.md, config/, tests/ y salidas/)
 ├── archivo/                   artefactos del proceso de desarrollo que ya no se usan para correr nada
 ├── CIE-10.csv, CIE-9 .csv, IR-GRD.csv, Hospitales.csv, GRDs_T10901.xlsx, …   catálogos (la Fase 2 los lee aquí)
