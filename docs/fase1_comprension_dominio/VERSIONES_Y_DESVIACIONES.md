@@ -10,15 +10,23 @@ el cambio se decidió antes o después de abrir 2024. Las horas son UTC.
 |---|---|---|---|
 | Informe de seminario (`docs/00_propuesta_seminario/informe.pdf`) | 03-08-2026 | **Pre-registro de objetivos y criterios** | Fija los criterios de aceptación (PR AUC mayor que la logística, BSS > 0, pendiente 0,8–1,2, O/E 0,95–1,05), la partición temporal y las sensibilidades prometidas. Es anterior a todo uso de los datos de 2024 |
 | Fase 1 del 27-09-2026 (`docs/historial/fase1/2026-09-27_github/`) | PDF del 26-09 a las 23:31; publicado en GitHub el 27-09 a las 20:33 | **Pre-registro verificable de la Fase 1** | GitHub fija la hora de publicación (commit `58d23a4`). Salió 25 minutos antes de que el prototipo se evaluara en 2024 (incidente I-01) |
+| Fase 1 versión 2 (`docs/historial/fase1/Informe_Fase1_v2_original.pdf`) | Sin fecha verificable (PDF exportado de Google Docs) | **Versión de diseño anterior a la v3** | Por su contenido es anterior a la Fase 2 completa: usa estimaciones de la muestra de desarrollo y deja las decisiones para «la Fase 2» y el profesor guía. Es la base de la v3, la v4 y la v6. No sirve como prueba de fecha |
 | Fase 1 v3 (`docs/historial/fase1/Informe_Fase1_v3_actualizado.docx`) | Se guardó por última vez el 19-10 a las 21:36, después de la apertura | **Versión de trabajo previa a la consolidación** | Su contenido refleja el diseño anterior a la apertura (por ejemplo, los traslados entrantes excluidos). Pero se escribió entre el 05-10 y el 19-10, después de I-01, y su fecha de guardado es posterior a la apertura. Sirve como referencia del diseño, no como prueba de fecha |
 | Protocolo de la Fase 5 v1.0 (`fase5_evaluacion/config/protocolo_fase5.toml`) | 19-10-2026 12:16:38 (huella `5624bdae…`) | **Pre-registro de la evaluación** | Fija la regla de veredicto, el volumen mínimo, el embudo y la apertura única, 48 minutos antes de abrir 2024 |
 | Fase 1 v4 (`docs/historial/fase1/Informe_Fase1_v4_consenso.docx`) | Archivo del 19-10 a las 22:53. Su texto cita resultados de la Fase 5 de 2024 | **Enmienda posterior a la apertura** | Adopta como decisiones del proyecto lo que ya se había ejecutado. En los traslados entrantes da como motivo que excluirlos «obligaría a… repetir el examen de 2024» |
-| Fase 1 v5 (`docs/fase1_comprension_dominio/Informe_Fase1_v5.docx`) | 21-10-2026 | Versión explicativa | Explica lo que se ejecutó, sin tomar decisiones nuevas |
+| Fase 1 v5 (`docs/historial/fase1/Informe_Fase1_v5.docx`) | 21-10-2026 | Versión explicativa breve | Explica lo que se ejecutó, sin tomar decisiones nuevas. Reemplazada por la v6 |
+| Fase 1 v6 (`docs/fase1_comprension_dominio/Informe_Fase1_v6.docx`) | 25-10-2026 | **Informe vigente** | Restaura la estructura y el texto de la versión 2 y corrige lo que ya no se aplica, con cifras del repositorio. No toma decisiones nuevas. Su Anexo A lista cada cambio respecto de la versión 2 |
 
 **Por qué el pre-registro es la versión del 27-09 y no la v3.** El plan de corrección proponía restituir la v3. Al
 revisar las fechas se ve que la v3 no puede probar que es anterior a la apertura. Además, se escribió después de
 que un prototipo se evaluara en 2024 (I-01). La versión del 27-09 tiene una fecha que un tercero (GitHub) confirma
 y es anterior a todo contacto con el desenlace de 2024.
+
+**Por qué hay una v6.** La v5 resumía la Fase 1 en pocas páginas y perdió la estructura de la versión 2, que el autor
+prefiere: las 129 columnas por categoría, las etapas del pipeline, la cohorte, los modelos, el indicador y el marco
+legal, en lenguaje simple. La v6 recupera ese texto y lo corrige según lo ejecutado. Las correcciones de contenido
+son las mismas desviaciones de la tabla siguiente; las demás son cifras medidas en lugar de estimadas, errores de
+numeración y el estado legal de la Ley 21.719 al 25-10-2026.
 
 ## 2. Desviaciones: qué cambió, cuándo y con qué efecto
 
