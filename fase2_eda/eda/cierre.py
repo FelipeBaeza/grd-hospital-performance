@@ -407,7 +407,7 @@ def _h_fuga(ev: Evidencia) -> list[Cambio]:
                       f"sobre {_d(umbral, 2)} en {_lista(ventanas) or 'ninguna ventana'}")
         r6 = r6 or str(r.get("prohibida_siempre")) == "si"
     hallazgo = "Variables que superan el umbral de fuga: " + "; ".join(partes)
-    propuesto = "Mantener estas variables fuera de los modelos principales; IR_29301_MORTALIDAD queda prohibida siempre (R6) y la severidad del GRD solo en una sensibilidad aparte (decisión 14)"
+    propuesto = "Mantener estas variables fuera de los modelos; IR_29301_MORTALIDAD y la severidad del GRD quedan prohibidas siempre, también en los análisis de sensibilidad (R6 y decisión 14)"
     actual = ("R6: la columna IR_29301_MORTALIDAD que entrega el agrupador GRD está prohibida como variable del modelo bajo cualquier circunstancia, tampoco en los análisis de "
               "sensibilidad. Decisión 14, severidad del GRD: usarla solo en un análisis de sensibilidad aparte, nunca en el modelo principal.")
     return [Cambio("Fase 1", "R6 y decisión 14", actual, hallazgo, propuesto, "t23_fuga.csv", "supera_umbral_fuga; auc_ranking; auc_confirmacion", _prioridad("media", alta=r6),

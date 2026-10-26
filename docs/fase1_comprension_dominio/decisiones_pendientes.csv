@@ -9,7 +9,7 @@ n,tema,propuesta,estado
 8,Sensibilidad de Elixhauser,Repetir el analisis sin las cinco categorias mas propensas a ser complicaciones,Pendiente
 9,Meta del O/E de estadia,Rango entre 0;95 y 1;05,Pendiente
 10,Nombres de hospitales,Definir si el prototipo los muestra con nombre o solo en un entorno academico,Pendiente
-11,Aviso a FONASA,Definir como informar los valores con estructura de RUT,Pendiente
+11,Valores con forma de RUT,Definir como se tratan sin guardar su contenido,Pendiente
 12,Revision clinica,Definir quien revisa las decisiones del dominio,Pendiente
 13,Rastreo de traslados salientes,Rastrear con el identificador encriptado; atribuir al hospital que traslado,Pendiente
 14,Severidad del GRD,Usarla solo en un analisis de sensibilidad aparte,Pendiente

@@ -537,10 +537,11 @@ def _escribir(ctx: Contexto, r: dict[str, Any]) -> None:
     TA = TAREA
     ctx.escribir_tabla("t23_hospitales_anio.csv", r["hospitales"], tarea=TA, descripcion="Perfil de cada hospital por año: volumen, menores y catálogo (por código)",
                        cols_n=["n_egresos", "n_adultos", "n_menores", "n_edad_desconocida"], dependientes=["prop_menores", "pediatrico"])
-    ctx.escribir_tabla("t23_procedencia_autorref.csv", r["autorref"], tarea=TA,
-                       descripcion="Hospital de procedencia frente al hospital del egreso, por año y tipo de procedencia",
+    # _columna y _clave unen n_episodios con la distribución de TIPO_PROCEDENCIA de la Tarea 4 (mismas celdas): hereda lo que esa tabla ocultó
+    ctx.escribir_tabla("t23_procedencia_autorref.csv", r["autorref"].with_columns(pl.lit("TIPO_PROCEDENCIA").alias("_columna"), pl.col("tipo_procedencia").alias("_clave")),
+                       tarea=TA, descripcion="Hospital de procedencia frente al hospital del egreso, por año y tipo de procedencia",
                        cols_n=["n_episodios", "n_con_hospproc", "n_evaluables", "n_autorref_exacta", "n_autorref_aprox"],
-                       dependientes=["prop_con_hospproc", "prop_autorref_exacta", "prop_autorref_aprox"])
+                       dependientes=["prop_con_hospproc", "prop_autorref_exacta", "prop_autorref_aprox"], auxiliares=["_columna", "_clave"])
     if "volumen" not in r:
         return
     ctx.escribir_tabla("t23_hospitales_volumen.csv", r["volumen"].drop("k_D"), tarea=TA,
@@ -568,12 +569,15 @@ def registrar_metricas(ctx: Contexto, r: dict[str, Any]) -> None:
     for row in r["hospitales"].group_by("anio").agg(pl.col("pediatrico").eq("si").sum().alias("n_ped")).iter_rows(named=True):
         m(f"hospitales.n_pediatricos.{row['anio']}", row["n_ped"], tarea=TAREA, tabla="t23_hospitales_anio.csv", alcance=str(row["anio"]),
           nota="hospitales con más de la mitad de sus egresos en menores")
-    a = r["autorref"].filter(pl.col("tipo_procedencia") == TODAS)
-    n_eval = int(a["n_evaluables"].sum())
+    from .proteccion import suma_publicada
+
+    a = ctx.leer_tabla("t23_procedencia_autorref.csv", columnas_texto=["tipo_procedencia"]).filter(pl.col("tipo_procedencia") == TODAS)
+    n_eval = suma_publicada(a["n_evaluables"])
     if n_eval:
-        m("procedencia.autorref_pct_exacta", 100.0 * int(a["n_autorref_exacta"].sum()) / n_eval, tarea=TAREA, tabla="t23_procedencia_autorref.csv",
+        ex, ap = suma_publicada(a["n_autorref_exacta"]), suma_publicada(a["n_autorref_aprox"])
+        m("procedencia.autorref_pct_exacta", None if ex is None else 100.0 * ex / n_eval, tarea=TAREA, tabla="t23_procedencia_autorref.csv",
           nota="HOSPPROCEDENCIA igual al hospital del egreso (nombres normalizados iguales)")
-        m("procedencia.autorref_pct_aprox", 100.0 * int(a["n_autorref_aprox"].sum()) / n_eval, tarea=TAREA, tabla="t23_procedencia_autorref.csv",
+        m("procedencia.autorref_pct_aprox", None if ap is None else 100.0 * ap / n_eval, tarea=TAREA, tabla="t23_procedencia_autorref.csv",
           nota="como la anterior, aceptando nombres muy parecidos")
     if "volumen" not in r:
         return

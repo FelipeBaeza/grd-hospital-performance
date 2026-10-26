@@ -397,10 +397,16 @@ def _resumen(ctx: Contexto, r: dict, cat: catalogos.Catalogos) -> dict[str, Any]
 
 def _total(r: dict, rid: str) -> int | None:
     t = r["reglas"].filter((pl.col("regla_id") == rid) & (pl.col("ambito") == "total"))
-    return int(t["n_violaciones"][0]) if t.height else None
+    return int(t["n_violaciones"][0]) if t.height and t["n_violaciones"][0] is not None else None
 
 
 def _registrar_metricas(ctx: Contexto, r: dict, cat: catalogos.Catalogos) -> None:
+    from .proteccion import suma_publicada
+
+    # las cifras de tablas protegidas se toman de la tabla publicada (cambio 1.6): una celda oculta no vuelve a salir por el ledger
+    r = {**r, "validez": ctx.leer_tabla("t24_validez_codigos.csv", columnas_texto=["familia", "estado"]),
+         "capitulos": ctx.leer_tabla("t24_capitulos_cie10.csv", columnas_texto=["capitulo"]),
+         "reglas": ctx.leer_tabla("t24_consistencia_cruzada.csv", columnas_texto=["regla_id", "nombre", "severidad", "accion", "ambito", "estado", "nota"])}
     h = r["hospitales"]
     for anio, sub in h.group_by("anio"):
         ctx.registrar_metrica(f"hospitales.n_distintos.{anio[0]}", sub["cod_hospital"].n_unique(), tarea=TAREA, tabla="t24_hospitales_catalogo.csv")
@@ -411,12 +417,12 @@ def _registrar_metricas(ctx: Contexto, r: dict, cat: catalogos.Catalogos) -> Non
     v = r["validez"]
     grd = v.filter((pl.col("familia") == "GRD (código)"))
     for estado, clave in (("centinela", "calidad.grd_centinela.total"), ("no_agrupable_98_99", "calidad.grd_99xxxx.total")):
-        ctx.registrar_metrica(clave, int(grd.filter(pl.col("estado") == estado)["n"].sum()), tarea=TAREA, tabla="t24_validez_codigos.csv", conteo=True)
+        ctx.registrar_metrica(clave, suma_publicada(grd.filter(pl.col("estado") == estado)["n"]), tarea=TAREA, tabla="t24_validez_codigos.csv", conteo=True)
     pr = v.filter(pl.col("familia") == "CIE-10 diagnóstico principal")
     if pr.height:
-        tot = int(pr.filter(pl.col("estado").is_in(["valido", "solo_categoria", "invalido"]))["n"].sum())
-        val = int(pr.filter(pl.col("estado").is_in(["valido", "solo_categoria"]))["n"].sum())
-        ctx.registrar_metrica("calidad.cie10_principal_valido_pct", 100.0 * val / tot if tot else None, tarea=TAREA, tabla="t24_validez_codigos.csv")
+        tot = suma_publicada(pr.filter(pl.col("estado").is_in(["valido", "solo_categoria", "invalido"]))["n"])
+        val = suma_publicada(pr.filter(pl.col("estado").is_in(["valido", "solo_categoria"]))["n"])
+        ctx.registrar_metrica("calidad.cie10_principal_valido_pct", 100.0 * val / tot if (tot and val is not None) else None, tarea=TAREA, tabla="t24_validez_codigos.csv")
     f = r["formato"]
     if f.height:
         s = f.filter(pl.col("rasgo") == "con_punto")["n"].sum()
@@ -428,9 +434,10 @@ def _registrar_metricas(ctx: Contexto, r: dict, cat: catalogos.Catalogos) -> Non
             ctx.registrar_metrica(f"calidad.diagnostico_{rasgo}", int(f.filter(pl.col("rasgo") == rasgo)["n"].sum()), tarea=TAREA, tabla="t24_formato_cie10.csv", conteo=True)
     cap = r["capitulos"]
     if cap.height:
-        tot = cap.filter(~pl.col("capitulo").is_in(["centinela", "sin capítulo"]))["n"].sum()
+        tot = suma_publicada(cap.filter(~pl.col("capitulo").is_in(["centinela", "sin capítulo"]))["n"])
         for cap_id, g in cap.group_by("capitulo"):
-            ctx.registrar_metrica(f"cie10.capitulo_pct.{cap_id[0]}", 100.0 * g["n"].sum() / tot if tot else None, tarea=TAREA, tabla="t24_capitulos_cie10.csv")
+            n_cap = suma_publicada(g["n"])
+            ctx.registrar_metrica(f"cie10.capitulo_pct.{cap_id[0]}", 100.0 * n_cap / tot if (tot and n_cap is not None) else None, tarea=TAREA, tabla="t24_capitulos_cie10.csv")
     ctx.registrar_metrica("tipoalta.pct_perdido_union_exacta", r["pct_perdido_union_exacta"], tarea=TAREA, tabla="t24_tipoalta_etiquetas.csv",
                           nota="% de egresos 2019 a 2023 cuya etiqueta de TIPOALTA no coincide exactamente con tipoalta_roles.csv")
     for rid, clave in (("Q25", "calidad.sexo_dx_incompatible"), ("Q26", "calidad.mdc15_edad_mayor"), ("Q27", "calidad.mdc14_hombre"),
@@ -548,6 +555,7 @@ def agregar_secciones(inf: Informe, ctx: Contexto) -> None:
               encabezados={"regla_id": "Regla", "nombre": "Nombre", "severidad": "Severidad", "accion": "Acción", "n_violaciones": "Violaciones",
                            "n_evaluados": "Evaluados", "prop_violaciones": "Proporción"}, formatos={"prop_violaciones": "prop2"},
               leyenda="Violaciones totales de las reglas de catálogos y consistencia cruzada")
-    inf.tabla("t24_grd_tipo_actividad.csv", df=ctx.leer_tabla("t24_grd_tipo_actividad.csv", columnas_texto=["tipo_grd", "grupo_grd", "tipo_actividad"]).group_by(["grupo_grd", "tipo_actividad"]).agg(pl.col("n").sum()).sort(["grupo_grd", "tipo_actividad"]),
+    inf.tabla("t24_grd_tipo_actividad.csv", df=ctx.leer_tabla("t24_grd_tipo_actividad.csv", columnas_texto=["tipo_grd", "grupo_grd", "tipo_actividad"]).group_by(["grupo_grd", "tipo_actividad"]).agg(
+                  pl.when(pl.col("n").null_count() > 0).then(None).otherwise(pl.col("n").sum()).alias("n")).sort(["grupo_grd", "tipo_actividad"]),  # con un año oculto la suma no se publica
               columnas_texto=["grupo_grd", "tipo_actividad"], encabezados={"grupo_grd": "Tipo de GRD", "tipo_actividad": "Actividad", "n": "Egresos"},
               leyenda="Tipo de GRD frente a TIPO_ACTIVIDAD (años acumulados)")

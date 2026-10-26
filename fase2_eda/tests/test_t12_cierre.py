@@ -483,8 +483,8 @@ def test_la_fuga_cita_el_auc_de_cada_variable_y_las_ventanas_que_superan_el_umbr
         "Variables que superan el umbral de fuga: IR_29301_SEVERIDAD: AUC de 0,842 en el ranking y de 0,858 en la confirmación, sobre 0,85 en la confirmación de 2023; "
         "IR_29301_MORTALIDAD: AUC de 0,860 en el ranking y de 0,871 en la confirmación, sobre 0,85 en el ranking de 2019 a 2022 y la confirmación de 2023"
     )
-    assert c.texto_propuesto == ("Mantener estas variables fuera de los modelos principales; IR_29301_MORTALIDAD queda prohibida siempre (R6) y la severidad del GRD solo en una "
-                                 "sensibilidad aparte (decisión 14)")
+    assert c.texto_propuesto == ("Mantener estas variables fuera de los modelos; IR_29301_MORTALIDAD y la severidad del GRD quedan prohibidas siempre, también en los análisis de "
+                                 "sensibilidad (R6 y decisión 14)")
     assert c.texto_actual.startswith("R6:") and "Decisión 14" in c.texto_actual
     assert (c.evidencia_tabla, c.evidencia_clave) == ("t23_fuga.csv", "supera_umbral_fuga; auc_ranking; auc_confirmacion")
 
@@ -986,11 +986,11 @@ def test_el_ultimo_cambio_al_protocolo_no_se_pierde_ni_se_duplica(ctx):
     assert t["id"][-1] == meta[-1].split(":")[0] and t["descripcion"][-1] == meta[-1].partition(":")[2].strip() and t["id"].n_unique() == len(meta)
 
 
-def test_el_cambio_1_5_declara_el_criterio_ampliado_de_s09_y_la_version_del_protocolo_pasa_a_1_5(ctx):
+def test_el_cambio_1_5_declara_el_criterio_ampliado_de_s09_y_la_version_del_protocolo_pasa_a_1_6(ctx):
     meta = ctx.umbrales.meta
-    assert meta["version"] == "1.5" and "cinco cambios declarados" in meta["estado"] and len(meta["cambios_protocolo"]) == 5
+    assert meta["version"] == "1.6" and "seis cambios declarados" in meta["estado"] and len(meta["cambios_protocolo"]) == 6
     t = cierre.tabla_cambios_protocolo(ctx)
-    assert t["id"].to_list() == ["1.1", "1.2", "1.3", "1.4", "1.5"]
+    assert t["id"].to_list() == ["1.1", "1.2", "1.3", "1.4", "1.5", "1.6"]
     quinto = t.row(4, named=True)["descripcion"]
     assert quinto.startswith("el criterio de S09 se amplía con el contraste de los egresos con traslado interno")
     assert "esperable por construcción y no discrimina" in quinto and "Se advirtió después de ver" in quinto
@@ -1068,7 +1068,7 @@ def test_las_tablas_de_cambios_escritas_son_las_que_construye_la_evidencia_publi
         assert r["cambios_fase1" if doc == "Fase 1" else "cambios_fase2"].equals(esperado[doc])
         assert leida.columns == list(cierre.COLUMNAS_CAMBIOS) and set(leida["documento"].to_list()) <= {doc}
     protocolo = ctx_c.leer_tabla("cambios_protocolo.csv", columnas_texto=["id", "descripcion"])
-    assert protocolo["id"].to_list() == ["1.1", "1.2", "1.3", "1.4", "1.5"]                                # los ids se leen como texto (1.1 no es un número)
+    assert protocolo["id"].to_list() == ["1.1", "1.2", "1.3", "1.4", "1.5", "1.6"]                                # los ids se leen como texto (1.1 no es un número)
     assert protocolo["descripcion"][4].startswith("el criterio de S09 se amplía")                          # cambios_protocolo.csv lista el cambio 1.5
 
 
@@ -1083,7 +1083,7 @@ def test_el_resumen_de_evidencia_junta_las_columnas_del_ledger_las_decisiones_y_
     assert fila["cambios_n_alta"] + fila["cambios_n_media"] + fila["cambios_n_baja"] == fila["cambios_n_total"]
     assert fila["cambios_n_correccion"] + fila["cambios_n_aclaracion"] + fila["cambios_n_pendiente"] == fila["cambios_n_total"]
     assert fila["cambios_n_protocolo"] == len(ctx_c.umbrales.meta["cambios_protocolo"]) == r["cambios_protocolo"].height
-    assert fila["cambios_protocolo_version"] == f"v{ctx_c.umbrales.meta['version']}" == "v1.5" and fila["cambios_n_protocolo"] == 5
+    assert fila["cambios_protocolo_version"] == f"v{ctx_c.umbrales.meta['version']}" == "v1.6" and fila["cambios_n_protocolo"] == 6
 
 
 def test_las_figuras_f12_01_y_f12_02_quedan_en_el_indice_con_su_csv(cierre_corrido):
@@ -1220,8 +1220,8 @@ def test_el_informe_de_cierre_tiene_tres_secciones_con_el_protocolo_las_limitaci
         assert titulo in md
     assert "{" not in md and "}" not in md
     assert f"versión v{ctx_c.umbrales.meta['version']}" in md and "cambios_protocolo.csv" in md
-    assert "versión v1.5" in md and "| 1.5 |" in md and "el criterio de S09 se amplía con el contraste de los egresos con traslado interno" in md      # el informe lista el cambio 1.5
-    assert md.count("\n| 1.") == 5 and "se hicieron 5 cambios al protocolo congelado" in md                                  # los cinco cambios, cada uno en su fila
+    assert "versión v1.6" in md and "| 1.5 |" in md and "| 1.6 |" in md and "el criterio de S09 se amplía con el contraste de los egresos con traslado interno" in md      # el informe lista el cambio 1.5
+    assert md.count("\n| 1.") == 6 and "se hicieron 6 cambios al protocolo congelado" in md                                  # los cinco cambios, cada uno en su fila
     assert "Con extractos las cifras son indicativas" in md and "El desenlace de 2024 nunca se leyó" in md and "toda decisión sigue pendiente de decisión humana" in md
     assert "t25_hipotesis_evaluadas.csv" in md                                                         # la tabla de hipótesis no evaluables
     # H04, H10 y H12 no dependen de datos: ninguna corrida las resuelve y van aparte de las que se repiten con los datos completos

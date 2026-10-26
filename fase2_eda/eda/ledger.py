@@ -99,6 +99,10 @@ PREFIJOS_DISTINTOS: tuple[str, ...] = ("cardinalidad.", "tipoalta.n_valores_dist
 CLAVES_SIN_ERROR_ESTANDAR: frozenset[str] = frozenset({"resultado.caida_mortalidad_2021_2023_pct"})
 ARITMETICA: dict[str, str] = {"doc.razon_minima_cascada": "min", "doc.razon_maxima_cascada": "max"}
 
+VALOR_PEQUENO = "<10"
+"""Valor de ``cifras_documentadas.csv`` para un conteo documentado de 1 a 9 casos: el registro no copia la cifra del documento (cambio 1.6) y la fila queda NO
+VERIFICABLE por pocos casos, igual que si se hubiera copiado."""
+
 _RE_ALCANCE = re.compile(r"^\s*(?:(\d{4})\s*[-_]\s*(\d{4})|(\d{4}))\s*$")
 
 
@@ -244,9 +248,13 @@ def validar_cifras(df: pl.DataFrame, esperadas: int | None = N_CIFRAS_ESPERADAS)
         if f["requiere_resultado"] not in ("si", "no"):
             problemas.append(f"{cid}: requiere_resultado debe ser si o no ({f['requiere_resultado']!r})")
         for campo in ("valor", "decimales"):
+            if campo == "valor" and f[campo] == VALOR_PEQUENO:
+                if not _es_conteo_absoluto(f):
+                    problemas.append(f"{cid}: {VALOR_PEQUENO} solo vale para un conteo absoluto")
+                continue
             try:
                 float(f[campo])
-            except ValueError:
+            except (TypeError, ValueError):
                 problemas.append(f"{cid}: {campo} no es numérico ({f[campo]!r})")
         for k in (f["clave_eda"] or "").split(";"):
             if k != k.strip() or re.search(r"\s", k) or (k == "" and f["clave_eda"]):
@@ -307,12 +315,16 @@ def _fila_base(fila: Mapping[str, str], reglas: Reglas) -> dict[str, Any]:
     out: dict[str, Any] = {c: None for c in COLUMNAS_LEDGER}
     out.update(
         id=fila["id"], documento=fila["documento"], ubicacion=fila["ubicacion"], descripcion=fila["descripcion"], tipo=fila["tipo"], unidad=fila["unidad"],
-        alcance_doc=fila["alcance"], requiere_resultado=fila["requiere_resultado"], valor_doc=float(fila["valor"]), decimales=int(float(fila["decimales"])),
+        alcance_doc=fila["alcance"], requiere_resultado=fila["requiere_resultado"], valor_doc=_valor_doc(fila), decimales=int(float(fila["decimales"])),
         clave_eda=fila["clave_eda"], nivel=reglas.nivel, magnitud="no aplica", nota=fila.get("nota") or "",
     )
-    if _es_conteo_absoluto(fila):                                       # el conteo documentado queda protegido aunque la fila no llegue a compararse
+    if _es_conteo_absoluto(fila) and out["valor_doc"] is not None:      # el conteo documentado queda protegido aunque la fila no llegue a compararse
         out["n_doc"] = int(round(out["valor_doc"]))
     return out
+
+
+def _valor_doc(fila: Mapping[str, str]) -> float | None:
+    return None if fila["valor"] == VALOR_PEQUENO else float(fila["valor"])
 
 
 def _es_conteo_absoluto(fila: Mapping[str, str]) -> bool:
@@ -542,6 +554,10 @@ def evaluar_cifra(
     alternativas = alternativas_de(fila["clave_eda"])
     existentes = [(k, metricas[k]) for k in alternativas if k in metricas]
     con_valor = [(k, m) for k, m in existentes if m["valor"] is not None]
+    if fila["valor"] == VALOR_PEQUENO:                                  # conteo documentado de menos de diez casos: no se compara ni se publica
+        if con_valor or existentes:
+            _marcar_apoyo(base, fila, *(con_valor or existentes)[0], reglas)
+        return _cerrar(base, "NO VERIFICABLE", MOTIVOS["pocos_casos"])
     if cid in NO_COMPARABLES:
         if existentes:
             _marcar_apoyo(base, fila, *(con_valor or existentes)[0], reglas)
@@ -574,7 +590,7 @@ def razones_fase2_fase1(cifras: pl.DataFrame) -> list[dict[str, Any]]:
     """Pares de cifras que comparten ``clave_eda`` con una medida de la Fase 2 y un estimado de la Fase 1: la razón es el valor de la Fase 2 sobre el de la Fase 1."""
     por_clave: dict[str, list[Mapping[str, str]]] = {}
     for r in cifras.iter_rows(named=True):
-        if r["tipo"] != "aritmetica" and r["clave_eda"]:
+        if r["tipo"] != "aritmetica" and r["clave_eda"] and r["valor"] != VALOR_PEQUENO:
             por_clave.setdefault(r["clave_eda"], []).append(r)
     pares = []
     for clave in sorted(por_clave):
@@ -611,7 +627,7 @@ def factor_muestreo(cifras: pl.DataFrame, metricas: Mapping[str, Mapping[str, An
     """Inverso de la fracción de muestreo del extracto: episodios documentados de los seis años sobre las filas leídas (``volumen.filas_leidas.total``)."""
     m = metricas.get("volumen.filas_leidas.total")
     doc = cifras.filter((pl.col("clave_eda") == "volumen.filas_leidas.total") & (pl.col("documento") == "Fase 2"))
-    if m is None or not m.get("valor") or doc.height != 1:
+    if m is None or not m.get("valor") or doc.height != 1 or doc["valor"][0] == VALOR_PEQUENO:
         return None
     return float(doc["valor"][0]) / float(m["valor"])
 

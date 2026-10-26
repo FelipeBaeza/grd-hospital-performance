@@ -95,3 +95,11 @@ def test_filas_repetidas_exactas_se_documentan_sin_eliminarlas(tmp_path):
     ruta = escribir(tmp_path / "GRD_PUBLICO_2020.txt", [fila(), fila(), fila(CIP_ENCRIPTADO="999999")])
     rep = bronce.construir_bronce(2020, ruta, tmp_path / "b")
     assert rep["filas_repetidas_exactas"] == 1 and rep["filas_leidas"] == 3
+
+
+def test_hallazgos_rut_con_supresion_complementaria():
+    """Con el total del año público (Fase 2, regla Q17), una sola columna con menos de diez hallazgos se despejaría restando."""
+    from prep.orquestador import filas_rut
+
+    f = filas_rut([{"anio": 2019, "hallazgos_rut": {"COL_A": 4, "COL_B": 31}}, {"anio": 2020, "hallazgos_rut": {"A": 3, "B": 4, "C": 50}}], 10)
+    assert [r["n"] for r in f] == ["<10", "suprimido", "<10", "<10", "50"]

@@ -28,7 +28,7 @@ def test_reglas_toml_son_validas_y_declaran_su_accion(reglas):
     assert len(calidad.reglas_lote1()) == 19
     assert {r.accion for r in lista} <= set(calidad.ACCIONES)
     assert {r.severidad for r in lista} <= set(calidad.SEVERIDADES)
-    assert reglas["Q17"].accion == "informar_fonasa"
+    assert reglas["Q17"].accion == "excluir"
     assert reglas["Q05"].accion == "anular"  # R5: los errores se anulan, no se imputan
     # todas las reglas del lote 1 pueden leer el año expuesto (solo devuelven violaciones)
     assert all(r.permite_expuesto for r in calidad.reglas_lote1())

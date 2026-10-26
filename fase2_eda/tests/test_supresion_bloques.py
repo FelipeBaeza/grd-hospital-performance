@@ -217,9 +217,13 @@ def test_el_nivel_de_40_casos_en_2019_2022_y_4_en_2023_conserva_la_proporcion_de
     f = {r["ventana"]: r for r in fila.iter_rows(named=True)}
     assert f[panel.V_RANK]["n"] == 40 and f[panel.V_RANK]["prop"] == pytest.approx(40 / 960, abs=1e-6)
     assert f[panel.V_CONF]["n"] is None and f[panel.V_CONF]["prop"] is None                                         # 4 casos: se anula la fila de 2023, no la de 2019-2022
-    # el resto de los niveles de TIPO_INGRESO no pierde nada
+    # 2019-2022 no pierde nada; en 2023 se oculta además el nivel más chico (supresión complementaria, cambio 1.6): con el total de la
+    # cohorte de 2023 y los demás niveles a la vista, los 4 casos se despejarían restando
     otros = t.filter((pl.col("variable") == "TIPO_INGRESO") & (pl.col("nivel") != "OBSTETRICA"))
-    assert otros["n"].null_count() == 0 and otros["prop"].null_count() == 0
+    rank, conf = otros.filter(pl.col("ventana") == panel.V_RANK), otros.filter(pl.col("ventana") == panel.V_CONF)
+    assert rank["n"].null_count() == 0 and rank["prop"].null_count() == 0
+    assert conf["n"].null_count() == 1 and conf["prop"].null_count() == 1
+    assert conf.filter(pl.col("n").is_null())["nivel"][0] != "OBSTETRICA"
     ind = {r["nombre"]: r for r in ctx_bloques.indice_tablas().iter_rows(named=True)}["t23_panel_niveles.csv"]
     assert ind["columnas_conteo"] == "n" and ind["celdas_suprimidas"] >= 1
     assert privacidad.total_violaciones(privacidad.escanear_salidas(ctx_bloques.dir_salida, ctx_bloques.indice_tablas(), ctx_bloques.celda_minima)) == 0

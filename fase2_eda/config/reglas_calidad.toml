@@ -3,7 +3,6 @@
 #   accion = anular           -> se anula el valor erróneo y se conserva el episodio (regla R5)
 #          | recodificar      -> se lleva a la categoría estándar
 #          | excluir          -> se excluye el episodio de un análisis concreto (no se borra)
-#          | informar_fonasa  -> se informa a FONASA por un canal formal
 #          | informar         -> solo se registra
 # permite_expuesto = true significa que la regla solo devuelve indicadores de violación y puede leer las
 # columnas de resultado del año expuesto (2024) en claro (cortafuegos). Nunca devuelve distribuciones de resultado.
@@ -91,7 +90,7 @@ severidad = "alta"
 accion = "anular"
 permite_expuesto = true
 alcance = "anio"
-referencia = "Fase 2, sección 4.1 (1 caso)"
+referencia = "Fase 2, sección 4.1 (menos de diez casos)"
 descripcion = "El nacimiento es posterior al ingreso; se anula únicamente la edad."
 umbral = "edad_minima"
 
@@ -211,11 +210,11 @@ nombre = "Valor con estructura de RUT"
 tipo = "rut_en_columna"
 columnas = []
 severidad = "alta"
-accion = "informar_fonasa"
+accion = "excluir"
 permite_expuesto = true
 alcance = "anio"
-referencia = "Fase 1, sección 14.3 y decisión 11 (9 valores en FECHAPROCEDIMIENTO1)"
-descripcion = "Se busca por patrón, en las 129 columnas, un valor con forma de RUT. Solo se guardan conteos por columna y año; nunca el valor."
+referencia = "Fase 1, sección 7 (etapa 2) y decisión 11"
+descripcion = "Se busca por patrón, en las 129 columnas, un valor con forma de RUT. Solo se guardan conteos por columna y año; nunca el valor. La columna con hallazgos no se usa en el análisis (cambio 1.6)."
 
 [[regla]]
 id = "Q18"

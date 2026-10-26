@@ -288,7 +288,7 @@ _NO_EVALUABLES: tuple[tuple[re.Pattern[str], str, str], ...] = tuple(
         (r"^HOSPPROCEDENCIA$", "se evalúa como DERIVADO_OTRO_HOSPITAL", "DERIVADO_OTRO_HOSPITAL"),
         (r"^(FECHAINTERV1|ESPECIALIDADINTERVENCION|MEDICOINTERV1_ENCRIPTADO)$", "ocurre durante la hospitalización: rol PROHIBIDA_FUGA, no se construye en el panel", ""),
         (r"^MEDICOALTA_ENCRIPTADO$", "se genera al alta: rol PROHIBIDA_FUGA, no se construye en el panel", ""),
-        (r"^FECHAPROCEDIMIENTO1$", "descartada por la Fase 1: solo 9 valores y con estructura de RUT", ""),
+        (r"^FECHAPROCEDIMIENTO1$", "descartada por la Fase 1: menos de diez valores, con estructura de RUT", ""),
         (_RE_RN.pattern, "bloque de recién nacidos descartado por la Fase 1: no entra al panel", ""),
         (r"^ID_EPISODIO$", "identificador interno: solo sirve para cruces", ""),
         (r"^ANIO_EGRESO$", "llave de partición temporal: no es predictor", ""),

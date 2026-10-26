@@ -14,7 +14,7 @@ IR_29301_COD_GRD,FILTRO_COHORTE,solo filtro
 GRD_BASE,FILTRO_COHORTE,solo filtro
 MDC,FILTRO_COHORTE,solo filtro (si se usa como predictor hay fuga desde el agrupador)
 IR_29301_MORTALIDAD,PROHIBIDA_FUGA,R6 siempre
-IR_29301_SEVERIDAD,PROHIBIDA_FUGA,solo sensibilidad aparte
+IR_29301_SEVERIDAD,PROHIBIDA_FUGA,prohibida tambien en sensibilidad
 IR_29301_PESO,PROHIBIDA_FUGA,calculado al alta
 IR_29301_PESO_NUM,PROHIBIDA_FUGA,calculado al alta
 FECHAALTA,PROHIBIDA_FUGA,R1
