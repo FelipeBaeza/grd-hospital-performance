@@ -49,7 +49,7 @@ python run_fase2_eda.py --fuente completo --data-root ~/Documentos/"Proyecto fin
 
 - La primera corrida crea la caché en `Seminario/data seminario_full/_cache_parquet_fase2/` (unos 270 MB). Las
   siguientes la reutilizan; si un `.txt` cambia, su Parquet se regenera solo (el nombre lleva la huella SHA-256).
-- Los resultados quedan en `fase2_eda/salidas/completo/` (no se toca `salidas/extracto/`).
+- Los resultados quedan en `fase2_eda/salidas/completo/` (no se toca `salidas/extracto/`, que desde el cambio 1.6 queda solo en la copia local: con el 5 % de los egresos, combinar filas de la tabla de variantes dejaba deducir un conteo de menos de diez).
 - Para una prueba más rápida sin la suite de pruebas ni la corrida repetida de determinismo, agrega
   `--sin-pytest --sin-determinismo`.
 - Para correr solo algunas tareas: `--solo T7,T8`.

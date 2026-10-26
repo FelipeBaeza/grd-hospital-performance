@@ -7,18 +7,18 @@ Q20,Diagnóstico principal fuera de CIE-10,media,informar,2023,32,1039587,0.0000
 Q20,Diagnóstico principal fuera de CIE-10,media,informar,2024,30,1085813,0.000028,EVALUADA,""
 Q20,Diagnóstico principal fuera de CIE-10,media,informar,total,62,5797139,0.000011,EVALUADA,suma de 6 años evaluados
 Q21,Procedimiento fuera de CIE-9-MC,baja,informar,2019,,7759423,,EVALUADA,""
-Q21,Procedimiento fuera de CIE-9-MC,baja,informar,2020,0,6519497,0,EVALUADA,""
-Q21,Procedimiento fuera de CIE-9-MC,baja,informar,2021,0,7388936,0,EVALUADA,""
-Q21,Procedimiento fuera de CIE-9-MC,baja,informar,2022,0,7793346,0,EVALUADA,""
-Q21,Procedimiento fuera de CIE-9-MC,baja,informar,2023,0,8452016,0,EVALUADA,""
-Q21,Procedimiento fuera de CIE-9-MC,baja,informar,2024,0,8710221,0,EVALUADA,""
+Q21,Procedimiento fuera de CIE-9-MC,baja,informar,2020,,6519497,,EVALUADA,""
+Q21,Procedimiento fuera de CIE-9-MC,baja,informar,2021,,7388936,,EVALUADA,""
+Q21,Procedimiento fuera de CIE-9-MC,baja,informar,2022,,7793346,,EVALUADA,""
+Q21,Procedimiento fuera de CIE-9-MC,baja,informar,2023,,8452016,,EVALUADA,""
+Q21,Procedimiento fuera de CIE-9-MC,baja,informar,2024,,8710221,,EVALUADA,""
 Q21,Procedimiento fuera de CIE-9-MC,baja,informar,total,,46623439,,EVALUADA,suma de 6 años evaluados
-Q22,GRD fuera del catálogo,media,excluir,2019,0,1150909,0,EVALUADA,""
-Q22,GRD fuera del catálogo,media,excluir,2020,0,781721,0,EVALUADA,""
+Q22,GRD fuera del catálogo,media,excluir,2019,,1150909,,EVALUADA,""
+Q22,GRD fuera del catálogo,media,excluir,2020,,781721,,EVALUADA,""
 Q22,GRD fuera del catálogo,media,excluir,2021,,816544,,EVALUADA,""
-Q22,GRD fuera del catálogo,media,excluir,2022,0,932090,0,EVALUADA,""
-Q22,GRD fuera del catálogo,media,excluir,2023,0,1037875,0,EVALUADA,""
-Q22,GRD fuera del catálogo,media,excluir,2024,0,1084324,0,EVALUADA,""
+Q22,GRD fuera del catálogo,media,excluir,2022,,932090,,EVALUADA,""
+Q22,GRD fuera del catálogo,media,excluir,2023,,1037875,,EVALUADA,""
+Q22,GRD fuera del catálogo,media,excluir,2024,,1084324,,EVALUADA,""
 Q22,GRD fuera del catálogo,media,excluir,total,,5803463,,EVALUADA,suma de 6 años evaluados
 Q23,Hospital fuera de Hospitales.csv,media,informar,2019,0,1151475,0,EVALUADA,""
 Q23,Hospital fuera de Hospitales.csv,media,informar,2020,0,781912,0,EVALUADA,""
@@ -35,7 +35,7 @@ Q24,Fallecido con riesgo de mortalidad del GRD en cero,baja,informar,2023,,25122
 Q24,Fallecido con riesgo de mortalidad del GRD en cero,baja,informar,2024,,,,BLOQUEADA_2024,el cortafuegos no autoriza la regla
 Q24,Fallecido con riesgo de mortalidad del GRD en cero,baja,informar,total,84,143977,0.000583,EVALUADA,suma de 5 años evaluados; faltan años bloqueados
 Q25,Sexo incompatible con el diagnóstico principal,media,informar,2019,60,1151243,0.000052,EVALUADA,""
-Q25,Sexo incompatible con el diagnóstico principal,media,informar,2020,12,781777,0.000015,EVALUADA,""
+Q25,Sexo incompatible con el diagnóstico principal,media,informar,2020,,781777,,EVALUADA,""
 Q25,Sexo incompatible con el diagnóstico principal,media,informar,2021,0,816846,0,EVALUADA,""
 Q25,Sexo incompatible con el diagnóstico principal,media,informar,2022,0,932785,0,EVALUADA,""
 Q25,Sexo incompatible con el diagnóstico principal,media,informar,2023,,1039548,,EVALUADA,""
@@ -78,7 +78,7 @@ Q30,Tipo de alta sin rol asignado,alta,excluir,2024,,,,BLOQUEADA_2024,el cortafu
 Q30,Tipo de alta sin rol asignado,alta,excluir,total,0,4722722,0,EVALUADA,suma de 5 años evaluados; faltan años bloqueados
 Q31,Uso de pabellón fuera del catálogo,baja,informar,2019,259,642341,0.000403,EVALUADA,""
 Q31,Uso de pabellón fuera del catálogo,baja,informar,2020,0,54,0,EVALUADA,""
-Q31,Uso de pabellón fuera del catálogo,baja,informar,2021,85,462743,0.000184,EVALUADA,""
+Q31,Uso de pabellón fuera del catálogo,baja,informar,2021,,462743,,EVALUADA,""
 Q31,Uso de pabellón fuera del catálogo,baja,informar,2022,,565208,,EVALUADA,""
 Q31,Uso de pabellón fuera del catálogo,baja,informar,2023,,635381,,EVALUADA,""
 Q31,Uso de pabellón fuera del catálogo,baja,informar,2024,,655582,,EVALUADA,""

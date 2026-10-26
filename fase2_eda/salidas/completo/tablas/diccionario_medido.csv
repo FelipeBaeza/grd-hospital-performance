@@ -14,7 +14,7 @@ TIPO_INGRESO,Si el ingreso fue de urgencia o programado,Texto,texto,FEATURE_BASA
 ESPECIALIDAD_MEDICA,Especialidad médica asignada al episodio,Texto,texto,FEATURE_BASAL,5808535,5808535,0,59,0,0,0,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
 TIPO_ACTIVIDAD,"Tipo de actividad asistencial (hospitalización, cirugía ambulatoria, etc.)",Texto,texto,FILTRO_COHORTE,5808535,5808535,0,21,0,0,0,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
 FECHA_INGRESO,Fecha en que el paciente ingresó al hospital (formato día-mes-año),Fecha,fecha_iso,FUENTE_DERIVADA,5808535,5808535,0,52,0,0,0,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
-SERVICIOINGRESO,"Unidad clínica donde ingresó el paciente (ej. UCI, medicina interna)",Texto,texto,FEATURE_BASAL,5808535,5808532,,27843,0.000052,0.000052,0,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+SERVICIOINGRESO,"Unidad clínica donde ingresó el paciente (ej. UCI, medicina interna)",Texto,texto,FEATURE_BASAL,5808535,,,27843,,,,NO EVALUABLE,no aplica,el diccionario no publica conteos de menos de diez casos
 HOSPPROCEDENCIA,Hospital de origen cuando el paciente viene derivado de otro establecimiento,Texto,texto,FEATURE_BASAL,5808535,703854,5104681,2604,87.88242,87.882418,0.000002,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
 FECHATRASLADO1,Fecha del primer traslado interno durante la hospitalización,Fecha,fecha_iso,PROHIBIDA_FUGA,5808535,1001017,4807518,0,82.766449,82.766446,0.000003,DISCREPANCIA,despreciable,""
 SERVICIOTRASLADO1,Unidad de destino del primer traslado interno,Texto,texto,PROHIBIDA_FUGA,5808535,1001016,4807519,3751,82.766466,82.766463,0.000003,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
@@ -50,8 +50,8 @@ PESORN3,Peso del tercer recién nacido,Número,entero,DESCARTAR,5808535,75,58084
 SEXORN3,Sexo del tercer recién nacido,Texto,texto,DESCARTAR,5808535,75,5808460,,99.998709,99.998709,0,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
 RN3ESTADO,Estado del tercer recién nacido,Texto,entero,DESCARTAR,5808535,1437610,4370925,0,75.250046,75.250042,0.000004,DISCREPANCIA,despreciable,""
 CONDICIONDEALTANEONATO4,Condición de alta del cuarto recién nacido,Texto,vacia,DESCARTAR,5808535,0,5808535,0,100,100,0,DISCREPANCIA,despreciable,""
-PESORN4,Peso del cuarto recién nacido,Texto,vacia,DESCARTAR,5808535,,5808534,0,99.999983,99.999983,0,DISCREPANCIA,despreciable,""
-SEXORN4,Sexo del cuarto recién nacido,Texto,vacia,DESCARTAR,5808535,,5808533,,99.999966,99.999966,0,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
+PESORN4,Peso del cuarto recién nacido,Texto,vacia,DESCARTAR,5808535,,,0,,,,NO EVALUABLE,no aplica,el diccionario no publica conteos de menos de diez casos
+SEXORN4,Sexo del cuarto recién nacido,Texto,vacia,DESCARTAR,5808535,,,,,,,NO EVALUABLE,no aplica,el diccionario no publica conteos de menos de diez casos
 RN4ESTADO,Estado del cuarto recién nacido,Texto,vacia,DESCARTAR,5808535,1437552,4370983,0,75.251044,75.25104,0.000004,DISCREPANCIA,despreciable,""
 DIAGNOSTICO1,"Diagnóstico principal: el motivo del ingreso, en código CIE-10",Texto,texto,FEATURE_BASAL,5808535,5808455,80,11316,0.001377,0.001377,0,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
 DIAGNOSTICO2,"Segundo diagnóstico del paciente (enfermedades previas o secundarias), en código CIE-10",Texto,texto,FEATURE_BASAL,5808535,5013341,795194,26693,13.690093,13.690096,0.000002,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
@@ -119,7 +119,7 @@ PROCEDIMIENTO28,Vigésimo octavo procedimiento,Texto,decimal,PROHIBIDA_FUGA,5808
 PROCEDIMIENTO29,Vigésimo noveno procedimiento,Texto,decimal,PROHIBIDA_FUGA,5808535,97618,5710917,0,98.319387,98.319404,0.000017,DISCREPANCIA,despreciable,""
 PROCEDIMIENTO30,Trigésimo procedimiento,Texto,decimal,PROHIBIDA_FUGA,5808535,85252,5723283,0,98.532281,98.532298,0.000017,DISCREPANCIA,despreciable,""
 MEDICOINTERV1_ENCRIPTADO,"Identificador del médico que realizó la intervención (encriptado, sin nombre real)",Texto,entero,PROHIBIDA_FUGA,5808535,3200789,2607746,0,44.895065,44.895073,0.000008,DISCREPANCIA,despreciable,""
-FECHAPROCEDIMIENTO1,Fecha registrada del procedimiento 1,Fecha,vacia,DESCARTAR,5808535,,5808526,0,99.999845,99.999845,0,DISCREPANCIA,despreciable,""
+FECHAPROCEDIMIENTO1,Fecha registrada del procedimiento 1,Fecha,vacia,DESCARTAR,5808535,,,0,,,,NO EVALUABLE,no aplica,el diccionario no publica conteos de menos de diez casos
 FECHAINTERV1,Fecha de la intervención quirúrgica,Fecha,fecha_iso,PROHIBIDA_FUGA,5808535,2934665,2873870,19669,49.476667,49.476675,0.000009,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
 ESPECIALIDADINTERVENCION,Especialidad médica de la intervención,Texto,texto,PROHIBIDA_FUGA,5808535,3206354,2602181,1409,44.799258,44.799265,0.000008,DISCREPANCIA,despreciable,tiene valores centinela que el diccionario no cuenta como faltantes
 MEDICOALTA_ENCRIPTADO,Identificador del médico que firmó el alta (encriptado),Texto,entero,PROHIBIDA_FUGA,5808535,5804964,3571,0,0.061478,0.061478,0,DISCREPANCIA,despreciable,""

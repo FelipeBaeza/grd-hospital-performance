@@ -1,0 +1,7 @@
+nombre,tarea,descripcion,filas,columnas_conteo,celdas_suprimidas,fuente,sha256
+r1_resultado_anio_diagnostico.csv,R,"Mortalidad y estadía por año en total, por capítulo y por código frecuente (O8)",129,n_d;n_fallecidos;n_e,24,completo,e5c05c297c3bdd62b586cd14f64a716f6037b663fca2bd53cf8a19be69d673ce
+r1_resumen_pandemia.csv,R,"Razón entre 2020–2021 y 2019, 2022 y 2023 por grupo (O8)",27,n_d_2019_2023;n_e_2019_2023,0,completo,3311e5c9b467b9e473619cb5cb7ecc0587e9b82790faacd4fd6fb23d42d0c249
+r2_faltantes_variables.csv,R,Faltantes de las variables candidatas por variable y año (O2),42,n;n_faltante,8,completo,3d1e0bfab25d2723c2bcce33cf4ba76b56bc2ad785c3f924756494efed6f4f7a
+r3_vocabulario_diagnostico.csv,R,Códigos del diagnóstico principal con pocos casos y códigos nuevos (O3),3,n_egresos;egresos_codigos_raros;egresos_codigos_nuevos,0,completo,b8b9908ee7df429bab3120cb873e070cb339d4bb8ec0c8e3011e80b7f0ee8c66
+r4_traslados_tipo_hospital.csv,R,Traslados según el tipo de hospital del catálogo DEIS 2025 (O7),3,n_c;n_entrantes;n_salientes;n_hosp_domiciliaria;n_d_entrantes;n_fallecidos_entrantes;n_d_no_entrantes;n_fallecidos_no_entrantes,0,completo,cf51a4717545b2c698c356f26f273474a01b021097fc85efbea1a7785f53878e
+r5_volumen_cohortes.csv,R,Hospitales con al menos 500 egresos en las cohortes D y E (decisión 6),5,"",0,completo,a6f7f4bc702f4ceab10a68f91d4c23d6f72c3d946bea95703526c3011ec8a998

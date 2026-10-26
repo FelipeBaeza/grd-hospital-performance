@@ -16,26 +16,26 @@ anio,familia,estado,n,n_total_familia,prop
 2019,CIE-10 diagnósticos secundarios,centinela,14082,3899323,0.003611
 2020,CIE-10 diagnósticos secundarios,valido,3287768,3291666,0.998816
 2020,CIE-10 diagnósticos secundarios,solo_categoria,,3291666,
-2020,CIE-10 diagnósticos secundarios,centinela,3895,3291666,0.001183
+2020,CIE-10 diagnósticos secundarios,centinela,,3291666,
 2021,CIE-10 diagnósticos secundarios,centinela,6589,3722457,0.00177
 2021,CIE-10 diagnósticos secundarios,valido,3715868,3722457,0.99823
-2022,CIE-10 diagnósticos secundarios,centinela,26340,4087287,0.006444
+2022,CIE-10 diagnósticos secundarios,centinela,,4087287,
 2022,CIE-10 diagnósticos secundarios,valido,4060946,4087287,0.993555
 2022,CIE-10 diagnósticos secundarios,solo_categoria,,4087287,
-2023,CIE-10 diagnósticos secundarios,invalido,8349,4691590,0.00178
+2023,CIE-10 diagnósticos secundarios,invalido,,4691590,
 2023,CIE-10 diagnósticos secundarios,valido,4673785,4691590,0.996205
 2023,CIE-10 diagnósticos secundarios,solo_categoria,,4691590,
 2023,CIE-10 diagnósticos secundarios,centinela,9453,4691590,0.002015
 2024,CIE-10 diagnósticos secundarios,centinela,10791,5194739,0.002077
-2024,CIE-10 diagnósticos secundarios,invalido,4210,5194739,0.00081
+2024,CIE-10 diagnósticos secundarios,invalido,,5194739,
 2024,CIE-10 diagnósticos secundarios,solo_categoria,,5194739,
 2024,CIE-10 diagnósticos secundarios,valido,5179737,5194739,0.997112
 2019,CIE-9-MC procedimientos,valido,7759421,7759434,0.999998
 2019,CIE-9-MC procedimientos,invalido,,7759434,
-2019,CIE-9-MC procedimientos,centinela,11,7759434,0.000001
+2019,CIE-9-MC procedimientos,centinela,,7759434,
 2020,CIE-9-MC procedimientos,valido,6519497,6519497,1
 2021,CIE-9-MC procedimientos,centinela,,7388944,
-2021,CIE-9-MC procedimientos,valido,7388936,7388944,0.999999
+2021,CIE-9-MC procedimientos,valido,,7388944,
 2022,CIE-9-MC procedimientos,centinela,71,7793417,0.000009
 2022,CIE-9-MC procedimientos,valido,7793346,7793417,0.999991
 2023,CIE-9-MC procedimientos,centinela,275,8452291,0.000033
@@ -52,7 +52,7 @@ anio,familia,estado,n,n_total_familia,prop
 2021,GRD (código),valido,816253,816909,0.999197
 2021,GRD (código),no_en_catalogo,,816909,
 2021,GRD (código),no_agrupable_98_99,365,816909,0.000447
-2021,GRD (código),solo_en_ir_grd_csv,290,816909,0.000355
+2021,GRD (código),solo_en_ir_grd_csv,,816909,
 2022,GRD (código),valido,931779,932839,0.998864
 2022,GRD (código),solo_en_ir_grd_csv,311,932839,0.000333
 2022,GRD (código),no_agrupable_98_99,726,932839,0.000778
@@ -90,9 +90,9 @@ anio,familia,estado,n,n_total_familia,prop
 2020,Uso de pabellón,valido,54,54,1
 2021,Uso de pabellón,invalido,85,462743,0.000184
 2021,Uso de pabellón,valido,462658,462743,0.999816
-2022,Uso de pabellón,valido,565207,565208,0.999998
+2022,Uso de pabellón,valido,,565208,
 2022,Uso de pabellón,invalido,,565208,
 2023,Uso de pabellón,invalido,,635381,
-2023,Uso de pabellón,valido,635378,635381,0.999995
-2024,Uso de pabellón,valido,655577,655582,0.999992
+2023,Uso de pabellón,valido,,635381,
+2024,Uso de pabellón,valido,,655582,
 2024,Uso de pabellón,invalido,,655582,

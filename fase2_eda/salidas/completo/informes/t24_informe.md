@@ -28,7 +28,7 @@ Se evaluaron 19 reglas declarativas (8 de severidad alta). Cada regla devuelve s
 | Q12 | Identificador no numérico | media | informar | 0 | 5.808.535 | 0,00 % |
 | Q15 | Filas duplicadas por clave natural | media | informar | 6.853 | 5.790.670 | 0,12 % |
 | Q16 | Episodios solapados del mismo paciente | media | informar | 14.946 | 5.790.601 | 0,26 % |
-| Q17 | Valor con estructura de RUT | alta | informar_fonasa | 22 | 240.558.266 | 0,00 % |
+| Q17 | Valor con estructura de RUT | alta | excluir | 22 | 240.558.266 | 0,00 % |
 | Q18 | Año de alta distinto del año del archivo | baja | informar | 0 | 5.808.517 | 0,00 % |
 | Q19 | Año de ingreso distinto del año del archivo | baja | informar | 79.021 | 5.808.464 | 1,36 % |
 
@@ -81,12 +81,12 @@ El traslape de identificadores entre años consecutivos permite detectar si camb
 
 ## 5. Valores con estructura de RUT
 
-Se buscó por patrón, en las columnas de los archivos, cualquier valor con forma de RUT. Solo se guardan conteos por columna y año; nunca el valor. Cualquier hallazgo se informa a FONASA por un canal formal (decisión 11).
+Se buscó por patrón, en las columnas de los archivos, cualquier valor con forma de RUT. Solo se guardan conteos por columna y año; nunca el valor. La columna con hallazgos no se usa en el análisis (decisión 11).
 
 | Columna | Año | N |
 |---|---|---|
 | FECHAPROCEDIMIENTO1 | 2019 | <10 |
-| USOSPABELLON | 2019 | 15 |
+| USOSPABELLON | 2019 | <10 |
 
 *Valores con estructura de RUT.* *Tabla completa en `tablas/t24_rut_por_columna.csv`*
 
@@ -184,14 +184,14 @@ Las reglas cruzadas verifican la coherencia entre columnas: sexo y diagnóstico,
 
 | Tipo de GRD | Actividad | Egresos |
 |---|---|---|
-| ambulatorio | CIRUGÍA MAYOR AMBULATORIA (CMA) | 885.248 |
-| ambulatorio | HOSPITALIZACIÓN DIURNA | 55.316 |
-| hospitalizado | HOSPITALIZACIÓN | 4.800.340 |
+| ambulatorio | CIRUGÍA MAYOR AMBULATORIA (CMA) | <10 |
+| ambulatorio | HOSPITALIZACIÓN DIURNA | <10 |
+| hospitalizado | HOSPITALIZACIÓN | <10 |
 | hospitalizado | HOSPITALIZACIÓN EN URGENCIA | 62.534 |
-| otro | CIRUGÍA MAYOR AMBULATORIA (CMA) | 4.596 |
-| otro | HOSPITALIZACIÓN | 337 |
-| otro | HOSPITALIZACIÓN DIURNA | 10 |
+| otro | CIRUGÍA MAYOR AMBULATORIA (CMA) | <10 |
+| otro | HOSPITALIZACIÓN | <10 |
+| otro | HOSPITALIZACIÓN DIURNA | <10 |
 | otro | HOSPITALIZACIÓN EN URGENCIA | 17 |
-| otro | NO IDENTIFICADO | 0 |
+| otro | NO IDENTIFICADO | <10 |
 
 *Tipo de GRD frente a TIPO_ACTIVIDAD (años acumulados).* *Tabla completa en `tablas/t24_grd_tipo_actividad.csv`*

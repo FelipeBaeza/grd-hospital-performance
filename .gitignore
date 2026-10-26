@@ -34,3 +34,7 @@ fase4_modelado/salidas/tablas/auditoria_extracto_hospital_*.csv
 
 # Copia local del catálogo DEIS (el que usa el proyecto está en fase3_preparacion/config/fuentes/)
 Base de Establecimientos *.xlsx
+
+# Salidas de la Fase 2 sobre los extractos (5 % de los egresos): solo en la copia local. Con tan pocos casos, combinar filas de la tabla
+# de variantes de la cohorte dejaba deducir un conteo de menos de diez (cambio 1.6); se regeneran con run_fase2_eda.py --fuente extracto
+fase2_eda/salidas/extracto/

@@ -114,7 +114,7 @@ El universo que cubre la matriz de decisión reúne las 199 variables de la docu
 | filtro de cohorte: no es predictor | 2 | GRD_BASE, MDC |
 | variable de resultado: no es candidata | 2 | ESTANCIA, ESTANCIA_DIAS |
 | constante en la cohorte D: filtro de cohorte | 1 | TIPO_ACTIVIDAD |
-| descartada por la Fase 1: solo 9 valores y con estructura de RUT | 1 | FECHAPROCEDIMIENTO1 |
+| descartada por la Fase 1: menos de diez valores, con estructura de RUT | 1 | FECHAPROCEDIMIENTO1 |
 | exige una fuente externa de vulnerabilidad por comuna | 1 | INDICE_PRIVACION |
 | filtro de cohorte: el agrupador se calcula con datos del alta | 1 | IR_29301_COD_GRD |
 | identificador interno: solo sirve para cruces | 1 | ID_EPISODIO |

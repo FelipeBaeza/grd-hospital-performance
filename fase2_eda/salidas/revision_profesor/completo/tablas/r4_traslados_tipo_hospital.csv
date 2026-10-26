@@ -1,0 +1,4 @@
+periodo,grupo,n_hospitales,n_c,n_entrantes,prop_entrantes,parte_de_todos_los_entrantes,n_salientes,prop_salientes,n_hosp_domiciliaria,prop_hosp_domiciliaria,n_d_entrantes,n_fallecidos_entrantes,mortalidad_entrantes,n_d_no_entrantes,n_fallecidos_no_entrantes,mortalidad_no_entrantes,razon_mortalidad_entrantes
+2019-2023,General de alta complejidad,52,2651300,238599,0.089993,0.857819,82545,0.031134,88329,0.033315,201798,16264,0.080595,2249530,110300,0.049032,1.643716
+2019-2023,General de mediana complejidad,10,174889,30468,0.174213,0.10954,14285,0.08168,4618,0.026405,23772,1588,0.066801,130839,5620,0.042954,1.555198
+2019-2023,Institutos y pediátricos,6,35225,9079,0.257743,0.032641,930,0.026402,76,0.002158,8213,618,0.075247,25909,467,0.018025,4.174653

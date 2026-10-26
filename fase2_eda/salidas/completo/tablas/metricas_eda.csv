@@ -5,12 +5,12 @@ asociacion.n_clusters_multiples,7,,,T10,clusters_variables.csv,completo,2019-202
 asociacion.n_pares_redundantes,9,,,T10,pares_redundantes.csv,completo,2019-2022,""
 asociacion.n_pares_redundantes_estables_2023,9,,,T10,pares_redundantes.csv,completo,2023,""
 asociacion.n_variables,61,,,T10,t23_resumen_asociacion.csv,completo,2019-2022,""
-calidad.alta_antes_ingreso.2019,,,,T05,t24_reglas.csv,completo,"",[suprimido: menos de diez casos]
-calidad.alta_antes_ingreso.2020,10,,,T05,t24_reglas.csv,completo,"",""
-calidad.alta_antes_ingreso.2021,0,,,T05,t24_reglas.csv,completo,"",""
-calidad.alta_antes_ingreso.2022,,,,T05,t24_reglas.csv,completo,"",[suprimido: menos de diez casos]
-calidad.alta_antes_ingreso.2023,0,,,T05,t24_reglas.csv,completo,"",""
-calidad.alta_antes_ingreso.2024,0,,,T05,t24_reglas.csv,completo,"",""
+calidad.alta_antes_ingreso.2019,,,,T05,t24_reglas.csv,completo,"",""
+calidad.alta_antes_ingreso.2020,,,,T05,t24_reglas.csv,completo,"",""
+calidad.alta_antes_ingreso.2021,,,,T05,t24_reglas.csv,completo,"",""
+calidad.alta_antes_ingreso.2022,,,,T05,t24_reglas.csv,completo,"",""
+calidad.alta_antes_ingreso.2023,,,,T05,t24_reglas.csv,completo,"",""
+calidad.alta_antes_ingreso.2024,,,,T05,t24_reglas.csv,completo,"",""
 calidad.alta_antes_ingreso.total,12,,,T05,t24_reglas.csv,completo,"",""
 calidad.alta_vacia.2019,18,,,T05,t24_reglas.csv,completo,"",""
 calidad.alta_vacia.2020,0,,,T05,t24_reglas.csv,completo,"",""
@@ -26,21 +26,20 @@ calidad.diagnostico_con_caracter_no_ascii,0,,,T06,t24_formato_cie10.csv,completo
 calidad.diagnostico_con_espacio_extremo,0,,,T06,t24_formato_cie10.csv,completo,"",""
 calidad.diagnostico_con_minuscula,0,,,T06,t24_formato_cie10.csv,completo,"",""
 calidad.diagnostico_con_punto_pct,89.640307,,,T06,t24_formato_cie10.csv,completo,"",sobre todas las columnas de diagnóstico y no solo los diez primeros campos
-calidad.edad_imposible.total,25,,,T05,t24_reglas.csv,completo,"",""
-calidad.edad_mayor_110.2019,11,,,T05,t24_reglas.csv,completo,"",""
-calidad.edad_mayor_110.2020,,,,T05,t24_reglas.csv,completo,"",[suprimido: menos de diez casos]
-calidad.edad_mayor_110.2021,,,,T05,t24_reglas.csv,completo,"",[suprimido: menos de diez casos]
-calidad.edad_mayor_110.2022,0,,,T05,t24_reglas.csv,completo,"",""
-calidad.edad_mayor_110.2023,0,,,T05,t24_reglas.csv,completo,"",""
-calidad.edad_mayor_110.2024,0,,,T05,t24_reglas.csv,completo,"",""
+calidad.edad_mayor_110.2019,,,,T05,t24_reglas.csv,completo,"",""
+calidad.edad_mayor_110.2020,,,,T05,t24_reglas.csv,completo,"",""
+calidad.edad_mayor_110.2021,,,,T05,t24_reglas.csv,completo,"",""
+calidad.edad_mayor_110.2022,,,,T05,t24_reglas.csv,completo,"",""
+calidad.edad_mayor_110.2023,,,,T05,t24_reglas.csv,completo,"",""
+calidad.edad_mayor_110.2024,,,,T05,t24_reglas.csv,completo,"",""
 calidad.edad_mayor_110.total,24,,,T05,t24_reglas.csv,completo,"",""
-calidad.edad_negativa.2019,,,,T05,t24_reglas.csv,completo,"",[suprimido: menos de diez casos]
-calidad.edad_negativa.2020,0,,,T05,t24_reglas.csv,completo,"",""
-calidad.edad_negativa.2021,0,,,T05,t24_reglas.csv,completo,"",""
-calidad.edad_negativa.2022,0,,,T05,t24_reglas.csv,completo,"",""
-calidad.edad_negativa.2023,0,,,T05,t24_reglas.csv,completo,"",""
-calidad.edad_negativa.2024,0,,,T05,t24_reglas.csv,completo,"",""
-calidad.edad_negativa.total,,,,T05,t24_reglas.csv,completo,"",[suprimido: menos de diez casos]
+calidad.edad_negativa.2019,,,,T05,t24_reglas.csv,completo,"",""
+calidad.edad_negativa.2020,,,,T05,t24_reglas.csv,completo,"",""
+calidad.edad_negativa.2021,,,,T05,t24_reglas.csv,completo,"",""
+calidad.edad_negativa.2022,,,,T05,t24_reglas.csv,completo,"",""
+calidad.edad_negativa.2023,,,,T05,t24_reglas.csv,completo,"",""
+calidad.edad_negativa.2024,,,,T05,t24_reglas.csv,completo,"",""
+calidad.edad_negativa.total,,,,T05,t24_reglas.csv,completo,"",""
 calidad.etnia_otro_con_espacio,438029,,,T04,t22_top_valores.csv,completo,"",""
 calidad.etnia_otro_sin_espacio,1929129,,,T04,t22_top_valores.csv,completo,"",""
 calidad.fecha_ingreso_vacia.2019,0,,,T05,t24_reglas.csv,completo,"",""
@@ -61,7 +60,7 @@ calidad.fechatraslado2_con_dato,333365,,,T04,t22_perfil_columnas.csv,completo,""
 calidad.grd_99xxxx.total,4983,,,T06,t24_validez_codigos.csv,completo,"",""
 calidad.grd_ambulatorio_en_hospitalizacion.total,0,,,T06,t24_consistencia_cruzada.csv,completo,"",""
 calidad.grd_centinela.total,89,,,T06,t24_validez_codigos.csv,completo,"",""
-calidad.grd_fuera_catalogo.total,,,,T06,t24_consistencia_cruzada.csv,completo,"",[suprimido: menos de diez casos]
+calidad.grd_fuera_catalogo.total,,,,T06,t24_consistencia_cruzada.csv,completo,"",""
 calidad.grd_hospitalizado_en_ambulatoria.total,0,,,T06,t24_consistencia_cruzada.csv,completo,"",""
 calidad.hospital_fuera_catalogo.total,10354,,,T06,t24_consistencia_cruzada.csv,completo,"",""
 calidad.id_centinela.2019,8307,,,T05,t24_reglas.csv,completo,"",""
@@ -138,30 +137,30 @@ cascada.n_ex02,146928,,,T07,t23_cascada_pipeline.csv,completo,2019-2024,""
 cascada.n_ex03_pipeline,375607,,,T07,t23_cascada_pipeline.csv,completo,2019-2023,definición aproximada del pipeline: mapeo de tres caracteres; el código original no está en el repositorio revisado
 cascada.n_ex03_pipeline.cota_sup_2024,56509,,,T07,t23_cascada_pipeline.csv,completo,2024,"MDC 14 sin comorbilidades según el mapeo de tres caracteres, sin mirar el desenlace: cota superior de EX03 del pipeline en el año expuesto"
 cascada.n_fallecidos,144009,,,T07,t23_cascada_pipeline.csv,completo,2019-2023,""
-cie10.capitulo_pct.I,1.882863,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.II,7.279496,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.III,0.626919,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.IV,2.20989,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.IX,8.93088,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.V,1.60286,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.VI,1.720729,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.VII,5.425027,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.VIII,0.290543,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.X,7.075997,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.XI,13.784016,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.XII,1.067504,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.XIII,2.851661,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.XIV,7.930462,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.XIX,10.82323,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.XV,15.817575,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.XVI,2.466743,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.XVII,1.182251,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.XVIII,0.79716,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.XX,0.001121,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.XXI,4.302306,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.XXII,1.930766,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.centinela,0.195202,,,T06,t24_capitulos_cie10.csv,completo,"",""
-cie10.capitulo_pct.sin capítulo,0.00107,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.I,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.II,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.III,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.IV,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.IX,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.V,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.VI,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.VII,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.VIII,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.X,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.XI,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.XII,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.XIII,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.XIV,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.XIX,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.XV,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.XVI,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.XVII,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.XVIII,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.XX,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.XXI,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.XXII,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.centinela,,,,T06,t24_capitulos_cie10.csv,completo,"",""
+cie10.capitulo_pct.sin capítulo,,,,T06,t24_capitulos_cie10.csv,completo,"",""
 codificacion.aumento_pct_2019_2024,41.774393,41.39,42.159831,T08,t23_deriva_codificacion.csv,completo,2019-2024,cambio relativo del promedio entre el primer y el último año
 codificacion.media_dx_sec_adultos_hosp.2019,4.157921,4.1497,4.166141,T08,t23_deriva_codificacion.csv,completo,"",""
 codificacion.media_dx_sec_adultos_hosp.2020,4.837189,4.826856,4.847522,T08,t23_deriva_codificacion.csv,completo,"",""
@@ -204,62 +203,56 @@ cohorte.n.E.2022,473791,,,T07,t23_cascada_variantes.csv,completo,2022,""
 cohorte.n.E.2023,519833,,,T07,t23_cascada_variantes.csv,completo,2023,""
 cohorte.pct_estancia_total,65.755321,,,T07,t23_cascada_pipeline.csv,completo,2019-2023,definición aproximada del pipeline: mapeo de tres caracteres; el código original no está en el repositorio revisado
 cohorte.pct_estancia_total.sin_censurados,60.854143,,,T07,t23_cascada_pipeline.csv,completo,2019-2023,lectura alternativa: además se excluyen los censurados
-cohorte.prevalencia_conocida_pct.A.2019,2.980725,2.947118,3.014704,T07,t23_cascada_variantes.csv,completo,2019,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.A.2019_2023,3.575217,3.556965,3.593559,T07,t23_cascada_variantes.csv,completo,2019-2023,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.A.2020,4.644046,4.592505,4.696137,T07,t23_cascada_variantes.csv,completo,2020,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.A.2021,4.658714,4.608742,4.709202,T07,t23_cascada_variantes.csv,completo,2021,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.A.2022,3.41618,3.376269,3.456545,T07,t23_cascada_variantes.csv,completo,2022,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.A.2023,2.778119,2.74411,2.812538,T07,t23_cascada_variantes.csv,completo,2023,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.B.2019,3.594206,3.553466,3.635396,T07,t23_cascada_variantes.csv,completo,2019,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.B.2019_2023,4.22008,4.19846,4.241806,T07,t23_cascada_variantes.csv,completo,2019-2023,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.B.2020,5.357435,5.297866,5.417637,T07,t23_cascada_variantes.csv,completo,2020,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.B.2021,5.395936,5.337954,5.454511,T07,t23_cascada_variantes.csv,completo,2021,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.B.2022,4.041666,3.994264,4.089607,T07,t23_cascada_variantes.csv,completo,2022,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.B.2023,3.292126,3.251612,3.333127,T07,t23_cascada_variantes.csv,completo,2023,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.C.2019,4.080385,4.030017,4.131356,T07,t23_cascada_variantes.csv,completo,2019,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.C.2019_2023,5.108102,5.08161,5.134724,T07,t23_cascada_variantes.csv,completo,2019-2023,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.C.2020,6.133351,6.065424,6.201989,T07,t23_cascada_variantes.csv,completo,2020,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.C.2021,6.37174,6.30361,6.440556,T07,t23_cascada_variantes.csv,completo,2021,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.C.2022,5.06896,5.009812,5.128767,T07,t23_cascada_variantes.csv,completo,2022,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.C.2023,4.261196,4.209011,4.313999,T07,t23_cascada_variantes.csv,completo,2023,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.D.2019,4.080385,4.030017,4.131356,T07,t23_cascada_variantes.csv,completo,2019,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.D.2019_2023,5.108102,5.08161,5.134724,T07,t23_cascada_variantes.csv,completo,2019-2023,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.D.2020,6.133351,6.065424,6.201989,T07,t23_cascada_variantes.csv,completo,2020,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.D.2021,6.37174,6.30361,6.440556,T07,t23_cascada_variantes.csv,completo,2021,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.D.2022,5.06896,5.009812,5.128767,T07,t23_cascada_variantes.csv,completo,2022,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_conocida_pct.D.2023,4.261196,4.209011,4.313999,T07,t23_cascada_variantes.csv,completo,2023,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
-cohorte.prevalencia_pct.A.2019,2.826092,2.794203,2.858334,T07,t23_cascada_variantes.csv,completo,2019,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.A.2019_2023,3.350126,3.333003,3.367333,T07,t23_cascada_variantes.csv,completo,2019-2023,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.A.2020,4.339183,4.29095,4.387934,T07,t23_cascada_variantes.csv,completo,2020,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.A.2021,4.309202,4.262896,4.355989,T07,t23_cascada_variantes.csv,completo,2021,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.A.2022,3.208321,3.170799,3.246272,T07,t23_cascada_variantes.csv,completo,2022,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.A.2023,2.595899,2.564091,2.628091,T07,t23_cascada_variantes.csv,completo,2023,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.B.2019,3.390177,3.35171,3.42907,T07,t23_cascada_variantes.csv,completo,2019,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.B.2019_2023,3.933968,3.913784,3.954251,T07,t23_cascada_variantes.csv,completo,2019-2023,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.B.2020,4.981681,4.926182,5.037773,T07,t23_cascada_variantes.csv,completo,2020,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.B.2021,4.95734,4.90395,5.011281,T07,t23_cascada_variantes.csv,completo,2021,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.B.2022,3.777606,3.733242,3.822478,T07,t23_cascada_variantes.csv,completo,2022,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.B.2023,3.064082,3.026331,3.102288,T07,t23_cascada_variantes.csv,completo,2023,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.C.2019,3.87822,3.830298,3.926717,T07,t23_cascada_variantes.csv,completo,2019,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.C.2019_2023,4.71295,4.688456,4.737564,T07,t23_cascada_variantes.csv,completo,2019-2023,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.C.2020,5.651046,5.588303,5.714452,T07,t23_cascada_variantes.csv,completo,2020,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.C.2021,5.775336,5.71339,5.837912,T07,t23_cascada_variantes.csv,completo,2021,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.C.2022,4.663241,4.608714,4.718381,T07,t23_cascada_variantes.csv,completo,2022,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.C.2023,3.889193,3.841473,3.937481,T07,t23_cascada_variantes.csv,completo,2023,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.D.2019,4.080385,4.030017,4.131356,T07,t23_cascada_variantes.csv,completo,2019,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.D.2019_2023,5.108102,5.08161,5.134724,T07,t23_cascada_variantes.csv,completo,2019-2023,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.D.2020,6.133351,6.065424,6.201989,T07,t23_cascada_variantes.csv,completo,2020,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.D.2021,6.37174,6.30361,6.440556,T07,t23_cascada_variantes.csv,completo,2021,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.D.2022,5.06896,5.009812,5.128767,T07,t23_cascada_variantes.csv,completo,2022,fallecidos sobre todos los egresos de la variante
-cohorte.prevalencia_pct.D.2023,4.261196,4.209011,4.313999,T07,t23_cascada_variantes.csv,completo,2023,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_conocida_pct.A.2019,2.9807,2.9471,3.0147,T07,t23_cascada_variantes.csv,completo,2019,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.A.2019_2023,3.5752,3.557,3.5936,T07,t23_cascada_variantes.csv,completo,2019-2023,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.A.2020,4.644,4.5925,4.6961,T07,t23_cascada_variantes.csv,completo,2020,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.A.2021,4.6587,4.6087,4.7092,T07,t23_cascada_variantes.csv,completo,2021,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.A.2022,3.4162,3.3763,3.4565,T07,t23_cascada_variantes.csv,completo,2022,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.A.2023,2.7781,2.7441,2.8125,T07,t23_cascada_variantes.csv,completo,2023,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.B.2019,3.5942,3.5535,3.6354,T07,t23_cascada_variantes.csv,completo,2019,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.B.2019_2023,4.2201,4.1985,4.2418,T07,t23_cascada_variantes.csv,completo,2019-2023,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.B.2021,5.3959,5.338,5.4545,T07,t23_cascada_variantes.csv,completo,2021,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.C.2019,4.0804,4.03,4.1314,T07,t23_cascada_variantes.csv,completo,2019,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.C.2019_2023,5.1081,5.0816,5.1347,T07,t23_cascada_variantes.csv,completo,2019-2023,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.C.2020,6.1334,6.0654,6.202,T07,t23_cascada_variantes.csv,completo,2020,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.C.2021,6.3717,6.3036,6.4406,T07,t23_cascada_variantes.csv,completo,2021,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.C.2022,5.069,5.0098,5.1288,T07,t23_cascada_variantes.csv,completo,2022,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.C.2023,4.2612,4.209,4.314,T07,t23_cascada_variantes.csv,completo,2023,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.D.2019,4.0804,4.03,4.1314,T07,t23_cascada_variantes.csv,completo,2019,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.D.2019_2023,5.1081,5.0816,5.1347,T07,t23_cascada_variantes.csv,completo,2019-2023,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.D.2020,6.1334,6.0654,6.202,T07,t23_cascada_variantes.csv,completo,2020,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.D.2021,6.3717,6.3036,6.4406,T07,t23_cascada_variantes.csv,completo,2021,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.D.2022,5.069,5.0098,5.1288,T07,t23_cascada_variantes.csv,completo,2022,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_conocida_pct.D.2023,4.2612,4.209,4.314,T07,t23_cascada_variantes.csv,completo,2023,fallecidos sobre fallecidos más sobrevivientes (sin censurados)
+cohorte.prevalencia_pct.A.2019,2.8261,2.7942,2.8583,T07,t23_cascada_variantes.csv,completo,2019,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.A.2019_2023,3.3501,3.333,3.3673,T07,t23_cascada_variantes.csv,completo,2019-2023,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.A.2020,4.3392,4.2909,4.3879,T07,t23_cascada_variantes.csv,completo,2020,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.A.2021,4.3092,4.2629,4.356,T07,t23_cascada_variantes.csv,completo,2021,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.A.2022,3.2083,3.1708,3.2463,T07,t23_cascada_variantes.csv,completo,2022,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.A.2023,2.5959,2.5641,2.6281,T07,t23_cascada_variantes.csv,completo,2023,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.B.2019,3.3902,3.3517,3.4291,T07,t23_cascada_variantes.csv,completo,2019,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.B.2019_2023,3.934,3.9138,3.9543,T07,t23_cascada_variantes.csv,completo,2019-2023,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.B.2021,4.9573,4.9039,5.0113,T07,t23_cascada_variantes.csv,completo,2021,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.C.2019,3.8782,3.8303,3.9267,T07,t23_cascada_variantes.csv,completo,2019,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.C.2019_2023,4.7129,4.6885,4.7376,T07,t23_cascada_variantes.csv,completo,2019-2023,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.C.2020,5.651,5.5883,5.7145,T07,t23_cascada_variantes.csv,completo,2020,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.C.2021,5.7753,5.7134,5.8379,T07,t23_cascada_variantes.csv,completo,2021,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.C.2022,4.6632,4.6087,4.7184,T07,t23_cascada_variantes.csv,completo,2022,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.C.2023,3.8892,3.8415,3.9375,T07,t23_cascada_variantes.csv,completo,2023,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.D.2019,4.0804,4.03,4.1314,T07,t23_cascada_variantes.csv,completo,2019,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.D.2019_2023,5.1081,5.0816,5.1347,T07,t23_cascada_variantes.csv,completo,2019-2023,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.D.2020,6.1334,6.0654,6.202,T07,t23_cascada_variantes.csv,completo,2020,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.D.2021,6.3717,6.3036,6.4406,T07,t23_cascada_variantes.csv,completo,2021,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.D.2022,5.069,5.0098,5.1288,T07,t23_cascada_variantes.csv,completo,2022,fallecidos sobre todos los egresos de la variante
+cohorte.prevalencia_pct.D.2023,4.2612,4.209,4.314,T07,t23_cascada_variantes.csv,completo,2023,fallecidos sobre todos los egresos de la variante
 cortafuegos.intento_2024_rechazado,1,,,T07,t23_resumen.csv,completo,"",1 si el intento de leer el desenlace del año expuesto fue rechazado por el cortafuegos
-decisiones.n_amarillo,8,,,T12,decisiones_evidencia.csv,completo,"","decisiones o supuestos, no casos"
+decisiones.n_amarillo,9,,,T12,decisiones_evidencia.csv,completo,"","decisiones o supuestos, no casos"
 decisiones.n_gris,3,,,T12,decisiones_evidencia.csv,completo,"","decisiones o supuestos, no casos"
 decisiones.n_rojo,1,,,T12,decisiones_evidencia.csv,completo,"","decisiones o supuestos, no casos"
 decisiones.n_supuestos_aceptados,6,,,T12,supuestos_verificados.csv,completo,"","decisiones o supuestos, no casos"
 decisiones.n_supuestos_no_evaluables,2,,,T12,supuestos_verificados.csv,completo,"","decisiones o supuestos, no casos"
 decisiones.n_supuestos_rechazados,7,,,T12,supuestos_verificados.csv,completo,"","decisiones o supuestos, no casos"
-decisiones.n_verde,5,,,T12,decisiones_evidencia.csv,completo,"","decisiones o supuestos, no casos"
+decisiones.n_verde,4,,,T12,decisiones_evidencia.csv,completo,"","decisiones o supuestos, no casos"
 diccionario.n_columnas_categoria.AUDITORIA_SENSIBILIDAD,5,,,T04,diccionario_medido.csv,completo,"",""
 diccionario.n_columnas_categoria.DESCARTAR,17,,,T04,diccionario_medido.csv,completo,"",""
 diccionario.n_columnas_categoria.FEATURE_BASAL,41,,,T04,diccionario_medido.csv,completo,"",""
@@ -390,11 +383,11 @@ estructura.primer_anio_id_beneficiario,2024,,,T03,t21_esquema_diferencias.csv,co
 faltantes.n_nulos.CIP_ENCRIPTADO,2044,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.COD_HOSPITAL,0,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.COMUNA,0,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.n_nulos.CONDICIONDEALTANEONATO1,5679589,,,T04,t22_perfil_columnas.csv,completo,"",""
+faltantes.n_nulos.CONDICIONDEALTANEONATO1,,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.CONDICIONDEALTANEONATO2,5806959,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.CONDICIONDEALTANEONATO3,5808535,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.CONDICIONDEALTANEONATO4,5808535,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.n_nulos.DIAGNOSTICO1,80,,,T04,t22_perfil_columnas.csv,completo,"",""
+faltantes.n_nulos.DIAGNOSTICO1,,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.DIAGNOSTICO10,5065988,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.DIAGNOSTICO11,5235391,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.DIAGNOSTICO12,5363218,,,T04,t22_perfil_columnas.csv,completo,"",""
@@ -434,7 +427,7 @@ faltantes.n_nulos.ESPECIALIDAD_MEDICA,0,,,T04,t22_perfil_columnas.csv,completo,"
 faltantes.n_nulos.ETNIA,0,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.FECHAALTA,18,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.FECHAINTERV1,2873870,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.n_nulos.FECHAPROCEDIMIENTO1,5808526,,,T04,t22_perfil_columnas.csv,completo,"",""
+faltantes.n_nulos.FECHAPROCEDIMIENTO1,,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.FECHATRASLADO1,4807518,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.FECHATRASLADO2,5475170,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.FECHATRASLADO3,5704917,,,T04,t22_perfil_columnas.csv,completo,"",""
@@ -456,8 +449,8 @@ faltantes.n_nulos.MEDICOINTERV1_ENCRIPTADO,2607746,,,T04,t22_perfil_columnas.csv
 faltantes.n_nulos.NACIONALIDAD,0,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.PESORN1,5012562,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.PESORN2,5799939,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.n_nulos.PESORN3,5808460,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.n_nulos.PESORN4,5808534,,,T04,t22_perfil_columnas.csv,completo,"",""
+faltantes.n_nulos.PESORN3,,,,T04,t22_perfil_columnas.csv,completo,"",""
+faltantes.n_nulos.PESORN4,,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.PREVISION,0,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.PROCEDIMIENTO1,18337,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.PROCEDIMIENTO10,3995383,,,T04,t22_perfil_columnas.csv,completo,"",""
@@ -492,10 +485,10 @@ faltantes.n_nulos.PROCEDIMIENTO9,3625582,,,T04,t22_perfil_columnas.csv,completo,
 faltantes.n_nulos.PROVINCIA,0,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.RN1ESTADO,3888844,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.RN2ESTADO,4364463,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.n_nulos.RN3ESTADO,4370925,,,T04,t22_perfil_columnas.csv,completo,"",""
+faltantes.n_nulos.RN3ESTADO,,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.RN4ESTADO,4370983,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.SERVICIOALTA,0,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.n_nulos.SERVICIOINGRESO,,,,T04,t22_perfil_columnas.csv,completo,"",[suprimido: menos de diez casos]
+faltantes.n_nulos.SERVICIOINGRESO,,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.SERVICIOTRASLADO1,4807519,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.SERVICIOTRASLADO2,5475163,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.SERVICIOTRASLADO3,5704914,,,T04,t22_perfil_columnas.csv,completo,"",""
@@ -509,8 +502,8 @@ faltantes.n_nulos.SERVICIO_SALUD,0,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.SEXO,0,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.SEXORN1,5161193,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.SEXORN2,5799944,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.n_nulos.SEXORN3,5808460,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.n_nulos.SEXORN4,5808533,,,T04,t22_perfil_columnas.csv,completo,"",""
+faltantes.n_nulos.SEXORN3,,,,T04,t22_perfil_columnas.csv,completo,"",""
+faltantes.n_nulos.SEXORN4,,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.TIPOALTA,0,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.TIPO_ACTIVIDAD,0,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.n_nulos.TIPO_INGRESO,0,,,T04,t22_perfil_columnas.csv,completo,"",""
@@ -519,11 +512,11 @@ faltantes.n_nulos.USOSPABELLON,2847226,,,T04,t22_perfil_columnas.csv,completo,""
 faltantes.pct_nulos.CIP_ENCRIPTADO,0.03519,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.COD_HOSPITAL,0,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.COMUNA,0,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.pct_nulos.CONDICIONDEALTANEONATO1,97.78006,,,T04,t22_perfil_columnas.csv,completo,"",""
+faltantes.pct_nulos.CONDICIONDEALTANEONATO1,,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.CONDICIONDEALTANEONATO2,99.972868,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.CONDICIONDEALTANEONATO3,100,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.CONDICIONDEALTANEONATO4,100,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.pct_nulos.DIAGNOSTICO1,0.001377,,,T04,t22_perfil_columnas.csv,completo,"",""
+faltantes.pct_nulos.DIAGNOSTICO1,,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.DIAGNOSTICO10,87.216277,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.DIAGNOSTICO11,90.132727,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.DIAGNOSTICO12,92.333402,,,T04,t22_perfil_columnas.csv,completo,"",""
@@ -563,7 +556,7 @@ faltantes.pct_nulos.ESPECIALIDAD_MEDICA,0,,,T04,t22_perfil_columnas.csv,completo
 faltantes.pct_nulos.ETNIA,0,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.FECHAALTA,0.00031,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.FECHAINTERV1,49.476675,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.pct_nulos.FECHAPROCEDIMIENTO1,99.999845,,,T04,t22_perfil_columnas.csv,completo,"",""
+faltantes.pct_nulos.FECHAPROCEDIMIENTO1,,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.FECHATRASLADO1,82.766446,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.FECHATRASLADO2,94.260773,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.FECHATRASLADO3,98.216108,,,T04,t22_perfil_columnas.csv,completo,"",""
@@ -585,8 +578,8 @@ faltantes.pct_nulos.MEDICOINTERV1_ENCRIPTADO,44.895073,,,T04,t22_perfil_columnas
 faltantes.pct_nulos.NACIONALIDAD,0,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.PESORN1,86.296493,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.PESORN2,99.852011,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.pct_nulos.PESORN3,99.998709,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.pct_nulos.PESORN4,99.999983,,,T04,t22_perfil_columnas.csv,completo,"",""
+faltantes.pct_nulos.PESORN3,,,,T04,t22_perfil_columnas.csv,completo,"",""
+faltantes.pct_nulos.PESORN4,,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.PREVISION,0,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.PROCEDIMIENTO1,0.315691,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.PROCEDIMIENTO10,68.784694,,,T04,t22_perfil_columnas.csv,completo,"",""
@@ -621,10 +614,10 @@ faltantes.pct_nulos.PROCEDIMIENTO9,62.418183,,,T04,t22_perfil_columnas.csv,compl
 faltantes.pct_nulos.PROVINCIA,0,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.RN1ESTADO,66.950513,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.RN2ESTADO,75.138791,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.pct_nulos.RN3ESTADO,75.250042,,,T04,t22_perfil_columnas.csv,completo,"",""
+faltantes.pct_nulos.RN3ESTADO,,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.RN4ESTADO,75.25104,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.SERVICIOALTA,0,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.pct_nulos.SERVICIOINGRESO,0.000052,,,T04,t22_perfil_columnas.csv,completo,"",""
+faltantes.pct_nulos.SERVICIOINGRESO,,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.SERVICIOTRASLADO1,82.766463,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.SERVICIOTRASLADO2,94.260653,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.SERVICIOTRASLADO3,98.216056,,,T04,t22_perfil_columnas.csv,completo,"",""
@@ -638,8 +631,8 @@ faltantes.pct_nulos.SERVICIO_SALUD,0,,,T04,t22_perfil_columnas.csv,completo,"","
 faltantes.pct_nulos.SEXO,0,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.SEXORN1,88.855331,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.SEXORN2,99.852097,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.pct_nulos.SEXORN3,99.998709,,,T04,t22_perfil_columnas.csv,completo,"",""
-faltantes.pct_nulos.SEXORN4,99.999966,,,T04,t22_perfil_columnas.csv,completo,"",""
+faltantes.pct_nulos.SEXORN3,,,,T04,t22_perfil_columnas.csv,completo,"",""
+faltantes.pct_nulos.SEXORN4,,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.TIPOALTA,0,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.TIPO_ACTIVIDAD,0,,,T04,t22_perfil_columnas.csv,completo,"",""
 faltantes.pct_nulos.TIPO_INGRESO,0,,,T04,t22_perfil_columnas.csv,completo,"",""
@@ -701,10 +694,10 @@ id.traslape_prop_min.2021_2022,0.139238,,,T05,t24_id_traslape.csv,completo,"",""
 id.traslape_prop_min.2022_2023,0.150673,,,T05,t24_id_traslape.csv,completo,"",""
 id.traslape_prop_min.2023_2024,0.155199,,,T05,t24_id_traslape.csv,completo,"",""
 ledger.n_cifras,129,,,T12,ledger_cifras.csv,completo,"","cifras o variables, no casos"
-ledger.n_confirma,52,,,T12,ledger_cifras.csv,completo,"","cifras o variables, no casos"
-ledger.n_discrepa,37,,,T12,ledger_cifras.csv,completo,"","cifras o variables, no casos"
+ledger.n_confirma,46,,,T12,ledger_cifras.csv,completo,"","cifras o variables, no casos"
+ledger.n_discrepa,33,,,T12,ledger_cifras.csv,completo,"","cifras o variables, no casos"
 ledger.n_discrepa_relevante,3,,,T12,ledger_cifras.csv,completo,"","cifras o variables, no casos"
-ledger.n_no_verificable,40,,,T12,ledger_cifras.csv,completo,"","cifras o variables, no casos"
+ledger.n_no_verificable,50,,,T12,ledger_cifras.csv,completo,"","cifras o variables, no casos"
 panel.n_eventos_2023,24235,,,T10,t23_panel_muestreo.csv,completo,2023,""
 panel.n_eventos_ranking,110622,,,T10,t23_panel_muestreo.csv,completo,2019-2022,""
 panel.n_filas_2023,568737,,,T10,t23_panel_muestreo.csv,completo,2023,""
@@ -1107,16 +1100,14 @@ tipoalta.pct.censurados,5.876357,,,T07,t23_tipoalta.csv,completo,2019-2023,""
 tipoalta.pct.derivaciones_hospital,2.855408,,,T07,t23_tipoalta.csv,completo,2019-2023,""
 tipoalta.pct.sobrevivientes,91.074363,,,T07,t23_tipoalta.csv,completo,2019-2023,""
 tipoalta.pct_perdido_union_exacta,0.721702,,,T06,t24_tipoalta_etiquetas.csv,completo,"",% de egresos 2019 a 2023 cuya etiqueta de TIPOALTA no coincide exactamente con tipoalta_roles.csv
-traslados.enlace_entrante_pct_30d.2019,8.97389,,,T09,t23_enlaces_traslado.csv,completo,2019,entrantes de adultos hospitalizados con un traslado saliente previo.
-traslados.enlace_entrante_pct_30d.2020,11.477982,,,T09,t23_enlaces_traslado.csv,completo,2020,entrantes de adultos hospitalizados con un traslado saliente previo.
-traslados.enlace_entrante_pct_30d.2021,12.304987,,,T09,t23_enlaces_traslado.csv,completo,2021,entrantes de adultos hospitalizados con un traslado saliente previo.
-traslados.enlace_entrante_pct_30d.2022,11.469892,,,T09,t23_enlaces_traslado.csv,completo,2022,entrantes de adultos hospitalizados con un traslado saliente previo.
-traslados.enlace_entrante_pct_30d.2023,13.937031,,,T09,t23_enlaces_traslado.csv,completo,2023,entrantes de adultos hospitalizados con un traslado saliente previo.
-traslados.enlace_pct_30d.2019,42.043796,41.291173,42.800136,T09,t23_enlaces_traslado.csv,completo,2019,"30 días, solo ingresos de 2019 a 2023 y dentro del espacio de identificadores."
-traslados.enlace_pct_30d.2020,40.297244,39.600132,40.998299,T09,t23_enlaces_traslado.csv,completo,2020,"30 días, solo ingresos de 2019 a 2023 y dentro del espacio de identificadores."
-traslados.enlace_pct_30d.2021,41.89202,41.228651,42.558333,T09,t23_enlaces_traslado.csv,completo,2021,"30 días, solo ingresos de 2019 a 2023 y dentro del espacio de identificadores."
-traslados.enlace_pct_30d.2022,43.6872,42.970207,44.406841,T09,t23_enlaces_traslado.csv,completo,2022,"30 días, solo ingresos de 2019 a 2023 y dentro del espacio de identificadores."
-traslados.enlace_pct_30d.2023,46.700335,46.019601,47.3823,T09,t23_enlaces_traslado.csv,completo,2023,"30 días, solo ingresos de 2019 a 2023 y dentro del espacio de identificadores."
+traslados.enlace_entrante_pct_30d.2019,8.9739,,,T09,t23_enlaces_traslado.csv,completo,2019,entrantes de adultos hospitalizados con un traslado saliente previo.
+traslados.enlace_entrante_pct_30d.2021,12.305,,,T09,t23_enlaces_traslado.csv,completo,2021,entrantes de adultos hospitalizados con un traslado saliente previo.
+traslados.enlace_entrante_pct_30d.2023,13.937,,,T09,t23_enlaces_traslado.csv,completo,2023,entrantes de adultos hospitalizados con un traslado saliente previo.
+traslados.enlace_pct_30d.2019,42.0438,41.2912,42.8001,T09,t23_enlaces_traslado.csv,completo,2019,"30 días, solo ingresos de 2019 a 2023 y dentro del espacio de identificadores."
+traslados.enlace_pct_30d.2020,40.2972,39.6001,40.9983,T09,t23_enlaces_traslado.csv,completo,2020,"30 días, solo ingresos de 2019 a 2023 y dentro del espacio de identificadores."
+traslados.enlace_pct_30d.2021,41.892,41.2287,42.5583,T09,t23_enlaces_traslado.csv,completo,2021,"30 días, solo ingresos de 2019 a 2023 y dentro del espacio de identificadores."
+traslados.enlace_pct_30d.2022,43.6872,42.9702,44.4068,T09,t23_enlaces_traslado.csv,completo,2022,"30 días, solo ingresos de 2019 a 2023 y dentro del espacio de identificadores."
+traslados.enlace_pct_30d.2023,46.7003,46.0196,47.3823,T09,t23_enlaces_traslado.csv,completo,2023,"30 días, solo ingresos de 2019 a 2023 y dentro del espacio de identificadores."
 traslados.n_salientes_adultos_hosp.2019,16607,,,T09,t23_enlaces_traslado.csv,completo,2019,derivaciones a otro hospital de adultos hospitalizados
 traslados.n_salientes_adultos_hosp.2020,20489,,,T09,t23_enlaces_traslado.csv,completo,2020,derivaciones a otro hospital de adultos hospitalizados
 traslados.n_salientes_adultos_hosp.2021,21182,,,T09,t23_enlaces_traslado.csv,completo,2021,derivaciones a otro hospital de adultos hospitalizados

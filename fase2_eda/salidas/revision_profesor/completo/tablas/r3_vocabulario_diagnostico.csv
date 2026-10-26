@@ -1,0 +1,4 @@
+periodo,n_egresos,n_codigos,n_codigos_conservados,n_codigos_raros,egresos_codigos_raros,n_codigos_nuevos,egresos_codigos_nuevos,prop_egresos_raros,prop_egresos_nuevos
+2019-2022,2238277,1520,824,696,18608,,,0.008314,
+2023,623137,1382,,,5336,16,24,0.008563,0.000039
+2024,665450,1379,,,5768,18,24,0.008668,0.000036

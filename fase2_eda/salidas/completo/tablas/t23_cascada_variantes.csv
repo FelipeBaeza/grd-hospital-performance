@@ -5,7 +5,7 @@ periodo,variante,descripcion,n,n_fallecidos,n_no_evento,n_censurados,n_sin_dato,
 2019,D,C sin censurados: cohorte del modelo de mortalidad,585631,23896,561735,0,0,0.040804,0.0403,0.041314,0.040804,0.0403,0.041314,0
 2019,E,"D, solo sobrevivientes y con estadía mayor que cero: cohorte del modelo de estadía",538814,0,538814,0,0,,,,,,,
 2020,A,"Cohorte dura: sin GRD no agrupable, recién nacidos ni obstétricos sin comorbilidades",678123,29425,604182,44516,0,0.043392,0.042909,0.043879,0.04644,0.045925,0.046961,
-2020,B,A y solo adultos,584100,29098,514035,40967,0,0.049817,0.049262,0.050378,0.053574,0.052979,0.054176,0.71339
+2020,B,A y solo adultos,584100,,514035,,0,,,,,,,
 2020,C,B y solo actividad de hospitalización,514825,29093,445248,40484,0,0.05651,0.055883,0.057145,0.061334,0.060654,0.06202,0.775916
 2020,D,C sin censurados: cohorte del modelo de mortalidad,474341,29093,445248,0,0,0.061334,0.060654,0.06202,0.061334,0.060654,0.06202,0
 2020,E,"D, solo sobrevivientes y con estadía mayor que cero: cohorte del modelo de estadía",426076,0,426076,0,0,,,,,,,
@@ -15,12 +15,12 @@ periodo,variante,descripcion,n,n_fallecidos,n_no_evento,n_censurados,n_sin_dato,
 2021,D,C sin censurados: cohorte del modelo de mortalidad,488799,31145,457654,0,0,0.063717,0.063036,0.064406,0.063717,0.063036,0.064406,0
 2021,E,"D, solo sobrevivientes y con estadía mayor que cero: cohorte del modelo de estadía",437842,0,437842,0,0,,,,,,,
 2022,A,"Cohorte dura: sin GRD no agrupable, recién nacidos ni obstétricos sin comorbilidades",837728,26877,759879,50972,0,0.032083,0.031708,0.032463,0.034162,0.033763,0.034565,
-2022,B,A y solo adultos,701423,26497,629099,45827,0,0.037776,0.037332,0.038225,0.040417,0.039943,0.040896,0.625486
+2022,B,A y solo adultos,701423,,629099,,0,,,,,,,
 2022,C,B y solo actividad de hospitalización,568017,26488,496065,45464,0,0.046632,0.046087,0.047184,0.05069,0.050098,0.051288,1.027294
 2022,D,C sin censurados: cohorte del modelo de mortalidad,522553,26488,496065,0,0,0.05069,0.050098,0.051288,0.05069,0.050098,0.051288,0
 2022,E,"D, solo sobrevivientes y con estadía mayor que cero: cohorte del modelo de estadía",473791,0,473791,0,0,,,,,,,
 2023,A,"Cohorte dura: sin GRD no agrupable, recién nacidos ni obstétricos sin comorbilidades",948573,24624,861731,62218,0,0.025959,0.025641,0.026281,0.027781,0.027441,0.028125,
-2023,B,A y solo adultos,791069,24239,712033,54797,0,0.030641,0.030263,0.031023,0.032921,0.032516,0.033331,0.514006
+2023,B,A y solo adultos,791069,,712033,,0,,,,,,,
 2023,C,B y solo actividad de hospitalización,623137,24235,544502,54400,0,0.038892,0.038415,0.039375,0.042612,0.04209,0.04314,0.969071
 2023,D,C sin censurados: cohorte del modelo de mortalidad,568737,24235,544502,0,0,0.042612,0.04209,0.04314,0.042612,0.04209,0.04314,0
 2023,E,"D, solo sobrevivientes y con estadía mayor que cero: cohorte del modelo de estadía",519833,0,519833,0,0,,,,,,,

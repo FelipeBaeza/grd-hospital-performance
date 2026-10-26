@@ -1,7 +1,0 @@
-anio,archivo,tamano_bytes,lineas_total,lineas_datos,n_columnas_encabezado,bom,fin_de_linea,codificacion,lineas_utf8_invalidas,lineas_vacias,filas_leidas,filas_rechazadas,suma_cuadra,sha256,fuente
-2019,GRD_PUBLICO_2019.txt,24503085,50000,49999,129,no,CRLF,UTF-8 válido,0,0,49999,0,si,56d6b5fde2c447d1a98a041a0cd990e98f6f29e0013709a26e5d41f049280ba2,extracto
-2020,GRD_PUBLICO_2020.txt,25154950,50000,49999,129,no,CRLF,UTF-8 válido,0,0,49999,0,si,d58b595cd0d3457e63f52faea175ad546fe28b944c0e92c7675289af42efae01,extracto
-2021,GRD_PUBLICO_2021.txt,26217228,50000,49999,129,si,CRLF,UTF-8 válido,0,0,49999,0,si,a7737925ac670ce8d5e8125bbc6017c27b412e9156afa9f2391b82ce54bf8c76,extracto
-2022,GRD_PUBLICO_EXTERNO_2022.txt,25709179,50000,49999,129,si,CRLF,UTF-8 válido,0,0,49999,0,si,cb9818fec7e1f03ee845dbde776f6296b852acfb69ed314e72d770e5f1d3412c,extracto
-2023,GRD_PUBLICO_2023.txt,25861939,50000,49999,129,si,CRLF,UTF-8 válido,0,0,49999,0,si,f35ad4589856552e0d3d5f9728cffa1593e4817578ccedf1d5d9ad7ac7bf6b0b,extracto
-2024,GRD_PUBLICO_2024.txt,26024993,50000,49999,129,no,CRLF,UTF-8 válido,0,0,49999,0,si,c25831d80986a45230627da3fe8fb189bcfed6d2bd0aead631c02480619fba3a,extracto

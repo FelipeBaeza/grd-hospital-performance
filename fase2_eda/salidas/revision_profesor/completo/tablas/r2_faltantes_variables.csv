@@ -1,0 +1,43 @@
+variable,etiqueta,universo,anio,n,n_faltante,prop_faltante
+SEXO,Sexo,cohorte C,2019,616159,50,0.000081
+TIPO_INGRESO,Tipo de ingreso,cohorte C,2019,616159,270,0.000438
+TIPO_PROCEDENCIA,Procedencia,cohorte C,2019,616159,72,0.000117
+SERVICIOINGRESO,Servicio de ingreso (nivel de cuidado),cohorte C,2019,616159,398,0.000646
+DIAGNOSTICO1,Diagnóstico principal,cohorte C,2019,616159,5637,0.009149
+FECHA_INGRESO,Fecha de ingreso (fin de semana),todos los egresos,2019,1151475,19,0.000017
+EDAD,Edad,todos los egresos,2019,1151475,31,0.000027
+SEXO,Sexo,cohorte C,2020,514825,76,0.000148
+TIPO_INGRESO,Tipo de ingreso,cohorte C,2020,514825,12,0.000023
+TIPO_PROCEDENCIA,Procedencia,cohorte C,2020,514825,46,0.000089
+SERVICIOINGRESO,Servicio de ingreso (nivel de cuidado),cohorte C,2020,514825,63,0.000122
+DIAGNOSTICO1,Diagnóstico principal,cohorte C,2020,514825,1673,0.00325
+FECHA_INGRESO,Fecha de ingreso (fin de semana),todos los egresos,2020,781912,0,0
+EDAD,Edad,todos los egresos,2020,781912,,
+SEXO,Sexo,cohorte C,2021,539276,37,0.000069
+TIPO_INGRESO,Tipo de ingreso,cohorte C,2021,539276,,
+TIPO_PROCEDENCIA,Procedencia,cohorte C,2021,539276,824,0.001528
+SERVICIOINGRESO,Servicio de ingreso (nivel de cuidado),cohorte C,2021,539276,1602,0.002971
+DIAGNOSTICO1,Diagnóstico principal,cohorte C,2021,539276,57,0.000106
+FECHA_INGRESO,Fecha de ingreso (fin de semana),todos los egresos,2021,816909,0,0
+EDAD,Edad,todos los egresos,2021,816909,,
+SEXO,Sexo,cohorte C,2022,568017,10,0.000018
+TIPO_INGRESO,Tipo de ingreso,cohorte C,2022,568017,12,0.000021
+TIPO_PROCEDENCIA,Procedencia,cohorte C,2022,568017,,
+SERVICIOINGRESO,Servicio de ingreso (nivel de cuidado),cohorte C,2022,568017,1627,0.002864
+DIAGNOSTICO1,Diagnóstico principal,cohorte C,2022,568017,64,0.000113
+FECHA_INGRESO,Fecha de ingreso (fin de semana),todos los egresos,2022,932839,0,0
+EDAD,Edad,todos los egresos,2022,932839,,
+SEXO,Sexo,cohorte C,2023,623137,,
+TIPO_INGRESO,Tipo de ingreso,cohorte C,2023,623137,15,0.000024
+TIPO_PROCEDENCIA,Procedencia,cohorte C,2023,623137,,
+SERVICIOINGRESO,Servicio de ingreso (nivel de cuidado),cohorte C,2023,623137,2420,0.003884
+DIAGNOSTICO1,Diagnóstico principal,cohorte C,2023,623137,0,0
+FECHA_INGRESO,Fecha de ingreso (fin de semana),todos los egresos,2023,1039587,0,0
+EDAD,Edad,todos los egresos,2023,1039587,10,0.00001
+SEXO,Sexo,cohorte C,2024,665450,73,0.00011
+TIPO_INGRESO,Tipo de ingreso,cohorte C,2024,665450,19,0.000029
+TIPO_PROCEDENCIA,Procedencia,cohorte C,2024,665450,,
+SERVICIOINGRESO,Servicio de ingreso (nivel de cuidado),cohorte C,2024,665450,4042,0.006074
+DIAGNOSTICO1,Diagnóstico principal,cohorte C,2024,665450,0,0
+FECHA_INGRESO,Fecha de ingreso (fin de semana),todos los egresos,2024,1085813,52,0.000048
+EDAD,Edad,todos los egresos,2024,1085813,55,0.000051
