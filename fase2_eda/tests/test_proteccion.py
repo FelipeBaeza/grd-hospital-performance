@@ -29,10 +29,17 @@ def test_un_total_de_grupo_obliga_a_ocultar_la_celda_menor_y_no_otra():
     assert res.tabla["n"].to_list() == [500, 40, None, None] and res.tabla["prop"].to_list() == [0.9, 0.07, None, None]
 
 
-def test_dos_celdas_pequenas_en_el_mismo_grupo_no_necesitan_complemento():
-    df = pl.DataFrame({"anio": [2020] * 3, "n": [500, 4, 3]})
+def test_dos_celdas_pequenas_cuya_suma_es_diez_o_mas_no_necesitan_complemento():
+    df = pl.DataFrame({"anio": [2020] * 3, "n": [500, 6, 7]})
     res = pr.complementar(df, ["n"], Proteccion(grupos=(Grupo(("anio",)),)), 10)
     assert res.complementarias == 0 and _nulos(res.tabla, "n") == [1, 2]
+
+
+def test_dos_celdas_pequenas_cuya_suma_es_pequena_necesitan_complemento():
+    """Con el total conocido, 4 y 3 ocultos dejan ver que las dos categorías juntas suman 7: se oculta una celda más."""
+    df = pl.DataFrame({"anio": [2020] * 4, "n": [500, 4, 3, 800]})
+    res = pr.complementar(df, ["n"], Proteccion(grupos=(Grupo(("anio",)),)), 10)
+    assert res.complementarias == 1 and _nulos(res.tabla, "n") == [0, 1, 2]
 
 
 def test_el_complemento_se_propaga_a_las_otras_identidades_hasta_cerrar():
@@ -80,7 +87,9 @@ def test_preferir_oculta_la_celda_propia_aunque_valga_cero():
     df = pl.DataFrame({"n_fecha": [333365], "n_servicio": [333372], "n_solo_fecha": [0], "n_solo_servicio": [7], "diferencia": [7]})
     res = pr.complementar(df, ["n_fecha", "n_servicio", "n_solo_fecha", "n_solo_servicio"], pt.REGISTRO["t22_pares_traslado.csv"], 10)
     r = res.tabla.row(0, named=True)
-    assert r["n_fecha"] == 333365 and r["n_servicio"] == 333372 and r["n_solo_fecha"] is None and r["n_solo_servicio"] is None and r["diferencia"] is None
+    assert r["n_solo_fecha"] is None and r["n_solo_servicio"] is None and r["diferencia"] is None
+    # las dos ocultas suman 7: se oculta además una de las dos columnas grandes, para que la diferencia no deje acotar el conteo
+    assert (r["n_fecha"] is None) != (r["n_servicio"] is None)
 
 
 def test_mortalidad_del_resto_es_dependiente_en_los_estratos():
@@ -164,7 +173,43 @@ def test_la_resta_de_dos_variantes_vecinas_se_protege():
     aux = cohorte.con_variante_siguiente(var)
     t = pr.complementar(aux, list(cohorte.CONTEOS_VARIANTE), pt.REGISTRO["t23_cascada_variantes.csv"], 10, dependientes=["prevalencia"]).tabla
     k = dict(zip(t["variante"].to_list(), t["n_fallecidos"].to_list()))
-    assert k["B"] is None and k["C"] == 24235 and k["D"] == 24235 and k["A"] == 24624     # B - C = 4 fallecidos en actividad ambulatoria
+    assert k["B"] is None and k["A"] == 24624                                                # B - C = 4 fallecidos en actividad ambulatoria
+
+
+def test_la_celda_de_la_variante_no_se_despeja_con_la_suma_de_su_fila():
+    """El n de cada variante es la suma de sus cuatro desenlaces: ocultar solo los fallecidos de B no basta (se despejaban restando)."""
+    from eda import cohorte
+
+    falle, cens = [24624, 24239, 24235, 24235], [54900, 54797, 54790, 0]
+    no_ev = [868000, 712033, 544112, 544502]
+    n = [f + c + e for f, c, e in zip(falle, cens, no_ev)]
+    var = pl.DataFrame({"periodo": ["2023"] * 4, "variante": ["A", "B", "C", "D"], "n": n, "n_fallecidos": falle, "n_no_evento": no_ev,
+                        "n_censurados": cens, "n_sin_dato": [0, 0, 0, 0], "prevalencia": [0.026, 0.031, 0.039, 0.043]})
+    aux = cohorte.con_variante_siguiente(var)
+    t = pr.complementar(aux, list(cohorte.CONTEOS_VARIANTE), pt.REGISTRO["t23_cascada_variantes.csv"], 10, dependientes=["prevalencia"]).tabla
+    assert t.filter(pl.col("variante") == "B")["n_fallecidos"].item() is None
+    for fila in t.iter_rows(named=True):
+        ocultas = sum(fila[c] is None for c in cohorte.CONTEOS_VARIANTE)
+        assert ocultas != 1, fila
+
+
+def test_una_exclusion_pequena_de_la_cascada_no_se_despeja_con_la_cadena():
+    """TOTAL - EX01 - EX02 - EX03 = A: con EX01 de 1 a 9 oculto y lo demás a la vista, la resta lo daba (pasaba en los extractos)."""
+    pasos = ["TOTAL", "EX01", "EX02", "EX03", "A", "EX04", "B"]
+    df = pl.DataFrame({"periodo": ["2020"] * 7, "paso": pasos, "n": [49999, 3, 1582, 5283, 43131, 7383, 35748], "prop_del_total": [1.0] * 7})
+    t = pr.complementar(df, ["n"], pt.REGISTRO["t23_cascada.csv"], 10).tabla
+    v = dict(zip(t["paso"].to_list(), t["n"].to_list()))
+    assert v["EX01"] is None and sum(v[p] is None for p in ("TOTAL", "EX02", "EX03", "A")) >= 1
+    assert pr.una_sola_oculta(df, t, ["n"], pt.REGISTRO["t23_cascada.csv"], 10) == 0
+
+
+def test_el_resto_implicito_de_los_enlaces_de_traslado_se_protege():
+    """n_total = inválidos + elegibles + otros: con «otros» de 1 a 9, se oculta una celda (los elegibles) y su tasa."""
+    df = pl.DataFrame({"periodo": ["2020"], "direccion": ["entrante"], "ventana_dias": [30], "n_total": [59787], "n_id_invalido": [510],
+                       "n_elegibles": [59270], "n_enlazados": [400], "tasa_enlace": [0.0067], "ic_bajo": [0.006], "ic_alto": [0.0074]})
+    t = pr.complementar(df, ["n_total", "n_id_invalido", "n_elegibles", "n_enlazados"], pt.REGISTRO["t23_enlaces_traslado.csv"], 10).tabla
+    r = t.row(0, named=True)
+    assert r["n_elegibles"] is None and r["tasa_enlace"] is None and r["n_total"] == 59787
 
 
 def test_las_metricas_de_reglas_salen_de_la_tabla_publicada(tmp_path):
