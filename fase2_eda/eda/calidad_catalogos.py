@@ -556,6 +556,6 @@ def agregar_secciones(inf: Informe, ctx: Contexto) -> None:
                            "n_evaluados": "Evaluados", "prop_violaciones": "Proporción"}, formatos={"prop_violaciones": "prop2"},
               leyenda="Violaciones totales de las reglas de catálogos y consistencia cruzada")
     inf.tabla("t24_grd_tipo_actividad.csv", df=ctx.leer_tabla("t24_grd_tipo_actividad.csv", columnas_texto=["tipo_grd", "grupo_grd", "tipo_actividad"]).group_by(["grupo_grd", "tipo_actividad"]).agg(
-                  pl.when(pl.col("n").null_count() > 0).then(None).otherwise(pl.col("n").sum()).alias("n")).sort(["grupo_grd", "tipo_actividad"]),  # con un año oculto la suma no se publica
+                  pl.when(pl.col("n").null_count() > 0).then(None).otherwise(pl.col("n").cast(pl.Int64, strict=False).sum()).alias("n")).sort(["grupo_grd", "tipo_actividad"]),  # con un año oculto la suma no se publica
               columnas_texto=["grupo_grd", "tipo_actividad"], encabezados={"grupo_grd": "Tipo de GRD", "tipo_actividad": "Actividad", "n": "Egresos"},
               leyenda="Tipo de GRD frente a TIPO_ACTIVIDAD (años acumulados)")

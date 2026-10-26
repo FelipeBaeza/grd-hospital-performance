@@ -62,6 +62,8 @@ REGISTRO: dict[str, Proteccion] = {
             Fila(("n_informados", "n_modal"), resto_de="n_informados"),
             Fila(("n_informados", "n_patron_moda"), resto_de="n_informados"),
             Fila(("n_informados", "n_centinela"), resto_de="n_informados"),
+            # los egresos con el valor modal tienen también el patrón modal: la diferencia es un conteo (con el patrón y otro valor)
+            Fila(("n_patron_moda", "n_modal"), resto_de="n_patron_moda"),
         ),
         dependientes=("pct_nulos", "pct_centinela", "pct_faltante", "prop_modal", "prop_patron_moda", "chao1"),
         dependencias=(("pct_nulos", ("n_nulos",)), ("pct_centinela", ("n_centinela",)), ("pct_faltante", ("n_nulos", "n_centinela")),
@@ -128,9 +130,27 @@ REGISTRO: dict[str, Proteccion] = {
     ),
     # cada variante es la anterior menos un paso de la cascada: la diferencia entre dos variantes vecinas es un conteo (por ejemplo, los
     # fallecidos en actividad ambulatoria = B menos C). _hijo_* es el valor de la variante siguiente (lo agrega cohorte._escribir).
+    # la cascada es una cadena de restas (TOTAL - EX01 - EX02 - EX03 = A, A - EX04 = B, ...) y cada período agregado suma sus años; en los
+    # extractos una exclusión pequeña (EX01) se despejaba con la cadena
+    "t23_cascada.csv": Proteccion(
+        grupos=(*(Grupo(("periodo",), donde=donde(paso=pasos)) for pasos in (("TOTAL", "EX01", "EX02", "EX03", "A"), ("A", "EX04", "B"), ("B", "EX05", "C"),
+                                                                              ("C", "EX06", "D"), ("D", "EX07", "EX08", "E"))),
+                *_agregados("periodo", ("paso",)), Grupo(("paso",), donde=donde(periodo=("2019-2024", *ANIOS))),
+                Grupo(("paso",), donde=donde(periodo=("2019-2023", "2019-2024", "2024")))),
+        dependientes=("prop_del_total",),
+    ),
+    "t23_cascada_pipeline.csv": Proteccion(
+        grupos=(Grupo(("periodo",), donde=donde(paso=("TOTAL", "EX01", "EX02", "EX03_PIPELINE", "COHORTE_DURA_PIPELINE"))),
+                *_agregados("periodo", ("paso",)), Grupo(("paso",), donde=donde(periodo=("2019-2024", *ANIOS))),
+                Grupo(("paso",), donde=donde(periodo=("2019-2023", "2019-2024", "2024")))),
+        dependientes=("prop_del_total",),
+    ),
     "t23_cascada_variantes.csv": Proteccion(
         grupos=(Grupo(("variante",), donde=donde(periodo=("2019-2023", *A19_23))),),
-        filas=tuple(Fila((c, f"_hijo_{c}"), resto_de=c) for c in ("n", "n_fallecidos", "n_no_evento", "n_censurados", "n_sin_dato")),
+        # cada variante reparte su n entre los cuatro desenlaces (n = fallecidos + no evento + censurados + sin dato): sin esta identidad, la
+        # celda oculta para proteger la resta de dos variantes se despejaba restando las otras de su fila
+        filas=(*(Fila((c, f"_hijo_{c}"), resto_de=c) for c in ("n", "n_fallecidos", "n_no_evento", "n_censurados", "n_sin_dato")),
+               Fila(("n", "n_fallecidos", "n_no_evento", "n_censurados", "n_sin_dato"))),
         dependientes=("prevalencia", "ic_bajo", "ic_alto", "prevalencia_conocida", "ic_bajo_conocida", "ic_alto_conocida", "dif_prevalencia_pp"),
     ),
     "t23_estancia_cero.csv": Proteccion(
@@ -164,6 +184,14 @@ REGISTRO: dict[str, Proteccion] = {
         grupos=(Grupo(("anio",)), Grupo(("cod_hospital",), columnas=("n_egresos",))),
         filas=(Fila(("n_egresos", "n_adultos", "n_menores", "n_edad_desconocida")),),
         dependientes=("prop_menores",),
+    ),
+    # cada traslado es inválido por identificador, elegible o queda fuera por otra razón (ventana incompleta): ese resto implícito era de
+    # 1 a 9 en algunos años; las métricas y el resumen leen la tabla protegida
+    "t23_enlaces_traslado.csv": Proteccion(
+        grupos=_agregados("periodo", ("direccion", "ventana_dias")),
+        filas=(Fila(("n_total", "n_id_invalido", "n_elegibles"), resto_de="n_total", preferir=("n_elegibles",)),
+               Fila(("n_elegibles", "n_enlazados"), resto_de="n_elegibles")),
+        dependientes=("tasa_enlace", "ic_bajo", "ic_alto"),
     ),
     "t23_procedencia_autorref.csv": Proteccion(
         grupos=(Grupo(("anio",)),),
@@ -215,6 +243,9 @@ FAMILIAS: dict[str, tuple[str, tuple[str, ...], dict[str, str]]] = {
     "t23_tipoalta.csv": ("categorias_anio", ("_columna", "periodo", "_clave"), {"n": "n"}),
     "t23_procedencia_autorref.csv": ("categorias_anio", ("_columna", "anio", "_clave"), {"n_episodios": "n"}),
     "t23_hospitales_volumen.csv": ("volumen_d", ("anio", "cod_hospital"), {"n_D": "n"}),
+    "t23_cascada.csv": ("cascada", ("periodo", "paso"), {"n": "n"}),
+    "t23_cascada_pipeline.csv": ("cascada", ("periodo", "paso"), {"n": "n"}),
+    "t23_cascada_variantes.csv": ("cascada", ("periodo", "variante"), {"n": "n"}),
     "t23_embudo.csv": ("volumen_d", ("periodo", "cod_hospital"), {"n": "n"}),
     "t22_conciliacion.csv": ("conciliacion", ("columna",), {c: c for c in ("n_con_med", "n_sin_med", "n_centinela_med", "con_datos_doc", "sin_datos_doc")}),
     "diccionario_medido.csv": ("conciliacion", ("columna",), {c: c for c in ("n_con_med", "n_sin_med", "n_centinela_med", "con_datos_doc", "sin_datos_doc")}),

@@ -558,7 +558,18 @@ def _escribir(ctx: Contexto, r: dict[str, Any]) -> None:
                        dependientes=["prop_id_valido", "prop_ventana_completa", "factibilidad", "prop_con_previo", "cumple_minimo"])
     ctx.escribir_tabla("t23_enlaces_traslado.csv", r["enlaces"], tarea=TA, descripcion="Enlace de traslados salientes y entrantes por ventana y año (decisiones 13 y 16)",
                        cols_n=["n_total", "n_id_invalido", "n_elegibles", "n_enlazados"], dependientes=["tasa_enlace", "ic_bajo", "ic_alto"])
-    ctx.escribir_tabla("t23_resumen_hospitales.csv", r["resumen"], tarea=TA, descripcion="Veredictos de los criterios de hospitales, historial y traslados",
+    # el resumen y las métricas copian celdas de los enlaces: se leen de la tabla ya protegida (supresión complementaria, cambio 1.6)
+    pub = ctx.leer_tabla("t23_enlaces_traslado.csv", columnas_texto=["periodo", "direccion"])
+    r["enlaces_publicado"] = pub
+    res = r["resumen"]
+    if "enlace_anio" in res.columns and res["enlace_anio"][0] is not None:
+        f = pub.filter((pl.col("direccion") == "saliente") & (pl.col("ventana_dias") == res["enlace_ventana_dias"][0])
+                       & (pl.col("periodo") == str(res["enlace_anio"][0])))
+        if f.height:
+            res = res.with_columns(pl.lit(f["tasa_enlace"][0], dtype=pl.Float64).alias("enlace_tasa"),
+                                   pl.lit(f["n_elegibles"][0], dtype=pl.Int64).alias("enlace_n_elegibles"))
+    r["resumen"] = res
+    ctx.escribir_tabla("t23_resumen_hospitales.csv", res, tarea=TA, descripcion="Veredictos de los criterios de hospitales, historial y traslados",
                        cols_n=["enlace_n_elegibles"])
 
 
@@ -589,7 +600,8 @@ def registrar_metricas(ctx: Contexto, r: dict[str, Any]) -> None:
         m(f"historial.factibilidad_pct.{row['anio']}", 100.0 * row["factibilidad"], tarea=TAREA, tabla="t23_historial_factibilidad.csv", alcance=str(row["anio"]),
           nota="identificador válido y ventana completa dentro del espacio de identificadores" + aviso)
     w = int(max(ctx.umbrales["ventanas_traslado_dias"]))
-    for row in r["enlaces"].filter(pl.col("periodo").str.contains(r"^\d{4}$")).iter_rows(named=True):
+    enl = r.get("enlaces_publicado", r["enlaces"])          # la tabla publicada: una celda oculta como complemento no sale por las métricas
+    for row in enl.filter(pl.col("periodo").str.contains(r"^\d{4}$")).iter_rows(named=True):
         anio = row["periodo"]
         if row["direccion"] == "saliente" and row["ventana_dias"] == w:
             m(f"traslados.n_salientes_adultos_hosp.{anio}", row["n_total"], tarea=TAREA, tabla="t23_enlaces_traslado.csv", conteo=True, alcance=anio,

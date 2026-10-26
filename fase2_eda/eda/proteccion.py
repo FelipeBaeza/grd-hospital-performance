@@ -170,15 +170,33 @@ def _resto(ide: _Identidad, V: Mapping[str, np.ndarray]) -> float | None:
 
 
 def _necesita(ide: _Identidad, V: Mapping[str, np.ndarray], H: Mapping[str, np.ndarray], minimo: int) -> bool:
-    ocultas = sum(1 for c, i in ide.celdas if H[c][i])
+    """¿La identidad deja despejar una celda oculta, o la suma de sus celdas ocultas cuando esa suma es de 1 a 9?
+
+    Ocultar dos celdas pequeñas de la misma identidad no basta si su suma se deduce y también es pequeña (por ejemplo, adultos más edad
+    desconocida de un hospital pediátrico): la unión de las dos categorías quedaría publicada con menos de diez casos.
+    """
+    ocultas = [(c, i) for c, i in ide.celdas if H[c][i]]
+    k = len(ocultas)
     if ide.total_oculto:
-        return ocultas == 0      # con todas las celdas a la vista, el total secreto se deduciría sumando (con una oculta, ya no)
+        return k == 0            # con todas las celdas a la vista, el total secreto se deduciría sumando (con una oculta, ya no)
     r = _resto(ide, V)
     if r is None or abs(r) < 1e-9:
-        return ocultas == 1 and len(ide.celdas) >= 2
-    if 1 <= r < minimo:
-        return ocultas == 0      # el resto implícito es la única celda oculta: se despeja
-    return False                 # con un resto grande y desconocido, una celda oculta no se despeja
+        if k == 1 and len(ide.celdas) >= 2:
+            return True          # una sola celda oculta se despeja
+        # varias celdas ocultas, todas pequeñas, cuya suma (que se deduce) también es pequeña. Sin signos en la identidad, la regla solo
+        # mira el caso en que todas son pequeñas: así cualquier combinación de ellas es pequeña y conviene ocultar una más
+        suma = float(sum(V[c][i] for c, i in ocultas))
+        return 2 <= k < len(ide.celdas) and all(V[c][i] < minimo for c, i in ocultas) and 1 <= suma < minimo
+    # con resto implícito, lo que se deduce es el resto más las partes ocultas (si el total está a la vista)
+    if ide.resto is not None:
+        (ct, it), menos = ide.resto
+        if H[ct][it]:
+            return False         # el total está oculto: ni el resto ni las partes ocultas se deducen
+        d = r + float(sum(V[c][i] for c, i in menos if H[c][i]))
+    else:
+        d = r + float(sum(V[c][i] for c, i in ocultas))
+    # si ya no queda ninguna celda a la vista, lo que se deduce es un total que se publica en otra parte: nada más que ocultar aquí
+    return 1 <= d < minimo and k < len(ide.celdas)
 
 
 def _elegir(ide: _Identidad, V: Mapping[str, np.ndarray], H: Mapping[str, np.ndarray], preferidas: Sequence[str]) -> tuple[str, int] | None:
