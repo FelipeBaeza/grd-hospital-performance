@@ -146,9 +146,12 @@ REGISTRO: dict[str, Proteccion] = {
         filas=(Fila(("n", "n_fallecidos"), resto_de="n"),),
         dependientes=("participacion", "mortalidad", "ic_bajo", "ic_alto", "mortalidad_resto", "razon_vs_resto", "razon_bajo", "razon_alto", "bajo_umbral"),
     ),
+    # el lector conoce el total de cada período (la cascada publica la cohorte A y sus censurados), pero no los totales por edad ni por sexo
+    # de esta cohorte: ninguna otra tabla los publica, y declararlos ocultaba casi toda la tabla. Los sobrevivientes con estadía válida
+    # (n_estancia) no se publican: n menos fallecidos menos n_estancia daba cuántos sobrevivientes no tenían estadía, un conteo de 1 a 9.
     "t23_resultado_edad_sexo.csv": Proteccion(
-        grupos=(Grupo(("periodo",)), Grupo(("periodo", "grupo_edad")), Grupo(("periodo", "sexo")), *_agregados("periodo", ("grupo_edad", "sexo"))),
-        filas=(Fila(("n", "n_fallecidos", "n_estancia"), resto_de="n"), Fila(("n", "n_fallecidos"), resto_de="n"), Fila(("n", "n_estancia"), resto_de="n")),
+        grupos=(Grupo(("periodo",)), *_agregados("periodo", ("grupo_edad", "sexo"))),
+        filas=(Fila(("n", "n_fallecidos"), resto_de="n"),),
         dependientes=("mortalidad", "ic_bajo", "ic_alto", "estancia_media"),
     ),
     # ------------------------------------------------------------------ Tarea 8 (comorbilidad)

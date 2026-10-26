@@ -557,6 +557,7 @@ def evaluar_cifra(
     if fila["valor"] == VALOR_PEQUENO:                                  # conteo documentado de menos de diez casos: no se compara ni se publica
         if con_valor or existentes:
             _marcar_apoyo(base, fila, *(con_valor or existentes)[0], reglas)
+            base.update(valor_medido=None, ic_bajo=None, ic_alto=None, n_medido=None)   # como antes: la fila no publica lo medido
         return _cerrar(base, "NO VERIFICABLE", MOTIVOS["pocos_casos"])
     if cid in NO_COMPARABLES:
         if existentes:

@@ -42,6 +42,7 @@ from .informes import Informe, cifra
 TAREA = "T07"
 ACTIVIDAD_HOSP = "HOSPITALIZACIÓN"
 SIN_DATO = "(sin dato)"
+CATEGORIA_NO_CERO = "1 día o más (o sin dato)"
 ROLES = ("EVENTO", "NO_EVENTO", "CENSURADO", "SIN_DATO")
 
 COLS_BASE = (
@@ -331,7 +332,9 @@ def resumir_anio(base: pl.DataFrame) -> dict[str, Any]:
     variables = {
         "actividad_grupo": pl.when(c("actividad") == ACTIVIDAD_HOSP).then(pl.lit("hospitalización")).otherwise(pl.lit("ambulatoria")),
         "tipo_actividad": c("actividad"),
-        "estancia_cero": pl.when(c("estancia").is_null()).then(pl.lit(SIN_DATO)).when(c("estancia") == 0).then(pl.lit("0 días")).otherwise(pl.lit("1 día o más")),
+        # la estadía sin dato (menos de diez egresos) va con «1 día o más»: como categoría propia obligaba a ocultar el estrato de 0 días que
+        # evalúa H15b (supresión complementaria, cambio 1.6); el «resto» de la razón de 0 días no cambia
+        "estancia_cero": pl.when(c("estancia") == 0).then(pl.lit("0 días")).otherwise(pl.lit(CATEGORIA_NO_CERO)),
         "tipo_ingreso": c("tipo_ingreso"),
         "tipo_procedencia": c("procedencia"),
         "capitulo_cie10": c("capitulo"),
@@ -685,7 +688,8 @@ def tabla_edad_sexo(por_anio: dict[int, dict[str, Any]], u: config.Umbrales) -> 
         (pl.col("suma_estancia") / pl.col("n_estancia")).alias("estancia_media"),
     )
     df = con_wilson(df, "n_fallecidos", "n", "", z)
-    return df.select(["periodo", "orden", "grupo_edad", "sexo", "n", "n_fallecidos", "mortalidad", "ic_bajo", "ic_alto", "n_estancia", "estancia_media"]).sort(["periodo", "orden", "sexo"])
+    # n_estancia no se publica (ver proteccion_tablas): junto con n y n_fallecidos dejaba despejar los sobrevivientes sin estadía válida
+    return df.select(["periodo", "orden", "grupo_edad", "sexo", "n", "n_fallecidos", "mortalidad", "ic_bajo", "ic_alto", "estancia_media"]).sort(["periodo", "orden", "sexo"])
 
 
 def tabla_estancia_cero(por_anio: dict[int, dict[str, Any]], u: config.Umbrales) -> pl.DataFrame:
@@ -993,7 +997,7 @@ def _escribir(ctx: Contexto, r: dict[str, Any]) -> None:
                        auxiliares=["_T_oculto"])
     ctx.escribir_tabla("t23_resultado_edad_sexo.csv", r["edad_sexo"], tarea=TA,
                        descripcion="Mortalidad y estadía de sobrevivientes por grupo de edad y sexo en la cohorte dura con desenlace conocido",
-                       cols_n=["n", "n_fallecidos", "n_estancia"], dependientes=["mortalidad", "ic_bajo", "ic_alto", "estancia_media"])
+                       cols_n=["n", "n_fallecidos"], dependientes=["mortalidad", "ic_bajo", "ic_alto", "estancia_media"])
     ctx.escribir_tabla("t23_serie_mensual.csv", r["serie_mensual"], tarea=TA, descripcion="Serie mensual de egresos y mortalidad por mes de alta, con detección de cambios",
                        cols_n=["n_egresos", "n_fallecidos", "n_censurados"],
                        dependientes=["mortalidad", "ic_bajo", "ic_alto", "rr_mismo_mes", "rr_bajo", "rr_alto", "cambio_relativo", "quiebre"])
