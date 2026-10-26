@@ -47,7 +47,7 @@ La decisión 5 limita la población a adultos y la decisión 15 a la actividad d
 | 2019-2023 | D | 2.640.061 | 134.857 | 0 | 5,11 % | 5,11 % | 5,08 % | 5,13 % | 0,00 |
 | 2019-2023 | E | 2.396.356 | 0 | 0 | n/d | n/d | n/d | n/d | n/d |
 | 2023 | A | 948.573 | 24.624 | 62.218 | 2,60 % | 2,78 % | 2,74 % | 2,81 % | n/d |
-| 2023 | B | 791.069 | 24.239 | 54.797 | 3,06 % | 3,29 % | 3,25 % | 3,33 % | 0,51 |
+| 2023 | B | 791.069 | <10 | <10 | n/d | n/d | n/d | n/d | n/d |
 | 2023 | C | 623.137 | 24.235 | 54.400 | 3,89 % | 4,26 % | 4,21 % | 4,31 % | 0,97 |
 | 2023 | D | 568.737 | 24.235 | 0 | 4,26 % | 4,26 % | 4,21 % | 4,31 % | 0,00 |
 | 2023 | E | 519.833 | 0 | 0 | n/d | n/d | n/d | n/d | n/d |
@@ -164,19 +164,19 @@ De los 904.416 egresos con estadía cero en 2019 a 2023, 78,0 % son de actividad
 
 | Actividad | Desenlace | Egresos | Con estadía de 0 días |
 |---|---|---|---|
-| CIRUGÍA MAYOR AMBULATORIA (CMA) | CENSURADO | 2.595 | 2.124 |
-| CIRUGÍA MAYOR AMBULATORIA (CMA) | EVENTO | 51 | 32 |
+| CIRUGÍA MAYOR AMBULATORIA (CMA) | CENSURADO | <10 | <10 |
+| CIRUGÍA MAYOR AMBULATORIA (CMA) | EVENTO | <10 | <10 |
 | CIRUGÍA MAYOR AMBULATORIA (CMA) | NO_EVENTO | 675.181 | 631.141 |
-| DESCONOCIDO | CENSURADO | 18 | 0 |
+| DESCONOCIDO | CENSURADO | <10 | 0 |
 | HOSPITALIZACIÓN | CENSURADO | 256.821 | 17.544 |
 | HOSPITALIZACIÓN | EVENTO | 139.326 | 9.527 |
 | HOSPITALIZACIÓN | NO_EVENTO | 3.530.848 | 171.585 |
-| HOSPITALIZACIÓN DIURNA | CENSURADO | 1.442 | 1.434 |
-| HOSPITALIZACIÓN DIURNA | EVENTO | 21 | 19 |
+| HOSPITALIZACIÓN DIURNA | CENSURADO | <10 | <10 |
+| HOSPITALIZACIÓN DIURNA | EVENTO | <10 | <10 |
 | HOSPITALIZACIÓN DIURNA | NO_EVENTO | 53.865 | 53.081 |
 | HOSPITALIZACIÓN EN URGENCIA | CENSURADO | 16.648 | 5.292 |
-| HOSPITALIZACIÓN EN URGENCIA | EVENTO | 4.611 | 1.777 |
-| HOSPITALIZACIÓN EN URGENCIA | NO_EVENTO | 41.292 | 10.860 |
+| HOSPITALIZACIÓN EN URGENCIA | EVENTO | <10 | 1.777 |
+| HOSPITALIZACIÓN EN URGENCIA | NO_EVENTO | <10 | 10.860 |
 | NO IDENTIFICADO | NO_EVENTO | <10 | 0 |
 
 *Estadías cero por actividad y desenlace, 2019 a 2023.* *Tabla completa en `tablas/t23_estancia_cero.csv`*
@@ -185,9 +185,6 @@ Para la decisión 15 se compara la mortalidad de cada estrato con la del resto e
 
 | Período | Variable | Estrato | Egresos | Fallecidos | Mortalidad | Razón vs resto | IC bajo | IC alto | Bajo el umbral |
 |---|---|---|---|---|---|---|---|---|---|
-| 2019-2022 | actividad_grupo | ambulatoria | 498.005 | 4.638 | 0,93 % | 0,17 | 0,17 | 0,18 | si |
-| 2019-2022 | estancia_cero | 0 días | 530.500 | 8.945 | 1,69 % | 0,32 | 0,32 | 0,33 | no |
-| 2023 | estancia_cero | 0 días | 182.375 | 1.617 | 0,89 % | 0,22 | 0,21 | 0,23 | si |
 
 *Estratos de la decisión 15.* *Tabla completa en `tablas/t23_resultado_estratos.csv`*
 
@@ -398,11 +395,11 @@ HOSPPROCEDENCIA trae el nombre del hospital de procedencia. En 31,6 % de los egr
 |---|---|---|---|---|
 | (todas) | 1.039.587 | 140.126 | 45.389 | 32,4 % |
 | OTROS HOSPITALES DE LA RED | 71.394 | 70.952 | 774 | 1,1 % |
-| SERVICIO EMERGENCIA (DOMICILIO) | 464.982 | 23.733 | 22.357 | 94,2 % |
-| CENTRO ESPECIALIDADES (CDT, CRS, CONSULTORIO ADOS. ESP) | 346.334 | 18.163 | 17.642 | 97,1 % |
-| OTROS HOSPITALES RED NACIONAL | 11.783 | 11.621 | 18 | 0,2 % |
+| SERVICIO EMERGENCIA (DOMICILIO) | 464.982 | 23.733 | 22.357 | n/d |
+| CENTRO ESPECIALIDADES (CDT, CRS, CONSULTORIO ADOS. ESP) | 346.334 | 18.163 | 17.642 | n/d |
+| OTROS HOSPITALES RED NACIONAL | 11.783 | 11.621 | <10 | n/d |
 | OTRAS INSTITUCIONES SALUD (CLÍNICAS PRIVADAS, DE REHABILITAC | 11.697 | 10.744 | 118 | 1,1 % |
-| CARDIOCIRUGÍA PAGO GRD | 3.264 | 1.683 | 1.676 | 99,6 % |
+| CARDIOCIRUGÍA PAGO GRD | 3.264 | 1.683 | <10 | n/d |
 | PLAN DE RESOLUCIÓN LE | 16.937 | 929 | 834 | 89,8 % |
 
 *Hospital de procedencia por tipo de procedencia, último año con desenlace.* *Tabla completa en `tablas/t23_procedencia_autorref.csv`*

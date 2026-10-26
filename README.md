@@ -68,6 +68,7 @@ el archivo). Bastan 2 núcleos y 7 GB de RAM. Los datos completos de FONASA y la
 | Fase | Comando (desde la carpeta de la fase) | Tiempo aprox. |
 | --- | --- | --- |
 | 2 | `python run_fase2_eda.py --fuente completo --data-root <data seminario_full>` | 2 h |
+| 2 (revisión del profesor) | `python run_revision_profesor.py --fuente completo --data-root <data seminario_full>` | 1 min |
 | 3 | `python run_fase3.py --data-root <data seminario_full> --capas <capas>` | 7 min |
 | 4 | `python run_fase4.py --capas <capas> --trabajo <trabajo4>` | 5 h |
 | 5 | `python run_fase5.py --capas <capas> --trabajo <trabajo5> --trabajo-fase4 <trabajo4>` | 5 min (preparación) |
@@ -77,7 +78,7 @@ el archivo). Bastan 2 núcleos y 7 GB de RAM. Los datos completos de FONASA y la
 - 2024 es el examen final: su desenlace se sella y se abre una sola vez con autorización registrada. Cualquier
   corrección que cambie un modelo debe validarse sin 2024 (diseño 2019–2021 / 2022 / 2023) o con un año nuevo.
 - Nada que revele el desenlace ni identifique al hospital entra al modelo.
-- Ninguna salida publicada tiene RUT, fechas completas ni cifras de 1 a 9 casos; los hospitales van por código y sin ranking.
+- Ninguna salida publicada tiene RUT, fechas completas ni cifras de 1 a 9 casos, tampoco despejables restando (supresión complementaria de la Fase 2, cambio 1.6); los hospitales van por código y sin ranking.
 
 ## Datos y privacidad
 

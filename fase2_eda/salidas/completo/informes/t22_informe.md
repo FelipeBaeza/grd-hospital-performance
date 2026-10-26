@@ -90,7 +90,7 @@ Las seis variables categóricas cambian entre años. El PSI máximo entre años 
 
 ## 6. Conciliación con el diccionario
 
-La conciliación compara, columna por columna, los registros sin dato del diccionario con lo medido (exacta (datos completos)). Resultado: 0 columnas coinciden, 129 discrepan y 0 no son evaluables por tratarse de eventos raros. De las que discrepan, 0 difieren en 0,5 puntos porcentuales o más (magnitud relevante); en un extracto no aleatorio, las demás son diferencias despreciables aunque superen el umbral de z.
+La conciliación compara, columna por columna, los registros sin dato del diccionario con lo medido (exacta (datos completos)). Resultado: 0 columnas coinciden, 125 discrepan y 4 no son evaluables por tratarse de eventos raros. De las que discrepan, 0 difieren en 0,5 puntos porcentuales o más (magnitud relevante); en un extracto no aleatorio, las demás son diferencias despreciables aunque superen el umbral de z.
 
 | Columna | % sin dato (diccionario) | % sin dato (medido) | Diferencia (pp) | z | Observación |
 |---|---|---|---|---|---|
@@ -118,17 +118,17 @@ En RN2ESTADO, RN3ESTADO y RN4ESTADO, el valor más frecuente concentra al menos 
 | CONDICIONDEALTANEONATO4 | 0 | 0 | n/d | 0 | n/d |
 | PESORN4 | <10 | 1 | 780 | <10 | n/d |
 | SEXORN4 | <10 | 2 | MUJER | <10 | n/d |
-| RN4ESTADO | 1.437.552 | 2 | 0 | 1.437.551 | 100,0 % |
+| RN4ESTADO | 1.437.552 | 2 | 0 | <10 | n/d |
 
 *Bloque de recién nacidos.* *Tabla completa en `tablas/t22_bloque_rn.csv`*
 
 | Traslado | Con fecha | Con servicio | Solo fecha | Solo servicio | Diferencia |
 |---|---|---|---|---|---|
 | 1 | 1.001.017 | 1.001.016 | 17 | 16 | -1 |
-| 2 | 333.365 | 333.372 | 0 | <10 | 7 |
-| 3 | 103.618 | 103.621 | 0 | <10 | 3 |
-| 4 | 37.348 | 37.348 | <10 | <10 | 0 |
-| 5 | 13.750 | 13.751 | 0 | <10 | 1 |
+| 2 | <10 | 333.372 | <10 | <10 | n/d |
+| 3 | <10 | 103.621 | <10 | <10 | n/d |
+| 4 | <10 | 37.348 | <10 | <10 | n/d |
+| 5 | <10 | 13.751 | <10 | <10 | n/d |
 | 6 | 6.200 | 6.200 | 0 | 0 | 0 |
 | 7 | 3.073 | 3.073 | 0 | 0 | 0 |
 | 8 | 1.693 | 1.693 | 0 | 0 | 0 |

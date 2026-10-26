@@ -1,0 +1,28 @@
+nivel,grupo,etiqueta,n_d_2019_2023,n_e_2019_2023,razon_mortalidad_pandemia,razon_estancia_pandemia,cambio_mortalidad_relevante,cambio_estancia_relevante
+total,Todos,Todos los egresos,2640061,2396356,1.398723,1.067013,si,no
+capitulo,XI,Digestivo,425272,395203,1.150112,1.014005,no,no
+capitulo,XV,"Embarazo, parto y puerperio",384682,367632,1.132551,1.007446,no,no
+capitulo,IX,Circulatorio,332865,296656,1.095311,0.981754,no,no
+capitulo,XIX,Traumatismos y envenenamientos,303630,282506,1.052289,0.957905,no,no
+capitulo,II,Tumores,254929,234261,1.04853,1.042874,no,no
+capitulo,XIV,Genitourinario,241687,223439,1.297601,1.079875,si,no
+capitulo,X,Respiratorio,132203,106098,1.19992,1.065987,no,no
+capitulo,XXI,Factores que influyen en la salud,100223,81108,2.295062,1.123224,si,no
+capitulo,XXII,Códigos especiales (COVID-19),81340,59511,,,no evaluable,no evaluable
+capitulo,XIII,Osteomuscular,79759,75133,1.545034,1.232188,si,si
+codigo,K80,Colelitiasis,117646,113770,1.101362,1.044508,no,no
+codigo,U07,COVID-19 (U07),81321,59502,,,no evaluable,no evaluable
+codigo,K35,Apendicitis aguda,67371,61592,1.056179,0.947754,no,no
+codigo,I21,Infarto agudo del miocardio,53811,49526,1.022387,0.96875,no,no
+codigo,Z51,Otra atención médica,48442,36398,,,no evaluable,no evaluable
+codigo,I63,Infarto cerebral,47623,42500,1.022245,0.981879,no,no
+codigo,E11,Diabetes mellitus no insulinodependiente,41395,39624,1.215772,0.930646,si,no
+codigo,O24,Diabetes mellitus en el embarazo,38171,37838,,1.026286,no evaluable,no
+codigo,O99,"Otras enfermedades maternas clasificables en otra parte, pero que complican el embarazo, el parto y el puerperio",37988,36833,,,no evaluable,no evaluable
+codigo,I50,Insuficiencia cardíaca,37774,33390,1.056382,0.977894,no,no
+codigo,S82,"Fractura de la pierna, inclusive el tobillo",37170,35804,,,no evaluable,no evaluable
+codigo,S72,Fractura del fémur,31667,30303,1.134517,0.941518,no,no
+codigo,J18,"Neumonía, organismo no especificado",27779,21706,1.154002,1.081238,no,no
+codigo,K85,Pancreatitis aguda,27198,26032,1.106296,0.978039,no,no
+codigo,N39,Otros trastornos del sistema urinario,26952,24491,1.382616,1.156626,si,no
+sin_covid,Sin COVID-19,Todos los egresos sin COVID-19 (capítulo XXII),2558721,2336845,1.116581,1.016722,no,no

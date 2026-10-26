@@ -1,0 +1,13 @@
+secuencia,tarea,anio,proposito,n_columnas,columnas_resultado,reglas,decision,motivo
+1,R,2019,resultado,12,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+2,R,2019,estructura,34,"","",PERMITIDO,año no expuesto
+3,R,2020,resultado,12,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+4,R,2020,estructura,34,"","",PERMITIDO,año no expuesto
+5,R,2021,resultado,12,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+6,R,2021,estructura,34,"","",PERMITIDO,año no expuesto
+7,R,2022,resultado,12,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+8,R,2022,estructura,34,"","",PERMITIDO,año no expuesto
+9,R,2023,resultado,12,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+10,R,2023,estructura,34,"","",PERMITIDO,año no expuesto
+11,R,2024,estructura,10,"","",PERMITIDO,año expuesto sin columnas de resultado
+12,R,2024,estructura,34,"","",PERMITIDO,año expuesto sin columnas de resultado

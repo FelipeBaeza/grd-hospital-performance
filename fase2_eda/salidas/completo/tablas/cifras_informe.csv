@@ -22,8 +22,8 @@ t22_informe.md,alto,umbrales.csv,valor,"{""umbral"": ""psi_alto""}",dec2,"0,25"
 t22_informe.md,(tabla),t22_psi.csv,columna;anio_base;anio_comparado;psi;clasificacion;n_categorias,{},tabla,""
 t22_informe.md,modo,t22_resumen.csv,modo_conciliacion,{},texto,exacta (datos completos)
 t22_informe.md,n_coincide,t22_resumen.csv,n_coincide,{},entero,0
-t22_informe.md,n_disc,t22_resumen.csv,n_discrepancia,{},entero,129
-t22_informe.md,n_ne,t22_resumen.csv,n_no_evaluable,{},entero,0
+t22_informe.md,n_disc,t22_resumen.csv,n_discrepancia,{},entero,125
+t22_informe.md,n_ne,t22_resumen.csv,n_no_evaluable,{},entero,4
 t22_informe.md,n_rel,t22_resumen.csv,n_discrepancia_relevante,{},entero,0
 t22_informe.md,dif_min,umbrales.csv,valor,"{""umbral"": ""conciliacion_dif_relevante_pp""}",dec1,"0,5"
 t22_informe.md,(tabla),t22_conciliacion.csv,columna;pct_sin_doc;pct_sin_med;dif_pp;z;observacion,{},tabla,""
@@ -323,17 +323,17 @@ t23_seleccion_variables.md,prox,umbrales.csv,valor,"{""umbral"": ""proxy_hospita
 t23_seleccion_variables.md,(tabla),matriz_decision_variables.csv,variable;incremento_auc;asociacion_hospital;regla_decisiva;recomendacion,{},tabla,""
 t23_seleccion_variables.md,(tabla),t23_parametros_seleccion.csv,modulo;parametro;valor;para_que_sirve;afecta,{},tabla,""
 t25_evidencia_decisiones.md,n_cifras,t25_resumen_evidencia.csv,ledger_n_cifras,{},entero,129
-t25_evidencia_decisiones.md,n_confirma,t25_resumen_evidencia.csv,ledger_n_confirma,{},entero,52
-t25_evidencia_decisiones.md,n_discrepa,t25_resumen_evidencia.csv,ledger_n_discrepa,{},entero,37
+t25_evidencia_decisiones.md,n_confirma,t25_resumen_evidencia.csv,ledger_n_confirma,{},entero,46
+t25_evidencia_decisiones.md,n_discrepa,t25_resumen_evidencia.csv,ledger_n_discrepa,{},entero,33
 t25_evidencia_decisiones.md,n_rel,t25_resumen_evidencia.csv,ledger_n_discrepa_relevante,{},entero,3
-t25_evidencia_decisiones.md,n_nover,t25_resumen_evidencia.csv,ledger_n_no_verificable,{},entero,40
+t25_evidencia_decisiones.md,n_nover,t25_resumen_evidencia.csv,ledger_n_no_verificable,{},entero,50
 t25_evidencia_decisiones.md,z,umbrales.csv,valor,"{""umbral"": ""conciliacion_z""}",dec1,"3,0"
 t25_evidencia_decisiones.md,pp,umbrales.csv,valor,"{""umbral"": ""conciliacion_dif_relevante_pp""}",dec1,"0,5"
 t25_evidencia_decisiones.md,(tabla),ledger_cifras.csv,id;documento;descripcion;valor_doc;valor_medido;dif_rel;z;magnitud;motivo,{},tabla,""
 t25_evidencia_decisiones.md,(tabla),ledger_motivos.csv,motivo;n_cifras;ids,{},tabla,""
 t25_evidencia_decisiones.md,n_dec,t25_resumen_evidencia.csv,decisiones_n_total,{},entero,17
-t25_evidencia_decisiones.md,n_verde,t25_resumen_evidencia.csv,decisiones_n_verde,{},entero,5
-t25_evidencia_decisiones.md,n_amarillo,t25_resumen_evidencia.csv,decisiones_n_amarillo,{},entero,8
+t25_evidencia_decisiones.md,n_verde,t25_resumen_evidencia.csv,decisiones_n_verde,{},entero,4
+t25_evidencia_decisiones.md,n_amarillo,t25_resumen_evidencia.csv,decisiones_n_amarillo,{},entero,9
 t25_evidencia_decisiones.md,n_rojo,t25_resumen_evidencia.csv,decisiones_n_rojo,{},entero,1
 t25_evidencia_decisiones.md,n_gris,t25_resumen_evidencia.csv,decisiones_n_gris,{},entero,3
 t25_evidencia_decisiones.md,n_dec,t25_resumen_evidencia.csv,decisiones_n_total,{},entero,17
@@ -429,11 +429,11 @@ t25_evidencia_decisiones.md,evidencia,decisiones_evidencia.csv,evidencia,"{""n""
 t25_evidencia_decisiones.md,falta,decisiones_evidencia.csv,que_falta_con_datos_completos,"{""n"": 10}",texto,decisión institucional sobre si el prototipo muestra los nombres de los hospitales
 t25_evidencia_decisiones.md,estado,decisiones_evidencia.csv,estado,"{""n"": 10}",texto,pendiente de decisión humana
 t25_evidencia_decisiones.md,n,decisiones_evidencia.csv,n,"{""n"": 11}",texto,11
-t25_evidencia_decisiones.md,tema,decisiones_evidencia.csv,tema,"{""n"": 11}",texto,Aviso a FONASA
-t25_evidencia_decisiones.md,propuesta,decisiones_evidencia.csv,propuesta_fase1,"{""n"": 11}",texto,Definir cómo informar los valores con estructura de RUT
+t25_evidencia_decisiones.md,tema,decisiones_evidencia.csv,tema,"{""n"": 11}",texto,Valores con forma de RUT
+t25_evidencia_decisiones.md,propuesta,decisiones_evidencia.csv,propuesta_fase1,"{""n"": 11}",texto,Definir como se tratan sin guardar su contenido
 t25_evidencia_decisiones.md,tipo,decisiones_evidencia.csv,tipo_evidencia,"{""n"": 11}",texto,cuantitativa
 t25_evidencia_decisiones.md,semaforo,decisiones_evidencia.csv,semaforo,"{""n"": 11}",texto,verde
-t25_evidencia_decisiones.md,veredicto,decisiones_evidencia.csv,veredicto,"{""n"": 11}",texto,"1 respalda, 0 matiza, 0 contradice, 0 no evaluable | H11: hay valores con estructura de RUT que informar a FONASA por el canal formal"
+t25_evidencia_decisiones.md,veredicto,decisiones_evidencia.csv,veredicto,"{""n"": 11}",texto,"1 respalda, 0 matiza, 0 contradice, 0 no evaluable | H11: hay valores con estructura de RUT: se cuentan sin guardarlos y su columna no se usa"
 t25_evidencia_decisiones.md,evidencia,decisiones_evidencia.csv,evidencia,"{""n"": 11}",texto,H11: valores con estructura de RUT = 22
 t25_evidencia_decisiones.md,falta,decisiones_evidencia.csv,que_falta_con_datos_completos,"{""n"": 11}",texto,nada pendiente de datos; falta la decisión humana
 t25_evidencia_decisiones.md,estado,decisiones_evidencia.csv,estado,"{""n"": 11}",texto,pendiente de decisión humana
@@ -450,9 +450,9 @@ t25_evidencia_decisiones.md,n,decisiones_evidencia.csv,n,"{""n"": 13}",texto,13
 t25_evidencia_decisiones.md,tema,decisiones_evidencia.csv,tema,"{""n"": 13}",texto,Rastreo de traslados salientes
 t25_evidencia_decisiones.md,propuesta,decisiones_evidencia.csv,propuesta_fase1,"{""n"": 13}",texto,Rastrear con el identificador encriptado; atribuir al hospital que trasladó
 t25_evidencia_decisiones.md,tipo,decisiones_evidencia.csv,tipo_evidencia,"{""n"": 13}",texto,cuantitativa
-t25_evidencia_decisiones.md,semaforo,decisiones_evidencia.csv,semaforo,"{""n"": 13}",texto,verde
-t25_evidencia_decisiones.md,veredicto,decisiones_evidencia.csv,veredicto,"{""n"": 13}",texto,"1 respalda, 0 matiza, 0 contradice, 0 no evaluable | H13: el rastreo de traslados salientes se justifica: la tasa de enlace alcanza el mínimo"
-t25_evidencia_decisiones.md,evidencia,decisiones_evidencia.csv,evidencia,"{""n"": 13}",texto,"H13: tasa de enlace de los traslados salientes a 30 días en 2023 = 46,7 %; mínimo = 30 % | H01a (también afecta a esta decisión): quiebres del identificador entre años consecutivos = 1 (2020 a 2021); espacios de identificadores = 2019 a 2020; 2021 a 2024 | S01 RECHAZADO: IDs con fecha de nacimiento inconsistente = 2,30 %; con sexo inconsistente = 0,81 %; máximo aceptado = 1 %; base: IDs con dos o más episodios = 1.033.551 (nacimiento) y 1.033.444 (sexo conocido en dos o más episodios)"
+t25_evidencia_decisiones.md,semaforo,decisiones_evidencia.csv,semaforo,"{""n"": 13}",texto,amarillo
+t25_evidencia_decisiones.md,veredicto,decisiones_evidencia.csv,veredicto,"{""n"": 13}",texto,"0 respalda, 1 matiza, 0 contradice, 0 no evaluable | H13: la tasa de enlace alcanza el mínimo dentro de un espacio de identificadores, pero el quiebre del identificador impide rastrear en todo el período"
+t25_evidencia_decisiones.md,evidencia,decisiones_evidencia.csv,evidencia,"{""n"": 13}",texto,"H13: tasa de enlace de los traslados salientes a 30 días en 2023 = 46,7 %; mínimo = 30 %; quiebre del identificador = sí | H01a (también afecta a esta decisión): quiebres del identificador entre años consecutivos = 1 (2020 a 2021); espacios de identificadores = 2019 a 2020; 2021 a 2024 | S01 RECHAZADO: IDs con fecha de nacimiento inconsistente = 2,30 %; con sexo inconsistente = 0,81 %; máximo aceptado = 1 %; base: IDs con dos o más episodios = 1.033.551 (nacimiento) y 1.033.444 (sexo conocido en dos o más episodios)"
 t25_evidencia_decisiones.md,falta,decisiones_evidencia.csv,que_falta_con_datos_completos,"{""n"": 13}",texto,nada pendiente de datos; falta la decisión humana
 t25_evidencia_decisiones.md,estado,decisiones_evidencia.csv,estado,"{""n"": 13}",texto,pendiente de decisión humana
 t25_evidencia_decisiones.md,n,decisiones_evidencia.csv,n,"{""n"": 14}",texto,14
@@ -460,7 +460,7 @@ t25_evidencia_decisiones.md,tema,decisiones_evidencia.csv,tema,"{""n"": 14}",tex
 t25_evidencia_decisiones.md,propuesta,decisiones_evidencia.csv,propuesta_fase1,"{""n"": 14}",texto,Usarla solo en un análisis de sensibilidad aparte
 t25_evidencia_decisiones.md,tipo,decisiones_evidencia.csv,tipo_evidencia,"{""n"": 14}",texto,cuantitativa
 t25_evidencia_decisiones.md,semaforo,decisiones_evidencia.csv,semaforo,"{""n"": 14}",texto,verde
-t25_evidencia_decisiones.md,veredicto,decisiones_evidencia.csv,veredicto,"{""n"": 14}",texto,"1 respalda, 0 matiza, 0 contradice, 0 no evaluable | H14: la severidad del GRD revela el desenlace: corresponde a una sensibilidad aparte"
+t25_evidencia_decisiones.md,veredicto,decisiones_evidencia.csv,veredicto,"{""n"": 14}",texto,"1 respalda, 0 matiza, 0 contradice, 0 no evaluable | H14: la severidad del GRD revela el desenlace: queda prohibida, también en los análisis de sensibilidad (R6)"
 t25_evidencia_decisiones.md,evidencia,decisiones_evidencia.csv,evidencia,"{""n"": 14}",texto,"H14: IR_29301_SEVERIDAD: AUC de ranking = 0,847 y de confirmación = 0,861; supera a las variables basales; supera el umbral de fuga de 0,85 en la confirmación de 2023; IR_29301_MORTALIDAD (prohibida siempre por R6): AUC de ranking = 0,862 y de confirmación = 0,876"
 t25_evidencia_decisiones.md,falta,decisiones_evidencia.csv,que_falta_con_datos_completos,"{""n"": 14}",texto,nada pendiente de datos; falta la decisión humana
 t25_evidencia_decisiones.md,estado,decisiones_evidencia.csv,estado,"{""n"": 14}",texto,pendiente de decisión humana
@@ -479,7 +479,7 @@ t25_evidencia_decisiones.md,propuesta,decisiones_evidencia.csv,propuesta_fase1,"
 t25_evidencia_decisiones.md,tipo,decisiones_evidencia.csv,tipo_evidencia,"{""n"": 16}",texto,cuantitativa
 t25_evidencia_decisiones.md,semaforo,decisiones_evidencia.csv,semaforo,"{""n"": 16}",texto,amarillo
 t25_evidencia_decisiones.md,veredicto,decisiones_evidencia.csv,veredicto,"{""n"": 16}",texto,"0 respalda, 2 matiza, 0 contradice, 0 no evaluable | H16a (solo informa): se informa la proporción de entrantes que se enlaza con un traslado saliente previo | H16b (solo informa): se informa la diferencia de mortalidad de los entrantes con su intervalo; la decisión es humana"
-t25_evidencia_decisiones.md,evidencia,decisiones_evidencia.csv,evidencia,"{""n"": 16}",texto,"H16a: 2019-2023: entrantes enlazados con un traslado saliente previo a 30 días = 11,7 % de 285.619 elegibles | H16b: 2019-2023: mortalidad de los entrantes = 7,88 %; de los demás ingresos = 3,93 %; razón = 2,00 (intervalo de 1,97 a 2,03) | H02c (también afecta a esta decisión): HOSPPROCEDENCIA con el hospital del egreso = 31,5 % (máximo aceptado 5 %) | H13 (también afecta a esta decisión): tasa de enlace de los traslados salientes a 30 días en 2023 = 46,7 %; mínimo = 30 % | S04 ACEPTADO: etiquetas de TIPOALTA con 10 casos o más y sin rol asignado = 0 de 12 con esos casos; no cuentan 0 etiquetas con menos casos, suprimidas o ausentes de los datos"
+t25_evidencia_decisiones.md,evidencia,decisiones_evidencia.csv,evidencia,"{""n"": 16}",texto,"H16a: 2019-2023: entrantes enlazados con un traslado saliente previo a 30 días = 11,7 % de 285.619 elegibles | H16b: 2019-2023: mortalidad de los entrantes = 7,88 %; de los demás ingresos = 3,93 %; razón = 2,00 (intervalo de 1,97 a 2,03) | H02c (también afecta a esta decisión): HOSPPROCEDENCIA con el hospital del egreso = 31,5 % (máximo aceptado 5 %) | H13 (también afecta a esta decisión): tasa de enlace de los traslados salientes a 30 días en 2023 = 46,7 %; mínimo = 30 %; quiebre del identificador = sí | S04 ACEPTADO: etiquetas de TIPOALTA con 10 casos o más y sin rol asignado = 0 de 12 con esos casos; no cuentan 0 etiquetas con menos casos, suprimidas o ausentes de los datos"
 t25_evidencia_decisiones.md,falta,decisiones_evidencia.csv,que_falta_con_datos_completos,"{""n"": 16}",texto,nada pendiente de datos; falta la decisión humana
 t25_evidencia_decisiones.md,estado,decisiones_evidencia.csv,estado,"{""n"": 16}",texto,pendiente de decisión humana
 t25_evidencia_decisiones.md,n,decisiones_evidencia.csv,n,"{""n"": 17}",texto,17
@@ -487,8 +487,8 @@ t25_evidencia_decisiones.md,tema,decisiones_evidencia.csv,tema,"{""n"": 17}",tex
 t25_evidencia_decisiones.md,propuesta,decisiones_evidencia.csv,propuesta_fase1,"{""n"": 17}",texto,2019 a 2022 (plan) o 2020 a 2022 (repositorio)
 t25_evidencia_decisiones.md,tipo,decisiones_evidencia.csv,tipo_evidencia,"{""n"": 17}",texto,cuantitativa
 t25_evidencia_decisiones.md,semaforo,decisiones_evidencia.csv,semaforo,"{""n"": 17}",texto,amarillo
-t25_evidencia_decisiones.md,veredicto,decisiones_evidencia.csv,veredicto,"{""n"": 17}",texto,"0 respalda, 2 matiza, 0 contradice, 0 no evaluable | H17a: hay deriva entre 2019 y los años siguientes o un quiebre del identificador: se propone la ventana de 2020 a 2022 | H17b: la serie mensual tiene quiebres: se evalúa si justifican cambiar la ventana de entrenamiento"
-t25_evidencia_decisiones.md,evidencia,decisiones_evidencia.csv,evidencia,"{""n"": 17}",texto,"H17a: variables clave con PSI alto contra 2023 = 7 de 50; quiebre del identificador = sí; PSI alto desde 0,25 | H17b: meses con quiebre al alza = 12; a la baja = 15 de 48 meses evaluados | H01a (también afecta a esta decisión): quiebres del identificador entre años consecutivos = 1 (2020 a 2021); espacios de identificadores = 2019 a 2020; 2021 a 2024 | H01b (también afecta a esta decisión): años evaluables = 3; cumplen el mínimo = 3 (2020: 97,4 %; 2022: 98,3 %; 2023: 99,8 %); mínimo = 80 % | S11 ACEPTADO: aumento relativo del promedio de diagnósticos secundarios entre el primer y el último año = 41,8 % (intervalo de 41,4 % a 42,2 %)"
+t25_evidencia_decisiones.md,veredicto,decisiones_evidencia.csv,veredicto,"{""n"": 17}",texto,"1 respalda, 1 matiza, 0 contradice, 0 no evaluable | H17a: no hay deriva ni quiebre del identificador que justifique acortar la ventana de entrenamiento | H17b: la serie mensual tiene quiebres: se evalúa si justifican cambiar la ventana de entrenamiento"
+t25_evidencia_decisiones.md,evidencia,decisiones_evidencia.csv,evidencia,"{""n"": 17}",texto,"H17a: variables clave con PSI alto contra 2023 = 7 de 50; quiebre del identificador = sí, pero no afecta: el historial no se usa; PSI alto desde 0,25 | H17b: meses con quiebre al alza = 12; a la baja = 15 de 48 meses evaluados | H01a (también afecta a esta decisión): quiebres del identificador entre años consecutivos = 1 (2020 a 2021); espacios de identificadores = 2019 a 2020; 2021 a 2024 | H01b (también afecta a esta decisión): años evaluables = 3; cumplen el mínimo = 3 (2020: 97,4 %; 2022: 98,3 %; 2023: 99,8 %); mínimo = 80 % | S11 ACEPTADO: aumento relativo del promedio de diagnósticos secundarios entre el primer y el último año = 41,8 % (intervalo de 41,4 % a 42,2 %)"
 t25_evidencia_decisiones.md,falta,decisiones_evidencia.csv,que_falta_con_datos_completos,"{""n"": 17}",texto,nada pendiente de datos; falta la decisión humana
 t25_evidencia_decisiones.md,estado,decisiones_evidencia.csv,estado,"{""n"": 17}",texto,pendiente de decisión humana
 t25_evidencia_decisiones.md,n_sup,t25_resumen_evidencia.csv,decisiones_n_supuestos,{},entero,15
@@ -496,13 +496,13 @@ t25_evidencia_decisiones.md,n_ac,t25_resumen_evidencia.csv,decisiones_n_supuesto
 t25_evidencia_decisiones.md,n_re,t25_resumen_evidencia.csv,decisiones_n_supuestos_rechazados,{},entero,7
 t25_evidencia_decisiones.md,n_ne,t25_resumen_evidencia.csv,decisiones_n_supuestos_no_evaluables,{},entero,2
 t25_evidencia_decisiones.md,(tabla),supuestos_verificados.csv,id;supuesto;estado;cifra;tabla,{},tabla,""
-t25_evidencia_decisiones.md,n_total,t25_resumen_evidencia.csv,cambios_n_total,{},entero,41
+t25_evidencia_decisiones.md,n_total,t25_resumen_evidencia.csv,cambios_n_total,{},entero,37
 t25_evidencia_decisiones.md,n_f1,t25_resumen_evidencia.csv,cambios_n_fase1,{},entero,10
-t25_evidencia_decisiones.md,n_f2,t25_resumen_evidencia.csv,cambios_n_fase2,{},entero,31
+t25_evidencia_decisiones.md,n_f2,t25_resumen_evidencia.csv,cambios_n_fase2,{},entero,27
 t25_evidencia_decisiones.md,n_alta,t25_resumen_evidencia.csv,cambios_n_alta,{},entero,7
-t25_evidencia_decisiones.md,n_media,t25_resumen_evidencia.csv,cambios_n_media,{},entero,27
-t25_evidencia_decisiones.md,n_baja,t25_resumen_evidencia.csv,cambios_n_baja,{},entero,7
-t25_evidencia_decisiones.md,n_corr,t25_resumen_evidencia.csv,cambios_n_correccion,{},entero,37
+t25_evidencia_decisiones.md,n_media,t25_resumen_evidencia.csv,cambios_n_media,{},entero,26
+t25_evidencia_decisiones.md,n_baja,t25_resumen_evidencia.csv,cambios_n_baja,{},entero,4
+t25_evidencia_decisiones.md,n_corr,t25_resumen_evidencia.csv,cambios_n_correccion,{},entero,33
 t25_evidencia_decisiones.md,n_acl,t25_resumen_evidencia.csv,cambios_n_aclaracion,{},entero,4
 t25_evidencia_decisiones.md,n_pend,t25_resumen_evidencia.csv,cambios_n_pendiente,{},entero,0
 t25_evidencia_decisiones.md,(tabla),cambios_fase1.csv,id;ubicacion;prioridad;tipo;hallazgo;texto_propuesto,{},tabla,""
@@ -515,12 +515,12 @@ t26_cierre.md,n_tablas,t26_resumen_cierre.csv,n_tablas,{},entero,97
 t26_cierre.md,n_figuras,t26_resumen_cierre.csv,n_figuras,{},entero,33
 t26_cierre.md,n_informes,t26_resumen_cierre.csv,n_informes,{},entero,7
 t26_cierre.md,(tabla),verificacion_dt.csv,id;criterio;estado;detalle,{},tabla,""
-t26_cierre.md,n_cambios,t25_resumen_evidencia.csv,cambios_n_protocolo,{},entero,5
-t26_cierre.md,version,t25_resumen_evidencia.csv,cambios_protocolo_version,{},texto,v1.5
+t26_cierre.md,n_cambios,t25_resumen_evidencia.csv,cambios_n_protocolo,{},entero,6
+t26_cierre.md,version,t25_resumen_evidencia.csv,cambios_protocolo_version,{},texto,v1.6
 t26_cierre.md,(tabla),cambios_protocolo.csv,id;descripcion,{},tabla,""
 t26_cierre.md,n_noev,t25_resumen_evidencia.csv,decisiones_n_hipotesis_no_evaluable,{},entero,3
 t26_cierre.md,n_hip,t25_resumen_evidencia.csv,decisiones_n_hipotesis,{},entero,26
-t26_cierre.md,n_nv,t25_resumen_evidencia.csv,ledger_n_no_verificable,{},entero,40
+t26_cierre.md,n_nv,t25_resumen_evidencia.csv,ledger_n_no_verificable,{},entero,50
 t26_cierre.md,n_cifras,t25_resumen_evidencia.csv,ledger_n_cifras,{},entero,129
 t26_cierre.md,n_sup_ne,t25_resumen_evidencia.csv,decisiones_n_supuestos_no_evaluables,{},entero,2
 t26_cierre.md,n_sup,t25_resumen_evidencia.csv,decisiones_n_supuestos,{},entero,15
