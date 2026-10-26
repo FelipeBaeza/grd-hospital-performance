@@ -297,6 +297,13 @@ def test_el_cortafuegos_rechaza_el_desenlace_de_2024_si_se_pide_con_otro_proposi
             ctx.lector.leer(2024, ["FECHAALTA"], proposito=prop, tarea="T07")
 
 
+def test_la_estadia_sin_dato_va_con_un_dia_o_mas_para_no_ocultar_el_estrato_de_cero_dias(corrida):
+    """Cambio 1.6: la estadía sin dato no es una categoría propia de ``estancia_cero`` (con menos de diez egresos obligaba a ocultar «0 días»)."""
+    _, r = corrida
+    cats = set(r["estratos"].filter(pl.col("variable") == "estancia_cero")["categoria"].to_list())
+    assert cats <= {"0 días", cohorte.CATEGORIA_NO_CERO} and "0 días" in cats and cohorte.SIN_DATO not in cats
+
+
 def test_los_estratos_de_la_decision_15_marcan_el_umbral_y_las_razones_son_coherentes(corrida, u):
     _, r = corrida
     e = r["estratos"]

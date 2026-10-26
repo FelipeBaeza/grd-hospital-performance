@@ -903,7 +903,7 @@ def test_los_conteos_de_1_a_9_casos_quedan_protegidos_en_el_csv(ledger_corrido):
 def test_la_tabla_se_registra_con_sus_columnas_de_conteo_y_la_privacidad_queda_en_cero(ledger_corrido):
     ctx_l, _ = ledger_corrido
     fila = ctx_l.indice_tablas().filter(pl.col("nombre") == "ledger_cifras.csv").row(0, named=True)
-    assert fila["columnas_conteo"] == "n_doc;n_medido" and fila["tarea"] == "T12" and fila["celdas_suprimidas"] >= 5
+    assert fila["columnas_conteo"] == "n_doc;n_medido" and fila["tarea"] == "T12" and fila["celdas_suprimidas"] >= 1
     esc = privacidad.escanear_salidas(ctx_l.dir_salida, ctx_l.indice_tablas(), ctx_l.celda_minima)
     assert privacidad.total_violaciones(esc) == 0, esc.filter(pl.col("n_violaciones") > 0)
 
@@ -913,7 +913,10 @@ def test_las_columnas_de_conteo_solo_existen_en_los_conteos_absolutos(ledger_cor
     no_conteo = df.filter(~((pl.col("tipo") == "absoluto") & (pl.col("unidad") == "conteo")))
     assert no_conteo["n_doc"].null_count() == no_conteo.height and no_conteo["n_medido"].null_count() == no_conteo.height
     conteo = df.filter((pl.col("tipo") == "absoluto") & (pl.col("unidad") == "conteo"))
-    assert conteo["n_doc"].null_count() == 0
+    # los cinco documentados como «<10» (cambio 1.6) no traen el conteo documentado; los demás sí
+    pequenos = {"C031", "C080", "C082", "C085", "C097"}
+    assert conteo.filter(pl.col("id").is_in(pequenos))["n_doc"].null_count() == 5
+    assert conteo.filter(~pl.col("id").is_in(pequenos))["n_doc"].null_count() == 0
 
 
 def test_la_tarea_12_no_lee_datos_ni_deja_filas_en_el_registro_de_accesos(pipeline_sintetico, tmp_path, monkeypatch):

@@ -371,7 +371,7 @@ def figura_r4(ctx: Contexto) -> None:
     ax.set_xticks(x)
     ax.set_xticklabels([g.replace(" de ", "\nde ") for g in grupos], fontsize=8)
     ax.set_ylabel("% de los egresos de la cohorte C")
-    ax.legend(fontsize=8, frameon=False, loc="upper right")
+    ax.legend(fontsize=8, frameon=False, loc="upper left")
     graficos.formato_decimal(ax)
     ctx.figuras.guardar_figura(
         fig, id_figura="R03", tarea=TAREA, titulo="Traslados y hospitalización domiciliaria según el tipo de hospital (DEIS 2025), 2019–2023",
