@@ -441,6 +441,7 @@ def test_h11_respalda_con_rut_y_matiza_con_cero():
     f = fuente_base("extracto", metricas={"calidad.valores_rut.total": metrica(5)})
     r = ev("H11", f)
     assert r.resultado == "respalda" and r.cifras_clave == "valores con estructura de RUT = 5"
+    assert "FONASA" not in r.veredicto and "sin guardarlos" in r.veredicto                    # cambio 1.6: ya no se propone informar a FONASA
     cero = ev("H11")
     assert cero.cifras_clave == "valores con estructura de RUT = 0" and "no se encontraron" in cero.veredicto
 
@@ -466,6 +467,16 @@ def test_h13_respalda_o_contradice_segun_el_enlace_y_solo_con_datos_completos():
     assert ev("H13", fuente("completo")).resultado == "contradice"                           # la fila base trae "no"
 
 
+def test_h13_matiza_si_el_identificador_tiene_un_quiebre():
+    """Cambio 1.6: el criterio pide un espacio de identificadores consistente; con un quiebre (H01a) el rastreo no cubre todo el período."""
+    asi = lambda v: fuente("completo", **{"t23_resumen_hospitales.csv": df({"autorref_prop_exacta": 0.3, "autorref_supera_maximo": "si", "enlace_anio": 2023, "enlace_ventana_dias": 30,
+                                                                       "enlace_tasa": 0.467, "enlace_cumple_minimo": v})})
+    r = ev("H13", asi("si"), {"H01a": Resultado("matiza", "v", "t", "c")})
+    assert r.resultado == "matiza" and r.cifras_clave.endswith("quiebre del identificador = sí") and "todo el período" in r.veredicto
+    assert ev("H13", asi("si"), {"H01a": Resultado("respalda", "v", "t", "c")}).resultado == "respalda"
+    assert ev("H13", asi("no"), {"H01a": Resultado("matiza", "v", "t", "c")}).resultado == "contradice"
+
+
 # ================================================================================================================================ decisión 14
 def _fuga_df(basales, fuga, mortalidad=True):
     filas = [{"tipo_fila": "variable", "variable": "IR_29301_SEVERIDAD", "supera_a_basales": basales, "supera_umbral_fuga": fuga, "prohibida_siempre": "no", "auc_ranking": 0.842, "auc_confirmacion": 0.858}]
@@ -481,6 +492,7 @@ def test_h14_exige_las_dos_condiciones_a_la_vez(basales, fuga, esperado):
 
 def test_h14_cita_los_auc_de_ranking_y_confirmacion_de_ambas_variables():
     r = ev("H14")
+    assert "queda prohibida" in r.veredicto and "sensibilidad aparte" not in r.veredicto     # cambio 1.6
     assert "IR_29301_SEVERIDAD: AUC de ranking = 0,842 y de confirmación = 0,858" in r.cifras_clave and "supera el umbral de fuga de 0,85" in r.cifras_clave
     assert "IR_29301_MORTALIDAD (prohibida siempre por R6): AUC de ranking = 0,860 y de confirmación = 0,871" in r.cifras_clave
     assert ev("H14", fuente(**{"t23_fuga.csv": _fuga_df("si", "si", mortalidad=False)})).resultado == "no_evaluable"
@@ -580,6 +592,20 @@ H01A_MATIZA = Resultado("matiza", "v", "t", "c")
 ])
 def test_h17a_mayoria_de_variables_con_psi_alto_o_quiebre_del_identificador(n_alto, previos, esperado):
     assert ev("H17a", fuente(**{"t23_resumen_seleccion.csv": _resumen_17(n_alto)}), previos).resultado == esperado
+
+
+H01C_CONTRADICE = Resultado("contradice", "v", "t", "c")
+
+
+@pytest.mark.parametrize("n_alto, previos, esperado, texto", [
+    (0, {"H01a": H01A_MATIZA, "H01c": H01C_CONTRADICE}, "respalda", "sí, pero no afecta: el historial no se usa"),   # cambio 1.6
+    (24, {"H01a": H01A_MATIZA, "H01c": H01C_CONTRADICE}, "matiza", "sí, pero no afecta: el historial no se usa"),    # la deriva sigue contando
+    (0, {"H01a": H01A_MATIZA, "H01c": Resultado("matiza", "v", "t", "c")}, "matiza", "quiebre del identificador = sí;"),
+    (0, {"H01a": H01A_MATIZA, "H01c": Resultado("no_evaluable", "v", "t", "c")}, "matiza", "quiebre del identificador = sí;"),
+])
+def test_h17a_el_quiebre_solo_cuenta_si_el_historial_se_usa(n_alto, previos, esperado, texto):
+    r = ev("H17a", fuente(**{"t23_resumen_seleccion.csv": _resumen_17(n_alto)}), previos)
+    assert r.resultado == esperado and texto in r.cifras_clave
 
 
 def test_h17a_texto_y_casos_sin_dato():
@@ -753,8 +779,8 @@ def test_semaforo_esperado_de_las_17_decisiones_con_datos_completos():
     d, _ = _construir(f)
     sem = dict(zip(d["n"], d["semaforo"]))
     assert {n for n, s in sem.items() if s == "gris"} == {4, 10, 12}
-    assert {n for n, s in sem.items() if s == "verde"} == {3, 7, 13, 14}
-    assert {n for n, s in sem.items() if s == "amarillo"} == {1, 2, 5, 6, 8, 9, 11, 15, 16, 17}
+    assert {n for n, s in sem.items() if s == "verde"} == {3, 7, 14}
+    assert {n for n, s in sem.items() if s == "amarillo"} == {1, 2, 5, 6, 8, 9, 11, 13, 15, 16, 17}      # cambio 1.6: la 13 matiza por el quiebre del identificador
 
 
 def test_un_contradicho_pone_la_decision_en_rojo():

@@ -1,7 +1,9 @@
 """Supresión de celdas pequeñas (regla P2: no se publican cifras con menos de 10 casos).
 
 Se suprime la celda de conteo con ``1 <= n < minimo``. El cero se informa porque no identifica
-a nadie. Es supresión primaria: no se aplica supresión complementaria entre celdas.
+a nadie. Es supresión primaria. La complementaria (que ninguna suma conocida quede con una sola
+celda oculta) la aplica ``proteccion.py`` en las tablas declaradas en ``proteccion_tablas.py``
+(cambio 1.6 del protocolo); ``Contexto.escribir_tabla`` elige una u otra.
 """
 
 from __future__ import annotations

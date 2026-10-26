@@ -927,6 +927,44 @@ def calcular(ctx: Contexto, cat: catalogos.Catalogos | None = None) -> dict[str,
     return out
 
 
+CONTEOS_VARIANTE = ("n", "n_fallecidos", "n_no_evento", "n_censurados", "n_sin_dato")
+SIGUIENTE_VARIANTE = {"A": "B", "B": "C", "C": "D", "D": "E"}
+
+
+def con_variante_siguiente(var: pl.DataFrame) -> pl.DataFrame:
+    """Agrega ``_hijo_<conteo>``: el valor de la variante siguiente del mismo período (columnas auxiliares de la supresión complementaria).
+
+    Cada variante es la anterior menos un paso de la cascada; la resta de dos variantes vecinas es el conteo de ese paso y también se protege.
+    """
+    hijo = var.select("periodo", pl.col("variante").alias("_v"), *[pl.col(c).alias(f"_hijo_{c}") for c in CONTEOS_VARIANTE])
+    padre = var.with_columns(pl.col("variante").replace_strict(SIGUIENTE_VARIANTE, default=None, return_dtype=pl.String).alias("_v"))
+    return padre.join(hijo, on=["periodo", "_v"], how="left", maintain_order="left").drop("_v")
+
+
+def con_total_secreto(est: pl.DataFrame, resultado_anio: pl.DataFrame, minimo: int) -> pl.DataFrame:
+    """Agrega ``_T_oculto``: en qué períodos el total de fallecidos de la base de los estratos no puede deducirse.
+
+    La base de los estratos (adultos de la cohorte dura con desenlace conocido) es la cohorte D más la actividad ambulatoria. Los fallecidos
+    de D son públicos (``t23_resultado_anio.csv``), así que el total de la base menos los de D deja los fallecidos en actividad ambulatoria.
+    Donde ese resto tiene de 1 a 9 casos, el total es secreto. Los períodos agregados suman sus años, así que se decide con la misma
+    supresión complementaria sobre una tabla de totales (el período 2019-2022 queda secreto si el 2023 lo es y 2019-2023 se publica).
+    """
+    from . import proteccion as pr
+
+    tot = est.filter(pl.col("variable") == "actividad_grupo").group_by("periodo").agg(pl.col("n_fallecidos").sum().alias("T"))
+    d = resultado_anio.filter(pl.col("base") == "D").select("periodo", pl.col("n_fallecidos").alias("D"))
+    t = tot.join(d, on="periodo", how="left").sort("periodo")
+    a22, a23 = ("2019", "2020", "2021", "2022"), ("2019", "2020", "2021", "2022", "2023")
+    prot = pr.Proteccion(
+        grupos=(pr.Grupo((), donde=pr.donde(periodo=("2019-2022", *a22)), columnas=("T",)), pr.Grupo((), donde=pr.donde(periodo=("2019-2023", *a23)), columnas=("T",)),
+                pr.Grupo((), donde=pr.donde(periodo=("2019-2022", "2019-2023", "2023")), columnas=("T",))),
+        filas=(pr.Fila(("T", "D"), resto_de="T"),),
+    )
+    oculto = pr.complementar(t, ["T"], prot, minimo).ocultas["T"]
+    secretos = {p for p, h in zip(t["periodo"].to_list(), oculto) if h}
+    return est.with_columns(pl.col("periodo").is_in(list(secretos)).alias("_T_oculto"))
+
+
 def _escribir(ctx: Contexto, r: dict[str, Any]) -> None:
     TA = TAREA
     ctx.escribir_tabla("t23_cascada.csv", r["cascada"], tarea=TA, descripcion="Cascada secuencial de exclusiones y variantes de cohorte A a E",
@@ -934,22 +972,25 @@ def _escribir(ctx: Contexto, r: dict[str, Any]) -> None:
     ctx.escribir_tabla("t23_cascada_pipeline.csv", r["cascada_pipeline"], tarea=TA,
                        descripcion="Cascada con la definición aproximada del pipeline (EX03 con sobrevivientes y mapeo de tres caracteres)",
                        cols_n=["n"], dependientes=["prop_del_total"])
-    ctx.escribir_tabla("t23_cascada_variantes.csv", r["variantes"], tarea=TA, descripcion="Tamaño, fallecidos y prevalencia de las variantes de cohorte A a E",
+    ctx.escribir_tabla("t23_cascada_variantes.csv", con_variante_siguiente(r["variantes"]), tarea=TA, descripcion="Tamaño, fallecidos y prevalencia de las variantes de cohorte A a E",
                        cols_n=["n", "n_fallecidos", "n_no_evento", "n_censurados", "n_sin_dato"],
-                       dependientes=["prevalencia", "ic_bajo", "ic_alto", "prevalencia_conocida", "ic_bajo_conocida", "ic_alto_conocida", "dif_prevalencia_pp"])
+                       dependientes=["prevalencia", "ic_bajo", "ic_alto", "prevalencia_conocida", "ic_bajo_conocida", "ic_alto_conocida", "dif_prevalencia_pp"],
+                       auxiliares=[f"_hijo_{c}" for c in CONTEOS_VARIANTE])
     if "resultado_anio" not in r:
         return
-    ctx.escribir_tabla("t23_tipoalta.csv", r["tipoalta"], tarea=TA, descripcion="Distribución del tipo de alta con su rol, por año y período",
-                       cols_n=["n"], dependientes=["prop"])
+    # _columna y _clave unen esta tabla con la distribución de TIPOALTA de la Tarea 4 (mismas celdas): hereda lo que esa tabla ocultó
+    ctx.escribir_tabla("t23_tipoalta.csv", r["tipoalta"].with_columns(pl.lit("TIPOALTA").alias("_columna"), pl.col("etiqueta").alias("_clave")), tarea=TA,
+                       descripcion="Distribución del tipo de alta con su rol, por año y período", cols_n=["n"], dependientes=["prop"], auxiliares=["_columna", "_clave"])
     ctx.escribir_tabla("t23_resultado_anio.csv", r["resultado_anio"], tarea=TA,
                        descripcion="Mortalidad por año y período con IC de Wilson y razón contra el año previo y contra el primer año",
                        cols_n=["n", "n_fallecidos", "n_no_evento", "n_censurados", "n_sin_dato"],
                        dependientes=["mortalidad", "mortalidad_conocida", "ic_bajo", "ic_alto", "ic_bajo_conocida", "ic_alto_conocida", "rr_previo",
                                      "rr_previo_bajo", "rr_previo_alto", "quiebre_anual", "rr_primero", "rr_primero_bajo", "rr_primero_alto"])
-    ctx.escribir_tabla("t23_resultado_estratos.csv", r["estratos"], tarea=TA,
+    ctx.escribir_tabla("t23_resultado_estratos.csv", con_total_secreto(r["estratos"], r["resultado_anio"], ctx.celda_minima), tarea=TA,
                        descripcion="Mortalidad por estrato en adultos de la cohorte dura con desenlace conocido (decisión 15)",
                        cols_n=["n", "n_fallecidos"],
-                       dependientes=["participacion", "mortalidad", "ic_bajo", "ic_alto", "razon_vs_resto", "razon_bajo", "razon_alto", "bajo_umbral"])
+                       dependientes=["participacion", "mortalidad", "ic_bajo", "ic_alto", "razon_vs_resto", "razon_bajo", "razon_alto", "bajo_umbral"],
+                       auxiliares=["_T_oculto"])
     ctx.escribir_tabla("t23_resultado_edad_sexo.csv", r["edad_sexo"], tarea=TA,
                        descripcion="Mortalidad y estadía de sobrevivientes por grupo de edad y sexo en la cohorte dura con desenlace conocido",
                        cols_n=["n", "n_fallecidos", "n_estancia"], dependientes=["mortalidad", "ic_bajo", "ic_alto", "estancia_media"])
@@ -1023,17 +1064,22 @@ def registrar_metricas(ctx: Contexto, r: dict[str, Any]) -> None:
     if por.get("2021") and por.get("2023"):
         m("resultado.caida_mortalidad_2021_2023_pct", 100.0 * (por["2021"] - por["2023"]) / por["2021"], tarea=TAREA, tabla="t23_resultado_anio.csv", alcance="2021-2023")
     # tipo de alta
-    ta = r["tipoalta"].filter(pl.col("periodo") == a_res)
-    tot = ta["n"].sum()
+    from .proteccion import suma_publicada
+
+    tot = r["tipoalta"].filter(pl.col("periodo") == a_res)["n"].sum()           # el total del período es público (filas leídas)
+    ta = ctx.leer_tabla("t23_tipoalta.csv", columnas_texto=["periodo", "etiqueta", "codigo", "rol"]).filter(pl.col("periodo") == a_res)
     if tot:
         for row in ta.iter_rows(named=True):
-            m(f"tipoalta.pct.{row['codigo']}", 100.0 * row["n"] / tot, tarea=TAREA, tabla="t23_tipoalta.csv", alcance=a_res)
-        suma = lambda f: 100.0 * ta.filter(f)["n"].sum() / tot  # noqa: E731
+            m(f"tipoalta.pct.{row['codigo']}", None if row["n"] is None else 100.0 * row["n"] / tot, tarea=TAREA, tabla="t23_tipoalta.csv", alcance=a_res)
+
+        def suma(f: pl.Expr) -> float | None:
+            s = suma_publicada(ta.filter(f)["n"])
+            return None if s is None else 100.0 * s / tot
         m("tipoalta.pct.sobrevivientes", suma(pl.col("rol") == "NO_EVENTO"), tarea=TAREA, tabla="t23_tipoalta.csv", alcance=a_res)
         m("tipoalta.pct.censurados", suma(pl.col("rol") == "CENSURADO"), tarea=TAREA, tabla="t23_tipoalta.csv", alcance=a_res)
         m("tipoalta.pct.derivaciones_hospital", suma(pl.col("codigo").is_in(["DERIV_HOSP_SERVICIO", "DERIV_HOSP_RED"])), tarea=TAREA, tabla="t23_tipoalta.csv", alcance=a_res)
     # variantes
-    for row in r["variantes"].iter_rows(named=True):
+    for row in ctx.leer_tabla("t23_cascada_variantes.csv", columnas_texto=["periodo", "variante", "descripcion"]).iter_rows(named=True):
         per = row["periodo"].replace("-", "_")
         m(f"cohorte.n.{row['variante']}.{per}", row["n"], tarea=TAREA, tabla="t23_cascada_variantes.csv", conteo=True, alcance=row["periodo"])
         if row["prevalencia"] is not None:
@@ -1244,6 +1290,7 @@ def figura_edad_sexo(ctx: Contexto) -> None:
     etiquetas = [g[0] for g in GRUPOS_EDAD]
     xs = np.arange(len(etiquetas))
     colores = {"MUJER": graficos.OKABE_ITO[5], "HOMBRE": graficos.OKABE_ITO[0]}
+    hay_positivos = False
     for sexo, color in colores.items():
         for periodo, estilo in zip(periodos, ("-", "--")):
             s = t.filter((pl.col("periodo") == periodo) & (pl.col("sexo") == sexo) & (pl.col("grupo_edad") != EDAD_DESCONOCIDA)).sort("orden")
@@ -1252,11 +1299,13 @@ def figura_edad_sexo(ctx: Contexto) -> None:
             pos = s["orden"].to_numpy()
             m, lo, hi = _arr(s["mortalidad"], 100), _arr(s["ic_bajo"], 100), _arr(s["ic_alto"], 100)
             m = np.where(m > 0, m, np.nan)
+            hay_positivos = hay_positivos or bool(np.isfinite(m).any())
             a1.plot(pos, m, estilo, marker="o", ms=3.5, color=color, label=f"{sexo.capitalize()} {periodo}")
             if periodo == periodos[0]:
                 a1.fill_between(pos, np.where(lo > 0, lo, np.nan), hi, color=color, alpha=0.15, lw=0)
             a2.plot(pos, _arr(s["estancia_media"]), estilo, marker="o", ms=3.5, color=color, label=f"{sexo.capitalize()} {periodo}")
-    a1.set_yscale("log")
+    if hay_positivos:                      # con todas las celdas suprimidas (extractos chicos) no hay nada que poner en escala logarítmica
+        a1.set_yscale("log")
     graficos.formato_decimal(a1, "y")
     a1.set_ylabel("Mortalidad (%, escala logarítmica)")
     a2.set_ylabel("Estadía media de los sobrevivientes (días)")

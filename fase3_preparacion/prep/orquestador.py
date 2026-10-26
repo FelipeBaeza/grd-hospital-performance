@@ -131,6 +131,24 @@ def run(data_root: Path, capas: Path, salidas: Path, etapas: list[str], anios: l
     return {"tiempos": tiempos}
 
 
+def filas_rut(reportes: list[dict], celda: int) -> list[dict]:
+    """Hallazgos con forma de RUT por año y columna, con supresión primaria y complementaria.
+
+    El total de cada año es público (la Fase 2 lo publica en ``t24_reglas.csv``, regla Q17), así que si en un año una sola columna
+    tiene menos de ``celda`` hallazgos, la resta la dejaría ver: se oculta también la columna con menos hallazgos de ese año («suprimido»).
+    """
+    filas = []
+    for r in reportes:
+        cel = sorted(((c, int(n)) for c, n in r["hallazgos_rut"].items() if int(n) > 0), key=lambda x: (x[1], x[0]))
+        chicas = [c for c, n in cel if n < celda]
+        grandes = [c for c, n in cel if n >= celda]                       # ya ordenadas de menor a mayor
+        compl = {grandes[0]} if len(chicas) == 1 and grandes else set()
+        for c, n in sorted(r["hallazgos_rut"].items()):
+            n = int(n)
+            filas.append({"anio": r["anio"], "columna": c, "n": f"<{celda}" if 0 < n < celda else ("suprimido" if c in compl else str(n))})
+    return filas
+
+
 def tablas_resumen(capas: Path, salidas: Path, anios: list[int]) -> None:
     """Resúmenes de Bronce, Plata, cascada y Oro a partir de los reportes de cada capa."""
     u = cargar_umbrales()
@@ -140,7 +158,7 @@ def tablas_resumen(capas: Path, salidas: Path, anios: list[int]) -> None:
     escribir(pl.DataFrame([{k: r[k] for k in ("anio", "archivo", "sha256_origen", "bytes_origen", "lineas_datos", "filas_leidas", "filas_rechazadas", "cuadra",
                                               "columnas_origen", "columnas_bronce", "filas_repetidas_exactas")} for r in rb]).rename({"filas_rechazadas": "lineas_defectuosas_rechazadas"}), tablas / "bronce_resumen.csv")
     celda = int(u["celda_minima"])
-    rut = [{"anio": r["anio"], "columna": c, "n": (str(n) if n >= celda else f"<{celda}")} for r in rb for c, n in r["hallazgos_rut"].items()]
+    rut = filas_rut(rb, celda)
     escribir(pl.DataFrame(rut, schema={"anio": pl.Int64, "columna": pl.String, "n": pl.String}), tablas / "bronce_hallazgos_rut.csv")
     rp = [json.loads((d_p / f"reporte_plata_{a}.json").read_text(encoding="utf8")) for a in anios]
     escribir(pl.DataFrame([{"anio": r["anio"], "filas_bronce": r["filas_bronce"], "filas_plata": r["filas_plata"], "cuadra": r["cuadra"], "columnas_plata": r["columnas_plata"],

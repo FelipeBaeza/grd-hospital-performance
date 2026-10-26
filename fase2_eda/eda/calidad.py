@@ -33,7 +33,7 @@ from .informes import Informe, cifra
 TAREA = "T05"
 ANIOS_TXT = "2019 a 2024"
 SEVERIDADES = ("alta", "media", "baja")
-ACCIONES = ("anular", "recodificar", "excluir", "informar_fonasa", "informar")
+ACCIONES = ("anular", "recodificar", "excluir", "informar")
 ALCANCES = ("anio", "regimen")
 COLUMNAS_BASE = (
     "CIP_ENCRIPTADO",
@@ -630,6 +630,8 @@ def _resumen(ctx: Contexto, r: dict) -> dict[str, Any]:
 
 
 def _registrar_metricas(ctx: Contexto, r: dict) -> None:
+    # las cifras se toman de la tabla publicada: una celda oculta (primaria o complementaria) no vuelve a salir por el ledger
+    r = {**r, "reglas": ctx.leer_tabla("t24_reglas.csv", columnas_texto=["regla_id", "nombre", "severidad", "accion", "ambito", "estado", "nota"])}
     mapa = {
         "Q05": "calidad.alta_antes_ingreso", "Q03": "calidad.alta_vacia", "Q07": "calidad.edad_negativa",
         "Q08": "calidad.edad_mayor_110", "Q09": "calidad.id_vacio", "Q17": "calidad.valores_rut",
@@ -790,6 +792,6 @@ def agregar_secciones(inf: Informe, ctx: Contexto) -> None:
     inf.seccion("5. Valores con estructura de RUT")
     inf.parrafo(
         "Se buscó por patrón, en las columnas de los archivos, cualquier valor con forma de RUT. Solo se guardan conteos por columna y año; "
-        "nunca el valor. Cualquier hallazgo se informa a FONASA por un canal formal (decisión 11)."
+        "nunca el valor. La columna con hallazgos no se usa en el análisis (decisión 11)."
     )
     inf.tabla("t24_rut_por_columna.csv", max_filas=20, encabezados={"columna": "Columna", "anio": "Año", "n": "N"}, leyenda="Valores con estructura de RUT")

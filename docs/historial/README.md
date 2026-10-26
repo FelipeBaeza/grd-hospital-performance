@@ -1,7 +1,7 @@
 # Historial de versiones de los informes
 
 Estas son las versiones anteriores de los informes, **sin ningún cambio**. Se conservan porque documentan cómo y
-cuándo se tomó cada decisión. Los informes vigentes son los **v5** de cada carpeta de `docs/`, salvo las Fases 1 y 2, cuyo informe vigente es la **v6**.
+cuándo se tomó cada decisión. Los informes vigentes son los **v5** de cada carpeta de `docs/`, salvo la Fase 1, cuyo informe vigente es la **v6**, y la Fase 2, cuyo informe vigente es la **v7**.
 
 La referencia temporal clave es la **apertura única del desenlace de 2024: 19-10-2026, 13:04 UTC**. El protocolo
 de la Fase 5 se pre-registró 48 minutos antes (12:16 UTC, huella SHA-256 5624bdae…). Las fechas de abajo son las de
@@ -15,6 +15,7 @@ guardado de cada archivo (UTC).
 | `fase1/Informe_Fase1_v4_consenso.docx` | 19-10-2026 22:53 | Después | **Enmienda posterior a la apertura.** Adopta decisiones ya ejecutadas (traslados entrantes incluidos) |
 | `fase1/Informe_Fase1_v5.docx` | 22-10-2026 | Después | Versión explicativa breve, reemplazada el 25-10-2026 por la v6, que restaura la estructura de la versión 2 |
 | `fase2/Informe_Fase2_v5.docx` | 22-10-2026 | Después | Reemplazada el 25-10-2026 por la v6, que agrega la sección 9 (lo que la Fase 2 resolvió de la revisión del profesor guía) |
+| `fase2/Informe_Fase2_v6.docx` | 25-10-2026 | Después | Reemplazada el 26-10-2026 por la v7, que rehace el análisis con el cambio 1.6 del protocolo (hipótesis alineadas con la Fase 1 v6, análisis pedidos por el profesor y supresión complementaria) y explica cada figura |
 | `fase2/Fase2_Comprension_Datos_Analisis_Revisado.pdf` | 16-10-2026 01:55 | Antes | |
 | `fase2/Fase2_Comprension_Datos_Base_Completa.docx` y `.pdf` | 18-10-2026 04:00 | Antes | |
 | `fase2/Fase2_Comprension_Datos_Base_Completa_v4_consenso.docx` | 19-10-2026 22:53 | Después | |

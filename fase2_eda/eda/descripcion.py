@@ -333,8 +333,12 @@ def analizar_resto(df: pl.DataFrame, anio: int, protegidas: frozenset[str], acc:
 
 
 # --------------------------------------------------------------------------- diccionario
-def _entero_es(txt: str) -> int:
-    return int(str(txt).replace(".", "").replace(",", "").strip() or 0)
+def _entero_es(txt: str) -> int | None:
+    """Entero escrito con puntos de miles. ``None`` si el documento no publica la cifra (por ejemplo «<10», por la regla de privacidad)."""
+    t = str(txt).replace(".", "").replace(",", "").strip()
+    if not t:
+        return 0
+    return int(t) if t.isdigit() else None
 
 
 def cargar_diccionario(ruta: Path | str | None = None) -> pl.DataFrame:
@@ -475,6 +479,14 @@ def tabla_conciliacion(
             filas.append({**d, "n_filas_med": None, "n_con_med": None, "n_sin_med": None, "n_centinela_med": None,
                           "pct_sin_doc": None, "pct_sin_med": None, "dif_pp": None, "z": None, "estado": "NO EVALUABLE",
                           "magnitud": "no aplica", "tipo_medido": None, "observacion": "la columna no está en los archivos"})
+            continue
+        if d["con_datos_doc"] is None or d["sin_datos_doc"] is None:
+            # el diccionario no publica conteos de 1 a 9 casos (ni su complemento): la fila se mide pero no se concilia
+            filas.append({**d, "n_filas_med": int(m["n_filas_med"]), "n_con_med": int(m["n_filas_med"] - m["n_sin_med"]), "n_sin_med": int(m["n_sin_med"]),
+                          "n_centinela_med": int(m["n_centinela_med"] or 0), "pct_sin_doc": None,
+                          "pct_sin_med": 100.0 * m["n_sin_med"] / m["n_filas_med"] if m["n_filas_med"] else None, "dif_pp": None, "z": None,
+                          "estado": "NO EVALUABLE", "magnitud": "no aplica", "tipo_medido": m["tipo_medido"],
+                          "observacion": "el diccionario no publica conteos de menos de diez casos"})
             continue
         n_doc = d["con_datos_doc"] + d["sin_datos_doc"]
         if d["columna"] in por_anio:
@@ -643,6 +655,31 @@ def calcular(ctx: Contexto) -> dict[str, pl.DataFrame]:
     }
 
 
+def _con_claves_tipoalta(df: pl.DataFrame, col_cat: str) -> pl.DataFrame:
+    """Agrega las columnas auxiliares ``_clave`` y ``_rol`` (no se publican) para la supresión complementaria.
+
+    En TIPOALTA, ``_clave`` es la etiqueta del archivo de roles (la misma que usa ``t23_tipoalta.csv``, que corrige las etiquetas
+    cortadas) y ``_rol`` su rol de mortalidad; en las demás columnas, ``_clave`` es el valor y ``_rol`` queda vacío.
+    """
+    from . import catalogos
+
+    if df.height == 0 or "columna" not in df.columns:
+        return df.with_columns(pl.lit("").alias("_clave"), pl.lit("").alias("_rol"))
+    roles = catalogos.cargar_catalogos().roles_tipoalta
+    valores = df.filter(pl.col("columna") == "TIPOALTA")[col_cat].drop_nulls().unique().to_list()
+    mapa = {v: catalogos.rol_de_etiqueta(str(v), roles) for v in valores}
+    clave, rol = [], []
+    for c, v in zip(df["columna"].to_list(), df[col_cat].to_list()):
+        if c == "TIPOALTA" and v in mapa:
+            nombre, _, r_ = mapa[v]
+            clave.append(nombre or "(sin rol)")
+            rol.append(r_ or "SIN_DATO")
+        else:
+            clave.append("" if v is None else str(v))
+            rol.append("")
+    return df.with_columns(pl.Series("_clave", clave, dtype=pl.String), pl.Series("_rol", rol, dtype=pl.String))
+
+
 def ejecutar(ctx: Contexto, ruta_diccionario: Path | None = None) -> dict[str, Path]:
     u = ctx.umbrales
     r = calcular(ctx)
@@ -661,8 +698,14 @@ def ejecutar(ctx: Contexto, ruta_diccionario: Path | None = None) -> dict[str, P
         cols_n=["n_nulos", "n_centinela", "n_informados", "n_modal", "n_patron_moda"],
         dependientes=["pct_nulos", "pct_centinela", "pct_faltante", "prop_modal", "prop_patron_moda", "chao1"],
     )
-    ctx.escribir_tabla("t22_top_valores.csv", r["top"], tarea=TA, descripcion="Valores más frecuentes de columnas categóricas",
-                       cols_n=["n"], dependientes=["prop"])
+    # la distribución de las seis categóricas se escribe antes que los valores más frecuentes: las dos tablas publican las mismas celdas y
+    # la segunda hereda las celdas que la primera ocultó (supresión complementaria, cambio 1.6)
+    ctx.escribir_tabla("t22_deriva_categorias.csv", _con_claves_tipoalta(cat, "categoria"), tarea=TA, descripcion="Distribución de seis categóricas por año",
+                       cols_n=["n"], dependientes=["prop"], auxiliares=["_clave", "_rol"])
+    top_aux = _con_claves_tipoalta(r["top"], "valor").join(
+        perfil.select("columna", "anio", pl.col("n_informados").alias("_total")), on=["columna", "anio"], how="left")
+    ctx.escribir_tabla("t22_top_valores.csv", top_aux.select([*r["top"].columns, "_clave", "_rol", "_total"]), tarea=TA,
+                       descripcion="Valores más frecuentes de columnas categóricas", cols_n=["n"], dependientes=["prop"], auxiliares=["_clave", "_rol", "_total"])
     # documentado vs observado
     doc = config.leer_csv_texto(rutas.DIR_CONFIG / "cifras_documentadas.csv")
     doc_card = {row["clave_eda"].split(".", 1)[1]: float(row["valor"]) for row in doc.iter_rows(named=True)
@@ -671,8 +714,6 @@ def ejecutar(ctx: Contexto, ruta_diccionario: Path | None = None) -> dict[str, P
         pl.col("columna").replace_strict(doc_card, default=None, return_dtype=pl.Float64).alias("documentado")
     )
     ctx.escribir_tabla("t22_cardinalidades.csv", card, tarea=TA, descripcion="Cardinalidad observada, Chao1 y documentada")
-    ctx.escribir_tabla("t22_deriva_categorias.csv", cat, tarea=TA, descripcion="Distribución de seis categóricas por año",
-                       cols_n=["n"], dependientes=["prop"])
     ctx.escribir_tabla("t22_psi.csv", r["psi"], tarea=TA, descripcion="PSI entre años de seis categóricas")
     ctx.escribir_tabla("t22_hist_edad.csv", r["edad"], tarea=TA, descripcion="Histograma de edad al ingreso", cols_n=["n"])
     ctx.escribir_tabla("t22_hist_estancia.csv", r["est"], tarea=TA, descripcion="Histograma de estadía (solo 2019 a 2023)", cols_n=["n"])
@@ -698,9 +739,9 @@ def ejecutar(ctx: Contexto, ruta_diccionario: Path | None = None) -> dict[str, P
         cols_n=["n_con_med", "n_sin_med", "n_centinela_med"])
     ctx.escribir_tabla("diccionario_medido.csv", conc.select(
         ["columna", "que_representa", "tipo_doc", "tipo_medido", "categoria_fase1", "n_filas_med", "n_con_med", "n_sin_med",
-         "n_centinela_med", "pct_sin_doc", "pct_sin_med", "dif_pp", "estado", "magnitud", "observacion"]),
+         "n_centinela_med", "pct_sin_doc", "pct_sin_med", "dif_pp", "estado", "magnitud", "observacion", "con_datos_doc", "sin_datos_doc"]),
         tarea=TA, descripcion="Diccionario medido: documentado frente a medido",
-        cols_n=["n_con_med", "n_sin_med", "n_centinela_med"])
+        cols_n=["n_con_med", "n_sin_med", "n_centinela_med"], auxiliares=["con_datos_doc", "sin_datos_doc"])
 
     # --- métricas para el ledger ---
     _registrar_metricas(ctx, r, dic, conc)
@@ -739,18 +780,19 @@ def _resumen(ctx: Contexto, r: dict, conc: pl.DataFrame, dic: pl.DataFrame) -> d
 
 
 def _registrar_metricas(ctx: Contexto, r: dict, dic: pl.DataFrame, conc: pl.DataFrame) -> None:
-    perfil = r["perfil"]
-    por_col = perfil.group_by("columna").agg(
-        pl.col("n_filas").sum().alias("n"), pl.col("n_nulos").sum().alias("nulos"), pl.col("n_informados").sum().alias("inf")
-    )
+    # sumas sobre el perfil publicado: si algún año quedó oculto la suma no se publica (cambio 1.6)
+    perfil = ctx.leer_tabla("t22_perfil_columnas.csv", columnas_texto=["columna"])
+    nulo_si_oculta = lambda c: pl.when(pl.col(c).null_count() > 0).then(None).otherwise(pl.col(c).sum())  # noqa: E731
+    por_col = perfil.group_by("columna").agg(pl.col("n_filas").sum().alias("n"), nulo_si_oculta("n_nulos").alias("nulos"), nulo_si_oculta("n_informados").alias("inf"))
     for row in por_col.iter_rows(named=True):
         c = row["columna"]
         ctx.registrar_metrica(f"faltantes.n_nulos.{c}", row["nulos"], tarea=TAREA, tabla="t22_perfil_columnas.csv", conteo=True)
-        ctx.registrar_metrica(f"faltantes.pct_nulos.{c}", 100.0 * row["nulos"] / row["n"], tarea=TAREA, tabla="t22_perfil_columnas.csv")
+        ctx.registrar_metrica(f"faltantes.pct_nulos.{c}", None if row["nulos"] is None else 100.0 * row["nulos"] / row["n"], tarea=TAREA, tabla="t22_perfil_columnas.csv")
     hp = por_col.filter(pl.col("columna") == "HOSPPROCEDENCIA")
     if hp.height:
-        ctx.registrar_metrica("procedencia.n_con_hospproc", int(hp["inf"][0]), tarea=TAREA, tabla="t22_perfil_columnas.csv", conteo=True)
-        ctx.registrar_metrica("procedencia.pct_con_hospproc", 100.0 * hp["inf"][0] / hp["n"][0], tarea=TAREA, tabla="t22_perfil_columnas.csv")
+        inf_hp = hp["inf"][0]
+        ctx.registrar_metrica("procedencia.n_con_hospproc", None if inf_hp is None else int(inf_hp), tarea=TAREA, tabla="t22_perfil_columnas.csv", conteo=True)
+        ctx.registrar_metrica("procedencia.pct_con_hospproc", None if inf_hp is None else 100.0 * inf_hp / hp["n"][0], tarea=TAREA, tabla="t22_perfil_columnas.csv")
     # cardinalidades acumuladas 2019-2024 (o 2019-2023 para columnas de resultado)
     for row in r["card"].iter_rows(named=True):
         if row["periodo"] == "2019-2024" or (row["periodo"] == "2019-2023" and row["columna"] in ctx.cortafuegos.columnas_resultado):
@@ -781,9 +823,9 @@ def _registrar_metricas(ctx: Contexto, r: dict, dic: pl.DataFrame, conc: pl.Data
                        ("calidad.rn1estado_con_dato", "RN1ESTADO"), ("calidad.rn2estado_con_dato", "RN2ESTADO"),
                        ("calidad.condicionneonato2_con_dato", "CONDICIONDEALTANEONATO2")):
         ctx.registrar_metrica(clave, inf.get(col), tarea=TAREA, tabla="t22_perfil_columnas.csv", conteo=True)
-    ctx.registrar_metrica("calidad.id_vacio.total", int(por_col.filter(pl.col("columna") == "CIP_ENCRIPTADO")["nulos"][0]),
+    ctx.registrar_metrica("calidad.id_vacio.total", por_col.filter(pl.col("columna") == "CIP_ENCRIPTADO")["nulos"][0],
                           tarea=TAREA, tabla="t22_perfil_columnas.csv", nota="valores nulos; los centinelas se cuentan aparte", conteo=True)
-    ctx.registrar_metrica("calidad.alta_vacia.total", int(por_col.filter(pl.col("columna") == "FECHAALTA")["nulos"][0]),
+    ctx.registrar_metrica("calidad.alta_vacia.total", por_col.filter(pl.col("columna") == "FECHAALTA")["nulos"][0],
                           tarea=TAREA, tabla="t22_perfil_columnas.csv", conteo=True)
 
 

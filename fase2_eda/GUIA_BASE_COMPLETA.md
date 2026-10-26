@@ -72,4 +72,25 @@ crudos, fuera del repositorio de la tesis; no la subas a GitHub.
   `POLARS_MAX_THREADS=4 python run_fase2_eda.py ...`
 - Corre por partes con `--solo` (por ejemplo `--solo T3,T4,T5,T6` y luego `--solo T7,T8,T9`).
 
-Informe explicado: `docs/fase2_comprension_datos/Informe_Fase2_v5.docx`.
+## Análisis posteriores pedidos por el profesor guía (R1 a R5)
+
+Después de la corrida principal (para reutilizar la caché):
+
+```bash
+python run_revision_profesor.py --fuente completo --data-root ~/Documentos/"Proyecto final"/Seminario/"data seminario_full"
+```
+
+Escribe en `fase2_eda/salidas/revision_profesor/completo/` las tablas `r1` a `r5` y las figuras `R01` a `R03`: mortalidad y estadía por
+año y por diagnóstico frecuente (O8), faltantes de las variables del modelo (O2), códigos raros y nuevos del diagnóstico principal (O3),
+traslados por tipo de hospital del catálogo DEIS 2025 (O7) y volumen de las cohortes por hospital (decisión 6). Son análisis
+posteriores a la apertura de 2024, declarados en el cambio 1.6 del protocolo: solo leen el desenlace de 2019 a 2023 y no cambian
+ninguna decisión ya ejecutada.
+
+## Privacidad: supresión primaria y complementaria
+
+Toda tabla oculta los conteos de 1 a 9 casos. Desde el cambio 1.6, las tablas declaradas en `eda/proteccion_tablas.py` aplican además
+la supresión complementaria (`eda/proteccion.py`): si una celda oculta es la única oculta de una suma que el lector conoce (el total del
+año, el total de la fila, un período que suma sus años), se oculta también la de menor valor de esa suma. Las tablas que publican las
+mismas celdas (por ejemplo la distribución de TIPOALTA de las Tareas 4 y 7) heredan las celdas que ocultó la primera.
+
+Informe explicado: `docs/fase2_comprension_datos/Informe_Fase2_v7.docx`.

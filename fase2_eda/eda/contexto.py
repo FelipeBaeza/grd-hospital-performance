@@ -67,6 +67,8 @@ class Contexto:
     _tablas: dict[str, dict[str, Any]] = field(default_factory=dict)
     _metricas: list[dict[str, Any]] = field(default_factory=list)
     _cifras_informe: list[dict[str, Any]] = field(default_factory=list)
+    _familias: dict[str, dict[str, set]] = field(default_factory=dict)
+    _complementarias: dict[str, int] = field(default_factory=dict)
 
     # ------------------------------------------------------------------ creación
     @classmethod
@@ -125,15 +127,33 @@ class Contexto:
         descripcion: str,
         cols_n: Sequence[str] = (),
         dependientes: Sequence[str] = (),
+        auxiliares: Sequence[str] = (),
     ) -> Path:
         """Escribe una tabla CSV con supresión de celdas pequeñas y la registra en el índice.
 
         ``cols_n`` son las columnas de conteo que se protegen; ``dependientes`` son columnas
-        derivadas de esos conteos que se anulan junto con ellos.
+        derivadas de esos conteos que se anulan junto con ellos. Si la tabla figura en
+        ``proteccion_tablas.REGISTRO`` se aplica además la supresión complementaria (cambio 1.6):
+        ninguna suma conocida queda con una sola celda oculta. ``auxiliares`` son columnas que
+        solo sirven para declarar esas sumas y no se publican.
         """
         if not nombre.endswith(".csv"):
             raise ValueError("las tablas se escriben como .csv")
-        protegida, n_sup = suprimir(df, cols_n, minimo=self.celda_minima, dependientes=dependientes)
+        from . import proteccion, proteccion_tablas
+
+        prot = proteccion_tablas.REGISTRO.get(nombre)
+        if prot is None:
+            protegida, n_sup = suprimir(df, cols_n, minimo=self.celda_minima, dependientes=dependientes)
+        else:
+            familia = proteccion_tablas.FAMILIAS.get(nombre)
+            forzadas = self._forzadas_familia(df, familia) if familia else None
+            res = proteccion.complementar(df, cols_n, prot, self.celda_minima, dependientes, forzadas)
+            protegida, n_sup = res.tabla, res.primarias + res.complementarias
+            self._complementarias[nombre] = res.complementarias
+            if familia:
+                self._registrar_familia(df, familia, res.ocultas)
+            cols_n = [*cols_n, *(c for c in prot.conteos_extra if c not in cols_n and c not in auxiliares)]
+        protegida = protegida.drop([c for c in auxiliares if c in protegida.columns])
         protegida = _limpiar_numericos(protegida)
         destino = self.dir_tablas / nombre
         protegida.write_csv(destino, float_scientific=False)
@@ -148,6 +168,33 @@ class Contexto:
             "sha256": sha256_archivo(destino),
         }
         return destino
+
+    # ------------------------------------------------- familias de tablas con las mismas celdas
+    def _llaves_familia(self, df: pl.DataFrame, claves: Sequence[str]) -> list[tuple[str, ...]] | None:
+        if any(k not in df.columns for k in claves):
+            return None
+        cols = [["" if v is None else str(v) for v in df[k].to_list()] for k in claves]
+        return list(zip(*cols))
+
+    def _forzadas_familia(self, df: pl.DataFrame, familia: tuple[str, tuple[str, ...], dict[str, str]]) -> dict[str, Any]:
+        import numpy as np
+
+        nombre, claves, medidas = familia
+        llaves = self._llaves_familia(df, claves)
+        ocultas = self._familias.get(nombre, {})
+        if llaves is None or not ocultas:
+            return {}
+        return {col: np.array([k in ocultas.get(med, set()) for k in llaves], dtype=bool) for col, med in medidas.items() if col in df.columns}
+
+    def _registrar_familia(self, df: pl.DataFrame, familia: tuple[str, tuple[str, ...], dict[str, str]], ocultas: dict[str, Any]) -> None:
+        nombre, claves, medidas = familia
+        llaves = self._llaves_familia(df, claves)
+        if llaves is None:
+            return
+        reg = self._familias.setdefault(nombre, {})
+        for col, med in medidas.items():
+            if col in ocultas:
+                reg.setdefault(med, set()).update(k for k, h in zip(llaves, ocultas[col]) if h)
 
     def leer_tabla(self, nombre: str, columnas_texto: Sequence[str] = ()) -> pl.DataFrame:
         """Lee una tabla ya escrita (la fuente de verdad de figuras e informes)."""

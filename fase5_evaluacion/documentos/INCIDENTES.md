@@ -293,7 +293,7 @@ La lista exacta estaba en `config/privacidad_hallazgos_declarados.csv`, sin los 
    - Sexo: el grupo «sin dato», cuando es pequeño, se une a otro sexo.
    - Grupos clínicos: los capítulos raros se unen entre sí y, en mortalidad 2024, con el capítulo XV.
    - Ningún otro valor cambia. El capítulo XXII de mortalidad 2024 sigue igual (O/E 0,58). En estadía 2024 pasa a
-     ser «XXII o sin capítulo», con 6 egresos más.
+     ser «XXII o sin capítulo», con menos de diez egresos más.
 5. El escáner por propiedad ya no encuentra ningún conteo reconstruible en lo publicado, y la lista de hallazgos
    declarados queda vacía. Las puertas P7 y G7 fallan ante cualquier hallazgo nuevo.
 6. Las versiones anteriores de esas tablas siguen en el **historial público** de git. Reescribirlo o no es la misma

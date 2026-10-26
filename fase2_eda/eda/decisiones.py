@@ -113,7 +113,7 @@ class FuenteContexto:
 
     def cifra_documentada(self, id_cifra: str) -> float | None:
         if self._cifras is None:
-            self._cifras = {f["id"]: float(f["valor"]) for f in ledger.cargar_cifras().iter_rows(named=True)}
+            self._cifras = {f["id"]: None if f["valor"] == ledger.VALOR_PEQUENO else float(f["valor"]) for f in ledger.cargar_cifras().iter_rows(named=True)}
         return self._cifras.get(id_cifra)
 
 
@@ -469,7 +469,7 @@ def _h11(f: FuenteEvidencia, previos: Mapping[str, Resultado]) -> Resultado:
             return _r("respalda", "hay valores con estructura de RUT, pero menos de diez: el conteo no se publica", t, "valores con estructura de RUT = entre 1 y 9 (suprimido)")
         raise _SinDato("la métrica calidad.valores_rut.total no tiene valor")
     if float(v) > 0:
-        return _r("respalda", "hay valores con estructura de RUT que informar a FONASA por el canal formal", t, f"valores con estructura de RUT = {_ent(v)}")
+        return _r("respalda", "hay valores con estructura de RUT: se cuentan sin guardarlos y su columna no se usa", t, f"valores con estructura de RUT = {_ent(v)}")
     return _r("matiza", "no se encontraron valores con estructura de RUT en esta fuente", t, f"valores con estructura de RUT = {_ent(v)}")
 
 
@@ -480,6 +480,11 @@ def _h13(f: FuenteEvidencia, previos: Mapping[str, Resultado]) -> Resultado:
     cumple = _si_no(r, "enlace_cumple_minimo")
     cifras = (f"tasa de enlace de los traslados salientes a {_ent(_cel(r, 'enlace_ventana_dias'))} días en {_cel(r, 'enlace_anio')} = {_p(_cel(r, 'enlace_tasa'))}; "
               f"mínimo = {_p(f.umbral('enlace_traslado_minimo'), 0)}")
+    h01a = previos.get("H01a")
+    quiebre = h01a is not None and h01a.resultado == "matiza"                         # cambio 1.6: el criterio pide un espacio de IDs consistente en el período
+    if cumple and quiebre:
+        return _r("matiza", "la tasa de enlace alcanza el mínimo dentro de un espacio de identificadores, pero el quiebre del identificador impide rastrear en todo el período",
+                  t, cifras + "; quiebre del identificador = sí")
     if cumple:
         return _r("respalda", "el rastreo de traslados salientes se justifica: la tasa de enlace alcanza el mínimo", t, cifras)
     return _r("contradice", "el rastreo de traslados salientes no se justifica: la tasa de enlace no alcanza el mínimo", t, cifras)
@@ -499,7 +504,7 @@ def _h14(f: FuenteEvidencia, previos: Mapping[str, Resultado]) -> Resultado:
               f"{'supera' if fuga else 'no supera'} el umbral de fuga de {_d(umbral, 2)}{donde}; "
               f"IR_29301_MORTALIDAD (prohibida siempre por R6): AUC de ranking = {_o(m, 'auc_ranking')} y de confirmación = {_o(m, 'auc_confirmacion')}")
     if basales and fuga:
-        return _r("respalda", "la severidad del GRD revela el desenlace: corresponde a una sensibilidad aparte", t, cifras)
+        return _r("respalda", "la severidad del GRD revela el desenlace: queda prohibida, también en los análisis de sensibilidad (R6)", t, cifras)
     return _r("matiza", "la severidad del GRD no supera a la vez a las variables basales y el umbral de fuga", t, cifras)
 
 
@@ -556,10 +561,13 @@ def _h17a(f: FuenteEvidencia, previos: Mapping[str, Resultado]) -> Resultado:
     if n_clave <= 0:
         raise _SinDato("no hay variables clave para comparar")
     mayoria = 2 * n_alto > n_clave                                                     # más de la mitad: la mitad exacta no es mayoría
-    h01a = previos.get("H01a")
-    quiebre = h01a is not None and h01a.resultado == "matiza"
+    h01a, h01c = previos.get("H01a"), previos.get("H01c")
+    hay_quiebre = h01a is not None and h01a.resultado == "matiza"
+    sin_historial = h01c is not None and h01c.resultado == "contradice"                # cambio 1.6: el quiebre solo pesa si el historial se usa (decisión 1)
+    quiebre = hay_quiebre and not sin_historial
+    texto_quiebre = "sí, pero no afecta: el historial no se usa" if hay_quiebre and sin_historial else ("sí" if quiebre else "no")
     cifras = (f"variables clave con PSI alto contra 2023 = {_ent(n_alto)} de {_ent(n_clave)}; "
-              f"quiebre del identificador = {'sí' if quiebre else 'no'}; PSI alto desde {_d(f.umbral('psi_alto'), 2)}")
+              f"quiebre del identificador = {texto_quiebre}; PSI alto desde {_d(f.umbral('psi_alto'), 2)}")
     if mayoria or quiebre:
         return _r("matiza", "hay deriva entre 2019 y los años siguientes o un quiebre del identificador: se propone la ventana de 2020 a 2022", t, cifras)
     return _r("respalda", "no hay deriva ni quiebre del identificador que justifique acortar la ventana de entrenamiento", t, cifras)

@@ -669,6 +669,29 @@ def test_las_claves_corregidas_apuntan_a_las_metricas_de_tres_caracteres_sin_cam
     assert por_id["C116"]["clave_eda"] == "cohorte.prevalencia_pct.fase1"                  # sin cambios: no es comparable
 
 
+def test_los_conteos_documentados_de_menos_de_diez_no_se_copian_en_la_configuracion():
+    """Cambio 1.6: el registro dice «<10» en vez de copiar del documento un conteo de 1 a 9 casos (C031, C080, C082, C085 y C097)."""
+    df = ledger.cargar_cifras()
+    pequenos = df.filter(pl.col("valor") == ledger.VALOR_PEQUENO)
+    assert sorted(pequenos["id"].to_list()) == ["C031", "C080", "C082", "C085", "C097"]
+    conteos = df.filter((pl.col("tipo") == "absoluto") & (pl.col("unidad") == "conteo") & (pl.col("valor") != ledger.VALOR_PEQUENO))
+    assert all(not (0 < float(v) < 10) for v in conteos["valor"].to_list())
+
+
+def test_un_conteo_documentado_como_menos_de_diez_queda_no_verificable_sin_valor():
+    f = cifra_fila("C901", valor="<10", tipo="absoluto", unidad="conteo", decimales=0, alcance="2019", clave="calidad.x")
+    out = ledger.evaluar_cifra(f, {"calidad.x": metrica(7, tabla="t24_reglas.csv")}, reglas())
+    assert out["estado"] == "NO VERIFICABLE" and out["motivo"] == ledger.MOTIVOS["pocos_casos"]
+    assert out["valor_doc"] is None and out["n_doc"] is None and out["clave_usada"] == "calidad.x"
+    sin_metrica = ledger.evaluar_cifra(f, {}, reglas())
+    assert sin_metrica["estado"] == "NO VERIFICABLE" and sin_metrica["valor_doc"] is None
+    propios = lambda df: [p for p in ledger.validar_cifras(df, esperadas=None) if p.startswith("C9")]   # sin las constantes por id del CSV real
+    assert propios(cifras_df(f)) == []
+    malo = cifra_fila("C902", valor="<10", tipo="proporcion", unidad="porcentaje")
+    assert any("solo vale para un conteo absoluto" in p for p in propios(cifras_df(malo)))
+    assert ledger.razones_fase2_fase1(cifras_df(f, cifra_fila("C903", valor=12, tipo="absoluto", unidad="conteo", documento="Fase 1", clave="calidad.x"))) == []
+
+
 def test_validar_cifras_detecta_los_problemas():
     base = ledger.cargar_cifras()
     assert ledger.validar_cifras(base.head(128))[0] == "hay 128 cifras y se esperaban 129"
@@ -867,7 +890,7 @@ def test_los_conteos_de_1_a_9_casos_quedan_protegidos_en_el_csv(ledger_corrido):
     ctx_l, _ = ledger_corrido
     csv = ctx_l.leer_tabla("ledger_cifras.csv", columnas_texto=list(ledger.COLUMNAS_TEXTO_LEDGER))
     fila = {r["id"]: r for r in csv.iter_rows(named=True)}
-    for cid in ("C031", "C080", "C082", "C085", "C097"):                                     # documentados con 3, 1, 1, 1 y 9 casos
+    for cid in ("C031", "C080", "C082", "C085", "C097"):                                     # documentados con menos de diez casos (en la configuración, «<10»)
         assert fila[cid]["valor_doc"] is None and fila[cid]["n_doc"] is None and fila[cid]["estado"] == "NO VERIFICABLE", cid
         assert fila[cid]["valor_medido"] is None and fila[cid]["dif_abs"] is None and fila[cid]["z"] is None, cid
     assert fila["C081"]["valor_doc"] == 10.0 and fila["C081"]["n_doc"] == 10                    # diez casos ya se publican
