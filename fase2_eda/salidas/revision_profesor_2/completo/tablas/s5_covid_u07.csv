@@ -1,0 +1,41 @@
+anio,grupo,etiqueta,n_d,n_fallecidos,mortalidad,ic_bajo,ic_alto,n_e,estancia_media_tope
+2019,todos,Todos los egresos,585631,23896,0.040804,0.0403,0.041314,538814,6.866678
+2020,todos,Todos los egresos,474341,29093,0.061334,0.060654,0.06202,426076,7.253715
+2021,todos,Todos los egresos,488799,31145,0.063717,0.063036,0.064406,437842,7.525025
+2022,todos,Todos los egresos,522553,26488,0.05069,0.050098,0.051288,473791,7.111055
+2023,todos,Todos los egresos,568737,24235,0.042612,0.04209,0.04314,519833,6.798127
+2019,u07_principal,U07 como diagnóstico principal,0,0,,,,0,
+2020,u07_principal,U07 como diagnóstico principal,27424,7681,0.280083,0.2748,0.285428,19556,13.32568
+2021,u07_principal,U07 como diagnóstico principal,42463,9979,0.235005,0.230996,0.239061,32310,13.31238
+2022,u07_principal,U07 como diagnóstico principal,9640,3248,0.336929,0.327561,0.346428,6309,12.615153
+2023,u07_principal,U07 como diagnóstico principal,1794,450,0.250836,0.231323,0.271414,1327,10.535795
+2019,u07_solo_secundario,U07 solo en un diagnóstico secundario,0,0,,,,0,
+2020,u07_solo_secundario,U07 solo en un diagnóstico secundario,9875,1638,0.165873,0.158667,0.173339,8096,14.483325
+2021,u07_solo_secundario,U07 solo en un diagnóstico secundario,7806,1272,0.162952,0.154925,0.17131,6450,16.59907
+2022,u07_solo_secundario,U07 solo en un diagnóstico secundario,18765,1827,0.097362,0.093203,0.101686,16658,15.032597
+2023,u07_solo_secundario,U07 solo en un diagnóstico secundario,6045,617,0.102068,0.094687,0.109954,5348,16.309835
+2019,sin_u07,Sin U07 en ninguna posición,585631,23896,0.040804,0.0403,0.041314,538814,6.866678
+2020,sin_u07,Sin U07 en ninguna posición,437042,19774,0.045245,0.044633,0.045865,398424,6.808777
+2021,sin_u07,Sin U07 en ninguna posición,438530,19894,0.045365,0.044753,0.045985,399082,6.909821
+2022,sin_u07,Sin U07 en ninguna posición,494148,21413,0.043333,0.042769,0.043904,450824,6.741327
+2023,sin_u07,Sin U07 en ninguna posición,560898,23168,0.041305,0.040788,0.041829,513158,6.689333
+2019,respiratorio,Capítulo X (respiratorio),36928,5643,0.152811,0.149177,0.156517,30700,8.816287
+2020,respiratorio,Capítulo X (respiratorio),22010,4377,0.198864,0.193644,0.20419,17202,9.134229
+2021,respiratorio,Capítulo X (respiratorio),17191,3693,0.214822,0.208746,0.221024,13209,9.727383
+2022,respiratorio,Capítulo X (respiratorio),25474,4838,0.189919,0.185149,0.194782,20196,9.287483
+2023,respiratorio,Capítulo X (respiratorio),30600,5337,0.174412,0.170201,0.178704,24791,8.437296
+2019,respiratorio_con_u07,Capítulo X con U07 secundario,0,0,,,,0,
+2020,respiratorio_con_u07,Capítulo X con U07 secundario,1913,389,0.203346,0.185912,0.221968,1488,9.752688
+2021,respiratorio_con_u07,Capítulo X con U07 secundario,632,179,0.283228,0.249492,0.319583,,
+2022,respiratorio_con_u07,Capítulo X con U07 secundario,1174,329,0.280239,0.255297,0.306614,,
+2023,respiratorio_con_u07,Capítulo X con U07 secundario,589,158,0.268251,0.234057,0.305449,,
+2019,respiratorio_sin_u07,Capítulo X sin U07,36928,5643,0.152811,0.149177,0.156517,30700,8.816287
+2020,respiratorio_sin_u07,Capítulo X sin U07,20097,3988,0.198438,0.192981,0.204009,15714,9.075665
+2021,respiratorio_sin_u07,Capítulo X sin U07,16559,3514,0.212211,0.20605,0.218505,,
+2022,respiratorio_sin_u07,Capítulo X sin U07,24300,4509,0.185556,0.180718,0.190493,,
+2023,respiratorio_sin_u07,Capítulo X sin U07,30011,5179,0.17257,0.168337,0.176887,,
+2019,embarazo_xv,"Capítulo XV (embarazo, parto y puerperio)",79685,11,0.000138,0.000077,0.000247,76151,3.442095
+2020,embarazo_xv,"Capítulo XV (embarazo, parto y puerperio)",67493,13,0.000193,0.000113,0.00033,64406,3.393022
+2021,embarazo_xv,"Capítulo XV (embarazo, parto y puerperio)",70822,13,0.000184,0.000107,0.000314,67716,3.473773
+2022,embarazo_xv,"Capítulo XV (embarazo, parto y puerperio)",82696,16,0.000193,0.000119,0.000314,79166,3.359144
+2023,embarazo_xv,"Capítulo XV (embarazo, parto y puerperio)",83986,14,0.000167,0.000099,0.00028,80193,3.42283

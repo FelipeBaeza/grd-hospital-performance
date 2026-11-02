@@ -1,0 +1,25 @@
+secuencia,tarea,anio,proposito,n_columnas,columnas_resultado,reglas,decision,motivo
+1,R,2019,resultado,12,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+2,R,2019,estructura,34,"","",PERMITIDO,año no expuesto
+3,S,2019,resultado,8,FECHAALTA,"",PERMITIDO,año no expuesto
+4,S,2019,estructura,34,"","",PERMITIDO,año no expuesto
+5,R,2020,resultado,12,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+6,R,2020,estructura,34,"","",PERMITIDO,año no expuesto
+7,S,2020,resultado,8,FECHAALTA,"",PERMITIDO,año no expuesto
+8,S,2020,estructura,34,"","",PERMITIDO,año no expuesto
+9,R,2021,resultado,12,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+10,R,2021,estructura,34,"","",PERMITIDO,año no expuesto
+11,S,2021,resultado,8,FECHAALTA,"",PERMITIDO,año no expuesto
+12,S,2021,estructura,34,"","",PERMITIDO,año no expuesto
+13,R,2022,resultado,12,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+14,R,2022,estructura,34,"","",PERMITIDO,año no expuesto
+15,S,2022,resultado,8,FECHAALTA,"",PERMITIDO,año no expuesto
+16,S,2022,estructura,34,"","",PERMITIDO,año no expuesto
+17,R,2023,resultado,12,FECHAALTA;TIPOALTA,"",PERMITIDO,año no expuesto
+18,R,2023,estructura,34,"","",PERMITIDO,año no expuesto
+19,S,2023,resultado,8,FECHAALTA,"",PERMITIDO,año no expuesto
+20,S,2023,estructura,34,"","",PERMITIDO,año no expuesto
+21,R,2024,estructura,10,"","",PERMITIDO,año expuesto sin columnas de resultado
+22,R,2024,estructura,34,"","",PERMITIDO,año expuesto sin columnas de resultado
+23,S,2024,estructura,3,"","",PERMITIDO,año expuesto sin columnas de resultado
+24,S,2024,estructura,34,"","",PERMITIDO,año expuesto sin columnas de resultado

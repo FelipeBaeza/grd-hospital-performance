@@ -1,0 +1,19 @@
+grupo,etiqueta,periodo,n_d,n_fallecidos,mortalidad,ic_bajo,ic_alto
+todos,Todos los egresos,"referencia (2019, 2022 y 2023)",1676921,74619,0.044498,0.044187,0.044811
+todos,Todos los egresos,pandemia (2020–2021),963140,60238,0.062543,0.062062,0.063029
+u07_principal,COVID-19 como diagnóstico principal (U07),"referencia (2019, 2022 y 2023)",11434,3698,0.323421,0.314908,0.332054
+u07_principal,COVID-19 como diagnóstico principal (U07),pandemia (2020–2021),69887,17660,0.252694,0.249486,0.255929
+sin_u07_principal,Sin U07 como diagnóstico principal,"referencia (2019, 2022 y 2023)",1665487,70921,0.042583,0.042277,0.04289
+sin_u07_principal,Sin U07 como diagnóstico principal,pandemia (2020–2021),893253,42578,0.047666,0.047226,0.04811
+u07_cualquiera,U07 en cualquier posición,"referencia (2019, 2022 y 2023)",36244,6142,0.169463,0.165635,0.17336
+u07_cualquiera,U07 en cualquier posición,pandemia (2020–2021),87568,20570,0.234903,0.232107,0.237723
+sin_u07,Sin U07 en ninguna posición,"referencia (2019, 2022 y 2023)",1640677,68477,0.041737,0.041432,0.042044
+sin_u07,Sin U07 en ninguna posición,pandemia (2020–2021),875572,39668,0.045305,0.044872,0.045743
+respiratorio,Capítulo X (respiratorio),"referencia (2019, 2022 y 2023)",93002,15818,0.170082,0.167681,0.172511
+respiratorio,Capítulo X (respiratorio),pandemia (2020–2021),39201,8070,0.205862,0.201888,0.209893
+respiratorio_con_u07,Capítulo X con U07 secundario,"referencia (2019, 2022 y 2023)",1763,487,0.276234,0.255865,0.297575
+respiratorio_con_u07,Capítulo X con U07 secundario,pandemia (2020–2021),2545,568,0.223183,0.20743,0.23977
+respiratorio_sin_u07,Capítulo X sin U07,"referencia (2019, 2022 y 2023)",91239,15331,0.168031,0.165619,0.170471
+respiratorio_sin_u07,Capítulo X sin U07,pandemia (2020–2021),36656,7502,0.20466,0.20056,0.208821
+embarazo_xv,"Capítulo XV (embarazo, parto y puerperio)","referencia (2019, 2022 y 2023)",246367,41,0.000166,0.000123,0.000226
+embarazo_xv,"Capítulo XV (embarazo, parto y puerperio)",pandemia (2020–2021),138315,26,0.000188,0.000128,0.000275

@@ -1,0 +1,12 @@
+nombre,tarea,descripcion,filas,columnas_conteo,celdas_suprimidas,fuente,sha256
+s1_ex06_composicion.csv,S,"Censurados (EX06) por tipo de alta, cohorte C",39,n,0,completo,0693cfb637af25a40f5d653f846967bc8e651c6ed751a4377e5296c60c0f04bd
+s2_censura_hospital.csv,S,Censura y hospitalización domiciliaria por hospital (distribución),4,n_c;n_censurados;n_hosp_domiciliaria,0,completo,fc0f4e2c9ca25a4e6089a8a66b15a43d1b1e899436f4b3dc82d92cdf2f3c9931
+s3_traslados_definiciones.csv,S,Definiciones de traslado entrante y su cruce,14,n_total;n_entrante_tipo;n_hospproc;n_ambas;n_solo_tipo;n_solo_hospproc;n_ninguna;n_hospproc_centinela;n_agr_derivado;n_agr_no_tipo;n_tipo_no_agr;n_salientes,0,completo,dc5f9a4bceef414ffd5b45faaabae1055ad43a839dd7ce5c3b3e4680fc020892
+s4_tipo_ingreso.csv,S,Tipo de ingreso por año (proporciones; conteos en centenas) y MDC 14,24,"",0,completo,c17f8a7be2e443051846e24308df1515993a5ab4e8c85babad693c4e77e2fe6b
+s5_covid_resumen.csv,S,"Razón 2020–2021 sobre 2019, 2022 y 2023 con U07 en cualquier posición",4,"",0,completo,0bb6497c48d5e14c73df2994a222a65254a25e78faf0577c53f964fa71f9a2bf
+s5_covid_u07.csv,S,COVID-19 por U07 en cualquier posición: mortalidad (D) y estadía (E),40,n_d;n_fallecidos;n_e,6,completo,3a7e64c12cf153403870fda4d0e6e3801feea3bc39a151c293ceec887e2361d2
+s5b_covid_periodos.csv,S,Mortalidad por período con U07 en cualquier posición (cohorte D),18,n_d;n_fallecidos,0,completo,ac5527afd279d7c3810fe72017e1c571fc146f6afa90e3460b49c1f2dadb01e8
+s6_id_inconsistente_mdc.csv,S,Filas de identificadores con Q13 o Q14 por MDC y en la cohorte D,10,n_filas;n_filas_q13;n_filas_q14,0,completo,776e27c3c6c0699546fe593b67b9d079e5cdac89c026a96b796be9c1668004d5
+s7_duplicados_cohorte.csv,S,Filas duplicadas (Q15) en las cohortes C y D,6,n_sobrantes;n_sobrantes_c;n_sobrantes_d;n_d,5,completo,095202ce580d59553283f4db0133a5609fd58dc0f7bc51617eca9a9fefe5237c
+s8_tope_estadia_hospital.csv,S,Pacientes y días sobre el tope de estadía por hospital,4,n_e;n_sobre_tope,0,completo,d287f00374b4a42801214dbbad6748eb48f321d3b296aba2d147e1f31cf88cc1
+s9_dispersion_estadia.csv,S,"Índice de dispersión de la estadía, sin tope y con tope",4,n,0,completo,a3eb5fc0434ad600347b027fb6f23070bfdae8ac4c39574cadcf1119434f95b5
