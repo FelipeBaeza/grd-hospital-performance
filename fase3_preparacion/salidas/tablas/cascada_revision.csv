@@ -1,0 +1,91 @@
+variante,descripcion_variante,periodo,orden,paso,descripcion,n,prop_del_total
+base,Cohorte oficial (sin opciones),2019-2023,0,TOTAL,Egresos leídos,4722722,1.0
+base,Cohorte oficial (sin opciones),2019-2023,1,EX01,"GRD no agrupable: sin código, centinela, formato inválido o MDC 99",3583,0.0007586726468337539
+base,Cohorte oficial (sin opciones),2019-2023,2,EX02,Recién nacidos (MDC 15),124604,0.026383937060025977
+base,Cohorte oficial (sin opciones),2019-2023,3,EX03,Obstétricos sin comorbilidades (MDC 14 sin categorías de Elixhauser),372932,0.07896547795953265
+base,Cohorte oficial (sin opciones),2019-2023,4,A,Variante A: cohorte dura,4221603,0.8938919123336077
+base,Cohorte oficial (sin opciones),2019-2023,5,EX04,Menores de 18 años o con edad desconocida,675590,0.14305097780474904
+base,Cohorte oficial (sin opciones),2019-2023,6,B,Variante B: adultos,3546013,0.7508409345288586
+base,Cohorte oficial (sin opciones),2019-2023,7,EX05,Actividad distinta de hospitalización,684599,0.14495856415008124
+base,Cohorte oficial (sin opciones),2019-2023,8,C,Variante C: adultos hospitalizados,2861414,0.6058823703787773
+base,Cohorte oficial (sin opciones),2019-2023,9,EX06,Censurados por tipo de alta o sin dato de desenlace,221353,0.04686979246290593
+base,Cohorte oficial (sin opciones),2019-2023,10,D,Variante D: cohorte del modelo de mortalidad,2640061,0.5590125779158714
+base,Cohorte oficial (sin opciones),2019-2023,11,EX07,Fallecidos (salen del modelo de estadía),134857,0.02855493082167445
+base,Cohorte oficial (sin opciones),2019-2023,12,EX08,Sobrevivientes con estadía de 0 días o desconocida,108848,0.02304772544308134
+base,Cohorte oficial (sin opciones),2019-2023,13,E,Variante E: cohorte del modelo de estadía,2396356,0.5074099216511156
+hosp_domiciliaria_viva,Hospitalización domiciliaria como egreso vivo,2019-2023,0,TOTAL,Egresos leídos,4722722,1.0
+hosp_domiciliaria_viva,Hospitalización domiciliaria como egreso vivo,2019-2023,1,EX01,"GRD no agrupable: sin código, centinela, formato inválido o MDC 99",3583,0.0007586726468337539
+hosp_domiciliaria_viva,Hospitalización domiciliaria como egreso vivo,2019-2023,2,EX02,Recién nacidos (MDC 15),124604,0.026383937060025977
+hosp_domiciliaria_viva,Hospitalización domiciliaria como egreso vivo,2019-2023,3,EX03,Obstétricos sin comorbilidades (MDC 14 sin categorías de Elixhauser),372932,0.07896547795953265
+hosp_domiciliaria_viva,Hospitalización domiciliaria como egreso vivo,2019-2023,4,A,Variante A: cohorte dura,4221603,0.8938919123336077
+hosp_domiciliaria_viva,Hospitalización domiciliaria como egreso vivo,2019-2023,5,EX04,Menores de 18 años o con edad desconocida,675590,0.14305097780474904
+hosp_domiciliaria_viva,Hospitalización domiciliaria como egreso vivo,2019-2023,6,B,Variante B: adultos,3546013,0.7508409345288586
+hosp_domiciliaria_viva,Hospitalización domiciliaria como egreso vivo,2019-2023,7,EX05,Actividad distinta de hospitalización,684599,0.14495856415008124
+hosp_domiciliaria_viva,Hospitalización domiciliaria como egreso vivo,2019-2023,8,C,Variante C: adultos hospitalizados,2861414,0.6058823703787773
+hosp_domiciliaria_viva,Hospitalización domiciliaria como egreso vivo,2019-2023,9,EX06,Censurados por tipo de alta o sin dato de desenlace,128330,0.02717288885519834
+hosp_domiciliaria_viva,Hospitalización domiciliaria como egreso vivo,2019-2023,10,D,Variante D: cohorte del modelo de mortalidad,2733084,0.578709481523579
+hosp_domiciliaria_viva,Hospitalización domiciliaria como egreso vivo,2019-2023,11,EX07,Fallecidos (salen del modelo de estadía),134857,0.02855493082167445
+hosp_domiciliaria_viva,Hospitalización domiciliaria como egreso vivo,2019-2023,12,EX08,Sobrevivientes con estadía de 0 días o desconocida,110986,0.02350043047208792
+hosp_domiciliaria_viva,Hospitalización domiciliaria como egreso vivo,2019-2023,13,E,Variante E: cohorte del modelo de estadía,2396356,0.5074099216511156
+hosp_domiciliaria_viva,Hospitalización domiciliaria como egreso vivo,2019-2023,16,EX11,"Egresos vivos agregados por la revisión (hospitalización domiciliaria), fuera de E",90885,0.01924419857870101
+sin_filas_repetidas,Sin filas repetidas (Q15),2019-2023,0,TOTAL,Egresos leídos,4722722,1.0
+sin_filas_repetidas,Sin filas repetidas (Q15),2019-2023,1,EX01,"GRD no agrupable: sin código, centinela, formato inválido o MDC 99",3583,0.0007586726468337539
+sin_filas_repetidas,Sin filas repetidas (Q15),2019-2023,2,EX02,Recién nacidos (MDC 15),124604,0.026383937060025977
+sin_filas_repetidas,Sin filas repetidas (Q15),2019-2023,3,EX03,Obstétricos sin comorbilidades (MDC 14 sin categorías de Elixhauser),372932,0.07896547795953265
+sin_filas_repetidas,Sin filas repetidas (Q15),2019-2023,4,A,Variante A: cohorte dura,4221603,0.8938919123336077
+sin_filas_repetidas,Sin filas repetidas (Q15),2019-2023,5,EX04,Menores de 18 años o con edad desconocida,675590,0.14305097780474904
+sin_filas_repetidas,Sin filas repetidas (Q15),2019-2023,6,B,Variante B: adultos,3546013,0.7508409345288586
+sin_filas_repetidas,Sin filas repetidas (Q15),2019-2023,7,EX05,Actividad distinta de hospitalización,684599,0.14495856415008124
+sin_filas_repetidas,Sin filas repetidas (Q15),2019-2023,8,C,Variante C: adultos hospitalizados,2861414,0.6058823703787773
+sin_filas_repetidas,Sin filas repetidas (Q15),2019-2023,9,EX06,Censurados por tipo de alta o sin dato de desenlace,221353,0.04686979246290593
+sin_filas_repetidas,Sin filas repetidas (Q15),2019-2023,10,D,Variante D: cohorte del modelo de mortalidad,2638086,0.558594386881125
+sin_filas_repetidas,Sin filas repetidas (Q15),2019-2023,11,EX07,Fallecidos (salen del modelo de estadía),134749,0.02853206265369844
+sin_filas_repetidas,Sin filas repetidas (Q15),2019-2023,12,EX08,Sobrevivientes con estadía de 0 días o desconocida,108809,0.02303946749353445
+sin_filas_repetidas,Sin filas repetidas (Q15),2019-2023,13,E,Variante E: cohorte del modelo de estadía,2394528,0.507022856733892
+sin_filas_repetidas,Sin filas repetidas (Q15),2019-2023,15,EX10,"Filas repetidas por clave natural (Q15), fuera de D (revisión 02-11-2026)",1975,0.0004181910347464873
+sin_entrantes_enlazados,Sin traslados entrantes enlazados,2019-2023,0,TOTAL,Egresos leídos,4722722,1.0
+sin_entrantes_enlazados,Sin traslados entrantes enlazados,2019-2023,1,EX01,"GRD no agrupable: sin código, centinela, formato inválido o MDC 99",3583,0.0007586726468337539
+sin_entrantes_enlazados,Sin traslados entrantes enlazados,2019-2023,2,EX02,Recién nacidos (MDC 15),124604,0.026383937060025977
+sin_entrantes_enlazados,Sin traslados entrantes enlazados,2019-2023,3,EX03,Obstétricos sin comorbilidades (MDC 14 sin categorías de Elixhauser),372932,0.07896547795953265
+sin_entrantes_enlazados,Sin traslados entrantes enlazados,2019-2023,4,A,Variante A: cohorte dura,4221603,0.8938919123336077
+sin_entrantes_enlazados,Sin traslados entrantes enlazados,2019-2023,5,EX04,Menores de 18 años o con edad desconocida,675590,0.14305097780474904
+sin_entrantes_enlazados,Sin traslados entrantes enlazados,2019-2023,6,B,Variante B: adultos,3546013,0.7508409345288586
+sin_entrantes_enlazados,Sin traslados entrantes enlazados,2019-2023,7,EX05,Actividad distinta de hospitalización,684599,0.14495856415008124
+sin_entrantes_enlazados,Sin traslados entrantes enlazados,2019-2023,8,C,Variante C: adultos hospitalizados,2861414,0.6058823703787773
+sin_entrantes_enlazados,Sin traslados entrantes enlazados,2019-2023,9,EX06,Censurados por tipo de alta o sin dato de desenlace,221353,0.04686979246290593
+sin_entrantes_enlazados,Sin traslados entrantes enlazados,2019-2023,10,D,Variante D: cohorte del modelo de mortalidad,2614025,0.5534996554952842
+sin_entrantes_enlazados,Sin traslados entrantes enlazados,2019-2023,11,EX07,Fallecidos (salen del modelo de estadía),131986,0.027947018689645504
+sin_entrantes_enlazados,Sin traslados entrantes enlazados,2019-2023,12,EX08,Sobrevivientes con estadía de 0 días o desconocida,108560,0.02298674366181198
+sin_entrantes_enlazados,Sin traslados entrantes enlazados,2019-2023,13,E,Variante E: cohorte del modelo de estadía,2373479,0.5025658931438268
+sin_entrantes_enlazados,Sin traslados entrantes enlazados,2019-2023,17,EX12,"Traslados entrantes enlazados con un traslado saliente previo, fuera de D (revisión 02-11-2026)",26036,0.00551292242058711
+mdc14_completo,MDC 14 completo fuera,2019-2023,0,TOTAL,Egresos leídos,4722722,1.0
+mdc14_completo,MDC 14 completo fuera,2019-2023,1,EX01,"GRD no agrupable: sin código, centinela, formato inválido o MDC 99",3583,0.0007586726468337539
+mdc14_completo,MDC 14 completo fuera,2019-2023,2,EX02,Recién nacidos (MDC 15),124604,0.026383937060025977
+mdc14_completo,MDC 14 completo fuera,2019-2023,3,EX03,Obstétricos: MDC 14 completo (enmienda 02),544312,0.11525387266072405
+mdc14_completo,MDC 14 completo fuera,2019-2023,4,A,Variante A: cohorte dura,4050223,0.8576035176324163
+mdc14_completo,MDC 14 completo fuera,2019-2023,5,EX04,Menores de 18 años o con edad desconocida,673077,0.14251886941471464
+mdc14_completo,MDC 14 completo fuera,2019-2023,6,B,Variante B: adultos,3377146,0.7150846482177016
+mdc14_completo,MDC 14 completo fuera,2019-2023,7,EX05,Actividad distinta de hospitalización,684577,0.1449539058195676
+mdc14_completo,MDC 14 completo fuera,2019-2023,8,C,Variante C: adultos hospitalizados,2692569,0.570130742398134
+mdc14_completo,MDC 14 completo fuera,2019-2023,9,EX06,Censurados por tipo de alta o sin dato de desenlace,220121,0.046608925954142545
+mdc14_completo,MDC 14 completo fuera,2019-2023,10,D,Variante D: cohorte del modelo de mortalidad,2472448,0.5235218164439914
+mdc14_completo,MDC 14 completo fuera,2019-2023,11,EX07,Fallecidos (salen del modelo de estadía),134811,0.028545190676055036
+mdc14_completo,MDC 14 completo fuera,2019-2023,12,EX08,Sobrevivientes con estadía de 0 días o desconocida,108713,0.02301914023311133
+mdc14_completo,MDC 14 completo fuera,2019-2023,13,E,Variante E: cohorte del modelo de estadía,2228924,0.471957485534825
+revision_completa,Las cuatro reglas de la revisión,2019-2023,0,TOTAL,Egresos leídos,4722722,1.0
+revision_completa,Las cuatro reglas de la revisión,2019-2023,1,EX01,"GRD no agrupable: sin código, centinela, formato inválido o MDC 99",3583,0.0007586726468337539
+revision_completa,Las cuatro reglas de la revisión,2019-2023,2,EX02,Recién nacidos (MDC 15),124604,0.026383937060025977
+revision_completa,Las cuatro reglas de la revisión,2019-2023,3,EX03,Obstétricos: MDC 14 completo (enmienda 02),544312,0.11525387266072405
+revision_completa,Las cuatro reglas de la revisión,2019-2023,4,A,Variante A: cohorte dura,4050223,0.8576035176324163
+revision_completa,Las cuatro reglas de la revisión,2019-2023,5,EX04,Menores de 18 años o con edad desconocida,673077,0.14251886941471464
+revision_completa,Las cuatro reglas de la revisión,2019-2023,6,B,Variante B: adultos,3377146,0.7150846482177016
+revision_completa,Las cuatro reglas de la revisión,2019-2023,7,EX05,Actividad distinta de hospitalización,684577,0.1449539058195676
+revision_completa,Las cuatro reglas de la revisión,2019-2023,8,C,Variante C: adultos hospitalizados,2692569,0.570130742398134
+revision_completa,Las cuatro reglas de la revisión,2019-2023,9,EX06,Censurados por tipo de alta o sin dato de desenlace,127373,0.026970251477855357
+revision_completa,Las cuatro reglas de la revisión,2019-2023,10,D,Variante D: cohorte del modelo de mortalidad,2537454,0.5372863361425889
+revision_completa,Las cuatro reglas de la revisión,2019-2023,11,EX07,Fallecidos (salen del modelo de estadía),131836,0.027915257345234378
+revision_completa,Las cuatro reglas de la revisión,2019-2023,12,EX08,Sobrevivientes con estadía de 0 días o desconocida,110509,0.02339942939686054
+revision_completa,Las cuatro reglas de la revisión,2019-2023,13,E,Variante E: cohorte del modelo de estadía,2205838,0.46706920288765674
+revision_completa,Las cuatro reglas de la revisión,2019-2023,15,EX10,"Filas repetidas por clave natural (Q15), fuera de D (revisión 02-11-2026)",2003,0.0004241198190365641
+revision_completa,Las cuatro reglas de la revisión,2019-2023,16,EX11,"Egresos vivos agregados por la revisión (hospitalización domiciliaria), fuera de E",89271,0.0189024465128373
+revision_completa,Las cuatro reglas de la revisión,2019-2023,17,EX12,"Traslados entrantes enlazados con un traslado saliente previo, fuera de D (revisión 02-11-2026)",25739,0.005450034958653082

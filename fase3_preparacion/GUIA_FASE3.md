@@ -1,6 +1,6 @@
 # Fase 3 – Preparación de los datos (guía de la carpeta)
 
-Informe explicado paso a paso: `docs/fase3_preparacion_datos/Informe_Fase3_v5.docx`.
+Informe explicado paso a paso: `docs/fase3_preparacion_datos/Informe_Fase3_v6.docx`.
 
 ## Cómo ejecutar
 ```
@@ -14,7 +14,7 @@ Las capas (Bronce, Plata, Oro, sellado; unos 800 MB) se escriben en `--capas`, n
 ## Contenido
 - `prep/` código por capa: bronce, plata, cohortes, oro, sellado, catalogo, privacidad, verificacion, orquestador.
 - `config/` umbrales congelados y tablas de referencia (Elixhauser, roles de TIPOALTA, cifras de la Fase 2).
-- `tests/` 63 pruebas con datos sintéticos (`python -m pytest`).
+- `tests/` 72 pruebas con datos sintéticos (`python -m pytest`).
 - `salidas/tablas/` resultados en CSV; `tabla_verificacion.csv` tiene las 8 puertas (P1 a P8, todas PASS en la corrida final).
 - `salidas/figuras/` gráficos del informe.
 
@@ -34,6 +34,15 @@ Las capas (Bronce, Plata, Oro, sellado; unos 800 MB) se escriben en `--capas`, n
   monográficos y 3 pediátricos. Incluye el primer año en GRD (plan 1.3 y 1.4).
 - `prep/sello_cripto.py`: sello criptográfico para un año de prueba nuevo (plan 4.5). El profesor guía cifra el
   desenlace con su clave (`python -m prep.sello_cripto sellar <archivo>`) y solo él lo puede abrir.
+
+## Agregado por la segunda revisión del profesor (2 de noviembre de 2026)
+- `prep/cohortes.py` suma tres opciones, también **apagadas** (sin ellas las cohortes son idénticas a las oficiales):
+  `tipoalta_vivos` (hospitalización domiciliaria como egreso vivo en D; sale de E en EX11), `deduplicar_q15` (filas repetidas
+  fuera de D, EX10) y `excluir_entrantes_enlazados` (entrantes enlazados con un traslado saliente a 30 días, fuera de D, EX12).
+  `opciones_revision()` las junta con `mdc14_completo`. Solo afectan a 2019–2023: en 2024 se aplican en la Fase 5.
+- `run_cohortes_revision.py --capas <carpeta>` arma las seis variantes en `<capas>/cohortes_revision/` y escribe
+  `salidas/tablas/cascada_revision.csv` (solo el período 2019–2023, por privacidad).
+- `config/umbrales_fase3.toml` v1.1: `ventana_enlace_traslado_dias` (30) y `regimenes_id`.
 
 ## Pendiente
 Lectura enmascarada de TIPOALTA 2024 (requiere aprobación expresa del profesor guía), cartas a FONASA, revisión clínica y carga del `catalogo_hospitales.sql` en PostgreSQL.
