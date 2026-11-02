@@ -1,0 +1,40 @@
+periodo,tipo_alta,n,prop_ex06,prop_c,n_ex06,n_c
+2019,Hospitalización domiciliaria,9755,0.319543,0.015832,30528,616159
+2019,Derivación a otro hospital del servicio,11730,0.384237,0.019037,30528,616159
+2019,Derivación a otro hospital de la red nacional,4427,0.145014,0.007185,30528,616159
+2019,"Derivación a otros centros (cárcel, hogar)",1816,0.059486,0.002947,30528,616159
+2019,Derivación a institución privada (compra),1860,0.060928,0.003019,30528,616159
+2019,Derivación a institución privada (voluntaria),917,0.030038,0.001488,30528,616159
+2019,No identificada,23,0.000753,0.000037,30528,616159
+2019-2023,Hospitalización domiciliaria,93023,0.420247,0.032509,221353,2861414
+2019-2023,Derivación a otro hospital del servicio,73695,0.33293,0.025755,221353,2861414
+2019-2023,Derivación a otro hospital de la red nacional,24065,0.108718,0.00841,221353,2861414
+2019-2023,"Derivación a otros centros (cárcel, hogar)",13813,0.062403,0.004827,221353,2861414
+2019-2023,Derivación a institución privada (compra),11711,0.052906,0.004093,221353,2861414
+2019-2023,Derivación a institución privada (voluntaria),5009,0.022629,0.001751,221353,2861414
+2019-2023,No identificada,37,0.000167,0.000013,221353,2861414
+2020,Hospitalización domiciliaria,13645,0.337047,0.026504,40484,514825
+2020,Derivación a otro hospital del servicio,15154,0.374321,0.029435,40484,514825
+2020,Derivación a otro hospital de la red nacional,4927,0.121702,0.00957,40484,514825
+2020,"Derivación a otros centros (cárcel, hogar)",3587,0.088603,0.006967,40484,514825
+2020,Derivación a institución privada (compra),2142,0.05291,0.004161,40484,514825
+2020,Derivación a institución privada (voluntaria),1015,0.025072,0.001972,40484,514825
+2020,No identificada,14,0.000346,0.000027,40484,514825
+2021,Hospitalización domiciliaria,21657,0.429047,0.040159,50477,539276
+2021,Derivación a otro hospital del servicio,15874,0.31448,0.029436,50477,539276
+2021,Derivación a otro hospital de la red nacional,5141,0.101848,0.009533,50477,539276
+2021,"Derivación a otros centros (cárcel, hogar)",3275,0.064881,0.006073,50477,539276
+2021,Derivación a institución privada (compra),3300,0.065376,0.006119,50477,539276
+2021,Derivación a institución privada (voluntaria),1230,0.024368,0.002281,50477,539276
+2022,Hospitalización domiciliaria,21766,0.478752,0.038319,45464,568017
+2022,Derivación a otro hospital del servicio,13752,0.302481,0.024211,45464,568017
+2022,Derivación a otro hospital de la red nacional,4428,0.097396,0.007796,45464,568017
+2022,"Derivación a otros centros (cárcel, hogar)",2584,0.056836,0.004549,45464,568017
+2022,Derivación a institución privada (compra),1985,0.043661,0.003495,45464,568017
+2022,Derivación a institución privada (voluntaria),949,0.020874,0.001671,45464,568017
+2023,Hospitalización domiciliaria,26200,0.481618,0.042045,54400,623137
+2023,Derivación a otro hospital del servicio,17185,0.315901,0.027578,54400,623137
+2023,Derivación a otro hospital de la red nacional,5142,0.094522,0.008252,54400,623137
+2023,"Derivación a otros centros (cárcel, hogar)",2551,0.046893,0.004094,54400,623137
+2023,Derivación a institución privada (compra),2424,0.044559,0.00389,54400,623137
+2023,Derivación a institución privada (voluntaria),898,0.016507,0.001441,54400,623137

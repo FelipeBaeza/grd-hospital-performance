@@ -1,0 +1,7 @@
+periodo,n_sobrantes,n_sobrantes_c,n_sobrantes_d,n_d,prop_d,hospitales_con_sobrantes_d,parte_hospital_mayor,parte_5_hospitales_mayores,parte_fallecidos_en_sobrantes_d
+2019,758,32,,585631,,15,,,
+2020,3172,2308,1945,474341,0.0041,27,0.880206,0.972751,0.055527
+2021,510,0,0,488799,0,0,,,
+2022,536,,,522553,,6,,,
+2023,824,,,568737,,4,,,
+2019-2023,5800,2353,1987,2640061,0.000753,35,0.862104,0.957725,0.054353

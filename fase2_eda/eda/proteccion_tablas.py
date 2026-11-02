@@ -250,3 +250,53 @@ FAMILIAS: dict[str, tuple[str, tuple[str, ...], dict[str, str]]] = {
     "t22_conciliacion.csv": ("conciliacion", ("columna",), {c: c for c in ("n_con_med", "n_sin_med", "n_centinela_med", "con_datos_doc", "sin_datos_doc")}),
     "diccionario_medido.csv": ("conciliacion", ("columna",), {c: c for c in ("n_con_med", "n_sin_med", "n_centinela_med", "con_datos_doc", "sin_datos_doc")}),
 }
+
+# ------------------------------------------------------------------ segunda revisión del profesor (S, 02-11-2026)
+_A_S = ("2019", "2020", "2021", "2022", "2023", "2019-2023")
+_GRUPOS_HOSP = ("General de alta complejidad", "General de mediana complejidad", "Institutos y pediátricos", "Sin clasificar")
+REGISTRO.update({
+    "s1_ex06_composicion.csv": Proteccion(
+        grupos=(Grupo(("periodo",), total="n_ex06", columnas=("n",)), Grupo(("tipo_alta",), donde=donde(periodo=_A_S), columnas=("n",))),
+        dependientes=("prop_ex06", "prop_c")),
+    "s2_censura_hospital.csv": Proteccion(
+        grupos=(Grupo((), donde=donde(grupo=_GRUPOS_HOSP)),),
+        filas=(Fila(("n_c", "n_censurados"), resto_de="n_c"), Fila(("n_censurados", "n_hosp_domiciliaria"), resto_de="n_censurados")),
+        dependientes=("prop_censurados", "prop_hosp_domiciliaria", "prop_hd_de_censurados")),
+    "s3_traslados_definiciones.csv": Proteccion(
+        grupos=(Grupo(("universo",), donde=donde(periodo=_A_S)),),
+        filas=(Fila(("n_total", "n_ambas", "n_solo_tipo", "n_solo_hospproc", "n_ninguna"), resto_de="n_total"),
+               Fila(("n_entrante_tipo", "n_ambas", "n_solo_tipo"), resto_de="n_entrante_tipo"),
+               Fila(("n_hospproc", "n_ambas", "n_solo_hospproc"), resto_de="n_hospproc"),
+               Fila(("n_total", "n_salientes"), resto_de="n_total")),
+        dependientes=("prop_hospproc_con_tipo", "prop_tipo_con_hospproc")),
+    "s5_covid_u07.csv": Proteccion(
+        grupos=(Grupo(("anio",), donde=donde(grupo=("u07_principal", "u07_solo_secundario", "sin_u07")), total="_total_d", columnas=("n_d",)),
+                Grupo(("anio",), donde=donde(grupo=("u07_principal", "u07_solo_secundario", "sin_u07")), total="_total_k", columnas=("n_fallecidos",)),
+                Grupo(("anio",), donde=donde(grupo=("u07_principal", "u07_solo_secundario", "sin_u07")), total="_total_e", columnas=("n_e",)),
+                Grupo(("anio",), donde=donde(grupo=("respiratorio_con_u07", "respiratorio_sin_u07")), total="_resp_d", columnas=("n_d",)),
+                Grupo(("anio",), donde=donde(grupo=("respiratorio_con_u07", "respiratorio_sin_u07")), total="_resp_k", columnas=("n_fallecidos",)),
+                Grupo(("anio",), donde=donde(grupo=("respiratorio_con_u07", "respiratorio_sin_u07")), total="_resp_e", columnas=("n_e",))),
+        filas=(Fila(("n_d", "n_fallecidos"), resto_de="n_d"), Fila(("n_d", "n_fallecidos", "n_e"), resto_de="n_d", preferir=("n_e",))),
+        dependientes=("mortalidad", "ic_bajo", "ic_alto", "estancia_media_tope"),
+        dependencias=(("mortalidad", ("n_d", "n_fallecidos")), ("ic_bajo", ("n_d", "n_fallecidos")), ("ic_alto", ("n_d", "n_fallecidos")),
+                      ("estancia_media_tope", ("n_e",)))),
+    "s6_id_inconsistente_mdc.csv": Proteccion(
+        grupos=(Grupo(("regimen",), donde=donde(grupo=("MDC 14 (embarazo y parto)", "MDC 15 (recién nacidos)", "Otras MDC o GRD no agrupable"))),),
+        filas=(Fila(("n_filas", "n_filas_q13"), resto_de="n_filas"), Fila(("n_filas", "n_filas_q14"), resto_de="n_filas")),
+        dependientes=("prop_q13", "prop_q14", "parte_de_filas_q13")),
+    "s7_duplicados_cohorte.csv": Proteccion(
+        grupos=(Grupo((), donde=donde(periodo=_A_S)),),
+        filas=(Fila(("n_sobrantes", "n_sobrantes_c"), resto_de="n_sobrantes"), Fila(("n_sobrantes_c", "n_sobrantes_d"), resto_de="n_sobrantes_c"),
+               Fila(("n_d", "n_sobrantes_d"), resto_de="n_d")),
+        dependientes=("prop_d", "parte_fallecidos_en_sobrantes_d", "parte_hospital_mayor", "parte_5_hospitales_mayores")),
+    "s8_tope_estadia_hospital.csv": Proteccion(
+        grupos=(Grupo((), donde=donde(grupo=_GRUPOS_HOSP)),),
+        filas=(Fila(("n_e", "n_sobre_tope"), resto_de="n_e"),),
+        dependientes=("prop_pacientes",)),
+})
+REGISTRO["s5b_covid_periodos.csv"] = Proteccion(
+    grupos=(Grupo(("periodo",), donde=donde(grupo=("u07_principal", "sin_u07_principal"))),
+            Grupo(("periodo",), donde=donde(grupo=("u07_cualquiera", "sin_u07"))),
+            Grupo(("periodo",), donde=donde(grupo=("respiratorio_con_u07", "respiratorio_sin_u07")))),
+    filas=(Fila(("n_d", "n_fallecidos"), resto_de="n_d"),),
+    dependientes=("mortalidad", "ic_bajo", "ic_alto"))

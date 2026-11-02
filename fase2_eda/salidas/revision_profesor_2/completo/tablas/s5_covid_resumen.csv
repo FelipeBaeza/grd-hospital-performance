@@ -1,0 +1,5 @@
+grupo,etiqueta,mortalidad_pandemia,mortalidad_referencia,razon_mortalidad,estancia_pandemia,estancia_referencia,razon_estancia
+todos,Todos los egresos,0.062526,0.044702,1.398718,7.38937,6.925287,1.067013
+sin_u07,Sin U07 en ninguna posición,0.045305,0.041814,1.083489,6.859299,6.765779,1.013822
+respiratorio,Capítulo X (respiratorio),0.206843,0.172381,1.19992,9.430806,8.847022,1.065986
+embarazo_xv,"Capítulo XV (embarazo, parto y puerperio)",0.000188,0.000166,1.135542,3.433398,3.408023,1.007446
