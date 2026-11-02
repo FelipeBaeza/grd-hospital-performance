@@ -1,8 +1,9 @@
 # Umbrales de la Fase 3 (preparación de los datos). Versión 1.0, 18 de octubre de 2026.
 # Regla: ningún valor nuevo sin fecha ni motivo. Los umbrales heredados de la Fase 2 (umbrales.toml v1.5) conservan su valor.
-version = "1.0"
+version = "1.1"
 historial = [
   "1.0 (2026-10-18): se copian los umbrales de la Fase 2 que gobiernan la construcción de datos y se agregan los propios de la Fase 3, antes de ejecutar la fase.",
+  "1.1 (2026-11-02): segunda revisión del profesor guía. Se agregan ventana_enlace_traslado_dias y regimenes_id, que solo usan las opciones nuevas de cohortes.py (apagadas por defecto); ningún valor existente cambia.",
 ]
 
 [particion]
@@ -31,9 +32,16 @@ justificacion = "Propio de la Fase 3: un nivel de una categórica (por ejemplo u
 [umbral.celda_minima]
 valor = 10
 justificacion = "Privacidad: toda celda de conteo de 1 a 9 casos se suprime en las salidas (criterio DT04 de la Fase 2)."
+[umbral.ventana_enlace_traslado_dias]
+valor = 30
+justificacion = "Revisión del 02-11-2026 (decisión 16): un traslado entrante se enlaza con un traslado saliente del mismo paciente si el alta del saliente fue entre 0 y 30 días antes del ingreso, en otro hospital. Es la ventana más larga que midió la Fase 2 (t23_enlaces_traslado.csv: 11,7 % de los entrantes de 2019–2023)."
 [umbral.tamano_lote_filas]
 valor = 200000
 justificacion = "Operativo: filas que se procesan a la vez para acotar la memoria (equipo de 16 GB; pico objetivo bajo 8 GB)."
+
+[regimenes_id]
+# Fase 2, sección 6.2: ningún identificador de 2019–2020 aparece en 2021–2024. Los cruces de pacientes no atraviesan el quiebre.
+anios = [[2019, 2020], [2021, 2022, 2023, 2024]]
 
 [sensibles]
 # Columnas que la Fase 2 encontró con valores con forma de RUT (Fase 1, decisión 11). Se descartan en Bronce, en los seis años, sin guardar su contenido.
