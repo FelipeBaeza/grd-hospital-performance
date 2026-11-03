@@ -63,4 +63,19 @@ pytest
     vacía, así que cualquier hallazgo hace fallar la puerta.
 - `run_fase5.py` crea la carpeta de trabajo si no existe.
 
-Informe explicado: `docs/fase5_evaluacion/Informe_Fase5_v5.docx`.
+**Enmienda 03** (nueva evaluación en 2024 con la cohorte de la Fase 3 v7): `config/protocolo_fase5_v4.toml` y
+`documentos/ENMIENDA_03.md`. El autor informó el visto bueno del profesor guía el 03-11-2026
+(`documentos/autorizacion_reapertura_2024.txt`; falta su constancia escrita). Mismos criterios que el v1.0; cambian la
+cohorte (cuatro reglas de la segunda revisión), los modelos (Fase 4 rehecha) y las lecturas permitidas de 2024 (dos en
+total). Resultados en `salidas/evaluacion_2024_v4/` y `salidas/ensayo_2023_v4/`; puertas con sufijo `_v4`. El
+protocolo v1.0 y `salidas/evaluacion_2024/` se conservan.
+
+```
+P="--capas <capas v7> --trabajo <trabajo5> --trabajo-fase4 <trabajo4 v7> --protocolo config/protocolo_fase5_v4.toml"
+python run_fase5.py $P --etapas huellas planes_b preregistro validar_embudo ensayo verificacion
+python run_fase5.py $P --etapas apertura            # segunda y última lectura de 2024
+python run_fase5.py $P --etapas evaluacion_2024 --bootstrap 1000
+python run_fase5.py $P --etapas cierre
+```
+
+Informe explicado: `docs/fase5_evaluacion/Informe_Fase5_v5.docx`; enmienda 03: `docs/fase5_evaluacion/Anexo_Enmienda03_resultados.docx`.

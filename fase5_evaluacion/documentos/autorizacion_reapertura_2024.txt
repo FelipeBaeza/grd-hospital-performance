@@ -1,0 +1,5 @@
+autorizo-reapertura-2024
+firmante: Felipe Ignacio Baeza Muñoz (estudiante), informa el visto bueno del profesor guía Manuel Villalobos Cid a las cuatro reglas de la cohorte de la Fase 3 v7 y a volver a evaluar 2024 (enmienda 03). La constancia escrita del propio profesor está pendiente de adjuntar.
+fecha: 2026-11-03
+alcance: una segunda lectura del desenlace de 2024 para construir las cohortes D y E con las reglas de la Fase 3 v7
+protocolo: config/protocolo_fase5_v4.toml

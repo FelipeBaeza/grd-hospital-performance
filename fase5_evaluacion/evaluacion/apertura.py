@@ -54,15 +54,16 @@ def abrir_2024(dir_sellado: Path, protocolo, preapertura: Path, autorizacion: Pa
     if pre["huella_protocolo"] != protocolo.huella():
         raise AperturaNoAutorizada("el protocolo cambió después de registrarse")
     verificar_modelos()
-    if lecturas_concedidas(registro) >= protocolo.apertura["lecturas_concedidas_permitidas"]:
-        raise AperturaNoAutorizada("2024 ya fue abierto: solo se permite una lectura")
+    permitidas = int(protocolo.apertura["lecturas_concedidas_permitidas"])
+    if lecturas_concedidas(registro) >= permitidas:
+        raise AperturaNoAutorizada(f"2024 ya fue abierto: el protocolo permite {permitidas} lectura(s) en total")
     os.environ[sellado.VARIABLE_AUTORIZACION] = sellado.FRASE
     try:
-        d = sellado.leer_desenlace(dir_sellado, 2024, proposito="Fase 5 evaluación: apertura unica")
+        d = sellado.leer_desenlace(dir_sellado, 2024, proposito=protocolo.apertura.get("proposito", "Fase 5 evaluación: apertura unica"))
     finally:
         os.environ.pop(sellado.VARIABLE_AUTORIZACION, None)
-    if lecturas_concedidas(registro) != 1:
-        raise AperturaNoAutorizada("el registro no muestra exactamente una lectura concedida")
+    if lecturas_concedidas(registro) != permitidas:
+        raise AperturaNoAutorizada(f"el registro no muestra exactamente {permitidas} lectura(s) concedida(s)")
     destino.parent.mkdir(parents=True, exist_ok=True)
     d.write_parquet(destino)
     (destino.parent / "huella_desenlace_2024.json").write_text(json.dumps({"sha256": sha256_archivo(destino)}), encoding="utf8")

@@ -18,6 +18,23 @@ from .config import DIR_MODELOS_F4, DIR_PLANES_B, DIR_SALIDAS, FASE4, RAIZ, REGI
 RUTA_PREAPERTURA = RAIZ / "documentos" / "registro_preapertura.json"
 
 
+# ------------------------------------------------------------------ enmienda 03: el protocolo dice dónde escribir y qué cohorte usar
+def ruta_preapertura(prot) -> Path:
+    return RAIZ / prot.datos.get("registro_preapertura", "documentos/registro_preapertura.json")
+
+
+def carpeta(prot, clave: str) -> str:
+    return prot.datos.get("carpetas", {}).get(clave, {"evaluacion": "evaluacion_2024", "ensayo": "ensayo_2023"}[clave])
+
+
+def opciones_cohorte(prot):
+    """Reglas de la cohorte: las de la Fase 3 (umbrales_fase3.toml, sección [cohorte]) si el protocolo lo pide; si no, ninguna (protocolo v1.0)."""
+    if not prot.datos.get("cohorte", {}).get("reglas_fase3", False):
+        return None
+    from prep.cohortes import opciones_config
+    return opciones_config()
+
+
 def jw(ruta: Path, obj) -> None:
     ruta.parent.mkdir(parents=True, exist_ok=True)
     ruta.write_text(json.dumps(obj, indent=1, ensure_ascii=False, default=float), encoding="utf8")
@@ -42,19 +59,24 @@ def etapa_preregistro(prot) -> Path:
     from .config import FASE3
     hu = {"manifiesto_fase4": sha256_archivo(DIR_MODELOS_F4 / "manifiesto.json"), "manifiesto_planes_b": sha256_archivo(DIR_PLANES_B / "manifiesto.json"),
           "registro_accesos_fase3": sha256_archivo(REGISTRO_FASE3) if REGISTRO_FASE3.exists() else "no existe"}
-    return apertura.registrar_preapertura(RUTA_PREAPERTURA, prot, hu)
+    return apertura.registrar_preapertura(ruta_preapertura(prot), prot, hu)
 
 
 def _entrantes(capas: Path, anio: int) -> pd.DataFrame:
     return pl.read_parquet(capas / "plata" / f"plata_{anio}.parquet", columns=["ID_EPISODIO", "ES_TRASLADO_ENTRANTE"]).to_pandas()
 
 
-def _cohortes_anio(capas: Path, anio: int, tope: int, desenlace: pd.DataFrame | None = None):
-    """``desenlace``: para 2024 se entrega el leído en la apertura; para los demás años se lee de Plata."""
+def _cohortes_anio(capas: Path, anio: int, tope: int, desenlace: pd.DataFrame | None = None, opciones=None):
+    """``desenlace``: para 2024 se entrega el leído en la apertura; para los demás años se lee de Plata. ``opciones``: reglas de la cohorte
+    de la Fase 3 v7 (enmienda 03); sin ellas, las del protocolo v1.0."""
     pred = pl.read_parquet(capas / "oro" / f"oro_predictores_{anio}.parquet").drop(["EN_COHORTE_D", "EN_COHORTE_E", "SPLIT"]).to_pandas()
+    cols = ["ID_EPISODIO", "ROL", "ESTANCIA_DIAS", "ES_TRASLADO_SALIENTE"] + (["ETIQUETA_TIPOALTA", "FECHAALTA"] if opciones is not None else [])
     if desenlace is None:
-        desenlace = pl.read_parquet(capas / "plata" / f"desenlace_{anio}.parquet", columns=["ID_EPISODIO", "ROL", "ESTANCIA_DIAS", "ES_TRASLADO_SALIENTE"]).to_pandas()
-    mort, est = cohortes.construir(pred, desenlace, tope)
+        desenlace = pl.read_parquet(capas / "plata" / f"desenlace_{anio}.parquet", columns=cols).to_pandas()
+    marcas = None
+    if opciones is not None and (opciones.deduplicar_q15 or opciones.excluir_entrantes_enlazados):
+        marcas = cohortes.marcas_revision(capas, anio, pl.from_pandas(desenlace[["ID_EPISODIO", "FECHAALTA", "ES_TRASLADO_SALIENTE"]]))
+    mort, est = cohortes.construir(pred, desenlace, tope, opciones, marcas)
     return mort, est, desenlace[["ID_EPISODIO", "ES_TRASLADO_SALIENTE"]]
 
 
@@ -64,7 +86,7 @@ def etapa_ensayo(capas: Path, prot, B: int) -> dict:
     from modelado.exhaustividad import cargar_anio, vocabulario_cie
     anio = prot.ensayo["anio"]
     tope = json.loads((capas / "oro" / "parametros_oro.json").read_text())["tope_estancia_dias"]
-    mort, est, tras = _cohortes_anio(capas, anio, tope)
+    mort, est, tras = _cohortes_anio(capas, anio, tope, opciones=opciones_cohorte(prot))
     mm = pl.read_parquet(capas / "oro" / "matriz_mortalidad.parquet", columns=["ID_EPISODIO", "ANIO_EGRESO"]).filter(pl.col("ANIO_EGRESO") == anio)
     me = pl.read_parquet(capas / "oro" / "matriz_estadia.parquet", columns=["ID_EPISODIO", "ANIO_EGRESO"]).filter(pl.col("ANIO_EGRESO") == anio)
     cuadra = {"mortalidad": [len(mort), mm.height], "estadia": [len(est), me.height],
@@ -72,7 +94,7 @@ def etapa_ensayo(capas: Path, prot, B: int) -> dict:
     reglas4 = cargar_reglas(FASE4 / "config" / "reglas_fase4.toml")
     voc = vocabulario_cie(RAIZ.parent / "fase3_preparacion" / "salidas" / "tablas" / "oro_vocabularios.csv")
     df_exh = cargar_anio(capas, anio, reglas4, voc)
-    destino = DIR_SALIDAS / "ensayo_2023"
+    destino = DIR_SALIDAS / carpeta(prot, "ensayo")
     r = analisis.evaluar(mort, est, df_exh, tras, prot, destino, B=B, entrantes=_entrantes(capas, anio))
     for nombre, tarea, ejes in (("mortalidad", "mortalidad", "muertes esperadas del hospital (escala log)"), ("estadia", "estadia", "días esperados del hospital (escala log)")):
         tab = pd.read_csv(destino / "tablas" / f"oe_hospital_{nombre}.csv")
@@ -94,8 +116,8 @@ def etapa_validar_embudo(prot) -> dict:
 
 def etapa_apertura(capas: Path, trabajo5: Path, prot) -> Path:
     """NO se ejecuta sin la autorización escrita del profesor guía."""
-    destino = trabajo5 / "evaluacion_2024" / "desenlace_2024.parquet"
-    apertura.abrir_2024(capas / "sellado", prot, RUTA_PREAPERTURA, RAIZ / prot.apertura["archivo_autorizacion"], REGISTRO_FASE3, lambda: huellas.exigir_intacto(DIR_MODELOS_F4), destino)
+    destino = trabajo5 / carpeta(prot, "evaluacion") / "desenlace_2024.parquet"
+    apertura.abrir_2024(capas / "sellado", prot, ruta_preapertura(prot), RAIZ / prot.apertura["archivo_autorizacion"], REGISTRO_FASE3, lambda: huellas.exigir_intacto(DIR_MODELOS_F4), destino)
     return destino
 
 
@@ -105,14 +127,15 @@ def etapa_evaluacion_2024(capas: Path, trabajo5: Path, prot, B: int) -> dict:
     from modelado.exhaustividad import cargar_anio, vocabulario_cie
     huellas.exigir_intacto(DIR_MODELOS_F4)
     huellas.exigir_intacto(DIR_PLANES_B)
-    ruta = trabajo5 / "evaluacion_2024" / "desenlace_2024.parquet"
-    des = pl.read_parquet(ruta, columns=["ID_EPISODIO", "ROL", "ESTANCIA_DIAS", "ES_TRASLADO_SALIENTE"]).to_pandas()
+    ruta = trabajo5 / carpeta(prot, "evaluacion") / "desenlace_2024.parquet"
+    op = opciones_cohorte(prot)
+    des = pl.read_parquet(ruta, columns=["ID_EPISODIO", "ROL", "ESTANCIA_DIAS", "ES_TRASLADO_SALIENTE"] + (["ETIQUETA_TIPOALTA", "FECHAALTA"] if op is not None else [])).to_pandas()
     tope = json.loads((capas / "oro" / "parametros_oro.json").read_text())["tope_estancia_dias"]
-    mort, est, tras = _cohortes_anio(capas, 2024, tope, des)
+    mort, est, tras = _cohortes_anio(capas, 2024, tope, des, op)
     reglas4 = cargar_reglas(FASE4 / "config" / "reglas_fase4.toml")
     voc = vocabulario_cie(RAIZ.parent / "fase3_preparacion" / "salidas" / "tablas" / "oro_vocabularios.csv")
     df_exh = cargar_anio(capas, 2024, reglas4, voc)
-    destino = DIR_SALIDAS / "evaluacion_2024"
+    destino = DIR_SALIDAS / carpeta(prot, "evaluacion")
     from . import sin_ajuste
     with sin_ajuste.prohibir_ajustes():          # plan 4.3: cualquier entrenamiento o recalibración durante la evaluación falla
         r = analisis.evaluar(mort, est, df_exh, tras, prot, destino, B=B, entrantes=_entrantes(capas, 2024))
@@ -121,7 +144,8 @@ def etapa_evaluacion_2024(capas: Path, trabajo5: Path, prot, B: int) -> dict:
         res = r["resumen"][f"hospitales_{nombre}"]
         figuras.grafico_embudo(tab, res["tau2"], res["dispersion"], f"2024: O/E de {nombre} por hospital", ejes, destino / "figuras" / f"embudo_{nombre}.png")
     n_c = int(pl.read_parquet(capas / "oro" / "oro_predictores_2024.parquet", columns=["ID_EPISODIO"]).height)
-    jw(destino / "resumen_evaluacion_2024.json", {"n_cohorte_c": n_c, "bootstrap": B, **r["resumen"]})
+    jw(destino / "resumen_evaluacion_2024.json", {"n_cohorte_c": n_c, "bootstrap": B, "n_cohorte_d": int(len(mort)), "n_cohorte_e": int(len(est)),
+                                                  "protocolo": str(prot.ruta.name), **r["resumen"]})
     return r["resumen"]
 
 
@@ -132,10 +156,11 @@ def main(argv=None) -> int:
     p.add_argument("--trabajo-fase4", required=True)
     p.add_argument("--etapas", nargs="+", default=["huellas", "planes_b", "preregistro", "validar_embudo", "ensayo", "verificacion"])
     p.add_argument("--bootstrap", type=int, default=None)
+    p.add_argument("--protocolo", default=None, help="protocolo alternativo (enmienda 03: config/protocolo_fase5_v4.toml)")
     a = p.parse_args(argv)
     capas, trabajo = Path(a.capas), Path(a.trabajo)
     trabajo.mkdir(parents=True, exist_ok=True)                 # plan 4.8: la carpeta de trabajo se crea si no existe
-    prot = cargar_protocolo()
+    prot = cargar_protocolo(a.protocolo)
     (DIR_SALIDAS / "tablas").mkdir(parents=True, exist_ok=True)
     tiempos = []
     for e in a.etapas:
@@ -164,5 +189,6 @@ def main(argv=None) -> int:
             print(verificar_preparacion(prot, trabajo).to_string())
         tiempos.append({"etapa": e, "segundos": round(time.time() - t0, 1)})
         print(f"[{e}] listo en {tiempos[-1]['segundos']} s", flush=True)
-    pd.DataFrame(tiempos).to_csv(DIR_SALIDAS / "tablas" / ("tiempos_etapas_fase5_evaluacion.csv" if "evaluacion_2024" in a.etapas else "tiempos_etapas_fase5_preparacion.csv"), index=False)
+    suf = prot.datos.get("sufijo_tablas", "")
+    pd.DataFrame(tiempos).to_csv(DIR_SALIDAS / "tablas" / (f"tiempos_etapas_fase5_evaluacion{suf}.csv" if "evaluacion_2024" in a.etapas else f"tiempos_etapas_fase5_preparacion{suf}.csv"), index=False)
     return 0

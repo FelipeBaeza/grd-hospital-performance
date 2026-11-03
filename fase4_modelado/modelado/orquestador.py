@@ -29,7 +29,7 @@ from .validacion import mascaras_finales, pliegues
 
 ETAPAS = ("contrato", "ajuste", "comparacion", "seleccion", "calibracion", "integridad", "exhaustividad", "congelar", "verificacion")
 TAREAS = ("mortalidad", "estadia")
-FILAS_ESPERADAS = {"mortalidad": 2640061, "estadia": 2396356}
+FILAS_ESPERADAS = {"mortalidad": 2537454, "estadia": 2205838}   # Fase 3 v7 (umbrales v2.0, reglas de la segunda revisión); v5: 2.640.061 y 2.396.356
 REGISTRO_FASE3 = RAIZ.parent / "fase3_preparacion" / "salidas" / "tablas" / "registro_accesos.csv"
 
 
