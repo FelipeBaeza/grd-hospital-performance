@@ -1,6 +1,6 @@
 # Fase 3 – Preparación de los datos (guía de la carpeta)
 
-Informe explicado paso a paso: `docs/fase3_preparacion_datos/Informe_Fase3_v6.docx`.
+Informe explicado paso a paso: `docs/fase3_preparacion_datos/Informe_Fase3_v7.docx`.
 
 ## Cómo ejecutar
 ```
@@ -14,7 +14,7 @@ Las capas (Bronce, Plata, Oro, sellado; unos 800 MB) se escriben en `--capas`, n
 ## Contenido
 - `prep/` código por capa: bronce, plata, cohortes, oro, sellado, catalogo, privacidad, verificacion, orquestador.
 - `config/` umbrales congelados y tablas de referencia (Elixhauser, roles de TIPOALTA, cifras de la Fase 2).
-- `tests/` 72 pruebas con datos sintéticos (`python -m pytest`).
+- `tests/` 74 pruebas con datos sintéticos (`python -m pytest`).
 - `salidas/tablas/` resultados en CSV; `tabla_verificacion.csv` tiene las 8 puertas (P1 a P8, todas PASS en la corrida final).
 - `salidas/figuras/` gráficos del informe.
 
@@ -43,6 +43,15 @@ Las capas (Bronce, Plata, Oro, sellado; unos 800 MB) se escriben en `--capas`, n
 - `run_cohortes_revision.py --capas <carpeta>` arma las seis variantes en `<capas>/cohortes_revision/` y escribe
   `salidas/tablas/cascada_revision.csv` (solo el período 2019–2023, por privacidad).
 - `config/umbrales_fase3.toml` v1.1: `ventana_enlace_traslado_dias` (30) y `regimenes_id`.
+
+## Versión 7: la fase rehecha con las reglas de la revisión (3 de noviembre de 2026)
+- Por decisión del autor, `config/umbrales_fase3.toml` v2.0 activa las cuatro reglas en la sección `[cohorte]`: la cohorte oficial
+  pasa a D = 2.537.454 y E = 2.205.838 (2019–2023). Cada regla se apaga ahí sin tocar el código.
+- La cohorte anterior se reconstruye como control en cada corrida; la puerta P3 exige que siga reproduciendo las 79 cifras de la Fase 2
+  (`comparacion_cascada_fase2.csv`) y `cascada_control_vs_oficial.csv` compara las dos en 2019–2023.
+- `cascada_fase3.csv` publica por año EX10 sumado a EX06 (las filas repetidas son de 1 a 9 en algunos años).
+- P5 cuenta solo las lecturas de 2024 posteriores al sellado de la corrida (el registro guarda también la apertura de la Fase 5).
+- Las Fases 4 y 5 deben volver a correrse con estas capas; volver a evaluar en 2024 requiere el visto bueno del profesor guía.
 
 ## Pendiente
 Lectura enmascarada de TIPOALTA 2024 (requiere aprobación expresa del profesor guía), cartas a FONASA, revisión clínica y carga del `catalogo_hospitales.sql` en PostgreSQL.

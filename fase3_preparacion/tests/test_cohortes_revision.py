@@ -104,3 +104,22 @@ def test_opciones_de_la_revision():
     op = cohortes.opciones_revision()
     assert op.activas and op.mdc14_completo and op.deduplicar_q15 and op.excluir_entrantes_enlazados and op.tipoalta_vivos == (HD,)
     assert not cohortes.opciones_revision(False, False, False, False).activas
+
+
+def test_la_cohorte_oficial_sigue_la_configuracion_v2():
+    u = cargar_umbrales()
+    op = cohortes.opciones_config(u)
+    assert op == cohortes.opciones_revision()
+    assert u.datos["version"] == "2.0"
+    vacio = type(u)({**u.datos, "cohorte": {}})
+    assert not cohortes.opciones_config(vacio).activas
+
+
+def test_la_cascada_publicable_suma_las_filas_repetidas_a_ex06():
+    b = _b(ROL=["NO_EVENTO", "NO_EVENTO", "CENSURADO"] + ["NO_EVENTO"] * 9, DUP_Q15=[False, True, False] + [False] * 9)
+    op = cohortes.Opciones(deduplicar_q15=True)
+    c = cohortes.cascada_anio(cohortes.marcar(b, opciones=op), 2022, op)
+    pub = cohortes.cascada_publicable(c)
+    v = dict(zip(pub["paso"], pub["n"]))
+    assert "EX10" not in v and v["EX06"] == 2 and v["C"] == v["EX06"] + v["D"]
+    assert pub.filter(pl.col("paso") == "EX06")["descripcion"][0] == cohortes.DESC_EX06_CON_Q15

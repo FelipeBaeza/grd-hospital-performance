@@ -53,7 +53,9 @@ def flujo(F):
 
 def cascada(F):
     c = pl.read_csv(T / "cascada_fase3.csv").filter(pl.col("periodo").cast(pl.String).str.contains(r"^20(19|2[0-3])$"))
-    g = c.group_by(["orden", "paso", "tipo", "descripcion"]).agg(pl.col("n").sum()).sort("orden")
+    secuencia = ["TOTAL", "EX01", "EX02", "EX03", "A", "EX04", "B", "EX05", "C", "EX06", "EX12", "D", "EX07", "EX08", "EX09", "EX11", "E"]
+    g = (c.group_by(["paso", "tipo"]).agg(pl.col("n").sum(), pl.col("descripcion").first())
+         .with_columns(pl.col("paso").replace_strict({k: i for i, k in enumerate(secuencia)}, return_dtype=pl.Int32).alias("orden")).sort("orden"))
     filas = g.to_dicts()
     fig, ax = plt.subplots(figsize=(10, 5.2))
     y = len(filas)
@@ -68,7 +70,10 @@ def cascada(F):
             ax.barh(yy, r["n"], color=OR, height=0.42, alpha=0.9)
             ax.text(r["n"] + 30000, yy, "−" + fmt(r["n"]), va="center", fontsize=8.5, color="#8A4208")
             nombre = {"EX01": "GRD no agrupable", "EX02": "Recién nacidos", "EX03": "Obstétricos sin comorbilidad", "EX04": "Menores de 18 o edad desconocida",
-                      "EX05": "No es hospitalización", "EX06": "Censurados / sin desenlace", "EX07": "Fallecidos (salen de estadía)", "EX08": "Estadía 0 o desconocida"}[r["paso"]]
+                      "EX05": "No es hospitalización", "EX06": "Censurados, sin desenlace o repetidos", "EX07": "Fallecidos (salen de estadía)", "EX08": "Estadía 0 o desconocida",
+                      "EX09": "Alta voluntaria y fuga", "EX11": "Hospitalización domiciliaria (sale de estadía)", "EX12": "Entrantes enlazados"}[r["paso"]]
+            if r["paso"] == "EX03" and "completo" in r["descripcion"]:
+                nombre = "Obstétricos (MDC 14 completo)"
             ax.text(-30000, yy, nombre, va="center", ha="right", fontsize=8.5, color="#404040")
     ax.set_yticks([]); ax.set_xlim(0, 5.3e6)
     ax.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, p: f"{v/1e6:.0f} M"))

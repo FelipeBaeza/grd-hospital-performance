@@ -42,8 +42,11 @@ def verificar(capas: Path, salidas: Path, anios: list[int], u: Umbrales | None =
     dif = comp.filter(pl.col("diferencia").is_not_null() & (pl.col("diferencia") != "0"))
     sin_ref = comp.filter(pl.col("diferencia").is_null()).height
     casc = pl.read_csv(tablas / "cascada_fase3.csv", infer_schema=False)
-    ok3 = dif.height == 0 and sin_ref == 0 and (tablas / "cascada_cuadra.json").exists() and _json(tablas / "cascada_cuadra.json")["todas_cuadran"]
-    out.append(puerta("P3", "Cascada", ok3, f"{comp.height} cifras comparadas con la Fase 2; {dif.height} con diferencia; la cascada cuadra en todos los años"))
+    cc = _json(tablas / "cascada_cuadra.json") if (tablas / "cascada_cuadra.json").exists() else {"todas_cuadran": False}
+    ok3 = dif.height == 0 and sin_ref == 0 and cc["todas_cuadran"]
+    reglas = "con las reglas de la revisión (umbrales v2.0)" if cc.get("reglas_activas") else "sin reglas nuevas"
+    out.append(puerta("P3", "Cascada", ok3, f"cohorte de control sin reglas: {comp.height} cifras comparadas con la Fase 2, {dif.height} con diferencia; "
+                                              f"la cascada oficial ({reglas}) y la de control cuadran en todos los años"))
     # P4 Oro
     cols_m = set(pq.ParquetFile(capas / "oro" / "matriz_mortalidad.parquet").schema_arrow.names) | set(pq.ParquetFile(capas / "oro" / "matriz_estadia.parquet").schema_arrow.names)
     prohibidas = sorted(cols_m & set(oro.PROHIBIDAS))
@@ -53,13 +56,19 @@ def verificar(capas: Path, salidas: Path, anios: list[int], u: Umbrales | None =
     out.append(puerta("P4", "Oro", ok4, f"variables prohibidas en las matrices: {len(prohibidas)}; agregados de comorbilidad junto a los 31 indicadores: 0; columnas sin fila en el diccionario: {len(sin_fila)}"))
     # P5 Sellado
     reg = pl.read_csv(sellado.ruta_registro(), infer_schema=False) if sellado.ruta_registro().exists() else pl.DataFrame({"evento": [], "concedido": []})
-    lect = reg.filter(pl.col("evento").is_in(["lectura_desenlace", "lectura_enmascarada_cohorte"]) & (pl.col("concedido") == "si")).height if reg.height else 0
+    # solo cuentan las lecturas posteriores al último sellado de esta corrida: el registro es acumulativo y guarda también la apertura única de
+    # 2024 en la Fase 5 (19-10-2026), que no es una lectura de la Fase 3
+    lecturas = reg.filter(pl.col("evento").is_in(["lectura_desenlace", "lectura_enmascarada_cohorte"]) & (pl.col("concedido") == "si")) if reg.height else reg
+    sellos = reg.filter(pl.col("evento") == "escritura_sellada")["momento_utc"].to_list() if reg.height else []
+    desde = max(sellos) if sellos else ""
+    lect = lecturas.filter(pl.col("momento_utc") >= desde).height if lecturas.height else 0
+    previas = lecturas.height - lect
     y24 = 0
     for f in ("desenlace_mortalidad.parquet", "desenlace_estadia.parquet"):
         ids = pl.read_parquet(capas / "oro" / f, columns=["ID_EPISODIO"])["ID_EPISODIO"]
         y24 += ids.str.starts_with(f"{ANIO_SELLADO}-").sum()
     ok5 = lect == 0 and y24 == 0
-    out.append(puerta("P5", "Sellado", ok5, f"lecturas del desenlace de 2024 concedidas: {lect}; episodios de 2024 en los archivos de desenlace: {y24}"))
+    out.append(puerta("P5", "Sellado", ok5, f"lecturas del desenlace de 2024 concedidas desde el sellado de esta corrida: {lect} (anteriores, de otras fases: {previas}); episodios de 2024 en los archivos de desenlace: {y24}"))
     # P6 Privacidad
     ocultos = tuple(["registro_accesos.csv", "pytest_resumen.json"])
     hall = privacidad.escanear_carpeta(salidas, int(u["celda_minima"]), excluir_archivos=ocultos)

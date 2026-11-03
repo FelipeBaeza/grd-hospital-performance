@@ -1,0 +1,32 @@
+cohorte,periodo,orden,paso,descripcion,n
+"control (Fase 2, sin reglas)",2019-2023,0,TOTAL,Egresos leídos,4722722
+"control (Fase 2, sin reglas)",2019-2023,1,EX01,"GRD no agrupable: sin código, centinela, formato inválido o MDC 99",3583
+"control (Fase 2, sin reglas)",2019-2023,2,EX02,Recién nacidos (MDC 15),124604
+"control (Fase 2, sin reglas)",2019-2023,3,EX03,Obstétricos sin comorbilidades (MDC 14 sin categorías de Elixhauser),372932
+"control (Fase 2, sin reglas)",2019-2023,4,A,Variante A: cohorte dura,4221603
+"control (Fase 2, sin reglas)",2019-2023,5,EX04,Menores de 18 años o con edad desconocida,675590
+"control (Fase 2, sin reglas)",2019-2023,6,B,Variante B: adultos,3546013
+"control (Fase 2, sin reglas)",2019-2023,7,EX05,Actividad distinta de hospitalización,684599
+"control (Fase 2, sin reglas)",2019-2023,8,C,Variante C: adultos hospitalizados,2861414
+"control (Fase 2, sin reglas)",2019-2023,9,EX06,Censurados por tipo de alta o sin dato de desenlace,221353
+"control (Fase 2, sin reglas)",2019-2023,10,D,Variante D: cohorte del modelo de mortalidad,2640061
+"control (Fase 2, sin reglas)",2019-2023,11,EX07,Fallecidos (salen del modelo de estadía),134857
+"control (Fase 2, sin reglas)",2019-2023,12,EX08,Sobrevivientes con estadía de 0 días o desconocida,108848
+"control (Fase 2, sin reglas)",2019-2023,13,E,Variante E: cohorte del modelo de estadía,2396356
+oficial (reglas de la revisión),2019-2023,0,TOTAL,Egresos leídos,4722722
+oficial (reglas de la revisión),2019-2023,1,EX01,"GRD no agrupable: sin código, centinela, formato inválido o MDC 99",3583
+oficial (reglas de la revisión),2019-2023,2,EX02,Recién nacidos (MDC 15),124604
+oficial (reglas de la revisión),2019-2023,3,EX03,Obstétricos: MDC 14 completo (enmienda 02),544312
+oficial (reglas de la revisión),2019-2023,4,A,Variante A: cohorte dura,4050223
+oficial (reglas de la revisión),2019-2023,5,EX04,Menores de 18 años o con edad desconocida,673077
+oficial (reglas de la revisión),2019-2023,6,B,Variante B: adultos,3377146
+oficial (reglas de la revisión),2019-2023,7,EX05,Actividad distinta de hospitalización,684577
+oficial (reglas de la revisión),2019-2023,8,C,Variante C: adultos hospitalizados,2692569
+oficial (reglas de la revisión),2019-2023,9,EX06,Censurados por tipo de alta o sin dato de desenlace,127373
+oficial (reglas de la revisión),2019-2023,10,D,Variante D: cohorte del modelo de mortalidad,2537454
+oficial (reglas de la revisión),2019-2023,11,EX07,Fallecidos (salen del modelo de estadía),131836
+oficial (reglas de la revisión),2019-2023,12,EX08,Sobrevivientes con estadía de 0 días o desconocida,110509
+oficial (reglas de la revisión),2019-2023,13,E,Variante E: cohorte del modelo de estadía,2205838
+oficial (reglas de la revisión),2019-2023,15,EX10,"Filas repetidas por clave natural (Q15), fuera de D (segunda revisión del profesor)",2003
+oficial (reglas de la revisión),2019-2023,16,EX11,"Egresos vivos agregados por la revisión (hospitalización domiciliaria), fuera de E",89271
+oficial (reglas de la revisión),2019-2023,17,EX12,"Traslados entrantes enlazados con un traslado saliente previo, fuera de D (segunda revisión del profesor)",25739

@@ -1,9 +1,10 @@
 # Umbrales de la Fase 3 (preparación de los datos). Versión 1.0, 18 de octubre de 2026.
 # Regla: ningún valor nuevo sin fecha ni motivo. Los umbrales heredados de la Fase 2 (umbrales.toml v1.5) conservan su valor.
-version = "1.1"
+version = "2.0"
 historial = [
   "1.0 (2026-10-18): se copian los umbrales de la Fase 2 que gobiernan la construcción de datos y se agregan los propios de la Fase 3, antes de ejecutar la fase.",
   "1.1 (2026-11-02): segunda revisión del profesor guía. Se agregan ventana_enlace_traslado_dias y regimenes_id, que solo usan las opciones nuevas de cohortes.py (apagadas por defecto); ningún valor existente cambia.",
+  "2.0 (2026-11-03): por decisión del autor, las cuatro reglas de la segunda revisión del profesor pasan a la cohorte oficial (sección [cohorte]). Cambian D y E de 2019–2023 y A a C en todos los años (MDC 14). La cohorte 1.x se conserva como control en la puerta P3.",
 ]
 
 [particion]
@@ -38,6 +39,15 @@ justificacion = "Revisión del 02-11-2026 (decisión 16): un traslado entrante s
 [umbral.tamano_lote_filas]
 valor = 200000
 justificacion = "Operativo: filas que se procesan a la vez para acotar la memoria (equipo de 16 GB; pico objetivo bajo 8 GB)."
+
+[cohorte]
+# Reglas de la cohorte oficial. Hasta la versión 1.1 todas estaban apagadas (cohorte de la Fase 2). Desde la 2.0 siguen la segunda
+# revisión del profesor guía (02-11-2026) y quedan pendientes de su visto bueno. Ver prep/cohortes.py (Opciones).
+mdc14_completo = true                       # EX03 saca todo el MDC 14 (observación 4; enmienda 02, E2.1)
+tipoalta_vivos = ["HOSPITALIZACIÓN DOMICILIARIA"]   # deja de ser censura: egreso vivo en D; sale de E en EX11 (observación 1)
+deduplicar_q15 = true                       # filas repetidas por clave natural fuera de D, EX10 (observación 7)
+excluir_entrantes_enlazados = true          # entrantes enlazados con un saliente a 30 días fuera de D, EX12 (decisión 16)
+excluir_tipoalta_e = []                     # alta voluntaria y fuga siguen en E (la revisión no lo pidió; enmienda 02, E2.2 y E2.3)
 
 [regimenes_id]
 # Fase 2, sección 6.2: ningún identificador de 2019–2020 aparece en 2021–2024. Los cruces de pacientes no atraviesan el quiebre.

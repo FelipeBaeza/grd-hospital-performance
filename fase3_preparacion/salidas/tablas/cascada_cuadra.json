@@ -7,5 +7,7 @@
   "2023": true,
   "2024": true
  },
- "todas_cuadran": true
+ "todas_cuadran": true,
+ "control_cuadra": true,
+ "reglas_activas": true
 }

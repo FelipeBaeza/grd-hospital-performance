@@ -55,9 +55,9 @@ PASOS = [
     ("EX08", "exclusion", "Sobrevivientes con estadía de 0 días o desconocida", "si"),
     ("E", "cohorte", "Variante E: cohorte del modelo de estadía", "si"),
     ("EX09", "exclusion", "Alta voluntaria y fuga, fuera de la cohorte de estadía (enmienda 02)", "si"),
-    ("EX10", "exclusion", "Filas repetidas por clave natural (Q15), fuera de D (revisión 02-11-2026)", "si"),
+    ("EX10", "exclusion", "Filas repetidas por clave natural (Q15), fuera de D (segunda revisión del profesor)", "si"),
     ("EX11", "exclusion", "Egresos vivos agregados por la revisión (hospitalización domiciliaria), fuera de E", "si"),
-    ("EX12", "exclusion", "Traslados entrantes enlazados con un traslado saliente previo, fuera de D (revisión 02-11-2026)", "si"),
+    ("EX12", "exclusion", "Traslados entrantes enlazados con un traslado saliente previo, fuera de D (segunda revisión del profesor)", "si"),
 ]
 TIPOALTA_VIVOS_REVISION = ("HOSPITALIZACIÓN DOMICILIARIA",)
 CLAVE_Q15 = ("ID_PACIENTE_NUM", "COD_HOSPITAL", "FECHA_INGRESO", "FECHAALTA", "DIAGNOSTICO1", "FECHA_NACIMIENTO", "SEXO")
@@ -96,6 +96,31 @@ def opciones_revision(hd_vivo: bool = True, deduplicar: bool = True, entrantes: 
     """Las cuatro reglas que propone la segunda revisión del profesor (02-11-2026), para el análisis de sensibilidad del indicador."""
     return Opciones(mdc14_completo=mdc14, tipoalta_vivos=TIPOALTA_VIVOS_REVISION if hd_vivo else (), deduplicar_q15=deduplicar,
                     excluir_entrantes_enlazados=entrantes)
+
+
+def opciones_config(u: Umbrales | None = None) -> Opciones:
+    """Reglas de la cohorte oficial según la sección [cohorte] de umbrales_fase3.toml (sin la sección, todas apagadas)."""
+    u = u or cargar_umbrales()
+    c = u.datos.get("cohorte", {})
+    return Opciones(mdc14_completo=bool(c.get("mdc14_completo", False)), excluir_tipoalta_e=tuple(c.get("excluir_tipoalta_e", ())),
+                    tipoalta_vivos=tuple(c.get("tipoalta_vivos", ())), deduplicar_q15=bool(c.get("deduplicar_q15", False)),
+                    excluir_entrantes_enlazados=bool(c.get("excluir_entrantes_enlazados", False)))
+
+
+DESC_EX06_CON_Q15 = "Censurados, sin dato de desenlace o filas repetidas (Q15)"
+
+
+def cascada_publicable(casc: pl.DataFrame) -> pl.DataFrame:
+    """Cascada por año para publicar: EX10 (filas repetidas, a veces de 1 a 9 por año) se suma a EX06, para que ningún conteo pequeño se
+    pueda despejar restando. El período 2019–2023 se publica aparte con EX10 separado."""
+    if "EX10" not in casc["paso"].to_list():
+        return casc
+    ex10 = casc.filter(pl.col("paso") == "EX10").select("periodo", pl.col("n").alias("_ex10"))
+    out = casc.filter(pl.col("paso") != "EX10").join(ex10, on="periodo", how="left").with_columns(
+        pl.when(pl.col("paso") == "EX06").then(pl.col("n") + pl.col("_ex10").fill_null(0)).otherwise(pl.col("n")).alias("n"),
+        pl.when(pl.col("paso") == "EX06").then(pl.lit(DESC_EX06_CON_Q15)).otherwise(pl.col("descripcion")).alias("descripcion"))
+    tot = out.filter(pl.col("paso") == "TOTAL").select("periodo", pl.col("n").alias("_t"))
+    return out.join(tot, on="periodo").with_columns((pl.col("n") / pl.col("_t")).alias("prop_del_total")).drop("_ex10", "_t").select(casc.columns)
 
 
 def marcar_q15(plata: pl.DataFrame, desenlace: pl.DataFrame) -> pl.Series:
