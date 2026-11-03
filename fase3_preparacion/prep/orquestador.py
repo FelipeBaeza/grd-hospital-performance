@@ -110,7 +110,7 @@ def run(data_root: Path, capas: Path, salidas: Path, etapas: list[str], anios: l
         casc = []
         for a in anios:
             print(f"[cohortes] {a}", flush=True)
-            casc.append(cohortes.construir_cohorte(a, d_p, d_c, u))
+            casc.append(cohortes.construir_cohorte(a, d_p, d_c, u, opciones=cohortes.opciones_config(u)))
         fin()
     if "oro" in etapas:
         fin = paso("oro")
@@ -166,29 +166,46 @@ def tablas_resumen(capas: Path, salidas: Path, anios: list[int]) -> None:
     escribir(pl.DataFrame([{"anio": r["anio"], "regla": k, "n": v} for r in rp for k, v in r["anulados"].items()]).pipe(texto_suprimido, ["n"], celda), tablas / "plata_anulados.csv")
     escribir(pl.DataFrame([{"anio": r["anio"], "columna": k, "n_faltantes": v, "prop": (v / r["filas_plata"]) if (v == 0 or v >= celda) else None} for r in rp for k, v in r["faltantes"].items()]).pipe(texto_suprimido, ["n_faltantes"], celda), tablas / "plata_faltantes.csv")
     # cascada
-    casc = pl.concat([cohortes_cascada_desde_archivo(d_c, d_p, a) for a in anios])
-    escribir(casc, tablas / "cascada_fase3.csv")
-    comp = cohortes.comparar_con_referencia(casc, DIR_CONFIG / "cifras_referencia_cascada.csv")
-    escribir(comp, tablas / "comparacion_cascada_fase2.csv")
+    op = cohortes.opciones_config(u)
+    casc = pl.concat([cohortes_cascada_desde_archivo(d_c, d_p, a, op) for a in anios])
     cuadran = {str(a): cohortes.cuadra(casc.filter(pl.col("periodo") == str(a))) for a in anios}
-    (tablas / "cascada_cuadra.json").write_text(json.dumps({"por_anio": cuadran, "todas_cuadran": all(cuadran.values())}, indent=1), encoding="utf8")
+    escribir(cohortes.cascada_publicable(casc), tablas / "cascada_fase3.csv")
+    # control: la cohorte sin opciones (la de la Fase 2) debe reproducir exactamente las cifras medidas por la Fase 2
+    d_ctrl = capas / "cohortes_control"
+    control = pl.concat([cohortes.construir_cohorte(a, d_p, d_ctrl, u) for a in anios])
+    shutil.rmtree(d_ctrl, ignore_errors=True)
+    comp = cohortes.comparar_con_referencia(control, DIR_CONFIG / "cifras_referencia_cascada.csv")
+    escribir(comp, tablas / "comparacion_cascada_fase2.csv")
+    cuadran_ctrl = all(cohortes.cuadra(control.filter(pl.col("periodo") == str(a))) for a in anios)
+    (tablas / "cascada_cuadra.json").write_text(json.dumps({"por_anio": cuadran, "todas_cuadran": all(cuadran.values()) and cuadran_ctrl,
+                                                            "control_cuadra": cuadran_ctrl, "reglas_activas": op.activas}, indent=1), encoding="utf8")
+    # cambio de la cohorte oficial frente al control, solo en el período 2019–2023 (por año, la resta despejaría pasos pequeños)
+    res = [a for a in anios if a in ANIOS_RESULTADO]
+    if res:
+        def tot(df, nombre):
+            return (df.filter(pl.col("periodo").is_in([str(a) for a in res])).group_by("orden", "paso", "descripcion").agg(pl.col("n").sum())
+                    .sort("orden").with_columns(pl.lit(nombre).alias("cohorte")))
+        cmp_ = pl.concat([tot(control, "control (Fase 2, sin reglas)"), tot(casc, "oficial (reglas de la revisión)")])
+        if cmp_.filter((pl.col("n") > 0) & (pl.col("n") < celda)).height:
+            raise ValueError("un paso del período 2019–2023 tiene de 1 a 9 egresos")
+        escribir(cmp_.select("cohorte", pl.lit("2019-2023").alias("periodo"), "orden", "paso", "descripcion", "n"), tablas / "cascada_control_vs_oficial.csv")
     # períodos
     per = []
     for nombre, lista, pasos in (("2019-2024 (estructura)", list(anios), ["TOTAL", "EX01", "EX02", "EX03", "A", "EX04", "B", "EX05", "C"]),
-                                 ("2019-2023 (desenlace)", [a for a in anios if a in ANIOS_RESULTADO], ["TOTAL", "C", "EX06", "D", "EX07", "EX08", "E"]),
+                                 ("2019-2023 (desenlace)", [a for a in anios if a in ANIOS_RESULTADO], ["TOTAL", "C", "EX06", "EX10", "EX12", "D", "EX07", "EX08", "EX11", "E"]),
                                  ("2019-2022 (entrenamiento)", [a for a in anios if a <= 2022], ["D", "E"]), ("2023 (calibración)", [2023] if 2023 in anios else [], ["D", "E"])):
         sub = casc.filter(pl.col("periodo").is_in([str(a) for a in lista]) & pl.col("paso").is_in(pasos)).group_by("paso", "descripcion", "orden").agg(pl.col("n").sum()).sort("orden")
         per += [{"periodo": nombre, "paso": r["paso"], "descripcion": r["descripcion"], "n": r["n"]} for r in sub.iter_rows(named=True)]
     escribir(pl.DataFrame(per), tablas / "cascada_periodos.csv")
 
 
-def cohortes_cascada_desde_archivo(d_c: Path, d_p: Path, a: int) -> pl.DataFrame:
+def cohortes_cascada_desde_archivo(d_c: Path, d_p: Path, a: int, opciones: cohortes.Opciones = cohortes.Opciones()) -> pl.DataFrame:
     """Reconstruye la cascada de un año desde el archivo de cohorte (así se puede regenerar sin recalcular)."""
     c = pl.read_parquet(d_c / f"cohorte_{a}.parquet")
     if a != ANIO_SELLADO:
         des = pl.read_parquet(d_p / f"desenlace_{a}.parquet", columns=["ROL"])
         c = c.with_columns(des["ROL"])
-    return cohortes.cascada_anio(c, a)
+    return cohortes.cascada_anio(c, a, opciones)
 
 
 def tablas_oro(capas: Path, salidas: Path, anios: list[int]) -> dict:

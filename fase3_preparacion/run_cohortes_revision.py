@@ -6,7 +6,8 @@ Uso (después de ``run_fase3.py``, con las capas ya construidas):
 
 Escribe las cohortes de cada variante en ``<capas>/cohortes_revision/<variante>/`` (nunca en ``<capas>/cohortes``, que alimenta a las Fases 4
 y 5) y la tabla ``salidas/tablas/cascada_revision.csv``. Solo trabaja con 2019–2023: las opciones cambian D y E, que en 2024 no existen
-hasta la Fase 5. Antes de todo comprueba que sin opciones las cohortes son idénticas a las de la corrida oficial.
+hasta la Fase 5. Comprueba que la variante con las reglas de la configuración (umbrales v2.0: las cuatro de la revisión) es idéntica,
+fila por fila, a la cohorte oficial de ``<capas>/cohortes``; la variante «base» es la cohorte de la Fase 2, sin reglas.
 
 Privacidad: la tabla publica solo el período 2019–2023 de cada variante. Por año, la diferencia con la cascada oficial (que se publica por
 año) dejaría despejar pasos pequeños, como las filas repetidas de 2019.
@@ -31,7 +32,7 @@ VARIANTES = {
     "revision_completa": cohortes.opciones_revision(),
 }
 DESCRIPCION = {
-    "base": "Cohorte oficial (sin opciones)",
+    "base": "Cohorte de la Fase 2 (sin reglas nuevas)",
     "hosp_domiciliaria_viva": "Hospitalización domiciliaria como egreso vivo",
     "sin_filas_repetidas": "Sin filas repetidas (Q15)",
     "sin_entrantes_enlazados": "Sin traslados entrantes enlazados",
@@ -45,6 +46,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--capas", type=Path, required=True)
     a = p.parse_args(argv)
     u, e = cargar_umbrales(), elixhauser.cargar()
+    op_oficial = cohortes.opciones_config(u)
     d_p, oficial, salida = a.capas / "plata", a.capas / "cohortes", a.capas / "cohortes_revision"
     filas = []
     for nombre, op in VARIANTES.items():
@@ -52,10 +54,10 @@ def main(argv: list[str] | None = None) -> int:
         for anio in ANIOS_RESULTADO:
             print(f"[{nombre}] {anio}", flush=True)
             casc.append(cohortes.construir_cohorte(anio, d_p, salida / nombre, u, e, op))
-            if nombre == "base":
+            if op == op_oficial:
                 nuevo = pl.read_parquet(salida / nombre / f"cohorte_{anio}.parquet")
                 if not nuevo.equals(pl.read_parquet(oficial / f"cohorte_{anio}.parquet")):
-                    raise SystemExit(f"sin opciones, la cohorte de {anio} no es idéntica a la oficial")
+                    raise SystemExit(f"la variante {nombre} de {anio} no es idéntica a la cohorte oficial")
         c = pl.concat(casc)
         if not all(cohortes.cuadra(c.filter(pl.col("periodo") == str(x))) for x in ANIOS_RESULTADO):
             raise SystemExit(f"la cascada de {nombre} no cuadra")

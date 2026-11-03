@@ -9,7 +9,7 @@
    `fase5_evaluacion/Anexo_Enmienda01_resultados.docx` y `Anexo_Enmienda02_resultados.docx` — los análisis de
    robustez de las enmiendas 01 y 02.
 4. `fase2_comprension_datos/Informe_Fase2_v7.docx` (el análisis completo de los datos, con las figuras explicadas; su
-   sección 12 responde la revisión del profesor guía), `fase3_preparacion_datos/Informe_Fase3_v5.docx` y
+   sección 12 responde la revisión del profesor guía), `fase3_preparacion_datos/Informe_Fase3_v7.docx` y
    `fase4_modelado/Informe_Fase4_v5.docx`, según lo que se necesite revisar.
 5. `auditoria/` — auditoría metodológica externa y resumen del plan de corrección.
 6. `gobernanza/` — etapa 0 del plan de corrección: constancia para el profesor guía, enmienda 01, versiones de la
