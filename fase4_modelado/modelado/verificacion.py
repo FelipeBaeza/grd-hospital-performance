@@ -11,7 +11,7 @@ from . import privacidad, seleccion
 from .config import RAIZ, sha256_archivo
 from .datos import PREDICTORES, predictores_del_diccionario
 
-FILAS_ESPERADAS = {"mortalidad": 2640061, "estadia": 2396356}
+FILAS_ESPERADAS = {"mortalidad": 2537454, "estadia": 2205838}   # Fase 3 v7 (umbrales v2.0, reglas de la segunda revisión); v5: 2.640.061 y 2.396.356
 
 
 def _j(r: Path):

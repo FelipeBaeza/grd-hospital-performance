@@ -1,0 +1,59 @@
+# Enmienda 03 al protocolo de la Fase 5 (versión 4.0): nueva evaluación en 2024 con la cohorte de la Fase 3 v7.
+# Texto explicado: documentos/ENMIENDA_03.md. Se registra (huella SHA-256 en documentos/registro_preapertura_v4.json) ANTES de la
+# segunda lectura del desenlace de 2024 y después no se cambia: un cambio exige una enmienda nueva.
+# Los criterios, umbrales, semilla y réplicas son los mismos del protocolo v1.0. Cambian solo la cohorte, los modelos (Fase 4 rehecha
+# con la cohorte v7) y el número de lecturas permitidas. El protocolo v1.0 y sus resultados (salidas/evaluacion_2024/) se conservan.
+version = "4.0"
+enmienda = 3
+protocolo_base = "config/protocolo_fase5.toml"
+huella_base = "5624bdae5dad1205081c7765d16046890f5c460667031b336dc21c1e02d42256"
+texto = "documentos/ENMIENDA_03.md"
+semilla = 20261019
+registro_preapertura = "documentos/registro_preapertura_v4.json"
+sufijo_tablas = "_v4"
+
+[carpetas]
+evaluacion = "evaluacion_2024_v4"
+ensayo = "ensayo_2023_v4"
+
+[cohorte]
+reglas_fase3 = true                    # las de fase3_preparacion/config/umbrales_fase3.toml v2.0, sección [cohorte]
+descripcion = "Hospitalización domiciliaria como egreso vivo (fuera de E), filas repetidas Q15 fuera de D, traslados entrantes enlazados con un saliente a 30 días fuera de D (con salientes de 2023 y 2024) y todo el MDC 14 fuera."
+
+[ensayo]
+anio = 2023            # año con desenlace conocido para depurar el código; sus resultados NO se reportan como evaluación (2023 se usó para calibrar)
+
+[criterios]
+bss_minimo = 0.0
+pendiente = [0.8, 1.2]
+oe_global = [0.95, 1.05]
+pr_auc_frente_a = "logistica"          # plan B si falla: regresión logística congelada
+rmse_frente_a = ["lineal", "poisson"]  # plan B si falla: la línea base congelada
+regla_veredicto = "cumple si el valor puntual cumple y el intervalo de confianza queda entero del lado favorable; 'cumple con incertidumbre' si el punto cumple pero el intervalo cruza el umbral; 'no cumple' si el punto no cumple"
+
+[incertidumbre]
+bootstrap = 1000                       # remuestreo de hospitales completos
+nivel = 0.95
+
+[hospital]
+min_egresos = 500
+min_esperado = 10                      # muertes esperadas con el modelo final en el año evaluado (decisión 6, aprobada en la revisión del 02-11-2026)
+celda_minima = 10                      # toda cifra de 1 a 9 casos se suprime
+z_alerta = 1.96                        # límite 95 %
+z_senal = 3.09                         # límite 99,8 %
+winsor = 0.10                          # Spiegelhalter (2005)
+dispersion_estadia = "residuos de Pearson globales (quasi-Poisson)"
+
+[estadia]
+tope_dias = 53
+
+[apertura]
+archivo_autorizacion = "documentos/autorizacion_reapertura_2024.txt"
+frase = "autorizo-reapertura-2024"
+lecturas_concedidas_permitidas = 2     # la primera fue la apertura del protocolo v1.0 (19-10-2026)
+proposito = "Fase 5 evaluación: segunda apertura autorizada (enmienda 03)"
+alcance = "una segunda lectura del desenlace de 2024 para construir las cohortes D y E con las reglas de la Fase 3 v7"
+
+[[declaraciones]]
+tema = "2024 no es ciego"
+texto = "El autor y el asistente ya vieron los resultados de 2024 del protocolo v1.0. Esta evaluación es una segunda mirada al mismo año de prueba y se informa como tal: no reemplaza al resultado primario del v1.0 ni se presenta como una validación independiente."

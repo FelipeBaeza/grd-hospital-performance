@@ -136,13 +136,17 @@ def regimen_de(anio: int, u: Umbrales) -> list[int]:
     raise ValueError(f"año sin régimen de identificadores: {anio}")
 
 
-def entrantes_enlazados(anio: int, dir_plata: Path | str, u: Umbrales) -> pl.Series:
+def entrantes_enlazados(anio: int, dir_plata: Path | str, u: Umbrales, desenlaces: dict[int, pl.DataFrame] | None = None) -> pl.Series:
     """Para cada fila del año: verdadero si es un traslado entrante (TIPO_PROCEDENCIA con «OTROS HOSPITALES») de un paciente que tuvo un
     traslado saliente (derivación a otro hospital del servicio o de la red) en otro hospital, con alta entre 0 y W días antes del ingreso.
 
+    ``desenlaces`` (año -> ID_EPISODIO, ES_TRASLADO_SALIENTE, FECHAALTA) reemplaza al archivo de Plata de ese año; así la Fase 5 aplica la
+    regla a 2024 con el desenlace que leyó en la apertura autorizada, sin abrir el archivo sellado.
+
     El saliente se busca en el mismo año y en el anterior si es del mismo régimen de identificadores. Como en la Fase 2, el saliente debe ser
     de un adulto hospitalizado. Solo para años con desenlace (2019 a 2023): el saliente necesita el tipo de alta."""
-    if anio == ANIO_SELLADO:
+    desenlaces = desenlaces or {}
+    if anio == ANIO_SELLADO and anio not in desenlaces:
         raise ValueError("el enlace usa el tipo de alta: no se calcula en el año sellado")
     dir_plata = Path(dir_plata)
     w = int(u["ventana_enlace_traslado_dias"])
@@ -150,10 +154,14 @@ def entrantes_enlazados(anio: int, dir_plata: Path | str, u: Umbrales) -> pl.Ser
     c = pl.col
     sal = []
     for a in (anio - 1, anio):
-        if a not in reg or not (dir_plata / f"desenlace_{a}.parquet").is_file():
+        if a not in reg or not (a in desenlaces or (dir_plata / f"desenlace_{a}.parquet").is_file()):
             continue
         p = pl.read_parquet(dir_plata / f"plata_{a}.parquet", columns=["ID_EPISODIO", "ID_PACIENTE_NUM", "COD_HOSPITAL", "EDAD_ANIOS", "TIPO_ACTIVIDAD"])
-        dd = pl.read_parquet(dir_plata / f"desenlace_{a}.parquet", columns=["ES_TRASLADO_SALIENTE", "FECHAALTA"])
+        if a in desenlaces:      # desenlace entregado por quien lo abrió (Fase 5); se alinea por ID_EPISODIO
+            dd = p.select("ID_EPISODIO").join(desenlaces[a].select("ID_EPISODIO", "ES_TRASLADO_SALIENTE", "FECHAALTA"), on="ID_EPISODIO", how="left",
+                                               maintain_order="left").drop("ID_EPISODIO")
+        else:
+            dd = pl.read_parquet(dir_plata / f"desenlace_{a}.parquet", columns=["ES_TRASLADO_SALIENTE", "FECHAALTA"])
         sal.append(p.hstack(dd).filter((c("ES_TRASLADO_SALIENTE") == 1) & c("ID_PACIENTE_NUM").is_not_null() & c("FECHAALTA").is_not_null()
                                        & (c("EDAD_ANIOS") >= int(u["edad_adulto"])) & (c("TIPO_ACTIVIDAD") == dfn.ACTIVIDAD_HOSP))
                    .select("ID_PACIENTE_NUM", c("COD_HOSPITAL").alias("hosp_s"), "FECHAALTA"))

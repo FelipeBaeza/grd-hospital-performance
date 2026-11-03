@@ -45,3 +45,21 @@ def test_cohortes_reglas_de_la_fase_3():
     assert list(m["y"]) == [1, 0, 0, 0]
     assert list(e["ID_EPISODIO"]) == ["c", "f"]                      # E: sobrevivientes con estadía mayor que cero
     assert list(e["y"]) == [10, 53]                                  # con tope de 53 días
+
+
+def test_cohortes_con_las_reglas_de_la_fase_3_v7():
+    from prep.cohortes import Opciones
+    op = Opciones(tipoalta_vivos=("HOSPITALIZACIÓN DOMICILIARIA",), deduplicar_q15=True, excluir_entrantes_enlazados=True)
+    pred = pd.DataFrame({"ID_EPISODIO": list("abcdef"), "COD_HOSPITAL": 1})
+    des = pd.DataFrame({"ID_EPISODIO": list("abcdef"), "ROL": ["EVENTO", "CENSURADO", "NO_EVENTO", "NO_EVENTO", "NO_EVENTO", "CENSURADO"],
+                        "ESTANCIA_DIAS": [3, 6, 10, 4, 5, 2],
+                        "ETIQUETA_TIPOALTA": ["FALLECIDO", "HOSPITALIZACIÓN DOMICILIARIA", "DOMICILIO", "DOMICILIO", "DOMICILIO", "DESCONOCIDO"]})
+    marcas = pd.DataFrame({"ID_EPISODIO": list("abcdef"), "DUP_Q15": [False, False, False, True, False, False],
+                           "ENTRANTE_ENLAZADO": [False, False, False, False, True, False]})
+    m, e = cohortes.construir(pred, des, 53, op, marcas)
+    assert list(m["ID_EPISODIO"]) == ["a", "b", "c"]                 # b: domiciliaria viva; d repetida y e enlazada fuera; f censurado
+    assert list(m["y"]) == [1, 0, 0]
+    assert list(e["ID_EPISODIO"]) == ["c"]                           # la domiciliaria no entra a estadía
+    import pytest
+    with pytest.raises(ValueError, match="marcas"):
+        cohortes.construir(pred, des, 53, op)

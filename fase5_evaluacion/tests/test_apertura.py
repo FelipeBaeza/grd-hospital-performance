@@ -69,3 +69,20 @@ def test_el_codigo_de_la_fase_5_no_entrena_ni_recalibra_con_2024():
         if f.name in ("planes_b.py", "verificacion.py"):          # planes_b recalibra con 2023; verificacion contiene los patrones a modo de búsqueda
             continue
         assert not re.search(r"\.fit\(|ajustar_final|entrenar\(", f.read_text(encoding="utf8")), f.name
+
+
+def test_la_enmienda_03_permite_una_segunda_lectura_y_no_una_tercera(entorno, tmp_path):
+    from evaluacion.config import RAIZ
+    e = entorno
+    a1 = _auth(e["tmp"] / "a.txt")
+    apertura.abrir_2024(e["sellado"], e["prot"], e["pre"], a1, e["registro"], lambda: None, e["tmp"] / "o1" / "d.parquet")
+    p4 = cargar_protocolo(RAIZ / "config" / "protocolo_fase5_v4.toml")
+    pre4 = tmp_path / "pre4.json"
+    apertura.registrar_preapertura(pre4, p4, {})
+    a2 = _auth(tmp_path / "a2.txt", "autorizo-reapertura-2024\nfirmante: Profesor guía\nfecha: hoy\n")
+    with pytest.raises(apertura.AperturaNoAutorizada):          # la frase del v1.0 no sirve para la segunda
+        apertura.abrir_2024(e["sellado"], p4, pre4, a1, e["registro"], lambda: None, tmp_path / "x" / "d.parquet")
+    d = apertura.abrir_2024(e["sellado"], p4, pre4, a2, e["registro"], lambda: None, tmp_path / "o2" / "d.parquet")
+    assert d.height == 2 and apertura.lecturas_concedidas(e["registro"]) == 2
+    with pytest.raises(apertura.AperturaNoAutorizada):
+        apertura.abrir_2024(e["sellado"], p4, pre4, a2, e["registro"], lambda: None, tmp_path / "o3" / "d.parquet")
