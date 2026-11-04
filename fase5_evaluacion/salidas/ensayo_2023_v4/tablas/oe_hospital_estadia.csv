@@ -1,0 +1,66 @@
+cod_hospital,n_egresos,oe,zona,ic_inf,ic_sup
+101100,10390,0.876,dentro de lo esperado,0.857,0.894
+102100,9220,1.04,dentro de lo esperado,1.022,1.058
+103100,11590,1.219,alerta alta,1.202,1.236
+103101,5450,0.919,dentro de lo esperado,0.895,0.943
+104100,7230,1.185,dentro de lo esperado,1.163,1.206
+104103,3280,0.875,dentro de lo esperado,0.844,0.907
+105100,8020,1.109,dentro de lo esperado,1.088,1.13
+105101,9410,1.047,dentro de lo esperado,1.029,1.065
+105102,5020,1.003,dentro de lo esperado,0.978,1.028
+106100,8440,1.112,dentro de lo esperado,1.093,1.131
+106102,2940,1.245,alerta alta,1.213,1.277
+106103,3810,1.167,dentro de lo esperado,1.139,1.195
+107100,11530,0.923,dentro de lo esperado,0.908,0.939
+107101,4870,1.169,dentro de lo esperado,1.145,1.193
+107102,2970,1.023,dentro de lo esperado,0.988,1.058
+108100,5510,0.918,dentro de lo esperado,0.894,0.943
+108101,5580,1.019,dentro de lo esperado,0.993,1.044
+109100,12220,1.159,dentro de lo esperado,1.144,1.174
+110100,12770,0.998,dentro de lo esperado,0.983,1.013
+110110,2800,0.794,alerta baja,0.759,0.83
+110120,11030,0.987,dentro de lo esperado,0.971,1.003
+110130,3520,0.886,dentro de lo esperado,0.855,0.918
+110150,4070,0.972,dentro de lo esperado,0.942,1.003
+111100,7130,1.069,dentro de lo esperado,1.046,1.093
+111101,7250,0.92,dentro de lo esperado,0.901,0.939
+111195,8170,0.939,dentro de lo esperado,0.922,0.956
+112100,8830,1.08,dentro de lo esperado,1.064,1.097
+112101,8280,0.868,dentro de lo esperado,0.847,0.889
+112103,2730,0.966,dentro de lo esperado,0.934,0.998
+112104,2150,0.869,dentro de lo esperado,0.832,0.907
+113100,15140,1.096,dentro de lo esperado,1.083,1.11
+113150,3240,0.868,dentro de lo esperado,0.835,0.901
+113180,5630,1.149,dentro de lo esperado,1.124,1.173
+114101,18390,0.874,dentro de lo esperado,0.861,0.887
+114103,7730,0.901,dentro de lo esperado,0.882,0.921
+114105,7690,1.04,dentro de lo esperado,1.021,1.059
+115100,11650,0.871,dentro de lo esperado,0.856,0.886
+115107,4320,0.988,dentro de lo esperado,0.959,1.016
+115110,2870,0.625,señal baja,0.592,0.658
+116100,7750,1.053,dentro de lo esperado,1.033,1.072
+116105,16670,1.028,dentro de lo esperado,1.014,1.042
+116108,6110,0.96,dentro de lo esperado,0.935,0.984
+116110,3090,0.699,alerta baja,0.666,0.733
+117101,10900,1.072,dentro de lo esperado,1.055,1.089
+117102,4010,0.838,dentro de lo esperado,0.811,0.865
+118100,18740,1.078,dentro de lo esperado,1.065,1.091
+118105,3520,0.727,alerta baja,0.696,0.759
+118106,2220,0.833,dentro de lo esperado,0.794,0.872
+119100,13890,0.974,dentro de lo esperado,0.959,0.99
+119101,2100,0.893,dentro de lo esperado,0.856,0.93
+120101,15520,0.945,dentro de lo esperado,0.93,0.959
+121109,12370,1.187,dentro de lo esperado,1.171,1.203
+121110,1510,0.869,dentro de lo esperado,0.827,0.911
+121114,2950,1.134,dentro de lo esperado,1.103,1.165
+121117,1930,0.83,dentro de lo esperado,0.794,0.865
+121121,2100,0.654,señal baja,0.614,0.694
+122100,11990,1.07,dentro de lo esperado,1.054,1.087
+123100,10920,0.957,dentro de lo esperado,0.94,0.974
+124105,13560,0.914,dentro de lo esperado,0.9,0.928
+125100,5230,0.803,dentro de lo esperado,0.777,0.83
+126100,7810,1.082,dentro de lo esperado,1.062,1.102
+128109,3110,0.951,dentro de lo esperado,0.918,0.985
+129100,5750,1.024,dentro de lo esperado,1.0,1.049
+129106,4130,1.195,dentro de lo esperado,1.166,1.225
+133150,3540,0.777,alerta baja,0.748,0.806

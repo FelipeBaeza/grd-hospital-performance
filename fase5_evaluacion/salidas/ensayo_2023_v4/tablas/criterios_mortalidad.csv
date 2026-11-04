@@ -1,0 +1,11 @@
+criterio,valor,ic_inf,ic_sup,umbral,veredicto
+Discriminación de mortalidad: PR AUC del modelo menos PR AUC de la logística,0.03422892687811052,0.029602630020968954,0.039110623042162375,> 0,cumple
+PR AUC del modelo,0.3337640676403861,0.3216774572587629,0.3480903794844054,informativa,informativa
+Ganancia relativa de PR AUC sobre la prevalencia,7.764788702129418,7.382077387863,8.241065183459222,informativa,informativa
+Brier Skill Score,0.19043644180973052,0.1828730373837598,0.19930325442566696,> 0.0,cumple
+Pendiente de calibración,1.0,0.9818466355367376,1.0264262667409283,0.8 a 1.2,cumple
+O/E global de mortalidad,1.0,0.9455546584351188,1.0507046860990297,0.95 a 1.05,cumple con incertidumbre
+auc (informativa),0.9190081123373255,0.9156741314168066,0.92345284955306,informativa,informativa
+brier (informativa),0.03330273848642837,0.0313752977011511,0.03532867060751407,informativa,informativa
+log_loss (informativa),0.11615076509594305,0.11006253088422183,0.1224158507319785,informativa,informativa
+citl (informativa),-1.351452572383676e-16,-0.07290090641793091,0.06468039401700115,informativa,informativa
