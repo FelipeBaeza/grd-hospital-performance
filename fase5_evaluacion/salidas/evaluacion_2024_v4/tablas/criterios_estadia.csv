@@ -1,0 +1,7 @@
+criterio,valor,ic_inf,ic_sup,umbral,veredicto
+Error de estadía: RMSE del modelo menos RMSE de la regresión lineal,-0.19637568800884164,-0.21962740406506193,-0.17490942911910604,< 0,cumple
+Error de estadía: RMSE del modelo menos RMSE de la regresión poisson,-0.25014037789605315,-0.27488132612577687,-0.22470396414495325,< 0,cumple
+O/E global de estadía,0.9555728335875882,0.9262034835719605,0.9850646718574383,0.95 a 1.05,cumple con incertidumbre
+rmse del modelo (informativa),7.136783106242569,6.8803442822993395,7.396687848067402,informativa,informativa
+mae del modelo (informativa),4.308911621783316,4.1562008132656745,4.466240344688973,informativa,informativa
+devianza_poisson del modelo (informativa),4.2857275326676625,4.081616406934231,4.4904568625355505,informativa,informativa

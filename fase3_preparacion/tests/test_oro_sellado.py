@@ -114,6 +114,12 @@ def test_supresion_de_celdas_del_catalogo():
     assert d["n"].to_list() == ["0", "<10", "<10", "10", "500"]
 
 
+def test_conteos_de_cohorte_del_catalogo_van_a_la_decena():
+    # I-12: con la Fase 2 exacta, la resta revelaría lo que quitó cada regla de la cohorte en un hospital
+    d = pl.DataFrame({"n": [0, 3, 9, 10, 14, 15, 12013]}).select(catalogo.redondear(pl.col("n")).alias("n"))
+    assert d["n"].to_list() == ["0", "<10", "<10", "10", "10", "20", "12010"]
+
+
 def test_script_sql_no_lleva_nombres_ni_celdas_pequenas():
     cat = pl.DataFrame({"anio": [2023], "cod_hospital": ["101100"], "n_egresos": ["1000"], "n_cohorte_c": ["800"], "n_cohorte_d": ["700"], "n_fallecidos_d": ["<10"],
                         "en_catalogo_oficial": [True], "cumple_volumen_observado": [False]})

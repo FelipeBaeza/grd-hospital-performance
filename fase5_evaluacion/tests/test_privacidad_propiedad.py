@@ -59,11 +59,41 @@ def test_canario_valor_real_en_una_prueba(tmp_path):
     assert not r["ok"] and r["valores_en_textos"][0]["origen"] == "oe_hospital_mortalidad.csv:esperado"
 
 
+def test_canario_mismo_conteo_con_dos_cohortes(tmp_path):
+    # I-12: el mismo conteo por hospital publicado con la cohorte sin reglas y con ellas; la resta da lo que quitó la regla
+    cods = [f"1{i:05d}" for i in range(6)]
+    _escribir(tmp_path / "fase2", "embudo.csv", pd.DataFrame({"periodo": ["2023"] * 6, "cod_hospital": cods, "k": [400, 380, 512, 233, 701, 99]}))
+    _escribir(tmp_path / "fase3", "catalogo.csv", pd.DataFrame({"anio": ["2023"] * 6, "cod_hospital": cods, "n_fallecidos_d": [396, 380, 512, 230, 701, 99]}))
+    h = pp.entre_tablas([tmp_path / "fase2", tmp_path / "fase3"])
+    assert sorted(x["conteo"] for x in h) == [3, 4]
+    # redondeado a la decena: la diferencia ya no fija un entero
+    _escribir(tmp_path / "fase3", "catalogo.csv", pd.DataFrame({"anio": ["2023"] * 6, "cod_hospital": cods, "n_fallecidos_d": [400, 380, 510, 230, 700, 100]}))
+    assert pp.entre_tablas([tmp_path / "fase2", tmp_path / "fase3"]) == []
+
+
+def test_canario_misma_tabla_en_dos_versiones_del_protocolo(tmp_path):
+    from evaluacion import publicacion
+    cods = [f"1{i:05d}" for i in range(5)]
+    v1 = pd.DataFrame({"cod_hospital": cods, "n_egresos": [1200, 5400, 830, 2210, 9001], "observado": [40, 200, 31, 75, 360], "esperado": [41.0, 190.2, 30.0, 80.1, 350.3]})
+    v4 = v1.assign(n_egresos=[1195, 5400, 828, 2210, 8990], observado=[38, 199, 31, 70, 352])
+    _escribir(tmp_path / "evaluacion_2024" / "tablas", "oe_hospital_mortalidad.csv", v1)
+    _escribir(tmp_path / "evaluacion_2024_v4" / "tablas", "oe_hospital_mortalidad.csv", v4)
+    assert len(pp.entre_tablas([tmp_path])) == 6          # 2 en egresos y 4 en muertes (la diferencia de 11 no cuenta)
+    publicacion.publicar(tmp_path / "evaluacion_2024_v4", tmp_path / "trabajo")
+    pub = pd.read_csv(tmp_path / "evaluacion_2024_v4" / "tablas" / "oe_hospital_mortalidad.csv")
+    assert "observado" not in pub.columns and "esperado" not in pub.columns and (pub["n_egresos"] % 10 == 0).all()
+    assert pp.entre_tablas([tmp_path / "evaluacion_2024", tmp_path / "evaluacion_2024_v4"]) == []
+    # las completas quedan en la carpeta de trabajo y se vuelve a publicar desde ellas
+    assert publicacion.leer(tmp_path / "evaluacion_2024_v4", tmp_path / "trabajo", "oe_hospital_mortalidad")["observado"].tolist() == v4["observado"].tolist()
+
+
 def test_salidas_reales_sin_hallazgos_nuevos():
     """Puerta real: lo publicado por las Fases 3 a 6, las pruebas y los documentos. Los hallazgos del incidente I-11
     están declarados; cualquier otro hace fallar la prueba."""
     t = RAIZ.parent
     r = pp.verificar([RAIZ / "salidas", t / "fase3_preparacion" / "salidas", t / "fase4_modelado" / "salidas", t / "fase6_despliegue" / "datos"],
-                     [RAIZ / "tests", t / "fase3_preparacion" / "tests", t / "fase4_modelado" / "tests", t / "docs"], ruta_declarados=DECLARADOS)
+                     [RAIZ / "tests", t / "fase3_preparacion" / "tests", t / "fase4_modelado" / "tests", t / "docs"], ruta_declarados=DECLARADOS,
+                     cruces=[t / "fase2_eda" / "salidas", t / "fase2_eda" / "analisis_complementario", t / "fase3_preparacion" / "salidas", RAIZ / "salidas",
+                             t / "fase4_modelado" / "salidas", t / "fase6_despliegue" / "datos"])
     assert r["ok"], r["nuevos"]
     assert all(pp.declarados(DECLARADOS)[pp.clave_hallazgo(h)] == "I-11" for h in r["declarados"])
