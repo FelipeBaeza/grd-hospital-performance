@@ -17,9 +17,19 @@ def suprimir(serie: pl.Expr, minimo: int = 10) -> pl.Expr:
     return pl.when((serie > 0) & (serie < minimo)).then(pl.lit(f"<{minimo}")).otherwise(serie.cast(pl.String))
 
 
+def redondear(serie: pl.Expr, minimo: int = 10, paso: int = 10) -> pl.Expr:
+    """Texto: el conteo redondeado a la decena (mitades hacia arriba), o «<10» si está entre 1 y 9.
+
+    Para los conteos que dependen de las reglas de la cohorte (C, D y fallecidos de D). La Fase 2 publica los mismos conteos por
+    hospital y año con la cohorte sin reglas; con los dos valores exactos, la resta daría cuántos egresos o muertes quitó cada
+    regla en un hospital, a menudo de 1 a 9 (incidente I-12)."""
+    r = ((serie + paso // 2) // paso * paso).cast(pl.Int64)
+    return pl.when((serie > 0) & (serie < minimo)).then(pl.lit(f"<{minimo}")).otherwise(r.cast(pl.String))
+
+
 def construir_catalogo(anios: list[int], dir_plata: Path | str, dir_cohortes: Path | str, dir_oro: Path | str, ruta_hospitales: Path | str | None,
                        minimo_celda: int = 10) -> tuple[pl.DataFrame, pl.DataFrame]:
-    """Devuelve (catálogo hospital-año con conteos suprimidos, conciliación por año con el catálogo oficial)."""
+    """Devuelve (catálogo hospital-año con conteos suprimidos y, los de la cohorte, redondeados a la decena; conciliación por año con el catálogo oficial)."""
     dir_plata, dir_cohortes, dir_oro = Path(dir_plata), Path(dir_cohortes), Path(dir_oro)
     filas = []
     for a in anios:
@@ -49,8 +59,8 @@ def construir_catalogo(anios: list[int], dir_plata: Path | str, dir_cohortes: Pa
         pl.col("cumple_volumen_observado").sum().alias("cumplen_volumen_observado"),
     ).sort("anio")
     cat_pub = cat.select(
-        "anio", "cod_hospital", suprimir(pl.col("n_egresos"), minimo_celda).alias("n_egresos"), suprimir(pl.col("n_cohorte_c"), minimo_celda).alias("n_cohorte_c"),
-        suprimir(pl.col("n_cohorte_d"), minimo_celda).alias("n_cohorte_d"), suprimir(pl.col("n_fallecidos_d"), minimo_celda).alias("n_fallecidos_d"),
+        "anio", "cod_hospital", suprimir(pl.col("n_egresos"), minimo_celda).alias("n_egresos"), redondear(pl.col("n_cohorte_c"), minimo_celda).alias("n_cohorte_c"),
+        redondear(pl.col("n_cohorte_d"), minimo_celda).alias("n_cohorte_d"), redondear(pl.col("n_fallecidos_d"), minimo_celda).alias("n_fallecidos_d"),
         "en_catalogo_oficial", "cumple_volumen_observado",
     )
     return cat_pub, concil
@@ -68,7 +78,7 @@ def script_sql(cat: pl.DataFrame) -> str:
     cuerpo = ",\n".join(filas)
     return (
         "-- Catálogo de hospitales por año (Fase 3). Solo códigos y agregados; sin datos de pacientes ni nombres.\n"
-        "-- Las celdas de 1 a 9 casos están suprimidas (NULL).\n"
+        "-- Las celdas de 1 a 9 casos están suprimidas (NULL). n_cohorte_c, n_cohorte_d y n_fallecidos_d van redondeados a la decena.\n"
         "CREATE TABLE IF NOT EXISTS catalogo_hospital_anio (\n  anio INTEGER NOT NULL,\n  cod_hospital TEXT NOT NULL,\n  n_egresos INTEGER,\n  n_cohorte_c INTEGER,\n"
         "  n_cohorte_d INTEGER,\n  n_fallecidos_d INTEGER,\n  en_catalogo_oficial BOOLEAN NOT NULL,\n  cumple_volumen_observado BOOLEAN,\n  PRIMARY KEY (anio, cod_hospital)\n);\n"
         "INSERT INTO catalogo_hospital_anio VALUES\n" + cuerpo + "\nON CONFLICT DO NOTHING;\n"

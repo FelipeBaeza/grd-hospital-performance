@@ -14,6 +14,11 @@ Reconstrucciones que intenta, dentro de cada carpeta de salidas (un mismo año y
 3. **Complementos.** En las tablas por subgrupo (``variable``, ``grupo``), si una variable tiene todos sus grupos
    publicados, su suma es el total. En otra variable con un solo grupo oculto, ese grupo es el total menos los demás.
 
+4. **Entre tablas** (incidente I-12). Un mismo conteo publicado en dos archivos con versiones distintas de la cohorte
+   (Fase 2 y Fase 3, protocolo v1.0 y enmienda 03): si los valores casi coinciden en todas las filas, son el mismo
+   conteo, y una diferencia de 1 a 9 es lo que quitó una regla. Se omite si una de las columnas va redondeada a la
+   decena (todos sus valores son múltiplos de 10): la diferencia queda indeterminada en 10 enteros.
+
 Además, ``valores_en_textos`` busca en el código de pruebas y en los documentos números que coincidan con el
 esperado o los límites de una fila suprimida. La prueba de privacidad original usaba esos valores reales.
 
@@ -136,6 +141,73 @@ def reconstrucciones(carpeta: Path | str, minimo: int = 10) -> list[dict]:
     return hallazgos
 
 
+RE_ANIO = re.compile(r"(20\d\d)")
+COL_CLAVE = {"cod_hospital", "anio", "periodo", "variable", "grupo", "tarea", "decil"}
+
+
+def _clave_filas(ruta: Path, d: pd.DataFrame) -> tuple[str, pd.Series] | None:
+    """Tipo de fila y clave comparable entre archivos: hospital y año, o subgrupo y año. El año sale de la columna o de la
+    carpeta (``evaluacion_2024``, ``ensayo_2023``)."""
+    m = RE_ANIO.findall(f"{ruta.parent.parent.name}/{ruta.parent.name}")
+    anio = m[-1] if m else "?"
+    if "cod_hospital" in d.columns:
+        if "tarea" in d.columns:
+            return "hospital", d["tarea"] + "|" + d["cod_hospital"] + "|" + (d["anio"] if "anio" in d.columns else anio)
+        t = d["anio"] if "anio" in d.columns else d["periodo"] if "periodo" in d.columns else pd.Series([anio] * len(d), index=d.index)
+        return "hospital", d["cod_hospital"] + "|" + t
+    if {"variable", "grupo"} <= set(d.columns):
+        return "subgrupo", d["variable"] + "|" + d["grupo"] + "|" + anio
+    return None
+
+
+def entre_tablas(raices: list[Path | str], minimo: int = 10, parecido: float = 0.05) -> list[dict]:
+    """Diferencias de 1 a minimo-1 entre el mismo conteo publicado en dos archivos (reconstrucción 4)."""
+    import os
+    existentes = [Path(r).resolve() for r in raices if Path(r).exists()]
+    base = Path(os.path.commonpath(existentes)) if existentes else Path(".")
+    rel = lambda r: r.resolve().relative_to(base).as_posix()      # noqa: E731
+    cols = []
+    for raiz in raices:
+        raiz = Path(raiz)
+        if not raiz.exists():
+            continue
+        for ruta in sorted(raiz.rglob("*.csv")):
+            if "node_modules" in ruta.parts:
+                continue
+            d = _leer(ruta)
+            if d is None or not len(d):
+                continue
+            k = _clave_filas(ruta, d)
+            if k is None:
+                continue
+            tipo, clave = k
+            for c in d.columns:
+                if c in COL_CLAVE or "hospital" in c:
+                    continue
+                v = pd.to_numeric(d[c], errors="coerce")
+                v = v[v.notna()]
+                if len(v) < 3 or not (v % 1 == 0).all() or v.max() < minimo:
+                    continue
+                redondeada = bool((v[v >= minimo] % 10 == 0).all())
+                s = pd.Series(v.values, index=clave[v.index].values)
+                cols.append((tipo, ruta, c, s[~s.index.duplicated()], redondeada))
+    hallazgos = []
+    for i, (t1, r1, c1, s1, red1) in enumerate(cols):
+        for t2, r2, c2, s2, red2 in cols[i + 1:]:
+            if t1 != t2 or r1 == r2 or red1 or red2:
+                continue
+            idx = s1.index.intersection(s2.index)
+            if len(idx) < 3:
+                continue
+            a, b = s1[idx].astype(float), s2[idx].astype(float)
+            if ((a - b).abs() / a.where(a > 0)).median() > parecido:
+                continue
+            dif = (a - b).abs()
+            for clave, x in dif[(dif >= 1) & (dif < minimo)].items():
+                hallazgos.append({"tipo": "entre tablas", "archivo": rel(r1), "columna": c1, "con": f"{rel(r2)}:{c2}", "fila": clave, "conteo": int(x)})
+    return hallazgos
+
+
 def valores_sensibles(carpeta: Path | str) -> dict[str, str]:
     """Números que acompañan a un conteo suprimido (esperado, O/E y límites de su fila), con 10 cifras significativas."""
     out = {}
@@ -182,13 +254,15 @@ def declarados(ruta: Path | str) -> dict[str, str]:
     return dict(zip(d["clave"], d["incidente"]))
 
 
-def verificar(salidas: list[Path], textos: list[Path], minimo: int = 10, ruta_declarados: Path | str | None = None) -> dict:
+def verificar(salidas: list[Path], textos: list[Path], minimo: int = 10, ruta_declarados: Path | str | None = None, cruces: list[Path] | None = None) -> dict:
     """Puerta completa: reconstrucciones en todas las carpetas de salidas y valores sensibles en pruebas y documentos.
     Los hallazgos ya declarados en un incidente se informan aparte; la puerta falla solo con hallazgos nuevos."""
     rec = []
     for s in salidas:
         if Path(s).exists():
             rec += [{**h, "archivo": f"{Path(s).name}/{h['archivo']}"} for h in reconstrucciones(s, minimo)]
+    if cruces:
+        rec += entre_tablas(cruces, minimo)
     sens = {}
     for s in salidas:
         if Path(s).exists():

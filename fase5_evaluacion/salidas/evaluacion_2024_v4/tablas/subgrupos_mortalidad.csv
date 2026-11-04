@@ -1,0 +1,37 @@
+variable,grupo,n,oe
+edad,"[18, 30)",71350,0.971
+edad,"[30, 40)",78900,1.019
+edad,"[40, 50)",69280,0.925
+edad,"[50, 60)",85220,0.932
+edad,"[60, 70)",112030,0.965
+edad,"[70, 80)",98760,0.953
+edad,"[80, 90)",55610,0.983
+edad,"[90, 200)",11760,0.968
+sexo,HOMBRE,255350,0.951
+sexo,MUJER o SIN_DATO,327560,0.976
+comorbilidades,0,147430,0.885
+comorbilidades,1,138860,0.944
+comorbilidades,2,117010,0.954
+comorbilidades,3,81590,0.96
+comorbilidades,4,98020,0.978
+grupo_clinico,I,11030,0.937
+grupo_clinico,II,62490,1.08
+grupo_clinico,III,4310,1.04
+grupo_clinico,IV,18970,0.849
+grupo_clinico,IX,80780,0.965
+grupo_clinico,V,13340,0.979
+grupo_clinico,VI,11400,1.034
+grupo_clinico,X,41590,0.995
+grupo_clinico,XI,95750,0.929
+grupo_clinico,XII,7870,1.097
+grupo_clinico,XIII,21710,0.955
+grupo_clinico,XIV,61720,0.936
+grupo_clinico,XIX,75180,0.868
+grupo_clinico,XVII,1530,1.063
+grupo_clinico,XVIII,4170,0.837
+grupo_clinico,XXI,22480,0.631
+grupo_clinico,XXII,1260,0.557
+grupo_clinico,VII o VIII o XV o sin capítulo,47330,0.898
+tamano_hospital,mayor,194300,0.922
+tamano_hospital,mediano,194300,1.009
+tamano_hospital,menor,194300,0.954

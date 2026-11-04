@@ -181,6 +181,13 @@ def main(argv=None) -> int:
             etapa_apertura(capas, trabajo, prot)
         elif e == "evaluacion_2024":
             print(etapa_evaluacion_2024(capas, trabajo, prot, a.bootstrap or prot.incertidumbre["bootstrap"]))
+        elif e == "publicacion":
+            # enmienda 03 (I-12): versión publicable de las tablas que conviven con las del protocolo v1.0 del mismo año
+            from .publicacion import publicar
+            if not prot.datos.get("sufijo_tablas"):
+                raise SystemExit("la etapa publicacion es para un protocolo que convive con otro del mismo año (sufijo_tablas)")
+            for clave in ("ensayo", "evaluacion"):
+                print(clave, publicar(DIR_SALIDAS / carpeta(prot, clave), trabajo, int(prot.hospital["celda_minima"])))
         elif e == "cierre":
             from .verificacion import verificar_cierre
             print(verificar_cierre(prot, trabajo).to_string())

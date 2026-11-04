@@ -23,6 +23,7 @@ Hora de referencia (UTC), 19-10-2026:
 | I-09 | 21-10-2026 | Repositorio | Publicación de valores reales en GitHub: la prueba de privacidad y tablas por hospital con celdas menores que 10 | Después | No; decisión de publicación pendiente |
 | I-10 | Después del 19-10-2026 | F5 | El profesor guía autorizó por escrito después de conocer los resultados de 2024 | Después | No cambia cifras; la autorización previa no operó |
 | I-11 | 22-10-2026 | F5 y F6 | El escáner por propiedad encontró conteos nacionales de 1 a 9 reconstruibles por complemento en las tablas por subgrupo | Después | No; tablas regeneradas el mismo día |
+| I-12 | 03 y 04-11-2026 | F3 y F5 | Conteos por hospital de 1 a 9 reconstruibles restando dos versiones de la cohorte (Fase 2 frente a Fase 3 v7; protocolo v1.0 frente a la enmienda 03) | Después | No; tablas publicables corregidas el 04-11 |
 
 ---
 
@@ -298,4 +299,44 @@ La lista exacta estaba en `config/privacidad_hallazgos_declarados.csv`, sin los 
    declarados queda vacía. Las puertas P7 y G7 fallan ante cualquier hallazgo nuevo.
 6. Las versiones anteriores de esas tablas siguen en el **historial público** de git. Reescribirlo o no es la misma
    decisión pendiente de I-09.
+
+---
+
+## I-12. Conteos por hospital reconstruibles entre dos versiones de la cohorte (03 y 04-11-2026)
+
+**Qué pasó.** La segunda revisión del profesor cambió la cohorte (Fase 3 v7: hospitalización domiciliaria viva, filas
+repetidas, traslados entrantes enlazados y todo el MDC 14). Algunas tablas por hospital quedaron publicadas con las
+dos cohortes a la vez, con conteos exactos. La resta de las dos dice cuántos egresos o muertes quitaron las reglas en
+cada hospital, a menudo entre 1 y 9.
+
+- **Fase 3 (commit `9bbdf32`, 03-11-2026).** `catalogo_hospitales_anio.csv` y `catalogo_hospitales.sql` publicaban
+  egresos de C y D y muertes de D por hospital y año, con la cohorte v7. La Fase 2 publica los mismos conteos con la
+  cohorte sin reglas (`t23_embudo.csv`, `t23_hospitales_volumen.csv`). En 187 hospitales-año la diferencia de
+  muertes iba de 1 a 9, y en 9 la de egresos.
+- **Fase 5 (commit `a225dd9`, 04-11-2026).** Las tablas por hospital y por subgrupo del ensayo con 2023 de la
+  enmienda 03 (`salidas/ensayo_2023_v4/`) junto a las del protocolo v1.0 (`salidas/ensayo_2023/`): 38 hospitales con
+  una diferencia de muertes de 1 a 9. Las tablas de 2024 de la enmienda tenían el mismo problema, pero se detectó
+  antes de subirlas.
+
+**Por qué no lo vio la puerta.** El escáner por propiedad revisaba cada carpeta por separado. No comparaba el mismo
+conteo publicado en dos carpetas.
+
+**Impacto.** No cambia ninguna cifra ni ningún veredicto. Son conteos de egresos con una característica
+administrativa (tipo de alta, fila repetida, traslado, MDC 14) por hospital y año, sin datos de pacientes, y se pueden
+calcular desde el GRD público. Aun así, rompen el criterio DT04 del proyecto.
+
+**Medida (04-11-2026).**
+
+1. **Catálogo de la Fase 3.** Los conteos de C, D y fallecidos de D van redondeados a la decena (`prep/catalogo.py`,
+   `redondear`). Los egresos totales no dependen de la cohorte y siguen exactos. Las marcas de volumen se calculan
+   con los valores exactos y no cambian. La conciliación por año sale idéntica.
+2. **Tablas de la enmienda 03.** Se publican sin el observado, el esperado ni los límites del embudo. Los egresos van
+   a la decena, y el O/E, los intervalos, las tasas y los índices con tres decimales (`evaluacion/publicacion.py`,
+   etapa `publicacion`). Las tablas completas quedan en la carpeta de trabajo, fuera del repositorio. Las puertas del
+   cierre las leen de ahí.
+3. **Escáner.** Suma una cuarta reconstrucción, **entre tablas**: el mismo conteo por hospital o subgrupo en dos
+   archivos de las Fases 2 a 6. Si una de las columnas va a la decena, la diferencia queda indeterminada y no cuenta.
+   Dos pruebas plantan la fuga. Con lo publicado hoy no encuentra ningún hallazgo, y las puertas P7 y G7 la incluyen.
+4. **Historial.** Las versiones exactas siguen en el historial público de git (`9bbdf32`, `a225dd9`). Reescribirlo o
+   no es la misma decisión pendiente de I-09.
 

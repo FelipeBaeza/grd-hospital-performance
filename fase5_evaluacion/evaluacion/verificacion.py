@@ -23,7 +23,9 @@ def _propiedad() -> dict:
     t = RAIZ.parent
     return pp.verificar([DIR_SALIDAS, t / "fase3_preparacion" / "salidas", t / "fase4_modelado" / "salidas", t / "fase6_despliegue" / "datos"],
                         [RAIZ / "tests", t / "fase3_preparacion" / "tests", t / "fase4_modelado" / "tests", t / "docs"],
-                        ruta_declarados=RAIZ / "config" / "privacidad_hallazgos_declarados.csv")
+                        ruta_declarados=RAIZ / "config" / "privacidad_hallazgos_declarados.csv",
+                        cruces=[t / "fase2_eda" / "salidas", t / "fase2_eda" / "analisis_complementario", t / "fase3_preparacion" / "salidas", DIR_SALIDAS,
+                                t / "fase4_modelado" / "salidas", t / "fase6_despliegue" / "datos"])     # I-12: el mismo conteo con dos cohortes
 
 
 def verificar_preparacion(prot, trabajo: Path, con_pytest: bool = True) -> pd.DataFrame:
@@ -137,7 +139,8 @@ def verificar_cierre(prot, trabajo: Path, con_pytest: bool = True) -> pd.DataFra
     out.append(_p("G5", "Criterios completos", vv["n"] == 7 and emb and cm["valor"].notna().all() and ce["valor"].notna().all(), f"{vv['n']} criterios con valor, intervalo y veredicto; gráficos de embudo de mortalidad y estadía generados"))
     # G6 indicador válido
     res = json.loads((destino / "resumen_evaluacion_2024.json").read_text(encoding="utf8"))
-    om, oe_ = pd.read_csv(destino / "tablas" / "oe_hospital_mortalidad.csv"), pd.read_csv(destino / "tablas" / "oe_hospital_estadia.csv")
+    from .publicacion import leer   # enmienda 03: las tablas completas quedan en la carpeta de trabajo (I-12)
+    om, oe_ = leer(destino, trabajo, "oe_hospital_mortalidad"), leer(destino, trabajo, "oe_hospital_estadia")
     ok6 = res["hospitales_mortalidad"]["n_elegibles"] >= 30 and len(om) == res["hospitales_mortalidad"]["n_elegibles"] and len(oe_) == res["hospitales_estadia"]["n_elegibles"] and om.loc[om["observado"].astype(str) != "<10", "oe"].notna().all()
     out.append(_p("G6", "Indicador válido", ok6, f"O/E calculado en {len(om)} hospitales de mortalidad y {len(oe_)} de estadía que cumplen el volumen mínimo (el O/E se omite solo donde hay menos de 10 eventos)"))
     # G7 privacidad y sin ranking

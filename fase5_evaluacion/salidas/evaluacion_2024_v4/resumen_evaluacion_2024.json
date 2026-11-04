@@ -1,0 +1,35 @@
+{
+ "n_cohorte_c": 625369,
+ "bootstrap": 1000,
+ "n_cohorte_d": 582904,
+ "n_cohorte_e": 498544,
+ "protocolo": "protocolo_fase5_v4.toml",
+ "n_mortalidad": 582904,
+ "n_estadia": 498544,
+ "hospitales_mortalidad": {
+  "n_hospitales_total": 72,
+  "n_elegibles": 69,
+  "n_bajo_volumen": 3,
+  "tau2": 0.01843312365814877,
+  "dispersion": 1.0,
+  "pct_fuera_95": 0.15942028985507245,
+  "pct_senal_998": 0.043478260869565216,
+  "egresos_bajo_volumen": 115
+ },
+ "hospitales_estadia": {
+  "n_hospitales_total": 72,
+  "n_elegibles": 69,
+  "n_bajo_volumen": 3,
+  "tau2": 0.011557713905565854,
+  "dispersion": 5.418420553205707,
+  "pct_fuera_95": 0.14492753623188406,
+  "pct_senal_998": 0.014492753623188406,
+  "egresos_bajo_volumen": 104
+ },
+ "exhaustividad": {
+  "indice_global_vs_2023": 1.0370121114125157,
+  "factor_global_2023": 1.1590455683840395
+ },
+ "oe_global_mortalidad": 0.9621524493443091,
+ "oe_global_estadia": 0.9555728335875882
+}
