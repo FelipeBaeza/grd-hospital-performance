@@ -1,0 +1,42 @@
+{
+ "cuadra_con_fase3": {
+  "mortalidad": [
+   548107,
+   548107
+  ],
+  "estadia": [
+   474346,
+   474346
+  ],
+  "mismos_ids_mortalidad": true,
+  "mismos_ids_estadia": true
+ },
+ "n_mortalidad": 548107,
+ "n_estadia": 474346,
+ "hospitales_mortalidad": {
+  "n_hospitales_total": 68,
+  "n_elegibles": 65,
+  "n_bajo_volumen": 3,
+  "tau2": 0.02044981289617263,
+  "dispersion": 1.0,
+  "pct_fuera_95": 0.13846153846153847,
+  "pct_senal_998": 0.015384615384615385,
+  "egresos_bajo_volumen": 84
+ },
+ "hospitales_estadia": {
+  "n_hospitales_total": 68,
+  "n_elegibles": 65,
+  "n_bajo_volumen": 3,
+  "tau2": 0.01040716716074587,
+  "dispersion": 5.605908267342458,
+  "pct_fuera_95": 0.12307692307692308,
+  "pct_senal_998": 0.03076923076923077,
+  "egresos_bajo_volumen": 81
+ },
+ "exhaustividad": {
+  "indice_global_vs_2023": 1.0,
+  "factor_global_2023": 1.1590455683840395
+ },
+ "oe_global_mortalidad": 1.0,
+ "oe_global_estadia": 1.0
+}
