@@ -15,4 +15,7 @@ pytest            # 48 pruebas
 - Las etapas largas (ajuste) se reanudan desde el checkpoint Optuna (SQLite) si se interrumpen. Cada reanudación queda
   en `<trabajo>/optuna/reanudaciones.csv` (plan 4.8). Con `--semilla-por-prueba`, una corrida cortada y retomada da las
   mismas pruebas que una de corrido. Viene apagado porque la corrida congelada se hizo sin esa opción.
-- Informe explicado: `docs/fase4_modelado/Informe_Fase4_v5.docx`.
+- Informe explicado: `docs/fase4_modelado/Informe_Fase4_v6.docx` (v6, 04-11-2026: reentrenado con la cohorte de la Fase 3 v7;
+  la v5 está en `docs/historial/fase4/`). La v6 se corrió en tramos de menos de 2 horas con `--etapas`; hubo una reanudación
+  (XGBoost de estadía), copiada en `salidas/tablas/reanudaciones_optuna.csv`.
+- Las tablas `ampliacion_*` y `auditoria_extracto_*` son de la versión 5 (cohorte anterior) y no se repitieron.

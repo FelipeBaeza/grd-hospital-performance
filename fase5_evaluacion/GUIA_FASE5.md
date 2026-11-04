@@ -75,7 +75,12 @@ P="--capas <capas v7> --trabajo <trabajo5> --trabajo-fase4 <trabajo4 v7> --proto
 python run_fase5.py $P --etapas huellas planes_b preregistro validar_embudo ensayo verificacion
 python run_fase5.py $P --etapas apertura            # segunda y última lectura de 2024
 python run_fase5.py $P --etapas evaluacion_2024 --bootstrap 1000
+python run_fase5.py $P --etapas publicacion         # tablas publicables (incidente I-12); las completas quedan en <trabajo5>
 python run_fase5.py $P --etapas cierre
 ```
+
+La etapa `publicacion` deja en `salidas/` las tablas por hospital y por subgrupo sin observado, esperado ni límites, con
+los egresos a la decena: junto a las del protocolo v1.0, la resta revelaría conteos de 1 a 9 (incidente I-12). El cierre
+lee las tablas completas desde `<trabajo5>/<carpeta>/tablas_completas/`.
 
 Informe explicado: `docs/fase5_evaluacion/Informe_Fase5_v5.docx`; enmienda 03: `docs/fase5_evaluacion/Anexo_Enmienda03_resultados.docx`.

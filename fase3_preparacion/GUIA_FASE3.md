@@ -8,6 +8,9 @@ pip install -r requirements.txt            # polars, pyarrow, numpy, matplotlib,
 python run_fase3.py --data-root <carpeta con GRD_PUBLICO_<año>.txt> --capas <carpeta de trabajo>
 python generar_figuras.py --capas <carpeta de trabajo>
 ```
+En `catalogo_hospitales_anio.csv` y `catalogo_hospitales.sql`, los conteos de C, D y fallecidos de D van redondeados a la decena
+(incidente I-12 de la Fase 5): la Fase 2 publica los mismos conteos con la cohorte sin reglas.
+
 Opciones: `--etapas bronce plata cohortes oro catalogo`, `--anios 2019 2020`, `--sin-pytest`, `--sin-determinismo`.
 Las capas (Bronce, Plata, Oro, sellado; unos 800 MB) se escriben en `--capas`, no en esta carpeta.
 

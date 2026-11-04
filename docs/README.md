@@ -7,16 +7,18 @@
    informe, la corrige según lo ejecutado e incorpora la revisión técnica del profesor guía.
 3. `fase5_evaluacion/Informe_Fase5_v5.docx` — resultados en 2024 y cómo leerlos; y
    `fase5_evaluacion/Anexo_Enmienda01_resultados.docx` y `Anexo_Enmienda02_resultados.docx` — los análisis de
-   robustez de las enmiendas 01 y 02.
+   robustez de las enmiendas 01 y 02; `Anexo_Enmienda03_resultados.docx` — la segunda evaluación de 2024 con la
+   cohorte de la segunda revisión del profesor.
 4. `fase2_comprension_datos/Informe_Fase2_v7.docx` (el análisis completo de los datos, con las figuras explicadas; su
    sección 12 responde la revisión del profesor guía), `fase3_preparacion_datos/Informe_Fase3_v7.docx` y
-   `fase4_modelado/Informe_Fase4_v5.docx`, según lo que se necesite revisar.
+   `fase4_modelado/Informe_Fase4_v6.docx`, según lo que se necesite revisar.
 5. `auditoria/` — auditoría metodológica externa y resumen del plan de corrección.
 6. `gobernanza/` — etapa 0 del plan de corrección: constancia para el profesor guía, enmienda 01, versiones de la
    Fase 1 e incidentes.
 7. `defensa/` — material para la defensa (etapa 5): limitaciones y respuestas al comité con la evidencia de la enmienda 01, y citas del informe de seminario verificadas.
 
-Los informes **v5** (la **v6** de la Fase 1 y la **v7** de la Fase 2) describen solo lo que se ejecutó, con cifras comprobadas en una
+Los informes **v5** (la **v6** de la Fase 1 y la **v7** de la Fase 2; la v7 de la Fase 3 y la v6 de la Fase 4 se rehicieron con la cohorte
+de la segunda revisión del profesor y no se reprodujeron de forma independiente) describen solo lo que se ejecutó, con cifras comprobadas en una
 reproducción independiente desde cero (octubre de 2026).
 
 ## Qué hay en cada carpeta
