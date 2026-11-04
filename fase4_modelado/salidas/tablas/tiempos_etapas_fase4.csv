@@ -1,6 +1,4 @@
 etapa,segundos,pico_ram_gb
-calibracion,9.3,2.99
-integridad,3976.3,2.49
 exhaustividad,69.2,2.51
 congelar,1289.7,2.87
 verificacion,6.5,0.25
@@ -8,3 +6,5 @@ contrato,11.4,0.34
 ajuste,1725.0,2.25
 comparacion,1843.7,2.77
 seleccion,0.0,0.22
+calibracion,8.2,0.6
+integridad,3183.4,2.46
