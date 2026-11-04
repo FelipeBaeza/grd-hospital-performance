@@ -16,55 +16,55 @@
   "mortalidad": {
    "modelo": "lightgbm",
    "recalibrador": "platt",
-   "n_arboles": 1229
+   "n_arboles": 508
   },
   "estadia": {
    "modelo": "lightgbm",
    "recalibrador": "factor",
-   "n_arboles": 872
+   "n_arboles": 866
   }
  },
  "archivos": {
   "mortalidad": {
    "modelo": {
     "ruta": "mortalidad/modelo_lightgbm.txt",
-    "sha256": "e33fb2dd9b245ad2958771018c8467d284b73eaca9af8f33ecf01dfffcdbec13"
+    "sha256": "76167b0bf29d91e91850715ce63b6e3f9e6bd1ac2137c8e6dc44a678883be15a"
    },
    "modelo_completo": {
     "ruta": "mortalidad/modelo_completo.joblib",
-    "sha256": "cd41ae9f2ad52242a7f170eec5819c0a731cbce090cc0cc7f5bebafa42530407"
+    "sha256": "479c66945c5dcdb4fa37be3cacc20dc7f8f5bc03d3629e4fc7f3e26d77fc4290"
    },
    "recalibrador": {
     "ruta": "mortalidad/recalibrador.joblib",
-    "sha256": "bcb7a04d8249c6fa6099693ac375700a520763c7851b02aa57d1ea2298ac8275"
+    "sha256": "3ef8b7fb4023036d64d5910bc12446109c30c5bcfd641334cae5e7c25c65bcb0"
    },
    "ficha": {
     "ruta": "mortalidad/ficha_modelo.md",
-    "sha256": "03fd48dafdd56176896547acb2c1a236a423a5de1d7dfbe166cfca8691253a7e"
+    "sha256": "32eca370eb91f8240baeeb0f6d001ee4f0b652c571c9db47afebf6d673565b55"
    }
   },
   "estadia": {
    "modelo": {
     "ruta": "estadia/modelo_lightgbm.txt",
-    "sha256": "8e9fe8d6ddd6f53f2f5490f22f3333239cb86db705c43218feb843a16a75b4e0"
+    "sha256": "0bf2769aba6ce47e62b091646deaff5e7b0656b393f0c9fcd2bf8f9ef18433ae"
    },
    "modelo_completo": {
     "ruta": "estadia/modelo_completo.joblib",
-    "sha256": "944c4ccc3c395e9aadaa6f5dc512216e90ffabf1a56b95d6acd3b21b792ed514"
+    "sha256": "cb90d038b7034cddcc1791da25f0650295f9fcb60027266098b946c9f724b0c3"
    },
    "recalibrador": {
     "ruta": "estadia/recalibrador.joblib",
-    "sha256": "9b8972ec55ab528b888fa9e75e0691778f5353678391c1ecad76fab696ee777d"
+    "sha256": "d79592e7a6e2c67ac51065cffe4651b732dc2154384ae47c3ae3c810a11d48d8"
    },
    "ficha": {
     "ruta": "estadia/ficha_modelo.md",
-    "sha256": "50667e9174ab8103e8f4c39bf1b0e6b7c2ffda0257e4f83be88abde02e69a564"
+    "sha256": "27efb979aea94c85efb1d7ea93533e6dd8f6c9525baa8b77f600fc26559b33d7"
    }
   },
   "exhaustividad": {
    "modelo": {
     "ruta": "exhaustividad/modelo_exhaustividad.joblib",
-    "sha256": "ff6cd80e4046003b498996e66feedf869ca91c9fc5ff46b4623bbeba690bc344"
+    "sha256": "feed0144ffe85cdbafc952cbf7802d05fb48a5cbd8ff86e7605d6be5323cc560"
    }
   }
  }
