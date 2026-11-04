@@ -55,6 +55,8 @@ def marcas_revision(capas, anio: int, desenlace, u=None):
     u = u or cargar_umbrales()
     d_p = capas / "plata"
     clave = pl.read_parquet(d_p / f"plata_{anio}.parquet", columns=["ID_EPISODIO", *[k for k in c3.CLAVE_Q15 if k != "FECHAALTA"]])
+    # mismo tipo que Plata (Date): el desenlace llega desde pandas como Datetime
+    desenlace = desenlace.with_columns(pl.col("FECHAALTA").cast(pl.Date))
     des = clave.select("ID_EPISODIO").join(desenlace.select("ID_EPISODIO", "FECHAALTA", "ES_TRASLADO_SALIENTE"), on="ID_EPISODIO", how="left",
                                            maintain_order="left")
     dup = c3.marcar_q15(clave.drop("ID_EPISODIO"), des)
