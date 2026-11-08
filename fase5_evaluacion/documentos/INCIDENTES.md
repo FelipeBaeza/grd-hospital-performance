@@ -5,6 +5,9 @@ fuera del procedimiento previsto. Cada entrada indica qué pasó, con qué evide
 Están en orden cronológico. Las decisiones de diseño que cambiaron entre versiones de la Fase 1 no están aquí: se
 registran en `docs/fase1_comprension_dominio/VERSIONES_Y_DESVIACIONES.md`.
 
+**Identificadores de commit.** El 08-11-2026 se reescribió el historial (I-09) y todos los identificadores cambiaron. Los que se citan en este archivo y en
+los informes son los anteriores; `REESCRITURA_HISTORIAL.md` trae la tabla de equivalencias.
+
 Hora de referencia (UTC), 19-10-2026:
 
 - 12:16:38: pre-registro del protocolo v1.0 (huella `5624bdae…`).
@@ -20,7 +23,7 @@ Hora de referencia (UTC), 19-10-2026:
 | I-06 | 19-10-2026, 15:06 | F5 | Cambios en el código de evaluación después de la apertura | Después | No (solo el reporte) |
 | I-07 | 20-10-2026 | Auditoría | Relectura de 2024 en una reproducción independiente aislada | Después | No (resultados idénticos) |
 | I-08 | 20-10-2026 | Auditoría | Sensibilidades exploratorias corridas antes de pre-registrar la enmienda 01 | Después | No; sus resultados ya se conocen |
-| I-09 | 21-10-2026 | Repositorio | Publicación de valores reales en GitHub: la prueba de privacidad y tablas por hospital con celdas menores que 10 | Después | No; decisión de publicación pendiente |
+| I-09 | 21-10-2026 | Repositorio | Publicación de valores reales en GitHub: la prueba de privacidad y tablas por hospital con celdas menores que 10 | Después | No; historial reescrito el 08-11-2026 (queda pendiente pedir a GitHub el borrado de `7248d78` y de las vistas en caché) |
 | I-10 | Después del 19-10-2026 | F5 | El profesor guía autorizó por escrito después de conocer los resultados de 2024 | Después | No cambia cifras; la autorización previa no operó |
 | I-11 | 22-10-2026 | F5 y F6 | El escáner por propiedad encontró conteos nacionales de 1 a 9 reconstruibles por complemento en las tablas por subgrupo | Después | No; tablas regeneradas el mismo día |
 | I-12 | 03 y 04-11-2026 | F3 y F5 | Conteos por hospital de 1 a 9 reconstruibles restando dos versiones de la cohorte (Fase 2 frente a Fase 3 v7; protocolo v1.0 frente a la enmienda 03) | Después | No; tablas publicables corregidas el 04-11 |
@@ -213,12 +216,14 @@ tablas ya no están en `main`, pero siguen en el historial.
 cifras también se pueden calcular desde la fuente. Aun así, el repositorio contradice la regla de privacidad que el
 propio proyecto se fijó.
 
-**Medida pendiente, decisión del autor.** Hay dos opciones:
+**Medida (08-11-2026, decisión del autor).** Se eligió la opción 1: **reescribir el historial**. Qué se hizo, cómo se verificó y qué cambia (todos los
+identificadores de commit, y 5 líneas del manifiesto del congelado) está en `REESCRITURA_HISTORIAL.md`, con la tabla de equivalencias de identificadores.
 
-1. **Reescribir el historial** para quitar esos archivos y la prueba original, y pedir al soporte de GitHub que borre las vistas en caché y la referencia del pull request #1. Cambian los identificadores de todos los commits posteriores al 27-09, también los que citan los informes.
-2. **Mantener el historial y declararlo aquí**, como queda hoy.
-
-Mientras no se decida, se mantiene la opción 2.
+- **b) Tablas del prototipo:** las 3 tablas con 6 celdas de 1 a 9 muertes quedaron con «<10» y sus derivados en blanco en todo el historial.
+- **a) Prueba con valores reales:** el commit `7248d78` ya no estaba en ninguna rama; solo lo muestra GitHub si se conoce su identificador. La
+  reescritura no lo borra. **Pendiente:** pedir al soporte de GitHub que quite las vistas en caché y las referencias en el pull request #1
+  (`refs/pull/1/head`, que GitHub no deja cambiar), y que lo borre.
+- Quedan fuera de alcance los forks y clones que alguien ya haya hecho antes del 08-11-2026.
 
 ---
 
@@ -297,8 +302,8 @@ La lista exacta estaba en `config/privacidad_hallazgos_declarados.csv`, sin los 
      ser «XXII o sin capítulo», con menos de diez egresos más.
 5. El escáner por propiedad ya no encuentra ningún conteo reconstruible en lo publicado, y la lista de hallazgos
    declarados queda vacía. Las puertas P7 y G7 fallan ante cualquier hallazgo nuevo.
-6. Las versiones anteriores de esas tablas siguen en el **historial público** de git. Reescribirlo o no es la misma
-   decisión pendiente de I-09.
+6. Las versiones anteriores de esas tablas estaban en el historial público de git. Se quitaron al reescribirlo el 08-11-2026 (I-09;
+   `REESCRITURA_HISTORIAL.md`). La etiqueta `v1-congelado` trae ahora la versión corregida de esas 5 tablas, y el manifiesto del congelado conserva sus huellas originales.
 
 ---
 
@@ -337,6 +342,6 @@ calcular desde el GRD público. Aun así, rompen el criterio DT04 del proyecto.
 3. **Escáner.** Suma una cuarta reconstrucción, **entre tablas**: el mismo conteo por hospital o subgrupo en dos
    archivos de las Fases 2 a 6. Si una de las columnas va a la decena, la diferencia queda indeterminada y no cuenta.
    Dos pruebas plantan la fuga. Con lo publicado hoy no encuentra ningún hallazgo, y las puertas P7 y G7 la incluyen.
-4. **Historial.** Las versiones exactas siguen en el historial público de git (`9bbdf32`, `a225dd9`). Reescribirlo o
-   no es la misma decisión pendiente de I-09.
+4. **Historial.** Las versiones exactas estaban en el historial público de git (`9bbdf32`, `a225dd9`, identificadores anteriores a la reescritura). Se
+   reemplazaron por las versiones publicables el 08-11-2026 (I-09; `REESCRITURA_HISTORIAL.md`).
 

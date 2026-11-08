@@ -55,7 +55,7 @@ Cada limitación dice qué es, cuánto pesa según la evidencia y qué se hizo o
 |---|---|---|
 | Exposiciones de 2024 antes de la apertura y cambios de código posteriores | I-01 a I-07 | Declaradas |
 | La enmienda 01 no es ciega: sus análisis se exploraron antes | I-08; las 40 comparaciones son idénticas | Declarado; se informaron todos los resultados |
-| Valores reales en el repositorio público | I-09 (prueba y tablas del prototipo) e I-11 (conteos nacionales por complemento) | I-11 corregido (tablas regeneradas); historial público pendiente (I-09) |
+| Valores reales en el repositorio público | I-09 (prueba y tablas del prototipo) e I-11 (conteos nacionales por complemento) | I-11 corregido (tablas regeneradas); historial público reescrito el 08-11-2026 (I-09); falta el borrado en GitHub del commit `7248d78` y de las vistas en caché |
 
 ---
 
@@ -136,7 +136,7 @@ Civil es trabajo futuro.
 No hay registros individuales, y las celdas de 1 a 9 casos se suprimen. Encontré y declaré tres problemas:
 
 - la prueba de privacidad usaba valores reales (I-09, corregido);
-- había tablas de un prototipo con celdas pequeñas en el historial público (I-09);
+- había tablas de un prototipo con celdas pequeñas en el historial público (I-09, corregido al reescribir el historial el 08-11-2026);
 - había conteos nacionales reconstruibles por complemento en las tablas por subgrupo (I-11, corregido: los grupos
   pequeños ahora se combinan).
 
