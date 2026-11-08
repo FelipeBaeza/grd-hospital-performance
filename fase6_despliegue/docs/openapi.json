@@ -2,7 +2,7 @@
  "openapi": "3.1.0",
  "info": {
   "title": "Indicadores hospitalarios GRD",
-  "description": "Indicador O/E de mortalidad y estadía por hospital (códigos, sin ranking) y demo pedagógica con perfil sintético.",
+  "description": "Indicador O/E de mortalidad y estadía por hospital (orden por código, sin ranking) y demo pedagógica con perfil sintético.",
   "version": "1.0.0"
  },
  "paths": {

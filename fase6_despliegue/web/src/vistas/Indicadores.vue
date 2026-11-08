@@ -33,16 +33,16 @@ const elegir = (cod) => { location.hash = `#/hospital/${cod}` }
     <Advertencias :lista="adv" />
 
     <div class="tarjeta">
-      <h2>Tabla por código de hospital</h2>
+      <h2>Tabla de hospitales</h2>
       <p class="nota">Orden por código. No hay orden por desempeño ni numeración de posiciones: no es un ranking.</p>
       <label for="f">Mostrar</label>
       <select id="f" v-model="filtro" style="max-width: 320px"><option value="todos">todos los hospitales</option><option value="fuera">solo los que quedan fuera del límite del 95 %</option></select>
       <div class="scroll">
         <table>
-          <thead><tr><th>Código</th><th>Egresos (a la decena)</th><th>O/E</th><th>Intervalo 95 %</th><th>Zona</th><th></th></tr></thead>
+          <thead><tr><th>Código</th><th>Hospital</th><th>Egresos (a la decena)</th><th>O/E</th><th>Intervalo 95 %</th><th>Zona</th><th></th></tr></thead>
           <tbody>
             <tr v-for="p in filas" :key="p.cod_hospital">
-              <td><b>{{ p.cod_hospital }}</b></td><td>{{ fmtEntero(p.n_egresos) }}</td>
+              <td><b>{{ p.cod_hospital }}</b></td><td>{{ p.nombre }}</td><td>{{ fmtEntero(p.n_egresos) }}</td>
               <td>{{ p.oe === null ? 'no se publica' : fmt(p.oe) }}</td><td>{{ p.oe === null ? '—' : `${fmt(p.ic_inf)} a ${fmt(p.ic_sup)}` }}</td><td><ChipZona :zona="p.zona" /></td>
               <td><a :href="`#/hospital/${p.cod_hospital}`">ficha</a></td>
             </tr>

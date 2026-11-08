@@ -22,7 +22,7 @@ const cur = (z, s) => Array.from({ length: 30 }, (_, i) => { const x = Math.exp(
     <div class="kpi"><b>{{ crit.criterios.filter((c) => c.veredicto !== 'no cumple').length }} de {{ crit.criterios.length }}</b><span>criterios de aceptación cumplidos por los modelos en {{ m.anio_evaluado }}</span></div>
     <div class="kpi"><b>{{ fmtEntero(m.cohortes.n_mortalidad) }}</b><span>egresos de adultos en el análisis de mortalidad</span></div>
     <div class="kpi"><b>{{ fmtEntero(m.cohortes.n_estadia) }}</b><span>egresos en el análisis de estadía</span></div>
-    <div class="kpi"><b>≥ {{ m.volumen.min_egresos }}</b><span>egresos por hospital para mostrarlo; solo códigos, sin nombres</span></div>
+    <div class="kpi"><b>≥ {{ m.volumen.min_egresos }}</b><span>egresos por hospital para mostrarlo; siempre en orden de código</span></div>
   </div>
 
   <div class="caja ok">

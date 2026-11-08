@@ -20,8 +20,12 @@ def test_datos_publicables_sin_filtraciones():
 
 def test_no_hay_columnas_de_identificacion_en_esquema():
     sql = "\n".join(l.split("--")[0] for l in (RAIZ / "api" / "app" / "esquema.sql").read_text(encoding="utf8").lower().splitlines())  # sin comentarios
-    for col in ("rut", "nombre", "fecha_nac", "fecha_ingreso", "id_egreso", "paciente"):
+    for col in ("rut", "fecha_nac", "fecha_ingreso", "id_egreso", "paciente", "id_episodio"):
         assert col not in sql, col
+    # el único nombre permitido es el del hospital (decisión E2 del 08-11-2026), en la tabla hospital
+    import re
+    tablas = {m.group(1): m.group(2) for m in re.finditer(r"create table (\w+) \((.*?)\);", sql, re.S)}
+    assert [t for t, cuerpo in tablas.items() if "nombre" in cuerpo] == ["hospital"]
 
 
 def test_codigo_no_registra_el_perfil():

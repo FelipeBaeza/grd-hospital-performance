@@ -31,4 +31,4 @@ DEMO_AVISOS = [
 ]
 
 LIMITES_DATOS = ("Datos: egresos hospitalarios de FONASA (Ley 20.285) de 2019 a 2024; modelos entrenados con 2019–2022, recalibrados con 2023 y evaluados en 2024. Los resultados mostrados son los de la enmienda 03 del protocolo (cohorte de la Fase 3 v7, modelos de la Fase 4 v6); el año 2024 se abrió dos veces, con autorización, y nunca se usó para ajustar nada. "
-                 "Los egresos se redondean a la decena y no se muestran cifras basadas en menos de 10 casos ni hospitales con menos de 500 egresos analizables. No se publican las muertes ni los días observados o esperados por hospital, ni los límites del gráfico de embudo. Los hospitales se identifican solo por su código.")
+                 "Los egresos se redondean a la decena y no se muestran cifras basadas en menos de 10 casos ni hospitales con menos de 500 egresos analizables. No se publican las muertes ni los días observados o esperados por hospital, ni los límites del gráfico de embudo. Los hospitales se muestran con su nombre y siempre en orden de código; un hospital sin nombre en el catálogo no se muestra.")

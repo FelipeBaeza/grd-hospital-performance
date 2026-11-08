@@ -56,5 +56,8 @@
    "sha256": "0bf2769aba6ce47e62b091646deaff5e7b0656b393f0c9fcd2bf8f9ef18433ae"
   }
  },
- "n_diagnosticos_demo": 807
+ "n_diagnosticos_demo": 807,
+ "hospitales_excluidos_sin_nombre": [
+  "200717"
+ ]
 }

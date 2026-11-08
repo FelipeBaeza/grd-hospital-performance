@@ -15,7 +15,7 @@ def _csv(n):
 def test_api_coincide_con_tablas_fase5(cliente, tarea):
     api = cliente.get(f"/indicadores/{tarea}").json()
     ref = {f["cod_hospital"]: f for f in _csv("indicador_hospital.csv") if f["tarea"] == tarea}
-    assert api["n_hospitales"] == len(api["puntos"]) == len(ref) == 69
+    assert api["n_hospitales"] == len(api["puntos"]) == len(ref) == len(_csv("hospital.csv"))
     for p in api["puntos"]:
         f = ref[p["cod_hospital"]]
         assert p["n_egresos"] == int(f["n_egresos"]) and p["n_egresos"] % 10 == 0           # redondeado a la decena
@@ -29,7 +29,7 @@ def test_api_coincide_con_tablas_fase5(cliente, tarea):
 
 def test_ficha_coincide_con_lista(cliente):
     cods = cliente.get("/hospitales").json()["hospitales"]
-    assert len(cods) == 69
+    assert len(cods) == len(_csv("hospital.csv"))
     for c in cods[:10]:
         f = cliente.get(f"/hospitales/{c}").json()
         assert set(f["indicadores"]) == {"mortalidad", "estadia"}
@@ -50,10 +50,18 @@ def test_orden_por_codigo_y_sin_ranking(cliente):
     assert cliente.get("/hospitales").json()["hospitales"] == sorted(cliente.get("/hospitales").json()["hospitales"])
 
 
-def test_sin_nombres_de_hospital(cliente):
-    cuerpo = "".join(cliente.get(r).text.lower() for r in ("/hospitales", "/indicadores/mortalidad", "/hospitales/101100", "/metodologia"))
-    for palabra in ("hospital clínico", "hospital de ", "complejo hospitalario", "hospital base", "rut"):
-        assert palabra not in cuerpo, palabra
+def test_nombres_vienen_del_catalogo_y_sin_rut(cliente):
+    """Decisión E2 (08-11-2026): se muestra el nombre del hospital, tomado del catálogo; los hospitales sin nombre no se muestran."""
+    cat = {f["cod_hospital"]: f["nombre"] for f in _csv("hospital.csv")}
+    h = cliente.get("/hospitales").json()
+    assert h["nombres"] == cat and all(cat.values())
+    assert {f["cod_hospital"] for f in _csv("indicador_hospital.csv")} == set(cat)
+    for p in cliente.get("/indicadores/mortalidad").json()["puntos"]:
+        assert p["nombre"] == cat[p["cod_hospital"]]
+    c = h["hospitales"][0]
+    assert cliente.get(f"/hospitales/{c}").json()["nombre"] == cat[c]
+    cuerpo = "".join(cliente.get(r).text.lower() for r in ("/hospitales", "/indicadores/mortalidad", f"/hospitales/{c}", "/metodologia"))
+    assert "rut" not in cuerpo
 
 
 def test_advertencias_visibles(cliente):

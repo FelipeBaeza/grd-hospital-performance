@@ -32,7 +32,7 @@ reproducción independiente desde cero (octubre de 2026).
 | `fase3_preparacion_datos/` | Informe v5 y plan original de la Fase 3 |
 | `fase4_modelado/` | Informe v5 y plan original de la Fase 4 |
 | `fase5_evaluacion/` | Informe v5 (preparación y evaluación), anexos de las enmiendas 01 y 02 y plan original de la Fase 5 |
-| `fase6_despliegue/` | Plan de la Fase 6 (en desarrollo) |
+| `fase6_despliegue/` | Fase 6: plataforma (API, base y web) con la cohorte de la enmienda 03; decisiones en `docs/fase6_despliegue/DECISIONES_FASE6.md` |
 | `auditoria/` | Auditoría externa y resumen del plan de corrección |
 | `gobernanza/` | Documento para revisión y firma del profesor guía (etapa 0) |
 | `defensa/` | Material para la defensa (etapa 5): limitaciones, respuestas al comité y citas verificadas |

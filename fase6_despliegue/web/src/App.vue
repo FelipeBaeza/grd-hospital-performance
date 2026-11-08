@@ -29,7 +29,7 @@ const ir = (id) => { location.hash = `#/${id}` }
     <div class="contenedor">
       <div class="marca">
         <b>Indicadores hospitalarios GRD · observado / esperado</b>
-        <span>Prototipo académico · datos de 2024 · hospitales identificados solo por código</span>
+        <span>Prototipo académico · datos de 2024 · hospitales en orden de código, sin ranking</span>
       </div>
       <nav aria-label="Secciones">
         <button v-for="r in RUTAS" :key="r.id" :class="{ act: vista === r.id }" :aria-current="vista === r.id ? 'page' : undefined" @click="ir(r.id)">{{ r.texto }}</button>

@@ -48,6 +48,14 @@ def a_la_decena(s: pd.Series, minimo: int = 10) -> pd.Series:
     return r.where(~((v > 0) & (v < minimo)), f"<{minimo}").where(v.notna(), s.astype(str))
 
 
+def catalogo_hospitales(ruta: Path) -> pd.DataFrame:
+    """Catálogo de nombres (``Hospitales.csv`` de la raíz del proyecto: código y nombre, sin encabezado útil)."""
+    h = pd.read_csv(ruta, dtype=str, header=None, skiprows=1, names=["cod_hospital", "nombre"])
+    h["cod_hospital"], h["nombre"] = h["cod_hospital"].str.strip(), h["nombre"].str.strip()
+    h = h.dropna().drop_duplicates("cod_hospital")
+    return h[h["nombre"] != ""]
+
+
 def tablas_fase5(f5: Path, out: Path) -> dict:
     t = f5 / "tablas"
     res = json.loads((f5 / "resumen_evaluacion_2024.json").read_text(encoding="utf8"))
@@ -91,6 +99,20 @@ def tablas_fase5(f5: Path, out: Path) -> dict:
     pd.concat(sub).to_csv(out / "subgrupo.csv", index=False)
     pd.concat(cal).to_csv(out / "calibracion_decil.csv", index=False)
     return res
+
+
+def con_nombres(out: Path, cat: pd.DataFrame) -> list[str]:
+    """Deja en el paquete solo los hospitales con nombre en el catálogo y escribe ``hospital.csv`` (código y nombre). Devuelve los excluidos.
+    Decisión E2 del 08-11-2026: se muestra el nombre; un hospital sin nombre conocido no se muestra hasta conseguirlo."""
+    ind = pd.read_csv(out / "indicador_hospital.csv", dtype={"cod_hospital": str})
+    ctx = pd.read_csv(out / "contexto_hospital.csv", dtype={"cod_hospital": str})
+    nombres = dict(zip(cat["cod_hospital"], cat["nombre"]))
+    excluidos = sorted(set(ind["cod_hospital"]) - set(nombres))
+    ind[~ind["cod_hospital"].isin(excluidos)].to_csv(out / "indicador_hospital.csv", index=False)
+    ctx[~ctx["cod_hospital"].isin(excluidos)].to_csv(out / "contexto_hospital.csv", index=False)
+    cods = sorted(set(ind["cod_hospital"]) - set(excluidos))
+    pd.DataFrame({"cod_hospital": cods, "nombre": [nombres[c] for c in cods]}).to_csv(out / "hospital.csv", index=False)
+    return excluidos
 
 
 def recalibracion(modelos: Path, manifiesto: dict, out: Path) -> None:
@@ -150,16 +172,20 @@ def main() -> int:
     p.add_argument("--cie10", required=True)
     p.add_argument("--elix", required=True)
     p.add_argument("--salida", required=True)
+    p.add_argument("--hospitales", default=str(Path(__file__).resolve().parents[3] / "Hospitales.csv"),
+                   help="catálogo de nombres; los hospitales sin nombre quedan fuera de la plataforma (decisión E2, 08-11-2026)")
     a = p.parse_args()
     out = Path(a.salida)
     out.mkdir(parents=True, exist_ok=True)
     modelos = Path(a.modelos)
     manifiesto = json.loads((modelos / "manifiesto.json").read_text(encoding="utf8"))
     res = tablas_fase5(Path(a.fase5), out)
+    sin_nombre = con_nombres(out, catalogo_hospitales(Path(a.hospitales)))
     recalibracion(modelos, manifiesto, out)
     cat = catalogo_demo(Path(a.capas), Path(a.cie10), Path(a.elix), modelos, manifiesto, out)
     meta = {"anio_evaluado": 2024, "resumen_fase5": res, "huella_reglas_fase4": manifiesto["huella_reglas"], "version_modelos": manifiesto["versiones"],
-            "archivos_modelo": {t: manifiesto["archivos"][t]["modelo"] for t in ("mortalidad", "estadia")}, "n_diagnosticos_demo": len(cat["diagnosticos"])}
+            "archivos_modelo": {t: manifiesto["archivos"][t]["modelo"] for t in ("mortalidad", "estadia")}, "n_diagnosticos_demo": len(cat["diagnosticos"]),
+            "hospitales_excluidos_sin_nombre": sin_nombre}
     (out / "metadatos.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf8")
     hallazgos = privacidad.escanear_carpeta(out)
     if hallazgos:

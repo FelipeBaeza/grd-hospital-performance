@@ -1,4 +1,5 @@
-"""API de solo lectura sobre resultados agregados + demo pedagógica. No expone orden por O/E, nombres de hospitales ni datos de pacientes."""
+"""API de solo lectura sobre resultados agregados + demo pedagógica. No expone orden por O/E ni datos de pacientes. Los hospitales llevan su nombre
+(decisión E2 del 08-11-2026) y siempre se ordenan por código."""
 from __future__ import annotations
 
 import os
@@ -30,7 +31,7 @@ async def vida(app: FastAPI):
 
 
 app = FastAPI(title="Indicadores hospitalarios GRD", version=VERSION, lifespan=vida,
-              description="Indicador O/E de mortalidad y estadía por hospital (códigos, sin ranking) y demo pedagógica con perfil sintético.")
+              description="Indicador O/E de mortalidad y estadía por hospital (orden por código, sin ranking) y demo pedagógica con perfil sintético.")
 app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGENES, allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
 
 
@@ -94,8 +95,8 @@ def criterios():
 @app.get("/hospitales")
 def hospitales():
     """Códigos disponibles, siempre en orden de código (no hay orden por desempeño)."""
-    filas = _consultar("SELECT cod_hospital FROM hospital ORDER BY cod_hospital")
-    return {"hospitales": [f["cod_hospital"] for f in filas], "n": len(filas)}
+    filas = _consultar("SELECT cod_hospital, nombre FROM hospital ORDER BY cod_hospital")
+    return {"hospitales": [f["cod_hospital"] for f in filas], "nombres": {f["cod_hospital"]: f["nombre"] for f in filas}, "n": len(filas)}
 
 
 @app.get("/indicadores/{tarea}")
@@ -103,7 +104,8 @@ def indicadores(tarea: str):
     """O/E, intervalo y zona por hospital, en orden de código. Los egresos van redondeados a la decena y no se publican el observado, el esperado
     ni los límites del embudo (enmienda 03, incidente I-12): la zona viene de la Fase 5."""
     t = _tarea(tarea)
-    filas = _consultar("""SELECT cod_hospital, n_egresos, oe, ic_inf, ic_sup, zona FROM indicador_hospital WHERE tarea=:t ORDER BY cod_hospital""", t=t)
+    filas = _consultar("""SELECT i.cod_hospital, h.nombre, i.n_egresos, i.oe, i.ic_inf, i.ic_sup, i.zona FROM indicador_hospital i JOIN hospital h USING (cod_hospital)
+                          WHERE tarea=:t ORDER BY i.cod_hospital""", t=t)
     resumen = _meta()["resumen_fase5"][f"hospitales_{t}"]
     puntos = []
     for f in filas:
@@ -115,12 +117,13 @@ def indicadores(tarea: str):
 
 @app.get("/hospitales/{codigo}")
 def ficha(codigo: str):
-    if not _consultar("SELECT 1 FROM hospital WHERE cod_hospital=:c", c=codigo):
+    h = _consultar("SELECT nombre FROM hospital WHERE cod_hospital=:c", c=codigo)
+    if not h:
         raise HTTPException(404, "código de hospital no disponible (sin datos suficientes o inexistente)")
     ind = {f["tarea"]: f for f in _consultar("""SELECT tarea, n_egresos, oe, ic_inf, ic_sup, zona
                                                FROM indicador_hospital WHERE cod_hospital=:c""", c=codigo)}
     ctx = _consultar("SELECT indice_vs_2023, indice_relativo_al_anio, tasa_traslado_saliente, proporcion_traslado_entrante FROM contexto_hospital WHERE cod_hospital=:c", c=codigo)[0]
-    return {"cod_hospital": codigo, "anio": _meta()["anio_evaluado"], "indicadores": ind, "contexto": ctx, "advertencias": textos.ADVERTENCIAS,
+    return {"cod_hospital": codigo, "nombre": h[0]["nombre"], "anio": _meta()["anio_evaluado"], "indicadores": ind, "contexto": ctx, "advertencias": textos.ADVERTENCIAS,
             "lectura": "Una zona fuera de los límites es un motivo para revisar, no un juicio sobre el hospital."}
 
 

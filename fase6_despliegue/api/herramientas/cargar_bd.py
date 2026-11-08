@@ -43,11 +43,13 @@ def cargar(carpeta: Path, url: str | None = None) -> dict:
     sub = pd.read_csv(carpeta / "subgrupo.csv", dtype={"grupo": str})
     cal = pd.read_csv(carpeta / "calibracion_decil.csv")
     meta = json.loads((carpeta / "metadatos.json").read_text(encoding="utf8"))
-    hosp = sorted(ind["cod_hospital"].unique())
+    hosp = pd.read_csv(carpeta / "hospital.csv", dtype=str).sort_values("cod_hospital")
+    if set(hosp["cod_hospital"]) != set(ind["cod_hospital"]):
+        raise SystemExit("hospital.csv y indicador_hospital.csv no tienen los mismos hospitales")
     with motor.begin() as cx:
         for stmt in [s for s in ddl.split(";") if s.strip()]:
             cx.execute(text(stmt))
-        cx.execute(text("INSERT INTO hospital VALUES (:c)"), [{"c": h} for h in hosp])
+        cx.execute(text("INSERT INTO hospital VALUES (:cod_hospital, :nombre)"), hosp.to_dict("records"))
         cx.execute(text("INSERT INTO criterio_global VALUES (:tarea,:criterio,:valor,:ic_inf,:ic_sup,:umbral,:veredicto,:es_criterio,:orden)"), _nulos(crit[["tarea", "criterio", "valor", "ic_inf", "ic_sup", "umbral", "veredicto", "es_criterio", "orden"]]))
         cols = ["tarea", "cod_hospital", "n_egresos", "oe", "ic_inf", "ic_sup", "zona"]
         cx.execute(text(f"INSERT INTO indicador_hospital VALUES ({','.join(':' + c for c in cols)})"), _nulos(ind[cols]))
@@ -64,7 +66,7 @@ def cargar(carpeta: Path, url: str | None = None) -> dict:
 def verificar_carga(carpeta: Path, motor) -> dict:
     """Cada tabla de la base debe ser idéntica a su archivo de origen (mismas filas y mismos valores)."""
     res = {}
-    pares = {"indicador_hospital": ("indicador_hospital.csv", ["tarea", "cod_hospital"]), "criterio_global": ("criterio_global.csv", ["tarea", "criterio"]),
+    pares = {"hospital": ("hospital.csv", ["cod_hospital"]), "indicador_hospital": ("indicador_hospital.csv", ["tarea", "cod_hospital"]), "criterio_global": ("criterio_global.csv", ["tarea", "criterio"]),
              "contexto_hospital": ("contexto_hospital.csv", ["cod_hospital"]), "subgrupo": ("subgrupo.csv", ["tarea", "variable", "grupo"]),
              "calibracion_decil": ("calibracion_decil.csv", ["tarea", "decil"])}
     for tabla, (archivo, clave) in pares.items():

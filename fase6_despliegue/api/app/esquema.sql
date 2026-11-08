@@ -2,7 +2,8 @@
 DROP TABLE IF EXISTS calibracion_decil, subgrupo, contexto_hospital, indicador_hospital, criterio_global, hospital, metadatos CASCADE;
 
 CREATE TABLE hospital (
-    cod_hospital TEXT PRIMARY KEY
+    cod_hospital TEXT PRIMARY KEY,
+    nombre TEXT NOT NULL             -- catálogo Hospitales.csv (decisión E2 del 08-11-2026)
 );
 
 CREATE TABLE criterio_global (

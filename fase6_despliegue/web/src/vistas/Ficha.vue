@@ -5,14 +5,14 @@ import Advertencias from '../componentes/Advertencias.vue'
 import ChipZona from '../componentes/ChipZona.vue'
 
 const props = defineProps({ codigo: { type: String, default: '' } })
-const lista = ref([]), ficha = ref(null), error = ref(''), elegido = ref(props.codigo)
+const lista = ref([]), nombres = ref({}), ficha = ref(null), error = ref(''), elegido = ref(props.codigo)
 const NOMBRE = { mortalidad: 'Mortalidad en el hospital', estadia: 'Estadía de los sobrevivientes' }
 const cargar = async () => {
   ficha.value = null; error.value = ''
   if (!elegido.value) return
   try { ficha.value = await api.ficha(elegido.value) } catch (e) { error.value = e.message }
 }
-onMounted(async () => { try { lista.value = (await api.hospitales()).hospitales } catch (e) { error.value = e.message } await cargar() })
+onMounted(async () => { try { const h = await api.hospitales(); lista.value = h.hospitales; nombres.value = h.nombres } catch (e) { error.value = e.message } await cargar() })
 watch(() => props.codigo, (v) => { elegido.value = v; cargar() })
 const ir = () => { location.hash = elegido.value ? `#/hospital/${elegido.value}` : '#/hospital' }
 </script>
@@ -20,14 +20,15 @@ const ir = () => { location.hash = elegido.value ? `#/hospital/${elegido.value}`
 <template>
   <h1>Ficha de hospital</h1>
   <div class="tarjeta">
-    <label for="h">Código del hospital</label>
-    <select id="h" v-model="elegido" @change="ir" style="max-width: 320px"><option value="">— elija un código —</option><option v-for="h in lista" :key="h" :value="h">{{ h }}</option></select>
-    <p class="nota">Solo aparecen los hospitales con al menos 500 egresos analizables en 2024. Los hospitales se identifican por código.</p>
+    <label for="h">Hospital</label>
+    <select id="h" v-model="elegido" @change="ir" style="max-width: 640px"><option value="">— elija un hospital —</option><option v-for="h in lista" :key="h" :value="h">{{ h }} · {{ nombres[h] }}</option></select>
+    <p class="nota">Solo aparecen los hospitales con al menos 500 egresos analizables en 2024, en orden de código.</p>
   </div>
   <p v-if="error" class="caja peligro">{{ error }}</p>
 
   <template v-if="ficha">
-    <h2>Hospital {{ ficha.cod_hospital }} · {{ ficha.anio }}</h2>
+    <h2>{{ ficha.nombre }} · {{ ficha.anio }}</h2>
+    <p class="nota">Código {{ ficha.cod_hospital }}</p>
     <div class="grid g2">
       <div v-for="(f, t) in ficha.indicadores" :key="t" class="tarjeta">
         <h3>{{ NOMBRE[t] }}</h3>

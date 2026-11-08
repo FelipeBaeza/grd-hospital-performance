@@ -1,5 +1,6 @@
 # Sistema completo: base de datos + carga de datos publicables + API + web. Se levanta con:  docker compose up --build
-# Los puertos quedan atados a 127.0.0.1: es un prototipo de entorno restringido (decisión E1 del plan de la Fase 6).
+# Decisión E1 (08-11-2026): queda en el servidor del profesor guía. Por defecto los puertos se atan a 127.0.0.1; en el servidor se
+# elige la dirección con ENLACE en .env (ver GUIA_FASE6.md). La API no se expone: la web la alcanza por la red interna (nginx, /api).
 name: indicadores-grd
 
 x-bd: &bd
@@ -35,7 +36,7 @@ services:
     build: ./api
     environment:
       DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-indicadores}:${POSTGRES_PASSWORD:-indicadores}@db:5432/${POSTGRES_DB:-indicadores}
-      CORS_ORIGENES: http://localhost:8080
+      CORS_ORIGENES: ${CORS_ORIGENES:-http://localhost:8080}
     volumes:
       - ../fase4_modelado/modelos:/modelos:ro
       - ./datos/publicables:/datos:ro
@@ -43,7 +44,7 @@ services:
       carga:
         condition: service_completed_successfully
     ports:
-      - "127.0.0.1:8000:8000"
+      - "127.0.0.1:${PUERTO_API:-8000}:8000"         # solo local en el servidor, para diagnóstico
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8000/salud', timeout=3).status == 200 else 1)"]
       interval: 5s
@@ -56,7 +57,7 @@ services:
       api:
         condition: service_healthy
     ports:
-      - "127.0.0.1:8080:80"
+      - "${ENLACE:-127.0.0.1}:${PUERTO_WEB:-8080}:80"
 
 volumes:
   pgdatos:
