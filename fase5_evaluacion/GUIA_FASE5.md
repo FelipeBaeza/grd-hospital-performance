@@ -83,4 +83,6 @@ La etapa `publicacion` deja en `salidas/` las tablas por hospital y por subgrupo
 los egresos a la decena: junto a las del protocolo v1.0, la resta revelaría conteos de 1 a 9 (incidente I-12). El cierre
 lee las tablas completas desde `<trabajo5>/<carpeta>/tablas_completas/`.
 
-Informe explicado: `docs/fase5_evaluacion/Informe_Fase5_v5.docx`; enmienda 03: `docs/fase5_evaluacion/Anexo_Enmienda03_resultados.docx`.
+**Re-ejecución completa del 08-11-2026** (sin abrir 2024; resultados idénticos byte a byte): `documentos/REEJECUCION_2026-11-08.md` y sección 9 del anexo.
+
+Informe explicado: `docs/fase5_evaluacion/Informe_Fase5_v5.docx`; enmienda 03: `docs/fase5_evaluacion/Anexo_Enmienda03_resultados_v2.docx`.
