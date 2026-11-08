@@ -1,6 +1,6 @@
 # Reescritura del historial de git (8 de noviembre de 2026)
 
-Por decisión del autor, el 08-11-2026 se reescribió el historial público de git para quitar de todas las ramas y la etiqueta `v1-congelado` las versiones
+Por decisión del autor, el 08-11-2026 se reescribió el historial público de git para quitar de las 4 ramas (y de la etiqueta `v1-congelado` local) las versiones
 que rompían el criterio DT04 (nada de conteos de 1 a 9 casos, ni reconstruibles). Cierra la decisión pendiente de **I-09** y las medidas de historial de
 **I-11** e **I-12**.
 
@@ -38,8 +38,11 @@ Las demás exposiciones de I-01 (las métricas de 2024 del prototipo y los mensa
 4. **El respaldo del estado anterior** (un archivo `.bundle` con todas las ramas y la etiqueta) está **fuera del repositorio** y no debe publicarse: contiene lo que se quitó.
    Huella SHA-256 del respaldo: `f7e7dc65f3f91c1580dec6d9e18cc84c74974da24428e766e4913a01cbd54d90`.
 
-## Lo que la reescritura no resuelve (requiere a GitHub)
+## Lo que la reescritura no resuelve (requiere a GitHub o al autor)
 
+- **La etiqueta `v1-congelado` de GitHub sigue apuntando al commit anterior** (`0953162`), que conserva todo lo que se quitó. Desde el entorno de trabajo no se pueden modificar etiquetas
+  (el servidor intermedio responde HTTP 403). El autor debe reemplazarla: borrarla en GitHub (página de etiquetas) y crearla de nuevo sobre el commit `fb8c3f0` (el `0953162` de
+  antes), o desde un clon: `git tag -fa v1-congelado fb8c3f0 -m "Congelado v1.0"` y `git push -f origin v1-congelado`. Mientras tanto, el historial anterior sigue alcanzable por esa etiqueta.
 - El commit `7248d78` de I-09a (la prueba de privacidad con valores reales) **ya no era alcanzable desde ninguna rama**: solo existe en los servidores de GitHub y se ve si se conoce su identificador.
 - La referencia `refs/pull/1/head` del pull request #1 apunta al `orden-v5` anterior, y GitHub no deja cambiarla.
 - Las vistas en caché, y cualquier fork o clon que alguien ya haya hecho.

@@ -23,7 +23,7 @@ Hora de referencia (UTC), 19-10-2026:
 | I-06 | 19-10-2026, 15:06 | F5 | Cambios en el código de evaluación después de la apertura | Después | No (solo el reporte) |
 | I-07 | 20-10-2026 | Auditoría | Relectura de 2024 en una reproducción independiente aislada | Después | No (resultados idénticos) |
 | I-08 | 20-10-2026 | Auditoría | Sensibilidades exploratorias corridas antes de pre-registrar la enmienda 01 | Después | No; sus resultados ya se conocen |
-| I-09 | 21-10-2026 | Repositorio | Publicación de valores reales en GitHub: la prueba de privacidad y tablas por hospital con celdas menores que 10 | Después | No; historial reescrito el 08-11-2026 (queda pendiente pedir a GitHub el borrado de `7248d78` y de las vistas en caché) |
+| I-09 | 21-10-2026 | Repositorio | Publicación de valores reales en GitHub: la prueba de privacidad y tablas por hospital con celdas menores que 10 | Después | No; historial reescrito el 08-11-2026 (queda pendiente reemplazar la etiqueta `v1-congelado` y pedir a GitHub el borrado de `7248d78` y de las vistas en caché) |
 | I-10 | Después del 19-10-2026 | F5 | El profesor guía autorizó por escrito después de conocer los resultados de 2024 | Después | No cambia cifras; la autorización previa no operó |
 | I-11 | 22-10-2026 | F5 y F6 | El escáner por propiedad encontró conteos nacionales de 1 a 9 reconstruibles por complemento en las tablas por subgrupo | Después | No; tablas regeneradas el mismo día |
 | I-12 | 03 y 04-11-2026 | F3 y F5 | Conteos por hospital de 1 a 9 reconstruibles restando dos versiones de la cohorte (Fase 2 frente a Fase 3 v7; protocolo v1.0 frente a la enmienda 03) | Después | No; tablas publicables corregidas el 04-11 |
@@ -223,6 +223,7 @@ identificadores de commit, y 5 líneas del manifiesto del congelado) está en `R
 - **a) Prueba con valores reales:** el commit `7248d78` ya no estaba en ninguna rama; solo lo muestra GitHub si se conoce su identificador. La
   reescritura no lo borra. **Pendiente:** pedir al soporte de GitHub que quite las vistas en caché y las referencias en el pull request #1
   (`refs/pull/1/head`, que GitHub no deja cambiar), y que lo borre.
+- **Pendiente:** la etiqueta `v1-congelado` de GitHub sigue apuntando al commit anterior; hay que reemplazarla (instrucciones en `REESCRITURA_HISTORIAL.md`).
 - Quedan fuera de alcance los forks y clones que alguien ya haya hecho antes del 08-11-2026.
 
 ---

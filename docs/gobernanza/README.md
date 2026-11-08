@@ -26,4 +26,4 @@ calculado.
    git add documentos/ && git commit -m "Registra la enmienda 01" && git tag -a enmienda-01 -m "Enmienda 01 firmada" && git push --follow-tags
    ```
 
-6. Pedir al soporte de GitHub que borre el commit `7248d78`, las vistas en caché y la referencia del pull request #1 (el historial ya se reescribió el 08-11-2026; ver `REESCRITURA_HISTORIAL.md`).
+6. Reemplazar la etiqueta `v1-congelado` en GitHub (sigue apuntando al commit anterior a la reescritura) y pedir al soporte de GitHub que borre el commit `7248d78`, las vistas en caché y la referencia del pull request #1 (el historial ya se reescribió el 08-11-2026; ver `REESCRITURA_HISTORIAL.md`).
