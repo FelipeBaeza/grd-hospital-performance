@@ -26,12 +26,12 @@ const cur = (z, s) => Array.from({ length: 30 }, (_, i) => { const x = Math.exp(
   </div>
 
   <div class="caja ok">
-    <strong class="t">Cómo leer un gráfico de embudo</strong>
-    <p>Cada punto es un hospital. Hacia la derecha, más pacientes. La línea azul (O/E = 1) es «ocurrió lo esperado». Las curvas marcan hasta dónde llega una diferencia que el azar puede explicar: con pocos pacientes, el O/E se mueve mucho sin que signifique nada; con muchos, una diferencia pequeña ya es llamativa.</p>
-    <p><b>Un punto fuera de las curvas no es un veredicto</b>: es un motivo para revisar con más detalle qué pasa en ese hospital.</p>
+    <strong class="t">Cómo leer el gráfico de O/E por hospital</strong>
+    <p>Cada punto es un hospital. Hacia la derecha, más pacientes. La línea azul (O/E = 1) es «ocurrió lo esperado». Con pocos pacientes el O/E se mueve mucho sin que signifique nada; con muchos, una diferencia pequeña ya es llamativa. El color indica si el hospital quedó fuera de los límites que el azar puede explicar (límites de la Fase 5, que no se publican por privacidad).</p>
+    <p><b>Un punto de color naranja o rojo no es un veredicto</b>: es un motivo para revisar con más detalle qué pasa en ese hospital.</p>
   </div>
   <div class="tarjeta">
-    <svg viewBox="0 0 600 190" width="100%" role="img" aria-label="Ejemplo ilustrativo de gráfico de embudo con datos simulados" style="max-width: 640px">
+    <svg viewBox="0 0 600 190" width="100%" role="img" aria-label="Ejemplo ilustrativo del gráfico con datos simulados" style="max-width: 640px">
       <rect x="40" y="20" width="520" height="130" fill="#fff" stroke="#d8dee9" />
       <line x1="40" x2="560" :y1="sy(1)" :y2="sy(1)" stroke="#1f3864" stroke-width="1.5" />
       <path :d="cur(1.96, 1)" fill="none" stroke="#dd690a" stroke-dasharray="7 5" stroke-width="2" /><path :d="cur(1.96, -1)" fill="none" stroke="#dd690a" stroke-dasharray="7 5" stroke-width="2" />
@@ -49,7 +49,7 @@ const cur = (z, s) => Array.from({ length: 30 }, (_, i) => { const x = Math.exp(
     </div>
     <div class="tarjeta">
       <h3>¿Por dónde seguir?</h3>
-      <p><button class="btn" @click="$emit('ir', 'indicadores')">Ver los gráficos de embudo</button></p>
+      <p><button class="btn" @click="$emit('ir', 'indicadores')">Ver los indicadores por hospital</button></p>
       <p><button class="btn sec" @click="$emit('ir', 'hospital')">Consultar la ficha de un hospital</button></p>
       <p><button class="btn sec" @click="$emit('ir', 'demo')">Probar la demo pedagógica del modelo</button></p>
     </div>

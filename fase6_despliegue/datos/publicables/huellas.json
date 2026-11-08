@@ -1,10 +1,10 @@
 {
- "calibracion_decil.csv": "ffea4128e4a1cd24efdb3a3d1e3a2af923c22e868885f26ba2ea29dc35abc154",
- "contexto_hospital.csv": "c0c6779fbd2590410f55e392b2e660bb10b484e9a08feb083941d84ae2e2b281",
- "criterio_global.csv": "ba95b79d49c401337c303af9a4f00ed667bd5968ba10857f38a7dccb02b1738b",
- "demo_catalogo.json": "38be34366caa7ee625998ea6dfd9e71aee397142207ee26167b65f02569024de",
- "indicador_hospital.csv": "b35858bf0be524c9acd6ba8b96ebd07302f5789f2e6dcc7f105895eb4494637a",
- "metadatos.json": "f986561d1edc1b3e3c58686143b983bf9e6cbf6bc66d1f26815b28587bf4d90e",
- "recalibracion.json": "e811213d32ca5dc00ab015d8f25fd5aeb66f2dcdaad0f0f3c1c21ae7f7c8fcff",
- "subgrupo.csv": "b75dfc05f7dce23a6c8123e09c914375f5f328d1b5d440613dd159b3179a3503"
+ "calibracion_decil.csv": "7c96d4bf2d6f46f6220ae739409bb2dbf318c3fd55ee56bed83c41df1c658131",
+ "contexto_hospital.csv": "bbfc1b661fa53111b5090c7f7d58319507075d42fd817597fdfd3f1a813dbda5",
+ "criterio_global.csv": "6cbf916bbf22cebe9db14756f8d76f72f367a8558a96a93aa1737eb6a69516b9",
+ "demo_catalogo.json": "c00aad2baa65c73508fd1ea2d740bec69de29a11367db60d341d564f3a8738c6",
+ "indicador_hospital.csv": "fda6d49da91ee2cbcd21744d3f980791f1aa5f5dc093dc9d48bb522c293e5a59",
+ "metadatos.json": "ddb88d95c843f61d3ab8f8bb8b6a0e9dbff33d28ebdd1bc1f02d914e564b0507",
+ "recalibracion.json": "ff9ea6ee2d36250baf71141e489c40c00de5d119247af214c0d18b0fb50a9cad",
+ "subgrupo.csv": "255b51d7a0fb91a6f7cf1a861d029553a11d1df5a94749bdf4cc288468d946ba"
 }

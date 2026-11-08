@@ -2982,11 +2982,6 @@
    "grupo_clinico": "XV"
   },
   {
-   "codigo": "O15",
-   "nombre": "Eclampsia",
-   "grupo_clinico": "XV"
-  },
-  {
    "codigo": "O16",
    "nombre": "Hipertensión materna, no especificada",
    "grupo_clinico": "XV"
@@ -3029,11 +3024,6 @@
   {
    "codigo": "O30",
    "nombre": "Embarazo múltiple",
-   "grupo_clinico": "XV"
-  },
-  {
-   "codigo": "O31",
-   "nombre": "Complicaciones específicas del embarazo múltiple",
    "grupo_clinico": "XV"
   },
   {
@@ -3102,18 +3092,8 @@
    "grupo_clinico": "XV"
   },
   {
-   "codigo": "O48",
-   "nombre": "Embarazo prolongado",
-   "grupo_clinico": "XV"
-  },
-  {
    "codigo": "O60",
    "nombre": "Trabajo de parto y parto prematuro",
-   "grupo_clinico": "XV"
-  },
-  {
-   "codigo": "O61",
-   "nombre": "Fracaso de la inducción del trabajo de parto",
    "grupo_clinico": "XV"
   },
   {
@@ -3122,43 +3102,8 @@
    "grupo_clinico": "XV"
   },
   {
-   "codigo": "O63",
-   "nombre": "Trabajo de parto prolongado",
-   "grupo_clinico": "XV"
-  },
-  {
-   "codigo": "O64",
-   "nombre": "Trabajo de parto obstruido debido a mala posición y presentación anormal del feto",
-   "grupo_clinico": "XV"
-  },
-  {
-   "codigo": "O65",
-   "nombre": "Trabajo de parto obstruido debido a anormalidad de la pelvis materna",
-   "grupo_clinico": "XV"
-  },
-  {
-   "codigo": "O66",
-   "nombre": "Otras obstrucciones del trabajo de parto",
-   "grupo_clinico": "XV"
-  },
-  {
-   "codigo": "O68",
-   "nombre": "Trabajo de parto y parto complicados por sufrimiento fetal",
-   "grupo_clinico": "XV"
-  },
-  {
-   "codigo": "O69",
-   "nombre": "Trabajo de parto y parto complicados por problemas del cordón umbilical",
-   "grupo_clinico": "XV"
-  },
-  {
    "codigo": "O70",
    "nombre": "Desgarro perineal durante el parto",
-   "grupo_clinico": "XV"
-  },
-  {
-   "codigo": "O71",
-   "nombre": "Otro trauma obstétrico",
    "grupo_clinico": "XV"
   },
   {
@@ -3169,31 +3114,6 @@
   {
    "codigo": "O73",
    "nombre": "Retención de la placenta o de las membranas, sin hemorragia",
-   "grupo_clinico": "XV"
-  },
-  {
-   "codigo": "O75",
-   "nombre": "Otras complicaciones del trabajo de parto y del parto, no clasificadas en otra parte",
-   "grupo_clinico": "XV"
-  },
-  {
-   "codigo": "O80",
-   "nombre": "Parto único espontáneo",
-   "grupo_clinico": "XV"
-  },
-  {
-   "codigo": "O81",
-   "nombre": "Parto único con fórceps y ventosa extractora",
-   "grupo_clinico": "XV"
-  },
-  {
-   "codigo": "O82",
-   "nombre": "Parto único por cesárea",
-   "grupo_clinico": "XV"
-  },
-  {
-   "codigo": "O83",
-   "nombre": "Otros partos únicos asistidos",
    "grupo_clinico": "XV"
   },
   {

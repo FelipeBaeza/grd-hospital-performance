@@ -100,21 +100,15 @@ def hospitales():
 
 @app.get("/indicadores/{tarea}")
 def indicadores(tarea: str):
+    """O/E, intervalo y zona por hospital, en orden de código. Los egresos van redondeados a la decena y no se publican el observado, el esperado
+    ni los límites del embudo (enmienda 03, incidente I-12): la zona viene de la Fase 5."""
     t = _tarea(tarea)
-    filas = _consultar("""SELECT cod_hospital, n_egresos, observado_pub, esperado, oe, ic_inf, ic_sup, lim_inf_95, lim_sup_95, lim_inf_998, lim_sup_998, zona
-                          FROM indicador_hospital WHERE tarea=:t ORDER BY cod_hospital""", t=t)
+    filas = _consultar("""SELECT cod_hospital, n_egresos, oe, ic_inf, ic_sup, zona FROM indicador_hospital WHERE tarea=:t ORDER BY cod_hospital""", t=t)
     resumen = _meta()["resumen_fase5"][f"hospitales_{t}"]
-    esp = np.array([f["esperado"] for f in filas], float)
-    x = np.exp(np.linspace(np.log(esp.min() * 0.8), np.log(esp.max() * 1.2), 120))
-    curva = {"esperado": [round(float(v), 4) for v in x]}
-    for z, nombre in ((1.96, "95"), (3.09, "998")):
-        s = np.sqrt(resumen["dispersion"] / x + resumen["tau2"])
-        curva[f"inf_{nombre}"] = [round(float(v), 5) for v in 1 - z * s]
-        curva[f"sup_{nombre}"] = [round(float(v), 5) for v in 1 + z * s]
     puntos = []
     for f in filas:
         puntos.append({**{k: (_num(v) if isinstance(v, float) else v) for k, v in f.items()}, "oculto_por_privacidad": f["oe"] is None})
-    return {"tarea": t, "anio": _meta()["anio_evaluado"], "n_hospitales": len(filas), "puntos": puntos, "curva": curva,
+    return {"tarea": t, "anio": _meta()["anio_evaluado"], "n_hospitales": len(filas), "puntos": puntos,
             "resumen": {k: _num(resumen[k]) if isinstance(resumen[k], float) else resumen[k] for k in ("n_elegibles", "n_bajo_volumen", "tau2", "dispersion", "pct_fuera_95", "pct_senal_998")},
             "advertencias": textos.ADVERTENCIAS, "nota": "Orden por código de hospital. No es un ranking."}
 
@@ -123,7 +117,7 @@ def indicadores(tarea: str):
 def ficha(codigo: str):
     if not _consultar("SELECT 1 FROM hospital WHERE cod_hospital=:c", c=codigo):
         raise HTTPException(404, "código de hospital no disponible (sin datos suficientes o inexistente)")
-    ind = {f["tarea"]: f for f in _consultar("""SELECT tarea, n_egresos, observado_pub, esperado, oe, ic_inf, ic_sup, lim_inf_95, lim_sup_95, lim_inf_998, lim_sup_998, zona
+    ind = {f["tarea"]: f for f in _consultar("""SELECT tarea, n_egresos, oe, ic_inf, ic_sup, zona
                                                FROM indicador_hospital WHERE cod_hospital=:c""", c=codigo)}
     ctx = _consultar("SELECT indice_vs_2023, indice_relativo_al_anio, tasa_traslado_saliente, proporcion_traslado_entrante FROM contexto_hospital WHERE cod_hospital=:c", c=codigo)[0]
     return {"cod_hospital": codigo, "anio": _meta()["anio_evaluado"], "indicadores": ind, "contexto": ctx, "advertencias": textos.ADVERTENCIAS,
@@ -133,7 +127,7 @@ def ficha(codigo: str):
 @app.get("/subgrupos/{tarea}")
 def subgrupos(tarea: str):
     t = _tarea(tarea)
-    return {"tarea": t, "subgrupos": _consultar("SELECT variable, grupo, n, observado_pub, esperado, oe FROM subgrupo WHERE tarea=:t ORDER BY variable, grupo", t=t)}
+    return {"tarea": t, "subgrupos": _consultar("SELECT variable, grupo, n, oe FROM subgrupo WHERE tarea=:t ORDER BY variable, grupo", t=t)}
 
 
 @app.get("/calibracion/{tarea}")

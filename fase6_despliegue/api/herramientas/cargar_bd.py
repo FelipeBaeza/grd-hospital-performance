@@ -37,10 +37,10 @@ def cargar(carpeta: Path, url: str | None = None) -> dict:
     from sqlalchemy import create_engine
     motor = create_engine(url) if url else db.motor()
     ddl = (Path(__file__).resolve().parents[1] / "app" / "esquema.sql").read_text(encoding="utf8")
-    ind = pd.read_csv(carpeta / "indicador_hospital.csv", dtype={"cod_hospital": str, "observado_pub": str})
+    ind = pd.read_csv(carpeta / "indicador_hospital.csv", dtype={"cod_hospital": str})
     crit = pd.read_csv(carpeta / "criterio_global.csv")
     ctx = pd.read_csv(carpeta / "contexto_hospital.csv", dtype={"cod_hospital": str})
-    sub = pd.read_csv(carpeta / "subgrupo.csv", dtype={"grupo": str, "observado_pub": str})
+    sub = pd.read_csv(carpeta / "subgrupo.csv", dtype={"grupo": str})
     cal = pd.read_csv(carpeta / "calibracion_decil.csv")
     meta = json.loads((carpeta / "metadatos.json").read_text(encoding="utf8"))
     hosp = sorted(ind["cod_hospital"].unique())
@@ -49,11 +49,11 @@ def cargar(carpeta: Path, url: str | None = None) -> dict:
             cx.execute(text(stmt))
         cx.execute(text("INSERT INTO hospital VALUES (:c)"), [{"c": h} for h in hosp])
         cx.execute(text("INSERT INTO criterio_global VALUES (:tarea,:criterio,:valor,:ic_inf,:ic_sup,:umbral,:veredicto,:es_criterio,:orden)"), _nulos(crit[["tarea", "criterio", "valor", "ic_inf", "ic_sup", "umbral", "veredicto", "es_criterio", "orden"]]))
-        cols = ["tarea", "cod_hospital", "n_egresos", "observado_pub", "esperado", "oe", "ic_inf", "ic_sup", "lim_inf_95", "lim_sup_95", "lim_inf_998", "lim_sup_998", "zona"]
+        cols = ["tarea", "cod_hospital", "n_egresos", "oe", "ic_inf", "ic_sup", "zona"]
         cx.execute(text(f"INSERT INTO indicador_hospital VALUES ({','.join(':' + c for c in cols)})"), _nulos(ind[cols]))
         cc = ["cod_hospital", "indice_vs_2023", "indice_relativo_al_anio", "tasa_traslado_saliente", "proporcion_traslado_entrante"]
         cx.execute(text(f"INSERT INTO contexto_hospital VALUES ({','.join(':' + c for c in cc)})"), _nulos(ctx[cc]))
-        sc = ["tarea", "variable", "grupo", "n", "observado_pub", "esperado", "oe"]
+        sc = ["tarea", "variable", "grupo", "n", "oe"]
         cx.execute(text(f"INSERT INTO subgrupo VALUES ({','.join(':' + c for c in sc)})"), _nulos(sub[sc]))
         kc = ["tarea", "decil", "n", "observado", "predicho", "razon_oe"]
         cx.execute(text(f"INSERT INTO calibracion_decil VALUES ({','.join(':' + c for c in kc)})"), _nulos(cal[kc]))
@@ -68,7 +68,7 @@ def verificar_carga(carpeta: Path, motor) -> dict:
              "contexto_hospital": ("contexto_hospital.csv", ["cod_hospital"]), "subgrupo": ("subgrupo.csv", ["tarea", "variable", "grupo"]),
              "calibracion_decil": ("calibracion_decil.csv", ["tarea", "decil"])}
     for tabla, (archivo, clave) in pares.items():
-        dtype = {"cod_hospital": str, "grupo": str, "observado_pub": str}
+        dtype = {"cod_hospital": str, "grupo": str}
         csv = pd.read_csv(carpeta / archivo, dtype=dtype)
         bd = pd.read_sql(text(f"SELECT * FROM {tabla}"), motor)
         csv = csv[[c for c in bd.columns if c in csv.columns]].sort_values(clave).reset_index(drop=True)

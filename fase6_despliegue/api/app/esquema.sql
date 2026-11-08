@@ -21,17 +21,11 @@ CREATE TABLE criterio_global (
 CREATE TABLE indicador_hospital (
     tarea TEXT NOT NULL,
     cod_hospital TEXT NOT NULL REFERENCES hospital (cod_hospital),
-    n_egresos INTEGER NOT NULL,
-    observado_pub TEXT,              -- texto: puede ser "<10" cuando el conteo es pequeño
-    esperado DOUBLE PRECISION,
+    n_egresos INTEGER NOT NULL,      -- redondeado a la decena (enmienda 03, incidente I-12)
     oe DOUBLE PRECISION,             -- nulo cuando el conteo es pequeño (revelaría el observado)
     ic_inf DOUBLE PRECISION,
     ic_sup DOUBLE PRECISION,
-    lim_inf_95 DOUBLE PRECISION,
-    lim_sup_95 DOUBLE PRECISION,
-    lim_inf_998 DOUBLE PRECISION,
-    lim_sup_998 DOUBLE PRECISION,
-    zona TEXT NOT NULL,
+    zona TEXT NOT NULL,              -- zona calculada en la Fase 5 con los límites del embudo, que no se publican
     PRIMARY KEY (tarea, cod_hospital)
 );
 
@@ -47,9 +41,7 @@ CREATE TABLE subgrupo (
     tarea TEXT NOT NULL,
     variable TEXT NOT NULL,
     grupo TEXT NOT NULL,
-    n INTEGER NOT NULL,
-    observado_pub TEXT,
-    esperado DOUBLE PRECISION,
+    n INTEGER NOT NULL,              -- redondeado a la decena
     oe DOUBLE PRECISION,
     PRIMARY KEY (tarea, variable, grupo)
 );

@@ -1,15 +1,18 @@
 {
  "anio_evaluado": 2024,
  "resumen_fase5": {
-  "n_cohorte_c": 665450,
+  "n_cohorte_c": 625369,
   "bootstrap": 1000,
-  "n_mortalidad": 598522,
-  "n_estadia": 545784,
+  "n_cohorte_d": 582904,
+  "n_cohorte_e": 498544,
+  "protocolo": "protocolo_fase5_v4.toml",
+  "n_mortalidad": 582904,
+  "n_estadia": 498544,
   "hospitales_mortalidad": {
    "n_hospitales_total": 72,
    "n_elegibles": 69,
    "n_bajo_volumen": 3,
-   "tau2": 0.01591924054484049,
+   "tau2": 0.01843312365814877,
    "dispersion": 1.0,
    "pct_fuera_95": 0.15942028985507245,
    "pct_senal_998": 0.043478260869565216,
@@ -19,18 +22,18 @@
    "n_hospitales_total": 72,
    "n_elegibles": 69,
    "n_bajo_volumen": 3,
-   "tau2": 0.011010498252999256,
-   "dispersion": 5.307184193944243,
-   "pct_fuera_95": 0.15942028985507245,
-   "pct_senal_998": 0.028985507246376812,
+   "tau2": 0.011557713905565854,
+   "dispersion": 5.418420553205707,
+   "pct_fuera_95": 0.14492753623188406,
+   "pct_senal_998": 0.014492753623188406,
    "egresos_bajo_volumen": 104
   },
   "exhaustividad": {
-   "indice_global_vs_2023": 1.0377431294589208,
-   "factor_global_2023": 1.155403430686727
+   "indice_global_vs_2023": 1.0370121114125157,
+   "factor_global_2023": 1.1590455683840395
   },
-  "oe_global_mortalidad": 0.9788717917403053,
-  "oe_global_estadia": 0.9564631394759063
+  "oe_global_mortalidad": 0.9621524493443091,
+  "oe_global_estadia": 0.9555728335875882
  },
  "huella_reglas_fase4": "24ed78fcd90b5ee5ca2f93d61225fc8f6e936256d7c88f231720bbfb29391e59",
  "version_modelos": {
@@ -46,12 +49,12 @@
  "archivos_modelo": {
   "mortalidad": {
    "ruta": "mortalidad/modelo_lightgbm.txt",
-   "sha256": "e33fb2dd9b245ad2958771018c8467d284b73eaca9af8f33ecf01dfffcdbec13"
+   "sha256": "76167b0bf29d91e91850715ce63b6e3f9e6bd1ac2137c8e6dc44a678883be15a"
   },
   "estadia": {
    "ruta": "estadia/modelo_lightgbm.txt",
-   "sha256": "8e9fe8d6ddd6f53f2f5490f22f3333239cb86db705c43218feb843a16a75b4e0"
+   "sha256": "0bf2769aba6ce47e62b091646deaff5e7b0656b393f0c9fcd2bf8f9ef18433ae"
   }
  },
- "n_diagnosticos_demo": 823
+ "n_diagnosticos_demo": 807
 }

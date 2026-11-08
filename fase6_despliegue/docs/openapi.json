@@ -74,6 +74,7 @@
   "/indicadores/{tarea}": {
    "get": {
     "summary": "Indicadores",
+    "description": "O/E, intervalo y zona por hospital, en orden de código. Los egresos van redondeados a la decena y no se publican el observado, el esperado\nni los límites del embudo (enmienda 03, incidente I-12): la zona viene de la Fase 5.",
     "operationId": "indicadores_indicadores__tarea__get",
     "parameters": [
      {

@@ -33,13 +33,10 @@ const ir = () => { location.hash = elegido.value ? `#/hospital/${elegido.value}`
         <h3>{{ NOMBRE[t] }}</h3>
         <p><span style="font-size: 1.8rem; color: var(--azul); font-weight: 700">{{ f.oe === null ? 'no se publica' : fmt(f.oe) }}</span> <span class="nota">O/E</span></p>
         <p class="peq" v-if="f.oe !== null">Intervalo de confianza del 95 %: {{ fmt(f.ic_inf) }} a {{ fmt(f.ic_sup) }}</p>
-        <p class="peq" v-else>Este hospital tiene menos de 10 eventos observados: el conteo y el O/E no se publican para proteger la privacidad.</p>
+        <p class="peq" v-else>Este hospital tiene menos de 10 eventos observados: el O/E no se publica para proteger la privacidad.</p>
         <p><ChipZona :zona="f.zona" /></p>
         <table><tbody>
-          <tr><td>Egresos analizados</td><td>{{ fmtEntero(f.n_egresos) }}</td></tr>
-          <tr><td>{{ t === 'mortalidad' ? 'Muertes' : 'Días' }} observados</td><td>{{ f.observado_pub === '<10' ? 'menos de 10' : fmtEntero(Number(f.observado_pub)) }}</td></tr>
-          <tr><td>{{ t === 'mortalidad' ? 'Muertes' : 'Días' }} esperados</td><td>{{ fmt(f.esperado, 1) }}</td></tr>
-          <tr><td>Límites del 95 % para este volumen</td><td>{{ fmt(f.lim_inf_95) }} a {{ fmt(f.lim_sup_95) }}</td></tr>
+          <tr><td>Egresos analizados (redondeados a la decena)</td><td>{{ fmtEntero(f.n_egresos) }}</td></tr>
         </tbody></table>
       </div>
     </div>

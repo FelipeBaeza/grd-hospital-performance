@@ -1,5 +1,9 @@
 """F0. Arma el paquete de datos publicables a partir de los resultados agregados de la Fase 5 y de los modelos congelados de la Fase 4.
 
+Cohorte: la de la enmienda 03 (Fase 3 v7 y Fase 4 v6), carpeta ``salidas/evaluacion_2024_v4``. Esas tablas se publican sin observado, esperado ni
+límites del embudo (incidente I-12). El exportador copia solo columnas con nombre: aunque se le apuntara a tablas completas, no copiaría esos
+valores, y redondea a la decena los conteos de egresos y de personas.
+
 Uso:
   python herramientas/exportar_publicables.py --fase5 <.../fase5_evaluacion/salidas/evaluacion_2024> --modelos <.../fase4_modelado/modelos> \
       --capas <carpeta con oro/> --cie10 <CIE-10.csv> --elix <elixhauser_categorias.csv> --salida ../datos/publicables
@@ -34,6 +38,16 @@ def sha(ruta: Path) -> str:
     return h.hexdigest()
 
 
+PASO = 10
+
+
+def a_la_decena(s: pd.Series, minimo: int = 10) -> pd.Series:
+    """Conteo redondeado a la decena (mitades hacia arriba); ``<10`` si está entre 1 y 9. Idempotente."""
+    v = pd.to_numeric(s, errors="coerce")
+    r = ((v + PASO // 2) // PASO * PASO).astype("Int64").astype(str)
+    return r.where(~((v > 0) & (v < minimo)), f"<{minimo}").where(v.notna(), s.astype(str))
+
+
 def tablas_fase5(f5: Path, out: Path) -> dict:
     t = f5 / "tablas"
     res = json.loads((f5 / "resumen_evaluacion_2024.json").read_text(encoding="utf8"))
@@ -46,12 +60,14 @@ def tablas_fase5(f5: Path, out: Path) -> dict:
         d["orden"] = range(len(d))
         partes.append(d)
     pd.concat(partes).rename(columns={"criterio": "criterio"}).to_csv(out / "criterio_global.csv", index=False)
-    # indicador por hospital
+    # indicador por hospital: solo O/E, intervalo, zona y egresos a la decena
     partes = []
     for tarea in ("mortalidad", "estadia"):
-        d = pd.read_csv(t / f"oe_hospital_{tarea}.csv", dtype={"cod_hospital": str, "observado": str})
+        d = pd.read_csv(t / f"oe_hospital_{tarea}.csv", dtype={"cod_hospital": str})
+        d = d[["cod_hospital", "n_egresos", "oe", "ic_inf", "ic_sup", "zona"]].copy()
+        d["n_egresos"] = a_la_decena(d["n_egresos"]).astype(int)
         d.insert(0, "tarea", tarea)
-        partes.append(d.rename(columns={"observado": "observado_pub"}))
+        partes.append(d)
     ind = pd.concat(partes)
     ind.to_csv(out / "indicador_hospital.csv", index=False)
     # contexto
@@ -65,9 +81,10 @@ def tablas_fase5(f5: Path, out: Path) -> dict:
     sub = []
     cal = []
     for tarea in ("mortalidad", "estadia"):
-        d = pd.read_csv(t / f"subgrupos_{tarea}.csv", dtype={"grupo": str, "observado": str})
+        d = pd.read_csv(t / f"subgrupos_{tarea}.csv", dtype={"grupo": str})[["variable", "grupo", "n", "oe"]].copy()
+        d["n"] = a_la_decena(d["n"]).astype(int)
         d.insert(0, "tarea", tarea)
-        sub.append(d.rename(columns={"observado": "observado_pub"}))
+        sub.append(d)
         c = pd.read_csv(t / f"calibracion_deciles_{tarea}.csv")
         c.insert(0, "tarea", tarea)
         cal.append(c)

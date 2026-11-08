@@ -18,8 +18,8 @@ def test_api_coincide_con_tablas_fase5(cliente, tarea):
     assert api["n_hospitales"] == len(api["puntos"]) == len(ref) == 69
     for p in api["puntos"]:
         f = ref[p["cod_hospital"]]
-        assert p["n_egresos"] == int(f["n_egresos"])
-        assert p["esperado"] == pytest.approx(float(f["esperado"]))
+        assert p["n_egresos"] == int(f["n_egresos"]) and p["n_egresos"] % 10 == 0           # redondeado a la decena
+        assert not {"observado_pub", "esperado", "lim_inf_95", "lim_sup_95", "lim_inf_998", "lim_sup_998"} & set(p)
         if f["oe"] == "":
             assert p["oe"] is None
         else:
@@ -72,3 +72,21 @@ def test_demo_valida_entradas_sin_ecoar(cliente, perfil):
 def test_demo_sin_cache(cliente, perfil):
     r = cliente.post("/demo/riesgo", json=perfil)
     assert r.status_code == 200 and "no-store" in r.headers["cache-control"]
+
+
+def test_no_se_publican_observado_esperado_ni_limites():
+    """Enmienda 03 (incidente I-12): restando dos versiones de la cohorte se reconstruyen conteos de 1 a 9; por eso no se publican."""
+    prohibidas = {"observado", "observado_pub", "esperado", "lim_inf_95", "lim_sup_95", "lim_inf_998", "lim_sup_998"}
+    for archivo in ("indicador_hospital.csv", "subgrupo.csv"):
+        filas = _csv(archivo)
+        assert filas and not prohibidas & set(filas[0]), archivo
+        assert all(int(f["n_egresos" if "n_egresos" in f else "n"]) % 10 == 0 for f in filas), archivo
+
+
+def test_api_no_expone_curva_ni_esperados(cliente):
+    d = cliente.get("/indicadores/mortalidad").json()
+    assert "curva" not in d
+    ficha = cliente.get("/hospitales/" + d["puntos"][0]["cod_hospital"]).json()
+    for f in ficha["indicadores"].values():
+        assert not {"observado_pub", "esperado", "lim_inf_95", "lim_sup_95"} & set(f)
+    assert not {"observado_pub", "esperado"} & set(cliente.get("/subgrupos/mortalidad").json()["subgrupos"][0])
